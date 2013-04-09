@@ -1,0 +1,614 @@
+1
+00:00:00,000 --> 00:00:02,790
+
+
+2
+00:00:02,790 --> 00:00:06,970
+Git, a distributed source
+control repository.
+
+3
+00:00:06,970 --> 00:00:09,400
+I tred to picture clusters of
+information as they move
+
+4
+00:00:09,400 --> 00:00:12,700
+through the file system. Were
+the commit messages like
+
+5
+00:00:12,700 --> 00:00:13,820
+history books?
+
+6
+00:00:13,820 --> 00:00:16,750
+I kept dreaming of
+a repository I
+
+7
+00:00:16,750 --> 00:00:18,210
+thought I'd never see.
+
+8
+00:00:18,210 --> 00:00:22,205
+And then, one day: Git Real.
+
+9
+00:00:22,205 --> 00:00:27,110
+[MUSIC PLAYING]
+
+10
+00:00:27,110 --> 00:00:28,300
+You're watching Git Real.
+
+11
+00:00:28,300 --> 00:00:30,470
+And this is Level Four, where 
+we're going to be going over
+
+12
+00:00:30,470 --> 00:00:32,560
+some collaboration scenarios.
+
+13
+00:00:32,560 --> 00:00:35,440
+What happens when things don't
+go as smoothly as Olivier
+
+14
+00:00:35,440 --> 00:00:38,550
+showed you in the
+previous level.
+
+15
+00:00:38,550 --> 00:00:39,970
+So here we have Gregg,
+he pushes up his
+
+16
+00:00:39,970 --> 00:00:41,230
+source code to github.
+
+17
+00:00:41,230 --> 00:00:42,930
+And Jane of course
+wants a copy.
+
+18
+00:00:42,930 --> 00:00:47,430
+As we saw, Jane is going to
+clone his copy off of github
+
+19
+00:00:47,430 --> 00:00:49,580
+and then she's going to want
+to add some changes.
+
+20
+00:00:49,580 --> 00:00:52,010
+So let's continue down
+that timeline.
+
+21
+00:00:52,010 --> 00:00:53,510
+So she adds some changes.
+
+22
+00:00:53,510 --> 00:00:55,990
+You can see there's
+two new files.
+
+23
+00:00:55,990 --> 00:00:59,630
+We do a git add --all,
+to add those files.
+
+24
+00:00:59,630 --> 00:01:01,640
+And then add store and
+product models.
+
+25
+00:01:01,640 --> 00:01:04,349
+
+
+26
+00:01:04,349 --> 00:01:05,960
+Then she pushes up to
+github when she's
+
+27
+00:01:05,960 --> 00:01:07,250
+done making her changes.
+
+28
+00:01:07,250 --> 00:01:10,510
+And her commit is going to be
+represented by that little
+
+29
+00:01:10,510 --> 00:01:13,350
+pink commit down there.
+
+30
+00:01:13,350 --> 00:01:14,690
+Now let's jump back
+over to Gregg.
+
+31
+00:01:14,690 --> 00:01:18,780
+See Gregg is also working at
+the same time as Jane, and
+
+32
+00:01:18,780 --> 00:01:22,770
+Greg makes a commit, basically
+adds a change to the readme.
+
+33
+00:01:22,770 --> 00:01:27,040
+So now we have Jane's commit
+which is sitting up on github
+
+34
+00:01:27,040 --> 00:01:29,770
+and Greg's local commit which
+is sitting on his local
+
+35
+00:01:29,770 --> 00:01:32,770
+repository, and they
+are different.
+
+36
+00:01:32,770 --> 00:01:36,000
+So what do we do
+at this point?
+
+37
+00:01:36,000 --> 00:01:39,090
+If Gregg tries to push to github
+at this point, well
+
+38
+00:01:39,090 --> 00:01:42,970
+he's going to be rejected
+because as you can see here,
+
+39
+00:01:42,970 --> 00:01:47,520
+the tip of his current branch
+is behind the remote branch.
+
+40
+00:01:47,520 --> 00:01:50,420
+So what we'd have to do here is
+we could simply do a pull
+
+41
+00:01:50,420 --> 00:01:54,110
+first, and then a push,
+and it would work.
+
+42
+00:01:54,110 --> 00:01:56,490
+It's important that we know
+what's going on under the hood
+
+43
+00:01:56,490 --> 00:01:58,390
+when we run this pull command.
+
+44
+00:01:58,390 --> 00:02:01,640
+So the first thing that pull
+does, is it fetches or syncs
+
+45
+00:02:01,640 --> 00:02:04,630
+our local repository from
+the remote one.
+
+46
+00:02:04,630 --> 00:02:07,910
+It's the same thing as doing
+a git fetch command.
+
+47
+00:02:07,910 --> 00:02:11,800
+So in this case, it's going to
+copy down Jane's commit into
+
+48
+00:02:11,800 --> 00:02:12,820
+our local repo.
+
+49
+00:02:12,820 --> 00:02:15,550
+However it's not actually going
+to update any of our
+
+50
+00:02:15,550 --> 00:02:16,250
+local code.
+
+51
+00:02:16,250 --> 00:02:18,920
+If we looked under the covers
+here we will see that in our
+
+52
+00:02:18,920 --> 00:02:23,810
+local repo, we actually have a
+branch called origin master.
+
+53
+00:02:23,810 --> 00:02:25,680
+That's our remote branch.
+
+54
+00:02:25,680 --> 00:02:28,720
+And now the second step with
+pull is that it merges the
+
+55
+00:02:28,720 --> 00:02:31,190
+origin master with master.
+
+56
+00:02:31,190 --> 00:02:35,200
+It's the same thing as running
+git merge origin master.
+
+57
+00:02:35,200 --> 00:02:37,490
+So like you saw with the
+previous level, when we try to
+
+58
+00:02:37,490 --> 00:02:39,970
+do a merge for two different
+branches that have different
+
+59
+00:02:39,970 --> 00:02:43,590
+commits, it's going to pop us
+straight into an editor where
+
+60
+00:02:43,590 --> 00:02:45,890
+we have to create
+a merge commit.
+
+61
+00:02:45,890 --> 00:02:48,430
+In this case, our message says
+that it's merging branch
+
+62
+00:02:48,430 --> 00:02:51,510
+master from the remote
+repository.
+
+63
+00:02:51,510 --> 00:02:54,120
+Once we save from the editor
+it's going to give us some
+
+64
+00:02:54,120 --> 00:02:56,770
+output from the pull command
+and tell us that it did a
+
+65
+00:02:56,770 --> 00:02:59,130
+recursive merge.
+
+66
+00:02:59,130 --> 00:03:01,760
+If we look back at the time line
+we're going to see that
+
+67
+00:03:01,760 --> 00:03:06,220
+we had two branches, and they
+merged on the merge commit.
+
+68
+00:03:06,220 --> 00:03:09,590
+You might notice here though
+that we have our local master
+
+69
+00:03:09,590 --> 00:03:13,270
+still has that merge commit, but
+the origin master doesn't
+
+70
+00:03:13,270 --> 00:03:18,090
+yet know about Gregg's change
+and about the merge commit.
+
+71
+00:03:18,090 --> 00:03:22,130
+And it's not going to know about
+it until we do git push.
+
+72
+00:03:22,130 --> 00:03:25,600
+At that point, origin master
+points to the same master
+
+73
+00:03:25,600 --> 00:03:29,470
+branch and everything's
+been updated.
+
+74
+00:03:29,470 --> 00:03:31,100
+And now if we check the
+log we can see,
+
+75
+00:03:31,100 --> 00:03:33,140
+there's our merge commit.
+
+76
+00:03:33,140 --> 00:03:36,870
+Now some people aren't big
+fans of merge commits.
+
+77
+00:03:36,870 --> 00:03:40,780
+Some people think they pollute
+our repository, pollute our
+
+78
+00:03:40,780 --> 00:03:43,170
+history because if you have a
+lot of collaborators, you
+
+79
+00:03:43,170 --> 00:03:46,100
+might have 10 things that
+changed and maybe three or
+
+80
+00:03:46,100 --> 00:03:48,490
+four of them are the
+merge commits.
+
+81
+00:03:48,490 --> 00:03:50,200
+It can start to get
+pretty sloppy.
+
+82
+00:03:50,200 --> 00:03:52,760
+And in a later level, we're
+going to be talking about
+
+83
+00:03:52,760 --> 00:03:54,950
+rebase, which is one
+way to get around
+
+84
+00:03:54,950 --> 00:03:56,250
+doing these merge commits.
+
+85
+00:03:56,250 --> 00:03:58,900
+But for now, let's move on
+to another scenario.
+
+86
+00:03:58,900 --> 00:04:01,770
+
+
+87
+00:04:01,770 --> 00:04:05,000
+So Gregg and Jane, once again,
+are working on the same code
+
+88
+00:04:05,000 --> 00:04:08,380
+at the same time except this
+time they happen to be working
+
+89
+00:04:08,380 --> 00:04:11,040
+on the same file,
+the same readme.
+
+90
+00:04:11,040 --> 00:04:14,330
+Gregg thinks that cake is a lie
+and Jane thinks that cake
+
+91
+00:04:14,330 --> 00:04:15,550
+is telling the truth.
+
+92
+00:04:15,550 --> 00:04:17,620
+And they both edited
+that same file.
+
+93
+00:04:17,620 --> 00:04:22,550
+Jane committed her changes and
+pushed to github and Gregg
+
+94
+00:04:22,550 --> 00:04:23,780
+committed locally.
+
+95
+00:04:23,780 --> 00:04:26,700
+So now you can see that we
+still have two different
+
+96
+00:04:26,700 --> 00:04:29,030
+commits, but they're
+on the same file.
+
+97
+00:04:29,030 --> 00:04:30,640
+What's going to happen now?
+
+98
+00:04:30,640 --> 00:04:32,360
+So when Gregg does a pull
+it does two things.
+
+99
+00:04:32,360 --> 00:04:35,270
+Remember it syncs the
+repository, pulls down the
+
+100
+00:04:35,270 --> 00:04:38,280
+changes, pulls down
+Jane's commit and
+
+101
+00:04:38,280 --> 00:04:39,810
+then it tries to merge.
+
+102
+00:04:39,810 --> 00:04:42,610
+But the merge was
+not successful.
+
+103
+00:04:42,610 --> 00:04:44,480
+We have a conflict.
+
+104
+00:04:44,480 --> 00:04:46,990
+It tells us there is a
+conflict in readme.
+
+105
+00:04:46,990 --> 00:04:50,260
+So we're going to have to edit
+that readme since it spit us
+
+106
+00:04:50,260 --> 00:04:51,630
+back out on the command line.
+
+107
+00:04:51,630 --> 00:04:55,650
+If we do a status, we can see
+that well, we have to edit
+
+108
+00:04:55,650 --> 00:04:58,720
+this file and then make
+a merge commit.
+
+109
+00:04:58,720 --> 00:05:01,410
+So if we jump into the readme
+at this point we're going to
+
+110
+00:05:01,410 --> 00:05:03,340
+see what looks like a diff.
+
+111
+00:05:03,340 --> 00:05:06,110
+Inside this diff, it has our
+local version, that's the
+
+112
+00:05:06,110 --> 00:05:08,740
+head, and we have
+Jane's version.
+
+113
+00:05:08,740 --> 00:05:12,130
+We're going to need to edit this
+file manually to fix it.
+
+114
+00:05:12,130 --> 00:05:15,660
+So we're going to delete all the
+extra text and make it so
+
+115
+00:05:15,660 --> 00:05:18,770
+that the cake is a lie because
+that's what we think--
+
+116
+00:05:18,770 --> 00:05:20,000
+well it is a lie.
+
+117
+00:05:20,000 --> 00:05:23,740
+And then we call git
+commit -a.
+
+118
+00:05:23,740 --> 00:05:25,490
+We're going to leave off the
+message because it's going to
+
+119
+00:05:25,490 --> 00:05:26,855
+boot us back into an editor.
+
+120
+00:05:26,855 --> 00:05:30,240
+It'll give us a good commit
+message, and even list the
+
+121
+00:05:30,240 --> 00:05:32,640
+conflicted files
+that we fixed.
+
+122
+00:05:32,640 --> 00:05:35,170
+Once we've saved that, our tree
+again look something like
+
+123
+00:05:35,170 --> 00:05:36,860
+this with our merge commit.
+
+124
+00:05:36,860 --> 00:05:40,900
+And once we push, once again
+the origin master syncs up
+
+125
+00:05:40,900 --> 00:05:44,540
+with our local master.
+
+126
+00:05:44,540 --> 00:05:46,200
+So we've reached the end of
+Level Four and now you know a
+
+127
+00:05:46,200 --> 00:05:51,020
+little bit more about merge
+commits and conflicts.
+
+128
+00:05:51,020 --> 00:05:53,160
+And it's time for you to resolve
+some of your own
+
+129
+00:05:53,160 --> 00:05:54,540
+conflicts in the challenges.
+
+130
+00:05:54,540 --> 00:05:57,868

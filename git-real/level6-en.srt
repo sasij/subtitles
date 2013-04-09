@@ -1,0 +1,495 @@
+1
+00:00:00,000 --> 00:00:02,718
+
+
+2
+00:00:02,718 --> 00:00:03,630
+Git.
+
+3
+00:00:03,630 --> 00:00:06,970
+A distributed source
+control repository.
+
+4
+00:00:06,970 --> 00:00:09,390
+I tried to picture clusters of
+information as they move
+
+5
+00:00:09,390 --> 00:00:11,370
+through the file system.
+
+6
+00:00:11,370 --> 00:00:13,820
+Were the commit messages
+like history books?
+
+7
+00:00:13,820 --> 00:00:16,370
+I kept dreaming of
+a repository I
+
+8
+00:00:16,370 --> 00:00:17,842
+thought I'd never see.
+
+9
+00:00:17,842 --> 00:00:21,820
+And then, one day: Git Real.
+
+10
+00:00:21,820 --> 00:00:27,600
+[MUSIC PLAYING]
+
+11
+00:00:27,600 --> 00:00:29,990
+You're watching Git Real, and
+this is level six, where we're
+
+12
+00:00:29,990 --> 00:00:31,780
+going to be talking
+about rebase.
+
+13
+00:00:31,780 --> 00:00:34,490
+So you remember in previous
+levels, we talked about merge
+
+14
+00:00:34,490 --> 00:00:36,790
+commits not being so great.
+
+15
+00:00:36,790 --> 00:00:39,650
+You've got merge commits from
+local branches, merge commits
+
+16
+00:00:39,650 --> 00:00:41,270
+from remote branches.
+
+17
+00:00:41,270 --> 00:00:44,940
+And it might seem like it's
+polluting your history.
+
+18
+00:00:44,940 --> 00:00:45,850
+That's not so good.
+
+19
+00:00:45,850 --> 00:00:49,170
+But there's an alternative to
+doing these sort of merges
+
+20
+00:00:49,170 --> 00:00:51,080
+with merge commits, and
+that's called rebase.
+
+21
+00:00:51,080 --> 00:00:54,310
+So let's jump back into the
+scenario we were at before,
+
+22
+00:00:54,310 --> 00:00:57,630
+where we have Jane's commit up
+on GitHub, which is different
+
+23
+00:00:57,630 --> 00:00:59,920
+than Gregg's commit
+that's on local.
+
+24
+00:00:59,920 --> 00:01:03,290
+So instead of doing pull and
+push, we're going to do fetch,
+
+25
+00:01:03,290 --> 00:01:04,540
+and then rebase.
+
+26
+00:01:04,540 --> 00:01:07,620
+So if you remember when we do
+fetch, that goes to GitHub and
+
+27
+00:01:07,620 --> 00:01:10,960
+pulls down any changes, but
+doesn't merge them.
+
+28
+00:01:10,960 --> 00:01:13,280
+So if we took a look at our
+current branch, it looks
+
+29
+00:01:13,280 --> 00:01:14,260
+something like this.
+
+30
+00:01:14,260 --> 00:01:16,300
+We have master and
+origin master.
+
+31
+00:01:16,300 --> 00:01:18,310
+Git rebase does three things.
+
+32
+00:01:18,310 --> 00:01:21,710
+First, it's going to move all
+changes to master, which are
+
+33
+00:01:21,710 --> 00:01:22,980
+not in origin master.
+
+34
+00:01:22,980 --> 00:01:25,840
+So it's going to take Gregg's
+commit and move that to a
+
+35
+00:01:25,840 --> 00:01:27,610
+temporary area.
+
+36
+00:01:27,610 --> 00:01:31,310
+Then it's going to run all
+of the origin master commits
+
+37
+00:01:31,310 --> 00:01:32,640
+one at a time.
+
+38
+00:01:32,640 --> 00:01:33,310
+So there it goes.
+
+39
+00:01:33,310 --> 00:01:34,910
+We've run that commit
+on master.
+
+40
+00:01:34,910 --> 00:01:37,530
+And then third step, it's going
+to run all the commits
+
+41
+00:01:37,530 --> 00:01:42,430
+in the temporary area on top of
+our master one at a time.
+
+42
+00:01:42,430 --> 00:01:43,710
+So just like that.
+
+43
+00:01:43,710 --> 00:01:46,050
+Now as you notice, there's
+no merge commits here.
+
+44
+00:01:46,050 --> 00:01:50,990
+It's just one after the
+next, after the next.
+
+45
+00:01:50,990 --> 00:01:52,840
+Back in level three when we
+first learned about local
+
+46
+00:01:52,840 --> 00:01:56,130
+branches, remember we had this
+admin branch, and then we had
+
+47
+00:01:56,130 --> 00:01:58,070
+to go back and fix
+some bugs on master.
+
+48
+00:01:58,070 --> 00:02:01,150
+And then we had to merge
+the admin into master.
+
+49
+00:02:01,150 --> 00:02:05,130
+Well, how might we rebase
+instead of doing merge?
+
+50
+00:02:05,130 --> 00:02:08,330
+Well, what we might do is first
+check out the admin
+
+51
+00:02:08,330 --> 00:02:11,790
+branch, then run git
+rebase master.
+
+52
+00:02:11,790 --> 00:02:14,190
+This is going to first run the
+master commits, and that's
+
+53
+00:02:14,190 --> 00:02:16,930
+going to run our additional
+admin commits.
+
+54
+00:02:16,930 --> 00:02:20,030
+Then the next step is to check
+out the master branch, and
+
+55
+00:02:20,030 --> 00:02:24,200
+then merge from the admin
+back into master.
+
+56
+00:02:24,200 --> 00:02:27,260
+All this is going to do is one
+of those fast forwards that we
+
+57
+00:02:27,260 --> 00:02:27,950
+talked about.
+
+58
+00:02:27,950 --> 00:02:30,220
+So it's just going to run the
+same commits one after the
+
+59
+00:02:30,220 --> 00:02:33,200
+next, after the next, and
+we're good to go.
+
+60
+00:02:33,200 --> 00:02:34,760
+Even if we're running
+rebase, we still
+
+61
+00:02:34,760 --> 00:02:35,940
+might run into conflict.
+
+62
+00:02:35,940 --> 00:02:38,460
+So let's take a look at a
+scenario with a conflict.
+
+63
+00:02:38,460 --> 00:02:41,260
+As you can see here, up on
+GitHub we have an extra
+
+64
+00:02:41,260 --> 00:02:42,610
+commit, as we do locally.
+
+65
+00:02:42,610 --> 00:02:45,180
+And those two extra commits
+both modify
+
+66
+00:02:45,180 --> 00:02:47,570
+that same readme file.
+
+67
+00:02:47,570 --> 00:02:48,420
+OK.
+
+68
+00:02:48,420 --> 00:02:52,770
+So step one, we fetch
+from GitHub.
+
+69
+00:02:52,770 --> 00:02:55,110
+Step two, we run git rebase.
+
+70
+00:02:55,110 --> 00:02:56,780
+That's going to take all of our
+new commits from master,
+
+71
+00:02:56,780 --> 00:02:59,450
+and move them into
+a temporary area.
+
+72
+00:02:59,450 --> 00:03:02,710
+Then it's going to run all of
+the origin master commits.
+
+73
+00:03:02,710 --> 00:03:04,750
+And then finally, it's going to
+run all of the commits in
+
+74
+00:03:04,750 --> 00:03:07,630
+the temporary area one at a
+time, which of course is going
+
+75
+00:03:07,630 --> 00:03:09,420
+to lead to a conflict.
+
+76
+00:03:09,420 --> 00:03:12,260
+So here is what you see when
+rebase runs into a conflict.
+
+77
+00:03:12,260 --> 00:03:15,890
+You can see it's asking us to
+fix the merge conflict in
+
+78
+00:03:15,890 --> 00:03:20,170
+readme.txt, and when we resolve
+the problem, run git
+
+79
+00:03:20,170 --> 00:03:21,550
+rebase --continue.
+
+80
+00:03:21,550 --> 00:03:24,160
+However, if we want to skip the
+patch, we could run git
+
+81
+00:03:24,160 --> 00:03:24,840
+rebase skip.
+
+82
+00:03:24,840 --> 00:03:28,120
+Or if we want to roll back and
+pretend we never rebased, we
+
+83
+00:03:28,120 --> 00:03:30,870
+can just do it git
+rebase abort.
+
+84
+00:03:30,870 --> 00:03:33,180
+If we ran a git status, we would
+see that we're not on
+
+85
+00:03:33,180 --> 00:03:34,330
+any particular branch.
+
+86
+00:03:34,330 --> 00:03:35,760
+We're in the middle
+of the rebase.
+
+87
+00:03:35,760 --> 00:03:39,290
+So after we edit the readme,
+we do git add readme.
+
+88
+00:03:39,290 --> 00:03:42,050
+Then we type git rebase
+--continue, and it continues
+
+89
+00:03:42,050 --> 00:03:43,030
+applying the commits.
+
+90
+00:03:43,030 --> 00:03:45,410
+If we took a look at the commit
+messages at this point,
+
+91
+00:03:45,410 --> 00:03:46,940
+it would look something
+like this.
+
+92
+00:03:46,940 --> 00:03:50,820
+So once again, you can see there
+is no merge conflict.
+
+93
+00:03:50,820 --> 00:03:55,240
+It's all just one after the
+next, and feels a bit cleaner.
+
+94
+00:03:55,240 --> 00:03:57,740
+I'm not saying that rebase is
+the answer all the time.
+
+95
+00:03:57,740 --> 00:03:59,820
+Sometimes you might want to
+rebase, sometimes you might
+
+96
+00:03:59,820 --> 00:04:00,920
+want to merge.
+
+97
+00:04:00,920 --> 00:04:02,860
+If you're dealing with a branch
+that's been around for
+
+98
+00:04:02,860 --> 00:04:05,510
+a long time and it has a lot of
+changes, you probably want
+
+99
+00:04:05,510 --> 00:04:07,200
+to do a merge instead
+of a rebase.
+
+100
+00:04:07,200 --> 00:04:10,690
+That way you know exactly when
+it got merged back in, and you
+
+101
+00:04:10,690 --> 00:04:15,790
+have a log of everything that
+got changed in that one merge
+
+102
+00:04:15,790 --> 00:04:17,880
+when it came over.
+
+103
+00:04:17,880 --> 00:04:18,470
+Yeah.
+
+104
+00:04:18,470 --> 00:04:20,310
+So it's time for you
+to get your hands
+
+105
+00:04:20,310 --> 00:04:22,330
+dirty, and do some rebasing.
+
+106
+00:04:22,330 --> 00:04:25,666
