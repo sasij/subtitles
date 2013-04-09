@@ -1,0 +1,590 @@
+1
+00:00:00,000 --> 00:00:32,530
+[MUSIC PLAYING]
+
+2
+00:00:32,530 --> 00:00:34,430
+You're watching The Anatomy
+of Backbone.js.
+
+3
+00:00:34,430 --> 00:00:37,350
+And this is Level 1, where we're
+going to talk about why
+
+4
+00:00:37,350 --> 00:00:40,050
+you might want to use
+Backbone.js in an application,
+
+5
+00:00:40,050 --> 00:00:42,180
+and we'll walk through
+a sample application.
+
+6
+00:00:42,180 --> 00:00:45,010
+We're going to create a really
+simple todo app.
+
+7
+00:00:45,010 --> 00:00:47,840
+It's going to look something
+like this.
+
+8
+00:00:47,840 --> 00:00:52,550
+Simple because it only can
+have one todo item.
+
+9
+00:00:52,550 --> 00:00:54,940
+It's a feature, not a bug.
+
+10
+00:00:54,940 --> 00:00:57,410
+And we'll explain why
+that is later.
+
+11
+00:00:57,410 --> 00:00:59,590
+So if we were to build this todo
+app, and we want it to be
+
+12
+00:00:59,590 --> 00:01:04,110
+very responsive on the client
+side, we might call getJSON to
+
+13
+00:01:04,110 --> 00:01:07,270
+fetch some JSON data, which we
+can then load onto the page
+
+14
+00:01:07,270 --> 00:01:09,060
+for our first to do item.
+
+15
+00:01:09,060 --> 00:01:10,910
+The JSON return might look
+something like this.
+
+16
+00:01:10,910 --> 00:01:14,530
+And we can use that to render
+out our first to do item.
+
+17
+00:01:14,530 --> 00:01:19,260
+Now, this is all fine and good
+until we start adding a lot of
+
+18
+00:01:19,260 --> 00:01:20,740
+functionality to our
+application.
+
+19
+00:01:20,740 --> 00:01:22,450
+We might have a bunch
+of JavaScript
+
+20
+00:01:22,450 --> 00:01:23,740
+functions flying around.
+
+21
+00:01:23,740 --> 00:01:26,190
+We might need to check
+off the to do button.
+
+22
+00:01:26,190 --> 00:01:27,430
+We might need to
+add deadlines.
+
+23
+00:01:27,430 --> 00:01:31,660
+We might want to reorder and
+sort our one to do item.
+
+24
+00:01:31,660 --> 00:01:32,830
+Don't ask.
+
+25
+00:01:32,830 --> 00:01:36,030
+And before we know it, we might
+have a very disorganized
+
+26
+00:01:36,030 --> 00:01:36,680
+application.
+
+27
+00:01:36,680 --> 00:01:38,420
+We might have all these methods
+flying around and no
+
+28
+00:01:38,420 --> 00:01:39,390
+structure to it.
+
+29
+00:01:39,390 --> 00:01:40,590
+That's the first problem.
+
+30
+00:01:40,590 --> 00:01:43,930
+The second problem is that we
+might lose the data structure
+
+31
+00:01:43,930 --> 00:01:45,680
+inside of the DOM.
+
+32
+00:01:45,680 --> 00:01:48,050
+Allow me to explain that in
+a little more detail.
+
+33
+00:01:48,050 --> 00:01:52,090
+See, the data is coming from our
+server back to the client.
+
+34
+00:01:52,090 --> 00:01:53,680
+There's our JSON again.
+
+35
+00:01:53,680 --> 00:01:57,710
+And we're going to load
+that into our HTML.
+
+36
+00:01:57,710 --> 00:02:00,270
+You can see each of the pieces
+are right there.
+
+37
+00:02:00,270 --> 00:02:02,270
+Now, this is fine if we
+just want to load
+
+38
+00:02:02,270 --> 00:02:03,420
+stuff onto the page.
+
+39
+00:02:03,420 --> 00:02:07,170
+But as soon as we want to
+interact with that data, add
+
+40
+00:02:07,170 --> 00:02:10,199
+functionality, check off to do
+items, send data back to the
+
+41
+00:02:10,199 --> 00:02:14,540
+server, back to the client,
+we need the JSON data.
+
+42
+00:02:14,540 --> 00:02:16,950
+We need, almost, a data
+structure, or an
+
+43
+00:02:16,950 --> 00:02:19,220
+object, or a model.
+
+44
+00:02:19,220 --> 00:02:22,000
+This is where Backbone
+comes in.
+
+45
+00:02:22,000 --> 00:02:25,430
+Backbone.js was created by
+Jeremy Ashkenas, who believes
+
+46
+00:02:25,430 --> 00:02:29,180
+in getting your truth out of
+the DOM, meaning don't lose
+
+47
+00:02:29,180 --> 00:02:31,940
+your data inside of the DOM
+when you should, instead,
+
+48
+00:02:31,940 --> 00:02:34,560
+abstract it, maybe,
+into a model.
+
+49
+00:02:34,560 --> 00:02:38,130
+Backbone.js provides a
+client-side structure for all
+
+50
+00:02:38,130 --> 00:02:40,830
+those functions so we can
+keep those organized.
+
+51
+00:02:40,830 --> 00:02:43,840
+It provides models to represent
+the data structures
+
+52
+00:02:43,840 --> 00:02:45,620
+inside of our views.
+
+53
+00:02:45,620 --> 00:02:48,220
+It has views to hook up the
+models into the DOM, which
+
+54
+00:02:48,220 --> 00:02:49,170
+we'll see later.
+
+55
+00:02:49,170 --> 00:02:51,920
+And lastly, it takes care of
+synchronizing our data to and
+
+56
+00:02:51,920 --> 00:02:53,340
+from the server.
+
+57
+00:02:53,340 --> 00:02:55,450
+So here's our server
+and our client.
+
+58
+00:02:55,450 --> 00:02:56,940
+And our client's a browser.
+
+59
+00:02:56,940 --> 00:02:59,230
+And we're going to add another
+layer inside of
+
+60
+00:02:59,230 --> 00:03:01,600
+here called our model.
+
+61
+00:03:01,600 --> 00:03:03,810
+So let's create our
+first model class.
+
+62
+00:03:03,810 --> 00:03:06,380
+It's going to be called
+TodoItem, and it's going to be
+
+63
+00:03:06,380 --> 00:03:09,420
+extended from the Backbone
+model base class.
+
+64
+00:03:09,420 --> 00:03:12,100
+Pay close attention here
+to the capitalization.
+
+65
+00:03:12,100 --> 00:03:15,190
+We're going to capitalize the
+first letter of each word when
+
+66
+00:03:15,190 --> 00:03:16,920
+we're declaring a class.
+
+67
+00:03:16,920 --> 00:03:19,370
+Now let's create a model
+instance from our
+
+68
+00:03:19,370 --> 00:03:21,120
+class called todoItem.
+
+69
+00:03:21,120 --> 00:03:23,110
+We're going to send in
+a JSON object for the
+
+70
+00:03:23,110 --> 00:03:24,940
+attributes of our model.
+
+71
+00:03:24,940 --> 00:03:26,570
+Notice, again, the
+capitalization.
+
+72
+00:03:26,570 --> 00:03:30,240
+The first letter of the first
+word here is lower cased.
+
+73
+00:03:30,240 --> 00:03:32,460
+Now let's move our model up to
+the top and talk a little bit
+
+74
+00:03:32,460 --> 00:03:35,960
+about how we get and set
+data into our model.
+
+75
+00:03:35,960 --> 00:03:39,540
+We can call a get function to
+get data out of our model.
+
+76
+00:03:39,540 --> 00:03:42,680
+To set an attribute, we can call
+the set method and send
+
+77
+00:03:42,680 --> 00:03:44,190
+in a JSON object.
+
+78
+00:03:44,190 --> 00:03:46,860
+To synchronize the data that we
+have client-side with the
+
+79
+00:03:46,860 --> 00:03:50,590
+server, we can call
+the save function.
+
+80
+00:03:50,590 --> 00:03:53,330
+Obviously, we're going to need
+some configuration to really
+
+81
+00:03:53,330 --> 00:03:57,110
+make this happen, because we
+don't know what the end point
+
+82
+00:03:57,110 --> 00:03:59,790
+on the server is for this
+particular piece of data.
+
+83
+00:03:59,790 --> 00:04:01,360
+We're not going to get
+into that this level.
+
+84
+00:04:01,360 --> 00:04:05,290
+That'll be next level, when
+we talk more about models.
+
+85
+00:04:05,290 --> 00:04:07,680
+So on the client side,
+we have models which
+
+86
+00:04:07,680 --> 00:04:09,590
+encapsulate our data.
+
+87
+00:04:09,590 --> 00:04:13,310
+Those models provide the
+data for the views.
+
+88
+00:04:13,310 --> 00:04:16,130
+And it's the view's
+responsibility to build the
+
+89
+00:04:16,130 --> 00:04:20,440
+HTML, which, then, we might
+put back into the DOM.
+
+90
+00:04:20,440 --> 00:04:24,070
+To create a view class, we're
+going to create a TodoView.
+
+91
+00:04:24,070 --> 00:04:26,240
+Notice, again, the
+capitalization.
+
+92
+00:04:26,240 --> 00:04:28,200
+And that is going to
+extend from the
+
+93
+00:04:28,200 --> 00:04:30,520
+Backbone view base class.
+
+94
+00:04:30,520 --> 00:04:33,390
+To create a view instance, just
+like we created a model
+
+95
+00:04:33,390 --> 00:04:36,140
+instance, we're going to create
+todoView, which is
+
+96
+00:04:36,140 --> 00:04:39,770
+going to instantiate a new
+TodoView instance.
+
+97
+00:04:39,770 --> 00:04:42,350
+And we're going to send in the
+model that we created on the
+
+98
+00:04:42,350 --> 00:04:43,860
+previous slide.
+
+99
+00:04:43,860 --> 00:04:47,310
+We need our view to render out
+some HTML for our TodoItem.
+
+100
+00:04:47,310 --> 00:04:50,500
+To do that, we need to define
+the render function.
+
+101
+00:04:50,500 --> 00:04:52,470
+Inside the render function,
+we're going to get our
+
+102
+00:04:52,470 --> 00:04:56,190
+description out of the model
+and create some HTML.
+
+103
+00:04:56,190 --> 00:04:59,625
+We're then going to set the
+HTML of that view element.
+
+104
+00:04:59,625 --> 00:05:03,360
+Now, every view instance has
+its own view element.
+
+105
+00:05:03,360 --> 00:05:05,710
+That's that EL for element.
+
+106
+00:05:05,710 --> 00:05:09,210
+So a single instance is
+associated with an element,
+
+107
+00:05:09,210 --> 00:05:13,305
+which means it's a HTML
+tag of some sort.
+
+108
+00:05:13,305 --> 00:05:15,180
+It could be a div, which
+it is by default.
+
+109
+00:05:15,180 --> 00:05:18,700
+But it also could be a
+paragraph, an li, a header, or
+
+110
+00:05:18,700 --> 00:05:20,450
+whatever you want it to be.
+
+111
+00:05:20,450 --> 00:05:23,290
+Now, when we instantiate
+the view, we
+
+112
+00:05:23,290 --> 00:05:25,150
+call that render function.
+
+113
+00:05:25,150 --> 00:05:28,200
+We can then print out the
+resulting HTML to the console
+
+114
+00:05:28,200 --> 00:05:31,450
+by just calling todoView.el.
+
+115
+00:05:31,450 --> 00:05:33,140
+
+116
+00:05:33,140 --> 00:05:36,510
+So now that you've got a brief
+glimpse into the model and
+
+117
+00:05:36,510 --> 00:05:39,700
+view layer inside Backbone, it's
+time to get your hands
+
+118
+00:05:39,700 --> 00:05:41,350
+dirty with some challenges.
+
+119
+00:05:41,350 --> 00:05:42,980
+Don't worry about all
+the details that
+
+120
+00:05:42,980 --> 00:05:44,020
+are going on here.
+
+121
+00:05:44,020 --> 00:05:46,660
+In level 2 and level 3, we're
+going to go into models and
+
+122
+00:05:46,660 --> 00:05:48,230
+views in more detail.
+
+123
+00:05:48,230 --> 00:05:51,370
+For now, get your hands dirty
+with some challenges and have
+
+124
+00:05:51,370 --> 00:05:52,740
+some fun putting up
+some Backbone.
+
+125
+00:05:52,740 --> 00:05:56,010
+[MUSIC PLAYING]

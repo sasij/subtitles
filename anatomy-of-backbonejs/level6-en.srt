@@ -1,0 +1,740 @@
+1
+00:00:00,000 --> 00:00:00,140
+[SINGING]
+
+2
+00:00:00,140 --> 00:00:02,900
+Your client-side JavaScript
+is starting to mold.
+
+3
+00:00:02,900 --> 00:00:06,550
+It's starting to resemble
+a bad spaghetti code.
+
+4
+00:00:06,550 --> 00:00:08,470
+And it is time to
+add structure.
+
+5
+00:00:08,470 --> 00:00:10,160
+But it won't take too long.
+
+6
+00:00:10,160 --> 00:00:13,580
+Gotta get your truth
+out of the DOM.
+
+7
+00:00:13,580 --> 00:00:16,770
+Take your data into models
+and you cannot lose.
+
+8
+00:00:16,770 --> 00:00:20,465
+We'll render out your models
+with the help of the views.
+
+9
+00:00:20,465 --> 00:00:23,550
+And if you don't want your
+JavaScript to end up like a
+
+10
+00:00:23,550 --> 00:00:31,250
+mess it's time for the Anatomy
+of Backbone.js at Code School.
+
+11
+00:00:31,250 --> 00:00:34,540
+[MUSIC PLAYING]
+
+12
+00:00:34,540 --> 00:00:36,990
+You're watching the Anatomy
+of Backbone.js.
+
+13
+00:00:36,990 --> 00:00:40,860
+And this is Level Six:
+Collections and Views.
+
+14
+00:00:40,860 --> 00:00:43,480
+In the last level, we learned
+about collections.
+
+15
+00:00:43,480 --> 00:00:45,170
+But now we're going to
+want to show those
+
+16
+00:00:45,170 --> 00:00:46,830
+collections to the user.
+
+17
+00:00:46,830 --> 00:00:49,430
+And that's where collection
+views come in.
+
+18
+00:00:49,430 --> 00:00:50,970
+So in this level, we're going
+to build something
+
+19
+00:00:50,970 --> 00:00:52,650
+that looks like this.
+
+20
+00:00:52,650 --> 00:00:56,080
+But first let's review
+our model view.
+
+21
+00:00:56,080 --> 00:00:57,720
+As you can see, we've
+defined it here
+
+22
+00:00:57,720 --> 00:00:59,160
+with the render function.
+
+23
+00:00:59,160 --> 00:01:02,590
+Then when we create a new
+todoItem and pass it into a
+
+24
+00:01:02,590 --> 00:01:06,410
+new todoView instance we
+can render it out.
+
+25
+00:01:06,410 --> 00:01:08,730
+And we'll get the HTML.
+
+26
+00:01:08,730 --> 00:01:12,200
+As you may have noticed, our
+models and views have a one to
+
+27
+00:01:12,200 --> 00:01:13,540
+one relationship.
+
+28
+00:01:13,540 --> 00:01:16,140
+That means that our model
+has one view and our
+
+29
+00:01:16,140 --> 00:01:17,460
+view has one model.
+
+30
+00:01:17,460 --> 00:01:20,770
+With the collection views,
+that's not really the case.
+
+31
+00:01:20,770 --> 00:01:24,100
+Since our collection view has
+many models, it's also going
+
+32
+00:01:24,100 --> 00:01:26,500
+to have many views.
+
+33
+00:01:26,500 --> 00:01:29,970
+That's because the collection
+view delegates to the model
+
+34
+00:01:29,970 --> 00:01:33,120
+views to actually
+render the HTML.
+
+35
+00:01:33,120 --> 00:01:36,305
+The collection view doesn't
+render any of its HTML itself.
+
+36
+00:01:36,305 --> 00:01:38,930
+
+37
+00:01:38,930 --> 00:01:42,530
+Defining a collection view is
+just the same as a model view.
+
+38
+00:01:42,530 --> 00:01:46,570
+Here we're creating a TodoList
+view and then creating a new
+
+39
+00:01:46,570 --> 00:01:48,550
+instance of that view.
+
+40
+00:01:48,550 --> 00:01:51,040
+But this time, instead of
+passing in a model, we're
+
+41
+00:01:51,040 --> 00:01:53,170
+passing in a collection.
+
+42
+00:01:53,170 --> 00:01:56,980
+Let's take our first crack at
+writing the collection views
+
+43
+00:01:56,980 --> 00:01:58,480
+render function.
+
+44
+00:01:58,480 --> 00:02:00,480
+So we have our collection
+in render.
+
+45
+00:02:00,480 --> 00:02:04,040
+And we want to go through each
+model in the collection.
+
+46
+00:02:04,040 --> 00:02:05,810
+And we're going to use
+forEach for that.
+
+47
+00:02:05,810 --> 00:02:08,979
+Inside of our forEach loop,
+we're going to create a
+
+48
+00:02:08,979 --> 00:02:11,160
+todoView for each model.
+
+49
+00:02:11,160 --> 00:02:15,630
+And then we're going to render
+each todoView and take that
+
+50
+00:02:15,630 --> 00:02:18,140
+view's element and
+append it to our
+
+51
+00:02:18,140 --> 00:02:19,960
+collection view's element.
+
+52
+00:02:19,960 --> 00:02:22,090
+There's a problem with
+this code, though.
+
+53
+00:02:22,090 --> 00:02:25,800
+Earlier we saw when we listen to
+events on a collection or a
+
+54
+00:02:25,800 --> 00:02:30,410
+model, we sometimes have to pass
+in a context parameter.
+
+55
+00:02:30,410 --> 00:02:32,790
+And it works the same
+way with forEach.
+
+56
+00:02:32,790 --> 00:02:36,880
+So here whenever this function
+is called inside of forEach
+
+57
+00:02:36,880 --> 00:02:39,540
+it's going to have the
+wrong context.
+
+58
+00:02:39,540 --> 00:02:42,180
+So let's do a little refactoring
+to fix this.
+
+59
+00:02:42,180 --> 00:02:45,340
+First, we're going to add a new
+function called addOne.
+
+60
+00:02:45,340 --> 00:02:49,430
+This is going to do what out
+forEach loop was doing before
+
+61
+00:02:49,430 --> 00:02:51,060
+except now it's its
+own function.
+
+62
+00:02:51,060 --> 00:02:54,590
+Then we update the render
+function and pass the addOne
+
+63
+00:02:54,590 --> 00:02:56,420
+function to forEach.
+
+64
+00:02:56,420 --> 00:03:00,290
+We also have to add a second
+argument to forEach to make
+
+65
+00:03:00,290 --> 00:03:05,310
+sure the context of addOne
+is called on the view.
+
+66
+00:03:05,310 --> 00:03:07,390
+Let's see this render
+in action.
+
+67
+00:03:07,390 --> 00:03:09,990
+First, we'll create a new
+instance of the collection
+
+68
+00:03:09,990 --> 00:03:13,560
+view passing in our todoList
+collection.
+
+69
+00:03:13,560 --> 00:03:14,660
+Then we render it.
+
+70
+00:03:14,660 --> 00:03:17,940
+And when we print it out to the
+console, you can see that
+
+71
+00:03:17,940 --> 00:03:21,560
+we've got both model views
+inside of the collection
+
+72
+00:03:21,560 --> 00:03:24,920
+view's top level element.
+
+73
+00:03:24,920 --> 00:03:27,340
+What's going to happen, though,
+when we try to add a
+
+74
+00:03:27,340 --> 00:03:30,290
+new todoItem to our
+collection?
+
+75
+00:03:30,290 --> 00:03:32,880
+Right now, it's not going
+to update the view.
+
+76
+00:03:32,880 --> 00:03:36,050
+We have to change our collection
+view first. Let's
+
+77
+00:03:36,050 --> 00:03:39,980
+add an initialize function
+to our collection view.
+
+78
+00:03:39,980 --> 00:03:42,590
+And just like we did with the
+model views, we'll listen to
+
+79
+00:03:42,590 --> 00:03:44,070
+the add event.
+
+80
+00:03:44,070 --> 00:03:47,080
+And whenever that add event is
+triggered, we'll call the
+
+81
+00:03:47,080 --> 00:03:48,950
+addOne function.
+
+82
+00:03:48,950 --> 00:03:51,740
+And we won't forget our
+third parameter.
+
+83
+00:03:51,740 --> 00:03:56,760
+Now when we add our new todoItem
+to the todoList, our
+
+84
+00:03:56,760 --> 00:03:59,290
+view will be updated.
+
+85
+00:03:59,290 --> 00:04:01,740
+So now let's see
+that in action.
+
+86
+00:04:01,740 --> 00:04:04,230
+Here we've already got a
+couple todoItems in our
+
+87
+00:04:04,230 --> 00:04:06,370
+collection already
+on the view.
+
+88
+00:04:06,370 --> 00:04:09,760
+And we're going to go on the
+console and add a new todoItem
+
+89
+00:04:09,760 --> 00:04:11,190
+with a description and status.
+
+90
+00:04:11,190 --> 00:04:14,180
+And as you can see, the
+view has been updated
+
+91
+00:04:14,180 --> 00:04:15,940
+with our new todoItem.
+
+92
+00:04:15,940 --> 00:04:17,329
+And let's just see that again.
+
+93
+00:04:17,329 --> 00:04:20,529
+Instead this time, let's change
+the status to complete
+
+94
+00:04:20,529 --> 00:04:21,910
+and give it a different
+description.
+
+95
+00:04:21,910 --> 00:04:25,025
+And we can see that it
+works correctly.
+
+96
+00:04:25,025 --> 00:04:28,530
+
+97
+00:04:28,530 --> 00:04:32,830
+Just like adding a new item to
+the collection at first didn't
+
+98
+00:04:32,830 --> 00:04:36,750
+update our DOM, right now, if we
+fetch a bunch of new items
+
+99
+00:04:36,750 --> 00:04:39,500
+from the server, our DOM isn't
+going to get updated.
+
+100
+00:04:39,500 --> 00:04:42,680
+When we call fetch on the
+collection, it's going to fire
+
+101
+00:04:42,680 --> 00:04:43,770
+the reset event.
+
+102
+00:04:43,770 --> 00:04:48,020
+We can listen to this event in
+the collection view and call
+
+103
+00:04:48,020 --> 00:04:52,360
+this new function addAll when
+that event is fired.
+
+104
+00:04:52,360 --> 00:04:55,760
+Now all we have to do is define
+addAll, which pretty
+
+105
+00:04:55,760 --> 00:05:00,140
+much just does what render was
+doing before and update render
+
+106
+00:05:00,140 --> 00:05:02,080
+to use the addAll function.
+
+107
+00:05:02,080 --> 00:05:04,800
+
+108
+00:05:04,800 --> 00:05:07,640
+Let's see the reset
+event in action.
+
+109
+00:05:07,640 --> 00:05:10,740
+So to start, we're going to
+take our collection view.
+
+110
+00:05:10,740 --> 00:05:12,410
+And we're going to render it.
+
+111
+00:05:12,410 --> 00:05:15,670
+Then we're going to add the
+collection view's top level
+
+112
+00:05:15,670 --> 00:05:17,250
+element into the DOM.
+
+113
+00:05:17,250 --> 00:05:20,870
+So now when we get our
+collection and call fetch
+
+114
+00:05:20,870 --> 00:05:22,490
+on it, it's going
+to fetch the new
+
+115
+00:05:22,490 --> 00:05:24,050
+data from the server.
+
+116
+00:05:24,050 --> 00:05:26,780
+And when that reset event
+is fired, it's going
+
+117
+00:05:26,780 --> 00:05:28,290
+to update the DOM.
+
+118
+00:05:28,290 --> 00:05:30,250
+There is one problem, though.
+
+119
+00:05:30,250 --> 00:05:33,960
+Let's say we try to remove an
+item from the collection.
+
+120
+00:05:33,960 --> 00:05:35,950
+Shouldn't that remove
+it from the view?
+
+121
+00:05:35,950 --> 00:05:39,640
+Well, as you can see here, it's
+not updating the view.
+
+122
+00:05:39,640 --> 00:05:42,640
+To fix this problem, we're
+actually not going to need to
+
+123
+00:05:42,640 --> 00:05:44,460
+touch the collection
+view at all.
+
+124
+00:05:44,460 --> 00:05:47,710
+And I'll show you how
+using custom events.
+
+125
+00:05:47,710 --> 00:05:52,150
+We know that, when we remove an
+item from the collection,
+
+126
+00:05:52,150 --> 00:05:54,930
+the remove event is triggered.
+
+127
+00:05:54,930 --> 00:05:57,780
+When we remove an item from a
+collection, we don't actually
+
+128
+00:05:57,780 --> 00:05:59,630
+destroy the item.
+
+129
+00:05:59,630 --> 00:06:02,270
+If we do destroy it, it would
+have removed it from the view.
+
+130
+00:06:02,270 --> 00:06:03,820
+But that's not what we want.
+
+131
+00:06:03,820 --> 00:06:06,390
+So instead let's use
+custom events.
+
+132
+00:06:06,390 --> 00:06:09,780
+In our todoList collection,
+we're going to define the
+
+133
+00:06:09,780 --> 00:06:11,460
+initialize function.
+
+134
+00:06:11,460 --> 00:06:13,580
+And we're going to say, whatever
+the remove event is
+
+135
+00:06:13,580 --> 00:06:18,140
+fired on this collection
+instance, call hideModel.
+
+136
+00:06:18,140 --> 00:06:20,350
+Now we define the hideModel
+function.
+
+137
+00:06:20,350 --> 00:06:22,760
+And as you remember
+from level five.
+
+138
+00:06:22,760 --> 00:06:24,690
+The function is going
+to accept the
+
+139
+00:06:24,690 --> 00:06:26,410
+model that is removed.
+
+140
+00:06:26,410 --> 00:06:29,530
+So now, inside of our hideModel
+function, we're going to
+
+141
+00:06:29,530 --> 00:06:33,470
+trigger a new custom event
+called hide on that model.
+
+142
+00:06:33,470 --> 00:06:37,190
+And then we can open up our
+TodoItem view and listen for
+
+143
+00:06:37,190 --> 00:06:38,630
+that hide event.
+
+144
+00:06:38,630 --> 00:06:41,280
+And whenever that is triggered,
+we can remove the
+
+145
+00:06:41,280 --> 00:06:43,830
+view from the DOM.
+
+146
+00:06:43,830 --> 00:06:45,580
+Bringing it all together,
+let's see
+
+147
+00:06:45,580 --> 00:06:47,960
+it work in our browser.
+
+148
+00:06:47,960 --> 00:06:51,390
+So here we have our three items.
+And we're going to
+
+149
+00:06:51,390 --> 00:06:54,870
+remove the first item
+from the collection.
+
+150
+00:06:54,870 --> 00:06:58,460
+In using those hide events,
+it's going to remove the
+
+151
+00:06:58,460 --> 00:07:00,450
+single item from the view.
+
+152
+00:07:00,450 --> 00:07:03,160
+
+153
+00:07:03,160 --> 00:07:06,290
+That's it for Level Six:
+Collections and Views.
+
+154
+00:07:06,290 --> 00:07:07,800
+Good luck in the
+challenge area.
+
+155
+00:07:07,800 --> 00:07:10,350
+We'll see you back here for the
+last level, level seven,
+
+156
+00:07:10,350 --> 00:07:13,590
+where we'll be going over
+routers and history.
+
+157
+00:07:13,590 --> 00:07:13,740
+
+158
+00:07:13,740 --> 00:07:14,990
+
+159
+00:07:14,990 --> 00:07:15,840
