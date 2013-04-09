@@ -1,0 +1,720 @@
+1
+00:00:00,000 --> 00:00:01,250
+[MUSIC PLAYING, VIDEO
+GAME EFFECTS]
+
+2
+00:00:01,250 --> 00:00:27,020
+
+
+3
+00:00:27,020 --> 00:00:29,170
+Hi, I am Caike Souza,
+and you're watching
+
+4
+00:00:29,170 --> 00:00:30,790
+Ruby Bits, part two.
+
+5
+00:00:30,790 --> 00:00:33,750
+In level one, we're going to be
+looking at blocks, procs,
+
+6
+00:00:33,750 --> 00:00:34,980
+and lambdas.
+
+7
+00:00:34,980 --> 00:00:37,510
+You might remember back in part
+one, where we showed you
+
+8
+00:00:37,510 --> 00:00:40,170
+that you can actually pass
+around blocks of code between
+
+9
+00:00:40,170 --> 00:00:43,490
+curly braces or do/end end
+blocks that gets executed
+
+10
+00:00:43,490 --> 00:00:46,020
+elsewhere, using the
+yield function.
+
+11
+00:00:46,020 --> 00:00:48,320
+So we can see in this function
+that, because we have the
+
+12
+00:00:48,320 --> 00:00:51,470
+yield function being called
+twice, when we pass in a
+
+13
+00:00:51,470 --> 00:00:55,220
+block, that block will get
+executed two times.
+
+14
+00:00:55,220 --> 00:00:57,760
+But what if we wanted to store
+that block of code in a
+
+15
+00:00:57,760 --> 00:01:01,700
+variable and pass it along
+for execution later.
+
+16
+00:01:01,700 --> 00:01:04,690
+While we can do that using
+a proc object.
+
+17
+00:01:04,690 --> 00:01:06,260
+Now let's look at two
+ways that we can
+
+18
+00:01:06,260 --> 00:01:08,140
+create a proc object.
+
+19
+00:01:08,140 --> 00:01:10,180
+First is by using Proc.new.
+
+20
+00:01:10,180 --> 00:01:13,100
+That will create an object
+from the proc class.
+
+21
+00:01:13,100 --> 00:01:16,060
+And whatever we pass in, as a
+block to the proc object, will
+
+22
+00:01:16,060 --> 00:01:19,310
+get executed once we invoke
+the call function.
+
+23
+00:01:19,310 --> 00:01:22,800
+You can see here that the
+Proc.new accepts both blocks
+
+24
+00:01:22,800 --> 00:01:25,650
+and curly braces or
+do end blocks.
+
+25
+00:01:25,650 --> 00:01:28,510
+Another way that we can create
+a proc object is by using the
+
+26
+00:01:28,510 --> 00:01:30,060
+keyword lambda.
+
+27
+00:01:30,060 --> 00:01:32,670
+Although they are technically
+not the same thing, we'll
+
+28
+00:01:32,670 --> 00:01:35,330
+assume that they are for the
+time being, since they respond
+
+29
+00:01:35,330 --> 00:01:38,320
+to the same interface, which
+is the method call.
+
+30
+00:01:38,320 --> 00:01:40,600
+There's an alternate syntax
+for creating lambdas,
+
+31
+00:01:40,600 --> 00:01:43,390
+available since Ruby
+1.9, which is
+
+32
+00:01:43,390 --> 00:01:45,110
+called stabby lambdas.
+
+33
+00:01:45,110 --> 00:01:47,230
+And they look something
+like this.
+
+34
+00:01:47,230 --> 00:01:49,170
+Yep, they're really called
+stabby lambdas.
+
+35
+00:01:49,170 --> 00:01:52,220
+
+
+36
+00:01:52,220 --> 00:01:54,420
+Now let's look at some example
+code and see how we can
+
+37
+00:01:54,420 --> 00:01:56,960
+refactor it in order to
+use proc objects.
+
+38
+00:01:56,960 --> 00:01:59,700
+Here, we can see a tweet class
+with a post method.
+
+39
+00:01:59,700 --> 00:02:02,950
+First, the post method tries
+to authenticate the user,
+
+40
+00:02:02,950 --> 00:02:04,820
+using the username
+and password.
+
+41
+00:02:04,820 --> 00:02:07,920
+And if that succeeds, then it
+yields to the block that was
+
+42
+00:02:07,920 --> 00:02:09,520
+passed to the method.
+
+43
+00:02:09,520 --> 00:02:11,530
+Otherwise, it will
+raise an error.
+
+44
+00:02:11,530 --> 00:02:14,650
+So in order to invoke this
+post method, we call the
+
+45
+00:02:14,650 --> 00:02:17,070
+method, passing in a block.
+
+46
+00:02:17,070 --> 00:02:19,840
+Another way to write this would
+be to manually create a
+
+47
+00:02:19,840 --> 00:02:23,310
+proc object and pass it as an
+argument to the post method.
+
+48
+00:02:23,310 --> 00:02:27,150
+That way, we can explicitly call
+the proc object with call
+
+49
+00:02:27,150 --> 00:02:28,400
+instead of yield.
+
+50
+00:02:28,400 --> 00:02:30,940
+
+
+51
+00:02:30,940 --> 00:02:34,190
+But if we wanted to pass in
+multiple proc objects, for
+
+52
+00:02:34,190 --> 00:02:37,590
+example, to replace raising an
+error with a proper error
+
+53
+00:02:37,590 --> 00:02:38,940
+handler proc.
+
+54
+00:02:38,940 --> 00:02:41,620
+First, let's create that
+error proc and pass it
+
+55
+00:02:41,620 --> 00:02:44,050
+along to our method.
+
+56
+00:02:44,050 --> 00:02:47,020
+Then, all we have to do is
+adjust our method signature to
+
+57
+00:02:47,020 --> 00:02:50,210
+accept that extra argument and
+explicitly call it if the
+
+58
+00:02:50,210 --> 00:02:51,460
+authentication fails.
+
+59
+00:02:51,460 --> 00:02:54,370
+
+
+60
+00:02:54,370 --> 00:02:57,090
+Sometimes you might need to
+convert between proc objects
+
+61
+00:02:57,090 --> 00:02:57,990
+and blocks.
+
+62
+00:02:57,990 --> 00:02:59,870
+So let's look at a couple
+of examples of
+
+63
+00:02:59,870 --> 00:03:01,130
+how you can do that.
+
+64
+00:03:01,130 --> 00:03:04,250
+Here, we have the tweets array
+that we pass in a block to the
+
+65
+00:03:04,250 --> 00:03:06,780
+each method that prints
+each of the tweets.
+
+66
+00:03:06,780 --> 00:03:08,170
+Now let's see how we
+can extract that
+
+67
+00:03:08,170 --> 00:03:10,210
+bloc into a proc object.
+
+68
+00:03:10,210 --> 00:03:12,420
+Using the lambda keyword,
+we assign it
+
+69
+00:03:12,420 --> 00:03:13,780
+to the printer variable.
+
+70
+00:03:13,780 --> 00:03:16,520
+And you might think that all
+we have to do is pass along
+
+71
+00:03:16,520 --> 00:03:18,480
+the printer to the each.
+
+72
+00:03:18,480 --> 00:03:21,890
+However, that will raise an
+error, because the each method
+
+73
+00:03:21,890 --> 00:03:25,010
+expects a block not
+a proc object.
+
+74
+00:03:25,010 --> 00:03:27,920
+In order to fix that, we need
+to prefix the parameter with
+
+75
+00:03:27,920 --> 00:03:31,730
+the ampersand, which will turn
+the proc into a block.
+
+76
+00:03:31,730 --> 00:03:33,360
+And the code will work
+as intended.
+
+77
+00:03:33,360 --> 00:03:36,310
+
+
+78
+00:03:36,310 --> 00:03:38,770
+So there's two ways you can
+use ampersand in Ruby to
+
+79
+00:03:38,770 --> 00:03:41,420
+convert between proc
+objects and blocks.
+
+80
+00:03:41,420 --> 00:03:44,770
+The first one, which we just
+saw, is turning a proc into a
+
+81
+00:03:44,770 --> 00:03:47,900
+block, by using the ampersand
+before the argument on the
+
+82
+00:03:47,900 --> 00:03:48,980
+method call.
+
+83
+00:03:48,980 --> 00:03:52,040
+The second way is when you're
+defining a method, then you're
+
+84
+00:03:52,040 --> 00:03:54,260
+going to want to use the
+ampersand, if you want to turn
+
+85
+00:03:54,260 --> 00:03:57,060
+a block into a proc, so that
+it can be assigned to a
+
+86
+00:03:57,060 --> 00:03:59,470
+parameter or executed later.
+
+87
+00:03:59,470 --> 00:04:01,420
+Often you're going to see these
+two used together, so
+
+88
+00:04:01,420 --> 00:04:03,230
+let's take a look
+at an example.
+
+89
+00:04:03,230 --> 00:04:06,270
+In this example, we have the
+timeline class with a bunch of
+
+90
+00:04:06,270 --> 00:04:08,190
+tweets and an each method.
+
+91
+00:04:08,190 --> 00:04:11,000
+The each method, pretty much,
+iterates through the tweets
+
+92
+00:04:11,000 --> 00:04:13,730
+and yields each of them
+to the block.
+
+93
+00:04:13,730 --> 00:04:16,990
+In order to use this class, we
+instantiate it, passing in a
+
+94
+00:04:16,990 --> 00:04:20,420
+bunch of tweets, then call the
+each method, which will print
+
+95
+00:04:20,420 --> 00:04:21,870
+each of the tweets.
+
+96
+00:04:21,870 --> 00:04:25,160
+Another way we can write this
+code is by passing the block
+
+97
+00:04:25,160 --> 00:04:26,730
+through the each method.
+
+98
+00:04:26,730 --> 00:04:29,120
+And the first thing that we
+have to do is to use the
+
+99
+00:04:29,120 --> 00:04:31,960
+ampersand on the signature
+of each method on
+
+100
+00:04:31,960 --> 00:04:33,450
+the timeline class.
+
+101
+00:04:33,450 --> 00:04:35,870
+That will turn the block
+into a proc.
+
+102
+00:04:35,870 --> 00:04:39,660
+Then we'll use the block local
+variable and pass it along to
+
+103
+00:04:39,660 --> 00:04:42,970
+the tweets.each method,
+prefixing with the ampersand,
+
+104
+00:04:42,970 --> 00:04:46,200
+so that we can turn the proc
+back into a block, which is
+
+105
+00:04:46,200 --> 00:04:48,355
+what the tweets.each method
+is expecting.
+
+106
+00:04:48,355 --> 00:04:51,220
+
+
+107
+00:04:51,220 --> 00:04:53,480
+Now let's look at another trick
+that we can do with the
+
+108
+00:04:53,480 --> 00:04:57,870
+ampersand, which is turning a
+symbol into a proc object.
+
+109
+00:04:57,870 --> 00:05:01,330
+Here we can see the tweets.map
+takes in a block that iterates
+
+110
+00:05:01,330 --> 00:05:03,480
+over the tweets and calls
+the user method
+
+111
+00:05:03,480 --> 00:05:05,660
+on each one of them.
+
+112
+00:05:05,660 --> 00:05:08,680
+There's a shorter way to do
+that using symbol to proc,
+
+113
+00:05:08,680 --> 00:05:11,980
+which is basically using the
+ampersand followed by the
+
+114
+00:05:11,980 --> 00:05:15,510
+symbol that corresponds to the
+method being called on each of
+
+115
+00:05:15,510 --> 00:05:16,760
+the elements.
+
+116
+00:05:16,760 --> 00:05:18,580
+
+
+117
+00:05:18,580 --> 00:05:21,500
+Now, you might be tempted to go
+ahead and call methods on
+
+118
+00:05:21,500 --> 00:05:22,240
+the symbol.
+
+119
+00:05:22,240 --> 00:05:23,990
+However, this is not allowed.
+
+120
+00:05:23,990 --> 00:05:26,730
+
+
+121
+00:05:26,730 --> 00:05:28,540
+Now let's take a look
+at optional blocks.
+
+122
+00:05:28,540 --> 00:05:30,950
+Here, we have the same timeline
+class where we're
+
+123
+00:05:30,950 --> 00:05:32,100
+sending in tweets.
+
+124
+00:05:32,100 --> 00:05:34,840
+So we want to be able to call
+the print method without a
+
+125
+00:05:34,840 --> 00:05:38,880
+lock, like so, but also
+with a block.
+
+126
+00:05:38,880 --> 00:05:41,110
+So how might we write
+that in Ruby?
+
+127
+00:05:41,110 --> 00:05:42,730
+Let's look at the
+print method.
+
+128
+00:05:42,730 --> 00:05:45,790
+Here, in the timeline class,
+the print method uses the
+
+129
+00:05:45,790 --> 00:05:49,700
+block given method, which is
+built into Ruby, and detects
+
+130
+00:05:49,700 --> 00:05:51,920
+if a block was passed
+into the method.
+
+131
+00:05:51,920 --> 00:05:53,820
+If so, it's going to
+yield each of the
+
+132
+00:05:53,820 --> 00:05:55,070
+tweets to the block.
+
+133
+00:05:55,070 --> 00:05:57,440
+Otherwise, it's going to join
+the tweets with a comma
+
+134
+00:05:57,440 --> 00:05:58,690
+followed by a white space.
+
+135
+00:05:58,690 --> 00:06:02,180
+
+
+136
+00:06:02,180 --> 00:06:04,930
+Often in Ruby, you're going to
+see objects being instantiated
+
+137
+00:06:04,930 --> 00:06:07,030
+with a block.
+
+138
+00:06:07,030 --> 00:06:10,400
+One way we can do that is by
+using the block given method
+
+139
+00:06:10,400 --> 00:06:13,710
+and optionally yielding the
+object to the block in the
+
+140
+00:06:13,710 --> 00:06:14,960
+constructure.
+
+141
+00:06:14,960 --> 00:06:17,810
+
+
+142
+00:06:17,810 --> 00:06:20,720
+One last thing I want to show
+you is how proc objects create
+
+143
+00:06:20,720 --> 00:06:24,460
+closures, which means that they
+keep the current state of
+
+144
+00:06:24,460 --> 00:06:28,030
+the local variables at the
+moment that they were created.
+
+145
+00:06:28,030 --> 00:06:31,280
+In this example, we have the
+tweet.as method that takes in
+
+146
+00:06:31,280 --> 00:06:35,080
+an argument and returns
+a new proc object.
+
+147
+00:06:35,080 --> 00:06:37,980
+Now when we call the proc
+object, all we have to pass in
+
+148
+00:06:37,980 --> 00:06:40,680
+is the tweet, because it
+remembers the user.
+
+149
+00:06:40,680 --> 00:06:44,620
+
+
+150
+00:06:44,620 --> 00:06:47,590
+We have just reached the
+closure of level one.
+
+151
+00:06:47,590 --> 00:06:50,680
+So get your hands dirty on
+some procs and lambdas.
+
+152
+00:06:50,680 --> 00:06:52,370
+And I'll see you on level two.
+
+153
+00:00:00,000 --> 00:00:00,000
+00:06:52,370 --> 00:06:53,783
+

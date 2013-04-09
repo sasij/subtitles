@@ -1,0 +1,449 @@
+1
+00:00:00,000 --> 00:00:31,220
+
+
+2
+00:00:31,220 --> 00:00:32,870
+You're watching Ruby
+Bits, Part Two.
+
+3
+00:00:32,870 --> 00:00:33,880
+This is level six.
+
+4
+00:00:33,880 --> 00:00:36,110
+We're going to be taking the
+DSL that we built in level
+
+5
+00:00:36,110 --> 00:00:40,190
+five and extending
+it even further.
+
+6
+00:00:40,190 --> 00:00:42,590
+Sometimes you learn about ways
+that you'd like to modify your
+
+7
+00:00:42,590 --> 00:00:45,050
+DSL after you start using it.
+
+8
+00:00:45,050 --> 00:00:47,260
+Let's say, for example, that we
+want to create a tweet that
+
+9
+00:00:47,260 --> 00:00:50,770
+just has text, no hash tags
+or links or anything else.
+
+10
+00:00:50,770 --> 00:00:54,250
+Currently in our DSL syntax,
+we'd have to do it like this.
+
+11
+00:00:54,250 --> 00:00:56,210
+Now that works, but it's
+a little bit wordy.
+
+12
+00:00:56,210 --> 00:00:58,690
+It takes three lines of code,
+and we'd like to simplify it
+
+13
+00:00:58,690 --> 00:01:00,690
+to just be a single
+line like this.
+
+14
+00:01:00,690 --> 00:01:03,680
+
+
+15
+00:01:03,680 --> 00:01:06,760
+Let's see how we might modify
+our tweet_as method to support
+
+16
+00:01:06,760 --> 00:01:08,180
+this optional syntax.
+
+17
+00:01:08,180 --> 00:01:10,890
+First, we can see here that we
+need to add an optional second
+
+18
+00:01:10,890 --> 00:01:12,450
+parameter for the tweet text.
+
+19
+00:01:12,450 --> 00:01:14,810
+We're defaulting it to
+nil in case the user
+
+20
+00:01:14,810 --> 00:01:16,430
+doesn't specify one.
+
+21
+00:01:16,430 --> 00:01:19,600
+Then if that tweet text isn't
+nil, we just go ahead and set
+
+22
+00:01:19,600 --> 00:01:22,330
+that directly after we've
+created our tweet.
+
+23
+00:01:22,330 --> 00:01:25,220
+And finally, we need to make the
+block optional by adding
+
+24
+00:01:25,220 --> 00:01:28,330
+if block_given at the end of
+our instance_eval line.
+
+25
+00:01:28,330 --> 00:01:33,550
+So now we have both optional
+text and an optional block.
+
+26
+00:01:33,550 --> 00:01:36,245
+And that allows us to use either
+of our tweet syntaxes.
+
+27
+00:01:36,245 --> 00:01:41,470
+
+
+28
+00:01:41,470 --> 00:01:43,600
+Here's another example of how we
+might want to clean up our
+
+29
+00:01:43,600 --> 00:01:45,370
+DSL just a little bit.
+
+30
+00:01:45,370 --> 00:01:47,680
+Right now, if we want to mention
+more than one person
+
+31
+00:01:47,680 --> 00:01:50,150
+in our tweet, we have to
+call mention twice.
+
+32
+00:01:50,150 --> 00:01:52,570
+We'd like to be able to just
+call it once and separate the
+
+33
+00:01:52,570 --> 00:01:53,820
+user names with a comma.
+
+34
+00:01:53,820 --> 00:01:57,400
+
+
+35
+00:01:57,400 --> 00:02:00,390
+So how might we implement
+that?
+
+36
+00:02:00,390 --> 00:02:02,510
+So if we look at our mention
+method right now, it just
+
+37
+00:02:02,510 --> 00:02:03,760
+takes a single user.
+
+38
+00:02:03,760 --> 00:02:06,300
+
+
+39
+00:02:06,300 --> 00:02:08,870
+But we can use the splat
+operator to turn that into an
+
+40
+00:02:08,870 --> 00:02:10,190
+array of users.
+
+41
+00:02:10,190 --> 00:02:12,510
+And then we just have to make
+a simple modification to the
+
+42
+00:02:12,510 --> 00:02:16,210
+method to iterate the users in
+that array, and add each one
+
+43
+00:02:16,210 --> 00:02:17,460
+to our tweet.
+
+44
+00:02:17,460 --> 00:02:20,150
+
+
+45
+00:02:20,150 --> 00:02:22,420
+Last time I was looking at
+Twitter's API, I noticed that
+
+46
+00:02:22,420 --> 00:02:25,190
+they had recently added the
+ability to attach a hash of
+
+47
+00:02:25,190 --> 00:02:26,960
+annotations to your tweet.
+
+48
+00:02:26,960 --> 00:02:31,170
+So we'd like to extend our DSL
+to be able to support that.
+
+49
+00:02:31,170 --> 00:02:33,740
+What we'd like to do is to
+build up this annotations
+
+50
+00:02:33,740 --> 00:02:37,115
+hash, with any arbitrary keys
+and values, using this syntax
+
+51
+00:02:37,115 --> 00:02:39,170
+in our DSL.
+
+52
+00:02:39,170 --> 00:02:41,730
+This is a perfect candidate
+for using method missing.
+
+53
+00:02:41,730 --> 00:02:45,590
+What we need to do is extend
+our tweet class.
+
+54
+00:02:45,590 --> 00:02:48,370
+In its initialized method, we'll
+initialize an empty hash
+
+55
+00:02:48,370 --> 00:02:50,170
+for the annotation.
+
+56
+00:02:50,170 --> 00:02:52,640
+Then when we submit the tweet
+to Twitter, we'll just go
+
+57
+00:02:52,640 --> 00:02:54,770
+ahead and print those
+annotations out to the console
+
+58
+00:02:54,770 --> 00:02:56,740
+right now so we can see them.
+
+59
+00:02:56,740 --> 00:02:59,700
+And then to actually fill that
+annotations hash, we'll define
+
+60
+00:02:59,700 --> 00:03:01,150
+method missing.
+
+61
+00:03:01,150 --> 00:03:03,760
+And what we'll do here is we'll
+turn the method name
+
+62
+00:03:03,760 --> 00:03:07,480
+into the key, and we'll turn the
+method arguments into the
+
+63
+00:03:07,480 --> 00:03:09,440
+value, joining them
+with a comma.
+
+64
+00:03:09,440 --> 00:03:12,050
+
+
+65
+00:03:12,050 --> 00:03:14,960
+So with that, if we submit our
+example tweet here, we see
+
+66
+00:03:14,960 --> 00:03:17,890
+that not only do we get the
+tweet content, but we also get
+
+67
+00:03:17,890 --> 00:03:20,095
+this new annotations hash
+with the three values.
+
+68
+00:03:20,095 --> 00:03:25,090
+
+
+69
+00:03:25,090 --> 00:03:27,520
+One final thing we'd like to
+do, just to make our DSL a
+
+70
+00:03:27,520 --> 00:03:29,470
+little bit easier to
+use, is to add some
+
+71
+00:03:29,470 --> 00:03:31,090
+simple error handling.
+
+72
+00:03:31,090 --> 00:03:33,300
+So what we want to do here is
+make sure that the tweet isn't
+
+73
+00:03:33,300 --> 00:03:35,540
+too long before we submit
+it to Twitter.
+
+74
+00:03:35,540 --> 00:03:39,380
+We know that Twitter has 140
+character limit on tweets.
+
+75
+00:03:39,380 --> 00:03:42,690
+So let's put that check into our
+submit_to_twitter method.
+
+76
+00:03:42,690 --> 00:03:45,210
+Here we're just checking to see
+if the tweet text length
+
+77
+00:03:45,210 --> 00:03:47,710
+is less than or equal
+to 140 characters.
+
+78
+00:03:47,710 --> 00:03:50,490
+If it is, then we go ahead and
+do the handling that we were
+
+79
+00:03:50,490 --> 00:03:51,340
+doing before.
+
+80
+00:03:51,340 --> 00:03:54,280
+If it's not, we'll just raise
+an exception with a
+
+81
+00:03:54,280 --> 00:03:55,830
+descriptive message.
+
+82
+00:03:55,830 --> 00:03:59,530
+So what does this do for a user
+that's using our DSL?
+
+83
+00:03:59,530 --> 00:04:02,140
+Well, if they try to submit
+a tweet that's too long--
+
+84
+00:04:02,140 --> 00:04:03,560
+like this one here--
+
+85
+00:04:03,560 --> 00:04:06,600
+they'll get an exception with
+our message, and they will see
+
+86
+00:04:06,600 --> 00:04:08,700
+some internal details
+of our DSL.
+
+87
+00:04:08,700 --> 00:04:10,840
+In this case, the Submit
+to Twitter method.
+
+88
+00:04:10,840 --> 00:04:13,290
+But that's a pretty fair
+trade-off for adding some
+
+89
+00:04:13,290 --> 00:04:14,540
+pretty simple error handling.
+
+90
+00:04:14,540 --> 00:04:17,850
+
+
+91
+00:04:17,850 --> 00:04:19,899
+That's the end of our
+discussion of DSLs.
+
+92
+00:04:19,899 --> 00:04:22,352
+So you have some challenges to
+do, and I'll see you on the
+
+93
+00:04:22,352 --> 00:04:24,990
+other side of those challenges
+for the outro video.
+
+94
+00:04:24,990 --> 00:04:27,400
+We'll give you some more
+resources if you'd like to go
+
+95
+00:04:27,400 --> 00:04:28,900
+discover more Bits of Ruby.
+
+96
+00:00:00,000 --> 00:00:00,000
+00:04:28,900 --> 00:04:30,150
+
