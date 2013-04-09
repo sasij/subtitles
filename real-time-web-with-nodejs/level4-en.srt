@@ -1,0 +1,1203 @@
+1
+00:00:00,000 --> 00:00:00,820
+
+2
+00:00:00,820 --> 00:00:01,025
+[SINGING]
+
+3
+00:00:01,025 --> 00:00:03,775
+Your online application's
+starting to fail.
+
+4
+00:00:03,775 --> 00:00:06,940
+It's crawling on the network
+just as fast as a snail.
+
+5
+00:00:06,940 --> 00:00:10,280
+We need evented programming
+starting from the top.
+
+6
+00:00:10,280 --> 00:00:12,800
+Better write some code so
+the world doesn't stop.
+
+7
+00:00:12,800 --> 00:00:15,770
+
+8
+00:00:15,770 --> 00:00:19,010
+With the non-blocking model
+we will be just fine.
+
+9
+00:00:19,010 --> 00:00:21,900
+Built on Google Chrome's
+V8 runtime.
+
+10
+00:00:21,900 --> 00:00:21,920
+
+11
+00:00:21,920 --> 00:00:25,780
+And all you need to do is write
+some JavaScript code and
+
+12
+00:00:25,780 --> 00:00:27,870
+use the Real Time
+Web with Node.
+
+13
+00:00:27,870 --> 00:00:34,330
+
+14
+00:00:34,330 --> 00:00:35,810
+Welcome back to Node.js.
+
+15
+00:00:35,810 --> 00:00:36,620
+My name is Eric Allam.
+
+16
+00:00:36,620 --> 00:00:38,140
+I'm going to be leading
+us through the
+
+17
+00:00:38,140 --> 00:00:39,460
+rest of this course.
+
+18
+00:00:39,460 --> 00:00:42,950
+In Level four we're going to
+be going over modules.
+
+19
+00:00:42,950 --> 00:00:46,610
+In the first three levels, we've
+been using require to do
+
+20
+00:00:46,610 --> 00:00:50,420
+stuff like HTTP, and the file
+system, but what exactly is
+
+21
+00:00:50,420 --> 00:00:51,760
+going on here?
+
+22
+00:00:51,760 --> 00:00:53,520
+So how does require work?
+
+23
+00:00:53,520 --> 00:00:56,570
+How does require find these
+libraries, and what does
+
+24
+00:00:56,570 --> 00:00:57,800
+require return?
+
+25
+00:00:57,800 --> 00:01:00,590
+How do we define what
+require returns?
+
+26
+00:01:00,590 --> 00:01:03,015
+Well, let's look at what
+that would look like.
+
+27
+00:01:03,015 --> 00:01:06,050
+In node.js when we want to share
+code, we create these
+
+28
+00:01:06,050 --> 00:01:07,700
+things called modules.
+
+29
+00:01:07,700 --> 00:01:09,640
+So let's create a function
+and we want to share
+
+30
+00:01:09,640 --> 00:01:11,110
+that with our app.
+
+31
+00:01:11,110 --> 00:01:14,770
+So we're going to create
+a custom hello js file.
+
+32
+00:01:14,770 --> 00:01:17,220
+In that file we define
+a hello function.
+
+33
+00:01:17,220 --> 00:01:20,200
+All it does is log out
+to the console.
+
+34
+00:01:20,200 --> 00:01:22,800
+To define what we want to return
+when we require this
+
+35
+00:01:22,800 --> 00:01:25,290
+file we use the exports
+object.
+
+36
+00:01:25,290 --> 00:01:28,890
+So here we're saying export
+the hello function.
+
+37
+00:01:28,890 --> 00:01:32,230
+Now down below, in our
+application, when we require
+
+38
+00:01:32,230 --> 00:01:35,270
+that file we have access
+to the hello function,
+
+39
+00:01:35,270 --> 00:01:37,210
+and we can call it.
+
+40
+00:01:37,210 --> 00:01:40,015
+Another way we can do that, as
+you see here in 
+
+41
+00:01:40,015 --> 00:01:43,210
+custom_goodbye.js, we can
+actually export a function
+
+42
+00:01:43,210 --> 00:01:45,180
+into the exports object.
+
+43
+00:01:45,180 --> 00:01:48,423
+So when we require it, an object
+is returned, and then
+
+44
+00:01:48,423 --> 00:01:51,380
+we can call that function
+on the object.
+
+45
+00:01:51,380 --> 00:01:53,890
+So here we're requiring
+custom_goodbye.
+
+46
+00:01:53,890 --> 00:01:57,220
+Then gb is the exports object.
+
+47
+00:01:57,220 --> 00:02:00,350
+We don't have to assign
+what is returned by
+
+48
+00:02:00,350 --> 00:02:01,970
+require into a variable.
+
+49
+00:02:01,970 --> 00:02:04,900
+We can actually just call
+require, and then right away
+
+50
+00:02:04,900 --> 00:02:08,060
+call the function that it
+returns, like we see here.
+
+51
+00:02:08,060 --> 00:02:10,470
+You might notice here that we're
+using .slash in front of
+
+52
+00:02:10,470 --> 00:02:11,520
+our module name.
+
+53
+00:02:11,520 --> 00:02:13,100
+And we're going to go over
+why we're using that
+
+54
+00:02:13,100 --> 00:02:13,755
+a little bit later.
+
+55
+00:02:13,755 --> 00:02:18,990
+It has to do with how require
+searches for our module.
+
+56
+00:02:18,990 --> 00:02:22,630
+In our previous examples we've
+only exported one function,
+
+57
+00:02:22,630 --> 00:02:25,700
+either by assigning the function
+to exports directly,
+
+58
+00:02:25,700 --> 00:02:28,740
+or assigning that function
+on the exports object.
+
+59
+00:02:28,740 --> 00:02:31,810
+Well, let's say we want to
+export multiple functions.
+
+60
+00:02:31,810 --> 00:02:33,580
+How do we do that?
+
+61
+00:02:33,580 --> 00:02:36,610
+We can do that by assigning
+multiple functions in our
+
+62
+00:02:36,610 --> 00:02:40,020
+my_module.js file
+to the exports
+
+63
+00:02:40,020 --> 00:02:41,850
+object like we see here.
+
+64
+00:02:41,850 --> 00:02:45,990
+Now our module exports two
+functions, foo and bar, and it
+
+65
+00:02:45,990 --> 00:02:49,060
+keeps the baz function private,
+which means that our
+
+66
+00:02:49,060 --> 00:02:51,270
+app js won't be able
+to use it.
+
+67
+00:02:51,270 --> 00:02:53,910
+But if you tried to call
+baz it wouldn't work.
+
+68
+00:02:53,910 --> 00:02:56,940
+Let's walk through a real world
+example of creating our
+
+69
+00:02:56,940 --> 00:02:58,160
+own module.
+
+70
+00:02:58,160 --> 00:03:00,080
+And for this we're going to
+introduce a little bit of new
+
+71
+00:03:00,080 --> 00:03:03,180
+functionality with
+the HTTP module.
+
+72
+00:03:03,180 --> 00:03:06,640
+Instead of creating a server
+and responding to requests,
+
+73
+00:03:06,640 --> 00:03:07,960
+we're actually going
+to make a request.
+
+74
+00:03:07,960 --> 00:03:11,300
+So we're actually building
+a HTTP client.
+
+75
+00:03:11,300 --> 00:03:14,480
+First, we're going to require
+our HTTP module.
+
+76
+00:03:14,480 --> 00:03:17,660
+We're going to have a message
+that we want to send in the
+
+77
+00:03:17,660 --> 00:03:19,380
+request body.
+
+78
+00:03:19,380 --> 00:03:21,080
+So we define that.
+
+79
+00:03:21,080 --> 00:03:23,890
+Next, we'll define an options
+object that'll eventually be
+
+80
+00:03:23,890 --> 00:03:26,520
+turned into a URL
+for the request.
+
+81
+00:03:26,520 --> 00:03:30,860
+Then we'll call the request
+function on our HTTP module.
+
+82
+00:03:30,860 --> 00:03:32,540
+That function accepts
+two parameters.
+
+83
+00:03:32,540 --> 00:03:36,180
+Our first one is the options for
+the URL that we're going
+
+84
+00:03:36,180 --> 00:03:37,600
+to make the request to.
+
+85
+00:03:37,600 --> 00:03:40,810
+And the second parameter is a
+call back that passes in a
+
+86
+00:03:40,810 --> 00:03:44,240
+response, which is a readable
+stream, so we can read data
+
+87
+00:03:44,240 --> 00:03:45,630
+back from the response.
+
+88
+00:03:45,630 --> 00:03:47,840
+And just print it out
+to the console.
+
+89
+00:03:47,840 --> 00:03:51,580
+Finally, we write our message
+to the request body.
+
+90
+00:03:51,580 --> 00:03:56,460
+And when we call end it'll
+finish the request.
+
+91
+00:03:56,460 --> 00:03:59,430
+So our first step here is
+let's encapsulate this
+
+92
+00:03:59,430 --> 00:04:02,010
+functionality using
+a function.
+
+93
+00:04:02,010 --> 00:04:03,570
+We'll call it makeRequest.
+
+94
+00:04:03,570 --> 00:04:06,210
+And now when makeRequest
+is defined we
+
+95
+00:04:06,210 --> 00:04:07,360
+can use it like this.
+
+96
+00:04:07,360 --> 00:04:10,490
+And all we have to do is pass
+in the message body that we
+
+97
+00:04:10,490 --> 00:04:13,130
+want to write to the request.
+
+98
+00:04:13,130 --> 00:04:15,680
+So now we have our makeRequest
+function.
+
+99
+00:04:15,680 --> 00:04:19,070
+But we want to use this across
+multiple different pieces of
+
+100
+00:04:19,070 --> 00:04:21,570
+our application, maybe multiple
+different files, or
+
+101
+00:04:21,570 --> 00:04:24,480
+maybe we want to share it with
+someone else on our team.
+
+102
+00:04:24,480 --> 00:04:27,220
+So we would want to
+create a module.
+
+103
+00:04:27,220 --> 00:04:30,930
+As you can see we've moved our
+makeRequest function into a
+
+104
+00:04:30,930 --> 00:04:34,230
+new file called make_request.js.
+
+105
+00:04:34,230 --> 00:04:37,540
+And now all we have to do is
+assign the makeRequest
+
+106
+00:04:37,540 --> 00:04:39,800
+function to the exports
+object.
+
+107
+00:04:39,800 --> 00:04:43,680
+Then to use this module we
+go back to our app.js.
+
+108
+00:04:43,680 --> 00:04:45,980
+And we require make_request.
+
+109
+00:04:45,980 --> 00:04:49,611
+And then we can use it just
+as we were before.
+
+110
+00:04:49,611 --> 00:04:52,660
+You might be wondering where on
+our file system is require
+
+111
+00:04:52,660 --> 00:04:55,670
+looking for our make_request
+module?
+
+112
+00:04:55,670 --> 00:04:59,590
+When we require with .slash
+make_request we're telling
+
+113
+00:04:59,590 --> 00:05:01,880
+require to look in the
+same directory.
+
+114
+00:05:01,880 --> 00:05:05,840
+We could tell require to look
+one directory up using dot dot
+
+115
+00:05:05,840 --> 00:05:07,000
+slash my module.
+
+116
+00:05:07,000 --> 00:05:08,710
+And these are relative paths.
+
+117
+00:05:08,710 --> 00:05:13,790
+We could also just pass in an
+absolute path to our module.
+
+118
+00:05:13,790 --> 00:05:16,960
+But what happens when you just
+pass in the name of the
+
+119
+00:05:16,960 --> 00:05:20,322
+module, like make_request
+without dot slash or dot dot
+
+120
+00:05:20,322 --> 00:05:21,870
+slash in front of it?
+
+121
+00:05:21,870 --> 00:05:25,080
+By default, what it's going to
+do is search in the node
+
+122
+00:05:25,080 --> 00:05:26,440
+modules directory.
+
+123
+00:05:26,440 --> 00:05:29,210
+So as you can see here we're
+in Home/eric/my_app/app.js.
+
+124
+00:05:29,210 --> 00:05:32,120
+
+125
+00:05:32,120 --> 00:05:36,000
+So when we require make_request
+it's first going to search in
+
+126
+00:05:36,000 --> 00:05:38,790
+Home/eric/my_app/node_modules.
+
+127
+00:05:38,790 --> 00:05:40,910
+If it doesn't find it there
+it'll keep going up one
+
+128
+00:05:40,910 --> 00:05:46,180
+directory and searching in the
+node modules directory.
+
+129
+00:05:46,180 --> 00:05:49,670
+So now we know how to create our
+own node modules, it would
+
+130
+00:05:49,670 --> 00:05:53,750
+be nice if there was a way to
+easily install third party
+
+131
+00:05:53,750 --> 00:05:55,890
+modules from the community.
+
+132
+00:05:55,890 --> 00:05:59,780
+And luckily, node comes with
+something called NPM, stands
+
+133
+00:05:59,780 --> 00:06:02,180
+for Node Package Manager.
+
+134
+00:06:02,180 --> 00:06:06,720
+NPM is a lot like RubyGems
+for Ruby, or CPAN
+
+135
+00:06:06,720 --> 00:06:07,800
+for Perl.
+
+136
+00:06:07,800 --> 00:06:10,920
+It has a central repository
+where people can publish their
+
+137
+00:06:10,920 --> 00:06:13,710
+modules, and you can
+install from.
+
+138
+00:06:13,710 --> 00:06:16,520
+NPM comes with node, so it's
+really easy to install.
+
+139
+00:06:16,520 --> 00:06:19,360
+If you have node, you already
+have and NPM.
+
+140
+00:06:19,360 --> 00:06:22,790
+It hosts a module repository
+on a server.
+
+141
+00:06:22,790 --> 00:06:25,145
+It also has tools for dependency
+management.
+
+142
+00:06:25,145 --> 00:06:28,700
+It makes it really easy to
+publish your own modules.
+
+143
+00:06:28,700 --> 00:06:32,500
+And it follows a local only
+install mode that we'll go
+
+144
+00:06:32,500 --> 00:06:36,830
+into a little bit later into
+why that's important.
+
+145
+00:06:36,830 --> 00:06:39,560
+First, we're going to look at
+how easy it is to install
+
+146
+00:06:39,560 --> 00:06:42,490
+third party modules with NPM.
+
+147
+00:06:42,490 --> 00:06:45,470
+Here you can see I'm using the
+NPM command line tool.
+
+148
+00:06:45,470 --> 00:06:48,670
+And I'm saying, NPM
+install request.
+
+149
+00:06:48,670 --> 00:06:50,510
+And that's going to
+install the third
+
+150
+00:06:50,510 --> 00:06:52,940
+party request library.
+
+151
+00:06:52,940 --> 00:06:56,970
+As you can see here it's going
+to install it into the local
+
+152
+00:06:56,970 --> 00:06:58,790
+node models directory.
+
+153
+00:06:58,790 --> 00:07:02,350
+So remember before when we saw
+that require searched in the
+
+154
+00:07:02,350 --> 00:07:06,090
+node models directory, well as
+you can see here, when NPM
+
+155
+00:07:06,090 --> 00:07:10,260
+installs that module into node
+modules, we can automatically
+
+156
+00:07:10,260 --> 00:07:11,890
+require it in our app,
+
+157
+00:07:11,890 --> 00:07:13,160
+and it'll work.
+
+158
+00:07:13,160 --> 00:07:16,780
+When we did NPM install request,
+you saw we installed
+
+159
+00:07:16,780 --> 00:07:20,950
+that module in the apps local
+node modules folder.
+
+160
+00:07:20,950 --> 00:07:22,530
+Well, let's say we
+want to install
+
+161
+00:07:22,530 --> 00:07:24,400
+something like CoffeeScript.
+
+162
+00:07:24,400 --> 00:07:27,470
+It comes with an executable,
+called coffee, that we might
+
+163
+00:07:27,470 --> 00:07:31,410
+want to use to compile
+CoffeeScript files to JavaScript.
+
+164
+00:07:31,410 --> 00:07:33,930
+So we can't use the
+local install.
+
+165
+00:07:33,930 --> 00:07:37,540
+We actually have to pass this
+flag, -g, that'll
+
+166
+00:07:37,540 --> 00:07:39,840
+install the coffee
+script globally.
+
+167
+00:07:39,840 --> 00:07:42,590
+And then we can call the
+coffee executable.
+
+168
+00:07:42,590 --> 00:07:45,800
+So the rule of thumb here
+is if the module has an
+
+169
+00:07:45,800 --> 00:07:48,660
+executable you need to
+use the global flag
+
+170
+00:07:48,660 --> 00:07:50,280
+when installing it.
+
+171
+00:07:50,280 --> 00:07:52,650
+One thing to note though is
+that you can't actually
+
+172
+00:07:52,650 --> 00:07:54,620
+require global modules.
+
+173
+00:07:54,620 --> 00:07:58,090
+You have to install the
+module locally.
+
+174
+00:07:58,090 --> 00:08:01,390
+And then requiring the
+module will work.
+
+175
+00:08:01,390 --> 00:08:05,140
+There are a lot of places you go
+to find NPM modules to use
+
+176
+00:08:05,140 --> 00:08:07,060
+in your applications.
+
+177
+00:08:07,060 --> 00:08:09,060
+NPM has its own registry
+where you can go
+
+178
+00:08:09,060 --> 00:08:10,820
+and search for modules.
+
+179
+00:08:10,820 --> 00:08:13,110
+You can actually search from the
+command line, as you can
+
+180
+00:08:13,110 --> 00:08:16,250
+see here, using NPM search.
+
+181
+00:08:16,250 --> 00:08:18,930
+You can always go to github
+and use their search.
+
+182
+00:08:18,930 --> 00:08:22,340
+And there's this really great
+website called node toolbox,
+
+183
+00:08:22,340 --> 00:08:24,270
+where they list the
+best modules
+
+184
+00:08:24,270 --> 00:08:26,260
+based on their category.
+
+185
+00:08:26,260 --> 00:08:28,550
+After a while when you're
+building your application,
+
+186
+00:08:28,550 --> 00:08:30,080
+you're going to start
+installing more
+
+187
+00:08:30,080 --> 00:08:32,150
+and more NPM modules.
+
+188
+00:08:32,150 --> 00:08:35,200
+So it would be nice to have a
+place where you can define
+
+189
+00:08:35,200 --> 00:08:38,150
+which modules your
+app depends on.
+
+190
+00:08:38,150 --> 00:08:40,159
+NPM makes that really easy.
+
+191
+00:08:40,159 --> 00:08:44,270
+All you have do is define a
+package.json file in the root
+
+192
+00:08:44,270 --> 00:08:45,500
+of your application.
+
+193
+00:08:45,500 --> 00:08:48,310
+This file contains
+a json literal.
+
+194
+00:08:48,310 --> 00:08:51,250
+All you have to do is define the
+name of your application,
+
+195
+00:08:51,250 --> 00:08:55,150
+which version it currently is,
+and then you can pass in a
+
+196
+00:08:55,150 --> 00:08:56,660
+dependencies object.
+
+197
+00:08:56,660 --> 00:08:59,480
+In the dependencies object we
+simply list the modules that
+
+198
+00:08:59,480 --> 00:09:02,890
+we depend on next to their
+version numbers.
+
+199
+00:09:02,890 --> 00:09:06,270
+After we have this package.json
+file defined, we
+
+200
+00:09:06,270 --> 00:09:09,070
+can actually just run NPM
+install from our app.
+
+201
+00:09:09,070 --> 00:09:12,280
+And it'll go out and install of
+our dependencies for us in
+
+202
+00:09:12,280 --> 00:09:13,780
+the node_modules directory.
+
+203
+00:09:13,780 --> 00:09:16,730
+As you can see here, when
+we install the connect
+
+204
+00:09:16,730 --> 00:09:17,790
+dependency.
+
+205
+00:09:17,790 --> 00:09:20,680
+You might depend on modules
+that have their own sub
+
+206
+00:09:20,680 --> 00:09:23,490
+dependencies, like our
+connect module here.
+
+207
+00:09:23,490 --> 00:09:26,930
+And when you run NPM install
+it's smart enough to go out
+
+208
+00:09:26,930 --> 00:09:29,810
+and also install those
+sub dependencies.
+
+209
+00:09:29,810 --> 00:09:32,810
+But it's not going to install
+them all at the root node
+
+210
+00:09:32,810 --> 00:09:33,945
+modules folder.
+
+211
+00:09:33,945 --> 00:09:37,130
+It will actually install
+in the connects
+
+212
+00:09:37,130 --> 00:09:38,930
+node modules directory.
+
+213
+00:09:38,930 --> 00:09:43,140
+As you can see here, under
+connect node modules we have
+
+214
+00:09:43,140 --> 00:09:47,090
+the three dependencies, qs,
+mime, and formidable.
+
+215
+00:09:47,090 --> 00:09:50,260
+The great thing about this is it
+actually prevents a lot of
+
+216
+00:09:50,260 --> 00:09:53,570
+problems that have to do with
+conflicting modules.
+
+217
+00:09:53,570 --> 00:09:57,650
+So imagine instead if it
+installed all the module
+
+218
+00:09:57,650 --> 00:10:00,460
+dependencies in that
+one folder.
+
+219
+00:10:00,460 --> 00:10:02,520
+One thing I think we should
+cover before finishing this
+
+220
+00:10:02,520 --> 00:10:04,240
+level is semantic versioning.
+
+221
+00:10:04,240 --> 00:10:07,930
+Now semantic versioning is a way
+to give meaning to version
+
+222
+00:10:07,930 --> 00:10:09,940
+numbers on dependencies.
+
+223
+00:10:09,940 --> 00:10:13,410
+So as you can see here, we
+defined our version number on
+
+224
+00:10:13,410 --> 00:10:15,790
+connect as 1.8.7.
+
+225
+00:10:15,790 --> 00:10:18,835
+The one indicates the
+major version.
+
+226
+00:10:18,835 --> 00:10:20,600
+The eight is the
+minor version.
+
+227
+00:10:20,600 --> 00:10:22,540
+And seven is the patch level.
+
+228
+00:10:22,540 --> 00:10:25,290
+What that means it that you
+don't have to specify the
+
+229
+00:10:25,290 --> 00:10:30,220
+exact version number in your
+package.json dependencies.
+
+230
+00:10:30,220 --> 00:10:33,170
+By using semantic versioning we
+don't actually have to put
+
+231
+00:10:33,170 --> 00:10:36,210
+the exact version number
+in our dependencies.
+
+232
+00:10:36,210 --> 00:10:38,640
+We can use what's
+known as ranges.
+
+233
+00:10:38,640 --> 00:10:41,160
+As you see here, we can
+use the tilde to
+
+234
+00:10:41,160 --> 00:10:43,500
+define a certain range.
+
+235
+00:10:43,500 --> 00:10:46,080
+When we do tilde one, that
+means when we do an NPM
+
+236
+00:10:46,080 --> 00:10:49,640
+install, as long as the version
+is greater than 1.0.0
+
+237
+00:10:49,640 --> 00:10:51,470
+and less than 2.0.0.
+
+238
+00:10:51,470 --> 00:10:54,980
+This is considered dangerous
+because any changes to the
+
+239
+00:10:54,980 --> 00:10:57,120
+minor version could
+break your app.
+
+240
+00:10:57,120 --> 00:11:01,320
+We can make it a little safer
+by doing tilde 1.8.
+
+241
+00:11:01,320 --> 00:11:05,520
+And this would mean NPM would
+install anything greater than,
+
+242
+00:11:05,520 --> 00:11:09,030
+or equal to, 1.8 and
+less than 2.0.
+
+243
+00:11:09,030 --> 00:11:11,810
+This is still a little bit
+dangerous because the API of
+
+244
+00:11:11,810 --> 00:11:16,520
+connect could change
+from 1.8 to 1.9.
+
+245
+00:11:16,520 --> 00:11:20,180
+The safest way to define a
+range, and still have the
+
+246
+00:11:20,180 --> 00:11:26,330
+dependency considered safe, is
+to use tilde 1.8.7, or tilde
+
+247
+00:11:26,330 --> 00:11:28,035
+major, minor, patch.
+
+248
+00:11:28,035 --> 00:11:31,180
+What this means is that NPM will
+install anything greater
+
+249
+00:11:31,180 --> 00:11:34,890
+than or equal to 1.8.7,
+but less than 1.9.0.
+
+250
+00:11:34,890 --> 00:11:38,280
+Which means that when running
+NPM install you'll only get
+
+251
+00:11:38,280 --> 00:11:41,560
+patch updates for connect, which
+means it shouldn't break
+
+252
+00:11:41,560 --> 00:11:43,360
+your application.
+
+253
+00:11:43,360 --> 00:11:45,430
+We have reached the
+end of level four.
+
+254
+00:11:45,430 --> 00:11:46,360
+Have fun in the challenges.
+
+255
+00:11:46,360 --> 00:11:47,940
+We'll see you back here
+for level five.
+
+256
+00:11:47,940 --> 00:11:49,248

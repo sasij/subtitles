@@ -1,0 +1,275 @@
+1
+00:00:00,000 --> 00:00:00,840
+
+2
+00:00:00,840 --> 00:00:03,250
+(SINGING) Your online
+application's starting to
+
+3
+00:00:03,250 --> 00:00:05,910
+fail, it's crawling on
+the network just
+
+4
+00:00:05,910 --> 00:00:07,490
+as fast as a snail.
+
+5
+00:00:07,490 --> 00:00:10,660
+We need evented programming,
+starting from the top.
+
+6
+00:00:10,660 --> 00:00:15,370
+Better write some code, so
+the world doesn't stop.
+
+7
+00:00:15,370 --> 00:00:19,360
+With the non-blocking model
+we will be just fine.
+
+8
+00:00:19,360 --> 00:00:22,380
+Built on Google Chrome's
+v8 runtime.
+
+9
+00:00:22,380 --> 00:00:25,980
+And all you need to do is write
+some JavaScript code and
+
+10
+00:00:25,980 --> 00:00:28,120
+use the Real Time
+Web with Node.
+
+11
+00:00:28,120 --> 00:00:32,246
+
+12
+00:00:32,246 --> 00:00:35,185
+(SPEAKING) In the Real Time Web
+with Node.JS, Eric Allam
+
+13
+00:00:35,185 --> 00:00:37,660
+and Gregg Pollack will take you
+through seven high quality
+
+14
+00:00:37,660 --> 00:00:40,740
+screen tasks and 45 in- browser
+code challenges, so
+
+15
+00:00:40,740 --> 00:00:43,620
+you can learn how to use
+JavaScript on the server side.
+
+16
+00:00:43,620 --> 00:00:46,010
+Let's take a look at the
+interface for this course.
+
+17
+00:00:46,010 --> 00:00:47,550
+The first video lesson
+will be your
+
+18
+00:00:47,550 --> 00:00:48,980
+introduction to level one.
+
+19
+00:00:48,980 --> 00:00:51,940
+You can skip around chapters
+using the numbers at the top.
+
+20
+00:00:51,940 --> 00:00:54,330
+And when you're ready to start
+the challenges, just hit the
+
+21
+00:00:54,330 --> 00:00:56,010
+big button below the video.
+
+22
+00:00:56,010 --> 00:00:58,640
+In the challenge interface,
+you'll see your total points,
+
+23
+00:00:58,640 --> 00:01:01,150
+the number of points this
+challenge is worth, and the
+
+24
+00:01:01,150 --> 00:01:02,670
+challenge instructions.
+
+25
+00:01:02,670 --> 00:01:05,420
+Just below, a JavaScript code
+editor will allow you to type
+
+26
+00:01:05,420 --> 00:01:07,130
+in your answer to
+the challenge.
+
+27
+00:01:07,130 --> 00:01:09,340
+If you don't get it right, an
+error message will give you
+
+28
+00:01:09,340 --> 00:01:10,150
+some feedback.
+
+29
+00:01:10,150 --> 00:01:11,970
+You can look at the
+video slides.
+
+30
+00:01:11,970 --> 00:01:14,620
+And there's no shame in asking
+for a hint, so you don't get
+
+31
+00:01:14,620 --> 00:01:15,850
+stuck for too long.
+
+32
+00:01:15,850 --> 00:01:17,940
+On the left side of the screen,
+you will see a list of
+
+33
+00:01:17,940 --> 00:01:19,390
+the challenges for this level.
+
+34
+00:01:19,390 --> 00:01:22,410
+You can re-watch the video if
+you need to, learn how to use
+
+35
+00:01:22,410 --> 00:01:25,300
+the interface shortcuts, and
+download the slides, in case
+
+36
+00:01:25,300 --> 00:01:27,440
+you need some reference
+material for later.
+
+37
+00:01:27,440 --> 00:01:29,940
+In this course, we'll cover the
+non-blocking concept and
+
+38
+00:01:29,940 --> 00:01:30,930
+the event loop.
+
+39
+00:01:30,930 --> 00:01:33,590
+We'll learn how to listen,
+trigger and create events.
+
+40
+00:01:33,590 --> 00:01:36,050
+Then we'll look at streams at
+the core of the Real Time
+
+41
+00:01:36,050 --> 00:01:36,990
+infrastructure.
+
+42
+00:01:36,990 --> 00:01:40,280
+Modules will allow us to share
+and use third party code, like
+
+43
+00:01:40,280 --> 00:01:43,570
+the Express web framework and
+Socket.io, so we can use the
+
+44
+00:01:43,570 --> 00:01:44,910
+websockets API.
+
+45
+00:01:44,910 --> 00:01:48,440
+Finally, we'll discover how to
+use Redis to store our data.
+
+46
+00:01:48,440 --> 00:01:50,720
+For each level you complete,
+you'll receive a badge,
+
+47
+00:01:50,720 --> 00:01:53,030
+finally earning the course
+completion badge which will be
+
+48
+00:01:53,030 --> 00:01:54,950
+displayed in your
+public profile.
+
+49
+00:01:54,950 --> 00:01:57,590
+Finishing this course will
+unlock a final video and
+
+50
+00:01:57,590 --> 00:02:00,560
+resources to continue learning
+Node.JS and server side
+
+51
+00:02:00,560 --> 00:02:01,480
+JavaScript.
+
+52
+00:02:01,480 --> 00:02:04,220
+You'll also receive a discount
+on your subscription or your
+
+53
+00:02:04,220 --> 00:02:05,930
+next Code School course.
+
+54
+00:02:05,930 --> 00:02:08,509
+To be able to play Real Time web
+with Node.JS, you'll need
+
+55
+00:02:08,509 --> 00:02:11,270
+to have some basic knowledge of
+JavaScript and server side
+
+56
+00:02:11,270 --> 00:02:12,070
+programming.
+
+57
+00:02:12,070 --> 00:02:14,400
+If you don't, you should take a
+look at our previous courses
+
+58
+00:02:14,400 --> 00:02:17,690
+on Jquery and Backbone.JS, the
+first one of which is free.
+
+59
+00:02:17,690 --> 00:02:20,757

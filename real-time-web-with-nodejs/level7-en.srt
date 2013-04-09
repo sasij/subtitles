@@ -1,0 +1,1149 @@
+1
+00:00:00,000 --> 00:00:01,230
+
+2
+00:00:01,230 --> 00:00:03,775
+Your online application's
+starting to fail.
+
+3
+00:00:03,775 --> 00:00:07,330
+It's crawling on the network
+just as fast as a snail.
+
+4
+00:00:07,330 --> 00:00:10,760
+We need evented programming
+starting from the top.
+
+5
+00:00:10,760 --> 00:00:15,770
+Better write some code so
+the world doesn't stop.
+
+6
+00:00:15,770 --> 00:00:19,380
+With a non-blocking model,
+we will be just fine.
+
+7
+00:00:19,380 --> 00:00:22,370
+Build on Google Chrome's
+V8 runtime.
+
+8
+00:00:22,370 --> 00:00:25,970
+And all you need to do is write
+some JavaScript code and
+
+9
+00:00:25,970 --> 00:00:28,130
+use the Real Time
+Web with Node.
+
+10
+00:00:28,130 --> 00:00:34,540
+
+11
+00:00:34,540 --> 00:00:36,845
+You're watching Real Time
+Web with Node.js.
+
+12
+00:00:36,845 --> 00:00:40,500
+In Level Seven, we're going to
+be continuing to build our
+
+13
+00:00:40,500 --> 00:00:43,200
+chat application, and we're
+going to introduce some
+
+14
+00:00:43,200 --> 00:00:45,600
+persistence.
+
+15
+00:00:45,600 --> 00:00:48,720
+One of the limitations of the
+chat application that we wrote
+
+16
+00:00:48,720 --> 00:00:52,120
+in Level Six was that when a
+client connected, we didn't
+
+17
+00:00:52,120 --> 00:00:54,970
+show them the recent messages
+that were sent
+
+18
+00:00:54,970 --> 00:00:57,380
+in that chat room.
+
+19
+00:00:57,380 --> 00:01:00,240
+As you can see here, when Spider
+connects, he doesn't
+
+20
+00:01:00,240 --> 00:01:03,410
+see any of the messages that
+Dog has sent previously.
+
+21
+00:01:03,410 --> 00:01:06,330
+So let's walk through how we
+would add that functionality
+
+22
+00:01:06,330 --> 00:01:07,330
+to our app.
+
+23
+00:01:07,330 --> 00:01:10,300
+So currently on the server,
+our code looks like this.
+
+24
+00:01:10,300 --> 00:01:14,870
+But we need to add some code
+that will emit the recent
+
+25
+00:01:14,870 --> 00:01:18,590
+messages when our new
+client connects.
+
+26
+00:01:18,590 --> 00:01:21,170
+So our first iteration of
+this, let's just use an
+
+27
+00:01:21,170 --> 00:01:23,910
+in-memory array to store
+recent messages.
+
+28
+00:01:23,910 --> 00:01:26,350
+So first, let's just create
+an empty array.
+
+29
+00:01:26,350 --> 00:01:29,570
+We're defining a storeMessage
+function that takes the name
+
+30
+00:01:29,570 --> 00:01:32,990
+and the data of the message, and
+we're going to push that
+
+31
+00:01:32,990 --> 00:01:34,610
+onto the messages array.
+
+32
+00:01:34,610 --> 00:01:38,470
+If that messages array is longer
+than 10 elements, we're
+
+33
+00:01:38,470 --> 00:01:41,460
+going to remove the oldest
+element by calling shift.
+
+34
+00:01:41,460 --> 00:01:46,630
+Down in the messages event
+handler, we're going to call
+
+35
+00:01:46,630 --> 00:01:49,860
+this storeMessage function
+to insert our
+
+36
+00:01:49,860 --> 00:01:52,140
+message into the array.
+
+37
+00:01:52,140 --> 00:01:57,270
+Now when our client joins the
+chat, we're going to use the
+
+38
+00:01:57,270 --> 00:02:02,030
+forEach function to iterate over
+the messages array and
+
+39
+00:02:02,030 --> 00:02:07,020
+emit a new message for each
+item in that array.
+
+40
+00:02:07,020 --> 00:02:08,570
+Let's go back and see
+what that does.
+
+41
+00:02:08,570 --> 00:02:11,540
+
+42
+00:02:11,540 --> 00:02:14,980
+Now when Dog is connected and
+he sends out a couple of
+
+43
+00:02:14,980 --> 00:02:21,430
+messages, when Spider connects
+later on and enters his name,
+
+44
+00:02:21,430 --> 00:02:24,663
+he'll receive those previously
+sent messages by Dog.
+
+45
+00:02:24,663 --> 00:02:30,820
+
+46
+00:02:30,820 --> 00:02:33,420
+There's a little bit of
+a problem with this.
+
+47
+00:02:33,420 --> 00:02:38,250
+What happens if we restart our
+node application and then a
+
+48
+00:02:38,250 --> 00:02:39,780
+new client connects?
+
+49
+00:02:39,780 --> 00:02:43,930
+Are they going to see those
+previously sent messages?
+
+50
+00:02:43,930 --> 00:02:47,586
+Well, they're not, because we
+were storing those messages in
+
+51
+00:02:47,586 --> 00:02:51,290
+a in-memory array, whenever we
+restarted the application,
+
+52
+00:02:51,290 --> 00:02:53,350
+those messages were lost.
+
+53
+00:02:53,350 --> 00:02:57,040
+To solve this problem, we need
+a way to persist these
+
+54
+00:02:57,040 --> 00:03:00,320
+messages outside of
+our node process.
+
+55
+00:03:00,320 --> 00:03:03,670
+Let's say, like a file system
+or a data store.
+
+56
+00:03:03,670 --> 00:03:07,100
+And luckily, Node works really
+great with a bunch of data
+
+57
+00:03:07,100 --> 00:03:13,720
+stores, like MongoDB, CouchDB,
+PostgreSQL, Memcached, Riak,
+
+58
+00:03:13,720 --> 00:03:17,630
+and Redis, which is
+a key-value store.
+
+59
+00:03:17,630 --> 00:03:20,540
+You can use all of these
+persisting data stores in
+
+60
+00:03:20,540 --> 00:03:23,220
+Node.js in a non-blocking way.
+
+61
+00:03:23,220 --> 00:03:26,790
+What's great about that is, say
+you can send a query and
+
+62
+00:03:26,790 --> 00:03:29,810
+you can tell it to call back
+when the results come in,
+
+63
+00:03:29,810 --> 00:03:32,720
+instead of having to block and
+wait for those results.
+
+64
+00:03:32,720 --> 00:03:35,610
+So for our chat application,
+we're actually going to choose
+
+65
+00:03:35,610 --> 00:03:41,030
+to use the Redis library to
+do persisting messages.
+
+66
+00:03:41,030 --> 00:03:44,590
+Redis is a key-value store,
+but more importantly, it
+
+67
+00:03:44,590 --> 00:03:47,400
+doesn't just store
+strings as value.
+
+68
+00:03:47,400 --> 00:03:50,230
+It can store things like
+lists, hashes,
+
+69
+00:03:50,230 --> 00:03:52,170
+sets, sorted sets.
+
+70
+00:03:52,170 --> 00:03:56,210
+And you interact with all of
+these data structures in Redis
+
+71
+00:03:56,210 --> 00:03:58,570
+using these commands.
+
+72
+00:03:58,570 --> 00:04:02,240
+Redis has a really great
+documentation website, where
+
+73
+00:04:02,240 --> 00:04:04,600
+you can go and search for
+
+74
+00:04:04,600 --> 00:04:07,030
+commands by the data structure.
+
+75
+00:04:07,030 --> 00:04:08,860
+And, let's say we want
+to learn how
+
+76
+00:04:08,860 --> 00:04:10,360
+to use the Get command.
+
+77
+00:04:10,360 --> 00:04:14,120
+So all we do is Get, and then
+we pass in a certain key.
+
+78
+00:04:14,120 --> 00:04:16,870
+But what's really great about
+this website is that you can
+
+79
+00:04:16,870 --> 00:04:20,860
+actually run these Redis
+commands right on the website,
+
+80
+00:04:20,860 --> 00:04:22,930
+just like Code School.
+
+81
+00:04:22,930 --> 00:04:26,290
+So I can do SET newkey 
+equal to "Dog,"
+
+82
+00:04:26,290 --> 00:04:30,075
+and then when I run GET newkey,
+I get the value "Dog" back.
+
+83
+00:04:30,075 --> 00:04:32,940
+
+84
+00:04:32,940 --> 00:04:35,250
+Let's say I want to learn
+about how to use lists.
+
+85
+00:04:35,250 --> 00:04:41,120
+I can go to the LPUSH command,
+which means just push a new
+
+86
+00:04:41,120 --> 00:04:43,820
+value onto a list.
+
+87
+00:04:43,820 --> 00:04:46,980
+I'm going to go in here and
+experiment with this command.
+
+88
+00:04:46,980 --> 00:04:48,790
+I can run LPUSH newlist
+
+89
+00:04:48,790 --> 00:04:50,940
+I can push "dog" onto that list.
+
+90
+00:04:50,940 --> 00:04:52,680
+And I can push "cat."
+
+91
+00:04:52,680 --> 00:04:56,420
+And I can see that my list
+is getting bigger.
+
+92
+00:04:56,420 --> 00:04:59,070
+And then I can use the
+LRANGE command to get
+
+93
+00:04:59,070 --> 00:05:00,475
+those values back.
+
+94
+00:05:00,475 --> 00:05:01,725
+Pretty cool.
+
+95
+00:05:01,725 --> 00:05:05,330
+
+96
+00:05:05,330 --> 00:05:08,680
+There is a really great
+third-party library called
+
+97
+00:05:08,680 --> 00:05:11,950
+Node Redis for working with
+the Redis library.
+
+98
+00:05:11,950 --> 00:05:12,960
+And it's completely
+
+99
+00:05:12,960 --> 00:05:15,340
+non-blocking, like I said before.
+
+100
+00:05:15,340 --> 00:05:18,800
+Let's see how we would
+use the Redis module.
+
+101
+00:05:18,800 --> 00:05:22,940
+First, we just run npm
+install redis.
+
+102
+00:05:22,940 --> 00:05:26,110
+Then in our application, we can
+require the Redis module.
+
+103
+00:05:26,110 --> 00:05:29,810
+And then create a new client
+using createClient.
+
+104
+00:05:29,810 --> 00:05:34,370
+Finally, we use the set command
+to set "hello, yes
+
+105
+00:05:34,370 --> 00:05:37,750
+this is dog" to the
+key message one.
+
+106
+00:05:37,750 --> 00:05:40,350
+And we're doing the same
+thing, pretty much, for
+
+107
+00:05:40,350 --> 00:05:42,410
+setting the key for
+message two.
+
+108
+00:05:42,410 --> 00:05:45,770
+Then when we want to get back
+out that information, we run
+
+109
+00:05:45,770 --> 00:05:47,030
+client.get,
+
+110
+00:05:47,030 --> 00:05:51,240
+we pass in the name of the key
+and a callback that will be
+
+111
+00:05:51,240 --> 00:05:55,300
+called when the result
+is ready.
+
+112
+00:05:55,300 --> 00:05:57,360
+For our chat application, we're
+probably going to want
+
+113
+00:05:57,360 --> 00:05:59,220
+to use something like lists.
+
+114
+00:05:59,220 --> 00:06:01,800
+We had an array before, so now
+we're going to want to
+
+115
+00:06:01,800 --> 00:06:05,110
+translate that into
+using Redis lists.
+
+116
+00:06:05,110 --> 00:06:09,340
+But first let's look, how would
+you use lists in Redis?
+
+117
+00:06:09,340 --> 00:06:13,680
+Here I'm pushing a new message
+onto the messages list.
+
+118
+00:06:13,680 --> 00:06:16,800
+And the callback that gets
+called will reply with the
+
+119
+00:06:16,800 --> 00:06:19,490
+length of that list,
+if I want that.
+
+120
+00:06:19,490 --> 00:06:20,690
+I can go ahead and
+do that again.
+
+121
+00:06:20,690 --> 00:06:23,040
+And now I have two
+items in my list.
+
+122
+00:06:23,040 --> 00:06:27,130
+And a really common pattern in
+Redis is to combine the use of
+
+123
+00:06:27,130 --> 00:06:30,950
+LPUSH where we add a
+new item to a list.
+
+124
+00:06:30,950 --> 00:06:34,240
+And when the callback is called,
+we call LTRIM, which
+
+125
+00:06:34,240 --> 00:06:37,350
+in this case will remove
+all but the first two
+
+126
+00:06:37,350 --> 00:06:38,950
+items in the list.
+
+127
+00:06:38,950 --> 00:06:42,110
+This allows you to cap the
+length of your list.
+
+128
+00:06:42,110 --> 00:06:45,390
+When we want to retrieve all the
+items from that list, we
+
+129
+00:06:45,390 --> 00:06:47,400
+use the LRANGE command.
+
+130
+00:06:47,400 --> 00:06:49,910
+We pass in the key,
+the starting
+
+131
+00:06:49,910 --> 00:06:51,900
+index, and the end index.
+
+132
+00:06:51,900 --> 00:06:55,830
+In this example, we're using
+minus 1, which just means give
+
+133
+00:06:55,830 --> 00:06:59,940
+me all of the messages
+in the list.
+
+134
+00:06:59,940 --> 00:07:02,900
+Now that we've explored the
+Redis API a little bit, let's
+
+135
+00:07:02,900 --> 00:07:05,660
+go ahead and convert our
+chat application
+
+136
+00:07:05,660 --> 00:07:07,400
+to using Node Redis.
+
+137
+00:07:07,400 --> 00:07:11,070
+And let's start with the store
+message function from before.
+
+138
+00:07:11,070 --> 00:07:15,180
+We're going to update this
+function to use Redis lists.
+
+139
+00:07:15,180 --> 00:07:17,710
+So as you saw before, we
+were just pushing new
+
+140
+00:07:17,710 --> 00:07:19,500
+messages onto the array.
+
+141
+00:07:19,500 --> 00:07:22,110
+But now we're going to need to
+use the Redis client, so let's
+
+142
+00:07:22,110 --> 00:07:24,240
+first create that client.
+
+143
+00:07:24,240 --> 00:07:28,330
+In our store message function,
+we have to use JSON to
+
+144
+00:07:28,330 --> 00:07:31,710
+stringify our message
+object so we can
+
+145
+00:07:31,710 --> 00:07:33,430
+store that in the list.
+
+146
+00:07:33,430 --> 00:07:37,510
+Then we'll use the LPUSH command
+again and push that
+
+147
+00:07:37,510 --> 00:07:39,860
+message onto the
+messages list.
+
+148
+00:07:39,860 --> 00:07:42,630
+And when we get a response from
+that, we're going to use
+
+149
+00:07:42,630 --> 00:07:46,810
+the LTRIM command to make sure
+that we only have the newest
+
+150
+00:07:46,810 --> 00:07:48,950
+10 items in the list.
+
+151
+00:07:48,950 --> 00:07:52,420
+Now all we have to do is update
+the code that outputs
+
+152
+00:07:52,420 --> 00:07:53,990
+these messages.
+
+153
+00:07:53,990 --> 00:07:56,810
+We're going to want to reverse
+those messages so they come
+
+154
+00:07:56,810 --> 00:07:57,870
+out in the right order.
+
+155
+00:07:57,870 --> 00:08:01,280
+Then we can loop through each
+message like before.
+
+156
+00:08:01,280 --> 00:08:04,910
+But this time, before we emit
+the message, we have to use
+
+157
+00:08:04,910 --> 00:08:09,900
+JSON parse to get back
+out the JSON object.
+
+158
+00:08:09,900 --> 00:08:13,320
+Let's see how that fixes our
+chat app, now that we're using
+
+159
+00:08:13,320 --> 00:08:14,800
+persisting stores.
+
+160
+00:08:14,800 --> 00:08:18,180
+So our dog connects and sends
+a couple messages.
+
+161
+00:08:18,180 --> 00:08:23,640
+
+162
+00:08:23,640 --> 00:08:25,700
+And now when our spider
+connects,
+
+163
+00:08:25,700 --> 00:08:27,500
+he gets those messages.
+
+164
+00:08:27,500 --> 00:08:28,785
+He can send a couple himself.
+
+165
+00:08:28,785 --> 00:08:32,500
+
+166
+00:08:32,500 --> 00:08:35,285
+We're going to go back and
+restart our Node application.
+
+167
+00:08:35,285 --> 00:08:41,750
+
+168
+00:08:41,750 --> 00:08:45,580
+And now when we connect with a
+third client, we can see that
+
+169
+00:08:45,580 --> 00:08:47,790
+our messages show up just
+like they should.
+
+170
+00:08:47,790 --> 00:08:51,430
+
+171
+00:08:51,430 --> 00:08:55,010
+Now let's add a new bit of
+functionality and implement
+
+172
+00:08:55,010 --> 00:08:57,930
+that chatter list that we
+saw on the left side.
+
+173
+00:08:57,930 --> 00:08:59,810
+This is just going to show
+who is currently
+
+174
+00:08:59,810 --> 00:09:01,690
+connected to the chat room.
+
+175
+00:09:01,690 --> 00:09:03,530
+And for this, instead of lists,
+we're actually going to
+
+176
+00:09:03,530 --> 00:09:07,430
+use a different data structure,
+Redis sets.
+
+177
+00:09:07,430 --> 00:09:11,110
+And a set is pretty similar to
+a list, but instead of just
+
+178
+00:09:11,110 --> 00:09:14,400
+having everything in there, it
+can only be unique data.
+
+179
+00:09:14,400 --> 00:09:17,560
+So for a list of names, this
+will work, because the names
+
+180
+00:09:17,560 --> 00:09:19,310
+need to be unique.
+
+181
+00:09:19,310 --> 00:09:22,830
+We can add to the set by
+using the sadd command.
+
+182
+00:09:22,830 --> 00:09:27,310
+And here we're adding three
+members to the Names set.
+
+183
+00:09:27,310 --> 00:09:31,400
+We can remove values from the
+set using the srem command.
+
+184
+00:09:31,400 --> 00:09:34,440
+When we want to retrieve all the
+members of a set, we use
+
+185
+00:09:34,440 --> 00:09:36,030
+the smembers command.
+
+186
+00:09:36,030 --> 00:09:38,700
+And that will call the callback
+with an array of
+
+187
+00:09:38,700 --> 00:09:41,640
+names of everyone in the set.
+
+188
+00:09:41,640 --> 00:09:44,110
+So let's jump right
+into using sets to
+
+189
+00:09:44,110 --> 00:09:45,790
+implement this feature.
+
+190
+00:09:45,790 --> 00:09:48,700
+When a client joins, we're going
+to do two new things.
+
+191
+00:09:48,700 --> 00:09:52,350
+First, we want to notify all the
+other clients that a new
+
+192
+00:09:52,350 --> 00:09:55,120
+chatter has just joined
+the chat.
+
+193
+00:09:55,120 --> 00:09:58,140
+We also want to use the Redis
+client library to add the
+
+194
+00:09:58,140 --> 00:10:01,160
+person's name to the
+chatter set.
+
+195
+00:10:01,160 --> 00:10:03,800
+Then we'll go back to our
+client, and we're going to add
+
+196
+00:10:03,800 --> 00:10:07,220
+a new listener on that add
+chatter event that we added in
+
+197
+00:10:07,220 --> 00:10:08,060
+the server.
+
+198
+00:10:08,060 --> 00:10:10,520
+And when that event gets
+emitted, we're going to call
+
+199
+00:10:10,520 --> 00:10:14,310
+the insertChatter function,
+defined here.
+
+200
+00:10:14,310 --> 00:10:16,860
+The insertChatter function just
+creates a new list item
+
+201
+00:10:16,860 --> 00:10:18,060
+with the name.
+
+202
+00:10:18,060 --> 00:10:20,340
+And it appends it
+to the chatters
+
+203
+00:10:20,340 --> 00:10:22,810
+unordered list in the DOM.
+
+204
+00:10:22,810 --> 00:10:25,160
+Actually, we want to do one
+more thing when the client
+
+205
+00:10:25,160 --> 00:10:26,540
+joins the server.
+
+206
+00:10:26,540 --> 00:10:29,110
+We can use the smembers command
+to get back all the
+
+207
+00:10:29,110 --> 00:10:31,200
+names that are currently
+in the chat room.
+
+208
+00:10:31,200 --> 00:10:34,560
+And then we can loop through
+those names and emit those
+
+209
+00:10:34,560 --> 00:10:36,920
+names on the add
+chatter event.
+
+210
+00:10:36,920 --> 00:10:39,590
+Conversely, when a chatter
+leaves the room, we want to
+
+211
+00:10:39,590 --> 00:10:41,090
+remove them from that list.
+
+212
+00:10:41,090 --> 00:10:44,230
+So in our application, we're
+going to listen to a new event
+
+213
+00:10:44,230 --> 00:10:46,770
+on our client called
+disconnect.
+
+214
+00:10:46,770 --> 00:10:48,890
+And when that client
+disconnects, we're going to
+
+215
+00:10:48,890 --> 00:10:52,600
+first grab their name off the
+socket, broadcast out all the
+
+216
+00:10:52,600 --> 00:10:55,540
+other clients that this
+chatter has left, and then
+
+217
+00:10:55,540 --> 00:10:58,200
+remove them from the
+chatter set.
+
+218
+00:10:58,200 --> 00:11:00,810
+On our client, we're going to
+listen to the remove chatter
+
+219
+00:11:00,810 --> 00:11:05,090
+event, and when that's fired,
+we're going to find the li in
+
+220
+00:11:05,090 --> 00:11:06,820
+the list and remove
+it from the DOM.
+
+221
+00:11:06,820 --> 00:11:09,340
+
+222
+00:11:09,340 --> 00:11:11,060
+Let's see that in action.
+
+223
+00:11:11,060 --> 00:11:13,650
+So our first client's
+connected, Dog.
+
+224
+00:11:13,650 --> 00:11:15,820
+We can see he is already
+in the room.
+
+225
+00:11:15,820 --> 00:11:17,070
+So he's going to
+send a message.
+
+226
+00:11:17,070 --> 00:11:24,750
+
+227
+00:11:24,750 --> 00:11:28,860
+And now when Spider connects,
+he's going to see that Dog is
+
+228
+00:11:28,860 --> 00:11:29,665
+already connected.
+
+229
+00:11:29,665 --> 00:11:32,350
+And he's going to see that
+message from before.
+
+230
+00:11:32,350 --> 00:11:36,180
+We go back to the Dog client,
+we can see that now he knows
+
+231
+00:11:36,180 --> 00:11:37,750
+that Spider is in the room.
+
+232
+00:11:37,750 --> 00:11:40,830
+
+233
+00:11:40,830 --> 00:11:44,060
+When a third client connects,
+he'll also see everyone who's
+
+234
+00:11:44,060 --> 00:11:46,230
+currently in the room.
+
+235
+00:11:46,230 --> 00:11:49,260
+And the other two clients will
+also see that he has joined.
+
+236
+00:11:49,260 --> 00:11:54,720
+
+237
+00:11:54,720 --> 00:11:57,250
+So Dog has to go for a walk,
+and now when he leaves the
+
+238
+00:11:57,250 --> 00:11:59,500
+room, the other two clients
+are going to
+
+239
+00:11:59,500 --> 00:12:01,870
+see that he's left.
+
+240
+00:12:01,870 --> 00:12:05,230
+Well, now we've reached
+the end of the course.
+
+241
+00:12:05,230 --> 00:12:06,980
+Actually, it's the end for me.
+
+242
+00:12:06,980 --> 00:12:09,170
+You still have a little bit
+more work to do in the
+
+243
+00:12:09,170 --> 00:12:10,160
+challenges.
+
+244
+00:12:10,160 --> 00:12:12,310
+And when you finish up the
+challenges, you'll earn our
+
+245
+00:12:12,310 --> 00:12:13,450
+last badge.
+
+246
+00:12:13,450 --> 00:12:15,220
+And we'll see you all
+in the wrapup video.
+
+247
+00:12:15,220 --> 00:12:16,533

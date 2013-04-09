@@ -1,0 +1,496 @@
+1
+00:00:00,000 --> 00:00:00,820
+
+2
+00:00:00,820 --> 00:00:01,230
+[SINGING]
+
+3
+00:00:01,230 --> 00:00:03,775
+Your online application's
+starting to fail.
+
+4
+00:00:03,775 --> 00:00:07,330
+It's crawling on the network
+just as fast as a snail.
+
+5
+00:00:07,330 --> 00:00:10,970
+We need evented programming
+starting from the top,
+
+6
+00:00:10,970 --> 00:00:15,770
+better write some code so the
+world doesn't stop.
+
+7
+00:00:15,770 --> 00:00:19,380
+With the non-blocking model
+we will be just fine.
+
+8
+00:00:19,380 --> 00:00:21,470
+Built on Google Chrome's 
+
+9
+00:00:21,470 --> 00:00:22,370
+V8 runtime.
+
+10
+00:00:22,370 --> 00:00:25,780
+And all you need to do is write
+some JavaScript code and
+
+11
+00:00:25,780 --> 00:00:28,130
+then use the Real Time
+Web with Node.
+
+12
+00:00:28,130 --> 00:00:32,880
+
+13
+00:00:32,880 --> 00:00:37,140
+Welcome back to Real Time
+Web with Node.js.
+
+14
+00:00:37,140 --> 00:00:39,610
+We're starting Level 5, and
+we're going to be talking
+
+15
+00:00:39,610 --> 00:00:42,800
+about the Express
+web framework.
+
+16
+00:00:42,800 --> 00:00:45,360
+First let's talk a little
+bit about Express.
+
+17
+00:00:45,360 --> 00:00:49,250
+Now, Express is a
+Sinatra-inspired web
+
+18
+00:00:49,250 --> 00:00:52,500
+application framework
+for Node.js.
+
+19
+00:00:52,500 --> 00:00:56,430
+Express gives you routes,
+middleware, environment-based
+
+20
+00:00:56,430 --> 00:00:59,300
+configuration, redirection
+helpers, file
+
+21
+00:00:59,300 --> 00:01:01,210
+uploads and a lot more.
+
+22
+00:01:01,210 --> 00:01:04,980
+So let's jump in and create a
+hello world style app for
+
+23
+00:01:04,980 --> 00:01:07,170
+Express to see how it works.
+
+24
+00:01:07,170 --> 00:01:11,550
+We can require Express after
+we install it with npm.
+
+25
+00:01:11,550 --> 00:01:14,660
+Then we call a createServer on
+Express which will return an
+
+26
+00:01:14,660 --> 00:01:18,590
+application, and using the
+application, we can set up a
+
+27
+00:01:18,590 --> 00:01:22,410
+root route that responds
+to the get request.
+
+28
+00:01:22,410 --> 00:01:24,860
+And whenever we get a request
+to that route, it's going to
+
+29
+00:01:24,860 --> 00:01:29,660
+call this callback where we're
+going to use response.sendfile
+
+30
+00:01:29,660 --> 00:01:33,590
+to respond with index.html from
+our current directory.
+
+31
+00:01:33,590 --> 00:01:36,510
+And finally, we just listen
+on port 8080.
+
+32
+00:01:36,510 --> 00:01:41,010
+Now, when we issue a request for
+the server, we get back a
+
+33
+00:01:41,010 --> 00:01:44,640
+200 response.
+
+34
+00:01:44,640 --> 00:01:47,100
+Let's build a little bit
+more complex example.
+
+35
+00:01:47,100 --> 00:01:51,250
+Let's say we want to make a
+request to the Twitter API and
+
+36
+00:01:51,250 --> 00:01:53,230
+respond with the JSON.
+
+37
+00:01:53,230 --> 00:01:56,350
+We're going to use the request
+and URL module, so let's
+
+38
+00:01:56,350 --> 00:01:57,690
+require those.
+
+39
+00:01:57,690 --> 00:02:01,630
+Then we're going to set up our
+route here to respond to a get
+
+40
+00:02:01,630 --> 00:02:05,990
+request for the URL slash
+tweet slash username.
+
+41
+00:02:05,990 --> 00:02:09,990
+Inside of our callback, we can
+get access to the username and
+
+42
+00:02:09,990 --> 00:02:12,720
+the URL by calling
+req.params.username.
+
+43
+00:02:12,720 --> 00:02:17,170
+Then we're going to set up an
+options object to build our
+
+44
+00:02:17,170 --> 00:02:19,530
+URL for the request.
+
+45
+00:02:19,530 --> 00:02:23,300
+We're going to use URL format
+to turn that options object
+
+46
+00:02:23,300 --> 00:02:25,340
+into a URL string.
+
+47
+00:02:25,340 --> 00:02:29,050
+Then we can pass our URL
+string into the request
+
+48
+00:02:29,050 --> 00:02:31,760
+function and pipe back
+the response.
+
+49
+00:02:31,760 --> 00:02:34,880
+That's all there is to it.
+
+50
+00:02:34,880 --> 00:02:37,770
+So let's jump into the
+screencast here.
+
+51
+00:02:37,770 --> 00:02:40,390
+You can see we're going to start
+up our application using
+
+52
+00:02:40,390 --> 00:02:42,130
+node app.js.
+
+53
+00:02:42,130 --> 00:02:44,520
+Then we're going to hop over
+to another terminal window
+
+54
+00:02:44,520 --> 00:02:48,880
+where we're going to use curl
+to issue a request to
+
+55
+00:02:48,880 --> 00:02:52,530
+localhost 8080, and then we're going
+to pass in a username--
+
+56
+00:02:52,530 --> 00:02:54,080
+that's my username there--
+
+57
+00:02:54,080 --> 00:02:56,230
+and we're going to get
+back a bunch of JSON.
+
+58
+00:02:56,230 --> 00:02:58,350
+It's kind of hard to read, so
+we're actually going to
+
+59
+00:02:58,350 --> 00:03:01,830
+quickly install this pretty
+JSON module globally.
+
+60
+00:03:01,830 --> 00:03:08,250
+
+61
+00:03:08,250 --> 00:03:12,410
+We can pipe the JSON into that
+executable, and it will print
+
+62
+00:03:12,410 --> 00:03:17,230
+it out in a much nicer format,
+as you can see here.
+
+63
+00:03:17,230 --> 00:03:19,200
+But instead of just printing
+out the JSON, how do we
+
+64
+00:03:19,200 --> 00:03:20,850
+get onto a web page?
+
+65
+00:03:20,850 --> 00:03:24,650
+Well, Express has really good
+support for using template
+
+66
+00:03:24,650 --> 00:03:27,790
+libraries and layouts
+to build web pages.
+
+67
+00:03:27,790 --> 00:03:30,410
+
+68
+00:03:30,410 --> 00:03:33,370
+Now we're back here in our
+route, and instead of piping
+
+69
+00:03:33,370 --> 00:03:35,830
+the results right to the
+response, we're actually going
+
+70
+00:03:35,830 --> 00:03:37,880
+to pass in a callback.
+
+71
+00:03:37,880 --> 00:03:42,660
+Inside that callback, we can
+parse the body of the response
+
+72
+00:03:42,660 --> 00:03:46,880
+using JSON, and then we're going
+to call response.render,
+
+73
+00:03:46,880 --> 00:03:50,060
+which is provided to
+us from Express.
+
+74
+00:03:50,060 --> 00:03:52,340
+We pass in the name of the
+template file as the first
+
+75
+00:03:52,340 --> 00:03:54,850
+argument, and then
+we pass in an
+
+76
+00:03:54,850 --> 00:03:57,390
+object as a second argument.
+
+77
+00:03:57,390 --> 00:04:01,970
+As you can see here, in our
+template tweets.ejs, we have
+
+78
+00:04:01,970 --> 00:04:03,900
+access to that object.
+
+79
+00:04:03,900 --> 00:04:07,180
+This allows us to print out
+the name, and we can loop
+
+80
+00:04:07,180 --> 00:04:12,340
+through each tweet and print out
+an li tag with the tweet's
+
+81
+00:04:12,340 --> 00:04:13,650
+text inside of it.
+
+82
+00:04:13,650 --> 00:04:16,310
+Going back to our example, we're
+going to fire up our app
+
+83
+00:04:16,310 --> 00:04:18,649
+again, and now instead of going
+to the command line,
+
+84
+00:04:18,649 --> 00:04:23,150
+we're going to open up a
+browser, go to local host 8080
+
+85
+00:04:23,150 --> 00:04:24,400
+slash tweet slash codeschool.
+
+86
+00:04:24,400 --> 00:04:27,840
+
+87
+00:04:27,840 --> 00:04:28,030
+Oops!
+
+88
+00:04:28,030 --> 00:04:30,260
+It looks like when we issued
+that request, there was an
+
+89
+00:04:30,260 --> 00:04:33,300
+error saying that we couldn't
+find the layout.
+
+90
+00:04:33,300 --> 00:04:37,250
+So when Express tried to
+render our tweets.ejs
+
+91
+00:04:37,250 --> 00:04:40,700
+template, it actually looked
+for a layout to insert that
+
+92
+00:04:40,700 --> 00:04:41,495
+template into.
+
+93
+00:04:41,495 --> 00:04:44,410
+So how do these layouts work?
+
+94
+00:04:44,410 --> 00:04:48,920
+To fix this, all we need to do
+is define a layout.ejs file.
+
+95
+00:04:48,920 --> 00:04:51,370
+And in our layout, we're going
+to have things like the head
+
+96
+00:04:51,370 --> 00:04:55,430
+of the HTML document with a
+DOCTYPE, and where we want our
+
+97
+00:04:55,430 --> 00:04:58,520
+template to go, we just
+put this body tag.
+
+98
+00:04:58,520 --> 00:05:02,090
+Now, when we go back to our
+example, fire up the node app,
+
+99
+00:05:02,090 --> 00:05:05,720
+when we go back to the browser
+and refresh, we should have
+
+100
+00:05:05,720 --> 00:05:09,660
+our HTML page with the tweets.
+
+101
+00:05:09,660 --> 00:05:12,030
+There's a lot more to the
+Express web framework, so
+
+102
+00:05:12,030 --> 00:05:14,570
+you're probably going to want
+to go to their website and
+
+103
+00:05:14,570 --> 00:05:16,670
+check out their documentation.
+
+104
+00:05:16,670 --> 00:05:18,630
+That's it for Level 5.
+
+105
+00:05:18,630 --> 00:05:20,680
+Get your hands dirty in the
+challenges, and we'll see you
+
+106
+00:05:20,680 --> 00:05:21,930
+back here for Level 6.
+
+107
+00:05:21,930 --> 00:05:23,626
