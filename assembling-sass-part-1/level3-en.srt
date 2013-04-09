@@ -1,0 +1,960 @@
+1
+00:00:00,000 --> 00:00:34,208
+[MUSIC PLAYING]
+
+2
+00:00:34,208 --> 00:00:37,648
+Welcome to Assembling Sass,
+Level Three: Mixin. In Level
+
+3
+00:00:37,648 --> 00:00:40,668
+Three, we'll be discussing how
+to use and set mixins, as well
+
+4
+00:00:40,668 --> 00:00:42,318
+as how to use arguments
+with our mixins.
+
+5
+00:00:42,318 --> 00:00:44,908
+
+
+6
+00:00:44,908 --> 00:00:47,808
+First up, let's take a look
+at some normal CSS.
+
+7
+00:00:47,808 --> 00:00:49,808
+Here we have a pair
+of buttons.
+
+8
+00:00:49,808 --> 00:00:53,118
+And this isn't very good CSS
+because we have three
+
+9
+00:00:53,118 --> 00:00:56,424
+repeating properties in
+each declaration.
+
+10
+00:00:56,424 --> 00:01:00,338
+To help combat these sources of
+repetition in CSS, we can
+
+11
+00:01:00,338 --> 00:01:01,718
+use a mixin.
+
+12
+00:01:01,718 --> 00:01:04,098
+So a mixin starts with @mixin.
+
+13
+00:01:04,098 --> 00:01:05,248
+And then we give it a name.
+
+14
+00:01:05,248 --> 00:01:06,968
+In this case, we'll
+call it button.
+
+15
+00:01:06,968 --> 00:01:09,058
+And then inside of the block,
+we write whatever
+
+16
+00:01:09,058 --> 00:01:10,278
+properties we like.
+
+17
+00:01:10,278 --> 00:01:12,418
+And in this case, we're going
+to carry over the shared
+
+18
+00:01:12,418 --> 00:01:14,708
+properties between those
+two buttons.
+
+19
+00:01:14,708 --> 00:01:17,448
+Once we've defined our mixin,
+we're able to use it by
+
+20
+00:01:17,448 --> 00:01:20,608
+calling @include within any
+statements we'd like.
+
+21
+00:01:20,608 --> 00:01:24,178
+So I'm using @include inside of
+btn-a, calling the name
+
+22
+00:01:24,178 --> 00:01:25,538
+of our mixin.
+
+23
+00:01:25,538 --> 00:01:28,318
+And when it compiles, the
+properties that are within the
+
+24
+00:01:28,318 --> 00:01:31,098
+button mixin are going to be
+copied into our btn-a
+
+25
+00:01:31,098 --> 00:01:34,018
+declaration.
+
+26
+00:01:34,018 --> 00:01:37,728
+Similarly, in button b if I
+also use @include, when it
+
+27
+00:01:37,728 --> 00:01:40,528
+compiles down, those same
+properties will be included in
+
+28
+00:01:40,528 --> 00:01:43,848
+the btn-b declaration.
+
+29
+00:01:43,848 --> 00:01:46,208
+When you're using mixins, make
+sure that your mixin
+
+30
+00:01:46,208 --> 00:01:49,788
+declaration comes before these
+includes, especially if you're
+
+31
+00:01:49,788 --> 00:01:52,338
+importing files that have
+mixins in them.
+
+32
+00:01:52,338 --> 00:01:55,168
+If you try to use a mixin
+without having it defined
+
+33
+00:01:55,168 --> 00:01:56,668
+before the include,
+Sass is going to
+
+34
+00:01:56,668 --> 00:01:59,038
+throw an error at you.
+
+35
+00:01:59,038 --> 00:02:01,298
+On another note, we're
+using @include,
+
+36
+00:02:01,298 --> 00:02:02,808
+that's calling a mixin.
+
+37
+00:02:02,808 --> 00:02:05,768
+While @import, that we defined
+earlier, is importing the
+
+38
+00:02:05,768 --> 00:02:09,578
+contents of a file into
+our Sass file.
+
+39
+00:02:09,578 --> 00:02:12,138
+So looking back at the CSS we
+generated in that previous
+
+40
+00:02:12,138 --> 00:02:15,138
+example, while we've made it
+easier for ourselves on the
+
+41
+00:02:15,138 --> 00:02:18,038
+Sass side, the generated CSS
+is still the same thing.
+
+42
+00:02:18,038 --> 00:02:21,228
+We're copying those same three
+properties into both of our
+
+43
+00:02:21,228 --> 00:02:24,918
+buttons, and our CSS is
+still not efficient.
+
+44
+00:02:24,918 --> 00:02:28,518
+For now, it's easier to write
+this as normal CSS using a
+
+45
+00:02:28,518 --> 00:02:31,148
+comma-separated selector between
+our two buttons for
+
+46
+00:02:31,148 --> 00:02:32,838
+the shared properties.
+
+47
+00:02:32,838 --> 00:02:34,558
+So let's stop for second here.
+
+48
+00:02:34,558 --> 00:02:37,688
+I showed you an example, but
+ultimately it wound up being a
+
+49
+00:02:37,688 --> 00:02:39,488
+bad example of mixin.
+
+50
+00:02:39,488 --> 00:02:42,848
+In this case, what is a mixin
+a really good for?
+
+51
+00:02:42,848 --> 00:02:45,138
+Let's take a look at
+this bit of CSS.
+
+52
+00:02:45,138 --> 00:02:47,158
+We want to change our
+box sizing property.
+
+53
+00:02:47,158 --> 00:02:50,388
+But to get the best coverage as
+far as WebKit and Mozilla
+
+54
+00:02:50,388 --> 00:02:54,028
+browsers, we have to include
+those vendor prefixes.
+
+55
+00:02:54,028 --> 00:02:56,648
+It can get old really quick if
+every time we want to change
+
+56
+00:02:56,648 --> 00:02:59,118
+box sizing we have to include
+three things that
+
+57
+00:02:59,118 --> 00:03:00,888
+are almost the same.
+
+58
+00:03:00,888 --> 00:03:04,088
+To combat this, we can start off
+by defining a box-sizing
+
+59
+00:03:04,088 --> 00:03:06,988
+mixin in the same way that we
+defined that button mixin and
+
+60
+00:03:06,988 --> 00:03:09,558
+including all three
+vendor prefixes.
+
+61
+00:03:09,558 --> 00:03:13,578
+Then, within our content block
+we can say @include
+
+62
+00:03:13,578 --> 00:03:16,738
+box-sizing, and those properties
+are copied over.
+
+63
+00:03:16,738 --> 00:03:19,308
+However, as we said before,
+here we're just using the
+
+64
+00:03:19,308 --> 00:03:25,148
+mixin to copy properties, it's
+not an efficient use of CSS.
+
+65
+00:03:25,148 --> 00:03:28,838
+The power of mixins comes from
+our ability to pass arguments
+
+66
+00:03:28,838 --> 00:03:30,258
+into the mixin.
+
+67
+00:03:30,258 --> 00:03:33,058
+After we define the name of
+the mixin, in this case,
+
+68
+00:03:33,058 --> 00:03:36,498
+box-sizing, we can open and
+close parentheses and pass in
+
+69
+00:03:36,498 --> 00:03:38,268
+any arguments that we'd like.
+
+70
+00:03:38,268 --> 00:03:40,558
+In this case, we'll call
+our argument x.
+
+71
+00:03:40,558 --> 00:03:44,138
+And then within the mixin, we
+can go ahead and use x in any
+
+72
+00:03:44,138 --> 00:03:46,038
+property we'd like.
+
+73
+00:03:46,038 --> 00:03:48,818
+Now in our @content declaration,
+we're going to
+
+74
+00:03:48,818 --> 00:03:51,128
+@include our box-sizing mixin.
+
+75
+00:03:51,128 --> 00:03:54,448
+We pass border box as a
+string into the mixin.
+
+76
+00:03:54,448 --> 00:03:56,858
+Border-box is set
+as the x value.
+
+77
+00:03:56,858 --> 00:03:59,868
+And then everything inside of
+the mixin is output into our
+
+78
+00:03:59,868 --> 00:04:01,948
+content declaration.
+
+79
+00:04:01,948 --> 00:04:04,598
+So now we have an appropriate
+use of mixin.
+
+80
+00:04:04,598 --> 00:04:08,328
+We can define a callout, use
+@include box-sizing, and pass
+
+81
+00:04:08,328 --> 00:04:12,518
+content-box, a second possible
+value for box-sizing, and when
+
+82
+00:04:12,518 --> 00:04:15,293
+that outputs, it uses that
+value as x instead.
+
+83
+00:04:15,293 --> 00:04:19,238
+
+
+84
+00:04:19,238 --> 00:04:21,918
+Taking our argument passing one
+step further, we're able
+
+85
+00:04:21,918 --> 00:04:25,318
+to define default values
+if we'd like.
+
+86
+00:04:25,318 --> 00:04:28,598
+Looking back at our box-sizing
+mixin, we can add a colon to
+
+87
+00:04:28,598 --> 00:04:31,528
+the end of our x argument and
+then add the string of
+
+88
+00:04:31,528 --> 00:04:32,928
+border-box.
+
+89
+00:04:32,928 --> 00:04:35,688
+If nothing is passed for x, then
+border-box will be used
+
+90
+00:04:35,688 --> 00:04:37,848
+by default.
+
+91
+00:04:37,848 --> 00:04:40,438
+Now with our content
+declaration, if we simply
+
+92
+00:04:40,438 --> 00:04:43,318
+include box-sizing and don't
+pass an argument, the
+
+93
+00:04:43,318 --> 00:04:47,158
+border-box value is used by
+default, and it outputs using
+
+94
+00:04:47,158 --> 00:04:48,408
+that value.
+
+95
+00:04:48,408 --> 00:04:52,018
+
+
+96
+00:04:52,018 --> 00:04:55,398
+With our callout declaration,
+however, we have to still pass
+
+97
+00:04:55,398 --> 00:04:59,108
+content-box as an argument for
+it to be output like before.
+
+98
+00:04:59,108 --> 00:05:03,648
+And as you can see, this
+overrides the default.
+
+99
+00:05:03,648 --> 00:05:06,648
+Let's continue adding complexity
+to our arguments by
+
+100
+00:05:06,648 --> 00:05:08,828
+adding more than one.
+
+101
+00:05:08,828 --> 00:05:11,548
+By using a comma-separated list,
+we can pass more than
+
+102
+00:05:11,548 --> 00:05:13,558
+one thing into a mixin.
+
+103
+00:05:13,558 --> 00:05:16,328
+Then, we use that mixin in
+with our @include, we'll
+
+104
+00:05:16,328 --> 00:05:19,678
+simply use a comma-separated
+list of arguments to pass more
+
+105
+00:05:19,678 --> 00:05:23,088
+than one thing ultimately
+to our mixin.
+
+106
+00:05:23,088 --> 00:05:26,238
+Here, you can see our mixin call
+here took two parameters
+
+107
+00:05:26,238 --> 00:05:30,160
+and then used them
+both for output.
+
+108
+00:05:30,160 --> 00:05:33,548
+And for some reason, we call our
+mixin, but don't include
+
+109
+00:05:33,548 --> 00:05:36,808
+the total number of arguments
+that the mixin is expecting.
+
+110
+00:05:36,808 --> 00:05:38,678
+It's going to throw an error
+at us when we compile.
+
+111
+00:05:38,678 --> 00:05:42,428
+
+
+112
+00:05:42,428 --> 00:05:44,798
+If we go ahead and add a default
+value to our second
+
+113
+00:05:44,798 --> 00:05:47,288
+argument, when we call the mixin
+we aren't required to
+
+114
+00:05:47,288 --> 00:05:49,088
+include all of those
+values unless we
+
+115
+00:05:49,088 --> 00:05:51,088
+want to override one.
+
+116
+00:05:51,088 --> 00:05:53,738
+Now, as you can see, only
+including one argument still
+
+117
+00:05:53,738 --> 00:05:57,388
+allows us to compile, and the
+default value is used where we
+
+118
+00:05:57,388 --> 00:06:00,988
+didn't override it.
+
+119
+00:06:00,988 --> 00:06:03,978
+When including default values
+and creating optional
+
+120
+00:06:03,978 --> 00:06:07,098
+arguments in our mixins, any
+optional arguments need to
+
+121
+00:06:07,098 --> 00:06:09,748
+come at the end of our
+chain of arguments.
+
+122
+00:06:09,748 --> 00:06:13,078
+Here, if we move our optional
+argument up front and then try
+
+123
+00:06:13,078 --> 00:06:15,578
+to only pass one value, the
+compiler is going to throw an
+
+124
+00:06:15,578 --> 00:06:16,828
+error at us.
+
+125
+00:06:16,828 --> 00:06:20,428
+
+
+126
+00:06:20,428 --> 00:06:22,438
+Let's go ahead and switch that
+back around so that it works
+
+127
+00:06:22,438 --> 00:06:24,913
+again, and talk about
+keyword arguments.
+
+128
+00:06:24,913 --> 00:06:27,738
+If we're passing more than one
+argument into a mixin,
+
+129
+00:06:27,738 --> 00:06:30,068
+sometimes it can get confusing
+what order they're
+
+130
+00:06:30,068 --> 00:06:31,248
+supposed to go in.
+
+131
+00:06:31,248 --> 00:06:32,918
+And it's very finicky
+if we pass things
+
+132
+00:06:32,918 --> 00:06:34,188
+in the wrong order.
+
+133
+00:06:34,188 --> 00:06:37,588
+We can use the values of the
+arguments in our mixin to
+
+134
+00:06:37,588 --> 00:06:41,338
+create key value pairs
+in our call like so.
+
+135
+00:06:41,338 --> 00:06:43,628
+And this allows these keyword
+arguments to be
+
+136
+00:06:43,628 --> 00:06:44,878
+passed in any order.
+
+137
+00:06:44,878 --> 00:06:48,918
+
+
+138
+00:06:48,918 --> 00:06:51,778
+Some CSS can be problematic
+when defining multiple
+
+139
+00:06:51,778 --> 00:06:52,918
+arguments however.
+
+140
+00:06:52,918 --> 00:06:54,828
+Here we have the transition
+property.
+
+141
+00:06:54,828 --> 00:06:57,248
+And in the transition property,
+it's possible to
+
+142
+00:06:57,248 --> 00:07:00,428
+have commas separating different
+input values for
+
+143
+00:07:00,428 --> 00:07:02,998
+transition.
+
+144
+00:07:02,998 --> 00:07:07,118
+If we try to pass these
+comma-separated valid CSS
+
+145
+00:07:07,118 --> 00:07:10,438
+values into mixins, we're going
+to run into some issues.
+
+146
+00:07:10,438 --> 00:07:13,458
+First up, we'll write a
+transition mixin similar to
+
+147
+00:07:13,458 --> 00:07:17,178
+our box-sizing mixin that takes
+care of any browser
+
+148
+00:07:17,178 --> 00:07:19,338
+prefixes that we might have.
+
+149
+00:07:19,338 --> 00:07:23,088
+Then, if we try to include that
+comma-separated CSS value
+
+150
+00:07:23,088 --> 00:07:25,778
+we showed on the previous slide,
+it's going to have a
+
+151
+00:07:25,778 --> 00:07:26,918
+bit of a problem.
+
+152
+00:07:26,918 --> 00:07:29,198
+It thinks we're passing two
+arguments, even though we're
+
+153
+00:07:29,198 --> 00:07:31,018
+only passing one, because
+of the comma.
+
+154
+00:07:31,018 --> 00:07:34,268
+
+
+155
+00:07:34,268 --> 00:07:36,608
+To fix this, we can create
+a variable argument.
+
+156
+00:07:36,608 --> 00:07:39,938
+So to create a variable argument
+in Sass, we had three
+
+157
+00:07:39,938 --> 00:07:42,858
+dots to the end of the argument
+definition in the
+
+158
+00:07:42,858 --> 00:07:44,578
+mixin definition.
+
+159
+00:07:44,578 --> 00:07:46,848
+Here we'll three dots
+to the end of val.
+
+160
+00:07:46,848 --> 00:07:49,748
+And when we pass that
+comma-separated value into the
+
+161
+00:07:49,748 --> 00:07:52,048
+mixin, it uses it as a single
+
+162
+00:07:52,048 --> 00:07:53,618
+argument and outputs correctly.
+
+163
+00:07:53,618 --> 00:07:57,558
+
+
+164
+00:07:57,558 --> 00:08:01,278
+We're also able to make use of
+variable arguments in reverse.
+
+165
+00:08:01,278 --> 00:08:03,018
+Here we're looking back
+at that button
+
+166
+00:08:03,018 --> 00:08:04,888
+mixin we defined before.
+
+167
+00:08:04,888 --> 00:08:07,588
+And if we have a list variable
+that we defined back
+
+168
+00:08:07,588 --> 00:08:10,988
+in Level Two that has two
+values, comma-separated, we
+
+169
+00:08:10,988 --> 00:08:14,748
+can pass that into our mixin
+using a variable argument
+
+170
+00:08:14,748 --> 00:08:16,808
+properties... 
+
+171
+00:08:16,808 --> 00:08:20,038
+When it gets sent into the
+mixin, the mixin will split
+
+172
+00:08:20,038 --> 00:08:22,928
+those values into their
+applicable arguments and use
+
+173
+00:08:22,928 --> 00:08:24,178
+them as necessary.
+
+174
+00:08:24,178 --> 00:08:27,848
+
+
+175
+00:08:27,848 --> 00:08:30,568
+Let's take a look at some bad
+mixin code and figure out how
+
+176
+00:08:30,568 --> 00:08:32,008
+we can make it better.
+
+177
+00:08:32,008 --> 00:08:34,508
+We have a mixin that allows
+us to pass a color.
+
+178
+00:08:34,508 --> 00:08:37,218
+And it changes that
+side's border.
+
+179
+00:08:37,218 --> 00:08:40,548
+Here we have three others that
+allow us to change any side of
+
+180
+00:08:40,548 --> 00:08:43,068
+a border we like based
+on passing a color.
+
+181
+00:08:43,068 --> 00:08:45,958
+So in our button declaration,
+we're going to change the
+
+182
+00:08:45,958 --> 00:08:48,648
+right side border color based
+on the argument we
+
+183
+00:08:48,648 --> 00:08:50,868
+pass into the mixin.
+
+184
+00:08:50,868 --> 00:08:52,928
+However, this is horribly
+inefficient.
+
+185
+00:08:52,928 --> 00:08:56,128
+We have a separate mixin for
+each side of the border.
+
+186
+00:08:56,128 --> 00:08:59,148
+Using interpolation that we
+learned back in Level Two, we
+
+187
+00:08:59,148 --> 00:09:01,008
+can clean this up a bit.
+
+188
+00:09:01,008 --> 00:09:02,468
+We're going to redefine
+our highlight
+
+189
+00:09:02,468 --> 00:09:04,138
+mixin simply as highlight.
+
+190
+00:09:04,138 --> 00:09:07,258
+We'll continue to pass color as
+an argument, but we're also
+
+191
+00:09:07,258 --> 00:09:09,368
+going to add side
+as an argument.
+
+192
+00:09:09,368 --> 00:09:12,258
+Within our mixin, we can use
+interpolation to interpolate
+
+193
+00:09:12,258 --> 00:09:14,778
+the value of our side
+argument into the
+
+194
+00:09:14,778 --> 00:09:17,898
+border color property.
+
+195
+00:09:17,898 --> 00:09:20,798
+Now when we use it within our
+button, we'll pass which side
+
+196
+00:09:20,798 --> 00:09:21,988
+we would like to change.
+
+197
+00:09:21,988 --> 00:09:25,268
+And ultimately, we simply need
+to pass the right string, then
+
+198
+00:09:25,268 --> 00:09:27,738
+we have one mixin that
+can handle any side
+
+199
+00:09:27,738 --> 00:09:28,988
+of our border color.
+
+200
+00:09:28,988 --> 00:09:31,438
+
+
+201
+00:09:31,438 --> 00:09:32,698
+That does is for Level Three.
+
+202
+00:09:32,698 --> 00:09:34,878
+It's time for you write some
+mixins of your own.
+
+203
+00:09:34,878 --> 00:09:36,218
+And I'll see you
+in Level Four.
+
+204
+00:09:36,218 --> 00:09:37,468
+Good luck.

@@ -1,0 +1,879 @@
+1
+00:00:00,000 --> 00:00:01,470
+
+
+2
+00:00:01,470 --> 00:00:01,560
+[SINGING]
+
+3
+00:00:01,560 --> 00:00:04,500
+Your style sheets are bloated
+and making a mess.
+
+4
+00:00:04,500 --> 00:00:08,195
+Your HTML is ashamed
+of your CSS.
+
+5
+00:00:08,195 --> 00:00:10,960
+It's not organized and
+it's not classy.
+
+6
+00:00:10,960 --> 00:00:14,620
+It's time to make your
+style sheets sassy.
+
+7
+00:00:14,620 --> 00:00:17,318
+Using CSS extensions
+are the preference.
+
+8
+00:00:17,318 --> 00:00:21,190
+We'll use mixins, nesting
+and inheritance.
+
+9
+00:00:21,190 --> 00:00:24,160
+Functions extend and partials
+we'll amass.
+
+10
+00:00:24,160 --> 00:00:26,150
+In no time you'll be
+assembling Sass.
+
+11
+00:00:26,150 --> 00:00:33,030
+
+
+12
+00:00:33,030 --> 00:00:35,560
+You're watching level
+four, rhythm.
+
+13
+00:00:35,560 --> 00:00:37,910
+In this level, we're going to be
+going through the Vertical
+
+14
+00:00:37,910 --> 00:00:41,050
+Rhythm module of Sass and the
+various ins and outs of how to
+
+15
+00:00:41,050 --> 00:00:43,020
+use its mixins.
+
+16
+00:00:43,020 --> 00:00:45,910
+In dealing with grids on the
+web, most of us are familiar
+
+17
+00:00:45,910 --> 00:00:49,560
+with horizontal grids like the
+one that Susy provides.
+
+18
+00:00:49,560 --> 00:00:52,370
+Will go into Susy in the
+wrap-up, but it's a compass
+
+19
+00:00:52,370 --> 00:00:55,840
+and Sass extension for dealing
+with layouts like this.
+
+20
+00:00:55,840 --> 00:00:58,700
+In this level, though, we're
+talking about vertical grids,
+
+21
+00:00:58,700 --> 00:01:00,290
+or baseline grids.
+
+22
+00:01:00,290 --> 00:01:02,910
+Ultimately, we're going to be
+working towards something like
+
+23
+00:01:02,910 --> 00:01:06,620
+this, a very simple set
+of text styling.
+
+24
+00:01:06,620 --> 00:01:09,840
+And when we overlay a baseline
+grid, we can see that
+
+25
+00:01:09,840 --> 00:01:12,470
+everything in this text
+styling aligns
+
+26
+00:01:12,470 --> 00:01:14,360
+to that grid properly.
+
+27
+00:01:14,360 --> 00:01:18,115
+We're going to start with
+this bit of HTML, one h1,
+
+28
+00:01:18,115 --> 00:01:20,700
+a couple paragraphs,
+and a block quote.
+
+29
+00:01:20,700 --> 00:01:23,980
+Without some sort of baseline
+grid, we might style this
+
+30
+00:01:23,980 --> 00:01:27,110
+using a set of magic numbers and
+eyeballing different sorts
+
+31
+00:01:27,110 --> 00:01:28,320
+of margins.
+
+32
+00:01:28,320 --> 00:01:31,700
+If we look back at our content
+with this style applied, it
+
+33
+00:01:31,700 --> 00:01:33,440
+might look something
+like this.
+
+34
+00:01:33,440 --> 00:01:35,980
+This isn't bad, but it doesn't
+really conform
+
+35
+00:01:35,980 --> 00:01:37,490
+to any sort of rhythm.
+
+36
+00:01:37,490 --> 00:01:40,540
+If we overlay a baseline grid,
+we can see that the elements
+
+37
+00:01:40,540 --> 00:01:44,420
+don't fall into any sort
+of organization.
+
+38
+00:01:44,420 --> 00:01:47,390
+We're going to use Compass to
+add a baseline grid for us and
+
+39
+00:01:47,390 --> 00:01:50,650
+allow it to manage all of the
+alignment and margins and
+
+40
+00:01:50,650 --> 00:01:52,220
+padding for us.
+
+41
+00:01:52,220 --> 00:01:55,240
+And so initially we're going to
+start with just a reset of
+
+42
+00:01:55,240 --> 00:01:57,310
+our content, which looks
+something like this.
+
+43
+00:01:57,310 --> 00:01:59,850
+
+
+44
+00:01:59,850 --> 00:02:02,420
+Then, to start using the
+Vertical Rhythm module, we
+
+45
+00:02:02,420 --> 00:02:05,260
+have to set a few global
+variables.
+
+46
+00:02:05,260 --> 00:02:08,965
+First up, we'll establish our
+base font size and our base
+
+47
+00:02:08,965 --> 00:02:13,310
+line height, and then use the
+establish-baseline mixin
+
+48
+00:02:13,310 --> 00:02:17,640
+which outputs some CSS like
+this, ultimately changing our
+
+49
+00:02:17,640 --> 00:02:20,660
+output to look like this.
+
+50
+00:02:20,660 --> 00:02:25,420
+Now we have a base font size set
+and our baseline grid is
+
+51
+00:02:25,420 --> 00:02:27,680
+in place with all the line
+heights matching.
+
+52
+00:02:27,680 --> 00:02:30,670
+
+
+53
+00:02:30,670 --> 00:02:33,350
+With our baseline grid started,
+let's start adjusting
+
+54
+00:02:33,350 --> 00:02:35,550
+font sizes and leading.
+
+55
+00:02:35,550 --> 00:02:38,730
+Because of the relative line
+heights to keep our vertical
+
+56
+00:02:38,730 --> 00:02:41,540
+rhythm going, if we try to
+change the font size in a
+
+57
+00:02:41,540 --> 00:02:44,710
+normal way, it's going to throw
+off our vertical rhythm.
+
+58
+00:02:44,710 --> 00:02:48,570
+So in order to change font size
+while using it, we can
+
+59
+00:02:48,570 --> 00:02:52,540
+use the adjust font size
+to mixin like so.
+
+60
+00:02:52,540 --> 00:02:54,770
+Here we're going to change
+the font size of
+
+61
+00:02:54,770 --> 00:02:57,480
+our h1 to 50 pixels.
+
+62
+00:02:57,480 --> 00:03:00,540
+And the output will go ahead
+and figure out the relative
+
+63
+00:03:00,540 --> 00:03:02,540
+unit to match up for us.
+
+64
+00:03:02,540 --> 00:03:06,550
+Now we can see our h1 has been
+increased to the relative unit
+
+65
+00:03:06,550 --> 00:03:10,810
+for 50 pixels, and it still
+conforms to our baseline grid.
+
+66
+00:03:10,810 --> 00:03:14,070
+
+
+67
+00:03:14,070 --> 00:03:17,230
+Let's talk a bit about
+typography for a moment.
+
+68
+00:03:17,230 --> 00:03:22,030
+Leading is the
+distance between our baseline
+
+69
+00:03:22,030 --> 00:03:23,430
+grid units.
+
+70
+00:03:23,430 --> 00:03:27,050
+Back when type was handset, they
+would take strips of lead
+
+71
+00:03:27,050 --> 00:03:29,820
+to help separate out
+the lines of text.
+
+72
+00:03:29,820 --> 00:03:34,450
+So we continue this function in
+our vertical rhythm grid.
+
+73
+00:03:34,450 --> 00:03:37,570
+To determine the number of units
+a single line of text
+
+74
+00:03:37,570 --> 00:03:40,040
+should use up, we can
+adjust our leading.
+
+75
+00:03:40,040 --> 00:03:42,200
+So we're going to adjust the
+leading of our block
+
+76
+00:03:42,200 --> 00:03:43,750
+quote to two units.
+
+77
+00:03:43,750 --> 00:03:46,250
+And with the leading adjusted
+on our block quote, it now
+
+78
+00:03:46,250 --> 00:03:50,570
+takes up two units of vertical
+space with the text vertically
+
+79
+00:03:50,570 --> 00:03:52,000
+centered within.
+
+80
+00:03:52,000 --> 00:03:54,600
+It's important to note that when
+we're dealing with our
+
+81
+00:03:54,600 --> 00:03:58,610
+vertical rhythm mixins, if we
+adjust the base font size for
+
+82
+00:03:58,610 --> 00:04:01,920
+that unit, we usually need to
+tell that mixin that the font
+
+83
+00:04:01,920 --> 00:04:03,350
+size has changed.
+
+84
+00:04:03,350 --> 00:04:06,310
+Otherwise, it tries to calculate
+any relative units
+
+85
+00:04:06,310 --> 00:04:08,770
+based on our base font
+size variable.
+
+86
+00:04:08,770 --> 00:04:11,690
+Here, if we adjust the font size
+of our block quote to 20
+
+87
+00:04:11,690 --> 00:04:15,270
+pixels and take a look at the
+output again, we can see that
+
+88
+00:04:15,270 --> 00:04:16,810
+it's been thrown slightly off.
+
+89
+00:04:16,810 --> 00:04:20,579
+
+
+90
+00:04:20,579 --> 00:04:24,210
+We have to go back to our adjust
+leading to mixin and
+
+91
+00:04:24,210 --> 00:04:27,910
+include a second argument of
+that adjusted font size.
+
+92
+00:04:27,910 --> 00:04:31,720
+And our output is now fixed and
+calculated correctly to
+
+93
+00:04:31,720 --> 00:04:32,970
+compensate.
+
+94
+00:04:32,970 --> 00:04:36,980
+
+
+95
+00:04:36,980 --> 00:04:39,950
+As you might have noticed,
+there's a bit of extra CSS
+
+96
+00:04:39,950 --> 00:04:41,530
+that's being output.
+
+97
+00:04:41,530 --> 00:04:44,760
+Since we're adjusting the font
+size, it's outputting an
+
+98
+00:04:44,760 --> 00:04:46,700
+adjusted line height for us.
+
+99
+00:04:46,700 --> 00:04:49,880
+And then when we change the
+leading, it outputs another
+
+100
+00:04:49,880 --> 00:04:54,180
+line height change on
+our block quote.
+
+101
+00:04:54,180 --> 00:04:56,710
+Because of the way the Vertical
+Rhythm module works,
+
+102
+00:04:56,710 --> 00:04:59,180
+there's no way to stop these
+overriding properties from
+
+103
+00:04:59,180 --> 00:05:01,770
+being output so you need to
+make sure that any use of
+
+104
+00:05:01,770 --> 00:05:05,930
+these mixins is deliberate to
+keep your CSS from being
+
+105
+00:05:05,930 --> 00:05:10,150
+bloated with overuse of these
+sorts of properties.
+
+106
+00:05:10,150 --> 00:05:12,910
+Finally, let's wrap up by
+showing how we can change
+
+107
+00:05:12,910 --> 00:05:15,420
+margin, padding and borders
+without affecting
+
+108
+00:05:15,420 --> 00:05:17,110
+our baseline grid.
+
+109
+00:05:17,110 --> 00:05:20,450
+To add margins to the top or
+bottom of elements, we can use
+
+110
+00:05:20,450 --> 00:05:24,590
+the leader and trailer mixins,
+like the one unit of leader
+
+111
+00:05:24,590 --> 00:05:26,522
+and trailer we're adding
+to our paragraph.
+
+112
+00:05:26,522 --> 00:05:30,180
+Now our output shows a one unit
+margin above and below
+
+113
+00:05:30,180 --> 00:05:31,430
+every paragraph.
+
+114
+00:05:31,430 --> 00:05:33,360
+
+
+115
+00:05:33,360 --> 00:05:37,510
+Just like our just leading to
+mixin, if we change the base
+
+116
+00:05:37,510 --> 00:05:40,830
+font size on an element, we need
+to notify our leaders or
+
+117
+00:05:40,830 --> 00:05:42,680
+trailers of that change.
+
+118
+00:05:42,680 --> 00:05:46,290
+If we add a two unit trailer
+to our h1, we need to make
+
+119
+00:05:46,290 --> 00:05:49,530
+sure we pass as a second
+argument that 50 pixel
+
+120
+00:05:49,530 --> 00:05:53,720
+adjusted font size so that our
+output keeps the baseline grid
+
+121
+00:05:53,720 --> 00:05:54,880
+going correctly.
+
+122
+00:05:54,880 --> 00:05:59,970
+Here's what this looks like now
+with a two unit trailer.
+
+123
+00:05:59,970 --> 00:06:02,890
+There are other mixins given to
+us by Compass for dealing
+
+124
+00:06:02,890 --> 00:06:05,530
+with vertical rhythm, including
+padding leader and
+
+125
+00:06:05,530 --> 00:06:06,710
+padding trailer.
+
+126
+00:06:06,710 --> 00:06:09,830
+Both of these work the same way
+as leader and trailer but
+
+127
+00:06:09,830 --> 00:06:12,880
+output a padding
+value instead.
+
+128
+00:06:12,880 --> 00:06:15,950
+If we have to use a combination
+of leaders,
+
+129
+00:06:15,950 --> 00:06:19,120
+trailers, and padding leaders
+and trailers, we can combine
+
+130
+00:06:19,120 --> 00:06:21,670
+everything using the
+rhythm mixin.
+
+131
+00:06:21,670 --> 00:06:24,290
+The rhythm mixin takes arguments
+including the
+
+132
+00:06:24,290 --> 00:06:28,900
+leader, padding leader, padding
+trailer, trailer, and
+
+133
+00:06:28,900 --> 00:06:31,660
+the adjusted font size, if
+necessary, to combine and
+
+134
+00:06:31,660 --> 00:06:33,720
+output all those properties.
+
+135
+00:06:33,720 --> 00:06:35,340
+Be careful in your
+use of rhythm.
+
+136
+00:06:35,340 --> 00:06:38,270
+If you don't need all these
+values and you include zeros,
+
+137
+00:06:38,270 --> 00:06:41,530
+it's going to output properties
+in your CSS with a
+
+138
+00:06:41,530 --> 00:06:44,750
+zero that you might not need.
+
+139
+00:06:44,750 --> 00:06:47,700
+The final property that throws
+off our baseline grid and
+
+140
+00:06:47,700 --> 00:06:49,040
+styles is border.
+
+141
+00:06:49,040 --> 00:06:52,520
+So if we add a standard bottom
+border to our h1 element and
+
+142
+00:06:52,520 --> 00:06:54,735
+look at the output,
+our baseline grid
+
+143
+00:06:54,735 --> 00:06:55,985
+has been thrown off.
+
+144
+00:06:55,985 --> 00:06:59,280
+
+
+145
+00:06:59,280 --> 00:07:02,300
+To add a border that doesn't
+mess with our grid, we can
+
+146
+00:07:02,300 --> 00:07:06,820
+either use the leading border
+or trailing border mixins.
+
+147
+00:07:06,820 --> 00:07:08,750
+Here we'll add trailing
+border.
+
+148
+00:07:08,750 --> 00:07:11,310
+The first argument is the
+width we'd like of
+
+149
+00:07:11,310 --> 00:07:13,550
+the border, 10 pixels.
+
+150
+00:07:13,550 --> 00:07:16,320
+The second argument is the
+padding we'd like between the
+
+151
+00:07:16,320 --> 00:07:19,000
+border and the element,
+one unit.
+
+152
+00:07:19,000 --> 00:07:21,690
+And the adjusted font size,
+if necessary, which
+
+153
+00:07:21,690 --> 00:07:23,130
+it is in this case.
+
+154
+00:07:23,130 --> 00:07:26,450
+So if we look back at our
+output, our h1 now has a
+
+155
+00:07:26,450 --> 00:07:28,750
+border on the bottom and
+our grid is maintained.
+
+156
+00:07:28,750 --> 00:07:31,470
+
+
+157
+00:07:31,470 --> 00:07:34,300
+If we'd like to add a border to
+all sides of an element, as
+
+158
+00:07:34,300 --> 00:07:37,370
+well as the white space around
+all sides of that element as
+
+159
+00:07:37,370 --> 00:07:40,120
+well, we can use
+rhythm borders.
+
+160
+00:07:40,120 --> 00:07:43,730
+So the rhythm borders mixin
+takes the width of the border
+
+161
+00:07:43,730 --> 00:07:47,290
+as the first argument as well,
+then the amount of white space
+
+162
+00:07:47,290 --> 00:07:49,840
+in units, one here, and
+then the adjusted
+
+163
+00:07:49,840 --> 00:07:51,590
+font size, if necessary.
+
+164
+00:07:51,590 --> 00:07:55,330
+So now our block quote has a
+two pixel relative border
+
+165
+00:07:55,330 --> 00:07:59,230
+around it and equal
+white space of
+
+166
+00:07:59,230 --> 00:08:00,575
+one unit on all sides.
+
+167
+00:08:00,575 --> 00:08:03,460
+
+
+168
+00:08:03,460 --> 00:08:05,330
+As a recap, here's all
+the code we've
+
+169
+00:08:05,330 --> 00:08:07,120
+written in this level.
+
+170
+00:08:07,120 --> 00:08:10,210
+As you can see, we've styled our
+text without writing any
+
+171
+00:08:10,210 --> 00:08:11,860
+normal CSS.
+
+172
+00:08:11,860 --> 00:08:15,140
+Everything is mixins that are
+handled through our Vertical
+
+173
+00:08:15,140 --> 00:08:16,390
+Rhythm module.
+
+174
+00:08:16,390 --> 00:08:18,760
+
+
+175
+00:08:18,760 --> 00:08:21,200
+Baseline grids are difficult
+to maintain on the web,
+
+176
+00:08:21,200 --> 00:08:24,490
+especially when it comes to
+adding images and especially
+
+177
+00:08:24,490 --> 00:08:26,410
+design elements.
+
+178
+00:08:26,410 --> 00:08:29,070
+Just because these things might
+throw off your grid,
+
+179
+00:08:29,070 --> 00:08:30,660
+something is better
+than nothing.
+
+180
+00:08:30,660 --> 00:08:33,450
+And if you're interested in
+tools to help you maintain
+
+181
+00:08:33,450 --> 00:08:36,289
+your vertical rhythm despite
+images, we'll go into a few of
+
+182
+00:08:36,289 --> 00:08:38,220
+those things in the wrap-up.
+
+183
+00:08:38,220 --> 00:08:39,659
+That does it for level four.
+
+184
+00:08:39,659 --> 00:08:41,860
+So you're on the next
+set of challenges.
+
+185
+00:08:41,860 --> 00:08:44,250
+We'll see you back here for
+the final level, five.
+
+186
+00:00:00,000 --> 00:00:00,000
+00:08:44,250 --> 00:08:46,359
+

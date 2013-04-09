@@ -1,0 +1,1037 @@
+1
+00:00:00,000 --> 00:00:00,980
+
+
+2
+00:00:00,980 --> 00:00:01,470
+[SINGING]
+
+3
+00:00:01,470 --> 00:00:04,500
+Your style sheets are bloated
+and making a mess.
+
+4
+00:00:04,500 --> 00:00:08,500
+Your HTML is ashamed
+of your CSS.
+
+5
+00:00:08,500 --> 00:00:10,960
+It's not organized and
+it's not classy.
+
+6
+00:00:10,960 --> 00:00:14,620
+It's time to make your
+style sheets sassy.
+
+7
+00:00:14,620 --> 00:00:18,312
+Using CSS extensions are the
+preference, we'll use mixins
+
+8
+00:00:18,312 --> 00:00:21,190
+nesting, and inheritance
+
+9
+00:00:21,190 --> 00:00:24,160
+Functions extend and partials
+we'll amass.
+
+10
+00:00:24,160 --> 00:00:26,150
+In no time you'll be
+assembling Sass.
+
+11
+00:00:26,150 --> 00:00:32,759
+
+
+12
+00:00:32,759 --> 00:00:35,500
+Welcome to Level
+Three, Utility.
+
+13
+00:00:35,500 --> 00:00:37,840
+Now that we have a handle on
+Compass, we're going to start
+
+14
+00:00:37,840 --> 00:00:41,080
+diving into a lot of the
+utilities and image functions
+
+15
+00:00:41,080 --> 00:00:43,200
+that Compass grants us.
+
+16
+00:00:43,200 --> 00:00:45,430
+But first a bit of a warning.
+
+17
+00:00:45,430 --> 00:00:48,250
+Before we get into it, while
+there are a ton of helpers and
+
+18
+00:00:48,250 --> 00:00:51,200
+utilities in Compass, we're
+going to be going over a few
+
+19
+00:00:51,200 --> 00:00:52,390
+of our favorites.
+
+20
+00:00:52,390 --> 00:00:55,500
+But not everything is actually
+going to be useful to you.
+
+21
+00:00:55,500 --> 00:00:58,040
+Always make sure you're checking
+the output and
+
+22
+00:00:58,040 --> 00:01:00,960
+determining whether or not you
+should be using that mixin or
+
+23
+00:01:00,960 --> 00:01:03,740
+utility that Compass
+grants us.
+
+24
+00:01:03,740 --> 00:01:06,980
+As an example, let's take a
+look at the clearfix mixin
+
+25
+00:01:06,980 --> 00:01:08,910
+that's provided to
+us by Compass.
+
+26
+00:01:08,910 --> 00:01:12,550
+So when we use this mixin, it
+outputs a bit of code for us,
+
+27
+00:01:12,550 --> 00:01:17,520
+the overflow hidden, and the
+zoom has layout older IE hack.
+
+28
+00:01:17,520 --> 00:01:20,500
+This helps us clear any children
+that are floating in
+
+29
+00:01:20,500 --> 00:01:22,020
+the parent container.
+
+30
+00:01:22,020 --> 00:01:25,730
+And while it's useful, it's
+not the current accepted
+
+31
+00:01:25,730 --> 00:01:27,970
+version of a clearfix,
+which looks
+
+32
+00:01:27,970 --> 00:01:30,040
+something more like this.
+
+33
+00:01:30,040 --> 00:01:32,550
+So while it's available to
+us, it's not the best way
+
+34
+00:01:32,550 --> 00:01:34,190
+currently to go about
+a clearfix.
+
+35
+00:01:34,190 --> 00:01:37,600
+So we definitely recommend not
+using that mixin over
+
+36
+00:01:37,600 --> 00:01:40,540
+using this version
+of the clearfix.
+
+37
+00:01:40,540 --> 00:01:42,840
+With that warning in mind, let's
+go into some helpers
+
+38
+00:01:42,840 --> 00:01:44,780
+provided to us by Compass.
+
+39
+00:01:44,780 --> 00:01:47,760
+The first set of helpers we'll
+look at are the image-url and
+
+40
+00:01:47,760 --> 00:01:49,900
+font-url functions.
+
+41
+00:01:49,900 --> 00:01:53,290
+Instead of being forced to write
+a URL and then provide
+
+42
+00:01:53,290 --> 00:01:56,510
+the relative or absolute path to
+that asset, we can instead
+
+43
+00:01:56,510 --> 00:01:59,460
+use these functions to only be
+forced to write the name of
+
+44
+00:01:59,460 --> 00:02:03,440
+the asset and have the path
+output for us like so.
+
+45
+00:02:03,440 --> 00:02:05,480
+This should look pretty familiar
+if you're used to the
+
+46
+00:02:05,480 --> 00:02:08,320
+Rails asset path.
+
+47
+00:02:08,320 --> 00:02:10,870
+Back in Level One, we introduced
+scale_color, which
+
+48
+00:02:10,870 --> 00:02:13,380
+helps us relatively
+scale aspects of a
+
+49
+00:02:13,380 --> 00:02:15,130
+certain input color.
+
+50
+00:02:15,130 --> 00:02:17,740
+Now Compass actually gives us
+a helper to do the lightness
+
+51
+00:02:17,740 --> 00:02:21,460
+version of this without having
+to pass any keyword arguments.
+
+52
+00:02:21,460 --> 00:02:24,590
+So we're able to replace our
+original scale_color with
+
+53
+00:02:24,590 --> 00:02:27,130
+scale-lightness and just include
+the percentage as a
+
+54
+00:02:27,130 --> 00:02:30,420
+second argument and achieve
+the same relative color
+
+55
+00:02:30,420 --> 00:02:31,970
+lightness scaling.
+
+56
+00:02:31,970 --> 00:02:35,210
+If we need to, we can include a
+negative value as the second
+
+57
+00:02:35,210 --> 00:02:38,240
+argument to darken our
+color instead.
+
+58
+00:02:38,240 --> 00:02:42,140
+Similarly, scale-saturation does
+the same thing but for
+
+59
+00:02:42,140 --> 00:02:43,570
+the saturation of the color.
+
+60
+00:02:43,570 --> 00:02:45,950
+So if we wanted to up the
+saturation of the color
+
+61
+00:02:45,950 --> 00:02:49,620
+relatively, we can use
+scale-saturation in place of
+
+62
+00:02:49,620 --> 00:02:50,810
+scale_color.
+
+63
+00:02:50,810 --> 00:02:52,740
+And if we wanted to decrease
+the saturation, we could
+
+64
+00:02:52,740 --> 00:02:57,490
+change that second argument
+to a negative value.
+
+65
+00:02:57,490 --> 00:03:00,150
+Like Sass, there are quite a few
+color functions available
+
+66
+00:03:00,150 --> 00:03:01,620
+to us in Compass.
+
+67
+00:03:01,620 --> 00:03:04,890
+Things like shade and tint can
+also be used to add black and
+
+68
+00:03:04,890 --> 00:03:06,060
+white to a color.
+
+69
+00:03:06,060 --> 00:03:09,170
+So if you're trying to do more
+complex color alterations,
+
+70
+00:03:09,170 --> 00:03:11,610
+definitely take a
+look at those.
+
+71
+00:03:11,610 --> 00:03:14,330
+The next helper we'll look
+at is opposite position.
+
+72
+00:03:14,330 --> 00:03:17,250
+So opposite position is a
+function which returns the
+
+73
+00:03:17,250 --> 00:03:20,550
+opposite side or pair of
+sides that we pass in.
+
+74
+00:03:20,550 --> 00:03:22,880
+If we pass top into
+opposite position,
+
+75
+00:03:22,880 --> 00:03:24,330
+it will return bottom.
+
+76
+00:03:24,330 --> 00:03:29,870
+If we pass right bottom,
+it returns left top.
+
+77
+00:03:29,870 --> 00:03:32,260
+To start playing with opposite
+position, let's build a
+
+78
+00:03:32,260 --> 00:03:34,410
+triangle using CSS.
+
+79
+00:03:34,410 --> 00:03:35,810
+This is a bit of a hack.
+
+80
+00:03:35,810 --> 00:03:39,030
+We're kind of building a
+triangle based on how browsers
+
+81
+00:03:39,030 --> 00:03:40,170
+draw borders.
+
+82
+00:03:40,170 --> 00:03:44,000
+So using this set of properties,
+draws a border on
+
+83
+00:03:44,000 --> 00:03:45,640
+our element that has
+no height and width
+
+84
+00:03:45,640 --> 00:03:47,210
+to look like a triangle.
+
+85
+00:03:47,210 --> 00:03:49,840
+Don't worry too much if you
+don't understand the CSS right
+
+86
+00:03:49,840 --> 00:03:52,770
+now, just know that this
+builds a triangle.
+
+87
+00:03:52,770 --> 00:03:55,310
+If we want to make this reusable
+and be able to define
+
+88
+00:03:55,310 --> 00:03:57,960
+which direction the triangle
+points in, we can rewrite this
+
+89
+00:03:57,960 --> 00:03:58,960
+as a mixin.
+
+90
+00:03:58,960 --> 00:04:02,140
+So we're going to start a caret
+mixin in just past where
+
+91
+00:04:02,140 --> 00:04:04,350
+we want the point of
+the triangle to be.
+
+92
+00:04:04,350 --> 00:04:06,750
+For now, everything
+else is the same.
+
+93
+00:04:06,750 --> 00:04:09,360
+And then once we've defined the
+mixin, we can use it by
+
+94
+00:04:09,360 --> 00:04:12,780
+just using plus caret within
+our caret class down here.
+
+95
+00:04:12,780 --> 00:04:15,700
+We'll go ahead and pass our top
+point in, but we're not
+
+96
+00:04:15,700 --> 00:04:17,240
+going to use it quite yet.
+
+97
+00:04:17,240 --> 00:04:20,980
+First up, we need to find the
+opposite side of our point
+
+98
+00:04:20,980 --> 00:04:24,180
+because that needs a special
+value for our border.
+
+99
+00:04:24,180 --> 00:04:27,110
+So we're going to set an
+opposite variable equal to the
+
+100
+00:04:27,110 --> 00:04:29,610
+opposite side of the
+point we passed in.
+
+101
+00:04:29,610 --> 00:04:32,500
+Once we have that opposite side,
+we can interpolate the
+
+102
+00:04:32,500 --> 00:04:37,070
+point and the opposite point
+into the border properties for
+
+103
+00:04:37,070 --> 00:04:39,400
+those two special cases.
+
+104
+00:04:39,400 --> 00:04:42,960
+So here, the first border is
+what the value needs to be to
+
+105
+00:04:42,960 --> 00:04:46,120
+create a triangle using
+the opposite value.
+
+106
+00:04:46,120 --> 00:04:49,630
+And the second border of 0 is
+what the point value needs to
+
+107
+00:04:49,630 --> 00:04:51,490
+be to create our triangle.
+
+108
+00:04:51,490 --> 00:04:54,170
+Once we set this up, now we can
+pass different points in
+
+109
+00:04:54,170 --> 00:04:56,680
+and to have our triangle facing
+different ways, like
+
+110
+00:04:56,680 --> 00:04:59,880
+using this left value.
+
+111
+00:04:59,880 --> 00:05:02,685
+If you wind up needing to deal
+with more complicated math in
+
+112
+00:05:02,685 --> 00:05:06,680
+Saas, Compass does add a number
+of math functions like
+
+113
+00:05:06,680 --> 00:05:09,660
+pi, sin, logarithms,
+square root.
+
+114
+00:05:09,660 --> 00:05:12,090
+These aren't incredibly useful
+in the day to day, but
+
+115
+00:05:12,090 --> 00:05:14,590
+inevitably you're going to
+need one of these for
+
+116
+00:05:14,590 --> 00:05:16,950
+something more complicated down
+the road, and it's useful
+
+117
+00:05:16,950 --> 00:05:19,440
+to know that they exist.
+
+118
+00:05:19,440 --> 00:05:21,790
+With helpers out of the way,
+let's dive into a few more
+
+119
+00:05:21,790 --> 00:05:23,930
+utilities that Compass
+gives us.
+
+120
+00:05:23,930 --> 00:05:26,250
+First up is contrast color.
+
+121
+00:05:26,250 --> 00:05:29,320
+So with contrast color, we're
+going to pass in a color, and
+
+122
+00:05:29,320 --> 00:05:33,430
+it will return a light color or
+a dark color based on how
+
+123
+00:05:33,430 --> 00:05:37,060
+light or dark that original
+input color is.
+
+124
+00:05:37,060 --> 00:05:39,370
+We're going to create a set of
+buttons that have different
+
+125
+00:05:39,370 --> 00:05:42,790
+backgrounds, and we'd like to
+automatically know which text
+
+126
+00:05:42,790 --> 00:05:45,240
+colors those buttons should be
+based on the lightness or
+
+127
+00:05:45,240 --> 00:05:47,320
+darkness of those background
+colors.
+
+128
+00:05:47,320 --> 00:05:49,800
+So we're going to pass the
+background colors into a new
+
+129
+00:05:49,800 --> 00:05:52,300
+function we create called
+button text.
+
+130
+00:05:52,300 --> 00:05:54,650
+And that should ultimately
+return the color that those
+
+131
+00:05:54,650 --> 00:05:56,650
+button's text should be.
+
+132
+00:05:56,650 --> 00:05:59,460
+The return value of that
+function is going to use our
+
+133
+00:05:59,460 --> 00:06:01,320
+contrast color function.
+
+134
+00:06:01,320 --> 00:06:04,780
+It's going to pass in, as the
+first value, that background
+
+135
+00:06:04,780 --> 00:06:06,380
+color of each button.
+
+136
+00:06:06,380 --> 00:06:08,910
+The first return value
+is a dark color.
+
+137
+00:06:08,910 --> 00:06:11,540
+The second return value
+is a light color.
+
+138
+00:06:11,540 --> 00:06:14,140
+And the third is that threshold
+which determines at
+
+139
+00:06:14,140 --> 00:06:17,220
+what point it breaks between
+the light and dark value.
+
+140
+00:06:17,220 --> 00:06:20,010
+In this case, dead
+center at 50
+
+141
+00:06:20,010 --> 00:06:23,430
+So with the first background
+of our button being dark,
+
+142
+00:06:23,430 --> 00:06:26,410
+it'll return the light value for
+us, ultimately ending up
+
+143
+00:06:26,410 --> 00:06:29,370
+with a button that
+looks like this.
+
+144
+00:06:29,370 --> 00:06:32,110
+The second button, with a
+lighter background, returns
+
+145
+00:06:32,110 --> 00:06:34,210
+the dark value using
+contrast color.
+
+146
+00:06:34,210 --> 00:06:36,480
+So we end up with a button
+that looks like this.
+
+147
+00:06:36,480 --> 00:06:40,570
+
+
+148
+00:06:40,570 --> 00:06:42,210
+Next up is stretch.
+
+149
+00:06:42,210 --> 00:06:45,260
+So when dealing with larger,
+full-screen applications that
+
+150
+00:06:45,260 --> 00:06:49,150
+might make use of complicated
+panes, sometimes we need to
+
+151
+00:06:49,150 --> 00:06:52,980
+position bits of content and
+have them stretched to fit
+
+152
+00:06:52,980 --> 00:06:54,610
+their parent container.
+
+153
+00:06:54,610 --> 00:06:58,800
+In this example, we have an
+aside inside of our content
+
+154
+00:06:58,800 --> 00:07:01,710
+with a class of sidebar, and
+we want our sidebar to
+
+155
+00:07:01,710 --> 00:07:04,660
+automatically stretch to
+fit the exact size
+
+156
+00:07:04,660 --> 00:07:06,210
+of our content container.
+
+157
+00:07:06,210 --> 00:07:08,960
+It's a common pattern to go
+ahead and give this container
+
+158
+00:07:08,960 --> 00:07:11,780
+a position of absolute
+and then set a value
+
+159
+00:07:11,780 --> 00:07:13,430
+for all four sides.
+
+160
+00:07:13,430 --> 00:07:16,720
+When you do it this way, it's
+going to stretch it to fit to
+
+161
+00:07:16,720 --> 00:07:21,100
+the zero position of all four
+sides of its parent container.
+
+162
+00:07:21,100 --> 00:07:22,240
+So that works.
+
+163
+00:07:22,240 --> 00:07:25,060
+But with Compass, we can
+simplify this process.
+
+164
+00:07:25,060 --> 00:07:28,700
+Using the stretch mixin, it will
+automatically output all
+
+165
+00:07:28,700 --> 00:07:31,880
+five of those values for us.
+
+166
+00:07:31,880 --> 00:07:34,490
+If we need a bit more
+complicated use, we're able to
+
+167
+00:07:34,490 --> 00:07:38,360
+pass values into stretch like
+so, using the normal order of
+
+168
+00:07:38,360 --> 00:07:42,650
+top, right, bottom, and left
+to alter how far away from
+
+169
+00:07:42,650 --> 00:07:44,650
+those sides it sticks.
+
+170
+00:07:44,650 --> 00:07:47,680
+Here we're going to pass five
+pixels into all four values,
+
+171
+00:07:47,680 --> 00:07:50,930
+so our container stretches to
+fit the container five pixels
+
+172
+00:07:50,930 --> 00:07:52,280
+off from each edge.
+
+173
+00:07:52,280 --> 00:07:55,305
+If needed, we can set auto to
+be one of the values so that
+
+174
+00:07:55,305 --> 00:07:57,110
+it doesn't stretch that edge.
+
+175
+00:07:57,110 --> 00:07:59,970
+And then, alternatively, define
+a height or a width
+
+176
+00:07:59,970 --> 00:08:02,790
+like here, where we no longer
+have it stretching to the
+
+177
+00:08:02,790 --> 00:08:06,760
+right edge but are manually
+setting a width.
+
+178
+00:08:06,760 --> 00:08:09,630
+Let's finish up with a
+few image functions.
+
+179
+00:08:09,630 --> 00:08:13,140
+For this example, we're going
+to be looking at this png,
+
+180
+00:08:13,140 --> 00:08:18,140
+s.png, which is 236
+by 236 pixels.
+
+181
+00:08:18,140 --> 00:08:20,600
+If we want to use this as a
+background image of our logo
+
+182
+00:08:20,600 --> 00:08:24,060
+class, we can include it as
+such, and then we can manually
+
+183
+00:08:24,060 --> 00:08:26,660
+find the height and width
+if we'd like.
+
+184
+00:08:26,660 --> 00:08:29,890
+However, if we have to change
+the image, if the height and
+
+185
+00:08:29,890 --> 00:08:32,679
+width change, we have to
+manually update this
+
+186
+00:08:32,679 --> 00:08:34,169
+and it's not ideal.
+
+187
+00:08:34,169 --> 00:08:37,850
+So we're able to automatically
+find the height using the
+
+188
+00:08:37,850 --> 00:08:40,309
+image height function
+and passing in
+
+189
+00:08:40,309 --> 00:08:41,880
+the name of the image.
+
+190
+00:08:41,880 --> 00:08:44,700
+And we're able to do the same
+with the width using the image
+
+191
+00:08:44,700 --> 00:08:46,010
+width function.
+
+192
+00:08:46,010 --> 00:08:48,930
+Now, no matter what the
+dimensions of that image are,
+
+193
+00:08:48,930 --> 00:08:51,620
+if we end up changing it later,
+it'll automatically be
+
+194
+00:08:51,620 --> 00:08:53,540
+updated in our style sheet.
+
+195
+00:08:53,540 --> 00:08:56,680
+As you might remember from CSS
+Cross-Country, we're able to
+
+196
+00:08:56,680 --> 00:09:02,080
+embed images directly into our
+CSS using Base64 encoding, and
+
+197
+00:09:02,080 --> 00:09:04,410
+Compass can do this for
+us automatically.
+
+198
+00:09:04,410 --> 00:09:07,470
+So using the inline-image
+function, followed by the name
+
+199
+00:09:07,470 --> 00:09:11,670
+of the image, it'll go ahead and
+create the Base64 encoded
+
+200
+00:09:11,670 --> 00:09:14,990
+version of the image and include
+it in our style sheet.
+
+201
+00:09:14,990 --> 00:09:17,440
+And the image height and the
+image width will still work
+
+202
+00:09:17,440 --> 00:09:20,980
+for that image should
+we choose to use it.
+
+203
+00:09:20,980 --> 00:09:23,120
+Embedding the image directly
+into the CSS
+
+204
+00:09:23,120 --> 00:09:24,220
+helps us out a bit.
+
+205
+00:09:24,220 --> 00:09:26,830
+We no longer have to worry
+about loading flashes for
+
+206
+00:09:26,830 --> 00:09:28,990
+states like hover and focus
+if we're changing
+
+207
+00:09:28,990 --> 00:09:30,480
+the background image.
+
+208
+00:09:30,480 --> 00:09:34,390
+Ultimately, though, while it
+reduces the HTTP requests, it
+
+209
+00:09:34,390 --> 00:09:38,310
+adds about 10more file size
+than including it separately.
+
+210
+00:09:38,310 --> 00:09:40,380
+So you have to weigh
+those benefits.
+
+211
+00:09:40,380 --> 00:09:44,820
+It's only available on IE8+,
+which only supports up to 32
+
+212
+00:09:44,820 --> 00:09:46,310
+kilobytes of image.
+
+213
+00:09:46,310 --> 00:09:49,060
+But it has good mobile support,
+where HTTP request
+
+214
+00:09:49,060 --> 00:09:52,250
+reduction is very useful.
+
+215
+00:09:52,250 --> 00:09:55,100
+That wraps up Level Three, so
+it's time for the next set of
+
+216
+00:09:55,100 --> 00:09:55,930
+Challenges.
+
+217
+00:09:55,930 --> 00:09:57,550
+We'll see you back here
+for Level Four.
+
+218
+00:00:00,000 --> 00:00:00,000
+00:09:57,550 --> 00:09:59,575
+

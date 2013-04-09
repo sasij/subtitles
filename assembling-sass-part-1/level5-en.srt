@@ -1,0 +1,1042 @@
+1
+00:00:00,000 --> 00:00:33,577
+[MUSIC PLAYING]
+
+2
+00:00:33,577 --> 00:00:36,267
+Welcome to Level Five of
+Assembling Sass: Directive.
+
+3
+00:00:36,267 --> 00:00:38,037
+In this level, we'll be
+talking about control
+
+4
+00:00:38,037 --> 00:00:42,047
+directives that Sass allows us
+to use, like functions, if,
+
+5
+00:00:42,047 --> 00:00:44,907
+each, for, and while.
+
+6
+00:00:44,907 --> 00:00:47,717
+As a quick refresher before we
+jump into functions, you might
+
+7
+00:00:47,717 --> 00:00:50,287
+remember a bit of responsiveness
+that we talked
+
+8
+00:00:50,287 --> 00:00:52,417
+about back in Journey
+Into Mobile.
+
+9
+00:00:52,417 --> 00:00:55,557
+Whenever we define a fluid width
+for something, we use
+
+10
+00:00:55,557 --> 00:00:58,727
+the formula of target
+divided by context.
+
+11
+00:00:58,727 --> 00:01:03,427
+So if we have a target size of
+a side bar at 350 pixels, and
+
+12
+00:01:03,427 --> 00:01:08,397
+our parent containers context
+is 1,000 pixels, then our
+
+13
+00:01:08,397 --> 00:01:11,007
+formula here allows us to find
+out that we should set the
+
+14
+00:01:11,007 --> 00:01:14,237
+fluid width to be 35%.
+
+15
+00:01:14,237 --> 00:01:16,857
+With Sass we can automate these
+sorts of calculations,
+
+16
+00:01:16,857 --> 00:01:18,467
+so we're going to define
+a function
+
+17
+00:01:18,467 --> 00:01:20,627
+first using @function.
+
+18
+00:01:20,627 --> 00:01:22,847
+And then we give it a name,
+sort of like a mixin.
+
+19
+00:01:22,847 --> 00:01:26,177
+In this case we'll call it
+fluidize, but unlike a mixin,
+
+20
+00:01:26,177 --> 00:01:28,467
+even if we don't have any
+arguments to our function, we
+
+21
+00:01:28,467 --> 00:01:31,307
+need to have opening and closing
+parentheses following
+
+22
+00:01:31,307 --> 00:01:33,147
+the name of the function.
+
+23
+00:01:33,147 --> 00:01:35,967
+Inside of the function we can
+determine a return value.
+
+24
+00:01:35,967 --> 00:01:39,077
+The value that will return
+whenever we use this function.
+
+25
+00:01:39,077 --> 00:01:42,417
+For now, we'll just set
+it to a straight 35%.
+
+26
+00:01:42,417 --> 00:01:44,887
+From within our declarations
+we can call the function by
+
+27
+00:01:44,887 --> 00:01:46,007
+using the function name.
+
+28
+00:01:46,007 --> 00:01:48,457
+And again, even if we don't have
+any arguments, we need to
+
+29
+00:01:48,457 --> 00:01:51,197
+have opening and closing
+parentheses.
+
+30
+00:01:51,197 --> 00:01:53,847
+In its current state this isn't
+a very useful function.
+
+31
+00:01:53,847 --> 00:01:56,327
+We're always returning
+the value 35%.
+
+32
+00:01:56,327 --> 00:01:59,227
+But let's improve it by
+incorporating the formula we
+
+33
+00:01:59,227 --> 00:02:01,227
+saw at the beginning
+of the level.
+
+34
+00:02:01,227 --> 00:02:03,877
+First, we'll add target and
+context arguments to our
+
+35
+00:02:03,877 --> 00:02:06,127
+fluidize function.
+
+36
+00:02:06,127 --> 00:02:08,437
+Then in the return value we'll
+incorporate that fluid width
+
+37
+00:02:08,437 --> 00:02:12,197
+formula of target divided by
+context, and multiply that by
+
+38
+00:02:12,197 --> 00:02:14,807
+100% to get our final
+return value.
+
+39
+00:02:14,807 --> 00:02:19,067
+So within sidebar we can say,
+fluidize, pass arguments for
+
+40
+00:02:19,067 --> 00:02:21,577
+target and context, and
+then our output
+
+41
+00:02:21,577 --> 00:02:22,827
+is the same as before.
+
+42
+00:02:22,827 --> 00:02:25,067
+
+
+43
+00:02:25,067 --> 00:02:28,147
+Later, we'll talk a bit more
+about how Sass can improve our
+
+44
+00:02:28,147 --> 00:02:29,467
+responsive design workflow.
+
+45
+00:02:29,467 --> 00:02:33,217
+But for now, it's worth noting
+that functions have the same
+
+46
+00:02:33,217 --> 00:02:36,207
+rules for arguments
+as mixins do.
+
+47
+00:02:36,207 --> 00:02:38,257
+The next control directive
+in Sass we'll be taking
+
+48
+00:02:38,257 --> 00:02:39,607
+a look at is if.
+
+49
+00:02:39,607 --> 00:02:43,347
+So with if we can conditionally
+output code.
+
+50
+00:02:43,347 --> 00:02:46,427
+Here we're going to set a theme
+variable to the string
+
+51
+00:02:46,427 --> 00:02:50,467
+of dark, and then within our
+header we can say if theme is
+
+52
+00:02:50,467 --> 00:02:53,197
+equal to the dark, output this
+bit of code making the
+
+53
+00:02:53,197 --> 00:02:54,567
+background black.
+
+54
+00:02:54,567 --> 00:02:57,547
+Since theme is indeed dark
+when this compiles the
+
+55
+00:02:57,547 --> 00:02:59,047
+background of black
+will output.
+
+56
+00:02:59,047 --> 00:03:01,777
+
+
+57
+00:03:01,777 --> 00:03:04,277
+There are a number of
+comparisons available to us in
+
+58
+00:03:04,277 --> 00:03:08,317
+Sass, including equal to, not
+equal to, greater than,
+
+59
+00:03:08,317 --> 00:03:10,857
+greater than or equal to,
+less than, or less
+
+60
+00:03:10,857 --> 00:03:11,917
+than or equal to.
+
+61
+00:03:11,917 --> 00:03:15,167
+With the last four only
+applying to numbers.
+
+62
+00:03:15,167 --> 00:03:17,057
+Let's continue to expand
+this example.
+
+63
+00:03:17,057 --> 00:03:20,197
+Changing our theme variable
+value to light means that our
+
+64
+00:03:20,197 --> 00:03:22,317
+background no longer outputs.
+
+65
+00:03:22,317 --> 00:03:24,357
+We're also able to add
+a fall back to this
+
+66
+00:03:24,357 --> 00:03:26,377
+conditional using @else.
+
+67
+00:03:26,377 --> 00:03:30,187
+So if the if above it evaluates
+to false or null,
+
+68
+00:03:30,187 --> 00:03:32,877
+the @else condition
+will be output.
+
+69
+00:03:32,877 --> 00:03:35,687
+When this bit of code compiles,
+since the theme is
+
+70
+00:03:35,687 --> 00:03:39,017
+no longer equal to dark, the
+second condition of background
+
+71
+00:03:39,017 --> 00:03:40,267
+white outputs.
+
+72
+00:03:40,267 --> 00:03:43,087
+
+
+73
+00:03:43,087 --> 00:03:46,607
+We can continue this chain
+using @else if to add
+
+74
+00:03:46,607 --> 00:03:50,717
+additional comparisons prior
+to reaching our fall back.
+
+75
+00:03:50,717 --> 00:03:53,027
+In this example, we'll
+add an else if
+
+76
+00:03:53,027 --> 00:03:55,127
+theme is equal to pink.
+
+77
+00:03:55,127 --> 00:03:58,357
+So if we change that theme value
+to pink, a background of
+
+78
+00:03:58,357 --> 00:04:00,882
+pink is output in our
+final compiled CSS.
+
+79
+00:04:00,882 --> 00:04:03,767
+
+
+80
+00:04:03,767 --> 00:04:06,917
+The third control directive
+we'll look at Sass is each.
+
+81
+00:04:06,917 --> 00:04:09,787
+And each allows us to iterate
+over a list performing an
+
+82
+00:04:09,787 --> 00:04:13,267
+operation on each item
+in the list in turn.
+
+83
+00:04:13,267 --> 00:04:15,537
+We're going to start off with an
+author's list that contains
+
+84
+00:04:15,537 --> 00:04:19,203
+the values of Nick, Aimee,
+Dan, and Drew.
+
+85
+00:04:19,203 --> 00:04:21,907
+To iterate through each item
+in this list we're going to
+
+86
+00:04:21,907 --> 00:04:24,517
+start our each loop with
+@each, followed
+
+87
+00:04:24,517 --> 00:04:26,787
+by $author in $authors.
+
+88
+00:04:26,787 --> 00:04:29,342
+Authors represents
+the list above.
+
+89
+00:04:29,342 --> 00:04:32,477
+While author is the instance
+variable for that
+
+90
+00:04:32,477 --> 00:04:33,737
+version of the loop.
+
+91
+00:04:33,737 --> 00:04:35,697
+To illustrate that a bit,
+here's what the author
+
+92
+00:04:35,697 --> 00:04:37,517
+variable will represent
+for each loop.
+
+93
+00:04:37,517 --> 00:04:39,997
+The first time through author
+will stand for Nick.
+
+94
+00:04:39,997 --> 00:04:43,597
+The second time through for
+Aimee, so on and so forth.
+
+95
+00:04:43,597 --> 00:04:46,517
+Inside this loop we'll print out
+a bit of styles based on
+
+96
+00:04:46,517 --> 00:04:47,787
+the current author.
+
+97
+00:04:47,787 --> 00:04:51,167
+First, we'll set up a selector
+that is author hyphen an
+
+98
+00:04:51,167 --> 00:04:53,927
+interpolated name of
+the current author.
+
+99
+00:04:53,927 --> 00:04:57,807
+And inside of that, we'll set a
+background image with a URL
+
+100
+00:04:57,807 --> 00:05:00,237
+interpolated also with the
+name of the author.
+
+101
+00:05:00,237 --> 00:05:03,607
+The compiled version of this
+utilizes each author's name in
+
+102
+00:05:03,607 --> 00:05:07,417
+turn to create new selectors
+with new background image URLs
+
+103
+00:05:07,417 --> 00:05:09,307
+based on that current
+looped author.
+
+104
+00:05:09,307 --> 00:05:12,247
+
+
+105
+00:05:12,247 --> 00:05:13,937
+Our next control directive
+is for.
+
+106
+00:05:13,937 --> 00:05:16,577
+And similar to each, it's going
+to perform a loop, but
+
+107
+00:05:16,577 --> 00:05:18,947
+it's more number based.
+
+108
+00:05:18,947 --> 00:05:21,157
+We'll define our for
+loop with @for.
+
+109
+00:05:21,157 --> 00:05:24,067
+Give it an instance variable of
+i, which will represent the
+
+110
+00:05:24,067 --> 00:05:25,587
+current loop value.
+
+111
+00:05:25,587 --> 00:05:28,587
+And then say from what number
+to the n number.
+
+112
+00:05:28,587 --> 00:05:31,747
+In this case, we're saying
+from one through three.
+
+113
+00:05:31,747 --> 00:05:34,797
+So in these loops i is going
+to represent 1 first
+
+114
+00:05:34,797 --> 00:05:37,217
+time through, 2 the second
+time through, and 3 the
+
+115
+00:05:37,217 --> 00:05:38,537
+third time through.
+
+116
+00:05:38,537 --> 00:05:40,727
+Then inside of this for loop,
+we can define some
+
+117
+00:05:40,727 --> 00:05:42,357
+styles to be output.
+
+118
+00:05:42,357 --> 00:05:46,287
+First we'll create a item hyphen
+interpolated version of
+
+119
+00:05:46,287 --> 00:05:48,377
+the current i value.
+
+120
+00:05:48,377 --> 00:05:52,227
+And we'll multiply the current
+i value by 30 pixels.
+
+121
+00:05:52,227 --> 00:05:56,767
+So on compile, we have a list of
+items that use the i values
+
+122
+00:05:56,767 --> 00:05:59,867
+as a hyphenated portion
+of this selector.
+
+123
+00:05:59,867 --> 00:06:03,007
+And the top value has been
+multiplied by 30 pixels for
+
+124
+00:06:03,007 --> 00:06:05,867
+each i value.
+
+125
+00:06:05,867 --> 00:06:08,987
+So for, and by extension while,
+which we'll go through
+
+126
+00:06:08,987 --> 00:06:10,837
+into a second here, are similar
+to each, but we have a
+
+127
+00:06:10,837 --> 00:06:12,357
+bit more control.
+
+128
+00:06:12,357 --> 00:06:15,637
+With while, unlike for, we have
+to manually update that
+
+129
+00:06:15,637 --> 00:06:18,667
+instance index variable.
+
+130
+00:06:18,667 --> 00:06:21,507
+To start off a while loop first
+we're going to define
+
+131
+00:06:21,507 --> 00:06:22,617
+that instance variable.
+
+132
+00:06:22,617 --> 00:06:25,157
+Up top we'll say that
+i is equal to 1.
+
+133
+00:06:25,157 --> 00:06:27,957
+Then we can start our while loop
+by saying, at while, and
+
+134
+00:06:27,957 --> 00:06:29,697
+then providing a condition.
+
+135
+00:06:29,697 --> 00:06:31,907
+First up, we'll be replicating
+our for loop.
+
+136
+00:06:31,907 --> 00:06:35,187
+So our condition here will be
+while $i is less than four,
+
+137
+00:06:35,187 --> 00:06:37,877
+we'll be executing
+a bit of code.
+
+138
+00:06:37,877 --> 00:06:40,242
+Inside, we have the same
+bit of code that
+
+139
+00:06:40,242 --> 00:06:41,867
+was output with for.
+
+140
+00:06:41,867 --> 00:06:45,377
+So the item hyphen interpolated
+$i, $i multiplied
+
+141
+00:06:45,377 --> 00:06:49,907
+by a specific pixel value, but
+with while we have to manually
+
+142
+00:06:49,907 --> 00:06:52,657
+update $i or else it
+will loop forever.
+
+143
+00:06:52,657 --> 00:06:57,217
+If we didn't add this $i: $i + 1,
+then i would stay one, and
+
+144
+00:06:57,217 --> 00:07:00,217
+while would always be true, and
+we'd have a infinite loop.
+
+145
+00:07:00,217 --> 00:07:04,337
+So using this where we are
+adding one to $i each time, our
+
+146
+00:07:04,337 --> 00:07:08,067
+$i value goes from being one,
+to two, to three, and the
+
+147
+00:07:08,067 --> 00:07:10,957
+fourth time it attempts to go
+through, $i will be four, which
+
+148
+00:07:10,957 --> 00:07:12,297
+is not less than four.
+
+149
+00:07:12,297 --> 00:07:15,127
+So that bit of code
+won't be executed.
+
+150
+00:07:15,127 --> 00:07:17,367
+And as you can see when this
+compiles we have the same
+
+151
+00:07:17,367 --> 00:07:19,057
+output as we did with
+our for loop.
+
+152
+00:07:19,057 --> 00:07:23,467
+
+
+153
+00:07:23,467 --> 00:07:26,837
+Let's take a look at a reason
+to use @while over @for.
+
+154
+00:07:26,837 --> 00:07:29,877
+We're going to start off with
+two instead as our main
+
+155
+00:07:29,877 --> 00:07:31,517
+instance variable.
+
+156
+00:07:31,517 --> 00:07:34,257
+Then we're going to change our
+while condition to be less
+
+157
+00:07:34,257 --> 00:07:35,817
+than or equal to six.
+
+158
+00:07:35,817 --> 00:07:38,297
+And our $i is going to
+increment by two
+
+159
+00:07:38,297 --> 00:07:39,547
+each time it loops.
+
+160
+00:07:39,547 --> 00:07:42,507
+The first time through $i
+will be equal to two.
+
+161
+00:07:42,507 --> 00:07:44,007
+The second time through four.
+
+162
+00:07:44,007 --> 00:07:45,767
+The third time through six.
+
+163
+00:07:45,767 --> 00:07:48,537
+And finally, it's going to be
+eight, so the fourth time
+
+164
+00:07:48,537 --> 00:07:50,847
+through that code won't execute
+since eight is not
+
+165
+00:07:50,847 --> 00:07:53,077
+less than or equal to six.
+
+166
+00:07:53,077 --> 00:07:56,617
+The output of this code only
+targets the even values, so
+
+167
+00:07:56,617 --> 00:08:00,407
+we're able to modify our @while
+to only target specific types
+
+168
+00:08:00,407 --> 00:08:04,807
+of values with different
+iterations than @for.
+
+169
+00:08:04,807 --> 00:08:07,367
+We've introduced a lot of
+directives in this course, but
+
+170
+00:08:07,367 --> 00:08:10,597
+let's be clear when we should
+actually use each one.
+
+171
+00:08:10,597 --> 00:08:13,627
+Mixins should be used when we're
+defining similar sets of
+
+172
+00:08:13,627 --> 00:08:16,947
+properties that have small
+variations that we can change
+
+173
+00:08:16,947 --> 00:08:17,897
+with arguments.
+
+174
+00:08:17,897 --> 00:08:19,187
+Extend should be used
+when we have
+
+175
+00:08:19,187 --> 00:08:20,547
+properties that match exactly.
+
+176
+00:08:20,547 --> 00:08:23,937
+Things that are copied from
+declaration to declaration.
+
+177
+00:08:23,937 --> 00:08:27,417
+Functions, on the other hand,
+are operations we need to use
+
+178
+00:08:27,417 --> 00:08:31,337
+multiple times that just
+return a value for us.
+
+179
+00:08:31,337 --> 00:08:33,667
+Let's take a look back and see
+how we can improve our button
+
+180
+00:08:33,667 --> 00:08:35,977
+mixin now that we know
+control directives.
+
+181
+00:08:35,977 --> 00:08:38,727
+We'll start off with our button
+mixin, and now we're
+
+182
+00:08:38,727 --> 00:08:42,467
+passing a color and a rounded
+argument into the mixin.
+
+183
+00:08:42,467 --> 00:08:45,747
+Our color is output as the
+color, but we're going to add
+
+184
+00:08:45,747 --> 00:08:48,717
+an if condition here to see
+whether or not we should
+
+185
+00:08:48,717 --> 00:08:50,607
+output a rounded value.
+
+186
+00:08:50,607 --> 00:08:53,417
+If rounded is equal to true,
+we're going to output a border
+
+187
+00:08:53,417 --> 00:08:57,727
+radius of four pixels, and by
+default rounded is true.
+
+188
+00:08:57,727 --> 00:09:00,737
+To use this mixin in btn-a
+here, we're going to use at
+
+189
+00:09:00,737 --> 00:09:04,957
+include button, and we'll pass
+arguments of black and false.
+
+190
+00:09:04,957 --> 00:09:07,716
+Since we're passing false, it
+will override the default
+
+191
+00:09:07,716 --> 00:09:09,187
+value of true.
+
+192
+00:09:09,187 --> 00:09:12,317
+And since rounded is not equal
+to true inside of our mixin,
+
+193
+00:09:12,317 --> 00:09:15,137
+that border radius will not
+be output on compile.
+
+194
+00:09:15,137 --> 00:09:18,477
+If we leave off a second
+argument, rounded defaults to
+
+195
+00:09:18,477 --> 00:09:22,557
+true, and that border radius
+will be output for us.
+
+196
+00:09:22,557 --> 00:09:25,207
+But what if we didn't want the
+radius to be on there by
+
+197
+00:09:25,207 --> 00:09:28,117
+default, and wanted more control
+over what the value
+
+198
+00:09:28,117 --> 00:09:30,047
+was when it was included.
+
+199
+00:09:30,047 --> 00:09:31,737
+First up, we'll change
+our rounded
+
+200
+00:09:31,737 --> 00:09:33,807
+default value to false.
+
+201
+00:09:33,807 --> 00:09:38,577
+And now, we'll change our if
+value to simply if rounded.
+
+202
+00:09:38,577 --> 00:09:42,127
+With this version of our if
+conditional, it checks to see
+
+203
+00:09:42,127 --> 00:09:44,727
+whether or not that variable
+is false, or null.
+
+204
+00:09:44,727 --> 00:09:46,967
+If it's not, then the condition
+
+205
+00:09:46,967 --> 00:09:48,677
+inside will be output.
+
+206
+00:09:48,677 --> 00:09:51,927
+And now we're using an actual
+value of rounded, so we can
+
+207
+00:09:51,927 --> 00:09:54,397
+define that from within
+our mixin call.
+
+208
+00:09:54,397 --> 00:09:57,867
+In btn-a, if we don't include
+a value for rounded,
+
+209
+00:09:57,867 --> 00:10:00,747
+it will simply output with a
+color, and there will not be a
+
+210
+00:10:00,747 --> 00:10:02,117
+border radius.
+
+211
+00:10:02,117 --> 00:10:05,537
+In btn-b however, we'll
+add a value for rounded.
+
+212
+00:10:05,537 --> 00:10:07,937
+Now the condition will
+evaluate as true.
+
+213
+00:10:07,937 --> 00:10:10,547
+And that border radius will get
+that rounded argument that
+
+214
+00:10:10,547 --> 00:10:11,787
+we're passing.
+
+215
+00:10:11,787 --> 00:10:13,037
+In this case, four pixels.
+
+216
+00:10:13,037 --> 00:10:16,637
+
+
+217
+00:10:16,637 --> 00:10:18,767
+You're all set on control
+directives in Level 5.
+
+218
+00:10:18,767 --> 00:10:21,187
+Now it's time to test your
+knowledge of them.
+
+219
+00:10:21,187 --> 00:10:21,717
+Good luck.
+
+220
+00:10:21,717 --> 00:10:22,967
+And I'll see you in Level 6.

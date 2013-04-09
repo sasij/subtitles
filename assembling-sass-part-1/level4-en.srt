@@ -1,0 +1,406 @@
+1
+00:00:00,000 --> 00:00:33,580
+[MUSIC PLAYING]
+
+2
+00:00:33,580 --> 00:00:36,336
+Welcome to Level Four of
+Assembling Sass: Extend.
+
+3
+00:00:36,336 --> 00:00:38,700
+In this level, we'll be talking
+about the extend
+
+4
+00:00:38,700 --> 00:00:41,470
+directive, pitfalls associated
+with it, and
+
+5
+00:00:41,470 --> 00:00:43,690
+the placeholder selector.
+
+6
+00:00:43,690 --> 00:00:46,020
+Remember this bit of button code
+back in the mixin
+
+7
+00:00:46,020 --> 00:00:46,400
+level?
+
+8
+00:00:46,400 --> 00:00:49,480
+So we have btn-a and btn-b,
+and the problem was that
+
+9
+00:00:49,480 --> 00:00:52,590
+they share three of the same
+properties in both instances.
+
+10
+00:00:52,590 --> 00:00:54,860
+So we said we were able
+to simplify it using a
+
+11
+00:00:54,860 --> 00:00:58,090
+comma-separated selector.
+
+12
+00:00:58,090 --> 00:01:01,020
+We can have Sass instead track
+and combine these selectors
+
+13
+00:01:01,020 --> 00:01:03,870
+for us using the extend
+directive.
+
+14
+00:01:03,870 --> 00:01:07,330
+We define btn-a as usual with
+its inherent properties.
+
+15
+00:01:07,330 --> 00:01:11,070
+But then inside of btn-b,
+we use the extend directive
+
+16
+00:01:11,070 --> 00:01:14,190
+followed by the selector we'd
+like to extend, in this case,
+
+17
+00:01:14,190 --> 00:01:15,990
+the btn-a class.
+
+18
+00:01:15,990 --> 00:01:18,790
+And when it compiles, it
+compiles down to that
+
+19
+00:01:18,790 --> 00:01:21,830
+comma-delimited selector that
+we were looking for.
+
+20
+00:01:21,830 --> 00:01:24,500
+Without the properties in each
+declaration, here's how the
+
+21
+00:01:24,500 --> 00:01:25,750
+selector combination happens.
+
+22
+00:01:25,750 --> 00:01:30,890
+
+
+23
+00:01:30,890 --> 00:01:32,750
+What happens when
+we have nested
+
+24
+00:01:32,750 --> 00:01:34,840
+selectors and we use extend?
+
+25
+00:01:34,840 --> 00:01:37,400
+In this example, we're extending
+content in our
+
+26
+00:01:37,400 --> 00:01:40,870
+callout declaration, but content
+has an h2 scoped and
+
+27
+00:01:40,870 --> 00:01:42,200
+nested inside.
+
+28
+00:01:42,200 --> 00:01:45,780
+When this compiles, not only is
+callout added to content,
+
+29
+00:01:45,780 --> 00:01:48,430
+but a scoped version
+of h2 is also added
+
+30
+00:01:48,430 --> 00:01:49,680
+to callout, as well.
+
+31
+00:01:49,680 --> 00:01:52,460
+
+
+32
+00:01:52,460 --> 00:01:55,010
+If we take out the properties,
+here's how that selector
+
+33
+00:01:55,010 --> 00:01:56,260
+combination works.
+
+34
+00:01:56,260 --> 00:01:58,820
+
+
+35
+00:01:58,820 --> 00:02:01,530
+Extend is incredibly powerful
+in that we can combine
+
+36
+00:02:01,530 --> 00:02:05,170
+selectors with like styles for
+anywhere in our style sheet,
+
+37
+00:02:05,170 --> 00:02:07,030
+but it has some inherent
+problems that
+
+38
+00:02:07,030 --> 00:02:09,530
+come along with this.
+
+39
+00:02:09,530 --> 00:02:12,470
+Here we have our btn-b 
+extending our btn-a, but
+
+40
+00:02:12,470 --> 00:02:15,320
+later on, we might want to scope
+a change to btn-a
+
+41
+00:02:15,320 --> 00:02:16,850
+like sidebar here.
+
+42
+00:02:16,850 --> 00:02:20,110
+So sidebar has a scoped version
+of btn-a and
+
+43
+00:02:20,110 --> 00:02:24,140
+changes btn-a. But since
+btn-b extends btn-a,
+
+44
+00:02:24,140 --> 00:02:27,830
+when it compiles, that change
+to btn-a also extends to
+
+45
+00:02:27,830 --> 00:02:30,060
+btn-b, which may
+not be desired.
+
+46
+00:02:30,060 --> 00:02:32,640
+
+
+47
+00:02:32,640 --> 00:02:35,910
+Since btn-b is extending
+btn-a, any changes you make
+
+48
+00:02:35,910 --> 00:02:39,230
+the btn-a will also be
+changes made to btn-b. If
+
+49
+00:02:39,230 --> 00:02:41,960
+the selectors that are generated
+aren't needed, we're
+
+50
+00:02:41,960 --> 00:02:44,790
+creating some stylesheet bloat,
+but we can fix that
+
+51
+00:02:44,790 --> 00:02:46,810
+using placeholder selectors,
+which we'll go
+
+52
+00:02:46,810 --> 00:02:48,740
+into in just a minute.
+
+53
+00:02:48,740 --> 00:02:51,550
+When I write Sass, I make sure
+I always check the compiled
+
+54
+00:02:51,550 --> 00:02:55,080
+CSS output because we can't be
+guaranteed that Sass is going
+
+55
+00:02:55,080 --> 00:02:59,290
+to output perfect
+CSS every time.
+
+56
+00:02:59,290 --> 00:03:01,140
+Now let's learn about
+placeholder selectors.
+
+57
+00:03:01,140 --> 00:03:04,270
+So placeholder selectors in
+Sass are denoted by the
+
+58
+00:03:04,270 --> 00:03:05,590
+percent sign.
+
+59
+00:03:05,590 --> 00:03:08,310
+And they're sort of like
+partials in that they can be
+
+60
+00:03:08,310 --> 00:03:11,790
+extended, but they never become
+selectors of their own.
+
+61
+00:03:11,790 --> 00:03:15,210
+So back to our button code
+where sidebar has a scope
+
+62
+00:03:15,210 --> 00:03:18,840
+change to btn-a. We can move
+everything that's shared
+
+63
+00:03:18,840 --> 00:03:22,690
+by btn-a and btn-b up to a
+button placeholder selector.
+
+64
+00:03:22,690 --> 00:03:26,270
+Then inside of btn-a and
+btn-b extend that
+
+65
+00:03:26,270 --> 00:03:29,440
+placeholder selector so btn-b
+is no longer directly
+
+66
+00:03:29,440 --> 00:03:33,080
+extending btn-a. And when
+this compiles, that change to
+
+67
+00:03:33,080 --> 00:03:36,310
+btn-a inside of sidebar
+doesn't carry over to btn-b.
+
+68
+00:03:36,310 --> 00:03:38,870
+
+
+69
+00:03:38,870 --> 00:03:41,410
+Placeholder selectors are
+extremely useful when it comes
+
+70
+00:03:41,410 --> 00:03:44,870
+to CSS styles we want to reuse
+throughout our style sheet.
+
+71
+00:03:44,870 --> 00:03:48,020
+In this case, we have the HTML5
+boilerplate version of
+
+72
+00:03:48,020 --> 00:03:50,950
+image replacement as a
+placeholder selector and we're
+
+73
+00:03:50,950 --> 00:03:53,340
+able to extend it anywhere
+we need it.
+
+74
+00:03:53,340 --> 00:03:56,360
+So when this compiles, only the
+selectors that need to use
+
+75
+00:03:56,360 --> 00:03:59,330
+ir are comma separated
+in the final output.
+
+76
+00:03:59,330 --> 00:04:01,920
+
+
+77
+00:04:01,920 --> 00:04:05,690
+Take heed that versions of IE
+prior to 9 have a hard limit
+
+78
+00:04:05,690 --> 00:04:07,690
+on the number of selectors
+you can use in a file.
+
+79
+00:04:07,690 --> 00:04:10,830
+So if you're using lots of
+extends and lots of imports,
+
+80
+00:04:10,830 --> 00:04:14,940
+you might reach the 4,095 total
+selector output limit
+
+81
+00:04:14,940 --> 00:04:15,810
+that there is.
+
+82
+00:04:15,810 --> 00:04:17,630
+If you do, anything
+beyond that is
+
+83
+00:04:17,630 --> 00:04:20,260
+just going to be ignored.
+
+84
+00:04:20,260 --> 00:04:22,230
+That does it for level four, so
+it's time for you to write
+
+85
+00:04:22,230 --> 00:04:23,350
+your own extends.
+
+86
+00:04:23,350 --> 00:04:24,650
+I'll see you on the other
+side of the challenges.

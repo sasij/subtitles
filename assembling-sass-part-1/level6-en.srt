@@ -1,0 +1,682 @@
+1
+00:00:00,000 --> 00:00:33,745
+[MUSIC PLAYING]
+
+2
+00:00:33,745 --> 00:00:35,285
+Welcome to Level Six
+of Assembling
+
+3
+00:00:35,285 --> 00:00:36,715
+Sass: Math & Color.
+
+4
+00:00:36,715 --> 00:00:39,232
+In this level, we'll be going
+over basic arithmetic with
+
+5
+00:00:39,232 --> 00:00:42,835
+Sass, as well as color,
+shortcuts, and functions.
+
+6
+00:00:42,835 --> 00:00:45,955
+Sass gives us a number of ways
+to perform operations on
+
+7
+00:00:45,955 --> 00:00:49,535
+numbers, including addition,
+subtraction, multiplication,
+
+8
+00:00:49,535 --> 00:00:51,675
+division and modulo.
+
+9
+00:00:51,675 --> 00:00:53,975
+If you're not familiar with
+the modulo operator, it
+
+10
+00:00:53,975 --> 00:00:55,995
+returns the remainder
+of an operation.
+
+11
+00:00:55,995 --> 00:00:59,645
+So 12 mod 3 returns zero,
+because 3 goes cleanly into
+
+12
+00:00:59,645 --> 00:01:04,525
+12, while 12 mod 5 returns 2,
+since the remainder of 12
+
+13
+00:01:04,525 --> 00:01:07,985
+divided by 5 is 2.
+
+14
+00:01:07,985 --> 00:01:11,865
+By default, Sass returns up to
+five digits after a decimal
+
+15
+00:01:11,865 --> 00:01:14,925
+point for us when performing
+number operations.
+
+16
+00:01:14,925 --> 00:01:17,505
+Now, with Sass, division
+is the trickiest of the
+
+17
+00:01:17,505 --> 00:01:20,965
+operations, because like the
+comma issue we ran into
+
+18
+00:01:20,965 --> 00:01:24,495
+earlier with variable arguments,
+the slash is a
+
+19
+00:01:24,495 --> 00:01:27,155
+valid character in some
+CSS, like our
+
+20
+00:01:27,155 --> 00:01:28,915
+font declaration here.
+
+21
+00:01:28,915 --> 00:01:30,695
+We're able to trigger
+division in one of
+
+22
+00:01:30,695 --> 00:01:32,195
+three ways using Sass.
+
+23
+00:01:32,195 --> 00:01:35,655
+Either one of the values can be
+a variable, we can wrap the
+
+24
+00:01:35,655 --> 00:01:39,535
+operation in parentheses, or the
+division operation can be
+
+25
+00:01:39,535 --> 00:01:42,565
+part of a larger arithmetic
+operation.
+
+26
+00:01:42,565 --> 00:01:45,795
+When we add strings together in
+Sass, we concatenate them,
+
+27
+00:01:45,795 --> 00:01:47,125
+or mash them together.
+
+28
+00:01:47,125 --> 00:01:50,295
+And whether or not the final
+result has quotes is dependent
+
+29
+00:01:50,295 --> 00:01:53,595
+on whether or not the left hand
+string had quotes or not
+
+30
+00:01:53,595 --> 00:01:55,240
+going into the arithmetic
+operation.
+
+31
+00:01:55,240 --> 00:01:58,165
+
+
+32
+00:01:58,165 --> 00:02:00,865
+When performing arithmetic in
+Sass, it's going to attempt to
+
+33
+00:02:00,865 --> 00:02:02,605
+combine any units that
+don't match.
+
+34
+00:02:02,605 --> 00:02:06,265
+So in this case, we have pixels
+added to points, and
+
+35
+00:02:06,265 --> 00:02:08,755
+Sass can make that conversion
+for us.
+
+36
+00:02:08,755 --> 00:02:11,875
+If we use the relative ends
+though, instead, it's not able
+
+37
+00:02:11,875 --> 00:02:13,695
+to make that conversion,
+and the Sass
+
+38
+00:02:13,695 --> 00:02:15,745
+compiler throws an error.
+
+39
+00:02:15,745 --> 00:02:19,425
+Sass isn't able to set a hard
+pixel value to em since it's a
+
+40
+00:02:19,425 --> 00:02:21,035
+relative unit.
+
+41
+00:02:21,035 --> 00:02:23,325
+There are a number of predefined
+utility functions
+
+42
+00:02:23,325 --> 00:02:25,995
+in Sass to help us with
+math operations.
+
+43
+00:02:25,995 --> 00:02:29,275
+We have the ability to round to
+the nearest whole number,
+
+44
+00:02:29,275 --> 00:02:32,175
+round up to the nearest whole
+number, round down to the
+
+45
+00:02:32,175 --> 00:02:35,715
+nearest whole number, get the
+absolute value, pick out the
+
+46
+00:02:35,715 --> 00:02:39,815
+minimum or maximum value of a
+list, and return a percentage
+
+47
+00:02:39,815 --> 00:02:43,235
+based on a number input.
+
+48
+00:02:43,235 --> 00:02:45,685
+We can call these functions in
+the same way that we did
+
+49
+00:02:45,685 --> 00:02:48,325
+custom functions like our
+fluidize function earlier.
+
+50
+00:02:48,325 --> 00:02:54,055
+So using the ceiling function
+here on 1.2, output's 2.
+
+51
+00:02:54,055 --> 00:02:56,875
+As I mentioned before, we're
+able to replace our fluidize
+
+52
+00:02:56,875 --> 00:02:59,855
+function with a built in
+function of percentage.
+
+53
+00:02:59,855 --> 00:03:02,585
+Here, using percentage, I can
+pass in the target and the
+
+54
+00:03:02,585 --> 00:03:05,885
+context as a division operation,
+and the output is a
+
+55
+00:03:05,885 --> 00:03:07,905
+percentage.
+
+56
+00:03:07,905 --> 00:03:10,385
+It's worth noting with this
+operation, if you find
+
+57
+00:03:10,385 --> 00:03:12,955
+yourself using the same context
+multiple times, you
+
+58
+00:03:12,955 --> 00:03:16,135
+can go ahead and set the context
+to a variable and then
+
+59
+00:03:16,135 --> 00:03:18,825
+re-use that in the percentage
+function as you move through
+
+60
+00:03:18,825 --> 00:03:22,255
+your style sheet.
+
+61
+00:03:22,255 --> 00:03:25,465
+Here's how Sass improves our
+ability to handle color.
+
+62
+00:03:25,465 --> 00:03:28,335
+Not only are we able to set
+color values to variables to
+
+63
+00:03:28,335 --> 00:03:31,795
+recall them later, we're also
+able to use pre-built color
+
+64
+00:03:31,795 --> 00:03:34,425
+utility functions that we'll
+go into soon to alter our
+
+65
+00:03:34,425 --> 00:03:37,085
+colors, as well as use
+shorthands for easy
+
+66
+00:03:37,085 --> 00:03:39,865
+representations of certain
+types of colors.
+
+67
+00:03:39,865 --> 00:03:41,925
+First up, we're able
+to perform math
+
+68
+00:03:41,925 --> 00:03:43,905
+operations on our colors.
+
+69
+00:03:43,905 --> 00:03:46,675
+Here, we're setting a color base
+and performing addition
+
+70
+00:03:46,675 --> 00:03:48,465
+to another hex value.
+
+71
+00:03:48,465 --> 00:03:51,915
+When this compiles, we go from
+our initial dark gray swatch
+
+72
+00:03:51,915 --> 00:03:56,165
+to the swatch shown next to
+our new background color.
+
+73
+00:03:56,165 --> 00:04:02,135
+We're also able to perform
+subtraction, multiplication,
+
+74
+00:04:02,135 --> 00:04:04,100
+and division to any
+color value.
+
+75
+00:04:04,100 --> 00:04:07,315
+
+
+76
+00:04:07,315 --> 00:04:09,235
+This is a neat trick, but
+it's not something I
+
+77
+00:04:09,235 --> 00:04:10,235
+would normally use.
+
+78
+00:04:10,235 --> 00:04:12,555
+Later on in the level, we'll
+be going into color utility
+
+79
+00:04:12,555 --> 00:04:15,635
+functions that give us a more
+predictable and maintainable
+
+80
+00:04:15,635 --> 00:04:18,375
+version of doing this
+sort of operation.
+
+81
+00:04:18,375 --> 00:04:21,605
+When storing color values and
+variables, inevitably, we'll
+
+82
+00:04:21,605 --> 00:04:24,575
+run into this situation where
+you want to use that hex value
+
+83
+00:04:24,575 --> 00:04:27,475
+in an RGBA operation.
+
+84
+00:04:27,475 --> 00:04:30,515
+Normally, we'd have to manually
+find the RGB values
+
+85
+00:04:30,515 --> 00:04:33,415
+for that hex value to use
+RGBA and get it partial
+
+86
+00:04:33,415 --> 00:04:34,735
+transparency.
+
+87
+00:04:34,735 --> 00:04:37,755
+However, in Sass, we're afforded
+a shorthand way of
+
+88
+00:04:37,755 --> 00:04:41,925
+doing RGBA in which we can pass
+that variable directly as
+
+89
+00:04:41,925 --> 00:04:44,435
+the first argument in RGBA.
+
+90
+00:04:44,435 --> 00:04:47,435
+We aren't just limited to
+passing variables as that
+
+91
+00:04:47,435 --> 00:04:48,195
+argument though.
+
+92
+00:04:48,195 --> 00:04:51,245
+We're still able to pass any
+type of color as the first
+
+93
+00:04:51,245 --> 00:04:54,354
+argument in RGBA, and it'll
+automatically do the
+
+94
+00:04:54,354 --> 00:04:55,604
+conversion for us.
+
+95
+00:04:55,604 --> 00:04:57,585
+
+
+96
+00:04:57,585 --> 00:04:59,495
+Now, we'll go into those
+aforementioned color
+
+97
+00:04:59,495 --> 00:05:01,985
+functions, and the significance
+of these really
+
+98
+00:05:01,985 --> 00:05:03,615
+can't be overstated.
+
+99
+00:05:03,615 --> 00:05:06,055
+They allow us to make
+alterations to color that are
+
+100
+00:05:06,055 --> 00:05:09,155
+predictable, maintainable,
+and remove the need for
+
+101
+00:05:09,155 --> 00:05:12,015
+third-party apps like Photoshop,
+and finding slight
+
+102
+00:05:12,015 --> 00:05:14,905
+alterations to the colors we
+already have the values for.
+
+103
+00:05:14,905 --> 00:05:18,345
+First up, we'll set a color
+value of dark gray again and
+
+104
+00:05:18,345 --> 00:05:19,135
+look at lighten.
+
+105
+00:05:19,135 --> 00:05:23,295
+So the lighten color utility
+function allows us to pass an
+
+106
+00:05:23,295 --> 00:05:26,605
+argument of a color and an
+argument of a percent, and it
+
+107
+00:05:26,605 --> 00:05:29,575
+will lighten that color by that
+percent, winding up with
+
+108
+00:05:29,575 --> 00:05:31,765
+this swatch.
+
+109
+00:05:31,765 --> 00:05:34,085
+We're also able to darken
+in much the same way.
+
+110
+00:05:34,085 --> 00:05:37,215
+We pass the color value and a
+percent, and it darkens the
+
+111
+00:05:37,215 --> 00:05:38,465
+color for us.
+
+112
+00:05:38,465 --> 00:05:41,685
+
+
+113
+00:05:41,685 --> 00:05:44,985
+Similarly, we can change the
+intensity of the color via its
+
+114
+00:05:44,985 --> 00:05:46,175
+saturation.
+
+115
+00:05:46,175 --> 00:05:49,335
+Here, we're starting off with
+a green swatch, and we will
+
+116
+00:05:49,335 --> 00:05:53,295
+saturate it by 20% using the
+saturate function, giving us a
+
+117
+00:05:53,295 --> 00:05:55,025
+more intense color.
+
+118
+00:05:55,025 --> 00:05:58,485
+We can also desaturate it using
+the desaturate function,
+
+119
+00:05:58,485 --> 00:06:00,595
+giving us a less
+intense color.
+
+120
+00:06:00,595 --> 00:06:03,505
+We're also able to mix two
+color values together.
+
+121
+00:06:03,505 --> 00:06:06,725
+Here, we're going to take a blue
+and a yellow and mix them
+
+122
+00:06:06,725 --> 00:06:08,725
+together to form a green.
+
+123
+00:06:08,725 --> 00:06:12,175
+The mix utility function takes
+an optional third argument,
+
+124
+00:06:12,175 --> 00:06:14,275
+which changes the percentage
+of the first
+
+125
+00:06:14,275 --> 00:06:15,245
+color that's used.
+
+126
+00:06:15,245 --> 00:06:17,865
+So in the second case, we're
+going to change the amount of
+
+127
+00:06:17,865 --> 00:06:21,985
+yellow used to 30%, meaning 70%
+of blue is used, and we
+
+128
+00:06:21,985 --> 00:06:23,975
+wind up with a more
+teal-ish color.
+
+129
+00:06:23,975 --> 00:06:27,485
+
+
+130
+00:06:27,485 --> 00:06:30,305
+Other color utility functions
+include gray scale, which will
+
+131
+00:06:30,305 --> 00:06:33,445
+return the gray scale
+value of our green.
+
+132
+00:06:33,445 --> 00:06:36,685
+We're also able to invert our
+green, giving us the opposite
+
+133
+00:06:36,685 --> 00:06:40,535
+of each of the R, G, and B
+values of our initial color.
+
+134
+00:06:40,535 --> 00:06:43,785
+And we can use complement to
+find the opposing color wheel
+
+135
+00:06:43,785 --> 00:06:45,465
+value of the color we pass in.
+
+136
+00:06:45,465 --> 00:06:48,145
+
+
+137
+00:06:48,145 --> 00:06:50,025
+We started you off with some
+of the more useful color
+
+138
+00:06:50,025 --> 00:06:52,255
+utility functions, but there
+are a lot more, so we
+
+139
+00:06:52,255 --> 00:06:55,465
+definitely recommend visiting
+the Sass documentation to see
+
+140
+00:06:55,465 --> 00:06:57,865
+the rest of what
+colors can do.
+
+141
+00:06:57,865 --> 00:06:59,235
+That does it for Level Six.
+
+142
+00:06:59,235 --> 00:07:01,635
+It's time to apply what you've
+learned in Math & Color to
+
+143
+00:07:01,635 --> 00:07:02,515
+the challenges.
+
+144
+00:07:02,515 --> 00:07:03,785
+We'll see you again
+in Level Seven.
