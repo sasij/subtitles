@@ -1,0 +1,441 @@
+1
+00:00:00,000 --> 00:00:26,460
+[MUSIC PLAYING]
+
+2
+00:00:26,460 --> 00:00:27,845
+You're watching Testing
+with RSpec.
+
+3
+00:00:27,845 --> 00:00:28,815
+This is Level 4.
+
+4
+00:00:28,815 --> 00:00:33,420
+We're gonna talk about hooks,
+shared examples, and tags.
+
+5
+00:00:33,420 --> 00:00:35,500
+So in the previous level,
+Greg showed you how to
+
+6
+00:00:35,500 --> 00:00:36,500
+organize your code.
+
+7
+00:00:36,500 --> 00:00:39,100
+In this level, we're gonna look
+at how to dry things up a
+
+8
+00:00:39,100 --> 00:00:41,850
+little more using something
+called hooks.
+
+9
+00:00:41,850 --> 00:00:45,100
+In this spec, we have two
+examples that both call the
+
+10
+00:00:45,100 --> 00:00:48,260
+hungry method before they
+run their expectation.
+
+11
+00:00:48,260 --> 00:00:51,190
+We can re-factor this code by
+putting this hungry call
+
+12
+00:00:51,190 --> 00:00:54,490
+inside of a before block that
+will run once before every
+
+13
+00:00:54,490 --> 00:00:56,340
+example we have in our spec.
+
+14
+00:00:56,340 --> 00:00:59,690
+By default, before
+runs each time an
+
+15
+00:00:59,690 --> 00:01:01,800
+example is about to run.
+
+16
+00:01:01,800 --> 00:01:06,190
+You can also set it to run
+before all examples or after
+
+17
+00:01:06,190 --> 00:01:09,210
+each or after all.
+
+18
+00:01:09,210 --> 00:01:12,330
+Let's take a look at another
+example where we're using this
+
+19
+00:01:12,330 --> 00:01:14,830
+hungry call not only
+in the same context
+
+20
+00:01:14,830 --> 00:01:16,530
+but a different context.
+
+21
+00:01:16,530 --> 00:01:18,560
+We can use a before block
+here to call the
+
+22
+00:01:18,560 --> 00:01:19,730
+zombie.hungry method.
+
+23
+00:01:19,730 --> 00:01:23,200
+And it will execute before each
+example, even the ones
+
+24
+00:01:23,200 --> 00:01:25,570
+deeply nested within
+the context.
+
+25
+00:01:25,570 --> 00:01:28,410
+Within our context block,
+there's still some duplication
+
+26
+00:01:28,410 --> 00:01:31,080
+we can get rid of by
+using a before
+
+27
+00:01:31,080 --> 00:01:33,210
+block inside the context.
+
+28
+00:01:33,210 --> 00:01:36,420
+So we could say something like,
+before zombie.vegetarian
+
+29
+00:01:36,420 --> 00:01:37,460
+equals true.
+
+30
+00:01:37,460 --> 00:01:41,540
+And it will be set for each
+of those nested examples.
+
+31
+00:01:41,540 --> 00:01:42,970
+It's time for a new topic.
+
+32
+00:01:42,970 --> 00:01:44,770
+We're gonna look at
+shared examples.
+
+33
+00:01:44,770 --> 00:01:48,470
+And we have two specs for two
+different classes here that
+
+34
+00:01:48,470 --> 00:01:51,550
+both use the same kind
+of behavior.
+
+35
+00:01:51,550 --> 00:01:54,470
+They're both checking to see
+if the pulse of their
+
+36
+00:01:54,470 --> 00:01:57,350
+creature, zombie or
+vampire, is false.
+
+37
+00:01:57,350 --> 00:02:00,780
+What we can do here is extract
+these examples into a shared
+
+38
+00:02:00,780 --> 00:02:04,030
+example we can use
+in both specs.
+
+39
+00:02:04,030 --> 00:02:06,940
+Let's assume our shared example
+will work like this.
+
+40
+00:02:06,940 --> 00:02:09,870
+We want to check the behavior
+of something, and we want to
+
+41
+00:02:09,870 --> 00:02:12,920
+make sure that the zombie
+behaves like something that is
+
+42
+00:02:12,920 --> 00:02:14,950
+undead and doesn't
+have a pulse--
+
+43
+00:02:14,950 --> 00:02:16,210
+the vampire as well.
+
+44
+00:02:16,210 --> 00:02:18,490
+We can create our shared example
+within the specs
+
+45
+00:02:18,490 --> 00:02:21,380
+support directory we talked
+about in Level 2.
+
+46
+00:02:21,380 --> 00:02:25,950
+And right here, we create a
+shared_examples_for block,
+
+47
+00:02:25,950 --> 00:02:29,410
+pass it the undead as the name
+of the shared example.
+
+48
+00:02:29,410 --> 00:02:32,130
+And within that
+shared_examples_for block, we
+
+49
+00:02:32,130 --> 00:02:36,190
+can pass the example we were
+using in those two specs and
+
+50
+00:02:36,190 --> 00:02:39,130
+make sure that we set the
+expectation on the subject,
+
+51
+00:02:39,130 --> 00:02:41,620
+which will be either the
+zombie or the vampire
+
+52
+00:02:41,620 --> 00:02:44,500
+depending on which one
+is running this.
+
+53
+00:02:44,500 --> 00:02:47,010
+We saw in Level 3 that it could
+be confusing to use an
+
+54
+00:02:47,010 --> 00:02:48,100
+implicit subject.
+
+55
+00:02:48,100 --> 00:02:51,420
+So instead of doing that, we
+can send an explicit let
+
+56
+00:02:51,420 --> 00:02:55,960
+called undead to which we're
+gonna pass a zombie.new or a
+
+57
+00:02:55,960 --> 00:02:57,180
+vampire.new.
+
+58
+00:02:57,180 --> 00:02:58,930
+And in the shared example,
+we're gonna
+
+59
+00:02:58,930 --> 00:03:01,160
+replace subject by undead.
+
+60
+00:03:01,160 --> 00:03:04,590
+Another way we can write this
+is by sending an instance of
+
+61
+00:03:04,590 --> 00:03:08,180
+zombie as the second parameter
+to our shared example.
+
+62
+00:03:08,180 --> 00:03:11,020
+The shared example received the
+instance of zombie as a
+
+63
+00:03:11,020 --> 00:03:14,420
+block argument we can use
+just like we did before.
+
+64
+00:03:14,420 --> 00:03:16,930
+
+
+65
+00:03:16,930 --> 00:03:20,540
+Another great feature of RSpec
+is that we can tag or describe
+
+66
+00:03:20,540 --> 00:03:24,110
+context in it blocks so we can
+run only specific part of our
+
+67
+00:03:24,110 --> 00:03:25,910
+specs from the command line.
+
+68
+00:03:25,910 --> 00:03:29,050
+
+
+69
+00:03:29,050 --> 00:03:32,650
+Here you can see two tags,
+focus: true on the
+
+70
+00:03:32,650 --> 00:03:37,940
+context and vegan: true
+on the second example.
+
+71
+00:03:37,940 --> 00:03:42,150
+When we run our specs, we can
+decide to only run the context
+
+72
+00:03:42,150 --> 00:03:44,980
+that has the tags focus.
+
+73
+00:03:44,980 --> 00:03:47,360
+If you don't want to put these
+options in the command line
+
+74
+00:03:47,360 --> 00:03:49,870
+every time you run a test, what
+you can do is put them in
+
+75
+00:03:49,870 --> 00:03:54,900
+the spec_helpers configure
+block like this.
+
+76
+00:03:54,900 --> 00:03:57,840
+So if you run the RSpec command
+once again, you'll see
+
+77
+00:03:57,840 --> 00:04:00,135
+that it still only runs
+the focus examples.
+
+78
+00:04:00,135 --> 00:04:04,130
+
+
+79
+00:04:04,130 --> 00:04:06,610
+Another great use case for this
+is if you have a bunch of
+
+80
+00:04:06,610 --> 00:04:08,980
+examples that are really
+slow, you can tag them
+
+81
+00:04:08,980 --> 00:04:10,300
+with the slow tag.
+
+82
+00:04:10,300 --> 00:04:12,670
+Then when you run the RSpec
+command, you'll be able to
+
+83
+00:04:12,670 --> 00:04:15,990
+filter out those specific
+examples from the test suite
+
+84
+00:04:15,990 --> 00:04:18,500
+using the tilde.
+
+85
+00:04:18,500 --> 00:04:21,350
+If by default you want to skip
+those slow examples, you can
+
+86
+00:04:21,350 --> 00:04:23,460
+also set that in the
+configuration
+
+87
+00:04:23,460 --> 00:04:24,710
+for your spec help.
+
+88
+00:04:24,710 --> 00:04:28,610
+
+
+89
+00:04:28,610 --> 00:04:31,100
+Later, you can go back
+and run just the slow
+
+90
+00:04:31,100 --> 00:04:32,350
+examples if you want.
+
+91
+00:04:32,350 --> 00:04:36,480
+
+
+92
+00:04:36,480 --> 00:04:39,200
+That was a lot of new concept,
+so have fun trying them out in
+
+93
+00:04:39,200 --> 00:04:41,340
+the challenges and I'll see
+you a little later.
+
+94
+00:04:41,340 --> 00:04:42,645

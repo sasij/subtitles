@@ -1,0 +1,567 @@
+1
+00:00:00,000 --> 00:00:26,920
+[MUSIC PLAYING]
+
+2
+00:00:26,920 --> 00:00:27,587
+This is Testing with RSpec.
+
+3
+00:00:27,587 --> 00:00:29,040
+Looks like you made
+it to level six.
+
+4
+00:00:29,040 --> 00:00:31,840
+We're going to talk about
+custom matchers.
+
+5
+00:00:31,840 --> 00:00:34,610
+Here we have a Zombie model with
+a validation on name to
+
+6
+00:00:34,610 --> 00:00:35,930
+make sure that it's present.
+
+7
+00:00:35,930 --> 00:00:38,400
+The example that tests this
+validation might look
+
+8
+00:00:38,400 --> 00:00:40,150
+something like this.
+
+9
+00:00:40,150 --> 00:00:43,130
+First it would instantiate
+a zombie with no name.
+
+10
+00:00:43,130 --> 00:00:46,100
+Then it would test that the
+zombie is valid and check that
+
+11
+00:00:46,100 --> 00:00:48,820
+it does have errors on
+the name column.
+
+12
+00:00:48,820 --> 00:00:51,130
+This is the kind of
+functionality we might need a
+
+13
+00:00:51,130 --> 00:00:52,960
+lot in our specs.
+
+14
+00:00:52,960 --> 00:00:56,680
+So what we should do is create
+a custom matcher for that.
+
+15
+00:00:56,680 --> 00:01:00,040
+It should look something like
+validate_presence_of_name.
+
+16
+00:01:00,040 --> 00:01:04,550
+Now let's implement this
+custom matcher.
+
+17
+00:01:04,550 --> 00:01:06,940
+We're going to create this
+custom matcher in the spec
+
+18
+00:01:06,940 --> 00:01:09,690
+support folder we talked about
+first in level two.
+
+19
+00:01:09,690 --> 00:01:11,930
+We're going to call it
+ValidatePresenceOfName and
+
+20
+00:01:11,930 --> 00:01:13,060
+it's going to be a module.
+
+21
+00:01:13,060 --> 00:01:16,890
+On that module, there's going to
+be a class called Matcher.
+
+22
+00:01:16,890 --> 00:01:19,130
+In that class, we'll have a
+method called matches that
+
+23
+00:01:19,130 --> 00:01:22,340
+does what our validation
+example used to do.
+
+24
+00:01:22,340 --> 00:01:24,610
+This method should return
+true or false.
+
+25
+00:01:24,610 --> 00:01:27,260
+And if it's false, the
+expectation will fail.
+
+26
+00:01:27,260 --> 00:01:28,720
+We'll need another
+method called
+
+27
+00:01:28,720 --> 00:01:32,040
+validate_presence_of_name in
+which we'll simply instantiate
+
+28
+00:01:32,040 --> 00:01:33,990
+the matcher we just
+created above.
+
+29
+00:01:33,990 --> 00:01:36,610
+And finally, we need to
+configure RSpec to include
+
+30
+00:01:36,610 --> 00:01:38,230
+this custom matcher.
+
+31
+00:01:38,230 --> 00:01:41,680
+A good practice here is to set
+the type of the custom matcher
+
+32
+00:01:41,680 --> 00:01:44,370
+to model, if we're using
+this for models.
+
+33
+00:01:44,370 --> 00:01:47,110
+This way, it will only be
+included if we're running
+
+34
+00:01:47,110 --> 00:01:49,890
+model specs.
+
+35
+00:01:49,890 --> 00:01:53,130
+If we run our test now,
+it should succeed.
+
+36
+00:01:53,130 --> 00:01:55,450
+The problem with this custom
+matcher is that it's not going
+
+37
+00:01:55,450 --> 00:01:58,160
+to be really useful beyond
+name attributes.
+
+38
+00:01:58,160 --> 00:02:01,530
+We want it to be usable with
+pretty much any attribute.
+
+39
+00:02:01,530 --> 00:02:04,270
+So we're going to give our
+custom matcher a parameter so
+
+40
+00:02:04,270 --> 00:02:07,520
+we can send any attribute
+to it.
+
+41
+00:02:07,520 --> 00:02:09,729
+If we run our spec now,
+it will fail.
+
+42
+00:02:09,729 --> 00:02:12,390
+So let's fix our custom matcher
+to behave the way we
+
+43
+00:02:12,390 --> 00:02:15,400
+expect it to.
+
+44
+00:02:15,400 --> 00:02:18,050
+We're going to refactor our
+custom matcher by first
+
+45
+00:02:18,050 --> 00:02:22,190
+accepting an attribute, and then
+sending that attribute to
+
+46
+00:02:22,190 --> 00:02:25,000
+the Matcher class when
+we instantiate it.
+
+47
+00:02:25,000 --> 00:02:28,250
+Once we initialize this class,
+we'll have to store this
+
+48
+00:02:28,250 --> 00:02:30,960
+attribute in an instance
+variable, and we'll simply
+
+49
+00:02:30,960 --> 00:02:33,630
+have to use the attribute
+instance variable in our
+
+50
+00:02:33,630 --> 00:02:36,730
+matches? method to check that
+the error message contains
+
+51
+00:02:36,730 --> 00:02:37,980
+that attribute name.
+
+52
+00:02:37,980 --> 00:02:40,820
+
+
+53
+00:02:40,820 --> 00:02:44,980
+If we run our spec, it succeeds,
+as expected.
+
+54
+00:02:44,980 --> 00:02:47,810
+
+
+55
+00:02:47,810 --> 00:02:49,730
+What if someone removes
+the validation and
+
+56
+00:02:49,730 --> 00:02:52,590
+suddenly this fails.
+
+57
+00:02:52,590 --> 00:02:55,300
+When we run the spec, the
+error output is not very
+
+58
+00:02:55,300 --> 00:02:59,040
+specific, and we get a
+NoMethodError undefined method
+
+59
+00:02:59,040 --> 00:03:00,280
+failure_message.
+
+60
+00:03:00,280 --> 00:03:02,550
+That means our custom
+matcher does not
+
+61
+00:03:02,550 --> 00:03:04,080
+have a failure message.
+
+62
+00:03:04,080 --> 00:03:06,030
+So let's fix that.
+
+63
+00:03:06,030 --> 00:03:09,110
+So inside our matches? method,
+we're going to save that model
+
+64
+00:03:09,110 --> 00:03:12,280
+in an instance variable so we
+can use its name in the
+
+65
+00:03:12,280 --> 00:03:14,280
+failure message.
+
+66
+00:03:14,280 --> 00:03:17,130
+Now we can define our failure
+message method, give it the
+
+67
+00:03:17,130 --> 00:03:21,070
+model class name, explain that
+it failed to validate, and
+
+68
+00:03:21,070 --> 00:03:24,410
+explain which attribute failed
+to validate, because we still
+
+69
+00:03:24,410 --> 00:03:26,770
+have this instance variable
+available to us.
+
+70
+00:03:26,770 --> 00:03:29,440
+And when the custom matcher
+doesn't fail, we might want to
+
+71
+00:03:29,440 --> 00:03:32,640
+also say why it validated
+successfully.
+
+72
+00:03:32,640 --> 00:03:35,290
+So we'll simply do the same
+thing and explain what
+
+73
+00:03:35,290 --> 00:03:40,530
+attribute was supposed to be
+there and was correctly there.
+
+74
+00:03:40,530 --> 00:03:42,950
+Now if we run our spec again
+while still missing the
+
+75
+00:03:42,950 --> 00:03:46,230
+validation on name, we'll see
+a proper error message that
+
+76
+00:03:46,230 --> 00:03:48,320
+tells us that it expected
+Zombie to
+
+77
+00:03:48,320 --> 00:03:51,150
+have an error on name.
+
+78
+00:03:51,150 --> 00:03:52,690
+So we're back to our
+Zombie model.
+
+79
+00:03:52,690 --> 00:03:56,080
+We've added the validation on
+name again, but we've added a
+
+80
+00:03:56,080 --> 00:03:58,550
+custom message when
+it errors out.
+
+81
+00:03:58,550 --> 00:04:01,880
+How would we test that with
+our custom matcher.
+
+82
+00:04:01,880 --> 00:04:04,940
+One way would be to chain a
+method called with_message on
+
+83
+00:04:04,940 --> 00:04:07,030
+it that passes a string
+it expects to
+
+84
+00:04:07,030 --> 00:04:08,620
+receive as an error.
+
+85
+00:04:08,620 --> 00:04:10,950
+This won't work right now, so
+we need to implement this in
+
+86
+00:04:10,950 --> 00:04:12,200
+our custom matcher.
+
+87
+00:04:12,200 --> 00:04:14,390
+
+
+88
+00:04:14,390 --> 00:04:17,820
+All presence validation errors
+in Rails return the "can't be
+
+89
+00:04:17,820 --> 00:04:19,750
+blank" string as an
+error message.
+
+90
+00:04:19,750 --> 00:04:23,160
+So we'll set that within our
+initialize method as an
+
+91
+00:04:23,160 --> 00:04:24,990
+instance variable message.
+
+92
+00:04:24,990 --> 00:04:27,370
+Then we'll define a with_message
+method that
+
+93
+00:04:27,370 --> 00:04:29,350
+accepts a message argument.
+
+94
+00:04:29,350 --> 00:04:31,560
+It can override the
+default message.
+
+95
+00:04:31,560 --> 00:04:34,510
+And finally, it returns itself
+to be able to be chained with
+
+96
+00:04:34,510 --> 00:04:36,120
+any other matcher.
+
+97
+00:04:36,120 --> 00:04:39,990
+In the matches? method, we set
+the model, run validations,
+
+98
+00:04:39,990 --> 00:04:43,230
+then we get all the errors for
+that specific attribute and
+
+99
+00:04:43,230 --> 00:04:46,890
+check to see that the message
+we sent to with_message is
+
+100
+00:04:46,890 --> 00:04:48,140
+stored in that array.
+
+101
+00:04:48,140 --> 00:04:53,210
+
+
+102
+00:04:53,210 --> 00:04:56,120
+Final step, we run our spec,
+and we see that everything
+
+103
+00:04:56,120 --> 00:04:58,080
+goes according to plan.
+
+104
+00:04:58,080 --> 00:05:00,540
+We validated the presence of
+name and the message was the
+
+105
+00:05:00,540 --> 00:05:03,210
+one we set.
+
+106
+00:05:03,210 --> 00:05:05,670
+So this custom matcher we just
+made is actually something
+
+107
+00:05:05,670 --> 00:05:08,490
+you'll find in the Shoulda gem
+that gives you a bunch of
+
+108
+00:05:08,490 --> 00:05:11,830
+custom matchers you can use for
+instance, to validate the
+
+109
+00:05:11,830 --> 00:05:15,920
+presence of, ensure inclusion
+of, and check that a model has
+
+110
+00:05:15,920 --> 00:05:19,220
+a specific relationship with
+another with specific options.
+
+111
+00:05:19,220 --> 00:05:23,850
+And you can even chain those
+together the same way we did.
+
+112
+00:05:23,850 --> 00:05:26,340
+For instance, if we had a Zombie
+model, we could check
+
+113
+00:05:26,340 --> 00:05:29,040
+that it has many tweets by
+running should_have_many
+
+114
+00:05:29,040 --> 00:05:31,840
+tweets, that it is dependent
+destroy, and has a
+
+115
+00:05:31,840 --> 00:05:34,500
+class name of Tweet.
+
+116
+00:05:34,500 --> 00:05:35,810
+So that's it for level six.
+
+117
+00:05:35,810 --> 00:05:38,060
+Good luck with the last
+stretch of challenges.
+
+118
+00:05:38,060 --> 00:05:40,030
+We'll see you in the wrap-up
+video to tell you more about
+
+119
+00:05:40,030 --> 00:05:42,070
+where to continue learning
+testing with RSpec.
+
+120
+00:05:42,070 --> 00:05:43,808

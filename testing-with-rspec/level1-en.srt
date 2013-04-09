@@ -1,0 +1,927 @@
+1
+00:00:00,000 --> 00:00:26,950
+[MUSIC PLAYING]
+
+2
+00:00:26,950 --> 00:00:28,553
+You're watching testing
+with RSpec.
+
+3
+00:00:28,553 --> 00:00:30,930
+I'm Gregg Pollack and this is
+level one where we're going to
+
+4
+00:00:30,930 --> 00:00:33,560
+go over an introduction to RSpec
+and start writing our
+
+5
+00:00:33,560 --> 00:00:35,870
+first specifications.
+
+6
+00:00:35,870 --> 00:00:38,320
+RSpec is one of the most
+popular Ruby testing
+
+7
+00:00:38,320 --> 00:00:38,920
+frameworks.
+
+8
+00:00:38,920 --> 00:00:41,200
+And because it is so popular,
+there's a huge community of
+
+9
+00:00:41,200 --> 00:00:43,300
+developers behind it which
+means there's lots of
+
+10
+00:00:43,300 --> 00:00:45,420
+extensions and add-ons to it.
+
+11
+00:00:45,420 --> 00:00:49,230
+It also has a less
+Ruby-like syntax.
+
+12
+00:00:49,230 --> 00:00:51,000
+You might call it a
+domain-specific
+
+13
+00:00:51,000 --> 00:00:52,690
+language for testing.
+
+14
+00:00:52,690 --> 00:00:54,430
+In case you're not familiar
+with that term,
+
+15
+00:00:54,430 --> 00:00:57,800
+domain-specific language, or
+DSL, it means that we've taken
+
+16
+00:00:57,800 --> 00:01:01,080
+Ruby and RSpec has added
+additional language features
+
+17
+00:01:01,080 --> 00:01:04,200
+on top of that to create the
+most efficient language for
+
+18
+00:01:04,200 --> 00:01:05,980
+testing your code.
+
+19
+00:01:05,980 --> 00:01:09,340
+RSpec also has very good outputs
+when you run your
+
+20
+00:01:09,340 --> 00:01:12,860
+tests so you can very easily
+see what has gone wrong in
+
+21
+00:01:12,860 --> 00:01:15,940
+your code so you can
+quickly debug it.
+
+22
+00:01:15,940 --> 00:01:19,340
+RSpec evolved out of this idea
+called behavior-driven
+
+23
+00:01:19,340 --> 00:01:21,330
+development, or BDD.
+
+24
+00:01:21,330 --> 00:01:22,880
+There are several types
+of testing.
+
+25
+00:01:22,880 --> 00:01:24,700
+You've got verification
+testing, test-driven
+
+26
+00:01:24,700 --> 00:01:27,260
+development, and you could say
+one level above that is
+
+27
+00:01:27,260 --> 00:01:30,000
+behavior-driven development
+where we really focus on
+
+28
+00:01:30,000 --> 00:01:32,900
+describing the behavior
+of our application.
+
+29
+00:01:32,900 --> 00:01:36,190
+And you'll see that RSpec and
+the RSpec syntax makes it
+
+30
+00:01:36,190 --> 00:01:37,440
+really easy to do this.
+
+31
+00:01:37,440 --> 00:01:40,420
+
+
+32
+00:01:40,420 --> 00:01:41,890
+All right.
+
+33
+00:01:41,890 --> 00:01:43,260
+Let's jump into building
+our first
+
+34
+00:01:43,260 --> 00:01:45,100
+RSpec application together.
+
+35
+00:01:45,100 --> 00:01:47,380
+First step, obviously, we
+need to install the gem.
+
+36
+00:01:47,380 --> 00:01:50,010
+So we just type gem
+install rspec.
+
+37
+00:01:50,010 --> 00:01:53,810
+That's going to install RSpec
+and all of its dependencies.
+
+38
+00:01:53,810 --> 00:01:56,700
+Then inside of our project
+directory, we're going to call
+
+39
+00:01:56,700 --> 00:01:58,160
+rspec --init.
+
+40
+00:01:58,160 --> 00:02:01,090
+That's going to initialize two
+files for us-- the spec helper
+
+41
+00:02:01,090 --> 00:02:03,650
+and the .rspec file, which
+will go into more
+
+42
+00:02:03,650 --> 00:02:06,860
+detail in level two.
+
+43
+00:02:06,860 --> 00:02:09,190
+In our application, we're going
+to be building a zombie.
+
+44
+00:02:09,190 --> 00:02:10,419
+Big surprise there.
+
+45
+00:02:10,419 --> 00:02:15,890
+That zombie.rb file is going to
+live in our /lib directory.
+
+46
+00:02:15,890 --> 00:02:18,970
+So let's go ahead and create the
+first test, before we even
+
+47
+00:02:18,970 --> 00:02:20,760
+write the zombie, that
+describes the
+
+48
+00:02:20,760 --> 00:02:23,930
+behavior of our zombie.
+
+49
+00:02:23,930 --> 00:02:27,480
+In RSpec, instead of using the
+word test we often substitute
+
+50
+00:02:27,480 --> 00:02:29,080
+the word specification.
+
+51
+00:02:29,080 --> 00:02:31,560
+But it basically means
+the same thing.
+
+52
+00:02:31,560 --> 00:02:34,030
+This is why we're going to put
+all of our specifications in
+
+53
+00:02:34,030 --> 00:02:35,900
+the spec directory.
+
+54
+00:02:35,900 --> 00:02:39,040
+Our zombies lives in that lib
+directory, so we're going to
+
+55
+00:02:39,040 --> 00:02:42,950
+put our first zombie test inside
+that lib directory.
+
+56
+00:02:42,950 --> 00:02:44,270
+Oops, I said test.
+
+57
+00:02:44,270 --> 00:02:45,830
+I meant specification.
+
+58
+00:02:45,830 --> 00:02:47,840
+And so our zombie specification
+is going to be
+
+59
+00:02:47,840 --> 00:02:49,090
+called zombie_spec.rb .
+
+60
+00:02:49,090 --> 00:02:51,470
+
+
+61
+00:02:51,470 --> 00:02:54,680
+With test unit, remember that
+would have been zombie_test.
+
+62
+00:02:54,680 --> 00:02:56,330
+But we use specifications.
+
+63
+00:02:56,330 --> 00:02:57,580
+So we use zombie_spec.rb.
+
+64
+00:02:57,580 --> 00:03:01,510
+
+
+65
+00:03:01,510 --> 00:03:03,750
+Inside this file we're going
+to require the spec helper,
+
+66
+00:03:03,750 --> 00:03:05,240
+which will load the
+configuration for the
+
+67
+00:03:05,240 --> 00:03:06,560
+specification.
+
+68
+00:03:06,560 --> 00:03:09,300
+Now we need to describe how we
+want a zombie to behave.
+
+69
+00:03:09,300 --> 00:03:12,450
+So we start with writing
+a describe block.
+
+70
+00:03:12,450 --> 00:03:14,970
+And we say describe
+"A Zombie" do.
+
+71
+00:03:14,970 --> 00:03:17,470
+And we would then
+put our test--
+
+72
+00:03:17,470 --> 00:03:19,620
+but we don't call them
+tests in here.
+
+73
+00:03:19,620 --> 00:03:21,400
+We call them examples.
+
+74
+00:03:21,400 --> 00:03:23,680
+Here's another terminology
+switch.
+
+75
+00:03:23,680 --> 00:03:28,040
+So we need to provide a lot of
+examples to test our zombie
+
+76
+00:03:28,040 --> 00:03:30,390
+inside of our specification.
+
+77
+00:03:30,390 --> 00:03:31,850
+Hope you followed.
+
+78
+00:03:31,850 --> 00:03:33,550
+We want our zombie
+to be named Ash.
+
+79
+00:03:33,550 --> 00:03:35,520
+So let's start describing
+that behavior.
+
+80
+00:03:35,520 --> 00:03:38,530
+We're going to do that and
+declare our first example by
+
+81
+00:03:38,530 --> 00:03:39,880
+using the it method.
+
+82
+00:03:39,880 --> 00:03:43,400
+So we're going to say
+it is named Ash.
+
+83
+00:03:43,400 --> 00:03:46,090
+We haven't fleshed out the
+example yet, but we're going
+
+84
+00:03:46,090 --> 00:03:48,100
+to run this spec anyways.
+
+85
+00:03:48,100 --> 00:03:51,280
+To do this on the command line,
+we simply write rspec
+
+86
+00:03:51,280 --> 00:03:54,360
+and then the full path
+to the file.
+
+87
+00:03:54,360 --> 00:03:56,790
+As you can see here, we have
+one pending example.
+
+88
+00:03:56,790 --> 00:03:58,680
+Before we flesh out that example
+though, I'm going to
+
+89
+00:03:58,680 --> 00:04:02,020
+show you a more typical syntax
+that you would use in your
+
+90
+00:04:02,020 --> 00:04:03,420
+specifications.
+
+91
+00:04:03,420 --> 00:04:07,480
+Instead of saying a zombie as
+a string at the top, instead
+
+92
+00:04:07,480 --> 00:04:10,270
+we're going to put the name of
+the class that we're writing
+
+93
+00:04:10,270 --> 00:04:12,230
+examples for.
+
+94
+00:04:12,230 --> 00:04:14,670
+So we write describe zombie.
+
+95
+00:04:14,670 --> 00:04:17,519
+If we run this test again,
+you're going to see-- uh oh.
+
+96
+00:04:17,519 --> 00:04:18,709
+It failed because--
+
+97
+00:04:18,709 --> 00:04:20,779
+well, we don't have that
+zombie class yet.
+
+98
+00:04:20,779 --> 00:04:22,830
+So let's go ahead
+and define it.
+
+99
+00:04:22,830 --> 00:04:24,730
+So as you can see above, inside
+of our lib directory
+
+100
+00:04:24,730 --> 00:04:26,330
+we're creating our zombie.rb.
+
+101
+00:04:26,330 --> 00:04:29,840
+All we're going to do inside
+there is declare our class.
+
+102
+00:04:29,840 --> 00:04:32,250
+Now back inside of our
+specification, all we need to
+
+103
+00:04:32,250 --> 00:04:34,960
+do is require that class.
+
+104
+00:04:34,960 --> 00:04:37,380
+Then we can rerun the
+specification on the command
+
+105
+00:04:37,380 --> 00:04:39,390
+line and here we are again.
+
+106
+00:04:39,390 --> 00:04:42,570
+We have one pending example.
+
+107
+00:04:42,570 --> 00:04:46,000
+Now let's write out the rest
+of that example by first
+
+108
+00:04:46,000 --> 00:04:48,600
+creating a new zombie.
+
+109
+00:04:48,600 --> 00:04:53,400
+Then we're going to write zombie
+name should equal Ash.
+
+110
+00:04:53,400 --> 00:04:55,800
+And we call that
+an expectation.
+
+111
+00:04:55,800 --> 00:04:58,080
+If you went through Rails
+Testing for Zombies, you might
+
+112
+00:04:58,080 --> 00:05:00,450
+have written an assertion which
+looks like this, with
+
+113
+00:05:00,450 --> 00:05:03,360
+assert equals Ash zombie name.
+
+114
+00:05:03,360 --> 00:05:06,100
+Whereas with RSpec, we would
+write it like this.
+
+115
+00:05:06,100 --> 00:05:08,360
+Zombie name should equal Ash.
+
+116
+00:05:08,360 --> 00:05:09,630
+And we call that--
+
+117
+00:05:09,630 --> 00:05:10,570
+not an assertion.
+
+118
+00:05:10,570 --> 00:05:13,100
+We call that an expectation.
+
+119
+00:05:13,100 --> 00:05:15,530
+And as you can see, it reads
+a lot better than those
+
+120
+00:05:15,530 --> 00:05:17,130
+assertions.
+
+121
+00:05:17,130 --> 00:05:19,735
+Now if we run the test again,
+it properly fails.
+
+122
+00:05:19,735 --> 00:05:20,470
+Woohoo.
+
+123
+00:05:20,470 --> 00:05:22,850
+We have our first failing
+valid test.
+
+124
+00:05:22,850 --> 00:05:26,260
+So now we can start implementing
+our zombie.
+
+125
+00:05:26,260 --> 00:05:28,120
+So inside of a zombie, we're
+going to declare
+
+126
+00:05:28,120 --> 00:05:29,780
+an attribute accessor.
+
+127
+00:05:29,780 --> 00:05:35,060
+And inside of our initialize
+method set its name to Ash.
+
+128
+00:05:35,060 --> 00:05:38,590
+So if we run our specification,
+it passes.
+
+129
+00:05:38,590 --> 00:05:41,970
+From here, let's go ahead and
+write another example inside
+
+130
+00:05:41,970 --> 00:05:43,610
+of our specification.
+
+131
+00:05:43,610 --> 00:05:46,360
+We're going to make sure zombie
+has no brains when it
+
+132
+00:05:46,360 --> 00:05:47,520
+gets instantiated.
+
+133
+00:05:47,520 --> 00:05:49,340
+So we create our new zombie.
+
+134
+00:05:49,340 --> 00:05:53,440
+We test that zombie brain
+should be less than one.
+
+135
+00:05:53,440 --> 00:05:55,560
+There's two components here
+you should be aware of.
+
+136
+00:05:55,560 --> 00:05:57,550
+Ah, more terminology.
+
+137
+00:05:57,550 --> 00:05:59,970
+The modifier is should.
+
+138
+00:05:59,970 --> 00:06:02,300
+Should is the modifier
+on our test.
+
+139
+00:06:02,300 --> 00:06:06,860
+And the matcher in this case
+is that less than sign.
+
+140
+00:06:06,860 --> 00:06:09,500
+Later on in this course we're
+going to be creating our own
+
+141
+00:06:09,500 --> 00:06:13,270
+custom matchers, which we
+combine with modifiers.
+
+142
+00:06:13,270 --> 00:06:15,500
+If we run this test, it doesn't
+
+143
+00:06:15,500 --> 00:06:17,250
+pass, as we would expect.
+
+144
+00:06:17,250 --> 00:06:19,890
+After writing the failing test,
+we can go back into
+
+145
+00:06:19,890 --> 00:06:21,170
+zombie class.
+
+146
+00:06:21,170 --> 00:06:24,920
+We can create a new attribute
+accessor with brains.
+
+147
+00:06:24,920 --> 00:06:28,410
+And on the initialize set
+brains equal to 0.
+
+148
+00:06:28,410 --> 00:06:32,140
+Then when we run the
+spec, it passes.
+
+149
+00:06:32,140 --> 00:06:34,460
+Let's take a look at a couple
+other examples of matchers that
+
+150
+00:06:34,460 --> 00:06:37,080
+you might use inside your
+specifications.
+
+151
+00:06:37,080 --> 00:06:40,510
+We can check that zombie.alive
+should equal false.
+
+152
+00:06:40,510 --> 00:06:44,840
+Another way we could write this
+is zombie.alive should be
+
+153
+00:06:44,840 --> 00:06:48,230
+false using the be matcher.
+
+154
+00:06:48,230 --> 00:06:51,300
+We can check that zombie.rotting
+should equal true, or
+
+155
+00:06:51,300 --> 00:06:52,840
+use the be true matcher.
+
+156
+00:06:52,840 --> 00:06:54,450
+We can check that height should
+be greater than 5 or
+
+157
+00:06:54,450 --> 00:06:56,450
+greater than or equal
+or less than.
+
+158
+00:06:56,450 --> 00:06:59,440
+We could also use the be matcher
+in there if we like
+
+159
+00:06:59,440 --> 00:07:00,380
+the way that reads.
+
+160
+00:07:00,380 --> 00:07:03,670
+We could say brains should
+be less than 1.
+
+161
+00:07:03,670 --> 00:07:05,410
+Completely optional.
+
+162
+00:07:05,410 --> 00:07:07,570
+Should, again, is
+the modifier.
+
+163
+00:07:07,570 --> 00:07:11,510
+And we can switch out that
+should modifier for should not
+
+164
+00:07:11,510 --> 00:07:14,210
+if you want to test that
+the opposite is true.
+
+165
+00:07:14,210 --> 00:07:16,620
+In Ruby occasionally you run
+into methods or you create
+
+166
+00:07:16,620 --> 00:07:19,570
+methods that end in the question
+mark, which means
+
+167
+00:07:19,570 --> 00:07:24,230
+it's a predicate method and that
+it returns true or false.
+
+168
+00:07:24,230 --> 00:07:26,750
+How would we test this
+predicate method?
+
+169
+00:07:26,750 --> 00:07:29,230
+We could write an example that
+looks like this to test that
+
+170
+00:07:29,230 --> 00:07:32,230
+zombie hungry should
+equals true.
+
+171
+00:07:32,230 --> 00:07:35,520
+However, there's a better
+way to write this.
+
+172
+00:07:35,520 --> 00:07:39,160
+We could use the be true matcher
+that we just saw.
+
+173
+00:07:39,160 --> 00:07:41,430
+We can also use a predicate
+matcher, which, as you can
+
+174
+00:07:41,430 --> 00:07:43,280
+see, reads really well.
+
+175
+00:07:43,280 --> 00:07:45,560
+Zombie should be hungry.
+
+176
+00:07:45,560 --> 00:07:49,280
+So that's going to call be
+hungry question mark method on
+
+177
+00:07:49,280 --> 00:07:50,560
+zombie and test it.
+
+178
+00:07:50,560 --> 00:07:53,080
+Now if we run the spec again
+from the command line, it
+
+179
+00:07:53,080 --> 00:07:54,330
+still passes.
+
+180
+00:07:54,330 --> 00:07:56,310
+
+
+181
+00:07:56,310 --> 00:07:58,670
+As you saw at the beginning of
+this level, one way to make an
+
+182
+00:07:58,670 --> 00:08:02,050
+example pending is to simply
+leave off the example body.
+
+183
+00:08:02,050 --> 00:08:04,410
+Just have the it without
+the do and the end.
+
+184
+00:08:04,410 --> 00:08:05,890
+And it will be pending.
+
+185
+00:08:05,890 --> 00:08:07,920
+There are two other ways,
+though, you can have pending
+
+186
+00:08:07,920 --> 00:08:11,670
+examples which could be useful
+if you're going back into a
+
+187
+00:08:11,670 --> 00:08:14,920
+big application and you have a
+lot of failing tests and you
+
+188
+00:08:14,920 --> 00:08:18,250
+want to make one pass at a time,
+you might want to make a
+
+189
+00:08:18,250 --> 00:08:22,300
+bunch of them pending and
+implement them one at a time.
+
+190
+00:08:22,300 --> 00:08:23,500
+You can do this in two
+different ways.
+
+191
+00:08:23,500 --> 00:08:27,450
+The first it is by putting
+an x before the it.
+
+192
+00:08:27,450 --> 00:08:29,420
+So you just put x it.
+
+193
+00:08:29,420 --> 00:08:32,150
+And that will cause the
+example to be pending.
+
+194
+00:08:32,150 --> 00:08:36,130
+You can also simply use the
+pending keyword inside of your
+
+195
+00:08:36,130 --> 00:08:40,340
+example, and that will cause
+the test to be pending.
+
+196
+00:08:40,340 --> 00:08:41,460
+That's all we have
+for level one.
+
+197
+00:08:41,460 --> 00:08:44,130
+It's time to get your hands
+dirty with the challenges.
+
+198
+00:08:44,130 --> 00:08:46,060
+And Olivier will
+see you in level two.
+
+199
+00:08:46,060 --> 00:08:47,610
+[MUSIC PLAYING]
