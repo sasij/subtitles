@@ -1,0 +1,799 @@
+1
+00:00:00,000 --> 00:00:00,280
+
+2
+00:00:00,280 --> 00:00:00,830
+Congratulations.
+
+3
+00:00:00,830 --> 00:00:03,040
+You've slain the zombies,
+completed the labs, almost
+
+4
+00:00:03,040 --> 00:00:05,730
+saved the princess, but she
+was in another castle, and
+
+5
+00:00:05,730 --> 00:00:07,320
+acquired some Rails knowledge.
+
+6
+00:00:07,320 --> 00:00:10,270
+All right, so you've found
+yourself on the wrap-up page.
+
+7
+00:00:10,270 --> 00:00:12,840
+On this page you're going to be
+able to review the course
+
+8
+00:00:12,840 --> 00:00:14,850
+if you want to give
+us some feedback.
+
+9
+00:00:14,850 --> 00:00:16,800
+All the links that I'm about to
+be talking about are going
+
+10
+00:00:16,800 --> 00:00:18,270
+to be found right here
+on the sidebar.
+
+11
+00:00:18,270 --> 00:00:20,490
+And at the very bottom you're
+going to see some badges that
+
+12
+00:00:20,490 --> 00:00:21,510
+you've earned, although
+they're going to look
+
+13
+00:00:21,510 --> 00:00:23,770
+different than the ones here
+because you've got newer,
+
+14
+00:00:23,770 --> 00:00:24,890
+cooler ones.
+
+15
+00:00:24,890 --> 00:00:27,260
+And then of course your prizes,
+which you probably
+
+16
+00:00:27,260 --> 00:00:29,110
+have $5.00 in Code
+School cash.
+
+17
+00:00:29,110 --> 00:00:30,070
+So what is it good for?
+
+18
+00:00:30,070 --> 00:00:32,997
+Well, you might want to go and
+play through Rails For Zombies
+
+19
+00:00:32,997 --> 00:00:37,320
+2, the sequel to this course,
+which has even more zombie and
+
+20
+00:00:37,320 --> 00:00:39,510
+Rails goodness.
+
+21
+00:00:39,510 --> 00:00:42,860
+Also, you can take that $5.00
+and put it towards your first
+
+22
+00:00:42,860 --> 00:00:44,880
+month of code school
+enrollment.
+
+23
+00:00:44,880 --> 00:00:47,390
+What that's going to give you
+is access to all of our
+
+24
+00:00:47,390 --> 00:00:49,230
+courses for free.
+
+25
+00:00:49,230 --> 00:00:53,720
+We've got lots of content, from
+Git to Backbone, to Node,
+
+26
+00:00:53,720 --> 00:00:58,420
+to CoffeeScript, to JQuery Air,
+well, JQuery, to HTML5
+
+27
+00:00:58,420 --> 00:01:01,600
+CSS3, there's a CSS--
+
+28
+00:01:01,600 --> 00:01:02,610
+I can't speak.
+
+29
+00:01:02,610 --> 00:01:06,400
+There's a CSS cross country
+course, which will give you
+
+30
+00:01:06,400 --> 00:01:08,860
+some CSS best practices.
+
+31
+00:01:08,860 --> 00:01:10,070
+And then of course
+the Rails stuff.
+
+32
+00:01:10,070 --> 00:01:12,720
+Besides Rails For Zombies 2, we
+also have Rails Testing For
+
+33
+00:01:12,720 --> 00:01:16,040
+Zombies, and Testing With Rspec,
+Rspec being one of the
+
+34
+00:01:16,040 --> 00:01:19,270
+more popular Ruby testing
+frameworks.
+
+35
+00:01:19,270 --> 00:01:23,340
+So from here, also if you want
+to grab a Code School shirt or
+
+36
+00:01:23,340 --> 00:01:27,490
+Rails For Zombies shirt, we
+also just recently created
+
+37
+00:01:27,490 --> 00:01:30,775
+some Rails For Zombies posters
+while supplies last.
+
+38
+00:01:30,775 --> 00:01:32,980
+Like, movie posters.
+
+39
+00:01:32,980 --> 00:01:35,370
+Also, I want to make sure
+you know about Ruby 5.
+
+40
+00:01:35,370 --> 00:01:38,100
+Here at Envy Labs we do this
+twice weekly podcast called
+
+41
+00:01:38,100 --> 00:01:40,715
+Ruby 5 where we talk about the
+latest news in the Ruby and
+
+42
+00:01:40,715 --> 00:01:42,040
+Rails community.
+
+43
+00:01:42,040 --> 00:01:44,100
+We have a really active
+community, lots of libraries
+
+44
+00:01:44,100 --> 00:01:45,650
+being created, lots of news.
+
+45
+00:01:45,650 --> 00:01:49,290
+And this is just a short five,
+six, seven minute audio
+
+46
+00:01:49,290 --> 00:01:52,170
+podcast to keep you up to
+date on a weekly basis.
+
+47
+00:01:52,170 --> 00:01:55,070
+Good to listen to while you're
+on the subway, traveling in
+
+48
+00:01:55,070 --> 00:01:58,830
+the car, or doing
+your laundry.
+
+49
+00:01:58,830 --> 00:01:59,520
+Yeah.
+
+50
+00:01:59,520 --> 00:02:01,910
+Oh, if you're not an audio
+person as well, you can also
+
+51
+00:02:01,910 --> 00:02:04,810
+just subscriber to the RSS feed
+by hitting the RSS link,
+
+52
+00:02:04,810 --> 00:02:07,680
+and you get sort of audio
+descriptions, audio
+
+53
+00:02:07,680 --> 00:02:09,130
+descriptions, that doesn't
+make any sense.
+
+54
+00:02:09,130 --> 00:02:11,490
+Text descriptions of everything
+that we talk about
+
+55
+00:02:11,490 --> 00:02:13,140
+on the podcast.
+
+56
+00:02:13,140 --> 00:02:14,440
+Also, Top Ruby Jobs.
+
+57
+00:02:14,440 --> 00:02:17,170
+If you're looking for a Top Ruby
+gig or Top Ruby talent,
+
+58
+00:02:17,170 --> 00:02:20,180
+over on toprubyjobs.com, you can
+post a job or look for a
+
+59
+00:02:20,180 --> 00:02:22,790
+job, and that gets covered
+on the podcast.
+
+60
+00:02:22,790 --> 00:02:25,290
+Also, if you're a teacher and
+you want to teach Rails For
+
+61
+00:02:25,290 --> 00:02:28,590
+Zombies to other people, there's
+a blog post where I
+
+62
+00:02:28,590 --> 00:02:31,680
+actually allow you download
+the keynote slides.
+
+63
+00:02:31,680 --> 00:02:34,070
+So you could basically teach it
+at your own pace using the
+
+64
+00:02:34,070 --> 00:02:36,500
+keynote, and have your students
+go on their laptops
+
+65
+00:02:36,500 --> 00:02:39,560
+or computers and actually do the
+challenges, so just ignore
+
+66
+00:02:39,560 --> 00:02:40,385
+the videos.
+
+67
+00:02:40,385 --> 00:02:43,880
+Of course, gotta thank Envy
+Labs, our web consultancy for
+
+68
+00:02:43,880 --> 00:02:46,450
+creating Rails For Zombies
+and bringing it
+
+69
+00:02:46,450 --> 00:02:48,550
+out there for free.
+
+70
+00:02:48,550 --> 00:02:51,380
+Yeah, here's sort of
+a team, who we are.
+
+71
+00:02:51,380 --> 00:02:53,660
+We're basically a web
+application development
+
+72
+00:02:53,660 --> 00:02:54,680
+consultancy.
+
+73
+00:02:54,680 --> 00:02:56,660
+Gotta thank Eric Allam, he
+did a lot of the work
+
+74
+00:02:56,660 --> 00:02:58,200
+on Rails For Zombies.
+
+75
+00:02:58,200 --> 00:03:01,560
+But if you have a big web app
+project out there and you need
+
+76
+00:03:01,560 --> 00:03:03,940
+some help, or you need
+a team to do it,
+
+77
+00:03:03,940 --> 00:03:05,710
+maybe drop us a line.
+
+78
+00:03:05,710 --> 00:03:07,800
+Also, you can follow Code School
+at the Code School
+
+79
+00:03:07,800 --> 00:03:11,420
+Twitter account, and then
+finally I have to thank, well,
+
+80
+00:03:11,420 --> 00:03:13,810
+I've got to thank you, first,
+for going through the course
+
+81
+00:03:13,810 --> 00:03:17,030
+and spending your time learning,
+but also New Relic.
+
+82
+00:03:17,030 --> 00:03:19,800
+New Relic sponsored this so that
+we were able to give it a
+
+83
+00:03:19,800 --> 00:03:23,730
+new skin and sort the hints and
+the points and all that
+
+84
+00:03:23,730 --> 00:03:25,070
+good stuff.
+
+85
+00:03:25,070 --> 00:03:29,110
+New Relic is what we use on all
+of our projects to monitor
+
+86
+00:03:29,110 --> 00:03:32,210
+web applications and make sure
+they're monitoring the
+
+87
+00:03:32,210 --> 00:03:32,530
+performance.
+
+88
+00:03:32,530 --> 00:03:34,180
+Make sure they're performing.
+
+89
+00:03:34,180 --> 00:03:36,050
+And this is what it looks
+like for Code School.
+
+90
+00:03:36,050 --> 00:03:37,570
+Here's Code School's
+dashboard.
+
+91
+00:03:37,570 --> 00:03:41,520
+We keep a close eye on this to
+make sure that, well, it's
+
+92
+00:03:41,520 --> 00:03:43,590
+functioning and it's
+responsive.
+
+93
+00:03:43,590 --> 00:03:46,640
+And we recently put together a
+video talking more about how
+
+94
+00:03:46,640 --> 00:03:49,880
+we use New Relic in our software
+development process,
+
+95
+00:03:49,880 --> 00:03:51,410
+which you're going to see now.
+
+96
+00:03:51,410 --> 00:03:53,340
+And I'll leave you with that.
+
+97
+00:03:53,340 --> 00:03:55,660
+Hi, I'm Nathaniel Bibler, and
+at Code School, we actually
+
+98
+00:03:55,660 --> 00:03:58,180
+use New Relic in a lot
+of different ways.
+
+99
+00:03:58,180 --> 00:04:00,800
+First, we use New Relic
+extremely heavily at a new
+
+100
+00:04:00,800 --> 00:04:02,102
+course release.
+
+101
+00:04:02,102 --> 00:04:04,510
+The way the Code School course
+architecture is set up, each
+
+102
+00:04:04,510 --> 00:04:06,670
+course actually runs as
+its own application
+
+103
+00:04:06,670 --> 00:04:07,930
+on their own servers.
+
+104
+00:04:07,930 --> 00:04:10,530
+So New Relic actually shows
+us exactly how much of our
+
+105
+00:04:10,530 --> 00:04:13,160
+servers we're using, and
+indicates to us whether or not
+
+106
+00:04:13,160 --> 00:04:15,630
+we need to scale up new
+resources, scale back to
+
+107
+00:04:15,630 --> 00:04:18,124
+adjust our actual usage
+to cost accordingly.
+
+108
+00:04:18,124 --> 00:04:20,279
+Meaning when we put a big
+marketing effort behind a new
+
+109
+00:04:20,279 --> 00:04:22,490
+course release, we actually get
+a lot of people on that
+
+110
+00:04:22,490 --> 00:04:24,780
+site right away, and they
+tail off of over the
+
+111
+00:04:24,780 --> 00:04:25,570
+next week or two.
+
+112
+00:04:25,570 --> 00:04:28,510
+So that actually lets us see how
+many people are actually
+
+113
+00:04:28,510 --> 00:04:31,550
+using the site, what the load is
+on the servers, and adjust
+
+114
+00:04:31,550 --> 00:04:34,030
+our cost accordingly so that
+we're actually getting the
+
+115
+00:04:34,030 --> 00:04:35,250
+most for our money.
+
+116
+00:04:35,250 --> 00:04:37,350
+Secondly, we use New Relic
+to actually monitor our
+
+117
+00:04:37,350 --> 00:04:39,660
+background jobs or asynchronous
+jobs.
+
+118
+00:04:39,660 --> 00:04:42,650
+Specifically we actually have
+our own billing system which
+
+119
+00:04:42,650 --> 00:04:44,680
+runs our own subscription
+charges.
+
+120
+00:04:44,680 --> 00:04:47,270
+These are actually run as
+background jobs, and we can
+
+121
+00:04:47,270 --> 00:04:50,690
+inspect those jobs on New Relic
+to determine how long it
+
+122
+00:04:50,690 --> 00:04:52,550
+took those jobs to run, whether
+or not there were
+
+123
+00:04:52,550 --> 00:04:55,680
+exceptions, and actually
+identify specifically where we
+
+124
+00:04:55,680 --> 00:04:58,040
+might be having a problem,
+because they actually split
+
+125
+00:04:58,040 --> 00:05:01,870
+apart those Ruby processes to
+say, well, you spent 30% of
+
+126
+00:05:01,870 --> 00:05:03,540
+your time in the network,
+10% of your
+
+127
+00:05:03,540 --> 00:05:05,410
+time in Ruby, or whatever.
+
+128
+00:05:05,410 --> 00:05:08,040
+Next we actually use a newer
+feature of New Relic, which is
+
+129
+00:05:08,040 --> 00:05:09,040
+end user monitoring.
+
+130
+00:05:09,040 --> 00:05:12,330
+What that allows us to do is
+actually see what the end user
+
+131
+00:05:12,330 --> 00:05:14,370
+perceives of codeschool.com.
+
+132
+00:05:14,370 --> 00:05:17,550
+What that means is we can
+actually see on average how
+
+133
+00:05:17,550 --> 00:05:20,960
+long it took somebody in, let's
+say the UK to load our
+
+134
+00:05:20,960 --> 00:05:21,810
+landing page.
+
+135
+00:05:21,810 --> 00:05:24,310
+And they'll actually split apart
+for us to say, well, you
+
+136
+00:05:24,310 --> 00:05:26,720
+know, there was seven seconds
+of network time.
+
+137
+00:05:26,720 --> 00:05:29,400
+There were three seconds of page
+render time, et cetera.
+
+138
+00:05:29,400 --> 00:05:30,930
+That actually allows
+us to do some
+
+139
+00:05:30,930 --> 00:05:32,510
+really interesting things.
+
+140
+00:05:32,510 --> 00:05:34,610
+For example, when we first
+started using it on Code
+
+141
+00:05:34,610 --> 00:05:38,320
+School, we learned that on
+average across the water.
+
+142
+00:05:38,320 --> 00:05:40,630
+It was taking more than 10
+seconds to actually load our
+
+143
+00:05:40,630 --> 00:05:43,410
+landing page, largely due
+to network usage.
+
+144
+00:05:43,410 --> 00:05:45,580
+And so what that actually
+indicated to us was we needed
+
+145
+00:05:45,580 --> 00:05:47,870
+to use a globally
+redundancy CDN.
+
+146
+00:05:47,870 --> 00:05:50,965
+So we switched over to using a
+CDN, and again, through New
+
+147
+00:05:50,965 --> 00:05:53,820
+Relic and user monitoring, we're
+actually able to see
+
+148
+00:05:53,820 --> 00:05:56,200
+that the load time went down
+from about 12 to 13
+
+149
+00:05:56,200 --> 00:05:58,140
+seconds to just four.
+
+150
+00:05:58,140 --> 00:06:00,550
+Still not great, but
+significantly better.
+
+151
+00:06:00,550 --> 00:06:03,410
+And finally, we actually used
+New Relic's deployment
+
+152
+00:06:03,410 --> 00:06:04,660
+recording feature.
+
+153
+00:06:04,660 --> 00:06:07,730
+What that allows us to do is
+look back in history and see
+
+154
+00:06:07,730 --> 00:06:10,350
+how we were performing at any
+given time and relate that to
+
+155
+00:06:10,350 --> 00:06:11,140
+deployments.
+
+156
+00:06:11,140 --> 00:06:13,780
+So we can actually see, OK,
+well, our site has gotten
+
+157
+00:06:13,780 --> 00:06:15,760
+slower on this particular
+page.
+
+158
+00:06:15,760 --> 00:06:17,040
+Well, when did that happen?
+
+159
+00:06:17,040 --> 00:06:18,050
+Why did that happen?
+
+160
+00:06:18,050 --> 00:06:20,370
+We can actually go to New Relic
+and look back over time
+
+161
+00:06:20,370 --> 00:06:23,030
+and say, oh, well on this
+particular day, or after this
+
+162
+00:06:23,030 --> 00:06:25,420
+particular deployment, there was
+a significant change for
+
+163
+00:06:25,420 --> 00:06:27,830
+requests to this page, so that's
+a good indication of
+
+164
+00:06:27,830 --> 00:06:29,400
+where the bug might lie.
+
+165
+00:06:29,400 --> 00:06:31,730
+At Code School, the user
+experience is really important
+
+166
+00:06:31,730 --> 00:06:34,350
+to us, and New Relic has
+everything we need to monitor
+
+167
+00:06:34,350 --> 00:06:36,500
+performance, both on
+the server side
+
+168
+00:06:36,500 --> 00:06:37,770
+and the client side.
+
+169
+00:06:37,770 --> 00:06:44,398

@@ -1,0 +1,407 @@
+1
+00:00:00,000 --> 00:00:02,300
+So you're probably wondering,
+what is Rails For Zombies?
+
+2
+00:00:02,300 --> 00:00:04,680
+Well, the short answer is that
+it's an interactive tutorial
+
+3
+00:00:04,680 --> 00:00:06,920
+to teach the basics of web
+application development in the
+
+4
+00:00:06,920 --> 00:00:08,790
+browser using Ruby on Rails.
+
+5
+00:00:08,790 --> 00:00:10,010
+But here's the long answer.
+
+6
+00:00:10,010 --> 00:00:12,160
+In the world of technical
+learning, you've got books and
+
+7
+00:00:12,160 --> 00:00:14,360
+you've got screen casts, neither
+of which has any
+
+8
+00:00:14,360 --> 00:00:15,290
+interactivity.
+
+9
+00:00:15,290 --> 00:00:17,120
+But come on, this is the
+Nintendo generation.
+
+10
+00:00:17,120 --> 00:00:19,170
+Give me a damn joystick.
+
+11
+00:00:19,170 --> 00:00:21,220
+Plus, then there's the
+configuration issues.
+
+12
+00:00:21,220 --> 00:00:23,380
+No matter how easy it is to set
+up your computer to code
+
+13
+00:00:23,380 --> 00:00:26,060
+rails, you'll likely figure out
+some way to screw it up
+
+14
+00:00:26,060 --> 00:00:27,910
+and it may not even
+be your fault.
+
+15
+00:00:27,910 --> 00:00:29,900
+When you're diving into
+something new, it needs to be
+
+16
+00:00:29,900 --> 00:00:31,700
+fun and not give you the feeling
+that you've been
+
+17
+00:00:31,700 --> 00:00:32,980
+thrown into the deep end.
+
+18
+00:00:32,980 --> 00:00:34,550
+By the time you get
+to the water, you
+
+19
+00:00:34,550 --> 00:00:35,890
+should be booking it.
+
+20
+00:00:35,890 --> 00:00:37,520
+Ruby on Rails is supposed
+to be all ponies
+
+21
+00:00:37,520 --> 00:00:38,840
+and rainbows, right?
+
+22
+00:00:38,840 --> 00:00:41,440
+So you should at least have
+rainbow colored floaties or be
+
+23
+00:00:41,440 --> 00:00:44,660
+armed with maybe some pistols
+or maybe even a shotgun.
+
+24
+00:00:44,660 --> 00:00:46,790
+Oh yeah, a shotgun.
+
+25
+00:00:46,790 --> 00:00:49,370
+But speaking of shotguns, you
+have to be asking what does
+
+26
+00:00:49,370 --> 00:00:51,070
+this have to do with zombies?
+
+27
+00:00:51,070 --> 00:00:53,350
+Well, that's where our example
+application comes in.
+
+28
+00:00:53,350 --> 00:00:56,070
+You see, Twitter is always a
+good example for beginners.
+
+29
+00:00:56,070 --> 00:00:58,510
+However, that's been overdone,
+so we need to
+
+30
+00:00:58,510 --> 00:00:59,810
+find something new.
+
+31
+00:00:59,810 --> 00:01:01,170
+Recently I've learned
+about zombie walks.
+
+32
+00:01:01,170 --> 00:01:03,700
+It's where people in big cities
+dress up like zombies,
+
+33
+00:01:03,700 --> 00:01:06,140
+meet in a single location, and
+wander the streets as the
+
+34
+00:01:06,140 --> 00:01:06,960
+living dead.
+
+35
+00:01:06,960 --> 00:01:09,350
+It actually happens all over
+the country, and in Seattle
+
+36
+00:01:09,350 --> 00:01:12,220
+they had over 4,000 zombies
+walking through downtown.
+
+37
+00:01:12,220 --> 00:01:14,750
+But again, what does this have
+to do with Rails for Zombies?
+
+38
+00:01:14,750 --> 00:01:16,620
+Well, if you do that zombie
+walk and you find some
+
+39
+00:01:16,620 --> 00:01:18,820
+delicious brains, you're going
+to need a way to tell your
+
+40
+00:01:18,820 --> 00:01:20,670
+fellow zombies about it.
+
+41
+00:01:20,670 --> 00:01:22,410
+Thus, the application
+we'll be building
+
+42
+00:01:22,410 --> 00:01:25,920
+is Twitter for Zombies.
+
+43
+00:01:25,920 --> 00:01:27,290
+Makes perfect sense, right?
+
+44
+00:01:27,290 --> 00:01:28,980
+So how does this zombie
+thing work?
+
+45
+00:01:28,980 --> 00:01:30,670
+Well first, if you're not
+familiar with the Ruby
+
+46
+00:01:30,670 --> 00:01:33,015
+language, head over to
+tryruby.org and follow through
+
+47
+00:01:33,015 --> 00:01:34,400
+the Ruby tutorial there.
+
+48
+00:01:34,400 --> 00:01:36,660
+Then head back over to
+Railsforzombies.org and click
+
+49
+00:01:36,660 --> 00:01:38,720
+the Start Course Now button
+on the homepage.
+
+50
+00:01:38,720 --> 00:01:41,770
+You'll be taken to the first
+video lesson for the course.
+
+51
+00:01:41,770 --> 00:01:43,860
+You can skip to a chapter
+at the top if you
+
+52
+00:01:43,860 --> 00:01:44,690
+want to skip ahead.
+
+53
+00:01:44,690 --> 00:01:46,760
+And when you're done, just click
+on the big green button
+
+54
+00:01:46,760 --> 00:01:48,970
+to start the challenges where
+you'll have to do some coding
+
+55
+00:01:48,970 --> 00:01:50,150
+to get to level two.
+
+56
+00:01:50,150 --> 00:01:52,590
+In the challenge interface,
+you'll see your total points,
+
+57
+00:01:52,590 --> 00:01:55,020
+the points you can earn from
+this challenge, and the
+
+58
+00:01:55,020 --> 00:01:56,240
+challenge instructions.
+
+59
+00:01:56,240 --> 00:01:58,270
+To solve the challenge, you'll
+need to write some code using
+
+60
+00:01:58,270 --> 00:02:00,440
+our in-browser code
+editor here.
+
+61
+00:02:00,440 --> 00:02:01,430
+If you don't get it
+right, you'll
+
+62
+00:02:01,430 --> 00:02:02,670
+see some error messages.
+
+63
+00:02:02,670 --> 00:02:04,710
+And if you're stuck, you can
+take a look at some hints to
+
+64
+00:02:04,710 --> 00:02:06,620
+help keep pushing you forward.
+
+65
+00:02:06,620 --> 00:02:08,220
+Once you type in the correct
+answer, you'll get a
+
+66
+00:02:08,220 --> 00:02:10,289
+congratulations screen where
+you can continue on to the
+
+67
+00:02:10,289 --> 00:02:12,780
+next challenge or try
+some extra credit.
+
+68
+00:02:12,780 --> 00:02:14,550
+The extra credit isn't verified,
+it's just an
+
+69
+00:02:14,550 --> 00:02:16,780
+opportunity to practice
+your rails coding.
+
+70
+00:02:16,780 --> 00:02:18,630
+Once you're ready to move on, on
+the left side of the screen
+
+71
+00:02:18,630 --> 00:02:20,015
+you can jump around to
+the other challenges.
+
+72
+00:02:20,015 --> 00:02:22,530
+Where you watch the video
+lesson, learn the interface
+
+73
+00:02:22,530 --> 00:02:24,370
+shortcuts, or download
+the video lesson
+
+74
+00:02:24,370 --> 00:02:26,000
+slides for later reference.
+
+75
+00:02:26,000 --> 00:02:27,750
+Once you finish Rails for
+Zombies, you'll receive a
+
+76
+00:02:27,750 --> 00:02:30,810
+badge for your public profile,
+unlock the final video.
+
+77
+00:02:30,810 --> 00:02:33,470
+And finally, you'll receive $5
+in Code School cash that you
+
+78
+00:02:33,470 --> 00:02:36,300
+can use to enroll in Code School
+and get access to Rails
+
+79
+00:02:36,300 --> 00:02:39,130
+for Zombies 2, Rails Testing for
+Zombies, and Testing with
+
+80
+00:02:39,130 --> 00:02:41,460
+Rspec, along with all our other
+courses and Code TV
+
+81
+00:02:41,460 --> 00:02:42,570
+screen casts.
+
+82
+00:02:42,570 --> 00:02:44,330
+Rails for Zombies is graciously
+
+83
+00:02:44,330 --> 00:02:45,640
+sponsored by New Relic.
+
+84
+00:02:45,640 --> 00:02:47,685
+Providing rails developers the
+tools they need to monitor
+
+85
+00:02:47,685 --> 00:02:49,630
+their application performance.
+
+86
+00:02:49,630 --> 00:02:52,800
+Enough talk, it's time to learn
+some Rails for Zombies.
+
+87
+00:02:52,800 --> 00:02:55,333

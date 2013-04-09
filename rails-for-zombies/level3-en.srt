@@ -1,0 +1,1120 @@
+1
+00:00:00,000 --> 00:00:00,350
+
+
+2
+00:00:00,350 --> 00:00:02,830
+I'm Gregg Pollack, and you're
+watching Rails for Zombies,
+
+3
+00:00:02,830 --> 00:00:04,322
+Episode Three.
+
+4
+00:00:04,322 --> 00:00:18,830
+[MUSIC  PLAYING]
+
+5
+00:00:18,830 --> 00:00:21,010
+In this episode, we're going to
+be learning about the view,
+
+6
+00:00:21,010 --> 00:00:23,150
+which isn't always so pretty,
+especially when
+
+7
+00:00:23,150 --> 00:00:26,200
+you're eating brains.
+
+8
+00:00:26,200 --> 00:00:28,780
+Now when a web request comes to
+our Rails stack, it's going
+
+9
+00:00:28,780 --> 00:00:32,080
+to be going through four
+different components.
+
+10
+00:00:32,080 --> 00:00:34,380
+We've already talked about the
+component on the bottom, which
+
+11
+00:00:34,380 --> 00:00:35,960
+are the models.
+
+12
+00:00:35,960 --> 00:00:38,390
+But now, we're going to be
+talking about the view, which
+
+13
+00:00:38,390 --> 00:00:41,280
+is right about there.
+
+14
+00:00:41,280 --> 00:00:43,560
+Let's take a look at the
+directory structure of our
+
+15
+00:00:43,560 --> 00:00:45,480
+Twitter for Zombies
+application--
+
+16
+00:00:45,480 --> 00:00:47,060
+might look a little
+bit like this.
+
+17
+00:00:47,060 --> 00:00:48,920
+You can see we have
+an app directory.
+
+18
+00:00:48,920 --> 00:00:50,940
+Inside that we have views.
+
+19
+00:00:50,940 --> 00:00:52,660
+Inside that we have the
+zombie directory
+
+20
+00:00:52,660 --> 00:00:54,380
+and a tweets directory.
+
+21
+00:00:54,380 --> 00:00:58,450
+Inside the tweets directory, we
+have an index.html.erb, and
+
+22
+00:00:58,450 --> 00:01:02,510
+a show.html.erb, one which shows
+all the tweets and one
+
+23
+00:01:02,510 --> 00:01:05,290
+which shows a particular
+tweet.
+
+24
+00:01:05,290 --> 00:01:08,830
+The file extension here
+is .html.erb.
+
+25
+00:01:08,830 --> 00:01:11,190
+erb, I know what you're
+thinking, it stands for Edible
+
+26
+00:01:11,190 --> 00:01:12,720
+Rotting Bodies.
+
+27
+00:01:12,720 --> 00:01:13,870
+No, no, not quite.
+
+28
+00:01:13,870 --> 00:01:18,430
+It actually stands for Embedded
+Ruby, basically, Ruby
+
+29
+00:01:18,430 --> 00:01:19,910
+inside HTML.
+
+30
+00:01:19,910 --> 00:01:22,430
+
+
+31
+00:01:22,430 --> 00:01:25,970
+Now let's take a look at
+the show tweet action.
+
+32
+00:01:25,970 --> 00:01:28,180
+Here's what it might look
+like in the browser.
+
+33
+00:01:28,180 --> 00:01:31,150
+So we're showing the status of
+a particular tweet, and we're
+
+34
+00:01:31,150 --> 00:01:34,110
+showing which zombie
+created the tweet.
+
+35
+00:01:34,110 --> 00:01:37,920
+Now Rails introduces two new
+HTML tags, which we are going
+
+36
+00:01:37,920 --> 00:01:40,750
+to be using inside
+of our erb files.
+
+37
+00:01:40,750 --> 00:01:44,250
+First, we have the 
+<% %> tag.
+
+38
+00:01:44,250 --> 00:01:46,860
+So anything in between this
+tag is going to get
+
+39
+00:01:46,860 --> 00:01:49,110
+evaluated as Ruby.
+
+40
+00:01:49,110 --> 00:01:52,530
+Then we have the <%= %> 
+version of this tag,
+
+41
+00:01:52,530 --> 00:01:54,180
+which is going to evaluate
+the Ruby.
+
+42
+00:01:54,180 --> 00:01:56,140
+And whatever that returns,
+it's going to print
+
+43
+00:01:56,140 --> 00:01:59,160
+out onto the page.
+
+44
+00:01:59,160 --> 00:02:01,760
+Now if we open up the
+show.html.erb, here's
+
+45
+00:02:01,760 --> 00:02:03,260
+what we might see.
+
+46
+00:02:03,260 --> 00:02:05,770
+You'll notice that we've
+got some basic HTML
+
+47
+00:02:05,770 --> 00:02:07,580
+elements for a header.
+
+48
+00:02:07,580 --> 00:02:11,190
+We then have a 
+tweet = Tweet.find(1)
+
+49
+00:02:11,190 --> 00:02:11,780
+that should look familiar.
+
+50
+00:02:11,780 --> 00:02:15,180
+We're pulling in that tweet,
+evaluating that Rails code.
+
+51
+00:02:15,180 --> 00:02:18,230
+We then have a header, which
+is the tweet status.
+
+52
+00:02:18,230 --> 00:02:19,950
+And we then say, posted
+by tweet.zombie.name.
+
+53
+00:02:19,950 --> 00:02:23,410
+
+
+54
+00:02:23,410 --> 00:02:24,740
+Oh, look out, here comes the
+Zombie, and he's telling us
+
+55
+00:02:24,740 --> 00:02:26,070
+that our code sucks.
+
+56
+00:02:26,070 --> 00:02:27,260
+It does suck a little bit.
+
+57
+00:02:27,260 --> 00:02:28,790
+It sucks in two different
+ways.
+
+58
+00:02:28,790 --> 00:02:31,920
+One of which is, obviously, if
+you look at this code over
+
+59
+00:02:31,920 --> 00:02:34,840
+here, you'll notice that we have
+some header code and some
+
+60
+00:02:34,840 --> 00:02:36,000
+footer code.
+
+61
+00:02:36,000 --> 00:02:38,370
+And, obviously, if we continue
+down this path, we would have
+
+62
+00:02:38,370 --> 00:02:40,720
+to copy and paste that
+across all the pages,
+
+63
+00:02:40,720 --> 00:02:42,010
+which is not good.
+
+64
+00:02:42,010 --> 00:02:43,480
+So the first thing that we're
+going to do is we're going to
+
+65
+00:02:43,480 --> 00:02:46,140
+take that header and the footer,
+and we're going to put
+
+66
+00:02:46,140 --> 00:02:50,610
+that into a file called
+application.html.erb, which is
+
+67
+00:02:50,610 --> 00:02:53,230
+in our layouts directory.
+
+68
+00:02:53,230 --> 00:02:56,720
+So we've got sort of core show
+content down here, and we've
+
+69
+00:02:56,720 --> 00:02:57,830
+got the layout up here.
+
+70
+00:02:57,830 --> 00:02:59,090
+There's one thing we
+have to add to this
+
+71
+00:02:59,090 --> 00:03:01,790
+layout, which is a yield.
+
+72
+00:03:01,790 --> 00:03:05,930
+So this is saying to Rails, at
+this point, when you see this
+
+73
+00:03:05,930 --> 00:03:12,590
+yield, put the show view
+code right in there.
+
+74
+00:03:12,590 --> 00:03:14,990
+So if we go back to our
+directory layout, you'll see
+
+75
+00:03:14,990 --> 00:03:17,490
+that we're going to add a
+layouts directory, and inside
+
+76
+00:03:17,490 --> 00:03:20,300
+there, our application.html.erb,
+which is
+
+77
+00:03:20,300 --> 00:03:24,040
+our main layout for the site.
+
+78
+00:03:24,040 --> 00:03:25,870
+There's a couple other things
+that you're going to see in
+
+79
+00:03:25,870 --> 00:03:28,080
+the default Rails layout.
+
+80
+00:03:28,080 --> 00:03:30,650
+You're going to see a style
+sheet link to tag, a
+
+81
+00:03:30,650 --> 00:03:34,290
+JavaScript include tag,
+and a csrf meta tag.
+
+82
+00:03:34,290 --> 00:03:36,085
+Now we're going to go through
+each of these items so that
+
+83
+00:03:36,085 --> 00:03:38,100
+you understand what they
+mean, starting with
+
+84
+00:03:38,100 --> 00:03:39,680
+stylesheet_link_tag.
+
+85
+00:03:39,680 --> 00:03:42,020
+Basically, what this is
+saying is include all
+
+86
+00:03:42,020 --> 00:03:43,400
+of the stylesheets.
+
+87
+00:03:43,400 --> 00:03:46,120
+It's going to look inside the
+public directory, inside the
+
+88
+00:03:46,120 --> 00:03:49,070
+stylesheets directory, and all
+the stylesheets that's
+
+89
+00:03:49,070 --> 00:03:51,310
+going to include them, and
+render out something that
+
+90
+00:03:51,310 --> 00:03:52,560
+looks a little bit like this.
+
+91
+00:03:52,560 --> 00:03:55,610
+
+
+92
+00:03:55,610 --> 00:03:58,090
+Next up is the
+javascript_include_tag.
+
+93
+00:03:58,090 --> 00:04:01,570
+So it's going to be including
+all of the default JavaScript.
+
+94
+00:04:01,570 --> 00:04:02,820
+Where is it including it from?
+
+95
+00:04:02,820 --> 00:04:05,400
+Well, it's going to look in
+the public javascripts
+
+96
+00:04:05,400 --> 00:04:08,680
+directory, and, by default, in
+a Rails app, it's going to be
+
+97
+00:04:08,680 --> 00:04:11,000
+including all of these
+JavaScript files, which you
+
+98
+00:04:11,000 --> 00:04:12,920
+may recognize as being the
+
+99
+00:04:12,920 --> 00:04:14,990
+prototype JavaScript framework.
+
+100
+00:04:14,990 --> 00:04:18,690
+Now don't worry, if you're a
+jQuery or a MooTools fan, you
+
+101
+00:04:18,690 --> 00:04:22,910
+can very easily replace these
+defaults with your JavaScript
+
+102
+00:04:22,910 --> 00:04:25,130
+library of choice.
+
+103
+00:04:25,130 --> 00:04:29,090
+Next up is the cross site
+request forgery meta tag.
+
+104
+00:04:29,090 --> 00:04:32,140
+This will prevent zombie hacker
+sites from submitting
+
+105
+00:04:32,140 --> 00:04:34,410
+comments spam into
+your website.
+
+106
+00:04:34,410 --> 00:04:36,520
+You'll notice that, if you look
+at the source of your
+
+107
+00:04:36,520 --> 00:04:40,560
+Rails page, that it's putting
+these csrf param and csrf
+
+108
+00:04:40,560 --> 00:04:43,440
+token meta tags right
+in at the top.
+
+109
+00:04:43,440 --> 00:04:46,270
+And then it's going to
+automatically include these in
+
+110
+00:04:46,270 --> 00:04:49,300
+every form in your application
+to make sure that you don't
+
+111
+00:04:49,300 --> 00:04:51,620
+get hacked.
+
+112
+00:04:51,620 --> 00:04:53,290
+Next, we need to talk
+a little bit about
+
+113
+00:04:53,290 --> 00:04:55,150
+root path and images.
+
+114
+00:04:55,150 --> 00:04:58,820
+So when somebody goes to your
+Rails app and puts slash
+
+115
+00:04:58,820 --> 00:05:01,500
+something and types something
+besides the root, the first
+
+116
+00:05:01,500 --> 00:05:03,860
+thing it's going to do is
+check inside your public
+
+117
+00:05:03,860 --> 00:05:05,880
+directory to see if it exists.
+
+118
+00:05:05,880 --> 00:05:08,810
+If it doesn't, then it's going
+to go and try to execute
+
+119
+00:05:08,810 --> 00:05:09,870
+inside Rails.
+
+120
+00:05:09,870 --> 00:05:13,640
+A good example of this
+is your images.
+
+121
+00:05:13,640 --> 00:05:18,180
+If that file exists, it's
+going to render it.
+
+122
+00:05:18,180 --> 00:05:19,600
+Now we're going to learn
+how to create links
+
+123
+00:05:19,600 --> 00:05:20,900
+in our Rails views.
+
+124
+00:05:20,900 --> 00:05:23,970
+So here's part of our view where
+we're printing out the
+
+125
+00:05:23,970 --> 00:05:28,330
+zombie name, but what if we
+wanted to link to the Zombie
+
+126
+00:05:28,330 --> 00:05:30,340
+Show page to get more
+information about that
+
+127
+00:05:30,340 --> 00:05:32,120
+particular zombie.
+
+128
+00:05:32,120 --> 00:05:37,500
+In that case, we have our Ruby
+percent equals tag, and we're
+
+129
+00:05:37,500 --> 00:05:42,670
+going to say link_to
+tweet.zombie.name.
+
+130
+00:05:42,670 --> 00:05:46,560
+And then the path is going to
+be zombie_path(tweet.zombie)
+
+131
+00:05:46,560 --> 00:05:51,060
+So we have our link text and
+then we have our link path.
+
+132
+00:05:51,060 --> 00:05:54,360
+This is going to render out
+some pretty common HTML.
+
+133
+00:05:54,360 --> 00:05:56,290
+And there's another way we can
+write this which is a little
+
+134
+00:05:56,290 --> 00:05:57,260
+bit simpler.
+
+135
+00:05:57,260 --> 00:06:00,200
+We can simply put the link text,
+and then just put the
+
+136
+00:06:00,200 --> 00:06:02,500
+actual object to show,
+which, in this
+
+137
+00:06:02,500 --> 00:06:04,270
+case, is just a zombie.
+
+138
+00:06:04,270 --> 00:06:07,400
+Rails can automatically look at
+that model and figure out
+
+139
+00:06:07,400 --> 00:06:10,550
+what the right path is to view
+that particular zombie.
+
+140
+00:06:10,550 --> 00:06:13,360
+This helper method link_to has
+a lot of different options.
+
+141
+00:06:13,360 --> 00:06:15,980
+And you might be asking, how
+do you figure out what all
+
+142
+00:06:15,980 --> 00:06:18,160
+those different options are?
+
+143
+00:06:18,160 --> 00:06:19,560
+Well. there's a couple
+different ways you
+
+144
+00:06:19,560 --> 00:06:20,740
+can figure that out.
+
+145
+00:06:20,740 --> 00:06:24,070
+The first one is, you can
+look in the source.
+
+146
+00:06:24,070 --> 00:06:28,050
+So you could type, get clone
+and clone the Rails source.
+
+147
+00:06:28,050 --> 00:06:31,000
+And then go into your Rails
+directory and open whatever
+
+148
+00:06:31,000 --> 00:06:34,310
+text editor you use, and then
+search for def link_to to
+
+149
+00:06:34,310 --> 00:06:37,210
+figure out where that method
+definition is and
+
+150
+00:06:37,210 --> 00:06:38,480
+read through it.
+
+151
+00:06:38,480 --> 00:06:40,260
+The second option you
+have is to look at
+
+152
+00:06:40,260 --> 00:06:42,730
+api.rubyonrails.org.
+
+153
+00:06:42,730 --> 00:06:45,230
+These are the API
+docs for Rails.
+
+154
+00:06:45,230 --> 00:06:47,310
+And, obviously, you could use
+your browser to search through
+
+155
+00:06:47,310 --> 00:06:48,680
+all of those.
+
+156
+00:06:48,680 --> 00:06:54,110
+The third way is by going
+to apidock.com/rails.
+
+157
+00:06:54,110 --> 00:06:56,520
+These are searchable,
+online-only
+
+158
+00:06:56,520 --> 00:07:00,180
+documentation with comments.
+
+159
+00:07:00,180 --> 00:07:03,995
+The fourth way is to look at the
+Rails Searchable API Doc
+
+160
+00:07:03,995 --> 00:07:08,590
+at railsapi.com This you can
+also download, or you can just
+
+161
+00:07:08,590 --> 00:07:09,710
+use it online.
+
+162
+00:07:09,710 --> 00:07:12,360
+It has a really nice Ajax
+search feature.
+
+163
+00:07:12,360 --> 00:07:15,580
+And it's really easy to get
+through and read the code.
+
+164
+00:07:15,580 --> 00:07:18,010
+So here you can see, we've
+looked for link_to.
+
+165
+00:07:18,010 --> 00:07:21,800
+And one of the options under
+link_to is to have a confirm
+
+166
+00:07:21,800 --> 00:07:23,900
+box when somebody
+clicks the link.
+
+167
+00:07:23,900 --> 00:07:28,030
+So if we add confirm, are you
+sure, to our link, when
+
+168
+00:07:28,030 --> 00:07:30,810
+somebody clicks on it, it's
+going to pop up a JavaScript
+
+169
+00:07:30,810 --> 00:07:33,950
+alert that says, are you sure?
+
+170
+00:07:33,950 --> 00:07:36,110
+So we just got finished going
+through the show action to
+
+171
+00:07:36,110 --> 00:07:39,300
+show a particular tweet, but
+what might the index action
+
+172
+00:07:39,300 --> 00:07:42,120
+look like where we list
+out all the tweets?
+
+173
+00:07:42,120 --> 00:07:44,520
+Well, it might look a little bit
+like this in our browser,
+
+174
+00:07:44,520 --> 00:07:47,000
+where we're listing the
+tweets just like that.
+
+175
+00:07:47,000 --> 00:07:49,050
+And here's what the code
+might look like.
+
+176
+00:07:49,050 --> 00:07:51,170
+So, the header, we're
+listing tweets.
+
+177
+00:07:51,170 --> 00:07:53,120
+We're starting a table.
+
+178
+00:07:53,120 --> 00:07:55,800
+We then say Tweet.all.each
+to iterate
+
+179
+00:07:55,800 --> 00:07:57,540
+through each of the tweets.
+
+180
+00:07:57,540 --> 00:07:59,920
+And there's our basic
+code block.
+
+181
+00:07:59,920 --> 00:08:03,300
+Inside there, we're going to
+print out the tweet status,
+
+182
+00:08:03,300 --> 00:08:06,025
+and the tweet zombie name
+for each of the tweets.
+
+183
+00:08:06,025 --> 00:08:08,680
+
+
+184
+00:08:08,680 --> 00:08:11,800
+Just to review what each piece
+of this code returns, when we
+
+185
+00:08:11,800 --> 00:08:15,610
+call capital tweet, we get
+returned a class, which we
+
+186
+00:08:15,610 --> 00:08:17,450
+then call all on.
+
+187
+00:08:17,450 --> 00:08:19,920
+.all returns an
+array of tweets.
+
+188
+00:08:19,920 --> 00:08:23,590
+Now as we iterate through each
+of them, we store each of
+
+189
+00:08:23,590 --> 00:08:27,290
+those tweets inside the
+lowercase tweet.
+
+190
+00:08:27,290 --> 00:08:29,520
+What if we wanted to make
+these both links?
+
+191
+00:08:29,520 --> 00:08:33,090
+We would link to the show tweet
+and link to the show
+
+192
+00:08:33,090 --> 00:08:34,730
+zombie actions.
+
+193
+00:08:34,730 --> 00:08:39,750
+Well, we would add link_to, then
+we'd specify the tweet.
+
+194
+00:08:39,750 --> 00:08:42,270
+And then we would add
+a link_to, and
+
+195
+00:08:42,270 --> 00:08:46,160
+then specify the zombie.
+
+196
+00:08:46,160 --> 00:08:48,780
+Let's go and build out a little
+bit of functionality.
+
+197
+00:08:48,780 --> 00:08:51,970
+Right now, if we don't have any
+tweets, it has nothing.
+
+198
+00:08:51,970 --> 00:08:55,860
+What we want to do is print
+out no tweets found.
+
+199
+00:08:55,860 --> 00:08:58,020
+So here's our code down here.
+
+200
+00:08:58,020 --> 00:09:00,730
+First thing we're going to do
+is we're going to move out
+
+201
+00:09:00,730 --> 00:09:05,240
+tweet.all and store that
+in a tweets variable.
+
+202
+00:09:05,240 --> 00:09:08,250
+We're going to move that tweets
+to be what we iterate
+
+203
+00:09:08,250 --> 00:09:10,370
+through when we call dot each.
+
+204
+00:09:10,370 --> 00:09:13,720
+And then, at the bottom, we're
+going to say, if tweets size
+
+205
+00:09:13,720 --> 00:09:18,420
+equals zero, then print
+out no tweets found.
+
+206
+00:09:18,420 --> 00:09:22,130
+We can simplify this code a
+little bit by calling
+
+207
+00:09:22,130 --> 00:09:24,050
+.empty?
+
+208
+00:09:24,050 --> 00:09:27,080
+And if that's true, then it'll
+print out no tweets found.
+
+209
+00:09:27,080 --> 00:09:29,680
+As you can see, it does here.
+
+210
+00:09:29,680 --> 00:09:32,980
+Now what if we wanted to add
+edit and delete links to the
+
+211
+00:09:32,980 --> 00:09:35,850
+list of tweets, so we could
+very quickly edit them and
+
+212
+00:09:35,850 --> 00:09:36,990
+delete them?
+
+213
+00:09:36,990 --> 00:09:39,310
+What would the code
+look like then?
+
+214
+00:09:39,310 --> 00:09:42,880
+Well, here we're going to
+add a link_to "Edit"
+
+215
+00:09:42,880 --> 00:09:46,950
+And we're going to say,
+edit_tweet_path(tweet)
+
+216
+00:09:46,950 --> 00:09:51,230
+And to add a delete link, we
+say link_to delete, specify
+
+217
+00:09:51,230 --> 00:09:55,950
+the tweet, and then give
+it a method of delete.
+
+218
+00:09:55,950 --> 00:09:57,330
+Now I'm going to give you a
+quick summary of all the
+
+219
+00:09:57,330 --> 00:10:00,790
+different paths you might use in
+your link_to in Rails, and
+
+220
+00:10:00,790 --> 00:10:03,330
+maybe also in the lab that
+you're about to do.
+
+221
+00:10:03,330 --> 00:10:05,110
+So to list all the tweets,
+you're going to
+
+222
+00:10:05,110 --> 00:10:06,830
+use the tweets_path.
+
+223
+00:10:06,830 --> 00:10:09,870
+That's going to generate
+a tweets URL.
+
+224
+00:10:09,870 --> 00:10:13,410
+To link to a new tweet form,
+you'd use the new_tweet_path
+
+225
+00:10:13,410 --> 00:10:15,650
+to generate this URL.
+
+226
+00:10:15,650 --> 00:10:17,390
+For the remainder of the paths,
+you're going to need to
+
+227
+00:10:17,390 --> 00:10:19,620
+reference a specific tweet.
+
+228
+00:10:19,620 --> 00:10:22,600
+So here we're getting a
+tweet with ID of 1.
+
+229
+00:10:22,600 --> 00:10:26,610
+To show it, we're simply going
+to pass in the tweet object,
+
+230
+00:10:26,610 --> 00:10:29,000
+which will generate this URL.
+
+231
+00:10:29,000 --> 00:10:31,510
+To edit it, we're going to put
+in edit_tweet_path (tweet).
+
+232
+00:10:31,510 --> 00:10:34,490
+And we're going to
+get this URL.
+
+233
+00:10:34,490 --> 00:10:38,050
+And to delete the tweet, we're
+going to simply specify it,
+
+234
+00:10:38,050 --> 00:10:40,670
+specify the method as delete.
+
+235
+00:10:40,670 --> 00:10:44,910
+And that's going to generate
+the path tweets/1.
+
+236
+00:10:44,910 --> 00:10:47,180
+That brings us to Zombie Lab
+Three, where you can get your
+
+237
+00:10:47,180 --> 00:10:48,960
+hands dirty trying out
+some of this code.
+
+238
+00:10:48,960 --> 00:10:52,991

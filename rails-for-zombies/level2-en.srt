@@ -1,0 +1,555 @@
+1
+00:00:00,000 --> 00:00:00,900
+
+
+2
+00:00:00,900 --> 00:00:03,030
+I'm Gregg Pollack, and you're
+watching Rails for Zombies,
+
+3
+00:00:03,030 --> 00:00:04,790
+Episode Two.
+
+4
+00:00:04,790 --> 00:00:04,930
+[SINGING]
+
+5
+00:00:04,930 --> 00:00:07,376
+Put down your brains
+and your entrails.
+
+6
+00:00:07,376 --> 00:00:12,678
+It's time to stop and learn some
+Rails because we've got
+
+7
+00:00:12,678 --> 00:00:14,124
+something new to grab.
+
+8
+00:00:14,124 --> 00:00:18,530
+It's Rails for Zombies
+by Envy Labs.
+
+9
+00:00:18,530 --> 00:00:20,080
+In episode two, we're
+going to be looking
+
+10
+00:00:20,080 --> 00:00:23,780
+at, of course, models.
+
+11
+00:00:23,780 --> 00:00:27,050
+So in the previous chapter, we
+had this bit of code, 
+
+12
+00:00:27,050 --> 00:00:28,040
+Tweet.find(3)
+
+13
+00:00:28,040 --> 00:00:32,320
+And somehow that mapped down
+here to this database table.
+
+14
+00:00:32,320 --> 00:00:34,950
+But there's obviously something
+missing in between
+
+15
+00:00:34,950 --> 00:00:37,960
+these two pieces of code that
+map one to the other.
+
+16
+00:00:37,960 --> 00:00:39,800
+And that's where
+models come in.
+
+17
+00:00:39,800 --> 00:00:43,790
+In this case, we have a Tweet
+model, which is just a plain
+
+18
+00:00:43,790 --> 00:00:45,580
+old Ruby class.
+
+19
+00:00:45,580 --> 00:00:50,830
+So what's happening here, when
+we call that capital Tweet,
+
+20
+00:00:50,830 --> 00:00:54,420
+that's going to be looking
+at this Tweet class.
+
+21
+00:00:54,420 --> 00:00:57,020
+This inherits from 
+ActiveRecord::Base.
+
+22
+00:00:57,020 --> 00:00:59,740
+Basically, that maps the
+class to the table.
+
+23
+00:00:59,740 --> 00:01:02,440
+So it's going to go look in the
+database by default for a
+
+24
+00:01:02,440 --> 00:01:06,730
+plural tweets table,
+just like that.
+
+25
+00:01:06,730 --> 00:01:08,710
+Let's take a closer look at
+what's going on when we
+
+26
+00:01:08,710 --> 00:01:11,160
+execute that find code.
+
+27
+00:01:11,160 --> 00:01:13,080
+So I'm going to call
+Tweet.find(3)
+
+28
+00:01:13,080 --> 00:01:15,630
+Tweet in this case is a class.
+
+29
+00:01:15,630 --> 00:01:18,210
+We're calling a method, find
+three on the class, which goes
+
+30
+00:01:18,210 --> 00:01:21,220
+to the database, finds
+the row that has the
+
+31
+00:01:21,220 --> 00:01:23,070
+Tweet with ID of three.
+
+32
+00:01:23,070 --> 00:01:27,170
+It then populates an instance of
+this Tweet, puts that data
+
+33
+00:01:27,170 --> 00:01:31,960
+into an object, and then stores
+that in the t variable.
+
+34
+00:01:31,960 --> 00:01:34,580
+Now, you may have noticed with
+lab one that it was possible
+
+35
+00:01:34,580 --> 00:01:37,390
+to create a zombie with
+no data in it.
+
+36
+00:01:37,390 --> 00:01:40,675
+And in this case here, we can
+create a Tweet with no data in
+
+37
+00:01:40,675 --> 00:01:42,520
+it, which isn't so good.
+
+38
+00:01:42,520 --> 00:01:47,340
+We obviously need some way
+to validate our model.
+
+39
+00:01:47,340 --> 00:01:50,530
+We can do that in Rails by
+adding a bit of code.
+
+40
+00:01:50,530 --> 00:01:54,240
+Here, in our Tweet class, we can
+add validates presence of
+
+41
+00:01:54,240 --> 00:01:58,050
+status to ensure that a status
+is put into the model before
+
+42
+00:01:58,050 --> 00:01:59,350
+it gets saved.
+
+43
+00:01:59,350 --> 00:02:02,660
+If we were to test out this new
+class, if we did t = Tweet.new,
+
+44
+00:02:02,660 --> 00:02:05,950
+we would get back
+a new Tweet object that
+
+45
+00:02:05,950 --> 00:02:07,260
+hasn't been saved yet.
+
+46
+00:02:07,260 --> 00:02:09,000
+We'll call t.save on it.
+
+47
+00:02:09,000 --> 00:02:11,710
+It's going to return false
+because it was unable to save
+
+48
+00:02:11,710 --> 00:02:15,030
+it to the database because that
+validation did not pass.
+
+49
+00:02:15,030 --> 00:02:17,920
+If we call t.errors, we
+can get back a hash of the
+
+50
+00:02:17,920 --> 00:02:19,840
+errors that came back.
+
+51
+00:02:19,840 --> 00:02:22,820
+And if we call t.errors[:status]
+that particular
+
+52
+00:02:22,820 --> 00:02:26,440
+key, we can get back just
+that particular error.
+
+53
+00:02:26,440 --> 00:02:29,690
+Rails by default comes with a
+ton of validations that you
+
+54
+00:02:29,690 --> 00:02:32,890
+can use, from numericality,
+to validating uniqueness,
+
+55
+00:02:32,890 --> 00:02:36,010
+confirmation, acceptance,
+length of, format,
+
+56
+00:02:36,010 --> 00:02:38,350
+et cetera, et cetera.
+
+57
+00:02:38,350 --> 00:02:40,870
+With Rails 3, we now have
+a new syntax for doing
+
+58
+00:02:40,870 --> 00:02:41,710
+validations.
+
+59
+00:02:41,710 --> 00:02:44,780
+Instead of doing them one line
+at a time, we can say
+
+60
+00:02:44,780 --> 00:02:48,480
+validates :status, 
+:presence => true.
+
+61
+00:02:48,480 --> 00:02:52,850
+So here you have the attribute
+and the validation.
+
+62
+00:02:52,850 --> 00:02:57,730
+We can also say validates :status,
+:length => { :minimum => 3 }
+
+63
+00:02:57,730 --> 00:03:00,290
+But of course, to simplify all
+this, we can write both of
+
+64
+00:03:00,290 --> 00:03:03,190
+these on a single line.
+
+65
+00:03:03,190 --> 00:03:05,870
+Here are the other validations
+you saw previously, but
+
+66
+00:03:05,870 --> 00:03:08,830
+showing how you might use them
+with this new syntax.
+
+67
+00:03:08,830 --> 00:03:11,390
+Now it's time to talk a little
+bit about relationships
+
+68
+00:03:11,390 --> 00:03:15,030
+because they always travel in
+packs and because, you know,
+
+69
+00:03:15,030 --> 00:03:17,420
+you need to have multiple tables
+and their relationships
+
+70
+00:03:17,420 --> 00:03:18,410
+with each other.
+
+71
+00:03:18,410 --> 00:03:20,830
+So as you saw with our previous
+example, you might
+
+72
+00:03:20,830 --> 00:03:24,720
+have noticed that the Zombie Ash
+had two different tweets,
+
+73
+00:03:24,720 --> 00:03:26,700
+and we were listing
+his name twice.
+
+74
+00:03:26,700 --> 00:03:29,140
+That's obviously not
+very efficient.
+
+75
+00:03:29,140 --> 00:03:31,760
+Well, what we're going to do
+here is break that out into a
+
+76
+00:03:31,760 --> 00:03:35,410
+separate zombies table.
+
+77
+00:03:35,410 --> 00:03:38,820
+But now we obviously need a
+way to map which zombies
+
+78
+00:03:38,820 --> 00:03:41,040
+tweeted what.
+
+79
+00:03:41,040 --> 00:03:44,820
+The Rails way of making the
+association is to add a zombie
+
+80
+00:03:44,820 --> 00:03:48,560
+underscore ID column to
+the tweets table.
+
+81
+00:03:48,560 --> 00:03:52,030
+We then specify the ID of the
+zombie that made the tweet,
+
+82
+00:03:52,030 --> 00:03:55,810
+and we can then map the
+tweet to the zombie.
+
+83
+00:03:55,810 --> 00:03:58,720
+So now if we add a tweet, one
+that maybe says your eyelids
+
+84
+00:03:58,720 --> 00:04:02,440
+taste like bacon, we can specify
+which zombie that
+
+85
+00:04:02,440 --> 00:04:04,660
+belongs to.
+
+86
+00:04:04,660 --> 00:04:07,550
+So looking at this database
+table, we might say a tweet
+
+87
+00:04:07,550 --> 00:04:10,770
+belongs to a zombie.
+
+88
+00:04:10,770 --> 00:04:14,760
+Inside of our model, to map that
+correctly, we simply add
+
+89
+00:04:14,760 --> 00:04:17,769
+belongs_to :zombie.
+
+90
+00:04:17,769 --> 00:04:19,310
+It's important to notice
+here that we're
+
+91
+00:04:19,310 --> 00:04:20,980
+using zombie singular.
+
+92
+00:04:20,980 --> 00:04:25,600
+We say belongs_to :zombie because
+one tweet belongs to
+
+93
+00:04:25,600 --> 00:04:27,380
+one zombie.
+
+94
+00:04:27,380 --> 00:04:30,110
+So now we've mapped the
+relationship in one direction.
+
+95
+00:04:30,110 --> 00:04:34,080
+How do we map it in the other
+direction and basically say a
+
+96
+00:04:34,080 --> 00:04:38,810
+zombie has many tweets?
+
+97
+00:04:38,810 --> 00:04:41,470
+Well, if you take a look at the
+model here, to map that,
+
+98
+00:04:41,470 --> 00:04:45,570
+we simply write
+has_many :tweets.
+
+99
+00:04:45,570 --> 00:04:47,880
+So now that we have the mapping
+correct for each of
+
+100
+00:04:47,880 --> 00:04:49,870
+these models, let's
+start playing
+
+101
+00:04:49,870 --> 00:04:51,210
+with them on the console.
+
+102
+00:04:51,210 --> 00:04:55,000
+So we're going to fetch a
+zombie, then to create a tweet
+
+103
+00:04:55,000 --> 00:04:59,013
+for that zombie, we're going to
+call Tweet.create, send
+
+104
+00:04:59,013 --> 00:05:03,180
+in a status, and specify
+the zombie.
+
+105
+00:05:03,180 --> 00:05:06,550
+You'll notice in this second
+line the tweet gets saved and
+
+106
+00:05:06,550 --> 00:05:08,250
+gets stored in the t variable.
+
+107
+00:05:08,250 --> 00:05:12,580
+We can then call t.zombie to
+get back the zombie object
+
+108
+00:05:12,580 --> 00:05:16,430
+for that tweet, and call
+t.zombie.name to print out
+
+109
+00:05:16,430 --> 00:05:20,660
+the zombie that made that tweet,
+in this case, Bob.
+
+110
+00:05:20,660 --> 00:05:23,640
+To explore the other side of
+the relationship, we can go
+
+111
+00:05:23,640 --> 00:05:24,980
+and get a specific zombie.
+
+112
+00:05:24,980 --> 00:05:27,480
+
+
+113
+00:05:27,480 --> 00:05:30,070
+We can count the number of
+tweets on that zombie, and if
+
+114
+00:05:30,070 --> 00:05:34,540
+we just call ash.tweets, we
+get back an array with all
+
+115
+00:05:34,540 --> 00:05:37,090
+of the tweets that that
+zombie has done.
+
+116
+00:05:37,090 --> 00:05:39,950
+Now it's time to get back into
+the code with Zombie Lab
+
+117
+00:05:39,950 --> 00:05:41,200
+Number 2.
+
+118
+00:05:41,200 --> 00:05:45,443
