@@ -1,0 +1,962 @@
+1
+00:00:00,000 --> 00:00:15,094
+[MUSIC PLAYING]
+
+2
+00:00:15,094 --> 00:00:17,760
+
+
+3
+00:00:17,760 --> 00:00:20,650
+You're watching Journey into
+Mobile, and this is Level 2,
+
+4
+00:00:20,650 --> 00:00:22,300
+Fluid Foundations.
+
+5
+00:00:22,300 --> 00:00:24,710
+In this level, we're going to
+be covering the foundations
+
+6
+00:00:24,710 --> 00:00:26,520
+for fluid layouts and
+then also talk
+
+7
+00:00:26,520 --> 00:00:28,060
+about the fluid grid.
+
+8
+00:00:28,060 --> 00:00:31,080
+Now, why are we talking about
+fluid layouts in a mobile
+
+9
+00:00:31,080 --> 00:00:31,910
+design course?
+
+10
+00:00:31,910 --> 00:00:34,710
+Well, when we talk about fluid
+layouts, really what we're
+
+11
+00:00:34,710 --> 00:00:37,570
+talking about are layouts
+that scale based on the
+
+12
+00:00:37,570 --> 00:00:39,100
+size of the view port.
+
+13
+00:00:39,100 --> 00:00:41,490
+That could be the browser,
+that could be the device,
+
+14
+00:00:41,490 --> 00:00:43,380
+whatever it is that
+you're using.
+
+15
+00:00:43,380 --> 00:00:44,940
+So what makes up a fluid site?
+
+16
+00:00:44,940 --> 00:00:46,750
+Well, there's really two
+main things that
+
+17
+00:00:46,750 --> 00:00:47,800
+make up a fluid site.
+
+18
+00:00:47,800 --> 00:00:51,770
+The first is fluid sites are
+usually based on a fluid grid.
+
+19
+00:00:51,770 --> 00:00:55,500
+And, basically, what this means
+is the grid is a series
+
+20
+00:00:55,500 --> 00:00:59,970
+of same size columns spaced
+apart evenly across the page.
+
+21
+00:00:59,970 --> 00:01:03,460
+Now, this helps from a design
+standpoint to make the design
+
+22
+00:01:03,460 --> 00:01:06,980
+more legible to the user, and
+just better organized from a
+
+23
+00:01:06,980 --> 00:01:08,390
+design standpoint.
+
+24
+00:01:08,390 --> 00:01:12,510
+Additionally, fluid layouts
+also have relative values.
+
+25
+00:01:12,510 --> 00:01:14,420
+Most of the time they're
+in percentages.
+
+26
+00:01:14,420 --> 00:01:18,400
+So, for instance, instead of
+setting an element, say at 500
+
+27
+00:01:18,400 --> 00:01:21,470
+pixels like you see here, we
+could convert that into a
+
+28
+00:01:21,470 --> 00:01:23,290
+percentage of 50%.
+
+29
+00:01:23,290 --> 00:01:26,580
+So now, if you were to resize
+that element, it would be
+
+30
+00:01:26,580 --> 00:01:30,280
+proportional, or relative, to
+its containing element.
+
+31
+00:01:30,280 --> 00:01:32,420
+So in order to illustrate
+this concept we're going
+
+32
+00:01:32,420 --> 00:01:33,990
+to use a demo site.
+
+33
+00:01:33,990 --> 00:01:37,400
+Now this demo site is actually
+built on a fixed layout, and
+
+34
+00:01:37,400 --> 00:01:39,190
+we're going to convert
+that fixed layout
+
+35
+00:01:39,190 --> 00:01:40,600
+into a fluid layout.
+
+36
+00:01:40,600 --> 00:01:41,660
+How are we going to do this?
+
+37
+00:01:41,660 --> 00:01:44,020
+Well, we're going to actually
+use the same formula that we
+
+38
+00:01:44,020 --> 00:01:47,930
+used to convert our pixel values
+to ems back in Level 1.
+
+39
+00:01:47,930 --> 00:01:50,450
+Let's first go over the mark up
+of the site just to get you
+
+40
+00:01:50,450 --> 00:01:52,830
+familiar with how the
+site is structured.
+
+41
+00:01:52,830 --> 00:01:56,300
+We have a main container div
+called site that basically
+
+42
+00:01:56,300 --> 00:01:58,290
+contains all of the elements
+of the site.
+
+43
+00:01:58,290 --> 00:02:00,750
+Additionally, we have a sidebar
+element over here to
+
+44
+00:02:00,750 --> 00:02:03,600
+the left, and then we have our
+main content area which
+
+45
+00:02:03,600 --> 00:02:05,250
+includes all of our content.
+
+46
+00:02:05,250 --> 00:02:08,360
+So when we're talking about our
+site container, currently
+
+47
+00:02:08,360 --> 00:02:11,190
+we have it set at a width
+of 940 pixels.
+
+48
+00:02:11,190 --> 00:02:13,690
+Now this is a fixed width site,
+and there's nothing
+
+49
+00:02:13,690 --> 00:02:16,690
+wrong with fixed widths, but
+the problem is they don't
+
+50
+00:02:16,690 --> 00:02:19,060
+necessarily scale with
+the view port size.
+
+51
+00:02:19,060 --> 00:02:20,750
+They're going to be static.
+
+52
+00:02:20,750 --> 00:02:22,060
+They're going to be fixed.
+
+53
+00:02:22,060 --> 00:02:24,770
+So we want to actually create
+this in a way that the site
+
+54
+00:02:24,770 --> 00:02:26,720
+scales with the view
+port size.
+
+55
+00:02:26,720 --> 00:02:30,340
+So instead of 940 pixels,
+we need to set this as a
+
+56
+00:02:30,340 --> 00:02:31,630
+percentage.
+
+57
+00:02:31,630 --> 00:02:34,170
+Now, when we're talking about
+our main site container,
+
+58
+00:02:34,170 --> 00:02:37,210
+there's really not a magic
+formula that we can use to
+
+59
+00:02:37,210 --> 00:02:38,960
+determine the proper
+percentage.
+
+60
+00:02:38,960 --> 00:02:41,420
+It's really a matter of trial
+and error because you want to
+
+61
+00:02:41,420 --> 00:02:44,770
+make sure that the design looks
+good in the browser.
+
+62
+00:02:44,770 --> 00:02:47,320
+So in our case I've played
+around with a little bit and
+
+63
+00:02:47,320 --> 00:02:51,110
+have determined that 90% percent
+width is a good value
+
+64
+00:02:51,110 --> 00:02:52,250
+for our site.
+
+65
+00:02:52,250 --> 00:02:54,530
+So if we take a look at what
+this looks like, you can see
+
+66
+00:02:54,530 --> 00:02:56,910
+that at a smaller view port size
+it really doesn't look
+
+67
+00:02:56,910 --> 00:02:58,750
+any different, which
+is a good thing.
+
+68
+00:02:58,750 --> 00:03:02,430
+But as we scale the view port
+you can see how things change.
+
+69
+00:03:02,430 --> 00:03:05,770
+The site no longer is centered
+in the browser, and you can
+
+70
+00:03:05,770 --> 00:03:07,530
+see everything is flush left.
+
+71
+00:03:07,530 --> 00:03:11,360
+Now, the main site container,
+div class site, is actually
+
+72
+00:03:11,360 --> 00:03:13,520
+scaling at 90%.
+
+73
+00:03:13,520 --> 00:03:14,960
+But the problem is that
+the rest of our
+
+74
+00:03:14,960 --> 00:03:16,120
+elements are still fixed.
+
+75
+00:03:16,120 --> 00:03:18,080
+So we need to convert those.
+
+76
+00:03:18,080 --> 00:03:19,750
+The first thing we're going to
+look at is going to be our
+
+77
+00:03:19,750 --> 00:03:20,830
+sidebar element.
+
+78
+00:03:20,830 --> 00:03:22,245
+So here's our markup for that.
+
+79
+00:03:22,245 --> 00:03:23,460
+It's pretty straightforward.
+
+80
+00:03:23,460 --> 00:03:27,480
+We have a section with a class
+of sidebar, we have a header,
+
+81
+00:03:27,480 --> 00:03:30,600
+then we have our nav elements,
+and then beneath that we have
+
+82
+00:03:30,600 --> 00:03:31,580
+our footer.
+
+83
+00:03:31,580 --> 00:03:33,050
+Let's take a look at
+the styles for
+
+84
+00:03:33,050 --> 00:03:34,880
+this particular section.
+
+85
+00:03:34,880 --> 00:03:38,530
+In this case, we have our width
+set at 305 pixels, which
+
+86
+00:03:38,530 --> 00:03:40,600
+is obviously fixed, we
+need to convert that.
+
+87
+00:03:40,600 --> 00:03:42,920
+So we're going to bring out
+our formula once again.
+
+88
+00:03:42,920 --> 00:03:45,280
+In this case, our sidebar
+width is going to be our
+
+89
+00:03:45,280 --> 00:03:49,060
+target, and the width of our
+main site container is going
+
+90
+00:03:49,060 --> 00:03:50,410
+to be our context.
+
+91
+00:03:50,410 --> 00:03:54,950
+So, in this case, we're going
+to divide 305 pixels by 940
+
+92
+00:03:54,950 --> 00:03:57,450
+pixels, and then you're going
+to get this lovely number
+
+93
+00:03:57,450 --> 00:03:58,260
+which you see here.
+
+94
+00:03:58,260 --> 00:04:01,160
+Now, since we're dealing with
+percentages, we actually need
+
+95
+00:04:01,160 --> 00:04:04,150
+to move the decimal point
+over two places.
+
+96
+00:04:04,150 --> 00:04:10,260
+So we get a value
+of 32.4460809%.
+
+97
+00:04:10,260 --> 00:04:13,390
+Once again, it's one of those
+really long numbers, but we
+
+98
+00:04:13,390 --> 00:04:15,570
+can let the browser do the heavy
+lifting and just put
+
+99
+00:04:15,570 --> 00:04:18,600
+that into our CSS and move on.
+
+100
+00:04:18,600 --> 00:04:21,019
+So as you can see, we've
+replaced our fixed width of
+
+101
+00:04:21,019 --> 00:04:24,390
+305 pixels with a relative
+percentage, and that's going
+
+102
+00:04:24,390 --> 00:04:27,390
+to allow this section to
+scale appropriately.
+
+103
+00:04:27,390 --> 00:04:30,120
+Let's take a look at what that
+looks like in the browser.
+
+104
+00:04:30,120 --> 00:04:32,780
+So this looks good from a
+sidebar element, but it's
+
+105
+00:04:32,780 --> 00:04:34,820
+creeping into our content
+area which,
+
+106
+00:04:34,820 --> 00:04:36,020
+obviously, isn't very good.
+
+107
+00:04:36,020 --> 00:04:39,280
+So we need to go ahead and
+fix that section next.
+
+108
+00:04:39,280 --> 00:04:41,860
+All right, so as you can see
+from our mark up here, we have
+
+109
+00:04:41,860 --> 00:04:44,940
+a section with a class of
+content, we have an aside
+
+110
+00:04:44,940 --> 00:04:48,280
+which gives us that pull quote
+up at the top, we have our
+
+111
+00:04:48,280 --> 00:04:51,300
+paragraph content, and then
+we have our footer content
+
+112
+00:04:51,300 --> 00:04:54,540
+beneath that, which includes our
+image and our little bio
+
+113
+00:04:54,540 --> 00:04:56,250
+section down there
+at the bottom.
+
+114
+00:04:56,250 --> 00:04:58,600
+So let's move on to our CSS.
+
+115
+00:04:58,600 --> 00:05:01,170
+For our content element, you
+can see that we have three
+
+116
+00:05:01,170 --> 00:05:02,470
+main fixed values here.
+
+117
+00:05:02,470 --> 00:05:06,550
+We have our width at 590 pixels,
+and then we have our
+
+118
+00:05:06,550 --> 00:05:08,390
+left margin and our padding.
+
+119
+00:05:08,390 --> 00:05:11,240
+So we're first going to tackle
+converting the width.
+
+120
+00:05:11,240 --> 00:05:12,940
+We're going to do the same
+thing that we did before.
+
+121
+00:05:12,940 --> 00:05:15,520
+Our target is the width of
+the element in question.
+
+122
+00:05:15,520 --> 00:05:18,820
+In this case, it's our content
+width of 590 pixels.
+
+123
+00:05:18,820 --> 00:05:21,800
+Our context is going to be the
+width of the site container.
+
+124
+00:05:21,800 --> 00:05:24,060
+If you remember, that
+was 940 pixels.
+
+125
+00:05:24,060 --> 00:05:26,600
+So if we do that equation we
+get this value, and we move
+
+126
+00:05:26,600 --> 00:05:30,370
+the decimal over two places
+to get our percentage.
+
+127
+00:05:30,370 --> 00:05:33,100
+So if we pop that over into
+our CSS, now our width is
+
+128
+00:05:33,100 --> 00:05:36,650
+proportional as opposed
+to fixed.
+
+129
+00:05:36,650 --> 00:05:39,130
+So if we take a look at how this
+renders in the browser we
+
+130
+00:05:39,130 --> 00:05:41,770
+can see that our content area
+is actually scaling
+
+131
+00:05:41,770 --> 00:05:42,860
+appropriately.
+
+132
+00:05:42,860 --> 00:05:45,930
+Now, obviously, we still need to
+fix our left margin and our
+
+133
+00:05:45,930 --> 00:05:47,690
+padding because those
+still aren't right.
+
+134
+00:05:47,690 --> 00:05:49,170
+As you can see, that
+our sidebar is
+
+135
+00:05:49,170 --> 00:05:50,790
+still creeping over.
+
+136
+00:05:50,790 --> 00:05:53,940
+But one thing to note here
+as well is our paragraph.
+
+137
+00:05:53,940 --> 00:05:56,350
+Now a paragraph is a block
+element, which means it's
+
+138
+00:05:56,350 --> 00:05:59,190
+going to inherit the width
+of its parent element.
+
+139
+00:05:59,190 --> 00:06:01,990
+In this case, it's going to be
+the width of our content area.
+
+140
+00:06:01,990 --> 00:06:05,190
+So the paragraph is actually
+going to scale with the width
+
+141
+00:06:05,190 --> 00:06:08,010
+of our content area, which
+is a good thing.
+
+142
+00:06:08,010 --> 00:06:10,250
+So it's one thing to keep in
+mind as you're creating your
+
+143
+00:06:10,250 --> 00:06:12,450
+styles, to make sure that
+you're not setting fixed
+
+144
+00:06:12,450 --> 00:06:15,660
+widths on elements that
+don't need it.
+
+145
+00:06:15,660 --> 00:06:17,680
+All right, so now let's
+tackle our left
+
+146
+00:06:17,680 --> 00:06:19,370
+margin and our padding.
+
+147
+00:06:19,370 --> 00:06:21,560
+Now, we're going to use this
+same formula but there's a
+
+148
+00:06:21,560 --> 00:06:23,900
+couple of different things that
+you need to keep in mind
+
+149
+00:06:23,900 --> 00:06:25,970
+when dealing with margins
+and padding.
+
+150
+00:06:25,970 --> 00:06:28,040
+Let's first talk
+about margins.
+
+151
+00:06:28,040 --> 00:06:31,230
+Now, Ethan Marcotte talks about
+flexible margins, and he
+
+152
+00:06:31,230 --> 00:06:34,170
+says that when setting flexible
+margins on an element
+
+153
+00:06:34,170 --> 00:06:38,170
+you're context is the width
+of the elements container.
+
+154
+00:06:38,170 --> 00:06:40,070
+So we're actually going to do
+the same exact thing that
+
+155
+00:06:40,070 --> 00:06:43,370
+we've been doing and keep
+our context the same.
+
+156
+00:06:43,370 --> 00:06:46,940
+Our margin width is going to be
+our target of 325 pixels.
+
+157
+00:06:46,940 --> 00:06:49,690
+The width of our div class site
+container is going to be
+
+158
+00:06:49,690 --> 00:06:50,620
+our context.
+
+159
+00:06:50,620 --> 00:06:52,130
+And if we plug those
+values into the
+
+160
+00:06:52,130 --> 00:06:54,150
+equation we get this value.
+
+161
+00:06:54,150 --> 00:06:57,020
+Once again, we move our decimal
+point two places over,
+
+162
+00:06:57,020 --> 00:07:00,760
+and now we've set our left
+margin to be this value, as
+
+163
+00:07:00,760 --> 00:07:02,530
+opposed to a fixed value.
+
+164
+00:07:02,530 --> 00:07:05,080
+But when we talk about padding
+we have to do things a little
+
+165
+00:07:05,080 --> 00:07:06,600
+differently.
+
+166
+00:07:06,600 --> 00:07:10,250
+When setting flexible padding on
+element, your context is
+
+167
+00:07:10,250 --> 00:07:12,060
+the width of the
+element itself.
+
+168
+00:07:12,060 --> 00:07:15,460
+And this makes sense if we go
+back to the box model because
+
+169
+00:07:15,460 --> 00:07:17,830
+when we're talking about padding
+we're talking about
+
+170
+00:07:17,830 --> 00:07:19,480
+the space within an element.
+
+171
+00:07:19,480 --> 00:07:21,260
+Whereas margin you're talking
+about the space
+
+172
+00:07:21,260 --> 00:07:22,660
+outside of the element.
+
+173
+00:07:22,660 --> 00:07:25,740
+So as you can see from our
+graphic here, we have our box
+
+174
+00:07:25,740 --> 00:07:27,350
+and the padding is inside.
+
+175
+00:07:27,350 --> 00:07:31,260
+So our box width is actually
+going to be the context, as
+
+176
+00:07:31,260 --> 00:07:33,630
+opposed to our main site
+container which was the
+
+177
+00:07:33,630 --> 00:07:35,450
+context for our margin.
+
+178
+00:07:35,450 --> 00:07:38,210
+So if we take a look at our
+equation once again, our
+
+179
+00:07:38,210 --> 00:07:40,940
+target is the width of our
+padding, which in this case,
+
+180
+00:07:40,940 --> 00:07:42,560
+was 20 pixels.
+
+181
+00:07:42,560 --> 00:07:45,410
+But our context is going to be
+the width of the content area,
+
+182
+00:07:45,410 --> 00:07:47,880
+since that's the box
+in question.
+
+183
+00:07:47,880 --> 00:07:51,390
+So instead of 940 pixels that
+we use for our main site
+
+184
+00:07:51,390 --> 00:07:55,020
+container, it's actually going
+to be 590 pixels, which is the
+
+185
+00:07:55,020 --> 00:07:56,890
+width of our content area.
+
+186
+00:07:56,890 --> 00:07:58,150
+And then we get this value.
+
+187
+00:07:58,150 --> 00:08:02,310
+And now we have both flexible
+margins and flexible padding,
+
+188
+00:08:02,310 --> 00:08:04,850
+in addition to, flexible
+width.
+
+189
+00:08:04,850 --> 00:08:07,310
+And, as you can see, from this
+screenshot, once again, our
+
+190
+00:08:07,310 --> 00:08:10,570
+site looks great, and now we've
+created a site on a
+
+191
+00:08:10,570 --> 00:08:15,120
+fluid layout, as opposed to
+having it be a fixed width.
+
+192
+00:08:15,120 --> 00:08:18,540
+So as you can see, the site
+scales based on the size of
+
+193
+00:08:18,540 --> 00:08:19,570
+the view port.
+
+194
+00:08:19,570 --> 00:08:22,560
+Now it's not perfect, but when
+we talk about designing for
+
+195
+00:08:22,560 --> 00:08:25,840
+the universal web, we're talking
+about not knowing the
+
+196
+00:08:25,840 --> 00:08:28,140
+size of every users view port.
+
+197
+00:08:28,140 --> 00:08:32,150
+So by creating a site with a
+fluid layout we can create a
+
+198
+00:08:32,150 --> 00:08:36,039
+site that flexes and is very
+fluid, as opposed to just
+
+199
+00:08:36,039 --> 00:08:40,110
+being very fixed and
+very static.
+
+200
+00:08:40,110 --> 00:08:42,690
+So now it's time for you to
+actually jump into the code
+
+201
+00:08:42,690 --> 00:08:44,049
+and try some of the
+challenges.
+
+202
+00:08:44,049 --> 00:08:46,210
+Good luck on these, and we'll
+see you in the next level.
+
+203
+00:08:46,210 --> 00:08:48,170

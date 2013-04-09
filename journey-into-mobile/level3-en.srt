@@ -1,0 +1,1173 @@
+1
+00:00:00,000 --> 00:00:00,480
+
+
+2
+00:00:00,480 --> 00:00:15,025
+[MUSIC PLAYING]
+
+3
+00:00:15,025 --> 00:00:17,580
+
+
+4
+00:00:17,580 --> 00:00:19,990
+You're watching Journey into
+Mobile and this is Level
+
+5
+00:00:19,990 --> 00:00:22,090
+Three, Adaptive Adventures.
+
+6
+00:00:22,090 --> 00:00:24,100
+In this level, we're going
+to talk about what
+
+7
+00:00:24,100 --> 00:00:26,100
+adaptive web design is.
+
+8
+00:00:26,100 --> 00:00:28,260
+We're also going to talk about
+break points and why they
+
+9
+00:00:28,260 --> 00:00:29,900
+matter, and then finally
+we're going to
+
+10
+00:00:29,900 --> 00:00:32,759
+introduce media queries.
+
+11
+00:00:32,759 --> 00:00:34,170
+So what is adaptive design?
+
+12
+00:00:34,170 --> 00:00:37,240
+Well, essentially, adaptive
+design is designing for
+
+13
+00:00:37,240 --> 00:00:39,190
+controlled adaptation.
+
+14
+00:00:39,190 --> 00:00:42,260
+And basically what this means
+is you know the device or
+
+15
+00:00:42,260 --> 00:00:45,750
+design context that you need
+to design for, and then you
+
+16
+00:00:45,750 --> 00:00:47,460
+design accordingly.
+
+17
+00:00:47,460 --> 00:00:50,120
+So let's use a real world
+example to better illustrate
+
+18
+00:00:50,120 --> 00:00:51,750
+this concept, and we're
+going to use
+
+19
+00:00:51,750 --> 00:00:53,680
+the design site Dribbble.
+
+20
+00:00:53,680 --> 00:00:58,440
+Now, Dribbble was originally
+created as a desktop web app,
+
+21
+00:00:58,440 --> 00:01:00,930
+and what they found is that
+more and more users were
+
+22
+00:01:00,930 --> 00:01:03,490
+accessing the site through
+their mobile devices.
+
+23
+00:01:03,490 --> 00:01:06,635
+Now if you have a smartphone, an
+iPhone, or an Android, you
+
+24
+00:01:06,635 --> 00:01:10,570
+know desktop optimized sites
+work on a mobile device but
+
+25
+00:01:10,570 --> 00:01:13,900
+usually you have to zoom in a
+lot and swipe a lot, and it's
+
+26
+00:01:13,900 --> 00:01:16,650
+not exactly an optimal
+experience for mobile.
+
+27
+00:01:16,650 --> 00:01:19,280
+So the guys at Dribbble realized
+this and started to
+
+28
+00:01:19,280 --> 00:01:22,930
+think about, OK, what could they
+do in order to optimize
+
+29
+00:01:22,930 --> 00:01:25,440
+the site for a mobile context.
+
+30
+00:01:25,440 --> 00:01:27,160
+Well, they could have done
+one of two things.
+
+31
+00:01:27,160 --> 00:01:29,900
+They could have created an
+entirely separate mobile site
+
+32
+00:01:29,900 --> 00:01:32,620
+using separate markup, separate
+styles, separate
+
+33
+00:01:32,620 --> 00:01:35,790
+content, which is a totally
+legitimate option if you need
+
+34
+00:01:35,790 --> 00:01:36,700
+to do that.
+
+35
+00:01:36,700 --> 00:01:39,220
+They could have created an
+adaptive design where they
+
+36
+00:01:39,220 --> 00:01:43,430
+adapt the styles from the
+desktop site to a mobile
+
+37
+00:01:43,430 --> 00:01:46,370
+environment, or they could
+create a responsive site,
+
+38
+00:01:46,370 --> 00:01:48,880
+which we'll actually cover
+in a little bit.
+
+39
+00:01:48,880 --> 00:01:51,610
+What they did is they chose an
+adaptive approach to their
+
+40
+00:01:51,610 --> 00:01:55,850
+design and they adapted the
+styles of their CSS from the
+
+41
+00:01:55,850 --> 00:01:59,770
+desktop environment to a mobile
+environment, creating
+
+42
+00:01:59,770 --> 00:02:02,010
+an optimal environment if you're
+on your laptop or a
+
+43
+00:02:02,010 --> 00:02:04,600
+desktop computer but also
+creating an optimal
+
+44
+00:02:04,600 --> 00:02:05,990
+environment if you're
+accessing the
+
+45
+00:02:05,990 --> 00:02:08,740
+site on a mobile device.
+
+46
+00:02:08,740 --> 00:02:11,180
+Adaptive design doesn't mean
+that you're covering all the
+
+47
+00:02:11,180 --> 00:02:12,850
+needs for the universal web.
+
+48
+00:02:12,850 --> 00:02:15,410
+Usually what it means you are
+designing for a specific
+
+49
+00:02:15,410 --> 00:02:19,000
+context, and that context might
+be the device, it might
+
+50
+00:02:19,000 --> 00:02:21,010
+be screen size, it might
+be resolution.
+
+51
+00:02:21,010 --> 00:02:23,250
+But the bottom line is you know
+what it is and you're
+
+52
+00:02:23,250 --> 00:02:26,350
+specifically targeting
+that context.
+
+53
+00:02:26,350 --> 00:02:29,180
+Now with any design, important
+to consider four basic
+
+54
+00:02:29,180 --> 00:02:29,750
+principles.
+
+55
+00:02:29,750 --> 00:02:32,660
+You need to know who your user
+is, you need to know how
+
+56
+00:02:32,660 --> 00:02:35,860
+they're going to use the site,
+you need to know the context
+
+57
+00:02:35,860 --> 00:02:37,780
+in which they're going to use
+it, so that could be what
+
+58
+00:02:37,780 --> 00:02:40,260
+device they're using or in what
+environment they're using
+
+59
+00:02:40,260 --> 00:02:43,180
+it, and then finally, you need
+to know what your content is
+
+60
+00:02:43,180 --> 00:02:47,580
+and how that content is going to
+adapt based on the context.
+
+61
+00:02:47,580 --> 00:02:49,580
+So to better illustrate this,
+we're going to use another
+
+62
+00:02:49,580 --> 00:02:52,570
+demo site, and what we've done
+is created a fictitious
+
+63
+00:02:52,570 --> 00:02:56,300
+restaurant called the Nautilus
+Bar and Restaurant.
+
+64
+00:02:56,300 --> 00:02:59,610
+If we apply our four design keys
+to the restaurant site,
+
+65
+00:02:59,610 --> 00:03:02,630
+what we come up with is that
+our user probably wants to
+
+66
+00:03:02,630 --> 00:03:06,660
+either find the restaurant
+or learn more about it.
+
+67
+00:03:06,660 --> 00:03:09,490
+The context is they're probably
+going to be accessing
+
+68
+00:03:09,490 --> 00:03:12,360
+the site either on their laptop
+or maybe on a mobile
+
+69
+00:03:12,360 --> 00:03:15,390
+device, and therefore their
+content needs to include
+
+70
+00:03:15,390 --> 00:03:18,610
+location info, needs to include
+a menu, and needs to
+
+71
+00:03:18,610 --> 00:03:20,990
+include information about
+the restaurant.
+
+72
+00:03:20,990 --> 00:03:23,360
+It probably doesn't need to
+include those irrelevant
+
+73
+00:03:23,360 --> 00:03:26,340
+iStock photos of random people
+eating, for instance.
+
+74
+00:03:26,340 --> 00:03:29,010
+So in our case we're going to be
+adapting the design from a
+
+75
+00:03:29,010 --> 00:03:31,540
+desktop environment to a mobile
+environment just like
+
+76
+00:03:31,540 --> 00:03:33,190
+the Dribbble example.
+
+77
+00:03:33,190 --> 00:03:35,710
+So here's what we want our site
+to look like in a mobile
+
+78
+00:03:35,710 --> 00:03:38,860
+context, and here's what we want
+our site to look like in
+
+79
+00:03:38,860 --> 00:03:40,700
+a desktop environment.
+
+80
+00:03:40,700 --> 00:03:43,340
+Alright, so when we cover
+adaptive web design, we really
+
+81
+00:03:43,340 --> 00:03:44,980
+want to look at three
+main things.
+
+82
+00:03:44,980 --> 00:03:48,420
+The first is our markup, the
+second is our break points,
+
+83
+00:03:48,420 --> 00:03:50,300
+and the third is going to be
+our media queries that
+
+84
+00:03:50,300 --> 00:03:51,950
+actually make this work.
+
+85
+00:03:51,950 --> 00:03:54,190
+So real quickly, let's go ahead
+and take a look at how
+
+86
+00:03:54,190 --> 00:03:55,800
+the site is structured.
+
+87
+00:03:55,800 --> 00:03:58,420
+We have our main header section
+up here at the top,
+
+88
+00:03:58,420 --> 00:04:01,320
+then we have our menu content
+here in the middle, and
+
+89
+00:04:01,320 --> 00:04:03,930
+finally we wrap up at the bottom
+of our page with our
+
+90
+00:04:03,930 --> 00:04:05,400
+about section.
+
+91
+00:04:05,400 --> 00:04:07,140
+Next, let's cover
+break points.
+
+92
+00:04:07,140 --> 00:04:08,180
+What are break points?
+
+93
+00:04:08,180 --> 00:04:10,370
+Well, essentially break
+points are where your
+
+94
+00:04:10,370 --> 00:04:12,130
+design breaks down.
+
+95
+00:04:12,130 --> 00:04:15,040
+Now, in an adaptive approach
+typically your break points
+
+96
+00:04:15,040 --> 00:04:18,850
+are going to be the height and
+the width of the device or the
+
+97
+00:04:18,850 --> 00:04:21,040
+context that you're targeting.
+
+98
+00:04:21,040 --> 00:04:24,250
+Now when we talk about a mobile
+context, this could
+
+99
+00:04:24,250 --> 00:04:25,750
+mean a number of different
+things.
+
+100
+00:04:25,750 --> 00:04:28,200
+We have iPhones, we have
+Android phones, we have
+
+101
+00:04:28,200 --> 00:04:32,000
+Kindles, we have iPads, so when
+we're talking about a
+
+102
+00:04:32,000 --> 00:04:34,810
+mobile context, we need to
+know what specific mobile
+
+103
+00:04:34,810 --> 00:04:36,630
+context we want to target.
+
+104
+00:04:36,630 --> 00:04:38,700
+In our case, we're going to keep
+it simple and we're going
+
+105
+00:04:38,700 --> 00:04:41,830
+to use the size for our
+standard iPhone.
+
+106
+00:04:41,830 --> 00:04:44,890
+In this case, it's going to be
+a height of 480 pixels and
+
+107
+00:04:44,890 --> 00:04:47,430
+it's going to be a width
+of 320 pixels.
+
+108
+00:04:47,430 --> 00:04:49,600
+One of the things you might be
+asking is, well, what about
+
+109
+00:04:49,600 --> 00:04:52,250
+the iPhone 4 or the iPhone 4S?
+
+110
+00:04:52,250 --> 00:04:55,380
+Well, those have double the
+pixel density, but they still
+
+111
+00:04:55,380 --> 00:04:59,360
+have the same size when it comes
+to browser size, so we
+
+112
+00:04:59,360 --> 00:05:02,130
+actually don't need to double
+the size of our break points.
+
+113
+00:05:02,130 --> 00:05:05,130
+We can keep the height and the
+width exactly the same, but
+
+114
+00:05:05,130 --> 00:05:07,790
+when we talk about things like
+images we're going to have to
+
+115
+00:05:07,790 --> 00:05:09,090
+deal with pixel density.
+
+116
+00:05:09,090 --> 00:05:11,530
+We'll actually cover that
+in a future level.
+
+117
+00:05:11,530 --> 00:05:13,390
+Alright, so how do we
+make this all work?
+
+118
+00:05:13,390 --> 00:05:16,080
+Well, to make it work we have
+to use media queries.
+
+119
+00:05:16,080 --> 00:05:19,460
+Now you might be familiar with
+media queries or at least the
+
+120
+00:05:19,460 --> 00:05:23,120
+foundations for them if you've
+ever written, say, a print
+
+121
+00:05:23,120 --> 00:05:24,370
+style sheet.
+
+122
+00:05:24,370 --> 00:05:26,540
+And you might have seen
+something like this, where you
+
+123
+00:05:26,540 --> 00:05:29,200
+put these in the head of
+your HTML document.
+
+124
+00:05:29,200 --> 00:05:31,300
+And basically what this is
+saying is we're telling the
+
+125
+00:05:31,300 --> 00:05:34,350
+browser, hey, for this
+particular device or for this
+
+126
+00:05:34,350 --> 00:05:38,380
+particular thing, use this
+CSS style sheet.
+
+127
+00:05:38,380 --> 00:05:41,220
+And the W3C actually came out
+with a new query a few years
+
+128
+00:05:41,220 --> 00:05:44,250
+back where they actually
+targeted mobile devices.
+
+129
+00:05:44,250 --> 00:05:47,170
+The problem with this is there's
+a number of different
+
+130
+00:05:47,170 --> 00:05:50,630
+mobile devices, so if we use one
+style sheet it might look
+
+131
+00:05:50,630 --> 00:05:53,350
+great on an iPhone but it might
+look terrible on, say,
+
+132
+00:05:53,350 --> 00:05:54,850
+your mom's old Nokia.
+
+133
+00:05:54,850 --> 00:05:57,450
+So this wasn't a good solution
+when we're talking about the
+
+134
+00:05:57,450 --> 00:05:58,860
+universal web.
+
+135
+00:05:58,860 --> 00:06:02,520
+So as part of the CSS3 spec, the
+media query was introduced
+
+136
+00:06:02,520 --> 00:06:04,060
+and this is what
+it looks like.
+
+137
+00:06:04,060 --> 00:06:05,560
+We have two main items here.
+
+138
+00:06:05,560 --> 00:06:08,130
+First, we have the media type--
+in this case, we're
+
+139
+00:06:08,130 --> 00:06:09,610
+looking at screens--
+
+140
+00:06:09,610 --> 00:06:12,330
+and then we have the actual
+query itself,
+
+141
+00:06:12,330 --> 00:06:14,680
+max-width of 320 pixels.
+
+142
+00:06:14,680 --> 00:06:17,420
+And then beneath that, we put
+all of the styles that we want
+
+143
+00:06:17,420 --> 00:06:20,530
+to be contained inside
+that media query.
+
+144
+00:06:20,530 --> 00:06:23,350
+So what is this actually telling
+the browser to do?
+
+145
+00:06:23,350 --> 00:06:27,620
+Well, essentially it's saying
+for any of viewport that is
+
+146
+00:06:27,620 --> 00:06:31,950
+less than or equal to 320 pixels
+in width, use these
+
+147
+00:06:31,950 --> 00:06:35,190
+styles over our original
+styles.
+
+148
+00:06:35,190 --> 00:06:37,850
+And if we use max-width, it
+stands to reason that we can
+
+149
+00:06:37,850 --> 00:06:39,460
+also use min-width.
+
+150
+00:06:39,460 --> 00:06:42,610
+So in this case, what we're
+saying is for a viewport size
+
+151
+00:06:42,610 --> 00:06:45,070
+that is greater than
+or equal to 1024
+
+152
+00:06:45,070 --> 00:06:48,000
+pixels, use these styles.
+
+153
+00:06:48,000 --> 00:06:49,930
+Now there are a number of other
+options that we could
+
+154
+00:06:49,930 --> 00:06:52,350
+put into our media queries and
+we'll actually cover those in
+
+155
+00:06:52,350 --> 00:06:55,010
+a future level, but for the time
+being we're just going to
+
+156
+00:06:55,010 --> 00:06:56,820
+stick to these simple min-width
+
+157
+00:06:56,820 --> 00:06:58,850
+and max-width examples.
+
+158
+00:06:58,850 --> 00:07:01,230
+Alright, so where do you
+put your media queries?
+
+159
+00:07:01,230 --> 00:07:04,240
+You could make a separate style
+sheet for each, but that
+
+160
+00:07:04,240 --> 00:07:06,690
+would be pretty cumbersome and
+it would also increase the
+
+161
+00:07:06,690 --> 00:07:08,320
+load time for your site.
+
+162
+00:07:08,320 --> 00:07:11,090
+It's a better practice to put
+your media queries in a group
+
+163
+00:07:11,090 --> 00:07:13,910
+at the bottom of your style
+sheet like you see here.
+
+164
+00:07:13,910 --> 00:07:17,190
+It's easier to maintain, it's
+easier to find, and it doesn't
+
+165
+00:07:17,190 --> 00:07:19,980
+increase the load time
+as much as including
+
+166
+00:07:19,980 --> 00:07:22,580
+separate style sheets.
+
+167
+00:07:22,580 --> 00:07:25,040
+So for our demo site, the
+Nautilus Bar and Restaurant,
+
+168
+00:07:25,040 --> 00:07:28,900
+we can actually have two media
+queries, one at 320 pixels,
+
+169
+00:07:28,900 --> 00:07:32,320
+which is the iPhone in portrait
+mode, and one at 480
+
+170
+00:07:32,320 --> 00:07:35,240
+pixels, which is the iPhone
+in landscape mode.
+
+171
+00:07:35,240 --> 00:07:37,900
+But if you recall back to level
+two when we talked about
+
+172
+00:07:37,900 --> 00:07:41,350
+fluid layouts, we've actually
+built the site on a fluid
+
+173
+00:07:41,350 --> 00:07:42,410
+foundation.
+
+174
+00:07:42,410 --> 00:07:45,470
+So what that means is the site
+can actually scale based on
+
+175
+00:07:45,470 --> 00:07:46,980
+the viewport size.
+
+176
+00:07:46,980 --> 00:07:49,110
+And this is great, because it
+means that we don't have to do
+
+177
+00:07:49,110 --> 00:07:50,110
+extra work.
+
+178
+00:07:50,110 --> 00:07:52,930
+We can actually set the value
+of the media query to be the
+
+179
+00:07:52,930 --> 00:07:56,050
+higher version-- in this
+case, 480 pixels--
+
+180
+00:07:56,050 --> 00:07:59,160
+and we know that when we turn
+the iPhone into portrait mode,
+
+181
+00:07:59,160 --> 00:08:01,100
+the design is going to
+scale appropriately
+
+182
+00:08:01,100 --> 00:08:02,840
+because it's fluid.
+
+183
+00:08:02,840 --> 00:08:05,040
+Alright, let's look at our
+styles for our desktop site,
+
+184
+00:08:05,040 --> 00:08:08,160
+and then we'll actually adapt
+to those to our mobile site.
+
+185
+00:08:08,160 --> 00:08:10,440
+So first, we're looking
+at our header area
+
+186
+00:08:10,440 --> 00:08:12,140
+for our desktop site.
+
+187
+00:08:12,140 --> 00:08:14,710
+As you can see, we have our main
+logo image and then we
+
+188
+00:08:14,710 --> 00:08:18,230
+also have a bottom border
+of 15 pixels.
+
+189
+00:08:18,230 --> 00:08:20,450
+Those are going to be the main
+things that we change as we
+
+190
+00:08:20,450 --> 00:08:23,420
+adapt this portion to a
+mobile environment.
+
+191
+00:08:23,420 --> 00:08:26,120
+And as you can see, we've
+included a separate logo file
+
+192
+00:08:26,120 --> 00:08:28,130
+here, which is smaller,
+and we've also
+
+193
+00:08:28,130 --> 00:08:30,000
+removed that bottom border.
+
+194
+00:08:30,000 --> 00:08:33,740
+And here's what it looks like
+in a mobile environment.
+
+195
+00:08:33,740 --> 00:08:36,220
+Next, what we want to do is we
+want to actually move the
+
+196
+00:08:36,220 --> 00:08:39,960
+location and contact information
+beneath the logo.
+
+197
+00:08:39,960 --> 00:08:42,080
+In the desktop environment
+it was floated to the
+
+198
+00:08:42,080 --> 00:08:43,409
+right of the logo.
+
+199
+00:08:43,409 --> 00:08:46,370
+So as you can see, these are
+our original desktop styles
+
+200
+00:08:46,370 --> 00:08:49,270
+where we have a lot of floats
+and we also have a set width.
+
+201
+00:08:49,270 --> 00:08:53,820
+
+
+202
+00:08:53,820 --> 00:08:56,050
+As we adapt to a mobile
+environment, we're going to
+
+203
+00:08:56,050 --> 00:08:57,860
+clear all of those floats.
+
+204
+00:08:57,860 --> 00:09:00,530
+We're actually going to add a
+background color, and we're
+
+205
+00:09:00,530 --> 00:09:03,380
+also going to stretch the width
+to be the full width of
+
+206
+00:09:03,380 --> 00:09:04,370
+the viewport.
+
+207
+00:09:04,370 --> 00:09:07,370
+And as you can see, now we have
+all of that information,
+
+208
+00:09:07,370 --> 00:09:10,220
+it looks great beneath
+the logo.
+
+209
+00:09:10,220 --> 00:09:13,030
+Now for our menu section in our
+desktop environment, we
+
+210
+00:09:13,030 --> 00:09:15,640
+have our two menu blocks floated
+to the left and the
+
+211
+00:09:15,640 --> 00:09:17,930
+right of each other, but this
+isn't going to work on a
+
+212
+00:09:17,930 --> 00:09:21,080
+mobile environment because those
+boxes would get really
+
+213
+00:09:21,080 --> 00:09:23,520
+small and you wouldn't be able
+to even read the menu.
+
+214
+00:09:23,520 --> 00:09:26,520
+So what we want to do is
+actually stack these on top of
+
+215
+00:09:26,520 --> 00:09:27,490
+one another.
+
+216
+00:09:27,490 --> 00:09:30,090
+So as you can see in our desktop
+styles, we've defined
+
+217
+00:09:30,090 --> 00:09:33,830
+a width and a percentage and
+we have those floats.
+
+218
+00:09:33,830 --> 00:09:36,390
+As we adapt that to a mobile
+environment, we're going to
+
+219
+00:09:36,390 --> 00:09:39,400
+actually allow the width to
+inherit the full width of the
+
+220
+00:09:39,400 --> 00:09:42,210
+viewport size, and then we're
+going to clear those floats.
+
+221
+00:09:42,210 --> 00:09:44,570
+So instead of having them
+floated next to each other,
+
+222
+00:09:44,570 --> 00:09:46,630
+we're actually going to have
+them stacked on top of each
+
+223
+00:09:46,630 --> 00:09:49,640
+other, which is a much more
+readable design for a mobile
+
+224
+00:09:49,640 --> 00:09:50,540
+environment.
+
+225
+00:09:50,540 --> 00:09:52,820
+So let me show you what that
+looks like in the browser.
+
+226
+00:09:52,820 --> 00:09:55,660
+
+
+227
+00:09:55,660 --> 00:09:57,910
+So first let's take a look
+at our desktop site.
+
+228
+00:09:57,910 --> 00:10:00,530
+As you can see, we have our logo
+up here at the top with
+
+229
+00:10:00,530 --> 00:10:03,180
+our location information
+floated to the right.
+
+230
+00:10:03,180 --> 00:10:05,810
+We have our menu section here,
+the two blocks, and then we
+
+231
+00:10:05,810 --> 00:10:08,090
+have our about section
+beneath that.
+
+232
+00:10:08,090 --> 00:10:10,590
+Let's go ahead and take a look
+at how we've adapted these
+
+233
+00:10:10,590 --> 00:10:12,870
+styles to a mobile
+environment.
+
+234
+00:10:12,870 --> 00:10:16,240
+And as we pull up our iPhone
+here, you can see that we have
+
+235
+00:10:16,240 --> 00:10:18,400
+our logo centered-- it's a
+little smaller-- and we have
+
+236
+00:10:18,400 --> 00:10:20,460
+all of our location information
+
+237
+00:10:20,460 --> 00:10:21,960
+stacked beneath that.
+
+238
+00:10:21,960 --> 00:10:25,010
+Our menu section is stacked on
+top of each other, and we've
+
+239
+00:10:25,010 --> 00:10:27,370
+actually stretched the width
+of the image in our about
+
+240
+00:10:27,370 --> 00:10:29,960
+information to the full
+width of the viewport.
+
+241
+00:10:29,960 --> 00:10:32,690
+So this is an optimal design
+for mobile, and this is an
+
+242
+00:10:32,690 --> 00:10:34,680
+optimal design for
+desktop, as well.
+
+243
+00:10:34,680 --> 00:10:38,110
+
+
+244
+00:10:38,110 --> 00:10:40,510
+Alright, now it's time for you
+to work on some challenges.
+
+245
+00:10:40,510 --> 00:10:42,460
+Good luck on those and we'll
+see you in the next level.
+
+246
+00:10:42,460 --> 00:10:43,882

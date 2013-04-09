@@ -1,0 +1,711 @@
+1
+00:00:00,000 --> 00:00:17,260
+[MUSIC PLAYING]
+
+2
+00:00:17,260 --> 00:00:18,930
+Welcome to Journey
+into Mobile.
+
+3
+00:00:18,930 --> 00:00:21,650
+This is level one, Foundations
+for Mobile.
+
+4
+00:00:21,650 --> 00:00:22,800
+And in this level,
+we're going to be
+
+5
+00:00:22,800 --> 00:00:24,410
+covering three main things.
+
+6
+00:00:24,410 --> 00:00:26,850
+First, we're going to be talking
+about what is the
+
+7
+00:00:26,850 --> 00:00:27,890
+mobile web.
+
+8
+00:00:27,890 --> 00:00:30,460
+Then second, we're going to
+cover a brief overview of the
+
+9
+00:00:30,460 --> 00:00:32,619
+course, and then finally,
+we're going to look at
+
+10
+00:00:32,619 --> 00:00:34,310
+relative font sizing.
+
+11
+00:00:34,310 --> 00:00:36,950
+So let's first talk about
+the mobile web.
+
+12
+00:00:36,950 --> 00:00:38,420
+So what is the mobile web?
+
+13
+00:00:38,420 --> 00:00:41,650
+Well, there's actually no mobile
+web, in as much as
+
+14
+00:00:41,650 --> 00:00:44,900
+there isn't necessarily
+say a desktop web.
+
+15
+00:00:44,900 --> 00:00:46,780
+You see, this isn't the web.
+
+16
+00:00:46,780 --> 00:00:48,300
+This is the web.
+
+17
+00:00:48,300 --> 00:00:51,120
+And what I mean by that is that
+the web isn't limited to
+
+18
+00:00:51,120 --> 00:00:55,270
+one particular device or one
+particular environment.
+
+19
+00:00:55,270 --> 00:00:58,060
+Tim Berners-Lee has a great
+thought here where he says
+
+20
+00:00:58,060 --> 00:01:00,710
+that the primary design
+principle underlying the web's
+
+21
+00:01:00,710 --> 00:01:03,560
+usefulness and growth
+is universality.
+
+22
+00:01:03,560 --> 00:01:05,140
+And that's really what we're
+talking about here.
+
+23
+00:01:05,140 --> 00:01:07,880
+We're talking about
+the universal web.
+
+24
+00:01:07,880 --> 00:01:11,350
+See, the web must work with
+any form of information.
+
+25
+00:01:11,350 --> 00:01:14,400
+And it must be accessible
+from any device.
+
+26
+00:01:14,400 --> 00:01:16,990
+And that's really our
+responsibility as web
+
+27
+00:01:16,990 --> 00:01:19,830
+designers and web developers,
+is to make sure that our
+
+28
+00:01:19,830 --> 00:01:23,470
+designs, that are sites, work
+on the universal web.
+
+29
+00:01:23,470 --> 00:01:26,760
+That they don't just work in a
+desktop environment, or just
+
+30
+00:01:26,760 --> 00:01:28,240
+work in a mobile environment.
+
+31
+00:01:28,240 --> 00:01:31,230
+So our goal is to make sure that
+we are working towards
+
+32
+00:01:31,230 --> 00:01:32,600
+this universal web.
+
+33
+00:01:32,600 --> 00:01:35,690
+Because, at the end of the day,
+this will be the web.
+
+34
+00:01:35,690 --> 00:01:38,960
+We're going to see many more
+devices come out, many more
+
+35
+00:01:38,960 --> 00:01:41,020
+environments that we're going to
+have to make sure that our
+
+36
+00:01:41,020 --> 00:01:44,900
+sites and that our applications
+actually work in.
+
+37
+00:01:44,900 --> 00:01:48,480
+So when we talk about mobile
+design, or adaptive design, or
+
+38
+00:01:48,480 --> 00:01:51,530
+even responsive design, really
+all we're talking about is
+
+39
+00:01:51,530 --> 00:01:53,340
+just web design.
+
+40
+00:01:53,340 --> 00:01:56,590
+So in this course, we're going
+to look at three main areas.
+
+41
+00:01:56,590 --> 00:01:59,140
+First, we're going to cover
+fluid layouts and why those
+
+42
+00:01:59,140 --> 00:02:00,110
+are important.
+
+43
+00:02:00,110 --> 00:02:02,750
+Second, we're going to talk
+about adaptive design.
+
+44
+00:02:02,750 --> 00:02:04,900
+And then finally, we're going
+to wrap up talking about
+
+45
+00:02:04,900 --> 00:02:06,360
+responsive design.
+
+46
+00:02:06,360 --> 00:02:08,770
+But before we get into any of
+that, we're going to cover a
+
+47
+00:02:08,770 --> 00:02:11,650
+little bit about fluid
+typesetting.
+
+48
+00:02:11,650 --> 00:02:13,185
+And here's what I
+mean with that.
+
+49
+00:02:13,185 --> 00:02:14,900
+Here's the image that we're
+going to be working with.
+
+50
+00:02:14,900 --> 00:02:17,240
+Let's first take a look at the
+mark-up for this image.
+
+51
+00:02:17,240 --> 00:02:18,310
+It's pretty simple.
+
+52
+00:02:18,310 --> 00:02:21,490
+All we have is an h1
+with a link inside.
+
+53
+00:02:21,490 --> 00:02:23,640
+Let's take a look at how our
+styles render for this
+
+54
+00:02:23,640 --> 00:02:25,410
+particular mark-up.
+
+55
+00:02:25,410 --> 00:02:26,880
+Once again, pretty simple.
+
+56
+00:02:26,880 --> 00:02:30,540
+Our h1, we have it set at 30
+pixels for our font size.
+
+57
+00:02:30,540 --> 00:02:34,080
+And this would be fine, except
+that we want our fonts to be
+
+58
+00:02:34,080 --> 00:02:37,530
+proportional, or relative in
+size, so that when we talk
+
+59
+00:02:37,530 --> 00:02:40,520
+about scaling sites we
+can actually have our
+
+60
+00:02:40,520 --> 00:02:42,410
+font scale with us.
+
+61
+00:02:42,410 --> 00:02:45,790
+So instead of having our font
+size be 30 pixels, we actually
+
+62
+00:02:45,790 --> 00:02:48,660
+want to convert our pixel
+values into ems.
+
+63
+00:02:48,660 --> 00:02:50,600
+So I'm going to show
+you how to do that.
+
+64
+00:02:50,600 --> 00:02:54,270
+The standard font size for most
+browsers is 16 pixels.
+
+65
+00:02:54,270 --> 00:02:57,000
+But, as you know, browsers
+can be kind of finicky.
+
+66
+00:02:57,000 --> 00:02:59,440
+So we want to make sure that for
+all of the browsers that
+
+67
+00:02:59,440 --> 00:03:02,490
+we're working with we have a
+standard font size set on our
+
+68
+00:03:02,490 --> 00:03:03,690
+HTML element.
+
+69
+00:03:03,690 --> 00:03:06,280
+So that's why we've gone ahead
+and set our standard font size
+
+70
+00:03:06,280 --> 00:03:07,450
+to be 16 pixels.
+
+71
+00:03:07,450 --> 00:03:10,580
+But you'll notice down below
+that I've also got another
+
+72
+00:03:10,580 --> 00:03:13,330
+declaration for font size
+in our body element.
+
+73
+00:03:13,330 --> 00:03:15,910
+I've got this size set
+at 62 and 1/2%.
+
+74
+00:03:15,910 --> 00:03:17,600
+Now, what is this for?
+
+75
+00:03:17,600 --> 00:03:21,360
+Well, since our standard font
+size is 16 pixels, that means
+
+76
+00:03:21,360 --> 00:03:24,850
+that one em is equal
+to 16 pixels.
+
+77
+00:03:24,850 --> 00:03:27,910
+But 16 is kind of a rough
+number to divide by.
+
+78
+00:03:27,910 --> 00:03:29,530
+And you'll see why that
+matters in a minute.
+
+79
+00:03:29,530 --> 00:03:32,380
+So what we've done here is we've
+actually taken 62 and
+
+80
+00:03:32,380 --> 00:03:35,470
+1/2% of 16, which is 10.
+
+81
+00:03:35,470 --> 00:03:39,250
+So we've converted our font size
+to be from 16 pixels to
+
+82
+00:03:39,250 --> 00:03:41,500
+10 pixels, which is going
+to be a much easier
+
+83
+00:03:41,500 --> 00:03:42,910
+value to divide by.
+
+84
+00:03:42,910 --> 00:03:43,940
+Now why does that matter?
+
+85
+00:03:43,940 --> 00:03:47,050
+Well, we're going to be using
+this formula in order to
+
+86
+00:03:47,050 --> 00:03:49,740
+convert our pixel
+values into ems.
+
+87
+00:03:49,740 --> 00:03:54,020
+This formula is target divided
+by context equals our result.
+
+88
+00:03:54,020 --> 00:03:58,020
+And, in this case, our target is
+our target font size, which
+
+89
+00:03:58,020 --> 00:04:00,230
+we want to divide by
+the font size of
+
+90
+00:04:00,230 --> 00:04:01,520
+our containing element.
+
+91
+00:04:01,520 --> 00:04:04,270
+And that's going to give
+us the value that we
+
+92
+00:04:04,270 --> 00:04:05,820
+need for our ems.
+
+93
+00:04:05,820 --> 00:04:08,720
+So, in this case, we take our
+30 pixels, which was the
+
+94
+00:04:08,720 --> 00:04:10,250
+value of our h1.
+
+95
+00:04:10,250 --> 00:04:13,210
+We're going to divide that by
+our standard default font
+
+96
+00:04:13,210 --> 00:04:15,180
+size, which is 10 pixels.
+
+97
+00:04:15,180 --> 00:04:17,870
+And then we get our
+value of 3 ems.
+
+98
+00:04:17,870 --> 00:04:20,190
+So we plug that back
+into our CSS.
+
+99
+00:04:20,190 --> 00:04:23,110
+In place of 30 pixels,
+now we have 3 ems.
+
+100
+00:04:23,110 --> 00:04:25,290
+And, voila, we've
+got our relative
+
+101
+00:04:25,290 --> 00:04:27,160
+proportional font size.
+
+102
+00:04:27,160 --> 00:04:27,770
+So that's great.
+
+103
+00:04:27,770 --> 00:04:30,820
+As you can see from our
+image here, it looks
+
+104
+00:04:30,820 --> 00:04:32,290
+relatively the same.
+
+105
+00:04:32,290 --> 00:04:35,380
+But we still have to work on
+that link because our link
+
+106
+00:04:35,380 --> 00:04:37,470
+inside of our h1 is
+now inheriting the
+
+107
+00:04:37,470 --> 00:04:39,210
+properties for our h1.
+
+108
+00:04:39,210 --> 00:04:40,870
+So let's go ahead and do that.
+
+109
+00:04:40,870 --> 00:04:43,510
+For our link we have it set at
+14 pixels, and we need to
+
+110
+00:04:43,510 --> 00:04:46,190
+convert our pixel
+values into ems.
+
+111
+00:04:46,190 --> 00:04:48,090
+So we're going to use
+our formula again.
+
+112
+00:04:48,090 --> 00:04:50,600
+Now, would we do the same
+thing that we do before?
+
+113
+00:04:50,600 --> 00:04:52,890
+In this case, 14
+divided by 10.
+
+114
+00:04:52,890 --> 00:04:54,600
+Well, let's see how
+that looks.
+
+115
+00:04:54,600 --> 00:04:57,910
+Unfortunately, that doesn't
+work, and that's because we
+
+116
+00:04:57,910 --> 00:04:59,630
+have the wrong context.
+
+117
+00:04:59,630 --> 00:05:02,790
+You see, in this case, our
+context is not the default
+
+118
+00:05:02,790 --> 00:05:06,440
+browser font size, but actually
+the size of our h1,
+
+119
+00:05:06,440 --> 00:05:09,320
+because our link is inside
+of our h1 element.
+
+120
+00:05:09,320 --> 00:05:12,100
+So in this case, we actually
+need to change our context
+
+121
+00:05:12,100 --> 00:05:15,690
+value from 10 pixels to 30
+pixels because, remember, 30
+
+122
+00:05:15,690 --> 00:05:18,710
+pixels was the original
+as of our h1 element.
+
+123
+00:05:18,710 --> 00:05:22,300
+So if we do this, we get this
+value, and we can plug that
+
+124
+00:05:22,300 --> 00:05:24,360
+into our CSS.
+
+125
+00:05:24,360 --> 00:05:27,920
+And now it renders properly.
+
+126
+00:05:27,920 --> 00:05:28,880
+One quick note here.
+
+127
+00:05:28,880 --> 00:05:31,150
+You might have noticed with our
+last conversion that it's
+
+128
+00:05:31,150 --> 00:05:32,360
+a pretty ugly number.
+
+129
+00:05:32,360 --> 00:05:33,490
+But that's OK.
+
+130
+00:05:33,490 --> 00:05:35,320
+We really should let
+the browser do the
+
+131
+00:05:35,320 --> 00:05:36,170
+heavy lifting here.
+
+132
+00:05:36,170 --> 00:05:39,280
+We don't need to round up or
+round down because this is
+
+133
+00:05:39,280 --> 00:05:44,220
+actually the exact value of
+our original pixel size.
+
+134
+00:05:44,220 --> 00:05:45,920
+So, in this case, we're
+not going to round.
+
+135
+00:05:45,920 --> 00:05:48,730
+We're just going to keep that
+value like so, plug it in to
+
+136
+00:05:48,730 --> 00:05:52,001
+our CSS, and it's going
+work just fine.
+
+137
+00:05:52,001 --> 00:05:54,920
+So why do we spend the time
+covering relative font sizing?
+
+138
+00:05:54,920 --> 00:05:57,230
+We're supposed to be talking
+about mobile design, right?
+
+139
+00:05:57,230 --> 00:05:58,120
+Well, yes.
+
+140
+00:05:58,120 --> 00:06:00,720
+But see, it's important for you
+to understand the formula
+
+141
+00:06:00,720 --> 00:06:03,750
+for actually converting pixels
+to ems because when we start
+
+142
+00:06:03,750 --> 00:06:07,550
+talking about fluid layouts and
+layouts that scale, we're
+
+143
+00:06:07,550 --> 00:06:10,020
+actually going to be using
+the same formula.
+
+144
+00:06:10,020 --> 00:06:12,970
+So it's important for you to
+grasp the concept, and this is
+
+145
+00:06:12,970 --> 00:06:15,240
+a pretty easy way for
+you to do that.
+
+146
+00:06:15,240 --> 00:06:18,860
+So this level is fairly
+simplistic, and the challenges
+
+147
+00:06:18,860 --> 00:06:20,260
+might not be all that
+difficult for
+
+148
+00:06:20,260 --> 00:06:21,370
+you, but that's OK.
+
+149
+00:06:21,370 --> 00:06:23,000
+We're going to get to
+more advanced stuff
+
+150
+00:06:23,000 --> 00:06:24,250
+later on in the course.
+
+151
+00:06:24,250 --> 00:06:26,176

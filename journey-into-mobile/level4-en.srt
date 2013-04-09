@@ -1,0 +1,924 @@
+1
+00:00:00,000 --> 00:00:17,060
+[MUSIC PLAYING]
+
+2
+00:00:17,060 --> 00:00:19,830
+You're watching Journey into
+Mobile, and this is Level 4,
+
+3
+00:00:19,830 --> 00:00:21,650
+Responsive Adventures.
+
+4
+00:00:21,650 --> 00:00:23,860
+In this level, we're going to be
+talking a little bit about
+
+5
+00:00:23,860 --> 00:00:26,610
+the Mobile First design
+approach, then we're going to
+
+6
+00:00:26,610 --> 00:00:29,800
+talk about how to apply
+responsive design, and
+
+7
+00:00:29,800 --> 00:00:31,260
+finally, we're going to
+wrap up with some
+
+8
+00:00:31,260 --> 00:00:34,220
+advanced media queries.
+
+9
+00:00:34,220 --> 00:00:37,240
+So when we talk about the Mobile
+First approach, Luke
+
+10
+00:00:37,240 --> 00:00:40,080
+Wroblewski, who sort of
+pioneered the concept, has
+
+11
+00:00:40,080 --> 00:00:42,360
+three important items
+to consider.
+
+12
+00:00:42,360 --> 00:00:44,900
+He talks about Mobile First
+as preparing you for the
+
+13
+00:00:44,900 --> 00:00:47,530
+explosive growth and
+new opportunities
+
+14
+00:00:47,530 --> 00:00:48,940
+on the mobile internet.
+
+15
+00:00:48,940 --> 00:00:52,570
+Secondly, the Mobile First
+approach forces you to focus.
+
+16
+00:00:52,570 --> 00:00:55,220
+And finally, it enables you to
+innovate in ways that you
+
+17
+00:00:55,220 --> 00:00:56,850
+previously couldn't.
+
+18
+00:00:56,850 --> 00:00:59,320
+The Mobile First approach forces
+you to focus on the
+
+19
+00:00:59,320 --> 00:01:01,410
+most important things
+in your design.
+
+20
+00:01:01,410 --> 00:01:03,720
+It forces you to simplify
+the content.
+
+21
+00:01:03,720 --> 00:01:06,500
+It forces you to prioritize the
+layout, and it forces you
+
+22
+00:01:06,500 --> 00:01:08,800
+to optimize the user
+experience.
+
+23
+00:01:08,800 --> 00:01:11,160
+Because, if you think about it,
+in a mobile design, you
+
+24
+00:01:11,160 --> 00:01:13,600
+don't have near the screen real
+estate as you do in a
+
+25
+00:01:13,600 --> 00:01:15,080
+desktop environment.
+
+26
+00:01:15,080 --> 00:01:18,990
+So your space is much more
+valuable in a mobile design,
+
+27
+00:01:18,990 --> 00:01:22,900
+which means you can't just have
+filler material, random
+
+28
+00:01:22,900 --> 00:01:25,160
+photos, or random pieces
+of information.
+
+29
+00:01:25,160 --> 00:01:27,250
+You really have to prioritize.
+
+30
+00:01:27,250 --> 00:01:30,060
+And this is a great design
+concept because as we talk
+
+31
+00:01:30,060 --> 00:01:32,920
+about the universal web, we need
+to make sure that both
+
+32
+00:01:32,920 --> 00:01:36,770
+our design and our content
+is optimized for this.
+
+33
+00:01:36,770 --> 00:01:40,000
+The Mobile First approach
+provides great foundation for
+
+34
+00:01:40,000 --> 00:01:41,020
+responsive design.
+
+35
+00:01:41,020 --> 00:01:43,580
+Now, one of the things you
+might be asking is, is
+
+36
+00:01:43,580 --> 00:01:47,200
+adaptive design the same thing
+as responsive design?
+
+37
+00:01:47,200 --> 00:01:50,580
+Well, all responsive designs
+could be classified as
+
+38
+00:01:50,580 --> 00:01:54,190
+adaptive designs, but not
+all adaptive designs are
+
+39
+00:01:54,190 --> 00:01:55,340
+responsive.
+
+40
+00:01:55,340 --> 00:01:58,510
+You see, responsive designs are
+essentially fluid sites
+
+41
+00:01:58,510 --> 00:02:01,930
+with a series of break points,
+whereas adaptive designs are
+
+42
+00:02:01,930 --> 00:02:06,100
+selectively optimized for the
+context that you're targeting.
+
+43
+00:02:06,100 --> 00:02:08,570
+Ethan Marcotte talks about
+responsive designs as
+
+44
+00:02:08,570 --> 00:02:11,320
+providing continuity
+between context.
+
+45
+00:02:11,320 --> 00:02:13,850
+And that responsive designs
+are also portable and
+
+46
+00:02:13,850 --> 00:02:14,940
+accessible.
+
+47
+00:02:14,940 --> 00:02:17,290
+And when we're talking about
+designing for the universal
+
+48
+00:02:17,290 --> 00:02:20,350
+web, these concepts are more
+important than ever.
+
+49
+00:02:20,350 --> 00:02:23,420
+So let's kind of recap where
+we've come thus far.
+
+50
+00:02:23,420 --> 00:02:27,140
+We talked about fluid layouts,
+which are great except they do
+
+51
+00:02:27,140 --> 00:02:29,580
+have limitations when it comes
+to view port size.
+
+52
+00:02:29,580 --> 00:02:32,620
+As you saw, as we started to get
+smaller and smaller, the
+
+53
+00:02:32,620 --> 00:02:34,810
+site basically became
+unreadable.
+
+54
+00:02:34,810 --> 00:02:37,490
+So that's not a great
+universal solution.
+
+55
+00:02:37,490 --> 00:02:40,450
+We also talked about adaptive
+designs, which are great for
+
+56
+00:02:40,450 --> 00:02:43,860
+targeted context, but it doesn't
+necessarily cover all
+
+57
+00:02:43,860 --> 00:02:45,620
+of the universal web.
+
+58
+00:02:45,620 --> 00:02:48,360
+Now we're talking about
+responsive design, which is
+
+59
+00:02:48,360 --> 00:02:50,640
+both flexible and universal.
+
+60
+00:02:50,640 --> 00:02:52,960
+Because, again, we're providing
+continuity between a
+
+61
+00:02:52,960 --> 00:02:54,990
+variety of different contexts.
+
+62
+00:02:54,990 --> 00:02:57,660
+Which means we can ensure that
+there's an optimal design
+
+63
+00:02:57,660 --> 00:03:00,270
+experience, whether you're
+looking at the site in a
+
+64
+00:03:00,270 --> 00:03:02,700
+desktop environment, a mobile
+environment, or, really,
+
+65
+00:03:02,700 --> 00:03:04,540
+anywhere in between.
+
+66
+00:03:04,540 --> 00:03:07,430
+When we talk about responsive
+design, our content defines
+
+67
+00:03:07,430 --> 00:03:08,630
+our break points.
+
+68
+00:03:08,630 --> 00:03:11,400
+Remember, in adaptive design,
+the height and width of the
+
+69
+00:03:11,400 --> 00:03:13,870
+device determined
+our break point.
+
+70
+00:03:13,870 --> 00:03:16,590
+But in this case, our break
+points are determined by the
+
+71
+00:03:16,590 --> 00:03:19,550
+content of our site and where
+that breaks down.
+
+72
+00:03:19,550 --> 00:03:22,130
+Because, remember, in responsive
+design, our goal is
+
+73
+00:03:22,130 --> 00:03:25,370
+to create a seamless design
+experience across a variety of
+
+74
+00:03:25,370 --> 00:03:26,660
+different contexts.
+
+75
+00:03:26,660 --> 00:03:29,680
+So where our site design breaks
+down, that's where we
+
+76
+00:03:29,680 --> 00:03:31,560
+want to make sure
+we optimize it.
+
+77
+00:03:31,560 --> 00:03:34,670
+So back to our demo site, The
+Nautilus Bar and Restaurant.
+
+78
+00:03:34,670 --> 00:03:38,840
+As we look at our site we can
+see that at around 870 pixels
+
+79
+00:03:38,840 --> 00:03:41,700
+our site gets a little
+crammed up at the top
+
+80
+00:03:41,700 --> 00:03:43,050
+in our header section.
+
+81
+00:03:43,050 --> 00:03:45,420
+So this is going to be our first
+break point where we
+
+82
+00:03:45,420 --> 00:03:48,050
+realize a need to optimize
+the design for
+
+83
+00:03:48,050 --> 00:03:49,680
+this view port size.
+
+84
+00:03:49,680 --> 00:03:51,670
+So here's how we're going
+to go about that.
+
+85
+00:03:51,670 --> 00:03:54,190
+We're going to use the same
+formatting for our media query
+
+86
+00:03:54,190 --> 00:03:56,970
+as we discussed before, and
+we're going to set our max
+
+87
+00:03:56,970 --> 00:03:59,200
+width at 870 pixels.
+
+88
+00:03:59,200 --> 00:04:01,890
+I'm just going to give you a
+couple of examples in our CSS
+
+89
+00:04:01,890 --> 00:04:03,740
+about what we want
+to change here.
+
+90
+00:04:03,740 --> 00:04:06,625
+I'm not necessarily going to
+go over all of the changes,
+
+91
+00:04:06,625 --> 00:04:09,930
+but what you need to remember
+is that for any media query
+
+92
+00:04:09,930 --> 00:04:12,750
+that you're inputting into your
+site, everything that you
+
+93
+00:04:12,750 --> 00:04:15,500
+want changed needs to be within
+that media query.
+
+94
+00:04:15,500 --> 00:04:18,120
+So, for instance, if you want
+to clear a float you need to
+
+95
+00:04:18,120 --> 00:04:20,649
+make sure that you actually
+define that in your media
+
+96
+00:04:20,649 --> 00:04:23,410
+query, otherwise it's just going
+to inherit the property
+
+97
+00:04:23,410 --> 00:04:25,630
+that was in your original
+styles.
+
+98
+00:04:25,630 --> 00:04:27,710
+So what we've done in this case
+is we're actually going
+
+99
+00:04:27,710 --> 00:04:30,650
+to use a new logo image, and
+we're going to move all of our
+
+100
+00:04:30,650 --> 00:04:33,870
+location information beneath
+that logo image.
+
+101
+00:04:33,870 --> 00:04:35,940
+So you can see the styles
+that we've used to
+
+102
+00:04:35,940 --> 00:04:37,060
+achieve that here.
+
+103
+00:04:37,060 --> 00:04:39,630
+And here's what it looks
+like in the browser.
+
+104
+00:04:39,630 --> 00:04:41,720
+So, as you can see, we've moved
+everything underneath
+
+105
+00:04:41,720 --> 00:04:45,270
+our logo, we've flushed or
+information left and right,
+
+106
+00:04:45,270 --> 00:04:47,760
+and this is a great optimal
+design for that break point,
+
+107
+00:04:47,760 --> 00:04:49,480
+which we talked about earlier.
+
+108
+00:04:49,480 --> 00:04:52,870
+Now we also see another issue
+at about 768 pixels.
+
+109
+00:04:52,870 --> 00:04:55,940
+At this point our menu items
+start to get a little too
+
+110
+00:04:55,940 --> 00:04:58,620
+skinny, and the text becomes
+hard to read.
+
+111
+00:04:58,620 --> 00:05:02,560
+So this would be another good
+place to set a break point.
+
+112
+00:05:02,560 --> 00:05:05,870
+Now, we've let our content
+define where our break points
+
+113
+00:05:05,870 --> 00:05:08,450
+are, but it's also a good point
+to notice here that's
+
+114
+00:05:08,450 --> 00:05:12,990
+768 pixels is a standard width
+for tablet devices.
+
+115
+00:05:12,990 --> 00:05:16,000
+So, yes, you want to have your
+content drive the break points
+
+116
+00:05:16,000 --> 00:05:18,400
+for your site, but it's also a
+good idea to keep in mind some
+
+117
+00:05:18,400 --> 00:05:20,100
+of the devices that you have.
+
+118
+00:05:20,100 --> 00:05:22,970
+In order to optimize
+for those as well.
+
+119
+00:05:22,970 --> 00:05:25,710
+So as you can see from our
+styles here, what we're
+
+120
+00:05:25,710 --> 00:05:28,770
+changing is we're actually going
+to stack our menu items
+
+121
+00:05:28,770 --> 00:05:31,220
+on top of each other similar to
+what we did in our mobile
+
+122
+00:05:31,220 --> 00:05:32,120
+environment.
+
+123
+00:05:32,120 --> 00:05:33,860
+We're going to clear some
+floats, and we're going to
+
+124
+00:05:33,860 --> 00:05:36,550
+stretch the width across
+the view port.
+
+125
+00:05:36,550 --> 00:05:39,240
+So, as you can see, instead of
+those being skinny and floated
+
+126
+00:05:39,240 --> 00:05:42,190
+to the left and right of each
+other, we've got them stacked,
+
+127
+00:05:42,190 --> 00:05:44,770
+the width stretches across the
+view port, and this is much
+
+128
+00:05:44,770 --> 00:05:47,420
+easier to read now.
+
+129
+00:05:47,420 --> 00:05:51,190
+Finally, we see another issue
+happening at about 510 pixels
+
+130
+00:05:51,190 --> 00:05:54,000
+where the contact information
+starts to break below the
+
+131
+00:05:54,000 --> 00:05:55,790
+location information.
+
+132
+00:05:55,790 --> 00:05:59,250
+So we could set another break
+point here, but if you
+
+133
+00:05:59,250 --> 00:06:01,970
+remember back to our adaptive
+level, we actually have
+
+134
+00:06:01,970 --> 00:06:04,900
+already set our mobile
+styles with a media
+
+135
+00:06:04,900 --> 00:06:07,320
+query at 480 pixels.
+
+136
+00:06:07,320 --> 00:06:09,680
+And, once again, since this
+site is built on a fluid
+
+137
+00:06:09,680 --> 00:06:13,010
+foundation, our site can
+scale appropriately.
+
+138
+00:06:13,010 --> 00:06:15,560
+So instead of declaring a whole
+other media query, and
+
+139
+00:06:15,560 --> 00:06:18,290
+having more and more styles
+put in there, why not just
+
+140
+00:06:18,290 --> 00:06:23,240
+move our media query up from
+480 pixels to 510 pixels.
+
+141
+00:06:23,240 --> 00:06:26,400
+So, in this case, at 510 pixels
+our site is going to
+
+142
+00:06:26,400 --> 00:06:28,730
+break into those mobile styles,
+it's going to clear up
+
+143
+00:06:28,730 --> 00:06:31,630
+that issue that we saw, and it's
+also going to optimize
+
+144
+00:06:31,630 --> 00:06:32,880
+for those device sizes.
+
+145
+00:06:32,880 --> 00:06:35,600
+
+
+146
+00:06:35,600 --> 00:06:37,000
+All right, so we're going
+to start at our
+
+147
+00:06:37,000 --> 00:06:38,470
+desktop view port size.
+
+148
+00:06:38,470 --> 00:06:40,830
+And what I'm going to do is
+scale the browser down.
+
+149
+00:06:40,830 --> 00:06:44,100
+And as you can see, at those
+break points that we defined,
+
+150
+00:06:44,100 --> 00:06:46,030
+the site design changes.
+
+151
+00:06:46,030 --> 00:06:49,290
+So instead of our site breaking,
+we actually have our
+
+152
+00:06:49,290 --> 00:06:52,420
+site being optimized for these
+break point sizes.
+
+153
+00:06:52,420 --> 00:06:55,190
+And we can get all the way down
+to a mobile environment.
+
+154
+00:06:55,190 --> 00:06:57,840
+So from a mobile environment
+all the way up to a desktop
+
+155
+00:06:57,840 --> 00:07:01,660
+environment, our site design
+it's optimized for the user.
+
+156
+00:07:01,660 --> 00:07:04,360
+Now, nobody's going to sit here
+and scale their browser
+
+157
+00:07:04,360 --> 00:07:07,290
+up and down, except if you're
+a designer or a developer.
+
+158
+00:07:07,290 --> 00:07:10,790
+So our goal here is not
+necessarily to create a design
+
+159
+00:07:10,790 --> 00:07:14,150
+that works when you scale your
+browser size up and down, the
+
+160
+00:07:14,150 --> 00:07:18,550
+point is that at each of those
+sizes the site design works.
+
+161
+00:07:18,550 --> 00:07:21,800
+So if a user is accessing a
+site on a mobile device, on
+
+162
+00:07:21,800 --> 00:07:25,010
+a tablet device, on a small
+laptop, on a large laptop, on
+
+163
+00:07:25,010 --> 00:07:27,900
+a large monitor, the site design
+is going to look great
+
+164
+00:07:27,900 --> 00:07:31,070
+and it's going to be optimized
+for the user experience.
+
+165
+00:07:31,070 --> 00:07:33,150
+Finally, we're going to take
+a quick look at some of the
+
+166
+00:07:33,150 --> 00:07:36,340
+other options that we can
+include in our media queries.
+
+167
+00:07:36,340 --> 00:07:38,950
+So here are a few charts from
+Ethan Marcotte's book on
+
+168
+00:07:38,950 --> 00:07:41,960
+responsive web design, and
+it shows you a number of
+
+169
+00:07:41,960 --> 00:07:44,440
+different options that you can
+incorporate into your media
+
+170
+00:07:44,440 --> 00:07:47,480
+queries besides just min
+width and max width.
+
+171
+00:07:47,480 --> 00:07:50,220
+So let's look at one of
+these as an example.
+
+172
+00:07:50,220 --> 00:07:52,770
+So if we go back to our demo
+site, here are some
+
+173
+00:07:52,770 --> 00:07:55,640
+screenshots of the site both
+in portrait mode and in
+
+174
+00:07:55,640 --> 00:07:56,480
+landscape mode.
+
+175
+00:07:56,480 --> 00:07:59,520
+Now, we've already optimized
+the design with our media
+
+176
+00:07:59,520 --> 00:08:02,280
+queries, but what if we actually
+wanted to call
+
+177
+00:08:02,280 --> 00:08:04,690
+specific device orientation.
+
+178
+00:08:04,690 --> 00:08:07,510
+So what if we wanted to have
+specific styles, if the site
+
+179
+00:08:07,510 --> 00:08:10,900
+was in portrait mode, or the
+site was in landscape mode?
+
+180
+00:08:10,900 --> 00:08:13,990
+Well, we can actually do that by
+incorporating those values
+
+181
+00:08:13,990 --> 00:08:16,450
+into our media queries like
+you can see here.
+
+182
+00:08:16,450 --> 00:08:19,760
+So instead of min width or max
+width, what it becomes is
+
+183
+00:08:19,760 --> 00:08:22,720
+orientation portrait or
+orientation landscape,
+
+184
+00:08:22,720 --> 00:08:24,890
+depending on what you
+want to target.
+
+185
+00:08:24,890 --> 00:08:28,240
+The bottom line is, by using
+media queries it gives us a
+
+186
+00:08:28,240 --> 00:08:31,650
+ton of flexibility in how we
+design our sites, and how our
+
+187
+00:08:31,650 --> 00:08:34,340
+sites are optimized for a number
+of different contexts,
+
+188
+00:08:34,340 --> 00:08:36,520
+and a number of different
+devices.
+
+189
+00:08:36,520 --> 00:08:38,770
+Now it's time for you to work
+on some challenges.
+
+190
+00:08:38,770 --> 00:08:39,809
+Good luck with those.
+
+191
+00:08:39,809 --> 00:08:41,290
+And we'll jump into
+the next level.
+
+192
+00:08:41,290 --> 00:08:42,540
