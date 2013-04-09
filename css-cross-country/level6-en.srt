@@ -1,0 +1,413 @@
+1
+00:00:00,000 --> 00:00:25,041
+[MUSIC PLAYING]
+
+2
+00:00:25,041 --> 00:00:28,330
+You're watching CSS Cross
+Country and this is level six,
+
+3
+00:00:28,330 --> 00:00:29,530
+Image Issues.
+
+4
+00:00:29,530 --> 00:00:32,000
+In this section, we're going
+to talk about image use and
+
+5
+00:00:32,000 --> 00:00:34,530
+image cropping.
+
+6
+00:00:34,530 --> 00:00:37,130
+When dealing with images it's
+important to consider whether
+
+7
+00:00:37,130 --> 00:00:39,690
+the image is part of the layout
+or part of the content.
+
+8
+00:00:39,690 --> 00:00:41,310
+Let's look at an example.
+
+9
+00:00:41,310 --> 00:00:43,620
+Here we have a list of rental
+products and I'm displaying
+
+10
+00:00:43,620 --> 00:00:46,010
+our image using a background
+image.
+
+11
+00:00:46,010 --> 00:00:48,260
+This was fine in the beginning
+because I had the image that
+
+12
+00:00:48,260 --> 00:00:50,640
+we needed, but what happens
+if this list ever
+
+13
+00:00:50,640 --> 00:00:52,160
+needs to become dynamic?
+
+14
+00:00:52,160 --> 00:00:54,550
+How would we dynamically access
+the background image of
+
+15
+00:00:54,550 --> 00:00:55,810
+a list item?
+
+16
+00:00:55,810 --> 00:00:58,410
+A better way to do this is to
+write it as an inline image.
+
+17
+00:00:58,410 --> 00:01:01,180
+This way we can dynamically
+access the source and all the
+
+18
+00:01:01,180 --> 00:01:03,320
+attributes.
+
+19
+00:01:03,320 --> 00:01:05,360
+You shouldn't always use
+inline images though.
+
+20
+00:01:05,360 --> 00:01:07,660
+Let's look at an example of
+a case when you shouldn't.
+
+21
+00:01:07,660 --> 00:01:10,220
+Here we have an h1 tag that's
+immediately followed by a
+
+22
+00:01:10,220 --> 00:01:11,870
+divider image.
+
+23
+00:01:11,870 --> 00:01:14,290
+This works fine, but it's not
+very dry because we'll
+
+24
+00:01:14,290 --> 00:01:17,520
+probably have to repeat it a lot
+and it's hard to maintain.
+
+25
+00:01:17,520 --> 00:01:20,120
+A better way to define this
+image is to define it in the
+
+26
+00:01:20,120 --> 00:01:23,130
+background of our h1 tag.
+
+27
+00:01:23,130 --> 00:01:26,100
+So just to review image use,
+images that are part of the
+
+28
+00:01:26,100 --> 00:01:28,430
+layout should be included
+as background images.
+
+29
+00:01:28,430 --> 00:01:30,940
+And images that are part of the
+content should be included
+
+30
+00:01:30,940 --> 00:01:33,012
+as inline images.
+
+31
+00:01:33,012 --> 00:01:36,140
+So now that you understand how
+to use images properly, let's
+
+32
+00:01:36,140 --> 00:01:38,920
+talk about some common issues
+that can come up when images
+
+33
+00:01:38,920 --> 00:01:40,690
+become dynamic.
+
+34
+00:01:40,690 --> 00:01:41,960
+Let's look at our
+list of rental
+
+35
+00:01:41,960 --> 00:01:43,600
+items that is now dynamic.
+
+36
+00:01:43,600 --> 00:01:45,650
+We need to consider what's going
+to happen when these
+
+37
+00:01:45,650 --> 00:01:48,240
+images come in at
+different sizes.
+
+38
+00:01:48,240 --> 00:01:50,880
+You've also probably seen
+something like this before.
+
+39
+00:01:50,880 --> 00:01:53,750
+As you can see, setting a set
+height and width on everything
+
+40
+00:01:53,750 --> 00:01:56,680
+is going to squish some
+of our images.
+
+41
+00:01:56,680 --> 00:01:59,040
+A better way to handle this is
+to use something called the
+
+42
+00:01:59,040 --> 00:02:00,690
+overflow crop method.
+
+43
+00:02:00,690 --> 00:02:03,920
+What we're going to do here is
+apply a crop class to the
+
+44
+00:02:03,920 --> 00:02:06,380
+parent element surrounding our
+image, which in this case, is
+
+45
+00:02:06,380 --> 00:02:07,580
+our list item.
+
+46
+00:02:07,580 --> 00:02:10,639
+We're going to set a set height
+and width on that, and
+
+47
+00:02:10,639 --> 00:02:13,630
+then apply an overflow hidden to
+hide the part of the image
+
+48
+00:02:13,630 --> 00:02:15,220
+that overflows our container.
+
+49
+00:02:15,220 --> 00:02:18,010
+So now you're going to see a
+window that is cropped at a
+
+50
+00:02:18,010 --> 00:02:20,860
+certain size but the image
+inside of that container will
+
+51
+00:02:20,860 --> 00:02:23,950
+be its regular size, and
+it won't be squished.
+
+52
+00:02:23,950 --> 00:02:25,880
+Doing it this way works
+fine, but it's
+
+53
+00:02:25,880 --> 00:02:27,140
+still not totally perfect.
+
+54
+00:02:27,140 --> 00:02:30,950
+Because as you can see, using
+only the overflow crop crops
+
+55
+00:02:30,950 --> 00:02:33,060
+out part of the full image.
+
+56
+00:02:33,060 --> 00:02:34,960
+There's a better way that we
+can do this that will scale
+
+57
+00:02:34,960 --> 00:02:37,230
+the image down to better
+fit the container.
+
+58
+00:02:37,230 --> 00:02:39,860
+What we need to do is set a
+width on our image and then
+
+59
+00:02:39,860 --> 00:02:42,150
+allow the height to
+automatically scale.
+
+60
+00:02:42,150 --> 00:02:45,030
+Resizing the image and using
+the overflow crop method
+
+61
+00:02:45,030 --> 00:02:48,560
+together will provide us with
+a much better result.
+
+62
+00:02:48,560 --> 00:02:50,980
+But wait, if we go back and
+refresh the browser, now we're
+
+63
+00:02:50,980 --> 00:02:53,420
+seeing an image that's coming
+through that uses a portrait
+
+64
+00:02:53,420 --> 00:02:54,590
+orientation.
+
+65
+00:02:54,590 --> 00:02:57,150
+We haven't accounted for any
+portrait oriented images in
+
+66
+00:02:57,150 --> 00:03:00,380
+our CSS, so we can go back
+and do that now.
+
+67
+00:03:00,380 --> 00:03:02,950
+To account for portrait oriented
+images, we just need
+
+68
+00:03:02,950 --> 00:03:04,800
+to switch the height
+and width settings.
+
+69
+00:03:04,800 --> 00:03:07,290
+So we're going to set a set
+height on it and allow the
+
+70
+00:03:07,290 --> 00:03:09,300
+width to automatically scale.
+
+71
+00:03:09,300 --> 00:03:12,180
+Unfortunately, now that we've
+changed our CSS to account for
+
+72
+00:03:12,180 --> 00:03:15,290
+portrait oriented images, we've
+broken our landscape
+
+73
+00:03:15,290 --> 00:03:16,950
+oriented images.
+
+74
+00:03:16,950 --> 00:03:19,580
+The best way to handle both of
+these situations at the same
+
+75
+00:03:19,580 --> 00:03:23,225
+time is to scale your images
+to become a square.
+
+76
+00:03:23,225 --> 00:03:25,312
+The square should be less than
+the height and width of all of
+
+77
+00:03:25,312 --> 00:03:26,710
+your images.
+
+78
+00:03:26,710 --> 00:03:29,830
+There's really no perfect way to
+resize images with CSS, so
+
+79
+00:03:29,830 --> 00:03:32,740
+your best bet is to try to
+resize them server side.
+
+80
+00:03:32,740 --> 00:03:35,710
+You can also provide image
+uploading instructions for
+
+81
+00:03:35,710 --> 00:03:38,370
+your users inside of your CMS.
+
+82
+00:03:38,370 --> 00:03:41,160
+If you're dealing with fluid or
+responsive layouts, Richard
+
+83
+00:03:41,160 --> 00:03:43,290
+Rutter has a good technique
+for dealing with those
+
+84
+00:03:43,290 --> 00:03:45,990
+provided at link number one.
+
+85
+00:03:45,990 --> 00:03:48,070
+You've reached the end of level
+six, good luck with the
+
+86
+00:03:48,070 --> 00:03:49,100
+challenges.
+
+87
+00:03:49,100 --> 00:03:50,700
+Time for me to go
+do some moguls.
+
+88
+00:03:50,700 --> 00:03:55,605

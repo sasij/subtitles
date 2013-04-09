@@ -1,0 +1,544 @@
+1
+00:00:00,000 --> 00:00:25,700
+[MUSIC PLAYING]
+
+2
+00:00:25,700 --> 00:00:28,740
+You're watching CSS Cross
+Country, and this is level 8,
+
+3
+00:00:28,740 --> 00:00:30,300
+Pseudo Sitzmark.
+
+4
+00:00:30,300 --> 00:00:32,170
+In level 8 we'll be
+discussing pseudo
+
+5
+00:00:32,170 --> 00:00:35,230
+classes and pseudo elements.
+
+6
+00:00:35,230 --> 00:00:37,520
+Let's take a look at a common
+design pattern.
+
+7
+00:00:37,520 --> 00:00:40,730
+In this example we have a list
+of items, each with a border
+
+8
+00:00:40,730 --> 00:00:42,120
+of their own on the bottom.
+
+9
+00:00:42,120 --> 00:00:47,000
+But we want the last list item
+to have that border removed.
+
+10
+00:00:47,000 --> 00:00:50,960
+If we like, we can manually, or
+through logic, add a class
+
+11
+00:00:50,960 --> 00:00:54,890
+to the last item to remove the
+border for us, but that's
+
+12
+00:00:54,890 --> 00:00:56,610
+adding an extra step.
+
+13
+00:00:56,610 --> 00:00:59,700
+With pseudo classes we won't
+need to add that logic.
+
+14
+00:00:59,700 --> 00:01:03,410
+We can go ahead and remove the
+last class, then use the last
+
+15
+00:01:03,410 --> 00:01:08,840
+child pseudo class to target the
+last li in our lists, and
+
+16
+00:01:08,840 --> 00:01:11,820
+remove the border for us.
+
+17
+00:01:11,820 --> 00:01:15,400
+With pseudo classes we're able
+to conditionally target items
+
+18
+00:01:15,400 --> 00:01:18,960
+based on their position or
+their current state.
+
+19
+00:01:18,960 --> 00:01:22,150
+All pseudo classes start with
+a colon, and you're probably
+
+20
+00:01:22,150 --> 00:01:25,170
+familiar with a few very common
+ones like we used
+
+21
+00:01:25,170 --> 00:01:27,920
+earlier with hover and focus.
+
+22
+00:01:27,920 --> 00:01:30,430
+Let's take a look at another
+example where using pseudo
+
+23
+00:01:30,430 --> 00:01:32,720
+classes can help simplify
+our CSS.
+
+24
+00:01:32,720 --> 00:01:35,950
+In this case, we want to zebra
+stripe our list items to have
+
+25
+00:01:35,950 --> 00:01:37,870
+different background colors.
+
+26
+00:01:37,870 --> 00:01:41,440
+Initially, we can have logic
+manually add these classes for
+
+27
+00:01:41,440 --> 00:01:44,570
+us, but again, this
+is a bit unwieldy.
+
+28
+00:01:44,570 --> 00:01:47,790
+Using the nth child pseudo class
+of CSS, we can target
+
+29
+00:01:47,790 --> 00:01:51,190
+the even item specifically
+without need for that extra
+
+30
+00:01:51,190 --> 00:01:55,380
+class, and our zebra striping
+is achieved for us.
+
+31
+00:01:55,380 --> 00:01:57,460
+With nth child we also
+have the ability
+
+32
+00:01:57,460 --> 00:01:58,740
+to target odd items.
+
+33
+00:01:58,740 --> 00:02:02,410
+So, if I change out even for
+odd, we can quickly switch
+
+34
+00:02:02,410 --> 00:02:05,170
+which items are zebra striped.
+
+35
+00:02:05,170 --> 00:02:08,400
+Using nth child gives us a few
+more options in selecting
+
+36
+00:02:08,400 --> 00:02:10,110
+these source of lists.
+
+37
+00:02:10,110 --> 00:02:13,590
+We're able to include a bit of
+math with the formula an plus
+
+38
+00:02:13,590 --> 00:02:18,730
+b, which allows us to select
+items grouped by numbers a,
+
+39
+00:02:18,730 --> 00:02:22,290
+starting at element b, which
+would be zero if we don't
+
+40
+00:02:22,290 --> 00:02:24,820
+include a b.
+
+41
+00:02:24,820 --> 00:02:26,540
+Taking a look at things
+we've already seen.
+
+42
+00:02:26,540 --> 00:02:29,170
+We can use this formula to
+replicate even and odd.
+
+43
+00:02:29,170 --> 00:02:32,530
+Using 2n we would select
+all even elements.
+
+44
+00:02:32,530 --> 00:02:36,300
+While using 2n plus 1 would
+give us all odd elements.
+
+45
+00:02:36,300 --> 00:02:40,270
+If you'd like to select every
+third element, you can use 3n.
+
+46
+00:02:40,270 --> 00:02:43,240
+If you'd like to select every
+fourth element, starting with
+
+47
+00:02:43,240 --> 00:02:47,100
+the fourth element, you
+can use 4n plus 4.
+
+48
+00:02:47,100 --> 00:02:49,250
+There are a number of useful
+pseudo classes, and we'll
+
+49
+00:02:49,250 --> 00:02:50,430
+touch on a few here.
+
+50
+00:02:50,430 --> 00:02:53,500
+As we said before, you're
+probably familiar with the
+
+51
+00:02:53,500 --> 00:02:55,610
+link pseudo classes like hover,
+
+52
+00:02:55,610 --> 00:02:58,090
+focus, active and visited.
+
+53
+00:02:58,090 --> 00:03:01,250
+We've also looked at last child
+and, similarly, we can
+
+54
+00:03:01,250 --> 00:03:04,030
+use first child and
+only child.
+
+55
+00:03:04,030 --> 00:03:07,670
+Along with nth child, we also
+have nth of type, which would
+
+56
+00:03:07,670 --> 00:03:10,600
+allow us to only select siblings
+of a certain type
+
+57
+00:03:10,600 --> 00:03:13,060
+within a matched list.
+
+58
+00:03:13,060 --> 00:03:15,680
+If you'd like to learn more
+about pseudo classes and the
+
+59
+00:03:15,680 --> 00:03:18,990
+support in different browsers
+go ahead and visit links one
+
+60
+00:03:18,990 --> 00:03:21,480
+and two below.
+
+61
+00:03:21,480 --> 00:03:24,230
+Lastly, let's take a look
+at pseudo elements.
+
+62
+00:03:24,230 --> 00:03:27,110
+Let's say I have an article, and
+I want the last paragraph
+
+63
+00:03:27,110 --> 00:03:30,040
+of each article to
+conclude with the
+
+64
+00:03:30,040 --> 00:03:32,410
+snowflake UTF character.
+
+65
+00:03:32,410 --> 00:03:35,600
+If I'd like, I can include that
+manually at the end of
+
+66
+00:03:35,600 --> 00:03:40,000
+each last paragraph, and
+it would show up as so.
+
+67
+00:03:40,000 --> 00:03:41,980
+But, this is a bit unwieldy.
+
+68
+00:03:41,980 --> 00:03:44,490
+If I ever wanted to change it,
+or I wanted to remove it, I
+
+69
+00:03:44,490 --> 00:03:47,230
+would have to manually go in
+and remove all of these.
+
+70
+00:03:47,230 --> 00:03:50,280
+Using the last child pseudo
+element I can automatically
+
+71
+00:03:50,280 --> 00:03:54,830
+select the last paragraph for me
+in CSS, then add the after
+
+72
+00:03:54,830 --> 00:03:56,520
+pseudo element.
+
+73
+00:03:56,520 --> 00:04:00,650
+Now, the pseudo element after
+will allow me to add content
+
+74
+00:04:00,650 --> 00:04:03,530
+via the CSS content property.
+
+75
+00:04:03,530 --> 00:04:06,790
+In this case, I'm using the
+escape text value for my UTF
+
+76
+00:04:06,790 --> 00:04:12,010
+snowflake to add it after that
+last paragraph occurs.
+
+77
+00:04:12,010 --> 00:04:14,790
+So there are a few different
+types of pseudo elements.
+
+78
+00:04:14,790 --> 00:04:17,440
+I've mentioned after, but
+there's also before, which
+
+79
+00:04:17,440 --> 00:04:19,180
+works in much the same way.
+
+80
+00:04:19,180 --> 00:04:23,070
+Both of these require browsers
+version IE 8 and greater.
+
+81
+00:04:23,070 --> 00:04:26,400
+And each of these requires you
+to have a content property,
+
+82
+00:04:26,400 --> 00:04:28,270
+whether or not it's empty.
+
+83
+00:04:28,270 --> 00:04:31,630
+Also, we have the first letter
+and first line pseudo
+
+84
+00:04:31,630 --> 00:04:34,430
+elements, which allows us to
+target either the first
+
+85
+00:04:34,430 --> 00:04:37,670
+letter, or first line of
+a block of content.
+
+86
+00:04:37,670 --> 00:04:40,040
+Either of these needs the
+content property as an
+
+87
+00:04:40,040 --> 00:04:41,810
+argument to be used.
+
+88
+00:04:41,810 --> 00:04:43,750
+Let's take a look at something
+a bit more useful
+
+89
+00:04:43,750 --> 00:04:45,420
+using pseudo elements.
+
+90
+00:04:45,420 --> 00:04:48,750
+In this case I have a block
+quote, and inside is a span
+
+91
+00:04:48,750 --> 00:04:52,320
+that's using imagery placement
+to position an image, this
+
+92
+00:04:52,320 --> 00:04:55,820
+decorative quote mark, five
+pixels outside the left of our
+
+93
+00:04:55,820 --> 00:04:58,440
+block quote, and five pixels
+outside the top
+
+94
+00:04:58,440 --> 00:05:00,170
+of our block quote.
+
+95
+00:05:00,170 --> 00:05:03,290
+Now, with this, again, I'm using
+an empty element that
+
+96
+00:05:03,290 --> 00:05:06,820
+has no replacement text and is
+very unwieldy should I need to
+
+97
+00:05:06,820 --> 00:05:08,780
+change this in the future.
+
+98
+00:05:08,780 --> 00:05:13,060
+Instead, let's change this to
+use a before pseudo element.
+
+99
+00:05:13,060 --> 00:05:16,530
+Using before I can use all the
+same properties, except I'll
+
+100
+00:05:16,530 --> 00:05:19,340
+need to add my content
+properties so this shows.
+
+101
+00:05:19,340 --> 00:05:21,990
+In this case, the content will
+be empty, since this is just a
+
+102
+00:05:21,990 --> 00:05:23,480
+decorative element.
+
+103
+00:05:23,480 --> 00:05:27,330
+And now we won't need an empty
+element, and this decorative
+
+104
+00:05:27,330 --> 00:05:29,380
+quote mark will still
+be included as part
+
+105
+00:05:29,380 --> 00:05:32,180
+of our block quote.
+
+106
+00:05:32,180 --> 00:05:35,180
+Pseudo elements are extremely
+handy because they effectively
+
+107
+00:05:35,180 --> 00:05:37,790
+give us two extra places
+per element to
+
+108
+00:05:37,790 --> 00:05:40,080
+add style or layout.
+
+109
+00:05:40,080 --> 00:05:42,040
+If you'd like to learn more
+about the cool things you can
+
+110
+00:05:42,040 --> 00:05:44,390
+do with pseudo elements,
+visit link three below.
+
+111
+00:05:44,390 --> 00:05:47,570
+
+
+112
+00:05:47,570 --> 00:05:49,520
+You've reached the end of the
+videos and now you're ready
+
+113
+00:05:49,520 --> 00:05:51,200
+for some black diamond runs.
+
+114
+00:05:51,200 --> 00:05:52,700
+I'll be waiting for
+you at the end.
+
+115
+00:05:52,700 --> 00:05:53,950
+Good luck.
+
+116
+00:05:53,950 --> 00:05:55,392

@@ -1,0 +1,709 @@
+1
+00:00:00,000 --> 00:00:24,600
+[MUSIC PLAYING]
+
+2
+00:00:24,600 --> 00:00:27,910
+You're watching CSS Cross
+Country, and this is Level 3,
+
+3
+00:00:27,910 --> 00:00:29,260
+Box Bindings.
+
+4
+00:00:29,260 --> 00:00:32,750
+In Level 3 we'll be discussing
+the box model, positioning,
+
+5
+00:00:32,750 --> 00:00:35,080
+and Z-Index.
+
+6
+00:00:35,080 --> 00:00:37,450
+So what is the box model?
+
+7
+00:00:37,450 --> 00:00:40,660
+Every element on the page is
+outlined by an imaginary thing
+
+8
+00:00:40,660 --> 00:00:44,220
+called the box model, which
+looks something like this.
+
+9
+00:00:44,220 --> 00:00:46,430
+The actual area around
+the content is
+
+10
+00:00:46,430 --> 00:00:48,190
+called the content area.
+
+11
+00:00:48,190 --> 00:00:51,450
+Any padding we define outside
+of the content is in what's
+
+12
+00:00:51,450 --> 00:00:53,460
+called the padding area.
+
+13
+00:00:53,460 --> 00:00:57,230
+The border appears around the
+padding area, and any margin
+
+14
+00:00:57,230 --> 00:01:00,200
+that we have will be outside
+of the border.
+
+15
+00:01:00,200 --> 00:01:04,310
+We can manipulate each of these
+properties via CSS.
+
+16
+00:01:04,310 --> 00:01:07,530
+The total width of an item on
+the page is going to be
+
+17
+00:01:07,530 --> 00:01:12,190
+dependent on the total of each
+box model property, so in
+
+18
+00:01:12,190 --> 00:01:15,250
+defining the total box width
+of an item, we have to take
+
+19
+00:01:15,250 --> 00:01:17,980
+all these properties
+into account.
+
+20
+00:01:17,980 --> 00:01:21,590
+In looking at an element like
+this, that has a set content
+
+21
+00:01:21,590 --> 00:01:25,580
+width, a set left and right
+padding, and a border all the
+
+22
+00:01:25,580 --> 00:01:29,240
+way around, to determine the
+total space it will take up on
+
+23
+00:01:29,240 --> 00:01:32,320
+the page we can add all these
+properties together.
+
+24
+00:01:32,320 --> 00:01:36,140
+So first we'll add the
+total content width.
+
+25
+00:01:36,140 --> 00:01:39,730
+Add together the left
+and right padding.
+
+26
+00:01:39,730 --> 00:01:42,810
+Add the left and right
+borders together.
+
+27
+00:01:42,810 --> 00:01:47,150
+And we'll get a total box
+width of 125 pixels.
+
+28
+00:01:47,150 --> 00:01:49,600
+So this is the total width
+this element will
+
+29
+00:01:49,600 --> 00:01:51,730
+take up on the page.
+
+30
+00:01:51,730 --> 00:01:55,060
+More often, though, you'll need
+to determine the total
+
+31
+00:01:55,060 --> 00:01:58,490
+content width given the box
+width and the accompanying
+
+32
+00:01:58,490 --> 00:01:59,800
+properties.
+
+33
+00:01:59,800 --> 00:02:03,260
+So, in this case, we have the
+total box width from the
+
+34
+00:02:03,260 --> 00:02:06,510
+design, as well as the left
+and right padding and the
+
+35
+00:02:06,510 --> 00:02:07,780
+total border.
+
+36
+00:02:07,780 --> 00:02:11,490
+By subtracting these values from
+that total box width, we
+
+37
+00:02:11,490 --> 00:02:14,120
+can end up with our total
+content width,
+
+38
+00:02:14,120 --> 00:02:17,900
+which is 310 pixels.
+
+39
+00:02:17,900 --> 00:02:20,210
+In dealing with setting
+boundaries on our containers,
+
+40
+00:02:20,210 --> 00:02:22,880
+we need to know what happens
+when content flows outside of
+
+41
+00:02:22,880 --> 00:02:24,150
+these boundaries.
+
+42
+00:02:24,150 --> 00:02:26,950
+So let's take a look at
+the overflow property.
+
+43
+00:02:26,950 --> 00:02:30,090
+There are four main properties
+for overflow, and we'll be
+
+44
+00:02:30,090 --> 00:02:32,240
+taking a look at each.
+
+45
+00:02:32,240 --> 00:02:34,900
+Visible is the default property,
+and that's going to
+
+46
+00:02:34,900 --> 00:02:36,960
+allow any content that
+extends beyond our
+
+47
+00:02:36,960 --> 00:02:40,480
+boundaries to be visible.
+
+48
+00:02:40,480 --> 00:02:44,670
+If we use the auto property of
+overflow, that'll add scroll
+
+49
+00:02:44,670 --> 00:02:48,110
+bars whenever necessary so that
+our container stays the
+
+50
+00:02:48,110 --> 00:02:52,310
+size that we set, but we can
+still view any content that
+
+51
+00:02:52,310 --> 00:02:53,910
+would overflow.
+
+52
+00:02:53,910 --> 00:02:57,370
+If we set the overflow property
+to hidden, then any
+
+53
+00:02:57,370 --> 00:02:59,860
+content that would have extended
+beyond the container
+
+54
+00:02:59,860 --> 00:03:01,960
+will be cut off.
+
+55
+00:03:01,960 --> 00:03:05,690
+Finally, if we use scroll,
+scroll bars will automatically
+
+56
+00:03:05,690 --> 00:03:08,280
+be added to the element,
+regardless of whether or not
+
+57
+00:03:08,280 --> 00:03:10,620
+they need to be there.
+
+58
+00:03:10,620 --> 00:03:13,250
+Next, let's take a look
+at positioning.
+
+59
+00:03:13,250 --> 00:03:16,670
+Now, there are four main
+values, for the position
+
+60
+00:03:16,670 --> 00:03:18,200
+property in CSS.
+
+61
+00:03:18,200 --> 00:03:22,360
+Static, relative, absolute
+and fixed.
+
+62
+00:03:22,360 --> 00:03:24,980
+Anything that is on the page
+in the normal flow is
+
+63
+00:03:24,980 --> 00:03:27,000
+considered position static.
+
+64
+00:03:27,000 --> 00:03:30,080
+Anything that's set to something
+other than static is
+
+65
+00:03:30,080 --> 00:03:33,020
+considered a position element,
+and that'll be important for
+
+66
+00:03:33,020 --> 00:03:35,050
+properties later on.
+
+67
+00:03:35,050 --> 00:03:38,520
+Once something is positioned,
+then we can set the top, left,
+
+68
+00:03:38,520 --> 00:03:42,820
+bottom, or right values in CSS
+to move that item depending on
+
+69
+00:03:42,820 --> 00:03:45,580
+what type of positioning
+we've applied.
+
+70
+00:03:45,580 --> 00:03:48,260
+First, let's take a look at
+relative positioning.
+
+71
+00:03:48,260 --> 00:03:50,990
+With relative positioning items
+will be rendered as
+
+72
+00:03:50,990 --> 00:03:53,800
+though they're static, but then
+we have the ability to
+
+73
+00:03:53,800 --> 00:03:57,610
+use those top, left, bottom and
+right properties, to move
+
+74
+00:03:57,610 --> 00:04:00,340
+it from where it normally would
+have been rendered.
+
+75
+00:04:00,340 --> 00:04:03,750
+In this case, we want the 2 that
+is within the superscript
+
+76
+00:04:03,750 --> 00:04:07,030
+tag to be rendered as though
+it is an exponent.
+
+77
+00:04:07,030 --> 00:04:10,540
+Here's a bit of code from
+the HTML5 boilerplate.
+
+78
+00:04:10,540 --> 00:04:12,310
+Don't worry too much about
+what the first
+
+79
+00:04:12,310 --> 00:04:13,850
+three values do.
+
+80
+00:04:13,850 --> 00:04:15,792
+You can visit link one to
+learn more about the
+
+81
+00:04:15,792 --> 00:04:16,630
+boilerplate.
+
+82
+00:04:16,630 --> 00:04:20,459
+But the final two properties set
+this item to be positioned
+
+83
+00:04:20,459 --> 00:04:21,560
+relatively.
+
+84
+00:04:21,560 --> 00:04:25,480
+Then, using the top property,
+move it up half of an em.
+
+85
+00:04:25,480 --> 00:04:28,510
+This allows the item to be
+rendered first in normal
+
+86
+00:04:28,510 --> 00:04:32,230
+document flow, then be moved
+from its normal position to
+
+87
+00:04:32,230 --> 00:04:34,820
+appear as an exponent.
+
+88
+00:04:34,820 --> 00:04:38,310
+Alternatively, using absolute
+positioning takes an item
+
+89
+00:04:38,310 --> 00:04:41,860
+outside of the normal document
+flow, and it allows us to
+
+90
+00:04:41,860 --> 00:04:44,860
+manually position it within
+our document.
+
+91
+00:04:44,860 --> 00:04:49,720
+In this case, we want to move
+our h3 byline absolutely to be
+
+92
+00:04:49,720 --> 00:04:52,760
+attached to the right side of
+our article, rather than being
+
+93
+00:04:52,760 --> 00:04:54,330
+in the normal flow.
+
+94
+00:04:54,330 --> 00:04:57,160
+If we simply give this position
+absolute, give it a
+
+95
+00:04:57,160 --> 00:05:01,110
+right value of 10 pixels, and
+a top value of 10 pixels, we
+
+96
+00:05:01,110 --> 00:05:04,420
+might expect this to stay 10
+pixels from the top right edge
+
+97
+00:05:04,420 --> 00:05:05,650
+of our article.
+
+98
+00:05:05,650 --> 00:05:07,660
+And if our window is the
+same size of our
+
+99
+00:05:07,660 --> 00:05:09,520
+article, this is true.
+
+100
+00:05:09,520 --> 00:05:13,340
+However, if our window expands
+beyond the normal article
+
+101
+00:05:13,340 --> 00:05:16,800
+confines, our absolutely
+positioned byline is going to
+
+102
+00:05:16,800 --> 00:05:18,550
+move along with it.
+
+103
+00:05:18,550 --> 00:05:19,930
+Why is that?
+
+104
+00:05:19,930 --> 00:05:22,420
+When we're positioning something
+absolutely, it's
+
+105
+00:05:22,420 --> 00:05:25,760
+going to be scoped to the window
+unless it falls within
+
+106
+00:05:25,760 --> 00:05:27,470
+an element that is position.
+
+107
+00:05:27,470 --> 00:05:29,540
+So, in this case, we're
+going to give our
+
+108
+00:05:29,540 --> 00:05:31,900
+article position relative.
+
+109
+00:05:31,900 --> 00:05:34,730
+If we have an item that needs
+to be positioned, meaning it
+
+110
+00:05:34,730 --> 00:05:36,960
+has something other than static
+for it's position
+
+111
+00:05:36,960 --> 00:05:40,610
+value, we can use relative if
+we don't intend to actually
+
+112
+00:05:40,610 --> 00:05:42,720
+move the item.
+
+113
+00:05:42,720 --> 00:05:46,100
+Once we give this article a
+position of relative, then,
+
+114
+00:05:46,100 --> 00:05:48,730
+regardless of the window
+width, our absolutely
+
+115
+00:05:48,730 --> 00:05:51,810
+positioned byline is going to
+stick to the article size
+
+116
+00:05:51,810 --> 00:05:55,360
+rather than stay with
+the window.
+
+117
+00:05:55,360 --> 00:05:58,530
+With fixed positioning, we can
+affix our item in the window
+
+118
+00:05:58,530 --> 00:06:02,530
+in a specific place where it
+will stay, like shown, in the
+
+119
+00:06:02,530 --> 00:06:05,540
+same place regardless of
+how the user scrolls.
+
+120
+00:06:05,540 --> 00:06:08,260
+Unlike absolute positioning,
+we cannot scope this to a
+
+121
+00:06:08,260 --> 00:06:09,695
+specific container
+on the page.
+
+122
+00:06:09,695 --> 00:06:13,710
+
+
+123
+00:06:13,710 --> 00:06:16,160
+When dealing with multiple
+position items it's
+
+124
+00:06:16,160 --> 00:06:19,030
+commonplace that these items
+might begin to overlap one
+
+125
+00:06:19,030 --> 00:06:22,130
+another, so it's important to
+take into consideration in
+
+126
+00:06:22,130 --> 00:06:24,190
+what order they'll overlap.
+
+127
+00:06:24,190 --> 00:06:26,910
+In this case, I have two images
+that are overlapping
+
+128
+00:06:26,910 --> 00:06:29,300
+one another because they
+are positioned.
+
+129
+00:06:29,300 --> 00:06:33,380
+If they have the same z-index
+set, or if they have no
+
+130
+00:06:33,380 --> 00:06:37,070
+z-index set, the image that
+appears second in the HTML
+
+131
+00:06:37,070 --> 00:06:39,750
+will appear to be
+above the first.
+
+132
+00:06:39,750 --> 00:06:43,550
+So, in this case, our sled image
+will appear above the
+
+133
+00:06:43,550 --> 00:06:47,550
+ski image since they both have
+the same z-index value.
+
+134
+00:06:47,550 --> 00:06:51,240
+If I change the z-index value
+to only apply to our ski
+
+135
+00:06:51,240 --> 00:06:55,290
+image, it will overcome the
+default cascade order and
+
+136
+00:06:55,290 --> 00:06:57,810
+appear above the slide image.
+
+137
+00:06:57,810 --> 00:07:00,900
+Z-index will only apply to
+elements that have a position
+
+138
+00:07:00,900 --> 00:07:04,440
+value other than static, meaning
+they're positioned.
+
+139
+00:07:04,440 --> 00:07:07,940
+Remember that if you don't want
+the item to move, but
+
+140
+00:07:07,940 --> 00:07:09,770
+simply need to give it
+positioning, you can use
+
+141
+00:07:09,770 --> 00:07:11,940
+position relative.
+
+142
+00:07:11,940 --> 00:07:14,410
+There are a whole lot of other
+considerations with stacking
+
+143
+00:07:14,410 --> 00:07:17,550
+order as they apply to things
+like floats, normally
+
+144
+00:07:17,550 --> 00:07:20,880
+positioned elements and position
+elements, so take a
+
+145
+00:07:20,880 --> 00:07:24,800
+look at link two if you'd like
+to learn more about this.
+
+146
+00:07:24,800 --> 00:07:26,690
+So that does it for Level 3.
+
+147
+00:07:26,690 --> 00:07:28,720
+While you're off doing the
+challenges, I'm going to get a
+
+148
+00:07:28,720 --> 00:07:29,680
+cup of cocoa.
+
+149
+00:07:29,680 --> 00:07:30,930
+Good luck.
+
+150
+00:07:30,930 --> 00:07:32,586

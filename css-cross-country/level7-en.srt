@@ -1,0 +1,523 @@
+1
+00:00:00,000 --> 00:00:27,470
+[MUSIC PLAYING]
+
+2
+00:00:27,470 --> 00:00:31,050
+You're watching CSS Cross
+Country, and this is Level 7,
+
+3
+00:00:31,050 --> 00:00:32,445
+Sprightly Slaloms.
+
+4
+00:00:32,445 --> 00:00:34,580
+In Level 7 we'll be
+discussing image
+
+5
+00:00:34,580 --> 00:00:38,130
+replacement and CSS Sprites.
+
+6
+00:00:38,130 --> 00:00:40,760
+Now that we know when to use
+images in our layout, let's
+
+7
+00:00:40,760 --> 00:00:43,840
+take a look at a logo that's
+being added as a background
+
+8
+00:00:43,840 --> 00:00:45,680
+image in our CSS.
+
+9
+00:00:45,680 --> 00:00:48,840
+In this case, Sven's Snowshoe
+Superstore has been doing
+
+10
+00:00:48,840 --> 00:00:52,720
+extremely well and is now Sven's
+Snowshoe Emporium.
+
+11
+00:00:52,720 --> 00:00:55,750
+So on their website we're going
+to include their logo as
+
+12
+00:00:55,750 --> 00:00:57,640
+a background image.
+
+13
+00:00:57,640 --> 00:01:01,050
+This type of example works,
+but we're using an empty
+
+14
+00:01:01,050 --> 00:01:05,440
+element for the anchor tag in
+which the logo is being added.
+
+15
+00:01:05,440 --> 00:01:09,300
+This is not best practice as, if
+CSS is turned off, or if a
+
+16
+00:01:09,300 --> 00:01:12,120
+screen reader is trying to read
+this, they won't be able
+
+17
+00:01:12,120 --> 00:01:14,690
+to tell what content
+is on the image.
+
+18
+00:01:14,690 --> 00:01:17,560
+Let's go ahead and add the text
+that appears on the image
+
+19
+00:01:17,560 --> 00:01:19,560
+to our element.
+
+20
+00:01:19,560 --> 00:01:22,810
+Now, as you might expect, that
+text appears over top of our
+
+21
+00:01:22,810 --> 00:01:24,390
+image, which isn't desired.
+
+22
+00:01:24,390 --> 00:01:26,400
+But how can we fix this?
+
+23
+00:01:26,400 --> 00:01:29,530
+By using the text indent
+property of CSS, we can move
+
+24
+00:01:29,530 --> 00:01:32,880
+the text out of the view port,
+so we can still have the
+
+25
+00:01:32,880 --> 00:01:37,900
+placeholder text but have the
+image replace that text.
+
+26
+00:01:37,900 --> 00:01:41,990
+Let's move on to CSS Sprites.
+
+27
+00:01:41,990 --> 00:01:44,560
+Let's take a look back at that
+imaginary place, Sven's
+
+28
+00:01:44,560 --> 00:01:48,300
+Snowshoe Emporium logo, and
+let's say we want to add a
+
+29
+00:01:48,300 --> 00:01:51,090
+hover state, which has
+a second image there.
+
+30
+00:01:51,090 --> 00:01:54,850
+We have the initial code, and
+we're adding a hover and focus
+
+31
+00:01:54,850 --> 00:01:57,740
+state for that logo that'll
+show a second image when
+
+32
+00:01:57,740 --> 00:01:59,600
+either of those states occur.
+
+33
+00:01:59,600 --> 00:02:02,850
+This works fine, but when the
+hover or focus state triggers
+
+34
+00:02:02,850 --> 00:02:05,110
+that second image has
+to be loaded.
+
+35
+00:02:05,110 --> 00:02:09,620
+So we're making a second HTTP
+request, and since that image
+
+36
+00:02:09,620 --> 00:02:12,980
+is not preloaded, there's going
+to be a flash while that
+
+37
+00:02:12,980 --> 00:02:16,090
+image loads, which will look
+something like this.
+
+38
+00:02:16,090 --> 00:02:18,830
+To combat this, let's combine
+both of those logo
+
+39
+00:02:18,830 --> 00:02:20,980
+images into one file.
+
+40
+00:02:20,980 --> 00:02:23,230
+That logo is going to look
+something like this, where the
+
+41
+00:02:23,230 --> 00:02:27,000
+total height of our new images
+is 200 pixels, and the height
+
+42
+00:02:27,000 --> 00:02:29,470
+of each logo is 100 pixels.
+
+43
+00:02:29,470 --> 00:02:32,200
+Going back to our example, we're
+going to replace that
+
+44
+00:02:32,200 --> 00:02:36,055
+hover and focus state image
+with background position.
+
+45
+00:02:36,055 --> 00:02:38,930
+What background position will
+allow us to do is change the
+
+46
+00:02:38,930 --> 00:02:42,140
+orientation of our image
+inside of the element.
+
+47
+00:02:42,140 --> 00:02:45,380
+So, in this case, we'll add a
+background position of zero
+
+48
+00:02:45,380 --> 00:02:47,310
+and negative 100.
+
+49
+00:02:47,310 --> 00:02:50,510
+The first value in our
+background position property
+
+50
+00:02:50,510 --> 00:02:53,280
+will be the x-axis shift,
+and the second
+
+51
+00:02:53,280 --> 00:02:55,620
+value, the y-axis shift.
+
+52
+00:02:55,620 --> 00:02:59,100
+With this background position
+applied, when the user hovers
+
+53
+00:02:59,100 --> 00:03:02,440
+or focuses on our logo, the
+orientation of the background
+
+54
+00:03:02,440 --> 00:03:06,670
+image will shift up 100 pixels
+so our second version is shown
+
+55
+00:03:06,670 --> 00:03:07,890
+to the user.
+
+56
+00:03:07,890 --> 00:03:11,640
+Also of note, in our original
+logo declaration I didn't need
+
+57
+00:03:11,640 --> 00:03:14,610
+to set the background position
+because it defaults to zero
+
+58
+00:03:14,610 --> 00:03:17,790
+zero, which is the correct
+orientation for the default
+
+59
+00:03:17,790 --> 00:03:20,160
+state of our logo.
+
+60
+00:03:20,160 --> 00:03:23,050
+When using sprites we have the
+advantage of not needing a
+
+61
+00:03:23,050 --> 00:03:26,580
+second HTTP request, and we
+don't need to worry about
+
+62
+00:03:26,580 --> 00:03:29,710
+using crazy means to
+preload our images.
+
+63
+00:03:29,710 --> 00:03:32,840
+There are many examples on
+the web of using sprites.
+
+64
+00:03:32,840 --> 00:03:36,680
+Here a few examples for
+Gmail and GitHub.
+
+65
+00:03:36,680 --> 00:03:38,690
+Let's take a look at a
+bit more complicated
+
+66
+00:03:38,690 --> 00:03:40,870
+example using sprites.
+
+67
+00:03:40,870 --> 00:03:43,590
+In this case, we have two
+separate icons, one for
+
+68
+00:03:43,590 --> 00:03:46,560
+Twitter and one for GitHub, and
+both will have their own
+
+69
+00:03:46,560 --> 00:03:48,130
+separate hover state.
+
+70
+00:03:48,130 --> 00:03:51,850
+Each of the icon parts will be
+100 pixels wide and 100 pixels
+
+71
+00:03:51,850 --> 00:03:54,650
+tall, making for a total
+image width and
+
+72
+00:03:54,650 --> 00:03:57,430
+height of 200 pixels.
+
+73
+00:03:57,430 --> 00:04:00,050
+Here's the initial bit of
+code for our icons.
+
+74
+00:04:00,050 --> 00:04:02,890
+Let's set up our base code to
+have two list items with
+
+75
+00:04:02,890 --> 00:04:06,410
+anchors inside that are set up
+next to each other with a bit
+
+76
+00:04:06,410 --> 00:04:08,040
+of spacing in between.
+
+77
+00:04:08,040 --> 00:04:10,630
+This example is assuming that
+you're using some sort of
+
+78
+00:04:10,630 --> 00:04:13,680
+reset on our list items,
+otherwise you will need to
+
+79
+00:04:13,680 --> 00:04:17,589
+separately reset the default
+styles for li's.
+
+80
+00:04:17,589 --> 00:04:20,089
+When this renders, as you can
+see, we're just seeing the
+
+81
+00:04:20,089 --> 00:04:22,029
+text in both of those anchors.
+
+82
+00:04:22,029 --> 00:04:24,450
+Let's move on to our
+image replacement.
+
+83
+00:04:24,450 --> 00:04:27,630
+First, we'll set up the shared
+styles for both the Twitter
+
+84
+00:04:27,630 --> 00:04:30,700
+and GitHub icons using
+image replacement.
+
+85
+00:04:30,700 --> 00:04:34,870
+As you can see, now we have the
+Twitter icon for both, but
+
+86
+00:04:34,870 --> 00:04:38,550
+we need that GitHub icon to
+appear in GitHub's place.
+
+87
+00:04:38,550 --> 00:04:41,500
+Using the background position
+property, we can shift our
+
+88
+00:04:41,500 --> 00:04:45,670
+sprite 100 pixels to the left so
+that the GitHub icon in its
+
+89
+00:04:45,670 --> 00:04:48,690
+resting state will have
+the correct image.
+
+90
+00:04:48,690 --> 00:04:52,210
+Now we can add both hover and
+focus states to each of the
+
+91
+00:04:52,210 --> 00:04:56,630
+Twitter and GitHub icons so
+that, on hover, the images
+
+92
+00:04:56,630 --> 00:04:58,940
+will shift down 100 pixels
+to show their
+
+93
+00:04:58,940 --> 00:05:01,070
+hover state like so.
+
+94
+00:05:01,070 --> 00:05:03,570
+There are a number of great
+tools online for dealing with
+
+95
+00:05:03,570 --> 00:05:05,520
+sprites, including Sprite Cow.
+
+96
+00:05:05,520 --> 00:05:09,940
+Go ahead and visit link one
+to learn more about that.
+
+97
+00:05:09,940 --> 00:05:12,660
+One last consideration in
+dealing with imagery placement
+
+98
+00:05:12,660 --> 00:05:16,350
+is the base 64 method of
+encoding images directly into
+
+99
+00:05:16,350 --> 00:05:19,620
+our CSS, HTML or JavaScript.
+
+100
+00:05:19,620 --> 00:05:22,200
+Using this method with syntax
+that looks something like
+
+101
+00:05:22,200 --> 00:05:26,410
+this, you can directly encode
+the images into our code and
+
+102
+00:05:26,410 --> 00:05:29,980
+that allows us to not need
+to use sprites or include
+
+103
+00:05:29,980 --> 00:05:31,260
+separate images.
+
+104
+00:05:31,260 --> 00:05:35,810
+But it's only available for
+versions of IE 8 or greater,
+
+105
+00:05:35,810 --> 00:05:38,500
+and if you'd like to learn more
+about this, go ahead and
+
+106
+00:05:38,500 --> 00:05:41,970
+visit link two below.
+
+107
+00:05:41,970 --> 00:05:43,580
+That does it for Level 7.
+
+108
+00:05:43,580 --> 00:05:45,700
+While you're doing the
+challenges, I'm off to stand
+
+109
+00:05:45,700 --> 00:05:46,890
+in line at the chairlift.
+
+110
+00:05:46,890 --> 00:05:48,140
+Good luck.
+
+111
+00:05:48,140 --> 00:05:49,589

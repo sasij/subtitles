@@ -1,0 +1,571 @@
+1
+00:00:00,000 --> 00:00:25,280
+[MUSIC PLAYING]
+
+2
+00:00:25,280 --> 00:00:28,290
+You're watching CSS Cross
+Country and this is level one,
+
+3
+00:00:28,290 --> 00:00:30,280
+Frost-Proof Fundamentals.
+
+4
+00:00:30,280 --> 00:00:33,940
+In level one, we'll be
+discussing how to add CSS, our
+
+5
+00:00:33,940 --> 00:00:38,680
+basic selectors, the cascade
+order, and the float property.
+
+6
+00:00:38,680 --> 00:00:41,500
+Now, if this is a bit review
+for you, go ahead and skip
+
+7
+00:00:41,500 --> 00:00:42,910
+ahead to the challenges.
+
+8
+00:00:42,910 --> 00:00:44,990
+We're trying to make sure
+everyone's on the same page
+
+9
+00:00:44,990 --> 00:00:48,510
+before moving to the more
+advanced materials.
+
+10
+00:00:48,510 --> 00:00:50,980
+First, let's start with how
+we can add CSS to our
+
+11
+00:00:50,980 --> 00:00:51,970
+application.
+
+12
+00:00:51,970 --> 00:00:55,950
+Now, the easiest way to do this
+is via the inline style
+
+13
+00:00:55,950 --> 00:01:00,130
+attribute in our HTML, and it's
+very easy to do, but it's
+
+14
+00:01:00,130 --> 00:01:01,770
+a maintenance nightmare.
+
+15
+00:01:01,770 --> 00:01:05,700
+Second, is adding our styles
+via the document head which
+
+16
+00:01:05,700 --> 00:01:08,900
+also works, but if we have
+more than one page in our
+
+17
+00:01:08,900 --> 00:01:11,540
+document also a maintenance
+nightmare.
+
+18
+00:01:11,540 --> 00:01:15,820
+So the main way to add your
+styles is via including them
+
+19
+00:01:15,820 --> 00:01:19,240
+all in external style sheet and
+having a link in the head
+
+20
+00:01:19,240 --> 00:01:21,130
+of every page of
+your document.
+
+21
+00:01:21,130 --> 00:01:23,770
+This is how we're going to treat
+all the styles in this
+
+22
+00:01:23,770 --> 00:01:26,480
+course so assume everything
+is on its own
+
+23
+00:01:26,480 --> 00:01:28,730
+separate style sheet.
+
+24
+00:01:28,730 --> 00:01:31,330
+Moving on there are three basic
+selectors we're going to
+
+25
+00:01:31,330 --> 00:01:35,860
+cover in CSS Cross Country and
+these are the element, class,
+
+26
+00:01:35,860 --> 00:01:37,670
+and ID selectors.
+
+27
+00:01:37,670 --> 00:01:40,910
+There are a number of more
+selectors to deal with but
+
+28
+00:01:40,910 --> 00:01:43,850
+we're not going to cover them
+in depth in the course.
+
+29
+00:01:43,850 --> 00:01:46,590
+If you'd like to learn more,
+visit link one below this
+
+30
+00:01:46,590 --> 00:01:49,700
+video to learn more about things
+like the child and
+
+31
+00:01:49,700 --> 00:01:51,140
+sibling selectors.
+
+32
+00:01:51,140 --> 00:01:55,300
+So the first of these basic CSS
+selectors is the element
+
+33
+00:01:55,300 --> 00:01:58,800
+selector and just to review,
+that's directly mapping the
+
+34
+00:01:58,800 --> 00:02:02,760
+HTML tag to your CSS
+declaration.
+
+35
+00:02:02,760 --> 00:02:06,090
+We're also able to select items
+via the class attribute
+
+36
+00:02:06,090 --> 00:02:08,750
+with a class selector.
+
+37
+00:02:08,750 --> 00:02:12,560
+Finally, the ID selector allows
+us to select items via
+
+38
+00:02:12,560 --> 00:02:14,780
+their ID attribute.
+
+39
+00:02:14,780 --> 00:02:17,700
+We also have the ability to
+combine more than one of these
+
+40
+00:02:17,700 --> 00:02:19,900
+selectors together to
+create a compound
+
+41
+00:02:19,900 --> 00:02:23,080
+selector like this one.
+
+42
+00:02:23,080 --> 00:02:25,280
+So let's talk about
+the cascade order.
+
+43
+00:02:25,280 --> 00:02:28,620
+In CSS there are two different
+cascades to contend with, the
+
+44
+00:02:28,620 --> 00:02:32,460
+first being where the styles are
+found in your application.
+
+45
+00:02:32,460 --> 00:02:36,280
+Now, in order of increasing
+priority, styles found in the
+
+46
+00:02:36,280 --> 00:02:38,700
+external style sheet can
+be overridden by
+
+47
+00:02:38,700 --> 00:02:40,280
+the same style set
+
+48
+00:02:40,280 --> 00:02:43,320
+in the document head, can be
+overridden by the same style
+
+49
+00:02:43,320 --> 00:02:47,870
+set inlinen can be overridden
+by items marked important.
+
+50
+00:02:47,870 --> 00:02:50,160
+We'll go into why important
+is a bad idea later in the
+
+51
+00:02:50,160 --> 00:02:52,290
+course, but just know that
+since we're including
+
+52
+00:02:52,290 --> 00:02:55,630
+everything as though it's an
+external style sheet, we won't
+
+53
+00:02:55,630 --> 00:02:57,400
+have to contend with things
+found in the head
+
+54
+00:02:57,400 --> 00:02:59,840
+or in inline styles.
+
+55
+00:02:59,840 --> 00:03:02,820
+So the second cascade we have
+to contend with is where the
+
+56
+00:03:02,820 --> 00:03:05,570
+property is actually declared
+in our style sheet.
+
+57
+00:03:05,570 --> 00:03:07,830
+In this case, we have two intro
+
+58
+00:03:07,830 --> 00:03:10,270
+declarations setting colors.
+
+59
+00:03:10,270 --> 00:03:14,380
+Via the cascade, the second
+color set will be the one that
+
+60
+00:03:14,380 --> 00:03:17,350
+is applied to the element.
+
+61
+00:03:17,350 --> 00:03:19,440
+It's important to remember
+that these properties are
+
+62
+00:03:19,440 --> 00:03:21,430
+additive if they
+don't conflict.
+
+63
+00:03:21,430 --> 00:03:23,680
+When things are shown to the
+user, everything is going to
+
+64
+00:03:23,680 --> 00:03:26,970
+combine together, so if we have
+more than one declaration
+
+65
+00:03:26,970 --> 00:03:28,760
+setting different properties
+these will add
+
+66
+00:03:28,760 --> 00:03:31,710
+together later on.
+
+67
+00:03:31,710 --> 00:03:33,800
+So to round off level
+one, let's talk
+
+68
+00:03:33,800 --> 00:03:35,930
+about the float property.
+
+69
+00:03:35,930 --> 00:03:38,500
+Now, you've probably used the
+float property at some point
+
+70
+00:03:38,500 --> 00:03:40,150
+and seen something like this.
+
+71
+00:03:40,150 --> 00:03:42,730
+In this case, we're going to go
+ahead and float our image
+
+72
+00:03:42,730 --> 00:03:45,400
+to the left, and that's going
+to have the rest of the
+
+73
+00:03:45,400 --> 00:03:47,710
+content wrap around
+that image.
+
+74
+00:03:47,710 --> 00:03:49,600
+But what is this
+actually doing?
+
+75
+00:03:49,600 --> 00:03:52,790
+Now, when we float something
+it's going to take that object
+
+76
+00:03:52,790 --> 00:03:56,110
+out of normal document flow and
+push it to the specified
+
+77
+00:03:56,110 --> 00:03:57,950
+edge of its parent container.
+
+78
+00:03:57,950 --> 00:04:01,160
+Any other sibling content in
+that container is going to
+
+79
+00:04:01,160 --> 00:04:03,370
+wrap around our floated item.
+
+80
+00:04:03,370 --> 00:04:06,160
+Now, the float property allows
+us to define whether that item
+
+81
+00:04:06,160 --> 00:04:09,820
+should be on the left or right
+or, if we want to remove a
+
+82
+00:04:09,820 --> 00:04:13,790
+float, we can declare none.
+
+83
+00:04:13,790 --> 00:04:16,490
+Floated items are going to stack
+up against one another
+
+84
+00:04:16,490 --> 00:04:19,570
+until they reach a parent edge
+at which point, they'll break
+
+85
+00:04:19,570 --> 00:04:21,779
+down to the next
+available edge.
+
+86
+00:04:21,779 --> 00:04:24,610
+So in this case, if we have
+three containers floating up
+
+87
+00:04:24,610 --> 00:04:27,750
+against one another, but the
+parent width becomes too small
+
+88
+00:04:27,750 --> 00:04:30,900
+to contain all three, the final
+object is going to break
+
+89
+00:04:30,900 --> 00:04:32,770
+down to a new line.
+
+90
+00:04:32,770 --> 00:04:35,210
+You have to take care though
+when you have multiple things
+
+91
+00:04:35,210 --> 00:04:36,840
+floating with different
+heights.
+
+92
+00:04:36,840 --> 00:04:39,890
+In this case, since the first
+items height is greater than
+
+93
+00:04:39,890 --> 00:04:42,600
+that of the other two elements,
+when one of the
+
+94
+00:04:42,600 --> 00:04:45,800
+other elements breaks to new
+line the first available edge
+
+95
+00:04:45,800 --> 00:04:48,550
+is up against that first
+item rather than all
+
+96
+00:04:48,550 --> 00:04:50,590
+the way at the bottom.
+
+97
+00:04:50,590 --> 00:04:52,970
+It's also important to consider
+that since we can
+
+98
+00:04:52,970 --> 00:04:56,380
+float things left and right at
+the same time, the order in
+
+99
+00:04:56,380 --> 00:04:59,720
+which they appear in the HTML is
+important to know which one
+
+100
+00:04:59,720 --> 00:05:01,970
+will break through new
+line, if necessary.
+
+101
+00:05:01,970 --> 00:05:05,040
+In this case, we have two
+images, one floating left and
+
+102
+00:05:05,040 --> 00:05:08,300
+one floating right, if the
+parent container is too small
+
+103
+00:05:08,300 --> 00:05:12,800
+to contain both of them on the
+same line since the sled image
+
+104
+00:05:12,800 --> 00:05:16,600
+appears second in our HTML it's
+going to break down below
+
+105
+00:05:16,600 --> 00:05:20,210
+the ski image should any
+collision happen.
+
+106
+00:05:20,210 --> 00:05:22,680
+When multiple items are floated
+right and stacking up
+
+107
+00:05:22,680 --> 00:05:25,000
+against one another, these
+items are going to
+
+108
+00:05:25,000 --> 00:05:26,850
+float right to left.
+
+109
+00:05:26,850 --> 00:05:30,130
+So the first item in your HTML
+will be the one that's found
+
+110
+00:05:30,130 --> 00:05:31,380
+on the far right.
+
+111
+00:05:31,380 --> 00:05:34,030
+
+
+112
+00:05:34,030 --> 00:05:35,690
+So that does it for level one.
+
+113
+00:05:35,690 --> 00:05:37,930
+If you haven't already, please
+go ahead and download the
+
+114
+00:05:37,930 --> 00:05:39,420
+slides on the sidebar.
+
+115
+00:05:39,420 --> 00:05:41,840
+They're going to prove to be an
+invaluable resource to help
+
+116
+00:05:41,840 --> 00:05:43,570
+you move through
+the challenges.
+
+117
+00:05:43,570 --> 00:05:46,250
+Also, please use the hints
+if you get stuck.
+
+118
+00:05:46,250 --> 00:05:47,960
+We don't want you to get
+stuck on any one
+
+119
+00:05:47,960 --> 00:05:49,610
+problem for too long.
+
+120
+00:05:49,610 --> 00:05:50,860
+Good luck.
+
+121
+00:05:50,860 --> 00:05:52,661
