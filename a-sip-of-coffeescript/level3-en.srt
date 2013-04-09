@@ -1,0 +1,578 @@
+1
+00:00:00,000 --> 00:00:00,330
+[MUSIC PLAYING]
+
+2
+00:00:00,330 --> 00:00:02,359
+They call it CoffeeScript.
+
+3
+00:00:02,359 --> 00:00:04,275
+Come by and take a sip.
+
+4
+00:00:04,275 --> 00:00:07,149
+I know it's quite a trip, but
+somehow you can write less
+
+5
+00:00:07,149 --> 00:00:12,900
+code to get more done.
+
+6
+00:00:12,900 --> 00:00:14,612
+Come on and take a seat.
+
+7
+00:00:14,612 --> 00:00:15,504
+Don't end up obsolete.
+
+8
+00:00:15,504 --> 00:00:16,842
+They call it CoffeeScript.
+
+9
+00:00:16,842 --> 00:00:23,470
+
+
+10
+00:00:23,470 --> 00:00:25,670
+Welcome to Level Three of
+A Sip of CoffeeScript.
+
+11
+00:00:25,670 --> 00:00:27,420
+In this level, we're going
+to be walking through
+
+12
+00:00:27,420 --> 00:00:32,350
+conditionals and operators, so
+conditionals like if, else.
+
+13
+00:00:32,350 --> 00:00:33,590
+Let's jump into it.
+
+14
+00:00:33,590 --> 00:00:35,750
+So an if statement in
+JavaScript looks
+
+15
+00:00:35,750 --> 00:00:37,490
+something like this.
+
+16
+00:00:37,490 --> 00:00:39,280
+How would we write it
+in CoffeeScript?
+
+17
+00:00:39,280 --> 00:00:41,320
+Well, as you can imagine,
+the curly braces
+
+18
+00:00:41,320 --> 00:00:42,370
+are going to go away.
+
+19
+00:00:42,370 --> 00:00:44,950
+It's gonna look something
+like this.
+
+20
+00:00:44,950 --> 00:00:47,220
+The parentheses, of course,
+are optional.
+
+21
+00:00:47,220 --> 00:00:50,430
+We could also write this in a
+single line if we wanted to,
+
+22
+00:00:50,430 --> 00:00:53,690
+alert('Under age') if
+age < 18.
+
+23
+00:00:53,690 --> 00:00:57,280
+We can write this another way
+in CoffeeScript using then.
+
+24
+00:00:57,280 --> 00:01:01,980
+We can say, if age < 18 
+then alert 'Under age'
+
+25
+00:01:01,980 --> 00:01:03,300
+What about using else?
+
+26
+00:01:03,300 --> 00:01:06,400
+Well in JavaScript, it looks
+something like this.
+
+27
+00:01:06,400 --> 00:01:08,790
+In CoffeeScript, well, it's
+just not going to have the
+
+28
+00:01:08,790 --> 00:01:09,940
+parentheses.
+
+29
+00:01:09,940 --> 00:01:11,470
+So something like this.
+
+30
+00:01:11,470 --> 00:01:15,940
+We can also write it using the
+longer syntax, if age < 18
+
+31
+00:01:15,940 --> 00:01:21,030
+, then alert 'Under age',
+else alert 'Of age'
+
+32
+00:01:21,030 --> 00:01:22,900
+It's worth noting that
+CoffeeScript doesn't have any
+
+33
+00:01:22,900 --> 00:01:25,300
+ternary operators, so you're
+not going to be able to use
+
+34
+00:01:25,300 --> 00:01:28,320
+question mark or
+colon anywhere.
+
+35
+00:01:28,320 --> 00:01:31,350
+You're really encouraged to
+be a little more verbose.
+
+36
+00:01:31,350 --> 00:01:33,640
+Next up, let's take a look at
+the different operators and
+
+37
+00:01:33,640 --> 00:01:36,990
+what the CoffeeScript translates
+to in JavaScript.
+
+38
+00:01:36,990 --> 00:01:40,900
+So if you have Equals Equals or
+Is in CoffeeScript, that's
+
+39
+00:01:40,900 --> 00:01:44,240
+going to translate to Equals
+Equals Equals in JavaScript.
+
+40
+00:01:44,240 --> 00:01:46,960
+It's just a safer way
+to do equality.
+
+41
+00:01:46,960 --> 00:01:50,730
+Not Equals or Isnt is going
+to be Not Equals Equals.
+
+42
+00:01:50,730 --> 00:01:53,760
+Not is just going to be
+exclamation point.
+
+43
+00:01:53,760 --> 00:01:56,370
+And is going to be Ampersand
+Ampersand.
+
+44
+00:01:56,370 --> 00:01:58,580
+Or is going to translate
+to pipe.
+
+45
+00:01:58,580 --> 00:02:04,210
+True, Yes, or On is going to
+translate to True, and False,
+
+46
+00:02:04,210 --> 00:02:07,430
+No, or Off is going to
+translate to False.
+
+47
+00:02:07,430 --> 00:02:10,229
+Let's take a look at some
+of these in action.
+
+48
+00:02:10,229 --> 00:02:14,930
+Here we have if paid() and
+coffee() is on then pour()
+
+49
+00:02:14,930 --> 00:02:18,140
+So here you can see that is
+on part is checking the
+
+50
+00:02:18,140 --> 00:02:18,760
+truthiness.
+
+51
+00:02:18,760 --> 00:02:23,290
+So let's take a look at
+the JavaScript here.
+
+52
+00:02:23,290 --> 00:02:27,685
+Next up, we might say 
+addCaffeine if not decaf()
+
+53
+00:02:27,685 --> 00:02:29,360
+That's one way we
+could write it.
+
+54
+00:02:29,360 --> 00:02:33,100
+Also in CoffeeScript, we could
+write this as
+
+55
+00:02:33,100 --> 00:02:35,930
+addCaffeine() unless decaf()
+
+56
+00:02:35,930 --> 00:02:38,080
+Another cool feature of
+CoffeeScript is the ability to
+
+57
+00:02:38,080 --> 00:02:39,990
+do chained comparisons.
+
+58
+00:02:39,990 --> 00:02:41,790
+So whereas you would have
+something like this in
+
+59
+00:02:41,790 --> 00:02:46,310
+JavaScript, you can rewrite that
+in CoffeeScript like so,
+
+60
+00:02:46,310 --> 00:02:49,500
+all chained together.
+
+61
+00:02:49,500 --> 00:02:51,110
+Next up, switch statements.
+
+62
+00:02:51,110 --> 00:02:53,480
+Here's how you might implement
+a switch statement in
+
+63
+00:02:53,480 --> 00:02:54,600
+JavaScript.
+
+64
+00:02:54,600 --> 00:02:56,850
+It's kind of verbose,
+isn't it.
+
+65
+00:02:56,850 --> 00:02:59,630
+Well, here's what it looks
+like in CoffeeScript.
+
+66
+00:02:59,630 --> 00:03:03,320
+So you can see here it's much
+nicer, much more readable,
+
+67
+00:03:03,320 --> 00:03:07,600
+much more maintainable and
+dare I say, beautiful.
+
+68
+00:03:07,600 --> 00:03:10,880
+Lastly we're going to talk about
+existential operators,
+
+69
+00:03:10,880 --> 00:03:12,750
+existential meaning
+checking to see if
+
+70
+00:03:12,750 --> 00:03:15,080
+something exists or not.
+
+71
+00:03:15,080 --> 00:03:18,220
+So for example, how do we check
+to see that cups of
+
+72
+00:03:18,220 --> 00:03:22,230
+coffee isn't defined and
+it isn't equal to null?
+
+73
+00:03:22,230 --> 00:03:25,740
+Well, in JavaScript, we would
+do something that looks like
+
+74
+00:03:25,740 --> 00:03:27,860
+this, right?
+
+75
+00:03:27,860 --> 00:03:29,860
+In CoffeeScript, we have a
+better way of writing that.
+
+76
+00:03:29,860 --> 00:03:32,930
+We could write
+if cupsOfCoffee?
+
+77
+00:03:32,930 --> 00:03:35,100
+alert 'it exists!'
+
+78
+00:03:35,100 --> 00:03:35,790
+Much nicer.
+
+79
+00:03:35,790 --> 00:03:37,470
+So we're just using that
+question mark.
+
+80
+00:03:37,470 --> 00:03:39,550
+These two lines are pretty
+much the same.
+
+81
+00:03:39,550 --> 00:03:43,140
+Or really, the CoffeeScript
+compiles into that JavaScript.
+
+82
+00:03:43,140 --> 00:03:45,530
+We could also write this on a
+single line if we wanted to,
+
+83
+00:03:45,530 --> 00:03:49,730
+just by writing
+alert 'it exists!' if cupsOfCoffee?
+
+84
+00:03:49,730 --> 00:03:51,790
+What about when you want to set
+a variable to a default
+
+85
+00:03:51,790 --> 00:03:54,930
+value if it hasn't been set yet,
+if it's null or it hasn't
+
+86
+00:03:54,930 --> 00:03:56,160
+been defined yet.
+
+87
+00:03:56,160 --> 00:03:58,720
+Well, with the knowledge we have
+so far, you could do it
+
+88
+00:03:58,720 --> 00:04:01,540
+like this, or if you wanted
+to, you could do it in a
+
+89
+00:04:01,540 --> 00:04:02,680
+single line.
+
+90
+00:04:02,680 --> 00:04:05,170
+However, there's an even better
+way to do this in
+
+91
+00:04:05,170 --> 00:04:06,350
+CoffeeScript.
+
+92
+00:04:06,350 --> 00:04:08,660
+You can simply do,
+cups of coffee,
+
+93
+00:04:08,660 --> 00:04:10,960
+question mark equals zero.
+
+94
+00:04:10,960 --> 00:04:13,920
+So if it isn't defined or if
+it's equal to null, it's going
+
+95
+00:04:13,920 --> 00:04:15,170
+to set it to zero.
+
+96
+00:04:15,170 --> 00:04:17,240
+
+
+97
+00:04:17,240 --> 00:04:20,540
+What if we want to call a
+function on an object only if
+
+98
+00:04:20,540 --> 00:04:21,910
+that object exists?
+
+99
+00:04:21,910 --> 00:04:25,430
+For example, call brew() on
+coffeePot only if it exists.
+
+100
+00:04:25,430 --> 00:04:27,790
+Well with knowledge again that
+we have so far, we could write
+
+101
+00:04:27,790 --> 00:04:31,120
+it like this, but CoffeeScript
+has a better way to do it.
+
+102
+00:04:31,120 --> 00:04:35,680
+We can simply write
+coffeePot?.brew()
+
+103
+00:04:35,680 --> 00:04:37,020
+That's all there is to it.
+
+104
+00:04:37,020 --> 00:04:40,070
+This existential operator
+also works on functions.
+
+105
+00:04:40,070 --> 00:04:42,260
+So if you want to call a
+function only if it exists on
+
+106
+00:04:42,260 --> 00:04:44,720
+an object, well, you
+do it like this.
+
+107
+00:04:44,720 --> 00:04:47,350
+So here we have 
+vehicle.start_engine
+
+108
+00:04:47,350 --> 00:04:49,960
+It's only going to call that
+start_engine function if that
+
+109
+00:04:49,960 --> 00:04:53,640
+function exists on vehicle, then
+it's only going to call
+
+110
+00:04:53,640 --> 00:04:57,260
+the shift_gear function if the
+shift_gear function exists on
+
+111
+00:04:57,260 --> 00:05:00,800
+whatever gets returned
+from start_engine.
+
+112
+00:05:00,800 --> 00:05:04,040
+If you're familiar with the
+try function in the Ruby
+
+113
+00:05:04,040 --> 00:05:07,050
+programming language, this kind
+of functions like try.
+
+114
+00:05:07,050 --> 00:05:09,930
+So it's going to try to run
+this function only if this
+
+115
+00:05:09,930 --> 00:05:11,810
+function exists.
+
+116
+00:05:11,810 --> 00:05:14,580
+Now you don't want to overuse
+that existential operator
+
+117
+00:05:14,580 --> 00:05:17,620
+here, especially with in regards
+to this function here.
+
+118
+00:05:17,620 --> 00:05:21,070
+It can be considered a bad code
+smell, just so you know.
+
+119
+00:05:21,070 --> 00:05:22,310
+Don't want to overuse it.
+
+120
+00:05:22,310 --> 00:05:25,280
+But that brings us to the
+end of level three.
+
+121
+00:05:25,280 --> 00:05:27,540
+So now it's time to get your
+hands dirty in some of the
+
+122
+00:05:27,540 --> 00:05:28,790
+challenges.
+
+123
+00:05:28,790 --> 00:05:30,560
+

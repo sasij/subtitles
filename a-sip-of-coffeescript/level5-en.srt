@@ -1,0 +1,444 @@
+1
+00:00:00,000 --> 00:00:00,330
+
+
+2
+00:00:00,330 --> 00:00:00,730
+[MUSIC PLAYING]
+
+3
+00:00:00,730 --> 00:00:01,968
+They call it CoffeeScript.
+
+4
+00:00:01,968 --> 00:00:03,920
+Come by and take a sip.
+
+5
+00:00:03,920 --> 00:00:07,824
+I know it's quite a trip, but
+somehow you can write less
+
+6
+00:00:07,824 --> 00:00:12,216
+code to get more done.
+
+7
+00:00:12,216 --> 00:00:13,192
+Yeah!
+
+8
+00:00:13,192 --> 00:00:15,959
+Come on and take a seat,
+don't end up obsolete.
+
+9
+00:00:15,959 --> 00:00:17,875
+They call it CoffeeScript.
+
+10
+00:00:17,875 --> 00:00:19,312
+CoffeeScript, yeah.
+
+11
+00:00:19,312 --> 00:00:22,430
+
+
+12
+00:00:22,430 --> 00:00:25,620
+Welcome to level five of
+A Sip of CoffeeScript.
+
+13
+00:00:25,620 --> 00:00:28,230
+In this level, we're going to,
+once again, go through some
+
+14
+00:00:28,230 --> 00:00:32,290
+jQuery code which was from
+jQuery Air Captain's Log, and
+
+15
+00:00:32,290 --> 00:00:35,170
+practice converting that
+into CoffeeScript.
+
+16
+00:00:35,170 --> 00:00:37,860
+So let's jump into it.
+
+17
+00:00:37,860 --> 00:00:40,030
+Here, you can see a bind
+command, where we're sending
+
+18
+00:00:40,030 --> 00:00:43,600
+in an object for binding
+on click, mouseenter, and
+
+19
+00:00:43,600 --> 00:00:44,880
+mouseleave.
+
+20
+00:00:44,880 --> 00:00:48,710
+What would this look like in
+CoffeeScript? Well, we might
+
+21
+00:00:48,710 --> 00:00:50,860
+code it like so.
+
+22
+00:00:50,860 --> 00:00:53,610
+So as you can see here, we
+remove the curly braces and
+
+23
+00:00:53,610 --> 00:00:54,620
+the parentheses.
+
+24
+00:00:54,620 --> 00:00:57,500
+We also remove the commas
+at the end of each line.
+
+25
+00:00:57,500 --> 00:01:01,960
+We're using the spaces and the
+new lines to designate each
+
+26
+00:01:01,960 --> 00:01:05,160
+item in the object.
+
+27
+00:01:05,160 --> 00:01:08,190
+Now let's jump into a more
+complex jQuery example, and
+
+28
+00:01:08,190 --> 00:01:11,300
+we'll convert it into
+CoffeeScript line by line.
+
+29
+00:01:11,300 --> 00:01:12,660
+So here you can see
+this function
+
+30
+00:01:12,660 --> 00:01:15,430
+showFlights, we hide a div.
+
+31
+00:01:15,430 --> 00:01:18,350
+We're setting fetching flights
+equal to the ajax call that
+
+32
+00:01:18,350 --> 00:01:19,370
+we're doing.
+
+33
+00:01:19,370 --> 00:01:21,010
+We also have an error
+call back with a
+
+34
+00:01:21,010 --> 00:01:22,390
+conditional inside of it.
+
+35
+00:01:22,390 --> 00:01:25,130
+So let's jump into it and go
+line by line converting this
+
+36
+00:01:25,130 --> 00:01:26,700
+into CoffeeScript.
+
+37
+00:01:26,700 --> 00:01:30,190
+So over the top, we are
+declaring the function and
+
+38
+00:01:30,190 --> 00:01:33,160
+hiding the div, pretty
+straightforward.
+
+39
+00:01:33,160 --> 00:01:36,440
+Then for the conditional right
+here, this goes to two lines,
+
+40
+00:01:36,440 --> 00:01:39,910
+if fetchingFlights, then
+fetchingFlights abort using
+
+41
+00:01:39,910 --> 00:01:42,550
+indentation instead
+of curly braces.
+
+42
+00:01:42,550 --> 00:01:44,850
+Next we need to convert that
+ajax function call into
+
+43
+00:01:44,850 --> 00:01:45,960
+CoffeeScript.
+
+44
+00:01:45,960 --> 00:01:48,750
+But before we do that take a
+close look at the parameters
+
+45
+00:01:48,750 --> 00:01:51,500
+which we're sending into
+that ajax call.
+
+46
+00:01:51,500 --> 00:01:53,470
+What you'll notice is
+that we have two
+
+47
+00:01:53,470 --> 00:01:55,220
+different objects, right?
+
+48
+00:01:55,220 --> 00:01:58,900
+The first object is inside the
+first set of curly braces, and
+
+49
+00:01:58,900 --> 00:02:03,190
+the second object is inside
+that data property.
+
+50
+00:02:03,190 --> 00:02:05,950
+So inside there, we have another
+object were sending in
+
+51
+00:02:05,950 --> 00:02:07,940
+for the parameters we're sending
+to the server.
+
+52
+00:02:07,940 --> 00:02:11,310
+So let's try getting rid of
+all the curly braces.
+
+53
+00:02:11,310 --> 00:02:13,090
+So here's what it
+might look like.
+
+54
+00:02:13,090 --> 00:02:15,260
+You can see that we're
+using indentation
+
+55
+00:02:15,260 --> 00:02:16,970
+instead of curly braces.
+
+56
+00:02:16,970 --> 00:02:18,820
+Let's replace that code there.
+
+57
+00:02:18,820 --> 00:02:21,290
+Next for the error callback,
+our CoffeeScript is going to
+
+58
+00:02:21,290 --> 00:02:25,140
+look a little bit like this,
+where we send in a function.
+
+59
+00:02:25,140 --> 00:02:30,450
+If result status text isn't
+abort, then show this div.
+
+60
+00:02:30,450 --> 00:02:33,390
+The resulting CoffeeScript is
+46 less characters than the
+
+61
+00:02:33,390 --> 00:02:36,030
+JavaScript, including
+white spaces.
+
+62
+00:02:36,030 --> 00:02:37,360
+That's pretty substantial.
+
+63
+00:02:37,360 --> 00:02:40,050
+We're writing less code
+to get more done.
+
+64
+00:02:40,050 --> 00:02:43,650
+And less code means it's easier
+to change, its more
+
+65
+00:02:43,650 --> 00:02:47,060
+agile, and it probably
+has less bugs.
+
+66
+00:02:47,060 --> 00:02:49,010
+Lastly, we're going to refactor
+some JavaScript to
+
+67
+00:02:49,010 --> 00:02:50,990
+use a list comprehension.
+
+68
+00:02:50,990 --> 00:02:52,470
+So here's some code.
+
+69
+00:02:52,470 --> 00:02:54,520
+We have filteredFlights.
+
+70
+00:02:54,520 --> 00:02:57,110
+We're going through each
+of the currentFlights.
+
+71
+00:02:57,110 --> 00:02:59,610
+currentFlights is
+just an array.
+
+72
+00:02:59,610 --> 00:03:02,810
+For each flight, we're checking
+to see if it has a
+
+73
+00:03:02,810 --> 00:03:06,630
+certain number of stops
+and for the routing.
+
+74
+00:03:06,630 --> 00:03:09,280
+And then if it does have the
+right number of stops, push
+
+75
+00:03:09,280 --> 00:03:10,280
+that onto the array.
+
+76
+00:03:10,280 --> 00:03:14,770
+So we're trying to generate a
+new array of filtered flights.
+
+77
+00:03:14,770 --> 00:03:17,390
+One way we could implement this
+in CoffeeScript is by
+
+78
+00:03:17,390 --> 00:03:19,730
+creating a new array,
+go through
+
+79
+00:03:19,730 --> 00:03:21,930
+each item, same function.
+
+80
+00:03:21,930 --> 00:03:24,740
+If the stops is two,
+routing is zero,
+
+81
+00:03:24,740 --> 00:03:27,495
+then push on the flight.
+
+82
+00:03:27,495 --> 00:03:29,790
+But there's a better way we
+can do this using a list
+
+83
+00:03:29,790 --> 00:03:30,970
+comprehension.
+
+84
+00:03:30,970 --> 00:03:32,690
+Let's take a look.
+
+85
+00:03:32,690 --> 00:03:36,030
+So for the list comprehension,
+we're going to say flight for
+
+86
+00:03:36,030 --> 00:03:38,020
+flight in currentFlights.
+
+87
+00:03:38,020 --> 00:03:40,730
+We saw this before in level
+three, I believe.
+
+88
+00:03:40,730 --> 00:03:43,010
+So we're going through each
+currentFlight, setting it
+
+89
+00:03:43,010 --> 00:03:48,460
+equal to flight, returning the
+flight when stops is two,
+
+90
+00:03:48,460 --> 00:03:50,760
+routing is zero.
+
+91
+00:03:50,760 --> 00:03:52,670
+That's all wrapped in
+parentheses because we want to
+
+92
+00:03:52,670 --> 00:03:56,850
+set it equal to the
+filteredFlights array.
+
+93
+00:03:56,850 --> 00:03:58,460
+So that's the end of the
+video for this level.
+
+94
+00:03:58,460 --> 00:04:00,550
+Now it's time for you to take
+this knowledge and apply it to
+
+95
+00:04:00,550 --> 00:04:02,170
+the challenges to earn
+your next badge.
+
+96
+00:04:02,170 --> 00:04:04,266

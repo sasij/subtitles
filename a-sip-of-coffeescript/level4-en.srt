@@ -1,0 +1,1006 @@
+1
+00:00:00,000 --> 00:00:00,330
+
+
+2
+00:00:00,330 --> 00:00:02,456
+(SINGING) They call
+it CoffeeScript.
+
+3
+00:00:02,456 --> 00:00:04,408
+Come by and take a sip.
+
+4
+00:00:04,408 --> 00:00:08,312
+I know it's quite a trip, but
+somehow you can write less
+
+5
+00:00:08,312 --> 00:00:12,216
+code to get more done.
+
+6
+00:00:12,216 --> 00:00:12,704
+Yeah!
+
+7
+00:00:12,704 --> 00:00:14,190
+Come on and take a seat.
+
+8
+00:00:14,190 --> 00:00:15,967
+Don't end up obsolete.
+
+9
+00:00:15,967 --> 00:00:17,428
+We call it CoffeeScript.
+
+10
+00:00:17,428 --> 00:00:22,460
+
+
+11
+00:00:22,460 --> 00:00:24,650
+All right, you're halfway
+done with the course.
+
+12
+00:00:24,650 --> 00:00:25,810
+Now, we're onto level four.
+
+13
+00:00:25,810 --> 00:00:27,580
+We're going to be talking
+about arrays,
+
+14
+00:00:27,580 --> 00:00:29,880
+objects, and iteration.
+
+15
+00:00:29,880 --> 00:00:33,380
+So in CoffeeScript, we have
+these things called ranges.
+
+16
+00:00:33,380 --> 00:00:37,530
+So we can say range
+range = [1..4]
+
+17
+00:00:37,530 --> 00:00:40,000
+And that's going to translate
+into the JavaScript of just
+
+18
+00:00:40,000 --> 00:00:42,750
+one, two, three, four
+in an array.
+
+19
+00:00:42,750 --> 00:00:46,570
+We can also say range = [1...4]
+
+20
+00:00:46,570 --> 00:00:49,960
+So that's three dots, which is
+going to give us an array with
+
+21
+00:00:49,960 --> 00:00:51,260
+everything but the last item.
+
+22
+00:00:51,260 --> 00:00:55,440
+So it's just going to be one,
+two, three in JavaScript.
+
+23
+00:00:55,440 --> 00:00:57,470
+This may not seem
+very powerful.
+
+24
+00:00:57,470 --> 00:01:00,020
+Where it starts to get more
+powerful is when you realize
+
+25
+00:01:00,020 --> 00:01:03,840
+that you can use it with
+variables and to get subsets
+
+26
+00:01:03,840 --> 00:01:05,370
+of existing arrays.
+
+27
+00:01:05,370 --> 00:01:07,190
+So here we have two variables,
+and we have a
+
+28
+00:01:07,190 --> 00:01:08,550
+start and an end.
+
+29
+00:01:08,550 --> 00:01:10,720
+So it's going to create
+an array with 5, 6,
+
+30
+00:01:10,720 --> 00:01:12,660
+7, 8, 9, and 10.
+
+31
+00:01:12,660 --> 00:01:16,647
+Then we can get a subset of that
+array by just doing one
+
+32
+00:01:16,647 --> 00:01:16,880
+dot dot four.
+
+33
+00:01:16,880 --> 00:01:20,250
+And that's going to return six,
+seven, eight, and nine.
+
+34
+00:01:20,250 --> 00:01:23,290
+We could get a range from
+one with three dots to
+
+35
+00:01:23,290 --> 00:01:24,350
+range.length.
+
+36
+00:01:24,350 --> 00:01:25,880
+So we would get from
+the second item to
+
+37
+00:01:25,880 --> 00:01:27,290
+the end of the array.
+
+38
+00:01:27,290 --> 00:01:31,150
+We could also write this with
+just range = [1..-1]
+
+39
+00:01:31,150 --> 00:01:32,330
+
+
+40
+00:01:32,330 --> 00:01:35,180
+So when we do negative 1, it
+will wrap around from the
+
+41
+00:01:35,180 --> 00:01:37,190
+front to the very last item.
+
+42
+00:01:37,190 --> 00:01:39,710
+
+
+43
+00:01:39,710 --> 00:01:42,280
+To create a basic array in
+CoffeeScript, you can either
+
+44
+00:01:42,280 --> 00:01:45,150
+do the normal sort of array
+syntax you see here.
+
+45
+00:01:45,150 --> 00:01:48,770
+But you can also take out
+the commas if you
+
+46
+00:01:48,770 --> 00:01:50,280
+use the proper spacing.
+
+47
+00:01:50,280 --> 00:01:52,680
+So here you can see we have
+storeLocations, Orlando,
+
+48
+00:01:52,680 --> 00:01:55,800
+Winter Park, and Sanford,
+just like that.
+
+49
+00:01:55,800 --> 00:01:57,880
+Now, let's talk a little bit
+about looping through the
+
+50
+00:01:57,880 --> 00:01:59,360
+array we just created.
+
+51
+00:01:59,360 --> 00:02:02,300
+So we can obviously just
+do a forEach loop.
+
+52
+00:02:02,300 --> 00:02:04,510
+That's going to translate
+from CoffeeScript into
+
+53
+00:02:04,510 --> 00:02:06,530
+JavaScript like so.
+
+54
+00:02:06,530 --> 00:02:08,690
+Pretty basic, nothing
+amazing there.
+
+55
+00:02:08,690 --> 00:02:13,580
+However, it's much more common
+in CoffeeScript to not do a
+
+56
+00:02:13,580 --> 00:02:14,800
+forEach and do something
+that looks a little
+
+57
+00:02:14,800 --> 00:02:16,390
+bit more like this.
+
+58
+00:02:16,390 --> 00:02:19,940
+We have for location
+in storeLocations.
+
+59
+00:02:19,940 --> 00:02:22,480
+So it's going to go through each
+of the items in the store
+
+60
+00:02:22,480 --> 00:02:26,380
+locations array, set it equal
+to location every time it
+
+61
+00:02:26,380 --> 00:02:28,840
+iterates through the loop, and
+then call alert on it.
+
+62
+00:02:28,840 --> 00:02:30,990
+So we should have three
+different alerts.
+
+63
+00:02:30,990 --> 00:02:33,640
+If we wanted to, we could also
+move this for loop to the end
+
+64
+00:02:33,640 --> 00:02:34,310
+of the line.
+
+65
+00:02:34,310 --> 00:02:36,730
+So we could say alert location
+for location in
+
+66
+00:02:36,730 --> 00:02:38,000
+storeLocations.
+
+67
+00:02:38,000 --> 00:02:38,910
+There's another word for this.
+
+68
+00:02:38,910 --> 00:02:41,360
+It's called a list
+comprehension.
+
+69
+00:02:41,360 --> 00:02:44,220
+Let's take a look at a couple
+more list comprehensions.
+
+70
+00:02:44,220 --> 00:02:48,000
+So what if we wanted to add
+", FL" for each of those
+
+71
+00:02:48,000 --> 00:02:49,470
+cities in our array?
+
+72
+00:02:49,470 --> 00:02:51,420
+Well, we could write
+it like this.
+
+73
+00:02:51,420 --> 00:02:54,360
+So we have our interpolated
+string for location in
+
+74
+00:02:54,360 --> 00:02:56,240
+storeLocations, and that
+would be the array that
+
+75
+00:02:56,240 --> 00:02:57,670
+it returns for us.
+
+76
+00:02:57,670 --> 00:03:00,970
+If we wanted to overwrite our
+original array, we want to
+
+77
+00:03:00,970 --> 00:03:03,030
+write it like this.
+
+78
+00:03:03,030 --> 00:03:05,490
+The parentheses here are
+really important.
+
+79
+00:03:05,490 --> 00:03:06,500
+Keep that in mind.
+
+80
+00:03:06,500 --> 00:03:09,360
+If we didn't have the
+parentheses around the list
+
+81
+00:03:09,360 --> 00:03:13,080
+comprehension, it would set
+storeLocation equal to
+
+82
+00:03:13,080 --> 00:03:15,900
+Orlando, then Winter
+Park, then Sanford.
+
+83
+00:03:15,900 --> 00:03:19,920
+So the result would be
+storeLocations equals Sanford.
+
+84
+00:03:19,920 --> 00:03:22,160
+But because we have the
+parentheses there, it's going
+
+85
+00:03:22,160 --> 00:03:24,750
+to build the array and then
+send that array into the
+
+86
+00:03:24,750 --> 00:03:26,380
+variable we declared.
+
+87
+00:03:26,380 --> 00:03:28,700
+Another list comprehension
+example, if we wanted to call
+
+88
+00:03:28,700 --> 00:03:32,530
+the geoLocate function on each
+of our storeLocations except
+
+89
+00:03:32,530 --> 00:03:36,390
+for the Sanford location, we
+could say for location in
+
+90
+00:03:36,390 --> 00:03:40,920
+storeLocations when location
+isn't Sanford.
+
+91
+00:03:40,920 --> 00:03:43,530
+That's called a filter, and
+you can put any sort of
+
+92
+00:03:43,530 --> 00:03:47,040
+expression after a filter.
+
+93
+00:03:47,040 --> 00:03:50,740
+What if we wanted to create a
+new array, a brand new array,
+
+94
+00:03:50,740 --> 00:03:51,910
+without Sanford?
+
+95
+00:03:51,910 --> 00:03:53,330
+How would we do that?
+
+96
+00:03:53,330 --> 00:03:56,360
+Well, one way we could do that
+is like this, basically
+
+97
+00:03:56,360 --> 00:03:59,990
+reiterating through each item,
+push that onto our brand new
+
+98
+00:03:59,990 --> 00:04:03,430
+array, and we would have a new
+array without Sanford.
+
+99
+00:04:03,430 --> 00:04:06,720
+However, let's use a
+list comprehension.
+
+100
+00:04:06,720 --> 00:04:10,840
+So we could also do this by
+doing location for location in
+
+101
+00:04:10,840 --> 00:04:13,020
+storeLocations when location
+isn't Sanford.
+
+102
+00:04:13,020 --> 00:04:15,320
+Now, I know this may look
+a little bit confusing.
+
+103
+00:04:15,320 --> 00:04:17,370
+Feel free to pause the video
+and let it absorb.
+
+104
+00:04:17,370 --> 00:04:21,240
+But all this is saying is
+return location for each
+
+105
+00:04:21,240 --> 00:04:24,280
+location where location
+isn't Sanford.
+
+106
+00:04:24,280 --> 00:04:26,860
+So it's going to return an array
+that doesn't include the
+
+107
+00:04:26,860 --> 00:04:29,580
+Sanford location.
+
+108
+00:04:29,580 --> 00:04:32,510
+Next up, let's talk about using
+splats in CoffeeScript.
+
+109
+00:04:32,510 --> 00:04:35,210
+It's a fun name, and we use it
+for when we want to have a
+
+110
+00:04:35,210 --> 00:04:38,790
+variable number of parameters
+sent into a function, or send
+
+111
+00:04:38,790 --> 00:04:40,550
+a variable number of parameters
+into a function.
+
+112
+00:04:40,550 --> 00:04:42,160
+Let me explain.
+
+113
+00:04:42,160 --> 00:04:44,070
+So here we have a function
+called searchLocations.
+
+114
+00:04:44,070 --> 00:04:48,260
+You can see we have the dot
+dot dot in the parameters.
+
+115
+00:04:48,260 --> 00:04:51,380
+Now, we can call that function
+using two parameters.
+
+116
+00:04:51,380 --> 00:04:53,110
+We would get this returned.
+
+117
+00:04:53,110 --> 00:04:56,700
+We can also call this function
+using three parameters or four
+
+118
+00:04:56,700 --> 00:04:58,300
+parameters or five parameters.
+
+119
+00:04:58,300 --> 00:05:00,660
+You can see here that it's
+basically taking whatever
+
+120
+00:05:00,660 --> 00:05:04,330
+parameters are after the first
+one and combining them into an
+
+121
+00:05:04,330 --> 00:05:08,220
+array, which we are then joining
+inside of that string.
+
+122
+00:05:08,220 --> 00:05:11,800
+Not only can splats be used in
+the definition of a function,
+
+123
+00:05:11,800 --> 00:05:14,120
+but you can also use them
+to call a function.
+
+124
+00:05:14,120 --> 00:05:15,060
+Let me show you.
+
+125
+00:05:15,060 --> 00:05:18,190
+You see here, we have a
+parameter array, array of the
+
+126
+00:05:18,190 --> 00:05:19,170
+parameters.
+
+127
+00:05:19,170 --> 00:05:23,140
+Well, we can send in those
+parameters into our
+
+128
+00:05:23,140 --> 00:05:24,750
+searchLocation function.
+
+129
+00:05:24,750 --> 00:05:28,970
+And these two lines are
+basically equivalent.
+
+130
+00:05:28,970 --> 00:05:30,950
+Next up, let's talk about
+objects which you're probably
+
+131
+00:05:30,950 --> 00:05:34,190
+already familiar with, the term
+JavaScript objects, where
+
+132
+00:05:34,190 --> 00:05:36,220
+you have a key and
+you have a value.
+
+133
+00:05:36,220 --> 00:05:39,120
+In some languages, we
+call these hashes.
+
+134
+00:05:39,120 --> 00:05:44,730
+So here is an object inside
+CoffeeScript, pretty basic.
+
+135
+00:05:44,730 --> 00:05:47,610
+Optionally, we can remove
+the curly braces.
+
+136
+00:05:47,610 --> 00:05:49,730
+We can do without the
+curly braces.
+
+137
+00:05:49,730 --> 00:05:53,630
+And, if we want to, we can
+even get rid of a comma.
+
+138
+00:05:53,630 --> 00:05:57,180
+So if we write it in a spaced
+out way, with two spaces in
+
+139
+00:05:57,180 --> 00:06:00,510
+this case, we can avoid
+the commas.
+
+140
+00:06:00,510 --> 00:06:04,040
+In jQuery Air Captain's Log, we
+covered how to encapsulate
+
+141
+00:06:04,040 --> 00:06:06,880
+a function inside
+of an object.
+
+142
+00:06:06,880 --> 00:06:10,510
+Here's how we might do
+that in CoffeeScript.
+
+143
+00:06:10,510 --> 00:06:14,280
+You'll notice here that I'm
+using the @ symbol here.
+
+144
+00:06:14,280 --> 00:06:18,040
+So @name, that's going to
+reference the value
+
+145
+00:06:18,040 --> 00:06:20,040
+French, in this case.
+
+146
+00:06:20,040 --> 00:06:24,790
+We can call this function by
+just doing coffee.brew()
+
+147
+00:06:24,790 --> 00:06:29,830
+And here's the JavaScript that
+it's going to generate for us.
+
+148
+00:06:29,830 --> 00:06:31,880
+Let's add one more function
+to our coffee object.
+
+149
+00:06:31,880 --> 00:06:33,240
+We're going to call it pour.
+
+150
+00:06:33,240 --> 00:06:39,030
+It's going to have a default
+parameter of one for amount.
+
+151
+00:06:39,030 --> 00:06:41,060
+And that's all there is to it.
+
+152
+00:06:41,060 --> 00:06:43,570
+Here's the JavaScript that's
+going to generate for that
+
+153
+00:06:43,570 --> 00:06:44,820
+particular function.
+
+154
+00:06:44,820 --> 00:06:48,240
+
+
+155
+00:06:48,240 --> 00:06:50,890
+It should be said that you need
+to be careful with your
+
+156
+00:06:50,890 --> 00:06:53,150
+indenting when you're
+doing CoffeeScript.
+
+157
+00:06:53,150 --> 00:06:55,920
+Obviously, indenting
+matters a lot.
+
+158
+00:06:55,920 --> 00:06:58,210
+For example, if I didn't get the
+indenting right with this
+
+159
+00:06:58,210 --> 00:07:00,860
+object, here's the JavaScript
+that it would render out.
+
+160
+00:07:00,860 --> 00:07:04,680
+
+
+161
+00:07:04,680 --> 00:07:06,880
+Let's take a look at a more
+complex object, maybe an
+
+162
+00:07:06,880 --> 00:07:09,670
+object that has other objects
+inside of it.
+
+163
+00:07:09,670 --> 00:07:12,170
+So here you can see I have a
+bunch of different coffees
+
+164
+00:07:12,170 --> 00:07:13,760
+inside each of those coffees.
+
+165
+00:07:13,760 --> 00:07:15,460
+It has the strength of
+that coffee and how
+
+166
+00:07:15,460 --> 00:07:17,020
+many I have in stock.
+
+167
+00:07:17,020 --> 00:07:20,570
+If I wanted to see how much
+Italian I have in stock, I
+
+168
+00:07:20,570 --> 00:07:24,120
+would use this command
+right here.
+
+169
+00:07:24,120 --> 00:07:26,270
+Here's the JavaScript that the
+CoffeeScript is going to
+
+170
+00:07:26,270 --> 00:07:27,520
+compile into.
+
+171
+00:07:27,520 --> 00:07:30,360
+
+
+172
+00:07:30,360 --> 00:07:31,780
+Now let's play with
+that object.
+
+173
+00:07:31,780 --> 00:07:34,320
+What if we wanted to iterate
+through that object, printing
+
+174
+00:07:34,320 --> 00:07:35,700
+out certain things?
+
+175
+00:07:35,700 --> 00:07:37,390
+Could we use a list
+comprehension?
+
+176
+00:07:37,390 --> 00:07:41,100
+Well, we can, although it will
+look slightly different.
+
+177
+00:07:41,100 --> 00:07:44,450
+So we're going to print out the
+coffee and then the number
+
+178
+00:07:44,450 --> 00:07:45,620
+we have in stock.
+
+179
+00:07:45,620 --> 00:07:50,640
+We're going to iterate through
+each of them, storing the key
+
+180
+00:07:50,640 --> 00:07:56,170
+in coffee and the rest of the
+object in attributes.
+
+181
+00:07:56,170 --> 00:07:58,400
+You'll notice that of
+key word there.
+
+182
+00:07:58,400 --> 00:08:00,970
+When we were doing list
+comprehensions with arrays, it
+
+183
+00:08:00,970 --> 00:08:03,580
+had in instead of of.
+
+184
+00:08:03,580 --> 00:08:06,020
+When we want to iterate through
+an object, we use the
+
+185
+00:08:06,020 --> 00:08:09,310
+of keyword and specify two
+variables that we want to
+
+186
+00:08:09,310 --> 00:08:13,440
+store the key and the value in
+every time it iterates through
+
+187
+00:08:13,440 --> 00:08:15,010
+things in that object.
+
+188
+00:08:15,010 --> 00:08:18,110
+Here's what this would
+print out.
+
+189
+00:08:18,110 --> 00:08:19,710
+And another way we could write
+this loop is by doing
+
+190
+00:08:19,710 --> 00:08:20,960
+something like this.
+
+191
+00:08:20,960 --> 00:08:23,340
+
+
+192
+00:08:23,340 --> 00:08:25,150
+Now, what if we wanted to print
+this out nicely, the
+
+193
+00:08:25,150 --> 00:08:28,430
+string we're creating here, but
+we didn't want to include
+
+194
+00:08:28,430 --> 00:08:31,490
+any of the coffees that don't
+have anything in stock?
+
+195
+00:08:31,490 --> 00:08:33,020
+What might that look like?
+
+196
+00:08:33,020 --> 00:08:34,620
+We might do something
+like this, where we
+
+197
+00:08:34,620 --> 00:08:36,260
+have a to_print variable.
+
+198
+00:08:36,260 --> 00:08:39,840
+You'll notice here we're doing
+when
+
+199
+00:08:39,840 --> 00:08:40,780
+attrs.in_stock > 0
+
+200
+00:08:40,780 --> 00:08:42,740
+So we're using a filter.
+
+201
+00:08:42,740 --> 00:08:45,520
+And at the very bottom, we're
+joining the array together.
+
+202
+00:08:45,520 --> 00:08:50,810
+So we would get French has
+20, Italian has 12.
+
+203
+00:08:50,810 --> 00:08:52,780
+If you take a look at the
+JavaScript that's generated
+
+204
+00:08:52,780 --> 00:08:56,990
+from this CoffeeScript,
+well, it's longer, and
+
+205
+00:08:56,990 --> 00:08:58,340
+it's not very pretty.
+
+206
+00:08:58,340 --> 00:09:01,200
+So you can start to see some
+of the beautiful code that
+
+207
+00:09:01,200 --> 00:09:03,200
+CoffeeScript allows
+us to write.
+
+208
+00:09:03,200 --> 00:09:05,320
+You don't have to write any
+of this extra stuff to do
+
+209
+00:09:05,320 --> 00:09:07,790
+something that we can
+explain using less
+
+210
+00:09:07,790 --> 00:09:10,180
+code to get more done.
+
+211
+00:09:10,180 --> 00:09:11,430
+And that's about it.
+
+212
+00:09:11,430 --> 00:09:13,380
+We've reached the end
+of level four.
+
+213
+00:09:13,380 --> 00:09:15,800
+It's time to get into the
+challenges, maybe do some
+
+214
+00:09:15,800 --> 00:09:18,195
+arrays, some objects, and some
+list comprehensions.
+
+215
+00:09:18,195 --> 00:09:20,960

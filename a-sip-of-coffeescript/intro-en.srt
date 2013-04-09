@@ -1,0 +1,323 @@
+1
+00:00:00,000 --> 00:00:00,260
+
+2
+00:00:00,260 --> 00:00:02,730
+JavaScript has been around for
+a while now, and over the
+
+3
+00:00:02,730 --> 00:00:05,030
+years, many libraries have been
+built to make it easier
+
+4
+00:00:05,030 --> 00:00:07,770
+to program and protect you from
+the not so great parts of
+
+5
+00:00:07,770 --> 00:00:09,040
+JavaScript.
+
+6
+00:00:09,040 --> 00:00:10,090
+Allow me to illustrate.
+
+7
+00:00:10,090 --> 00:00:11,260
+See, JavaScript--
+
+8
+00:00:11,260 --> 00:00:13,690
+The Definitive Guide
+has 900 pages.
+
+9
+00:00:13,690 --> 00:00:14,310
+JavaScript--
+
+10
+00:00:14,310 --> 00:00:17,230
+The Good Parts, just
+176 pages.
+
+11
+00:00:17,230 --> 00:00:19,560
+Side by side, it looks something
+like this, and
+
+12
+00:00:19,560 --> 00:00:21,540
+that's got to tell
+you something.
+
+13
+00:00:21,540 --> 00:00:23,040
+Almost makes you wonder if
+there's a book out there
+
+14
+00:00:23,040 --> 00:00:25,060
+somewhere called JavaScript--
+
+15
+00:00:25,060 --> 00:00:26,650
+The Evil Parts.
+
+16
+00:00:26,650 --> 00:00:30,370
+Well, there isn't, but this is
+where CoffeeScript comes in,
+
+17
+00:00:30,370 --> 00:00:33,280
+which combines syntax from
+languages like Ruby and Python
+
+18
+00:00:33,280 --> 00:00:35,810
+to create a dynamic, pleasant
+language that compiles into
+
+19
+00:00:35,810 --> 00:00:36,800
+JavaScript.
+
+20
+00:00:36,800 --> 00:00:39,040
+So if you spend any of your
+time writing JavaScript,
+
+21
+00:00:39,040 --> 00:00:42,200
+you'll probably love A
+Sip Of Coffee Script.
+
+22
+00:00:42,200 --> 00:00:44,920
+In this course, we have six high
+quality screen casts each
+
+23
+00:00:44,920 --> 00:00:47,010
+followed by in-browser code
+challenges so you
+
+24
+00:00:47,010 --> 00:00:49,030
+can learn by doing.
+
+25
+00:00:49,030 --> 00:00:51,810
+Let's take a quick tour of
+the course interface.
+
+26
+00:00:51,810 --> 00:00:54,540
+To start the course, you'll
+watch through the first video.
+
+27
+00:00:54,540 --> 00:00:56,740
+You can navigate around the
+video using the numbers on the
+
+28
+00:00:56,740 --> 00:00:59,195
+top, and when you're ready to
+start the challenges, just hit
+
+29
+00:00:59,195 --> 00:01:01,205
+the big green button
+down below.
+
+30
+00:01:01,205 --> 00:01:03,550
+In the challenge interface,
+you'll see the number of
+
+31
+00:01:03,550 --> 00:01:06,950
+points a question is worth, the
+challenge itself, and then
+
+32
+00:01:06,950 --> 00:01:09,840
+a window where you can start
+typing the solution.
+
+33
+00:01:09,840 --> 00:01:11,890
+As you type CoffeeScript, you'll
+be able to see what
+
+34
+00:01:11,890 --> 00:01:13,710
+JavaScript is generating
+live on the right
+
+35
+00:01:13,710 --> 00:01:16,170
+panel for instant feedback.
+
+36
+00:01:16,170 --> 00:01:18,770
+If you get stuck at any point,
+you can ask for up to three
+
+37
+00:01:18,770 --> 00:01:21,705
+hints, but of course, every time
+you ask for a hint, you
+
+38
+00:01:21,705 --> 00:01:23,750
+get less points for
+the question.
+
+39
+00:01:23,750 --> 00:01:25,940
+Over on the right side of the
+screen, you'll see your total
+
+40
+00:01:25,940 --> 00:01:28,370
+points, you'll have the ability
+to jump around to
+
+41
+00:01:28,370 --> 00:01:32,350
+different levels or different
+challenges, rewatch the video,
+
+42
+00:01:32,350 --> 00:01:35,190
+use some interface shortcuts,
+and most importantly, download
+
+43
+00:01:35,190 --> 00:01:37,375
+the slides which you'll
+definitely need to help solve
+
+44
+00:01:37,375 --> 00:01:39,220
+the challenges.
+
+45
+00:01:39,220 --> 00:01:41,490
+The six levels in A Sip Of
+CoffeeScript start with
+
+46
+00:01:41,490 --> 00:01:44,480
+learning variables, functions,
+and the command line, followed
+
+47
+00:01:44,480 --> 00:01:47,840
+by practice converting jQuery
+code into CoffeeScript, We'll
+
+48
+00:01:47,840 --> 00:01:50,410
+then dive into conditionals,
+operators, and comparisons for
+
+49
+00:01:50,410 --> 00:01:53,740
+level three, followed by arrays,
+objects, iteration,
+
+50
+00:01:53,740 --> 00:01:55,540
+and list comprehension.
+
+51
+00:01:55,540 --> 00:01:58,180
+In level five, we'll apply these
+topics to some advanced
+
+52
+00:01:58,180 --> 00:02:00,950
+jQuery, and then finally in
+level six, finish up with some
+
+53
+00:02:00,950 --> 00:02:03,650
+object orientation, inheritance,
+fat arrow, and
+
+54
+00:02:03,650 --> 00:02:04,710
+encapsulation.
+
+55
+00:02:04,710 --> 00:02:06,460
+Each of these levels have a
+badge you'll earn as you
+
+56
+00:02:06,460 --> 00:02:08,970
+finish the level, finally
+earning the course completion
+
+57
+00:02:08,970 --> 00:02:11,800
+badge, which we'll display
+in your public profile.
+
+58
+00:02:11,800 --> 00:02:14,080
+You'll need to have a basic
+understanding of JavaScript to
+
+59
+00:02:14,080 --> 00:02:16,700
+learn CoffeeScript, and
+knowledge of some jQuery is
+
+60
+00:02:16,700 --> 00:02:18,050
+definitely recommended.
+
+61
+00:02:18,050 --> 00:02:20,600
+Fortunately, if you don't know
+either of these, maybe check
+
+62
+00:02:20,600 --> 00:02:23,350
+out our jQueryAir course
+over at jqueryair.com.
+
+63
+00:02:23,350 --> 00:02:25,680
+It's completely free.
+
+64
+00:02:25,680 --> 00:02:27,030
+Mmmm.
+
+65
+00:02:27,030 --> 00:02:29,270
+Got to love the taste
+of CoffeeScript.
+
+66
+00:02:29,270 --> 00:02:30,710
+Definitely makes
+that JavaScript
+
+67
+00:02:30,710 --> 00:02:33,065
+taste so much better.
+
+68
+00:02:33,065 --> 00:02:34,440
+Want a sip?
+
+69
+00:02:34,440 --> 00:02:38,058

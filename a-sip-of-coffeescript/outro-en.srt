@@ -1,0 +1,536 @@
+1
+00:00:00,000 --> 00:00:00,380
+
+2
+00:00:00,380 --> 00:00:02,450
+Congratulations, you made it
+all the way to the end of A
+
+3
+00:00:02,450 --> 00:00:04,019
+Sip Of Coffee Script.
+
+4
+00:00:04,019 --> 00:00:05,420
+Hope you enjoyed the ride.
+
+5
+00:00:05,420 --> 00:00:08,630
+In this outro, I'm going to be
+talking about other resources
+
+6
+00:00:08,630 --> 00:00:11,480
+you can use to continue
+learning CoffeeScript.
+
+7
+00:00:11,480 --> 00:00:14,290
+We'll then do some credits, and
+then finally, we'll just
+
+8
+00:00:14,290 --> 00:00:17,090
+thank you profusely for playing
+through the course.
+
+9
+00:00:17,090 --> 00:00:18,270
+So let's get to it.
+
+10
+00:00:18,270 --> 00:00:19,650
+First of all,
+
+11
+00:00:19,650 --> 00:00:21,560
+coffeescript.org, great resource.
+
+12
+00:00:21,560 --> 00:00:23,880
+If you haven't gone through the
+main CoffeeScript website
+
+13
+00:00:23,880 --> 00:00:26,690
+yet, I highly recommend
+you go through it.
+
+14
+00:00:26,690 --> 00:00:28,020
+Lots of really good
+information.
+
+15
+00:00:28,020 --> 00:00:30,770
+And the cool part about this is
+if you scroll down, you see
+
+16
+00:00:30,770 --> 00:00:32,049
+all these different--
+
+17
+00:00:32,049 --> 00:00:34,580
+this Load button down here, if
+you hit Load, it loads it
+
+18
+00:00:34,580 --> 00:00:37,400
+right into the Try CoffeeScript
+window, so you
+
+19
+00:00:37,400 --> 00:00:41,590
+come play with it, and run it,
+and experiment with modifying
+
+20
+00:00:41,590 --> 00:00:43,960
+your CoffeeScript, just
+like you did in
+
+21
+00:00:43,960 --> 00:00:46,300
+the application interface.
+
+22
+00:00:46,300 --> 00:00:47,610
+Next up, Jeremy.
+
+23
+00:00:47,610 --> 00:00:49,890
+This is the guy who created
+CoffeeScript.
+
+24
+00:00:49,890 --> 00:00:54,660
+He's got a GoRoku talk here
+where he talks about
+
+25
+00:00:54,660 --> 00:00:57,130
+CoffeeScript for the
+well-rounded Rubyist, but even
+
+26
+00:00:57,130 --> 00:01:01,030
+though you don't have to be a
+Ruby guy to see this guy talk.
+
+27
+00:01:01,030 --> 00:01:03,780
+Pretty good talk, also, but
+introductory for you at this
+
+28
+00:01:03,780 --> 00:01:05,600
+point, since you already know
+some of this stuff.
+
+29
+00:01:05,600 --> 00:01:08,060
+Also, a little book on
+CoffeeScript, another really
+
+30
+00:01:08,060 --> 00:01:11,220
+good online resource for
+continuing your learning, if
+
+31
+00:01:11,220 --> 00:01:15,410
+you'd like to go and read
+through more documentation.
+
+32
+00:01:15,410 --> 00:01:17,200
+Next up, also Smooth
+CoffeeScript.
+
+33
+00:01:17,200 --> 00:01:20,170
+Both the previous book and
+this book are free.
+
+34
+00:01:20,170 --> 00:01:23,430
+You can view it online
+and go through it.
+
+35
+00:01:23,430 --> 00:01:25,620
+Next up, if you're a fan
+of Ryan Bates, he did a
+
+36
+00:01:25,620 --> 00:01:31,060
+RailsCasts on the topic
+back in May, 2011.
+
+37
+00:01:31,060 --> 00:01:32,230
+Take a look at that
+if you want.
+
+38
+00:01:32,230 --> 00:01:35,030
+All these links, by the way,
+are in the sidebar.
+
+39
+00:01:35,030 --> 00:01:37,180
+Also, if you don't mind paying
+a few bucks, Geoffrey
+
+40
+00:01:37,180 --> 00:01:40,990
+Grosenbach did a CoffeeScript
+PeepCode.
+
+41
+00:01:40,990 --> 00:01:43,420
+If you played through one of the
+other Code School courses
+
+42
+00:01:43,420 --> 00:01:46,610
+where you got a free PeepCode,
+you can use that for this if
+
+43
+00:01:46,610 --> 00:01:47,800
+you want to.
+
+44
+00:01:47,800 --> 00:01:51,600
+Also, the Pragmatic Programmers
+put out a
+
+45
+00:01:51,600 --> 00:01:54,160
+CoffeeScript book.
+
+46
+00:01:54,160 --> 00:01:56,390
+It's a paid book, but I've heard
+good things about it, so
+
+47
+00:01:56,390 --> 00:01:57,870
+I want to let you
+know about it.
+
+48
+00:01:57,870 --> 00:02:00,355
+Also, my friend Mark Bates is
+putting together a programming
+
+49
+00:02:00,355 --> 00:02:01,930
+in CoffeeScript book.
+
+50
+00:02:01,930 --> 00:02:05,700
+It's not complete yet, but you
+can view the rough cuts if you
+
+51
+00:02:05,700 --> 00:02:07,250
+go on Safari and follow
+the link.
+
+52
+00:02:07,250 --> 00:02:08,620
+It might be done by the
+time you're watching
+
+53
+00:02:08,620 --> 00:02:10,610
+this, so check it out.
+
+54
+00:02:10,610 --> 00:02:12,750
+Also, the CoffeeScript
+Cookbook.
+
+55
+00:02:12,750 --> 00:02:17,480
+Free, online cookbook for
+CoffeeScript recipes for the
+
+56
+00:02:17,480 --> 00:02:19,380
+community, by the community.
+
+57
+00:02:19,380 --> 00:02:21,410
+So this is really good
+reading to sort of
+
+58
+00:02:21,410 --> 00:02:22,340
+further your knowledge.
+
+59
+00:02:22,340 --> 00:02:25,540
+So if you want to find out how
+to do capitalizing words, you
+
+60
+00:02:25,540 --> 00:02:28,100
+click that, and there it goes.
+
+61
+00:02:28,100 --> 00:02:29,430
+It gives you a solution.
+
+62
+00:02:29,430 --> 00:02:31,670
+Sometimes multiple solutions.
+
+63
+00:02:31,670 --> 00:02:34,515
+Really good read to figure out
+how to do complicated things
+
+64
+00:02:34,515 --> 00:02:36,480
+in CoffeeScript.
+
+65
+00:02:36,480 --> 00:02:40,880
+Also, if you go to this URL on
+GitHub, you'll see the most
+
+66
+00:02:40,880 --> 00:02:45,390
+popular open source projects
+that are using CoffeeScript,
+
+67
+00:02:45,390 --> 00:02:46,610
+and it might be a good read.
+
+68
+00:02:46,610 --> 00:02:48,120
+It's always good to read
+through code to get
+
+69
+00:02:48,120 --> 00:02:48,970
+familiar with it.
+
+70
+00:02:48,970 --> 00:02:51,690
+One of these on there, which
+you might have heard of, is
+
+71
+00:02:51,690 --> 00:02:54,770
+Hubot, which is get GitHub's
+Campfire bot.
+
+72
+00:02:54,770 --> 00:02:57,610
+That's all in CoffeeScript
+as well.
+
+73
+00:02:57,610 --> 00:02:59,020
+OK, it's time for the credits.
+
+74
+00:02:59,020 --> 00:03:01,490
+First I've got to thank
+Caike Souza, who works
+
+75
+00:03:01,490 --> 00:03:02,820
+here at Envy Labs.
+
+76
+00:03:02,820 --> 00:03:05,630
+He helped me a lot with all
+the different challenges,
+
+77
+00:03:05,630 --> 00:03:08,200
+putting together all the code
+for the course, and putting
+
+78
+00:03:08,200 --> 00:03:10,350
+together the course itself.
+
+79
+00:03:10,350 --> 00:03:14,070
+Eric Allam is one of our lead
+code school developers here at
+
+80
+00:03:14,070 --> 00:03:19,055
+Envy Labs, and he also helped
+a lot the course together.
+
+81
+00:03:19,055 --> 00:03:23,195
+Tim Dikun, one of our lead
+graphic designers did most of
+
+82
+00:03:23,195 --> 00:03:25,930
+the graphic design that you saw
+on the course, as well as
+
+83
+00:03:25,930 --> 00:03:29,180
+Drew Barontini also did
+a lot of the graphic
+
+84
+00:03:29,180 --> 00:03:31,340
+design code up in CSS.
+
+85
+00:03:31,340 --> 00:03:34,640
+Everett Simpson did the jingle
+that's stuck in your head.
+
+86
+00:03:34,640 --> 00:03:37,760
+CoffeeScript, yeah.
+
+87
+00:03:37,760 --> 00:03:39,970
+And Oliver Tosh is
+our video guy.
+
+88
+00:03:39,970 --> 00:03:42,610
+Got to thank him for doing
+all the good video.
+
+89
+00:03:42,610 --> 00:03:44,260
+And finally, everyone
+else at Envy Labs.
+
+90
+00:03:44,260 --> 00:03:46,940
+While Envy Labs supports Code
+School for now, it's
+
+91
+00:03:46,940 --> 00:03:49,590
+definitely not profitable yet.
+
+92
+00:03:49,590 --> 00:03:52,090
+If you dig this course
+and you want to see
+
+93
+00:03:52,090 --> 00:03:53,420
+us create more content--
+
+94
+00:03:53,420 --> 00:03:55,450
+God, we spend a lot of money
+on these courses--
+
+95
+00:03:55,450 --> 00:03:59,750
+if you want to see more of it,
+maybe consider enrolling in
+
+96
+00:03:59,750 --> 00:04:00,260
+code school.
+
+97
+00:04:00,260 --> 00:04:06,010
+For just $25 a month, you can
+get access to not only courses
+
+98
+00:04:06,010 --> 00:04:08,790
+as we put them out-- we try to
+do about one a month-- you get
+
+99
+00:04:08,790 --> 00:04:11,670
+access to all of our Code TV
+screencasts, which we put out
+
+100
+00:04:11,670 --> 00:04:15,260
+once a week, and some
+other perks as well.
+
+101
+00:04:15,260 --> 00:04:18,070
+So if you're not a member yet,
+consider enrolling if you want
+
+102
+00:04:18,070 --> 00:04:18,730
+to support us.
+
+103
+00:04:18,730 --> 00:04:20,450
+And I think that's about it.
+
+104
+00:04:20,450 --> 00:04:21,470
+Lastly, thank you.
+
+105
+00:04:21,470 --> 00:04:24,660
+Thank you for getting through
+CoffeeScript course and
+
+106
+00:04:24,660 --> 00:04:26,200
+supporting Code School.
+
+107
+00:04:26,200 --> 00:04:31,170
+And if you want to Tweet about
+it, we'd appreciate it.
+
+108
+00:04:31,170 --> 00:04:33,380
+Feel free to give us your
+feedback, any feedback about
+
+109
+00:04:33,380 --> 00:04:37,490
+the course, additional courses
+you want to see.
+
+110
+00:04:37,490 --> 00:04:39,390
+If you want to review the
+course using that button
+
+111
+00:04:39,390 --> 00:04:41,620
+below, that would be
+great as well.
+
+112
+00:04:41,620 --> 00:04:42,770
+And that's about it.
+
+113
+00:04:42,770 --> 00:04:46,270
+So, thanks for playing A Sip
+Of CoffeeScript, and
+
+114
+00:04:46,270 --> 00:04:47,520
+have a great day.
+
+115
+00:04:47,520 --> 00:04:48,640
