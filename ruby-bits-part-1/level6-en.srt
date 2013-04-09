@@ -1,0 +1,491 @@
+1
+00:00:00,000 --> 00:00:00,310
+
+
+2
+00:00:00,310 --> 00:00:00,950
+You're watching Ruby Bits.
+
+3
+00:00:00,950 --> 00:00:03,330
+I'm Gregg Pollack, and this is
+Level Six, where we're going
+
+4
+00:00:03,330 --> 00:00:04,653
+to be going over blocks.
+
+5
+00:00:04,653 --> 00:00:28,680
+[MUSIC PLAYING]
+
+6
+00:00:28,680 --> 00:00:30,350
+So let's start out
+with an array.
+
+7
+00:00:30,350 --> 00:00:33,020
+We have a words array up here,
+and one way we can iterate
+
+8
+00:00:33,020 --> 00:00:36,130
+through it is by doing
+a for loop, like so.
+
+9
+00:00:36,130 --> 00:00:38,540
+However, there's a more
+expressive way to do this in
+
+10
+00:00:38,540 --> 00:00:42,800
+Ruby using the each method,
+which takes a block.
+
+11
+00:00:42,800 --> 00:00:45,425
+And in this case, it's going to
+go through each item in our
+
+12
+00:00:45,425 --> 00:00:47,875
+array, and print each one
+out to the screen.
+
+13
+00:00:47,875 --> 00:00:50,230
+Now, there's two different
+conventions with blocks which
+
+14
+00:00:50,230 --> 00:00:52,260
+I'm going to dispense
+to you now.
+
+15
+00:00:52,260 --> 00:00:53,920
+And it's up to you which
+religion you want
+
+16
+00:00:53,920 --> 00:00:55,300
+to subscribe to.
+
+17
+00:00:55,300 --> 00:00:59,540
+The first religion says that
+when you have a single line
+
+18
+00:00:59,540 --> 00:01:02,450
+block, you would use
+the curly braces.
+
+19
+00:01:02,450 --> 00:01:07,810
+And if you have a multi-line
+block, you use do and end.
+
+20
+00:01:07,810 --> 00:01:09,500
+So that's the first
+convention.
+
+21
+00:01:09,500 --> 00:01:12,020
+The other convention is that
+if your block simply does
+
+22
+00:01:12,020 --> 00:01:14,260
+something as a side effect, and
+you don't care about the
+
+23
+00:01:14,260 --> 00:01:17,300
+return value, then you
+might put do and end.
+
+24
+00:01:17,300 --> 00:01:20,980
+Whereas, if you do care about
+the return value, you would
+
+25
+00:01:20,980 --> 00:01:22,760
+use curly braces.
+
+26
+00:01:22,760 --> 00:01:25,710
+Now blocks always return
+something, so the do, end, or
+
+27
+00:01:25,710 --> 00:01:27,300
+curly braces doesn't
+really matter.
+
+28
+00:01:27,300 --> 00:01:30,580
+This is just personal
+programming preference if you
+
+29
+00:01:30,580 --> 00:01:33,310
+want to use the convention
+or not.
+
+30
+00:01:33,310 --> 00:01:35,940
+Now let's break down how blocks
+work, piece by piece.
+
+31
+00:01:35,940 --> 00:01:38,010
+So here, you can see
+that we've got the
+
+32
+00:01:38,010 --> 00:01:42,330
+call_this_block_twice method
+that yields two times inside.
+
+33
+00:01:42,330 --> 00:01:45,430
+If we call that method, we're
+going to be sending in a bit
+
+34
+00:01:45,430 --> 00:01:47,790
+of code into that method.
+
+35
+00:01:47,790 --> 00:01:51,590
+It's almost like for passing a
+piece of code to get executed
+
+36
+00:01:51,590 --> 00:01:53,640
+instead of arguments.
+
+37
+00:01:53,640 --> 00:01:56,160
+So we pass that piece of code
+in there, it gets executed
+
+38
+00:01:56,160 --> 00:02:02,700
+twice, and we get twitter,
+twitter, and tweet, tweet.
+
+39
+00:02:02,700 --> 00:02:04,570
+Blocks can also take
+arguments.
+
+40
+00:02:04,570 --> 00:02:07,000
+And in this case we're
+passing in tweet.
+
+41
+00:02:07,000 --> 00:02:08,800
+So we call it and we send
+in this method.
+
+42
+00:02:08,800 --> 00:02:12,810
+We accept the argument and
+then we print out tweet.
+
+43
+00:02:12,810 --> 00:02:15,760
+The second piece of code is
+going to call upcase on tweet,
+
+44
+00:02:15,760 --> 00:02:17,010
+and then print it out.
+
+45
+00:02:17,010 --> 00:02:19,110
+
+
+46
+00:02:19,110 --> 00:02:22,270
+As we mentioned earlier, all
+blocks in Ruby return a value.
+
+47
+00:02:22,270 --> 00:02:25,260
+In this case, our block is
+simply the tweet string.
+
+48
+00:02:25,260 --> 00:02:28,390
+That gets evaluated and then
+printed out to the screen when
+
+49
+00:02:28,390 --> 00:02:29,640
+we call puts.
+
+50
+00:02:29,640 --> 00:02:32,640
+
+
+51
+00:02:32,640 --> 00:02:34,480
+Now let's combine all these
+techniques, and really try to
+
+52
+00:02:34,480 --> 00:02:36,550
+visualize what's
+going on here.
+
+53
+00:02:36,550 --> 00:02:39,760
+We invoke the method
+call_this_block, we're sending
+
+54
+00:02:39,760 --> 00:02:43,380
+in a block which reverses
+a string.
+
+55
+00:02:43,380 --> 00:02:44,270
+Right.
+
+56
+00:02:44,270 --> 00:02:46,590
+Foo is sent as an argument.
+
+57
+00:02:46,590 --> 00:02:49,900
+It's going to get reversed and
+returned from the block, which
+
+58
+00:02:49,900 --> 00:02:51,680
+is sent to the block result.
+
+59
+00:02:51,680 --> 00:02:53,420
+Then we simply print out
+the block result.
+
+60
+00:02:53,420 --> 00:02:56,510
+
+
+61
+00:02:56,510 --> 00:02:58,940
+Let's take a look at some code
+which could be refactored
+
+62
+00:02:58,940 --> 00:03:00,410
+using a block.
+
+63
+00:03:00,410 --> 00:03:02,990
+So here you can see we have the
+list_tweets method and the
+
+64
+00:03:02,990 --> 00:03:04,590
+store_tweets method.
+
+65
+00:03:04,590 --> 00:03:07,930
+Both of them get all of the
+user's friends, iterates
+
+66
+00:03:07,930 --> 00:03:09,160
+through each of them, and
+then find all the
+
+67
+00:03:09,160 --> 00:03:11,730
+tweets for those friends.
+
+68
+00:03:11,730 --> 00:03:15,920
+And notice where they differ is
+inside of that each block.
+
+69
+00:03:15,920 --> 00:03:19,190
+So that's probably where we're
+going to put our yield.
+
+70
+00:03:19,190 --> 00:03:22,190
+See you can see in there,
+we have yield tweet.
+
+71
+00:03:22,190 --> 00:03:24,800
+We can then call to each method
+sending in a block with
+
+72
+00:03:24,800 --> 00:03:26,590
+each of these different
+behaviors.
+
+73
+00:03:26,590 --> 00:03:28,340
+One will simply print
+the tweet.
+
+74
+00:03:28,340 --> 00:03:29,590
+And one is going to cache it.
+
+75
+00:03:29,590 --> 00:03:32,300
+
+
+76
+00:03:32,300 --> 00:03:35,690
+As a bonus, because we've
+defined the each method, if we
+
+77
+00:03:35,690 --> 00:03:38,280
+include the Enumerable module,
+we're going to get
+
+78
+00:03:38,280 --> 00:03:41,530
+access to a whole other set of
+helper methods we can use on
+
+79
+00:03:41,530 --> 00:03:42,650
+this the array.
+
+80
+00:03:42,650 --> 00:03:45,840
+Methods like sort_by, to sort
+the tweets, map, which will
+
+81
+00:03:45,840 --> 00:03:48,150
+return a collection of
+the tweet statuses.
+
+82
+00:03:48,150 --> 00:03:56,380
+
+
+83
+00:03:56,380 --> 00:03:58,950
+Now, let's take a look at one
+more example of some code that
+
+84
+00:03:58,950 --> 00:04:01,470
+we can refactor using a block.
+
+85
+00:04:01,470 --> 00:04:04,360
+Here we have update_status and
+get_list, let's see if you can
+
+86
+00:04:04,360 --> 00:04:06,930
+figure out what's the same and
+what is the different between
+
+87
+00:04:06,930 --> 00:04:10,650
+these two methods.
+
+88
+00:04:10,650 --> 00:04:13,310
+We'll bring the parts that are
+the same into a method called
+
+89
+00:04:13,310 --> 00:04:15,872
+while_signed_in_as.
+
+90
+00:04:15,872 --> 00:04:18,589
+Then we can call that method,
+passing as a block the
+
+91
+00:04:18,589 --> 00:04:20,695
+behavior that is different
+between each of the methods.
+
+92
+00:04:20,695 --> 00:04:26,070
+
+
+93
+00:04:26,070 --> 00:04:28,270
+The code here on the left, we
+can actually refactor a little
+
+94
+00:04:28,270 --> 00:04:30,910
+bit to make it a little
+shorter and sweeter.
+
+95
+00:04:30,910 --> 00:04:33,750
+Because we're inside of a
+method, we can get rid of the
+
+96
+00:04:33,750 --> 00:04:37,820
+begin and the end inside this
+method, so it'll look
+
+97
+00:04:37,820 --> 00:04:39,070
+something like this.
+
+98
+00:04:39,070 --> 00:04:43,070
+
+
+99
+00:04:43,070 --> 00:04:45,150
+It's time for you to start
+coding up some blocks in the
+
+100
+00:04:45,150 --> 00:04:46,030
+challenges.
+
+101
+00:04:46,030 --> 00:04:48,630
+This is Level Six, which
+means it's the end of
+
+102
+00:04:48,630 --> 00:04:49,740
+Ruby Bits part one.
+
+103
+00:04:49,740 --> 00:04:52,020
+But after you get through the
+challenges, we'll have an
+
+104
+00:04:52,020 --> 00:04:55,090
+outro video which will help you
+learn more bits of Ruby.
+
+105
+00:04:55,090 --> 00:04:56,407

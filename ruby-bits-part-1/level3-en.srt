@@ -1,0 +1,650 @@
+1
+00:00:00,000 --> 00:00:00,860
+
+
+2
+00:00:00,860 --> 00:00:01,680
+My name is Caike Souza,
+
+3
+00:00:01,680 --> 00:00:03,270
+and you're watching
+Ruby Bits.
+
+4
+00:00:03,270 --> 00:00:27,750
+[MUSIC]
+
+5
+00:00:27,750 --> 00:00:30,600
+In this level, we're going to
+take another look at classes.
+
+6
+00:00:30,600 --> 00:00:33,650
+As you may know, classes are
+all about encapsulation, so
+
+7
+00:00:33,650 --> 00:00:36,170
+let's take a look at this
+send_tweet method that takes
+
+8
+00:00:36,170 --> 00:00:37,360
+two arguments.
+
+9
+00:00:37,360 --> 00:00:40,200
+The second argument is the
+owner_id, which is used by the
+
+10
+00:00:40,200 --> 00:00:42,600
+method to retrieve the user.
+
+11
+00:00:42,600 --> 00:00:45,420
+However, the send_tweet method
+shouldn't really know how to
+
+12
+00:00:45,420 --> 00:00:46,450
+retrieve a user.
+
+13
+00:00:46,450 --> 00:00:48,400
+It knows too much.
+
+14
+00:00:48,400 --> 00:00:51,270
+A couple things to keep in mind
+is that passing around
+
+15
+00:00:51,270 --> 00:00:55,080
+data as strings and numbers kind
+of breaks encapsulation.
+
+16
+00:00:55,080 --> 00:00:58,630
+Places using that data need to
+know exactly what to do with
+
+17
+00:00:58,630 --> 00:01:03,350
+it, and individual changes to
+that behavior may influence
+
+18
+00:01:03,350 --> 00:01:06,100
+other areas of your code that
+might be using that.
+
+19
+00:01:06,100 --> 00:01:09,950
+So one way to make this better
+is to simply wrap all of that
+
+20
+00:01:09,950 --> 00:01:10,990
+in a class.
+
+21
+00:01:10,990 --> 00:01:13,920
+So you can see here, we've
+created a tweet class with a
+
+22
+00:01:13,920 --> 00:01:16,060
+couple of attribute
+accessors, and we
+
+23
+00:01:16,060 --> 00:01:17,740
+created the owner method.
+
+24
+00:01:17,740 --> 00:01:21,770
+So now, instead of passing data
+to the send_tweet method,
+
+25
+00:01:21,770 --> 00:01:26,520
+we pass a tweet object, and the
+tweet object knows how to
+
+26
+00:01:26,520 --> 00:01:27,770
+retrieve its owner.
+
+27
+00:01:27,770 --> 00:01:31,380
+
+
+28
+00:01:31,380 --> 00:01:33,330
+Classes are not always
+the solution.
+
+29
+00:01:33,330 --> 00:01:36,140
+When all you're dealing with is
+data, then passing around
+
+30
+00:01:36,140 --> 00:01:39,240
+an options hash should suffice,
+so let's take a look
+
+31
+00:01:39,240 --> 00:01:42,080
+at the user class that
+has two methods.
+
+32
+00:01:42,080 --> 00:01:45,310
+In Ruby, if you don't say
+otherwise, all the methods in
+
+33
+00:01:45,310 --> 00:01:47,500
+your class are going
+to be public.
+
+34
+00:01:47,500 --> 00:01:50,820
+However, in this case, we only
+want the up_vote to be
+
+35
+00:01:50,820 --> 00:01:53,300
+accessible from outside
+of the class.
+
+36
+00:01:53,300 --> 00:01:58,370
+The bump_karma should not be
+part of the public API.
+
+37
+00:01:58,370 --> 00:02:00,810
+One way to hide this method from
+outside the class is to
+
+38
+00:02:00,810 --> 00:02:02,150
+declare it private.
+
+39
+00:02:02,150 --> 00:02:05,620
+Inside the up_vote method, the
+first call to bump_karma works
+
+40
+00:02:05,620 --> 00:02:06,950
+as expected.
+
+41
+00:02:06,950 --> 00:02:10,210
+The second call,
+friend.bump_karma, will error
+
+42
+00:02:10,210 --> 00:02:13,550
+out, and this is because private
+methods in Ruby cannot
+
+43
+00:02:13,550 --> 00:02:16,820
+be called with an explicit
+receiver.
+
+44
+00:02:16,820 --> 00:02:20,330
+The correct solution here is to
+use protected, which will
+
+45
+00:02:20,330 --> 00:02:23,240
+prevent the method from being
+called from outside the class,
+
+46
+00:02:23,240 --> 00:02:25,790
+but at the same time, it allows
+the method from being
+
+47
+00:02:25,790 --> 00:02:28,580
+called with an explicit
+receiver, which needs to be an
+
+48
+00:02:28,580 --> 00:02:33,080
+object from the same class that
+the method belongs to.
+
+49
+00:02:33,080 --> 00:02:34,690
+Now, let's take a look
+at these two classes
+
+50
+00:02:34,690 --> 00:02:36,130
+for image and video.
+
+51
+00:02:36,130 --> 00:02:39,060
+As you may notice, they both
+have the same attribute
+
+52
+00:02:39,060 --> 00:02:42,020
+accessor for title,
+size, and url.
+
+53
+00:02:42,020 --> 00:02:46,050
+This is called duplication, and
+it's definitely not cool.
+
+54
+00:02:46,050 --> 00:02:48,580
+So let's get our duplicate code
+and move into a Parent
+
+55
+00:02:48,580 --> 00:02:51,700
+class, which we'll call
+attachment, and both image and
+
+56
+00:02:51,700 --> 00:02:53,410
+video will inherit from that.
+
+57
+00:02:53,410 --> 00:02:56,540
+We say that image and video
+are both kind of an
+
+58
+00:02:56,540 --> 00:03:00,350
+attachment, so in the future, if
+we have any custom behavior
+
+59
+00:03:00,350 --> 00:03:03,530
+for any of these subclasses, we
+can simply write the code
+
+60
+00:03:03,530 --> 00:03:04,980
+on the specific subclass.
+
+61
+00:03:04,980 --> 00:03:09,150
+
+
+62
+00:03:09,150 --> 00:03:10,820
+Let's take a look at
+some more code.
+
+63
+00:03:10,820 --> 00:03:14,560
+Here, we have a user class,
+whose constructor initializes
+
+64
+00:03:14,560 --> 00:03:17,390
+the name property, and a
+Follower class, which is a
+
+65
+00:03:17,390 --> 00:03:20,200
+kind of user, and its
+constructor initializes the
+
+66
+00:03:20,200 --> 00:03:21,620
+following property.
+
+67
+00:03:21,620 --> 00:03:24,780
+If we instantiate an object from
+the Follower class and
+
+68
+00:03:24,780 --> 00:03:27,480
+call the relationship method,
+we'll notice that the name
+
+69
+00:03:27,480 --> 00:03:29,750
+property was not set.
+
+70
+00:03:29,750 --> 00:03:31,640
+This is because the constructor
+for the Parent
+
+71
+00:03:31,640 --> 00:03:33,420
+class is not being called.
+
+72
+00:03:33,420 --> 00:03:36,670
+If we want to do so, then
+we use the super method.
+
+73
+00:03:36,670 --> 00:03:39,040
+If we want to set the name
+property in this case, we can
+
+74
+00:03:39,040 --> 00:03:42,460
+just call super, which will look
+for a method by the same
+
+75
+00:03:42,460 --> 00:03:45,890
+name on one of the Parent
+classes, in this case user.
+
+76
+00:03:45,890 --> 00:03:48,460
+
+
+77
+00:03:48,460 --> 00:03:50,880
+So you might be wondering how
+is super able to find the
+
+78
+00:03:50,880 --> 00:03:53,750
+correct method in the Parent
+class, so let's look at a more
+
+79
+00:03:53,750 --> 00:03:55,400
+complex example.
+
+80
+00:03:55,400 --> 00:03:58,840
+Here, we have a Grandparent
+class that declares my_method,
+
+81
+00:03:58,840 --> 00:04:01,680
+then we have a Parent class
+that inherits from
+
+82
+00:04:01,680 --> 00:04:04,400
+Grandparent, doesn't
+declare any method.
+
+83
+00:04:04,400 --> 00:04:08,560
+Then we have a Child class that
+is a subclass of Parent,
+
+84
+00:04:08,560 --> 00:04:11,430
+and it's got its own my_method
+declaration.
+
+85
+00:04:11,430 --> 00:04:14,770
+When we call my_method
+on a Child object, it
+
+86
+00:04:14,770 --> 00:04:16,550
+first invokes super.
+
+87
+00:04:16,550 --> 00:04:19,910
+What super does is look at the
+Parent classes to find methods
+
+88
+00:04:19,910 --> 00:04:21,190
+with the same name.
+
+89
+00:04:21,190 --> 00:04:23,600
+First, it's going to look
+in the Parent class.
+
+90
+00:04:23,600 --> 00:04:26,530
+It doesn't find it, then it
+looks at the Parent class's
+
+91
+00:04:26,530 --> 00:04:29,290
+superclass, which
+is Grandparent.
+
+92
+00:04:29,290 --> 00:04:32,570
+Grandparent happens to have a
+my_method declaration, so it's
+
+93
+00:04:32,570 --> 00:04:35,930
+going invoke that, then it's
+going to print the string
+
+94
+00:04:35,930 --> 00:04:37,775
+my_method call in
+the Child class.
+
+95
+00:04:37,775 --> 00:04:40,650
+
+
+96
+00:04:40,650 --> 00:04:43,040
+So what if both my_methods
+took arguments?
+
+97
+00:04:43,040 --> 00:04:45,650
+You can see here, my_method on
+the Grandparent takes an
+
+98
+00:04:45,650 --> 00:04:48,140
+argument, and my_method on the
+Child takes an argument.
+
+99
+00:04:48,140 --> 00:04:51,820
+However, we're calling super
+with no arguments.
+
+100
+00:04:51,820 --> 00:04:54,720
+It so happens that in Ruby, if
+you called super with no
+
+101
+00:04:54,720 --> 00:04:58,190
+arguments or params, it will
+automatically pass in the
+
+102
+00:04:58,190 --> 00:05:03,020
+arguments that were passed
+to the method calling it.
+
+103
+00:05:03,020 --> 00:05:04,930
+Now, let's look at the
+attachment class with a
+
+104
+00:05:04,930 --> 00:05:07,450
+preview method and a case
+statement in it.
+
+105
+00:05:07,450 --> 00:05:10,450
+The case statement is checking
+for the type of attachment.
+
+106
+00:05:10,450 --> 00:05:12,020
+If it's an image, then
+it's going to call
+
+107
+00:05:12,020 --> 00:05:13,280
+the thumbnail method.
+
+108
+00:05:13,280 --> 00:05:15,840
+Otherwise, if it's an MP3, then
+it's going to call the
+
+109
+00:05:15,840 --> 00:05:16,990
+player method.
+
+110
+00:05:16,990 --> 00:05:20,220
+In this case, being an image,
+it's kind of the typical case,
+
+111
+00:05:20,220 --> 00:05:23,250
+so what we can do is make this
+the default behavior for the
+
+112
+00:05:23,250 --> 00:05:27,050
+attachment class and override
+this method in any class that
+
+113
+00:05:27,050 --> 00:05:29,950
+happens to behave differently.
+
+114
+00:05:29,950 --> 00:05:33,150
+If speed is important to you,
+this is actually faster
+
+115
+00:05:33,150 --> 00:05:35,470
+because every time we call the
+preview method, we don't have
+
+116
+00:05:35,470 --> 00:05:37,110
+to go through the case
+statement and the
+
+117
+00:05:37,110 --> 00:05:40,130
+comparisons in it.
+
+118
+00:05:40,130 --> 00:05:43,100
+Now, let's take a look at the
+user class with two methods
+
+119
+00:05:43,100 --> 00:05:45,340
+that both have access to
+the first and last
+
+120
+00:05:45,340 --> 00:05:47,140
+name instance variables.
+
+121
+00:05:47,140 --> 00:05:49,530
+There's some duplication going
+on here, and coupling with
+
+122
+00:05:49,530 --> 00:05:51,140
+these two instance variables.
+
+123
+00:05:51,140 --> 00:05:53,640
+One way to make this better is
+to create another method,
+
+124
+00:05:53,640 --> 00:05:56,290
+let's call it display_name,
+which will return the value
+
+125
+00:05:56,290 --> 00:05:58,800
+used to display the
+name of the user.
+
+126
+00:05:58,800 --> 00:06:01,940
+That way, if we ever need to
+change the way we display the
+
+127
+00:06:01,940 --> 00:06:05,050
+name of the user, we only have
+to worry about changing code
+
+128
+00:06:05,050 --> 00:06:06,300
+in one place.
+
+129
+00:06:06,300 --> 00:06:10,690
+
+
+130
+00:06:10,690 --> 00:06:13,370
+Here, you can see we decided
+to add the title to the
+
+131
+00:06:13,370 --> 00:06:16,800
+display name, and all we had to
+do was change the code in
+
+132
+00:06:16,800 --> 00:06:18,050
+the display_name method.
+
+133
+00:06:18,050 --> 00:06:21,890
+
+
+134
+00:06:21,890 --> 00:06:24,110
+You have now reached the
+end of level three.
+
+135
+00:06:24,110 --> 00:06:25,800
+Start playing with the
+challenges, and I'll
+
+136
+00:06:25,800 --> 00:06:26,850
+see you in a bit.
+
+137
+00:06:26,850 --> 00:06:28,100
+No pun intended.
+
+138
+00:06:28,100 --> 00:06:29,000

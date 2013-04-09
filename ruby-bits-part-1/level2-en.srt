@@ -1,0 +1,935 @@
+1
+00:00:00,000 --> 00:00:00,740
+
+
+2
+00:00:00,740 --> 00:00:02,900
+You're watching Ruby Bits, and
+this is Level Two, where we're
+
+3
+00:00:02,900 --> 00:00:05,200
+going to be going over
+methods and classes.
+
+4
+00:00:05,200 --> 00:00:29,730
+[MUSIC]
+
+5
+00:00:29,730 --> 00:00:31,960
+So here we have a tweet method,
+which you can see
+
+6
+00:00:31,960 --> 00:00:33,920
+expects three arguments.
+
+7
+00:00:33,920 --> 00:00:35,800
+But only sometimes are we going
+to have a latitude and
+
+8
+00:00:35,800 --> 00:00:38,370
+longitude to pass
+into the method.
+
+9
+00:00:38,370 --> 00:00:40,620
+And even if we don't, we still
+have to call it with all three
+
+10
+00:00:40,620 --> 00:00:44,830
+arguments, as you can see here,
+specifying nil and nil.
+
+11
+00:00:44,830 --> 00:00:48,730
+One way to get around this is
+by using a default for both
+
+12
+00:00:48,730 --> 00:00:50,140
+latitude and longitude.
+
+13
+00:00:50,140 --> 00:00:53,900
+So here we can declare def tweet
+message lat equals nil
+
+14
+00:00:53,900 --> 00:00:55,330
+long equals nil.
+
+15
+00:00:55,330 --> 00:00:56,400
+And then we can call
+this method
+
+16
+00:00:56,400 --> 00:00:59,780
+without those two arguments.
+
+17
+00:00:59,780 --> 00:01:02,300
+So let's say that our parameter
+list for this method
+
+18
+00:01:02,300 --> 00:01:06,350
+keeps on growing and now
+we have a reply ID.
+
+19
+00:01:06,350 --> 00:01:09,440
+Now when we call this method,
+we've got to specify even more
+
+20
+00:01:09,440 --> 00:01:12,570
+parameters, getting to the point
+where it's hard to read
+
+21
+00:01:12,570 --> 00:01:14,670
+and maybe hard to remember
+what position
+
+22
+00:01:14,670 --> 00:01:16,090
+each argument is in.
+
+23
+00:01:16,090 --> 00:01:19,290
+On top of that, if we have a
+reply ID but no latitude and
+
+24
+00:01:19,290 --> 00:01:20,740
+longitude, we have to type
+
+25
+00:01:20,740 --> 00:01:22,770
+placeholders for those arguments.
+
+26
+00:01:22,770 --> 00:01:25,750
+Not so good, right?
+
+27
+00:01:25,750 --> 00:01:28,050
+One way to solve this problem
+is by using an option hash,
+
+28
+00:01:28,050 --> 00:01:30,740
+which will replace all
+of those parameters.
+
+29
+00:01:30,740 --> 00:01:33,790
+Here you can see we read out
+all the values out of that
+
+30
+00:01:33,790 --> 00:01:36,870
+option hash.
+
+31
+00:01:36,870 --> 00:01:39,130
+The cool part about this is
+when we go to call this
+
+32
+00:01:39,130 --> 00:01:41,810
+function, well, we specify
+all those different keys.
+
+33
+00:01:41,810 --> 00:01:42,880
+It shows meaning.
+
+34
+00:01:42,880 --> 00:01:44,490
+And now we know all the
+parameters that are
+
+35
+00:01:44,490 --> 00:01:45,740
+getting passed in.
+
+36
+00:01:45,740 --> 00:01:48,030
+
+
+37
+00:01:48,030 --> 00:01:50,050
+Let's go over a couple different
+ways to write this.
+
+38
+00:01:50,050 --> 00:01:53,230
+First, we could use the Ruby 1.9
+hash syntax, which would
+
+39
+00:01:53,230 --> 00:01:54,290
+look like this.
+
+40
+00:01:54,290 --> 00:01:56,730
+A little bit more readable,
+which looks a little bit more
+
+41
+00:01:56,730 --> 00:01:58,270
+like JSON.
+
+42
+00:01:58,270 --> 00:02:00,170
+We also don't have to
+worry about the
+
+43
+00:02:00,170 --> 00:02:01,400
+order of the keys anymore.
+
+44
+00:02:01,400 --> 00:02:05,440
+We can reposition
+them as we like.
+
+45
+00:02:05,440 --> 00:02:06,695
+We don't need to send in
+all the parameters.
+
+46
+00:02:06,695 --> 00:02:10,636
+We can specify just the ones
+that we care about.
+
+47
+00:02:10,636 --> 00:02:14,600
+And if we want, we can omit the
+option hash completely and
+
+48
+00:02:14,600 --> 00:02:18,000
+the method still works.
+
+49
+00:02:18,000 --> 00:02:19,450
+Extra life.
+
+50
+00:02:19,450 --> 00:02:21,630
+Combo times 5.
+
+51
+00:02:21,630 --> 00:02:23,630
+Let's take a look at some code
+and see if you can figure out
+
+52
+00:02:23,630 --> 00:02:25,210
+how we can improve it.
+
+53
+00:02:25,210 --> 00:02:27,010
+So here we have a 
+get_tweets method.
+
+54
+00:02:27,010 --> 00:02:30,570
+We're checking to see if we're
+authorized for this list.
+
+55
+00:02:30,570 --> 00:02:32,040
+And if we're not, then
+we're going to
+
+56
+00:02:32,040 --> 00:02:34,400
+return an empty array.
+
+57
+00:02:34,400 --> 00:02:37,780
+Then when we go to call this
+method, we call it,
+
+58
+00:02:37,780 --> 00:02:40,110
+check to see if tweets are empty,
+
+59
+00:02:40,110 --> 00:02:42,880
+and if we are, we'll alert
+that we're probably not
+
+60
+00:02:42,880 --> 00:02:45,230
+authorized to access
+this list.
+
+61
+00:02:45,230 --> 00:02:48,450
+However, what sucks about this
+is we can't be totally sure
+
+62
+00:02:48,450 --> 00:02:49,710
+that this is an error.
+
+63
+00:02:49,710 --> 00:02:53,520
+Well, what if there's no
+tweets in that list?
+
+64
+00:02:53,520 --> 00:02:55,180
+That could be bad and we
+wouldn't want to throw an
+
+65
+00:02:55,180 --> 00:02:56,650
+error in that case.
+
+66
+00:02:56,650 --> 00:03:00,220
+So this might be a good chance
+to use an actual exception.
+
+67
+00:03:00,220 --> 00:03:04,370
+So here you can see up in the
+get_tweets method, if we're
+
+68
+00:03:04,370 --> 00:03:06,840
+not authorized this time
+we're going to raise an
+
+69
+00:03:06,840 --> 00:03:09,260
+authorization exception.
+
+70
+00:03:09,260 --> 00:03:11,330
+Then when we go to call the
+method, we're going to use
+
+71
+00:03:11,330 --> 00:03:14,530
+begin and rescue to
+rescue from the
+
+72
+00:03:14,530 --> 00:03:15,720
+authorization exception.
+
+73
+00:03:15,720 --> 00:03:18,100
+And at that point we're
+going to know
+
+74
+00:03:18,100 --> 00:03:19,050
+that there's a problem.
+
+75
+00:03:19,050 --> 00:03:20,480
+We're going to know that
+we've run into an
+
+76
+00:03:20,480 --> 00:03:21,730
+authorization error.
+
+77
+00:03:21,730 --> 00:03:24,020
+And we can warn them with
+a proper message.
+
+78
+00:03:24,020 --> 00:03:26,110
+Another other useful features
+methods in Ruby
+
+79
+00:03:26,110 --> 00:03:27,230
+is the splat argument.
+
+80
+00:03:27,230 --> 00:03:29,060
+That's a little star up there.
+
+81
+00:03:29,060 --> 00:03:30,480
+And what that signifies
+is that we're
+
+82
+00:03:30,480 --> 00:03:32,730
+sending in an array.
+
+83
+00:03:32,730 --> 00:03:36,095
+And that array is made up of all
+the parameters we send in.
+
+84
+00:03:36,095 --> 00:03:39,320
+It could be 0 parameters, it
+could be many parameters.
+
+85
+00:03:39,320 --> 00:03:41,540
+As you can see here,
+we're sending in a
+
+86
+00:03:41,540 --> 00:03:42,830
+couple different names.
+
+87
+00:03:42,830 --> 00:03:45,980
+And those they're getting
+assigned to that array.
+
+88
+00:03:45,980 --> 00:03:47,585
+The arguments get put
+into that array.
+
+89
+00:03:47,585 --> 00:03:51,030
+And in this case, they get
+joined together with spaces
+
+90
+00:03:51,030 --> 00:03:54,030
+and then printed out.
+
+91
+00:03:54,030 --> 00:03:54,990
+So we're done with methods.
+
+92
+00:03:54,990 --> 00:03:57,120
+Now let's jump into classes.
+
+93
+00:03:57,120 --> 00:04:00,120
+But let's all make sure we
+understand why we need to
+
+94
+00:04:00,120 --> 00:04:02,270
+classes through this example.
+
+95
+00:04:02,270 --> 00:04:05,330
+So here you see we have
+an array of names.
+
+96
+00:04:05,330 --> 00:04:07,260
+You might notice the last
+item in this array
+
+97
+00:04:07,260 --> 00:04:08,530
+doesn't have a last name.
+
+98
+00:04:08,530 --> 00:04:11,280
+So when we go through each of
+them and we print them out,
+
+99
+00:04:11,280 --> 00:04:14,800
+well, we can see that the last
+line has a comma Madonna.
+
+100
+00:04:14,800 --> 00:04:16,839
+That's not so good.
+
+101
+00:04:16,839 --> 00:04:21,110
+So we need some way to signify
+a different behavior when our
+
+102
+00:04:21,110 --> 00:04:25,100
+name only has, well, one
+part of its name.
+
+103
+00:04:25,100 --> 00:04:27,590
+This might be good opportunity
+to create a class because now
+
+104
+00:04:27,590 --> 00:04:31,620
+we have data that's associated
+with a specific behavior.
+
+105
+00:04:31,620 --> 00:04:33,670
+So let's create a name class.
+
+106
+00:04:33,670 --> 00:04:35,690
+We're going to have an
+initialize method that has
+
+107
+00:04:35,690 --> 00:04:37,190
+first and last name.
+
+108
+00:04:37,190 --> 00:04:39,200
+And the last name here
+is optional.
+
+109
+00:04:39,200 --> 00:04:41,290
+We're going to set those
+instance variables to
+
+110
+00:04:41,290 --> 00:04:42,690
+what got passed in.
+
+111
+00:04:42,690 --> 00:04:46,370
+Then we have a format method
+which takes the last name and
+
+112
+00:04:46,370 --> 00:04:48,560
+the first name, compacts
+them together.
+
+113
+00:04:48,560 --> 00:04:51,000
+Compact, in case you're not
+familiar, takes out any nil
+
+114
+00:04:51,000 --> 00:04:52,360
+values from an array.
+
+115
+00:04:52,360 --> 00:04:54,350
+And then we're going to
+join the resulting
+
+116
+00:04:54,350 --> 00:04:55,590
+array with a comma.
+
+117
+00:04:55,590 --> 00:04:58,280
+And of course, only if the array
+has more than one item
+
+118
+00:04:58,280 --> 00:05:00,430
+is there going to be a comma
+in between them with the
+
+119
+00:05:00,430 --> 00:05:02,150
+resulting string.
+
+120
+00:05:02,150 --> 00:05:05,810
+So as you can see here, our
+class has state on the data
+
+121
+00:05:05,810 --> 00:05:09,540
+and some sort of behavior
+on that data.
+
+122
+00:05:09,540 --> 00:05:11,800
+So let's go ahead and
+use our class.
+
+123
+00:05:11,800 --> 00:05:14,640
+So as you can see here, we're
+creating a bunch of new names.
+
+124
+00:05:14,640 --> 00:05:16,770
+Then when we go through
+each of them, we
+
+125
+00:05:16,770 --> 00:05:18,510
+call the format method.
+
+126
+00:05:18,510 --> 00:05:20,645
+And our output is properly
+formatted.
+
+127
+00:05:20,645 --> 00:05:24,380
+
+
+128
+00:05:24,380 --> 00:05:25,250
+Here comes some more code.
+
+129
+00:05:25,250 --> 00:05:27,700
+And see if you can figure out
+what's wrong with it.
+
+130
+00:05:27,700 --> 00:05:30,070
+So we have two attribute
+accessors,
+
+131
+00:05:30,070 --> 00:05:31,200
+status and created at.
+
+132
+00:05:31,200 --> 00:05:34,600
+And our initialized method
+pretty much just sets them.
+
+133
+00:05:34,600 --> 00:05:36,710
+In case you're not familiar
+with attribute accessor,
+
+134
+00:05:36,710 --> 00:05:39,960
+remember that just creates a
+getter and a setter method for
+
+135
+00:05:39,960 --> 00:05:43,000
+us on our instance variables.
+
+136
+00:05:43,000 --> 00:05:44,840
+Now let's go ahead and
+use our class.
+
+137
+00:05:44,840 --> 00:05:46,520
+And, hey, look at that.
+
+138
+00:05:46,520 --> 00:05:51,000
+We're actually able to set our
+created at instance variable.
+
+139
+00:05:51,000 --> 00:05:51,920
+Which isn't too good.
+
+140
+00:05:51,920 --> 00:05:54,940
+We wouldn't want to reset that
+created at date sometime in
+
+141
+00:05:54,940 --> 00:05:55,790
+the future.
+
+142
+00:05:55,790 --> 00:05:59,350
+So how might we make it so that
+that's not able to get
+
+143
+00:05:59,350 --> 00:06:01,360
+set later in the future?
+
+144
+00:06:01,360 --> 00:06:04,140
+Well, one way we could solve
+this is by using just an
+
+145
+00:06:04,140 --> 00:06:07,220
+attribute reader instead of
+an attribute accessor.
+
+146
+00:06:07,220 --> 00:06:09,510
+The reader is just going to
+create a reader function and
+
+147
+00:06:09,510 --> 00:06:10,670
+no setter function.
+
+148
+00:06:10,670 --> 00:06:14,680
+So if we try to set it, well,
+we're going to get undefined
+
+149
+00:06:14,680 --> 00:06:17,840
+method created at.
+
+150
+00:06:17,840 --> 00:06:18,900
+Here's our tree class.
+
+151
+00:06:18,900 --> 00:06:22,580
+And if we called tweet.to_s we're
+going to get back this
+
+152
+00:06:22,580 --> 00:06:26,010
+string, which, well, it's
+just not very readable.
+
+153
+00:06:26,010 --> 00:06:29,800
+How might we, well, overwrite
+that string to give it a
+
+154
+00:06:29,800 --> 00:06:31,460
+different behavior?
+
+155
+00:06:31,460 --> 00:06:32,710
+Well, what we're going to
+do here is we're going
+
+156
+00:06:32,710 --> 00:06:34,380
+to reopen the class.
+
+157
+00:06:34,380 --> 00:06:37,630
+As you probably know, Ruby
+allows us to reopen any class
+
+158
+00:06:37,630 --> 00:06:39,480
+to give it additional
+behavior.
+
+159
+00:06:39,480 --> 00:06:41,530
+So here, let's reopen
+the Tweet class.
+
+160
+00:06:41,530 --> 00:06:45,380
+We'll redefine 2 string to
+print out the status and
+
+161
+00:06:45,380 --> 00:06:47,140
+created at.
+
+162
+00:06:47,140 --> 00:06:50,660
+Then when we create a tweet
+and call to_s, it prints out
+
+163
+00:06:50,660 --> 00:06:52,275
+something that is much
+more readable.
+
+164
+00:06:52,275 --> 00:06:54,800
+
+
+165
+00:06:54,800 --> 00:06:56,520
+So in Ruby we have this
+awesome power.
+
+166
+00:06:56,520 --> 00:06:59,910
+We can reopen any class and add
+additional functionality.
+
+167
+00:06:59,910 --> 00:07:02,080
+Which of course, is a
+double-edged sword.
+
+168
+00:07:02,080 --> 00:07:04,240
+It's cool, but you have
+to be careful.
+
+169
+00:07:04,240 --> 00:07:06,620
+You don't know what other
+classes are depending on.
+
+170
+00:07:06,620 --> 00:07:09,980
+The class that you just maybe
+overwrote a few methods on.
+
+171
+00:07:09,980 --> 00:07:13,190
+So a good best practice is just
+to do this with classes
+
+172
+00:07:13,190 --> 00:07:14,790
+that you yourself own.
+
+173
+00:07:14,790 --> 00:07:17,770
+That belong to your project.
+
+174
+00:07:17,770 --> 00:07:21,230
+Let me introduce you to
+the UserList class.
+
+175
+00:07:21,230 --> 00:07:23,810
+Inside the UserList class, we
+have an attribute accessor,
+
+176
+00:07:23,810 --> 00:07:24,780
+which is name.
+
+177
+00:07:24,780 --> 00:07:26,610
+And inside the initialized
+method, of course,
+
+178
+00:07:26,610 --> 00:07:29,330
+we want to set it.
+
+179
+00:07:29,330 --> 00:07:30,790
+Can we set it like
+this, though?
+
+180
+00:07:30,790 --> 00:07:31,240
+Would it work?
+
+181
+00:07:31,240 --> 00:07:32,410
+Well, let's run it.
+
+182
+00:07:32,410 --> 00:07:34,650
+So here we create
+a new UserList.
+
+183
+00:07:34,650 --> 00:07:37,080
+And list name is equal to nil.
+
+184
+00:07:37,080 --> 00:07:38,270
+And it didn't work.
+
+185
+00:07:38,270 --> 00:07:39,950
+It didn't get set.
+
+186
+00:07:39,950 --> 00:07:43,120
+So inside the initialize method,
+it's just setting the
+
+187
+00:07:43,120 --> 00:07:44,160
+name equal to name.
+
+188
+00:07:44,160 --> 00:07:46,980
+It's actually creating a local
+variable called name.
+
+189
+00:07:46,980 --> 00:07:50,030
+And it's not calling the name
+equal method that the
+
+190
+00:07:50,030 --> 00:07:52,010
+attribute accessor gave us.
+
+191
+00:07:52,010 --> 00:07:54,920
+So instead, if we want to call
+it like this, we have to
+
+192
+00:07:54,920 --> 00:07:58,250
+specify self.name.
+
+193
+00:07:58,250 --> 00:08:00,290
+That's going to call that
+name equals function
+
+194
+00:08:00,290 --> 00:08:01,740
+on the current object.
+
+195
+00:08:01,740 --> 00:08:03,680
+And now we run the code again,
+we're going to see that it
+
+196
+00:08:03,680 --> 00:08:05,775
+properly prints out
+celebrities.
+
+197
+00:08:05,775 --> 00:08:09,550
+
+
+198
+00:08:09,550 --> 00:08:09,740
+Sweet.
+
+199
+00:08:09,740 --> 00:08:11,300
+We got to the end
+of Level Two.
+
+200
+00:08:11,300 --> 00:08:12,830
+It's time for you
+to get coding.
+
+201
+00:08:12,830 --> 00:08:13,450
+And Caike Souza
+
+202
+00:08:13,450 --> 00:08:14,900
+will see
+you in Level Three.
+
+203
+00:08:14,900 --> 00:08:31,554

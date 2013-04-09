@@ -1,0 +1,817 @@
+1
+00:00:00,000 --> 00:00:00,380
+
+
+2
+00:00:00,380 --> 00:00:03,170
+My name is Caike Souza, and
+you're watching Ruby Bits.
+
+3
+00:00:03,170 --> 00:00:04,810
+This is Level Five, and
+we're going to be
+
+4
+00:00:04,810 --> 00:00:05,660
+talking about modules.
+
+5
+00:00:05,660 --> 00:00:34,980
+[MUSIC]
+
+6
+00:00:34,980 --> 00:00:37,380
+When you're working in a Ruby
+script, you might be working
+
+7
+00:00:37,380 --> 00:00:40,180
+with functions that would make
+sense to be grouped together.
+
+8
+00:00:40,180 --> 00:00:43,180
+And the easiest way to do this
+in Ruby is to simply place
+
+9
+00:00:43,180 --> 00:00:45,180
+those functions into a file.
+
+10
+00:00:45,180 --> 00:00:47,720
+And you can name the
+file accordingly.
+
+11
+00:00:47,720 --> 00:00:51,160
+In this example, we've created
+a file call image_utils.rb.
+
+12
+00:00:51,160 --> 00:00:53,980
+And in order to use those
+functions, all you have to do
+
+13
+00:00:53,980 --> 00:00:55,230
+is require the file.
+
+14
+00:00:55,230 --> 00:00:58,040
+
+
+15
+00:00:58,040 --> 00:01:01,600
+Then you can simply call
+the functions.
+
+16
+00:01:01,600 --> 00:01:04,290
+One problem with this is that
+the functions are thrown out
+
+17
+00:01:04,290 --> 00:01:06,630
+there in the global name space,
+which means that they
+
+18
+00:01:06,630 --> 00:01:09,270
+could potentially conflict
+with other functions
+
+19
+00:01:09,270 --> 00:01:10,440
+with the same name.
+
+20
+00:01:10,440 --> 00:01:13,000
+So one way to solve this problem
+is to wrap those
+
+21
+00:01:13,000 --> 00:01:14,870
+functions into a module.
+
+22
+00:01:14,870 --> 00:01:18,280
+When we do that, the way that we
+call those functions is by
+
+23
+00:01:18,280 --> 00:01:21,760
+prefixing them with the
+name of the module.
+
+24
+00:01:21,760 --> 00:01:24,430
+A common pattern in Ruby is
+to include the module
+
+25
+00:01:24,430 --> 00:01:25,970
+inside of the class.
+
+26
+00:01:25,970 --> 00:01:29,870
+This will expose the module's
+methods as instance methods in
+
+27
+00:01:29,870 --> 00:01:33,240
+the object, which means that
+those methods will have access
+
+28
+00:01:33,240 --> 00:01:35,840
+to the object's internal
+properties.
+
+29
+00:01:35,840 --> 00:01:38,880
+You may have noticed that we're
+no longer passing Image
+
+30
+00:01:38,880 --> 00:01:41,970
+as an argument to both preview
+and transfer, because they're
+
+31
+00:01:41,970 --> 00:01:45,960
+now part of the Image class.
+
+32
+00:01:45,960 --> 00:01:48,670
+So when we run this code, we can
+simply call preview on the
+
+33
+00:01:48,670 --> 00:01:51,130
+Image class.
+
+34
+00:01:51,130 --> 00:01:54,220
+So when we include a module in
+a class, what's happening is
+
+35
+00:01:54,220 --> 00:01:57,830
+that module is being included in
+the class's ancestor chain,
+
+36
+00:01:57,830 --> 00:01:59,260
+which looks something
+like this.
+
+37
+00:01:59,260 --> 00:02:02,340
+So when we call the ancestors
+method on the Image class,
+
+38
+00:02:02,340 --> 00:02:05,450
+we're going to get a list of
+all the classes and modules
+
+39
+00:02:05,450 --> 00:02:07,960
+that the Image class
+has descended from.
+
+40
+00:02:07,960 --> 00:02:10,419
+If we only want to list the
+modules, we can call the
+
+41
+00:02:10,419 --> 00:02:11,740
+included_modules method.
+
+42
+00:02:11,740 --> 00:02:14,640
+
+
+43
+00:02:14,640 --> 00:02:16,880
+So we've just looked at
+including a module into a
+
+44
+00:02:16,880 --> 00:02:19,250
+class, also known as mixin.
+
+45
+00:02:19,250 --> 00:02:23,000
+So when would you really use
+mixin versus classical class
+
+46
+00:02:23,000 --> 00:02:26,000
+inheritance when we have a child
+class inheriting from a
+
+47
+00:02:26,000 --> 00:02:26,900
+parent class?
+
+48
+00:02:26,900 --> 00:02:28,950
+Well, let's take a look
+at this example.
+
+49
+00:02:28,950 --> 00:02:31,870
+So we can see here we have three
+different classes that
+
+50
+00:02:31,870 --> 00:02:33,410
+all have the same method.
+
+51
+00:02:33,410 --> 00:02:35,920
+This is code duplication,
+and it's not cool.
+
+52
+00:02:35,920 --> 00:02:38,530
+So one way to solve this problem
+would be to create a
+
+53
+00:02:38,530 --> 00:02:41,830
+sharable class and move
+all the common methods
+
+54
+00:02:41,830 --> 00:02:43,570
+into that one class.
+
+55
+00:02:43,570 --> 00:02:46,700
+That way we can have the Post,
+Image, and Tweet classes
+
+56
+00:02:46,700 --> 00:02:48,890
+inherit from the shareable
+class.
+
+57
+00:02:48,890 --> 00:02:51,810
+The problem with this is that in
+Ruby, a class can only have
+
+58
+00:02:51,810 --> 00:02:53,240
+one superclass.
+
+59
+00:02:53,240 --> 00:02:55,620
+So by inheriting from sharable,
+we're basically
+
+60
+00:02:55,620 --> 00:02:58,320
+limiting these classes from
+inheriting from any other
+
+61
+00:02:58,320 --> 00:03:00,030
+class in the future.
+
+62
+00:03:00,030 --> 00:03:03,080
+Also, inheritance suggests
+specialization.
+
+63
+00:03:03,080 --> 00:03:05,480
+And in this case, it doesn't
+really make sense to say that
+
+64
+00:03:05,480 --> 00:03:07,570
+a Post is a kind
+of Shareable--
+
+65
+00:03:07,570 --> 00:03:09,430
+or an Image or a Tweet.
+
+66
+00:03:09,430 --> 00:03:12,360
+And some behaviors are just
+not fit for classes.
+
+67
+00:03:12,360 --> 00:03:15,430
+So in this case, it makes more
+sense to use a mixin.
+
+68
+00:03:15,430 --> 00:03:17,990
+So instead of a class, we're
+going to use a module and
+
+69
+00:03:17,990 --> 00:03:20,580
+include the module
+in those classes.
+
+70
+00:03:20,580 --> 00:03:23,750
+This allows for these classes
+to include any other module
+
+71
+00:03:23,750 --> 00:03:25,860
+that they want to inherit
+behavior from.
+
+72
+00:03:25,860 --> 00:03:27,320
+In this case, we have
+Favoritable.
+
+73
+00:03:27,320 --> 00:03:33,300
+
+
+74
+00:03:33,300 --> 00:03:36,620
+Given a module, we could also
+expose the module's methods as
+
+75
+00:03:36,620 --> 00:03:38,600
+class methods to a class.
+
+76
+00:03:38,600 --> 00:03:40,760
+So let's look at the searchable
+module in see how
+
+77
+00:03:40,760 --> 00:03:44,070
+we can expose the find all from
+method as a class method
+
+78
+00:03:44,070 --> 00:03:45,730
+to the Tweet class.
+
+79
+00:03:45,730 --> 00:03:48,610
+In order to do that, we use the
+extend method, which, when
+
+80
+00:03:48,610 --> 00:03:51,950
+called from a class, will expose
+the module's methods as
+
+81
+00:03:51,950 --> 00:03:53,050
+class methods.
+
+82
+00:03:53,050 --> 00:03:56,030
+So as you can see here, we can
+call the find all from method
+
+83
+00:03:56,030 --> 00:03:58,320
+from the Tweet class.
+
+84
+00:03:58,320 --> 00:04:01,620
+Now as a recap, use extend if
+you want to expose module
+
+85
+00:04:01,620 --> 00:04:04,680
+methods as class methods.
+
+86
+00:04:04,680 --> 00:04:06,250
+And use include if you
+want to expose
+
+87
+00:04:06,250 --> 00:04:07,500
+them as instance methods.
+
+88
+00:04:07,500 --> 00:04:12,770
+
+
+89
+00:04:12,770 --> 00:04:14,380
+Now let's look at some
+more advanced stuff
+
+90
+00:04:14,380 --> 00:04:15,940
+we can do with mixins.
+
+91
+00:04:15,940 --> 00:04:18,829
+Here we have an ImageUtils 
+module and an Image class.
+
+92
+00:04:18,829 --> 00:04:21,589
+Given that we have an object
+from the Image class, we can
+
+93
+00:04:21,589 --> 00:04:25,240
+include the methods from the
+module by using extend.
+
+94
+00:04:25,240 --> 00:04:28,760
+Extend will expose the methods
+from the module to that
+
+95
+00:04:28,760 --> 00:04:30,530
+specific object.
+
+96
+00:04:30,530 --> 00:04:33,450
+And the module will not be
+available in other objects
+
+97
+00:04:33,450 --> 00:04:36,500
+from that class.
+
+98
+00:04:36,500 --> 00:04:38,770
+And you're probably thinking
+this looks a little weird,
+
+99
+00:04:38,770 --> 00:04:41,490
+because we've just talked
+about how extend exposes
+
+100
+00:04:41,490 --> 00:04:43,000
+methods as class methods.
+
+101
+00:04:43,000 --> 00:04:46,150
+But note here that we're using
+extend from an object as
+
+102
+00:04:46,150 --> 00:04:47,480
+opposed to a class.
+
+103
+00:04:47,480 --> 00:04:50,180
+So remember, if you call extend
+from an object you're
+
+104
+00:04:50,180 --> 00:04:52,950
+going to be including the
+methods from that module as
+
+105
+00:04:52,950 --> 00:04:54,620
+instance methods
+on the object.
+
+106
+00:04:54,620 --> 00:04:57,440
+
+
+107
+00:04:57,440 --> 00:05:00,520
+Now let's take a look at how we
+can include both instance
+
+108
+00:05:00,520 --> 00:05:04,350
+and class methods from a
+module into a class.
+
+109
+00:05:04,350 --> 00:05:08,020
+One way to do that is to include
+the ImageUtils module
+
+110
+00:05:08,020 --> 00:05:11,440
+and then extend the class
+methods inner module.
+
+111
+00:05:11,440 --> 00:05:14,740
+We can then use both instance
+methods and class methods from
+
+112
+00:05:14,740 --> 00:05:15,610
+the module.
+
+113
+00:05:15,610 --> 00:05:18,640
+But there's a better way to
+do it using method hooks.
+
+114
+00:05:18,640 --> 00:05:21,250
+Method hooks are methods that
+are automatically called by
+
+115
+00:05:21,250 --> 00:05:23,450
+Ruby given an event.
+
+116
+00:05:23,450 --> 00:05:26,690
+In this case, we're going to use
+the self.included method
+
+117
+00:05:26,690 --> 00:05:29,350
+hook, which will be run
+when a module is
+
+118
+00:05:29,350 --> 00:05:31,260
+included into a class.
+
+119
+00:05:31,260 --> 00:05:34,400
+The self.included method also
+takes the host class as the
+
+120
+00:05:34,400 --> 00:05:37,780
+argument, which allows us to
+call extend and include the
+
+121
+00:05:37,780 --> 00:05:40,030
+inner module class methods.
+
+122
+00:05:40,030 --> 00:05:42,720
+Notice how in the Image class
+we're not extending the module
+
+123
+00:05:42,720 --> 00:05:47,020
+anymore, and this code still
+works as intended.
+
+124
+00:05:47,020 --> 00:05:49,940
+It's worth noting that the name
+of the inner module here
+
+125
+00:05:49,940 --> 00:05:51,350
+is pretty much a convention.
+
+126
+00:05:51,350 --> 00:05:54,665
+You can call ClassMethods
+any other name.
+
+127
+00:05:54,665 --> 00:05:55,770
+Now let's switch up
+
+128
+00:05:55,770 --> 00:05:58,320
+the ImageUtils module
+a little bit, by adding
+
+129
+00:05:58,320 --> 00:06:01,300
+an extra class method which
+will then call on the host
+
+130
+00:06:01,300 --> 00:06:04,240
+class when this module
+is included in it.
+
+131
+00:06:04,240 --> 00:06:06,610
+If you remember the active
+support gem from a couple of
+
+132
+00:06:06,610 --> 00:06:09,190
+levels ago, I'm going to show
+you how to use that to make
+
+133
+00:06:09,190 --> 00:06:11,520
+this go a little bit cleaner.
+
+134
+00:06:11,520 --> 00:06:13,620
+Now here's the same
+module extending
+
+135
+00:06:13,620 --> 00:06:15,390
+active_support/concern.
+
+136
+00:06:15,390 --> 00:06:18,050
+First thing it does is it looks
+for a ClassMethods
+
+137
+00:06:18,050 --> 00:06:21,500
+inner module and extends your
+host class with that.
+
+138
+00:06:21,500 --> 00:06:25,020
+Then it gives us an included
+method, which we can pass in a
+
+139
+00:06:25,020 --> 00:06:27,630
+block that will be run
+within the context of
+
+140
+00:06:27,630 --> 00:06:28,880
+the included class.
+
+141
+00:06:28,880 --> 00:06:32,220
+
+
+142
+00:06:32,220 --> 00:06:34,780
+So one last thing I want to show
+you is how Active Support
+
+143
+00:06:34,780 --> 00:06:37,670
+Concern deals with modules'
+dependencies.
+
+144
+00:06:37,670 --> 00:06:39,690
+Let's take a look
+at some code.
+
+145
+00:06:39,690 --> 00:06:43,210
+Here we have an Image class that
+includes both ImageUtils 
+
+146
+00:06:43,210 --> 00:06:45,000
+and ImageProcessing modules.
+
+147
+00:06:45,000 --> 00:06:48,330
+The ImageUtils module defines
+a class method on the host
+
+148
+00:06:48,330 --> 00:06:51,640
+class called clean_up, which
+will then be called by the
+
+149
+00:06:51,640 --> 00:06:54,370
+ImageProcessing module
+once that module is
+
+150
+00:06:54,370 --> 00:06:56,170
+included in a class.
+
+151
+00:06:56,170 --> 00:06:59,060
+This means that ImageProcessing
+depends on ImageUtils
+
+152
+00:06:59,060 --> 00:07:02,430
+also being included
+in order for it to work.
+
+153
+00:07:02,430 --> 00:07:05,410
+So you might think it would be
+better to include ImageUtils
+
+154
+00:07:05,410 --> 00:07:07,840
+module from ImageProcessing.
+
+155
+00:07:07,840 --> 00:07:10,210
+However, this doesn't
+work at all.
+
+156
+00:07:10,210 --> 00:07:13,590
+The reason is that when the
+self.included method from the
+
+157
+00:07:13,590 --> 00:07:17,940
+ImageUtils module is run, base,
+which is the argument, is not
+
+158
+00:07:17,940 --> 00:07:21,760
+the class Image, but rather the
+ImageProcessing module.
+
+159
+00:07:21,760 --> 00:07:24,840
+So when the time comes that
+ImageProcessing is included,
+
+160
+00:07:24,840 --> 00:07:28,470
+the clean_up method will not
+exist and we'll run into a
+
+161
+00:07:28,470 --> 00:07:29,560
+runtime error.
+
+162
+00:07:29,560 --> 00:07:32,860
+So one way to solve this is to
+simply extend Active Support
+
+163
+00:07:32,860 --> 00:07:35,950
+Concern from your 
+ImageProcessing module, which will
+
+164
+00:07:35,950 --> 00:07:38,630
+handle all the dependencies for
+you and make sure that the
+
+165
+00:07:38,630 --> 00:07:41,460
+self.included method from
+the ImageUtils
+
+166
+00:07:41,460 --> 00:07:44,810
+module is run properly.
+
+167
+00:07:44,810 --> 00:07:47,810
+We can clean this up even
+further by extending Active
+
+168
+00:07:47,810 --> 00:07:51,250
+Support Concern from the
+ImageUtils module.
+
+169
+00:07:51,250 --> 00:07:54,860
+This will automatically extend
+class method modules and also
+
+170
+00:07:54,860 --> 00:08:02,280
+gives us the included block to
+work, as you can see below
+
+171
+00:08:02,280 --> 00:08:04,030
+So this is the end
+of Level Five.
+
+172
+00:08:04,030 --> 00:08:06,240
+It's now time to play around
+with some modules.
+
+173
+00:08:06,240 --> 00:08:07,490
+And good luck.
+
+174
+00:08:07,490 --> 00:08:08,150
