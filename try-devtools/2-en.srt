@@ -1,0 +1,271 @@
+﻿1
+00:00:00,000 --> 00:00:02,510
+
+
+2
+00:00:02,510 --> 00:00:04,960
+All of the changes we've been
+making to our web pages using
+
+3
+00:00:04,960 --> 00:00:08,860
+the Elements panel have been
+temporary, meaning as soon as
+
+4
+00:00:08,860 --> 00:00:12,550
+we refresh our page, boom, all
+of our changes are gone.
+
+5
+00:00:12,550 --> 00:00:15,090
+If we really want to make
+modifications to our web page,
+
+6
+00:00:15,090 --> 00:00:18,340
+well, we have to make changes
+to the source files.
+
+7
+00:00:18,340 --> 00:00:20,380
+This is where the Source
+panel comes in.
+
+8
+00:00:20,380 --> 00:00:23,120
+You can edit your file right
+there in the web page, it kind
+
+9
+00:00:23,120 --> 00:00:24,400
+of looks like an editor.
+
+10
+00:00:24,400 --> 00:00:27,540
+You can export that to disk when
+you're done editing, and
+
+11
+00:00:27,540 --> 00:00:30,290
+you can also see a revision
+history so you can see all the
+
+12
+00:00:30,290 --> 00:00:32,840
+changes that you've made
+to the file over time.
+
+13
+00:00:32,840 --> 00:00:35,670
+As we saw at the end of the last
+chapter, clicking a file
+
+14
+00:00:35,670 --> 00:00:38,480
+name in the style section of
+Elements panel will open that
+
+15
+00:00:38,480 --> 00:00:40,630
+file in the Sources panel.
+
+16
+00:00:40,630 --> 00:00:42,800
+I think the text on our Add
+Event button should be a
+
+17
+00:00:42,800 --> 00:00:43,930
+little bit bigger.
+
+18
+00:00:43,930 --> 00:00:45,630
+So let's go ahead and
+edit it right here
+
+19
+00:00:45,630 --> 00:00:47,300
+in the Sources panel.
+
+20
+00:00:47,300 --> 00:00:49,970
+As you can see, while I'm
+editing the CSS, the page
+
+21
+00:00:49,970 --> 00:00:52,750
+instantly reflects the changes
+that I'm making.
+
+22
+00:00:52,750 --> 00:00:54,902
+You may notice that we now have
+a star next to the file
+
+23
+00:00:54,902 --> 00:00:57,060
+name here in our
+Sources panel.
+
+24
+00:00:57,060 --> 00:00:58,910
+That means we need
+to save the file.
+
+25
+00:00:58,910 --> 00:01:03,580
+So we can hit Control S, or
+Command S if we're on a Mac,
+
+26
+00:01:03,580 --> 00:01:05,489
+and it will Save the file.
+
+27
+00:01:05,489 --> 00:01:08,940
+Now, it's just saving to
+our browser's storage.
+
+28
+00:01:08,940 --> 00:01:13,430
+It's not saving to our original
+source files.
+
+29
+00:01:13,430 --> 00:01:15,110
+To see all of the modifications
+that we've made
+
+30
+00:01:15,110 --> 00:01:17,990
+here in the browser, we can
+right click on a particular
+
+31
+00:01:17,990 --> 00:01:20,690
+file and select Local
+Modifications.
+
+32
+00:01:20,690 --> 00:01:23,510
+This will show us a list of time
+stamps and when we open
+
+33
+00:01:23,510 --> 00:01:25,700
+them up, we can see the
+different changes that we've
+
+34
+00:01:25,700 --> 00:01:26,910
+made along the way.
+
+35
+00:01:26,910 --> 00:01:30,170
+So here we can see the font
+sizes change from 1.6 EMs in
+
+36
+00:01:30,170 --> 00:01:32,210
+red to 3 EMs in green.
+
+37
+00:01:32,210 --> 00:01:34,590
+You also might notice that each
+revision has an Apply
+
+38
+00:01:34,590 --> 00:01:37,040
+Revision Content button
+next to it.
+
+39
+00:01:37,040 --> 00:01:39,590
+If we click that, the changes
+from that revision will be
+
+40
+00:01:39,590 --> 00:01:42,510
+applied to the current revision
+and a new revision
+
+41
+00:01:42,510 --> 00:01:45,260
+will be added with those
+changes at the top.
+
+42
+00:01:45,260 --> 00:01:47,760
+Unfortunately, I'm not very
+happy with the changes that
+
+43
+00:01:47,760 --> 00:01:49,980
+we've made here, but
+fortunately,
+
+44
+00:01:49,980 --> 00:01:51,320
+there's a Revert button.
+
+45
+00:01:51,320 --> 00:01:53,660
+I can click that, it's going
+to blow away all of my
+
+46
+00:01:53,660 --> 00:01:55,920
+modifications, and put
+the file back in
+
+47
+00:01:55,920 --> 00:01:57,670
+its original state.
+
+48
+00:01:57,670 --> 00:02:00,130
+Sometimes you're going to make
+a lot of changes here in Dev
+
+49
+00:02:00,130 --> 00:02:03,000
+tools and you're going to want
+to save that back over the
+
+50
+00:02:03,000 --> 00:02:04,990
+original source file.
+
+51
+00:02:04,990 --> 00:02:06,370
+Luckily, we can do that.
+
+52
+00:02:06,370 --> 00:02:09,100
+To do this, you can simply right
+click on the source file
+
+53
+00:02:09,100 --> 00:02:11,660
+you want to save and
+click Save As.
+
+54
+00:02:11,660 --> 00:02:14,170
+In our case, we're going to go
+into our project folder and
+
+55
+00:02:14,170 --> 00:02:18,790
+simply overwrite the original
+source file.
+
+56
+00:02:18,790 --> 00:02:21,360
+There's no substitute for
+practice so it's time for you
+
+57
+00:02:21,360 --> 00:02:22,610
+to jump into the challenges.

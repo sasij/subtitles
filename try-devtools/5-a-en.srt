@@ -1,0 +1,471 @@
+﻿1
+00:00:00,000 --> 00:00:02,580
+
+
+2
+00:00:02,580 --> 00:00:03,620
+You're watching Discover
+DevTools.
+
+3
+00:00:03,620 --> 00:00:05,820
+And this is Level Five, where
+we're going to be going over
+
+4
+00:00:05,820 --> 00:00:07,810
+the Network panel.
+
+5
+00:00:07,810 --> 00:00:10,620
+Any given web page that you load
+is made up of a bunch of
+
+6
+00:00:10,620 --> 00:00:11,900
+network requests.
+
+7
+00:00:11,900 --> 00:00:16,730
+You've got the HTML itself,
+JavaScripts, style sheets,
+
+8
+00:00:16,730 --> 00:00:19,630
+images, maybe even some Ajax.
+
+9
+00:00:19,630 --> 00:00:22,010
+And each of these network
+requests, well, the faster
+
+10
+00:00:22,010 --> 00:00:24,630
+they happen, the more responsive
+your web page is
+
+11
+00:00:24,630 --> 00:00:26,490
+going to feel.
+
+12
+00:00:26,490 --> 00:00:30,210
+Now DevTools gives you the
+Timeline panel which helps you
+
+13
+00:00:30,210 --> 00:00:34,010
+identify bottlenecks in these
+network requests, which we're
+
+14
+00:00:34,010 --> 00:00:36,710
+going to take a look at now.
+
+15
+00:00:36,710 --> 00:00:38,930
+Here you can see we're back
+in our Calendar app.
+
+16
+00:00:38,930 --> 00:00:41,180
+To see the Network panel in
+action, we'll want to call it
+
+17
+00:00:41,180 --> 00:00:43,700
+up and then refresh
+our browser.
+
+18
+00:00:43,700 --> 00:00:45,910
+From left to right, it's showing
+us the name of each
+
+19
+00:00:45,910 --> 00:00:50,550
+resource; the HTTP method used
+to get it; the response status
+
+20
+00:00:50,550 --> 00:00:53,640
+code, which return from the
+server; the file type of the
+
+21
+00:00:53,640 --> 00:00:56,980
+response; what initiated the
+request, in case we need to
+
+22
+00:00:56,980 --> 00:00:59,450
+track that down later;
+the size of the
+
+23
+00:00:59,450 --> 00:01:01,910
+file; how long it took.
+
+24
+00:01:01,910 --> 00:01:04,830
+And over on the right side, we
+can see a little waterfall,
+
+25
+00:01:04,830 --> 00:01:08,500
+which shows us when each
+resource was requested and
+
+26
+00:01:08,500 --> 00:01:10,860
+when it finished downloading.
+
+27
+00:01:10,860 --> 00:01:12,980
+In case you're not familiar
+with status codes, they're
+
+28
+00:01:12,980 --> 00:01:14,280
+pretty easy to Google.
+
+29
+00:01:14,280 --> 00:01:17,330
+And this one, 304 not modified,
+means that my
+
+30
+00:01:17,330 --> 00:01:21,400
+browser has already downloaded
+this resource before, and it
+
+31
+00:01:21,400 --> 00:01:25,080
+has a local or cached copy that
+it's going to load up
+
+32
+00:01:25,080 --> 00:01:27,910
+instead of downloading
+it again.
+
+33
+00:01:27,910 --> 00:01:31,410
+To get an idea of how fast my
+page loads when somebody first
+
+34
+00:01:31,410 --> 00:01:35,970
+goes to it, I'm going to want
+to reload all the resources.
+
+35
+00:01:35,970 --> 00:01:38,740
+To do this, I can hold down
+the Shift key now
+
+36
+00:01:38,740 --> 00:01:40,470
+and then do a refresh.
+
+37
+00:01:40,470 --> 00:01:42,850
+This is going to re-download
+everything.
+
+38
+00:01:42,850 --> 00:01:45,130
+I can see now that downloading
+all the resources and
+
+39
+00:01:45,130 --> 00:01:48,370
+completing the request took just
+a little over a second,
+
+40
+00:01:48,370 --> 00:01:51,180
+1.19 seconds to be precise.
+
+41
+00:01:51,180 --> 00:01:53,870
+We can also see that our
+response statuses have all
+
+42
+00:01:53,870 --> 00:01:57,680
+changed to 200 OK, meaning
+that they were all
+
+43
+00:01:57,680 --> 00:01:59,470
+re-downloaded.
+
+44
+00:01:59,470 --> 00:02:01,560
+When you're debugging the
+performance of your web page,
+
+45
+00:02:01,560 --> 00:02:04,420
+you're going to want to disable
+the cache, and there's
+
+46
+00:02:04,420 --> 00:02:06,360
+two more ways to do it.
+
+47
+00:02:06,360 --> 00:02:09,289
+First, you can do it by going to
+the File menu and selecting
+
+48
+00:02:09,289 --> 00:02:12,400
+New Incognito Window, which
+will not only use a fresh
+
+49
+00:02:12,400 --> 00:02:14,900
+cache, but it also won't
+use any cookies
+
+50
+00:02:14,900 --> 00:02:17,300
+you may have stored.
+
+51
+00:02:17,300 --> 00:02:20,370
+You can also go down to the
+bottom right, click the gear
+
+52
+00:02:20,370 --> 00:02:23,360
+icon, and open up the
+DevTools Settings.
+
+53
+00:02:23,360 --> 00:02:28,460
+There, you can select the
+Disable Cache check box.
+
+54
+00:02:28,460 --> 00:02:30,350
+Now let's take a closer
+look at what's going
+
+55
+00:02:30,350 --> 00:02:32,530
+on over in our waterfall.
+
+56
+00:02:32,530 --> 00:02:35,650
+The translucent bar shows the
+latency of our request--
+
+57
+00:02:35,650 --> 00:02:39,320
+how long from the start of
+asking for a resource to the
+
+58
+00:02:39,320 --> 00:02:42,810
+start of when it begins
+transferring it back to us.
+
+59
+00:02:42,810 --> 00:02:45,450
+The solid part shows us when
+the browser started and
+
+60
+00:02:45,450 --> 00:02:47,600
+finished downloading
+that resource.
+
+61
+00:02:47,600 --> 00:02:49,630
+The endpoint is when
+all data from
+
+62
+00:02:49,630 --> 00:02:51,980
+that request was received.
+
+63
+00:02:51,980 --> 00:02:54,260
+You might be wondering what all
+the different colors mean.
+
+64
+00:02:54,260 --> 00:02:56,360
+Well, it's colored
+by the file type.
+
+65
+00:02:56,360 --> 00:02:59,010
+HTML is blue, up at
+the top there.
+
+66
+00:02:59,010 --> 00:03:00,660
+JavaScript is orange.
+
+67
+00:03:00,660 --> 00:03:04,850
+Style sheets are green,
+and images are purple.
+
+68
+00:03:04,850 --> 00:03:07,240
+The first request that we did on
+this page is obviously the
+
+69
+00:03:07,240 --> 00:03:11,490
+HTML page itself,
+the index.html.
+
+70
+00:03:11,490 --> 00:03:15,070
+And if you take a look at that
+Initiator column, you can see
+
+71
+00:03:15,070 --> 00:03:17,930
+that all of the other resources
+were pulled down
+
+72
+00:03:17,930 --> 00:03:22,230
+because we discovered them
+inside of the index.html.
+
+73
+00:03:22,230 --> 00:03:24,800
+And you can actually click on
+those, and it will bring you
+
+74
+00:03:24,800 --> 00:03:27,460
+to the line inside the
+index.html where it discovered
+
+75
+00:03:27,460 --> 00:03:29,710
+that it needed that resource.
+
+76
+00:03:29,710 --> 00:03:32,140
+If we look over at the
+waterfall, you can see that it
+
+77
+00:03:32,140 --> 00:03:33,960
+reflects exactly this--
+
+78
+00:03:33,960 --> 00:03:38,250
+the resources are only requested
+after the index.html
+
+79
+00:03:38,250 --> 00:03:39,390
+is downloaded.
+
+80
+00:03:39,390 --> 00:03:41,820
+The blue line at the end of the
+timeline represents when
+
+81
+00:03:41,820 --> 00:03:44,770
+the DOM content-loaded
+event fired.
+
+82
+00:03:44,770 --> 00:03:47,170
+This gets triggered when our
+browser is done parsing our
+
+83
+00:03:47,170 --> 00:03:50,810
+HTML file, but it still could
+be loading resources.
+
+84
+00:03:50,810 --> 00:03:53,300
+The red line signifies the load
+event or when all the
+
+85
+00:03:53,300 --> 00:03:55,340
+resources are done
+downloading.
+
+86
+00:03:55,340 --> 00:03:56,840
+Sometimes there's
+a notable delay
+
+87
+00:03:56,840 --> 00:03:59,120
+between those two events.
+
+88
+00:03:59,120 --> 00:04:01,690
+If we click on the file name of
+a resource, we can get more
+
+89
+00:04:01,690 --> 00:04:03,580
+information about
+that request.
+
+90
+00:04:03,580 --> 00:04:05,970
+We're shown all the headers sent
+along with the request
+
+91
+00:04:05,970 --> 00:04:07,400
+and the response.
+
+92
+00:04:07,400 --> 00:04:09,450
+This can be really useful if
+you want to make sure your
+
+93
+00:04:09,450 --> 00:04:12,050
+server has the correct
+cache settings.
+
+94
+00:04:12,050 --> 00:04:14,400
+You can also preview the
+resource contents here, which
+
+95
+00:04:14,400 --> 00:04:17,510
+for text files like HTML,
+JavaScripts, or style sheets
+
+96
+00:04:17,510 --> 00:04:20,209
+are just going to show
+you the contents.
+
+97
+00:04:20,209 --> 00:04:24,880
+For images and fonts, you'll
+get a visual preview.
+
+98
+00:04:24,880 --> 00:04:27,310
+Now it's time for you start
+playing with the Network panel
+
+99
+00:04:27,310 --> 00:04:28,560
+in the Challenges.

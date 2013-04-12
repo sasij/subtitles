@@ -1,0 +1,386 @@
+﻿1
+00:00:00,000 --> 00:00:02,350
+
+
+2
+00:00:02,350 --> 00:00:04,700
+You're watching Discover
+DevTools, and this is level
+
+3
+00:00:04,700 --> 00:00:07,290
+six, where we're going to be
+talking about frames and the
+
+4
+00:00:07,290 --> 00:00:09,170
+CPU profiler.
+
+5
+00:00:09,170 --> 00:00:11,140
+As we saw in the previous level,
+you can speed up your
+
+6
+00:00:11,140 --> 00:00:14,220
+web page by optimizing your
+network interactions.
+
+7
+00:00:14,220 --> 00:00:16,420
+But sometimes, the problem
+isn't your network
+
+8
+00:00:16,420 --> 00:00:17,210
+interactions.
+
+9
+00:00:17,210 --> 00:00:20,440
+It might be that you just have
+some slow code that's running
+
+10
+00:00:20,440 --> 00:00:22,320
+on the browser side.
+
+11
+00:00:22,320 --> 00:00:25,550
+To optimize that, you can use
+two tools we're looking at in
+
+12
+00:00:25,550 --> 00:00:30,440
+this level called the Frames
+View and the CPU Profiler.
+
+13
+00:00:30,440 --> 00:00:32,110
+If you're a gamer like me,
+you've probably heard of the
+
+14
+00:00:32,110 --> 00:00:33,800
+term frame rate.
+
+15
+00:00:33,800 --> 00:00:36,630
+This refers to the number of
+images that gets rendered on
+
+16
+00:00:36,630 --> 00:00:38,250
+your screen per second.
+
+17
+00:00:38,250 --> 00:00:43,090
+So if I have a frame rate of 30
+FPS, or frames per second,
+
+18
+00:00:43,090 --> 00:00:45,080
+that means there's 30 different
+images that are
+
+19
+00:00:45,080 --> 00:00:47,920
+getting drawn onto my
+screen per second.
+
+20
+00:00:47,920 --> 00:00:53,930
+And as my computer slows down,
+it slows the rendering time
+
+21
+00:00:53,930 --> 00:00:57,740
+down, which means I might be
+getting less frames per second
+
+22
+00:00:57,740 --> 00:01:00,170
+and it might start to stutter.
+
+23
+00:01:00,170 --> 00:01:03,740
+Especially as it gets below 10
+frames per second, you're
+
+24
+00:01:03,740 --> 00:01:06,550
+definitely going to
+be able to see it.
+
+25
+00:01:06,550 --> 00:01:08,770
+Even your browser has a frame
+rate, and it can be slowed
+
+26
+00:01:08,770 --> 00:01:12,360
+down by things like JavaScript
+execution, rendering of your
+
+27
+00:01:12,360 --> 00:01:16,390
+styles, and painting the
+rendered page onto the screen.
+
+28
+00:01:16,390 --> 00:01:19,580
+This is where the Frames View
+comes in, telling you when and
+
+29
+00:01:19,580 --> 00:01:23,640
+where your frame rate is
+starting to suffer.
+
+30
+00:01:23,640 --> 00:01:26,140
+I've modified the Event Creation
+button so now it has
+
+31
+00:01:26,140 --> 00:01:29,270
+an animation whenever
+we create an event.
+
+32
+00:01:29,270 --> 00:01:33,730
+Let's see if that has any impact
+on our frame rate.
+
+33
+00:01:33,730 --> 00:01:36,250
+So I'm going to open up the
+Timeline tab and go to the
+
+34
+00:01:36,250 --> 00:01:37,620
+Frames menu.
+
+35
+00:01:37,620 --> 00:01:39,920
+We can record our frame timeline
+by clicking on the
+
+36
+00:01:39,920 --> 00:01:42,160
+Record button here at the
+bottom of the screen.
+
+37
+00:01:42,160 --> 00:01:44,090
+Now, let's try adding
+a new event.
+
+38
+00:01:44,090 --> 00:01:49,200
+We click on the Event button,
+try typing a name, click to
+
+39
+00:01:49,200 --> 00:01:52,990
+add, and there's our little
+slide down animation.
+
+40
+00:01:52,990 --> 00:01:55,520
+As new events fire, our timeline
+is updated, showing
+
+41
+00:01:55,520 --> 00:01:57,560
+how long each frame
+took to render.
+
+42
+00:01:57,560 --> 00:02:01,240
+The ones that are under that
+bottom line are around 16
+
+43
+00:02:01,240 --> 00:02:02,580
+milliseconds.
+
+44
+00:02:02,580 --> 00:02:04,850
+If each frame is 16
+milliseconds, you can fit
+
+45
+00:02:04,850 --> 00:02:08,020
+about 60 frames per second,
+which is a reading that you
+
+46
+00:02:08,020 --> 00:02:09,800
+see here on the right hand
+side of our timeline.
+
+47
+00:02:09,800 --> 00:02:14,910
+It says 60 FPS or Frames
+Per Second.
+
+48
+00:02:14,910 --> 00:02:18,860
+The second marker above
+this says 30 FPS, or
+
+49
+00:02:18,860 --> 00:02:20,650
+30 Frames Per Second.
+
+50
+00:02:20,650 --> 00:02:25,600
+So if a frame takes longer than
+33.3 milliseconds to run,
+
+51
+00:02:25,600 --> 00:02:28,050
+well, it's going to be above
+that line and we're going to
+
+52
+00:02:28,050 --> 00:02:31,300
+see this huge bar, which
+is not good.
+
+53
+00:02:31,300 --> 00:02:33,620
+Notice at the bottom of the
+screen, we have check boxes
+
+54
+00:02:33,620 --> 00:02:38,460
+with Loading in blue, Scripting
+in yellow, Rendering
+
+55
+00:02:38,460 --> 00:02:41,630
+in purple, and Painting
+in green.
+
+56
+00:02:41,630 --> 00:02:44,560
+These are the colors you see
+represented on the timeline.
+
+57
+00:02:44,560 --> 00:02:47,070
+This page was already loaded
+when we started recording, so
+
+58
+00:02:47,070 --> 00:02:50,590
+there's not much blue, or HTML,
+loading in our timeline.
+
+59
+00:02:50,590 --> 00:02:53,400
+We do have some JavaScript which
+we can see in yellow.
+
+60
+00:02:53,400 --> 00:02:57,210
+And of course, the purple is the
+rendering of the page or
+
+61
+00:02:57,210 --> 00:03:00,460
+the time we spent on style
+recalculation and layout.
+
+62
+00:03:00,460 --> 00:03:02,870
+The transparent part of each bar
+is the time spent idling
+
+63
+00:03:02,870 --> 00:03:05,430
+or on other uncategorized
+tasks.
+
+64
+00:03:05,430 --> 00:03:09,050
+Low frame rates or laggy
+animation can lead to a bad
+
+65
+00:03:09,050 --> 00:03:11,720
+user experience of an otherwise
+beautiful web page,
+
+66
+00:03:11,720 --> 00:03:14,360
+so it's important to keep
+an eye on this.
+
+67
+00:03:14,360 --> 00:03:16,760
+And so far, it looks like our
+page here is loading under
+
+68
+00:03:16,760 --> 00:03:18,580
+this 60 frames per
+second line.
+
+69
+00:03:18,580 --> 00:03:19,970
+Let's switch to the
+next calendar day
+
+70
+00:03:19,970 --> 00:03:21,220
+and see what happens.
+
+71
+00:03:21,220 --> 00:03:23,640
+
+
+72
+00:03:23,640 --> 00:03:25,860
+Whoa, you see that yellow
+bar over there?
+
+73
+00:03:25,860 --> 00:03:27,240
+Not so good--
+
+74
+00:03:27,240 --> 00:03:29,800
+definitely less than 30
+frames per second.
+
+75
+00:03:29,800 --> 00:03:32,430
+The color suggests that
+JavaScript here is the
+
+76
+00:03:32,430 --> 00:03:35,190
+culprit, but there's a lot of
+JavaScript in our application.
+
+77
+00:03:35,190 --> 00:03:37,150
+To narrow our search, we're
+going to need the CPU
+
+78
+00:03:37,150 --> 00:03:40,130
+Profiler, which we're going to
+get into in the next video.
+
+79
+00:03:40,130 --> 00:03:42,500
+But for now, why don't you jump
+in to the challenges and
+
+80
+00:03:42,500 --> 00:03:44,350
+get familiar with
+the Frames View.

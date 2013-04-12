@@ -1,0 +1,193 @@
+﻿1
+00:00:00,000 --> 00:00:02,260
+
+
+2
+00:00:02,260 --> 00:00:04,850
+Another benefit our console
+gives us is a handful of
+
+3
+00:00:04,850 --> 00:00:06,760
+helper methods that make it
+easier to work with our
+
+4
+00:00:06,760 --> 00:00:07,930
+application.
+
+5
+00:00:07,930 --> 00:00:10,350
+Say we want to perform some
+operations on the heading at
+
+6
+00:00:10,350 --> 00:00:13,560
+the top of the page, which
+has an ID of Title.
+
+7
+00:00:13,560 --> 00:00:15,770
+We could laboriously
+type out a call to
+
+8
+00:00:15,770 --> 00:00:21,560
+document.querySelector, but the
+console provides us with a
+
+9
+00:00:21,560 --> 00:00:25,030
+shorthand way of doing this,
+a function named with the
+
+10
+00:00:25,030 --> 00:00:28,310
+dollar-sign character sometimes
+called bling.
+
+11
+00:00:28,310 --> 00:00:30,880
+Just typing bling with the Title
+ID will save you a lot
+
+12
+00:00:30,880 --> 00:00:33,820
+of time and keystrokes.
+
+13
+00:00:33,820 --> 00:00:36,370
+You should be aware that many
+JavaScript libraries come with
+
+14
+00:00:36,370 --> 00:00:38,290
+their own version of bling.
+
+15
+00:00:38,290 --> 00:00:41,180
+So if you load jQuery, for
+example, it's going to
+
+16
+00:00:41,180 --> 00:00:44,190
+override the console's bling
+with the jQuery bling.
+
+17
+00:00:44,190 --> 00:00:47,430
+
+
+18
+00:00:47,430 --> 00:00:49,440
+In our sample app, we
+are using jQuery.
+
+19
+00:00:49,440 --> 00:00:52,360
+So when we use the bling, even
+if we send it an ID, it's
+
+20
+00:00:52,360 --> 00:00:55,740
+going to return us an array of
+dom nodes instead of one.
+
+21
+00:00:55,740 --> 00:00:59,030
+So to get the same result, we
+have to explicitly select the
+
+22
+00:00:59,030 --> 00:01:03,350
+first element of the array
+using square brackets 0.
+
+23
+00:01:03,350 --> 00:01:06,420
+Now what if I want to use the
+bling to grab an element from
+
+24
+00:01:06,420 --> 00:01:10,990
+the page and then figure out
+where that is inside of my DOM
+
+25
+00:01:10,990 --> 00:01:12,510
+inside the Elements panel?
+
+26
+00:01:12,510 --> 00:01:15,090
+We can do that by grabbing an
+element and passing it into
+
+27
+00:01:15,090 --> 00:01:16,310
+the inspect method.
+
+28
+00:01:16,310 --> 00:01:19,590
+That node is then selected
+inside of our Elements panel.
+
+29
+00:01:19,590 --> 00:01:20,930
+We can also do the reverse.
+
+30
+00:01:20,930 --> 00:01:23,080
+Let's say you've selected a
+node inside the Elements
+
+31
+00:01:23,080 --> 00:01:26,630
+panel, and you want to work
+with it on the console.
+
+32
+00:01:26,630 --> 00:01:28,770
+Chrome keeps a history
+of your selections.
+
+33
+00:01:28,770 --> 00:01:32,700
+The most recent one is stored
+in the bling 0 variable.
+
+34
+00:01:32,700 --> 00:01:35,690
+So if we enter that, we get
+the node we last selected.
+
+35
+00:01:35,690 --> 00:01:38,080
+If you'd like to view the dom
+node you selected before this
+
+36
+00:01:38,080 --> 00:01:40,730
+one, you can actually
+type bling 1.
+
+37
+00:01:40,730 --> 00:01:42,740
+Bling 2 will then go two
+selections back in the
+
+38
+00:01:42,740 --> 00:01:45,370
+history and so on.
+
+39
+00:01:45,370 --> 00:01:45,880
+All right.
+
+40
+00:01:45,880 --> 00:01:48,480
+I hope you're ready to try out
+some of this new bling in the
+
+41
+00:01:48,480 --> 00:01:49,730
+Challenges.

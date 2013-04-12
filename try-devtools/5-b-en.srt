@@ -1,0 +1,398 @@
+﻿1
+00:00:00,000 --> 00:00:01,910
+
+
+2
+00:00:01,910 --> 00:00:04,210
+Now that we're familiar with
+the Network panel, let's
+
+3
+00:00:04,210 --> 00:00:07,810
+figure out some things we can
+do to speed up our web page.
+
+4
+00:00:07,810 --> 00:00:11,060
+Google has created a helpful
+extension called PageSpeed.
+
+5
+00:00:11,060 --> 00:00:13,280
+This tool analyzes our
+application and makes
+
+6
+00:00:13,280 --> 00:00:15,480
+suggestions for how we
+can speed it up.
+
+7
+00:00:15,480 --> 00:00:17,020
+Just search for it
+in the Chrome Web
+
+8
+00:00:17,020 --> 00:00:18,630
+Store to install it.
+
+9
+00:00:18,630 --> 00:00:21,570
+Once we have it installed, to
+run it on our web page we'll
+
+10
+00:00:21,570 --> 00:00:24,390
+load up our page, click on the
+new PageSpeed panel that we
+
+11
+00:00:24,390 --> 00:00:26,865
+have here, and click the button
+to start analyzing.
+
+12
+00:00:26,865 --> 00:00:30,500
+
+
+13
+00:00:30,500 --> 00:00:33,430
+PageSpeed will download our page
+and run several automated
+
+14
+00:00:33,430 --> 00:00:35,280
+checks against it.
+
+15
+00:00:35,280 --> 00:00:36,630
+Looks like we've got
+an initial score
+
+16
+00:00:36,630 --> 00:00:38,510
+of 79 out of 100.
+
+17
+00:00:38,510 --> 00:00:41,630
+Not bad, but we can definitely
+do better.
+
+18
+00:00:41,630 --> 00:00:44,980
+Let's see if we can
+pull up our grade.
+
+19
+00:00:44,980 --> 00:00:47,300
+We'll start with the item with
+the highest priority,
+
+20
+00:00:47,300 --> 00:00:50,040
+minifying the JavaScript.
+
+21
+00:00:50,040 --> 00:00:52,540
+Currently, our application is
+loading three JavaScript
+
+22
+00:00:52,540 --> 00:00:54,630
+files, as you can see here.
+
+23
+00:00:54,630 --> 00:00:57,170
+We can see how big they are by
+looking over on the Network
+
+24
+00:00:57,170 --> 00:01:01,050
+tab, and together, they have
+a size over 160 kilobytes.
+
+25
+00:01:01,050 --> 00:01:02,220
+They are fairly big.
+
+26
+00:01:02,220 --> 00:01:04,950
+They also require us to make
+three separate requests to the
+
+27
+00:01:04,950 --> 00:01:07,620
+server, which also
+isn't optimal.
+
+28
+00:01:07,620 --> 00:01:09,510
+The first optimization we can
+make to each of these
+
+29
+00:01:09,510 --> 00:01:12,430
+JavaScript files is to
+minify each of them.
+
+30
+00:01:12,430 --> 00:01:16,200
+This is going to remove extra
+white space, reduce long
+
+31
+00:01:16,200 --> 00:01:19,030
+parameter names, and make other
+optimizations to the
+
+32
+00:01:19,030 --> 00:01:21,410
+files to make them smaller.
+
+33
+00:01:21,410 --> 00:01:23,950
+Here you can see some code up
+top that hasn't been minified.
+
+34
+00:01:23,950 --> 00:01:26,100
+Then, after minifying it, you
+can see the code is going to
+
+35
+00:01:26,100 --> 00:01:29,570
+function the same but now it's
+less characters, which is good
+
+36
+00:01:29,570 --> 00:01:31,350
+for speeding up your
+page load time.
+
+37
+00:01:31,350 --> 00:01:33,990
+
+
+38
+00:01:33,990 --> 00:01:36,540
+The next thing we can do is
+take our three JavaScript
+
+39
+00:01:36,540 --> 00:01:39,160
+files and put them all
+into one file.
+
+40
+00:01:39,160 --> 00:01:41,580
+Now the size is going to be
+the same, whether it's in
+
+41
+00:01:41,580 --> 00:01:45,550
+three files or in one big one,
+but it's only going to take
+
+42
+00:01:45,550 --> 00:01:48,630
+one network request to load
+that file into our browser
+
+43
+00:01:48,630 --> 00:01:50,370
+rather than three.
+
+44
+00:01:50,370 --> 00:01:53,610
+And browsers themselves are
+actually limited the number of
+
+45
+00:01:53,610 --> 00:01:55,100
+network requests they
+can do at the same
+
+46
+00:01:55,100 --> 00:01:56,580
+time for a web page.
+
+47
+00:01:56,580 --> 00:01:59,840
+So obviously, the less network
+requests our page has to do,
+
+48
+00:01:59,840 --> 00:02:02,190
+the faster it's going to load.
+
+49
+00:02:02,190 --> 00:02:04,190
+There are many different
+libraries you can use to
+
+50
+00:02:04,190 --> 00:02:07,260
+combine your JavaScripts and
+to minify them, but we're
+
+51
+00:02:07,260 --> 00:02:09,550
+going to use Google's
+Closure Library.
+
+52
+00:02:09,550 --> 00:02:11,950
+Below this video, you'll find
+a link to the official web
+
+53
+00:02:11,950 --> 00:02:13,680
+page to download this library.
+
+54
+00:02:13,680 --> 00:02:16,220
+You can download it in the form
+of a Java JAR, and then
+
+55
+00:02:16,220 --> 00:02:19,100
+just run it from
+your terminal.
+
+56
+00:02:19,100 --> 00:02:22,370
+We can also minify and combine
+our JavaScript files using
+
+57
+00:02:22,370 --> 00:02:25,390
+this web app created by the
+Google Closure team.
+
+58
+00:02:25,390 --> 00:02:27,550
+In order to use it, we need
+to get the URLs of our
+
+59
+00:02:27,550 --> 00:02:28,710
+JavaScripts.
+
+60
+00:02:28,710 --> 00:02:31,190
+Now assuming your web app is
+like ours and it's available
+
+61
+00:02:31,190 --> 00:02:35,010
+at a public URL, we can easily
+get these JavaScript URLs by
+
+62
+00:02:35,010 --> 00:02:38,060
+going into our Network panel
+and right clicking on each
+
+63
+00:02:38,060 --> 00:02:42,080
+JavaScript file name and
+selecting Copy Link Address.
+
+64
+00:02:42,080 --> 00:02:44,140
+Then we'll just paste this
+address into the Closure
+
+65
+00:02:44,140 --> 00:02:46,730
+Compiler and click Add.
+
+66
+00:02:46,730 --> 00:02:50,270
+We'll then go back and get the
+next file, copy its address
+
+67
+00:02:50,270 --> 00:02:53,640
+and paste it, and repeat
+for the third one.
+
+68
+00:02:53,640 --> 00:02:58,960
+
+
+69
+00:02:58,960 --> 00:03:01,520
+Once we have all our files in
+place, we click on the Compile
+
+70
+00:03:01,520 --> 00:03:04,353
+button, give it a few seconds,
+and on the right side, you'll
+
+71
+00:03:04,353 --> 00:03:06,840
+be shown your minified
+JavaScript and a link where
+
+72
+00:03:06,840 --> 00:03:08,430
+you can download the
+compressed file.
+
+73
+00:03:08,430 --> 00:03:11,000
+We'll go ahead and save this and
+change the name from the
+
+74
+00:03:11,000 --> 00:03:15,150
+default to app-min, meaning
+minified, and save it to our
+
+75
+00:03:15,150 --> 00:03:16,830
+app folder.
+
+76
+00:03:16,830 --> 00:03:18,700
+Now we just need to replace
+our old JavaScript sources
+
+77
+00:03:18,700 --> 00:03:22,820
+with this new source,
+just like that.
+
+78
+00:03:22,820 --> 00:03:25,060
+Previously, to load our
+JavaScript for this web page,
+
+79
+00:03:25,060 --> 00:03:28,570
+we had to load three files
+totaling 160 kilobytes.
+
+80
+00:03:28,570 --> 00:03:31,710
+Now in our new version, we only
+need to make one request
+
+81
+00:03:31,710 --> 00:03:33,630
+for 110 kilobytes.
+
+82
+00:03:33,630 --> 00:03:36,780
+That's a pretty nice savings.
+
+83
+00:03:36,780 --> 00:03:38,810
+Now it's time for you to jump
+into a challenge and start
+
+84
+00:03:38,810 --> 00:03:40,060
+making some page optimizations.

@@ -1,0 +1,173 @@
+﻿1
+00:00:00,000 --> 00:00:01,850
+
+
+2
+00:00:01,850 --> 00:00:03,840
+So here we are back in our
+Calendar application.
+
+3
+00:00:03,840 --> 00:00:06,255
+We've got the console panel
+open, and you'll notice when
+
+4
+00:00:06,255 --> 00:00:09,290
+we refresh the page, we're
+going to get an error.
+
+5
+00:00:09,290 --> 00:00:11,830
+We can learn more about what
+caused this error by clicking
+
+6
+00:00:11,830 --> 00:00:15,290
+on the little triangle next to
+it, and it'll show us a stack
+
+7
+00:00:15,290 --> 00:00:18,110
+trace of the calls that led to
+the error, along with a file
+
+8
+00:00:18,110 --> 00:00:19,580
+name and line number.
+
+9
+00:00:19,580 --> 00:00:22,180
+If we click that line number,
+the JavaScript file will open
+
+10
+00:00:22,180 --> 00:00:25,000
+up over in our Sources panel,
+and we're brought right to the
+
+11
+00:00:25,000 --> 00:00:27,380
+line number where the error
+occurred and even shown the
+
+12
+00:00:27,380 --> 00:00:29,570
+error message itself
+right here.
+
+13
+00:00:29,570 --> 00:00:32,000
+If you take a read through the
+JavaScript, it looks like
+
+14
+00:00:32,000 --> 00:00:34,240
+we're trying to call
+the length property
+
+15
+00:00:34,240 --> 00:00:35,450
+on the events array.
+
+16
+00:00:35,450 --> 00:00:39,540
+But according to our error, the
+events array is null, and,
+
+17
+00:00:39,540 --> 00:00:43,090
+obviously, you can't call
+length on a null object.
+
+18
+00:00:43,090 --> 00:00:44,970
+So what's setting the
+events array?
+
+19
+00:00:44,970 --> 00:00:48,300
+Well, it looks like the events
+variable gets set when we call
+
+20
+00:00:48,300 --> 00:00:50,680
+calendar.events.
+
+21
+00:00:50,680 --> 00:00:53,900
+So it must be that method
+which is returning null.
+
+22
+00:00:53,900 --> 00:00:57,340
+Here it might be useful to test
+to see if that method is
+
+23
+00:00:57,340 --> 00:00:59,790
+actually returning
+a null array.
+
+24
+00:00:59,790 --> 00:01:02,390
+Let's jump into the console
+and run the command.
+
+25
+00:01:02,390 --> 00:01:04,890
+To open up the console this
+time, we're simply going to
+
+26
+00:01:04,890 --> 00:01:06,880
+click this icon in
+the lower left.
+
+27
+00:01:06,880 --> 00:01:08,600
+It's a little bit
+of a shortcut.
+
+28
+00:01:08,600 --> 00:01:12,690
+Now I can make a quick call to
+calendar.events, and yep, it's
+
+29
+00:01:12,690 --> 00:01:13,550
+returning null.
+
+30
+00:01:13,550 --> 00:01:15,530
+So we know where our
+problem lies.
+
+31
+00:01:15,530 --> 00:01:17,550
+The function here is returning
+null because we
+
+32
+00:01:17,550 --> 00:01:19,840
+don't have any events.
+
+33
+00:01:19,840 --> 00:01:22,010
+But we're going to want to
+change this code so that if it
+
+34
+00:01:22,010 --> 00:01:25,150
+doesn't have any events, instead
+it just returns an
+
+35
+00:01:25,150 --> 00:01:28,640
+empty array, which we'll get
+into in the next chapter.
+
+36
+00:01:28,640 --> 00:01:30,770
+But for now, let's jump into
+some more challenges.

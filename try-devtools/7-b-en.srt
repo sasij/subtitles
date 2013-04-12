@@ -1,0 +1,514 @@
+﻿1
+00:00:00,000 --> 00:00:02,100
+
+
+2
+00:00:02,100 --> 00:00:03,990
+So we know there's a memory
+leak, but we need to figure
+
+3
+00:00:03,990 --> 00:00:06,400
+out what piece of code
+is causing it.
+
+4
+00:00:06,400 --> 00:00:09,760
+Well, this is where heap
+snapshots come in.
+
+5
+00:00:09,760 --> 00:00:12,930
+They show you a snapshot of the
+current JavaScript objects
+
+6
+00:00:12,930 --> 00:00:16,059
+in memory, so we can figure out
+where the leak might be.
+
+7
+00:00:16,059 --> 00:00:18,340
+To take our first snapshot,
+we'll go into the Profiles
+
+8
+00:00:18,340 --> 00:00:22,320
+panel, select Take Heap
+Snapshot, and press Start.
+
+9
+00:00:22,320 --> 00:00:25,320
+We're currently in Summary view
+of our heap snapshot,
+
+10
+00:00:25,320 --> 00:00:27,820
+which shows us all our objects,
+but this is quite a
+
+11
+00:00:27,820 --> 00:00:29,800
+large number to sift through.
+
+12
+00:00:29,800 --> 00:00:32,439
+Instead, let's take a second
+heap snapshot, and then we'll
+
+13
+00:00:32,439 --> 00:00:34,580
+compare it to the first.
+
+14
+00:00:34,580 --> 00:00:37,410
+But before we do that, let's
+go ahead and go through our
+
+15
+00:00:37,410 --> 00:00:39,520
+application and do the behavior
+we think might be
+
+16
+00:00:39,520 --> 00:00:41,150
+causing that memory leak.
+
+17
+00:00:41,150 --> 00:00:43,780
+So we'll open and close
+the form a few times.
+
+18
+00:00:43,780 --> 00:00:45,760
+Now back in the Profiles panel,
+we can just hit the
+
+19
+00:00:45,760 --> 00:00:48,140
+Record button at the bottom of
+the screen, which will take
+
+20
+00:00:48,140 --> 00:00:50,070
+another heap snapshot.
+
+21
+00:00:50,070 --> 00:00:53,030
+Then, to make this comparison,
+we'll select the newest
+
+22
+00:00:53,030 --> 00:00:58,320
+snapshot, switch the view from
+Summary to Comparison and make
+
+23
+00:00:58,320 --> 00:01:01,730
+sure it's comparing against
+snapshot one.
+
+24
+00:01:01,730 --> 00:01:04,150
+Now we're looking at objects
+that were allocated between
+
+25
+00:01:04,150 --> 00:01:05,880
+our two snapshots.
+
+26
+00:01:05,880 --> 00:01:08,880
+The detached DOM tree item
+listed right here is
+
+27
+00:01:08,880 --> 00:01:10,590
+especially interesting.
+
+28
+00:01:10,590 --> 00:01:12,280
+If we expand it, we'll
+see a large
+
+29
+00:01:12,280 --> 00:01:14,570
+number of input elements.
+
+30
+00:01:14,570 --> 00:01:16,360
+They're highlighted in red here
+because they have been
+
+31
+00:01:16,360 --> 00:01:18,290
+removed from the DOM,
+but they haven't
+
+32
+00:01:18,290 --> 00:01:20,190
+been garbage collected.
+
+33
+00:01:20,190 --> 00:01:23,480
+The memory that they were using
+hasn't been freed up.
+
+34
+00:01:23,480 --> 00:01:25,990
+While there can be legitimate
+reasons to do this, more often
+
+35
+00:01:25,990 --> 00:01:28,580
+than not there's
+a memory leak.
+
+36
+00:01:28,580 --> 00:01:31,180
+If we dive into our source code,
+we see the first signs
+
+37
+00:01:31,180 --> 00:01:32,180
+of our problem.
+
+38
+00:01:32,180 --> 00:01:34,930
+Whenever we're creating the
+form for adding an event,
+
+39
+00:01:34,930 --> 00:01:37,300
+we're creating the inputs
+from scratch.
+
+40
+00:01:37,300 --> 00:01:39,290
+And we're adding a function to
+the window which listens for
+
+41
+00:01:39,290 --> 00:01:42,340
+the Escape key to be pressed
+and then removes the form
+
+42
+00:01:42,340 --> 00:01:46,050
+fields by just overriding
+the parent's HTML.
+
+43
+00:01:46,050 --> 00:01:47,780
+There's two issues with
+this listener.
+
+44
+00:01:47,780 --> 00:01:49,940
+The first is that it simply
+removes the input field from
+
+45
+00:01:49,940 --> 00:01:53,480
+the DOM when it overrides their
+parent's HTML context.
+
+46
+00:01:53,480 --> 00:01:57,200
+That causes these elements to
+be detached as you see here.
+
+47
+00:01:57,200 --> 00:01:59,420
+They're no longer connected
+to the DOM.
+
+48
+00:01:59,420 --> 00:02:01,800
+Ordinarily, the garbage
+collector would come along and
+
+49
+00:02:01,800 --> 00:02:04,090
+delete this node the next
+time it cleans it up.
+
+50
+00:02:04,090 --> 00:02:06,740
+However, we also have the
+reference to the input fields
+
+51
+00:02:06,740 --> 00:02:09,900
+within our function, which is,
+in turn, attached to the
+
+52
+00:02:09,900 --> 00:02:11,410
+window object.
+
+53
+00:02:11,410 --> 00:02:13,850
+The garbage collector sees this
+reference and doesn't
+
+54
+00:02:13,850 --> 00:02:16,030
+clean up the inputs
+when it runs.
+
+55
+00:02:16,030 --> 00:02:18,490
+It just leaves them there until
+such a time that the
+
+56
+00:02:18,490 --> 00:02:20,700
+page is closed or reloaded.
+
+57
+00:02:20,700 --> 00:02:22,960
+It is a memory leak.
+
+58
+00:02:22,960 --> 00:02:25,130
+Every time we hit the Add Event
+button, it's creating
+
+59
+00:02:25,130 --> 00:02:26,360
+new input fields.
+
+60
+00:02:26,360 --> 00:02:29,950
+And then when we press Escape,
+it's never cleaning them up.
+
+61
+00:02:29,950 --> 00:02:31,350
+So how do we fix this?
+
+62
+00:02:31,350 --> 00:02:34,220
+Well, it's probably optimal to
+keep the input fields in the
+
+63
+00:02:34,220 --> 00:02:35,790
+DOM all the time.
+
+64
+00:02:35,790 --> 00:02:39,080
+Just have them there and show
+them when we go to add a new
+
+65
+00:02:39,080 --> 00:02:42,570
+element and hide them when we
+don't need them anymore.
+
+66
+00:02:42,570 --> 00:02:44,370
+Also, we should make sure
+we're not creating new
+
+67
+00:02:44,370 --> 00:02:47,210
+elements outside the event
+listener which we're using
+
+68
+00:02:47,210 --> 00:02:48,980
+inside the event listener.
+
+69
+00:02:48,980 --> 00:02:52,550
+So let's take our input fields
+out of our JavaScript, and
+
+70
+00:02:52,550 --> 00:02:54,430
+we'll put them into our HTML.
+
+71
+00:02:54,430 --> 00:02:57,170
+
+
+72
+00:02:57,170 --> 00:02:59,770
+We'll also move our Add Event
+button into a separate
+
+73
+00:02:59,770 --> 00:03:02,920
+container, so it can be hidden
+when we show the Create Form.
+
+74
+00:03:02,920 --> 00:03:08,190
+
+
+75
+00:03:08,190 --> 00:03:11,180
+Now we'll go into our CSS and
+make sure the creation form
+
+76
+00:03:11,180 --> 00:03:12,570
+isn't displayed initially.
+
+77
+00:03:12,570 --> 00:03:14,660
+It starts out as hidden.
+
+78
+00:03:14,660 --> 00:03:16,850
+Then back in our Create method,
+we'll add the code to
+
+79
+00:03:16,850 --> 00:03:20,790
+find our hidden create
+div and show it.
+
+80
+00:03:20,790 --> 00:03:24,430
+Then we'll find the Add
+button and hide that.
+
+81
+00:03:24,430 --> 00:03:26,970
+Inside the Escape keyListener
+below, we'll first get rid of
+
+82
+00:03:26,970 --> 00:03:30,410
+the code that overrides the
+HTML, and then simply hide the
+
+83
+00:03:30,410 --> 00:03:33,400
+creation form and show
+the Add Event button.
+
+84
+00:03:33,400 --> 00:03:36,620
+You might notice that we still
+do have reference inside the
+
+85
+00:03:36,620 --> 00:03:40,740
+event listener of create and
+add, even though they were
+
+86
+00:03:40,740 --> 00:03:42,900
+declared outside the function.
+
+87
+00:03:42,900 --> 00:03:43,990
+Let's fix that.
+
+88
+00:03:43,990 --> 00:03:46,070
+It'll be safer to do
+a fresh look-up of
+
+89
+00:03:46,070 --> 00:03:47,650
+the nodes every time.
+
+90
+00:03:47,650 --> 00:03:50,070
+That way there's not an extra
+reference to these nodes
+
+91
+00:03:50,070 --> 00:03:53,140
+inside our event listener.
+
+92
+00:03:53,140 --> 00:03:56,140
+Now let's see if
+our code works.
+
+93
+00:03:56,140 --> 00:03:57,710
+Looks like our changes
+are working.
+
+94
+00:03:57,710 --> 00:04:00,350
+Now let's see if we're leaving
+detached DOM nodes still.
+
+95
+00:04:00,350 --> 00:04:02,290
+We'll return to the Profiles
+panel, take
+
+96
+00:04:02,290 --> 00:04:04,170
+another heap snapshot.
+
+97
+00:04:04,170 --> 00:04:06,260
+Now we'll do that same activity
+before that created a
+
+98
+00:04:06,260 --> 00:04:07,195
+memory leak.
+
+99
+00:04:07,195 --> 00:04:11,280
+We'll display and hide the
+fields a few times again, then
+
+100
+00:04:11,280 --> 00:04:15,690
+we'll take a second snapshot,
+select it, choose the
+
+101
+00:04:15,690 --> 00:04:18,620
+Comparison view, and
+then compare to
+
+102
+00:04:18,620 --> 00:04:20,510
+the previous snapshot.
+
+103
+00:04:20,510 --> 00:04:22,830
+If we look at the objects
+created between the first and
+
+104
+00:04:22,830 --> 00:04:25,490
+second snapshots, we can see
+that we're no longer leaving
+
+105
+00:04:25,490 --> 00:04:28,040
+detached DOM nodes when
+we hide our fields.
+
+106
+00:04:28,040 --> 00:04:30,060
+Sweet.
+
+107
+00:04:30,060 --> 00:04:32,160
+So now we've shown you how
+to discover memory leaks,
+
+108
+00:04:32,160 --> 00:04:34,600
+pinpoint them, and
+eliminate them.
+
+109
+00:04:34,600 --> 00:04:36,830
+It's time for you to try it
+out in the Challenges.

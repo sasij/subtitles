@@ -1,0 +1,249 @@
+﻿1
+00:00:00,000 --> 00:00:02,310
+
+
+2
+00:00:02,310 --> 00:00:05,490
+The Elements panel is great for
+debugging HTML and CSS,
+
+3
+00:00:05,490 --> 00:00:08,119
+but if you're writing a complex
+web application, odds
+
+4
+00:00:08,119 --> 00:00:10,570
+are you're using some
+JavaScript, and when it comes
+
+5
+00:00:10,570 --> 00:00:13,460
+to JavaScript debugging, that's
+where the Chrome Dev
+
+6
+00:00:13,460 --> 00:00:15,240
+Tools console comes in.
+
+7
+00:00:15,240 --> 00:00:17,350
+The Chrome Console is one
+part log and one part
+
+8
+00:00:17,350 --> 00:00:18,950
+command line interface.
+
+9
+00:00:18,950 --> 00:00:21,430
+It allows us to easily interface
+with our app to run
+
+10
+00:00:21,430 --> 00:00:24,450
+JavaScript commands and display
+log messages for help
+
+11
+00:00:24,450 --> 00:00:25,340
+with debugging.
+
+12
+00:00:25,340 --> 00:00:27,210
+We can bring up the Console
+by simply clicking on
+
+13
+00:00:27,210 --> 00:00:29,310
+the Console tab here.
+
+14
+00:00:29,310 --> 00:00:32,200
+On the command line, we can
+write any JavaScript we like.
+
+15
+00:00:32,200 --> 00:00:34,680
+As you can see, I can even
+press Tab to do some
+
+16
+00:00:34,680 --> 00:00:35,980
+auto-completion.
+
+17
+00:00:35,980 --> 00:00:38,620
+Here we wrote the JavaScript to
+return to date header from
+
+18
+00:00:38,620 --> 00:00:40,380
+the page using its ID.
+
+19
+00:00:40,380 --> 00:00:42,590
+We can then run commands
+on that object
+
+20
+00:00:42,590 --> 00:00:44,450
+right here in the Console.
+
+21
+00:00:44,450 --> 00:00:46,700
+The Chrome Console also provides
+many ways for us to
+
+22
+00:00:46,700 --> 00:00:49,470
+log events happening inside of
+our application, starting with
+
+23
+00:00:49,470 --> 00:00:50,990
+the Console Log command.
+
+24
+00:00:50,990 --> 00:00:53,330
+Here you can see we're simply
+sending a string into the
+
+25
+00:00:53,330 --> 00:00:56,400
+Console log method and it
+simply prints it out.
+
+26
+00:00:56,400 --> 00:00:59,060
+This can be a very useful way
+to debug an application by
+
+27
+00:00:59,060 --> 00:01:02,130
+putting a bunch of Console log
+commands inside of, maybe,
+
+28
+00:01:02,130 --> 00:01:04,069
+your JavaScript functions.
+
+29
+00:01:04,069 --> 00:01:07,630
+And those don't just output
+strings, you can also put
+
+30
+00:01:07,630 --> 00:01:11,090
+JavaScript objects inside of
+those Console log commands.
+
+31
+00:01:11,090 --> 00:01:12,740
+Let's take a look at that.
+
+32
+00:01:12,740 --> 00:01:16,220
+The Console object itself is a
+JavaScript object so let's get
+
+33
+00:01:16,220 --> 00:01:19,620
+a little meta and write our
+Console object to the Console.
+
+34
+00:01:19,620 --> 00:01:22,500
+As you can see, the Console
+object is displayed in a tree
+
+35
+00:01:22,500 --> 00:01:24,900
+like structure that looks
+similar to our DOM in our
+
+36
+00:01:24,900 --> 00:01:25,780
+Elements panel.
+
+37
+00:01:25,780 --> 00:01:28,510
+If we expand the prototype, we
+can see all of our Console's
+
+38
+00:01:28,510 --> 00:01:30,170
+available functions.
+
+39
+00:01:30,170 --> 00:01:32,670
+There's a bunch of helpful
+methods listed here, and you
+
+40
+00:01:32,670 --> 00:01:34,890
+can learn more about
+them using the link
+
+41
+00:01:34,890 --> 00:01:35,870
+underneath the video.
+
+42
+00:01:35,870 --> 00:01:38,550
+But let's take a look at the
+Assert method, which will look
+
+43
+00:01:38,550 --> 00:01:41,400
+familiar if you do a lot
+of code testing.
+
+44
+00:01:41,400 --> 00:01:45,380
+If we pass a true Boolean
+expression to assert, such as
+
+45
+00:01:45,380 --> 00:01:49,110
+asking is one equal to one, it
+will continue on without
+
+46
+00:01:49,110 --> 00:01:51,110
+raising an error,
+as you see here.
+
+47
+00:01:51,110 --> 00:01:53,580
+But if we give it a false
+expression, it's going to
+
+48
+00:01:53,580 --> 00:01:56,120
+raise an assertion
+failed error.
+
+49
+00:01:56,120 --> 00:01:58,150
+And as you can see here, our
+Console is smart enough to
+
+50
+00:01:58,150 --> 00:02:02,430
+print out this error in red so
+that we pay attention to it.
+
+51
+00:02:02,430 --> 00:02:04,790
+We'll talk more about debugging
+errors later in
+
+52
+00:02:04,790 --> 00:02:07,180
+chapter three, but for now,
+let's jump into some
+
+53
+00:02:07,180 --> 00:02:08,430
+challenges.
