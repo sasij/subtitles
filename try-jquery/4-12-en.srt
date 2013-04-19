@@ -1,0 +1,417 @@
+﻿1
+00:00:00,000 --> 00:00:02,440
+
+
+2
+00:00:02,440 --> 00:00:04,510
+So we know how to do mouse
+events, but what about
+
+3
+00:00:04,510 --> 00:00:05,950
+keyboard events?
+
+4
+00:00:05,950 --> 00:00:09,710
+Let's say we have a web page
+like this, and notice here, we
+
+5
+00:00:09,710 --> 00:00:13,550
+have the quantity of tickets
+that we need, we have a cost
+
+6
+00:00:13,550 --> 00:00:16,660
+per ticket, and when we change
+the quantity, we want the
+
+7
+00:00:16,660 --> 00:00:19,810
+total price to be automatically
+updated.
+
+8
+00:00:19,810 --> 00:00:22,420
+How might we do this
+with jQuery?
+
+9
+00:00:22,420 --> 00:00:24,170
+We'll let's take a
+look at the HTML.
+
+10
+00:00:24,170 --> 00:00:26,870
+You can see here we have a div
+of classification, which also
+
+11
+00:00:26,870 --> 00:00:29,100
+contains the price for
+this vacation.
+
+12
+00:00:29,100 --> 00:00:32,170
+We have the amount of money per
+ticket, we have our input
+
+13
+00:00:32,170 --> 00:00:34,500
+field, and then lastly,
+at the bottom, we
+
+14
+00:00:34,500 --> 00:00:36,010
+have our total price.
+
+15
+00:00:36,010 --> 00:00:40,090
+We need to make it so when the
+input updates, we calculate
+
+16
+00:00:40,090 --> 00:00:45,190
+the total price and update it
+at the bottom of the page.
+
+17
+00:00:45,190 --> 00:00:47,300
+Obviously, we need to be
+listening for some sort of
+
+18
+00:00:47,300 --> 00:00:51,600
+keyboard event, so that when
+somebody types a key, we get
+
+19
+00:00:51,600 --> 00:00:54,780
+that quantity and we calculate
+the total price.
+
+20
+00:00:54,780 --> 00:01:01,860
+So here, we can listen on the
+quantity, but what is going to
+
+21
+00:01:01,860 --> 00:01:04,160
+be the event we're
+listening for?
+
+22
+00:01:04,160 --> 00:01:06,090
+Well, here's a list of
+keyboard events.
+
+23
+00:01:06,090 --> 00:01:10,590
+You've got things like keypress,
+keydown, keyup, and
+
+24
+00:01:10,590 --> 00:01:15,210
+also, here's a list of form
+events, because that input is
+
+25
+00:01:15,210 --> 00:01:16,550
+a form field.
+
+26
+00:01:16,550 --> 00:01:18,770
+So we could be listening
+for blur, select,
+
+27
+00:01:18,770 --> 00:01:20,850
+change, focus, or submit.
+
+28
+00:01:20,850 --> 00:01:23,010
+Check out the documentation if
+you want to learn more about
+
+29
+00:01:23,010 --> 00:01:24,570
+what each of these does.
+
+30
+00:01:24,570 --> 00:01:27,510
+In our case, though, we want to
+listen for the keyup event.
+
+31
+00:01:27,510 --> 00:01:30,980
+So when somebody stops pressing
+a key, or a number in
+
+32
+00:01:30,980 --> 00:01:36,300
+this case, we want to then
+calculate the total price.
+
+33
+00:01:36,300 --> 00:01:39,150
+So let's put keyup there at the
+top, and inside of that
+
+34
+00:01:39,150 --> 00:01:41,580
+event handler, we want
+to do three things.
+
+35
+00:01:41,580 --> 00:01:44,740
+First, we want to get the
+price for the vacation.
+
+36
+00:01:44,740 --> 00:01:46,960
+We can get that out of
+the data element.
+
+37
+00:01:46,960 --> 00:01:49,050
+Then, we'll get the quantity
+they entered
+
+38
+00:01:49,050 --> 00:01:50,840
+in the input field.
+
+39
+00:01:50,840 --> 00:01:55,040
+And then finally, we'll set the
+total price to price times
+
+40
+00:01:55,040 --> 00:01:56,390
+the quantity.
+
+41
+00:01:56,390 --> 00:01:59,920
+Here's the dom on the side,
+and to fetch the price--
+
+42
+00:01:59,920 --> 00:02:01,480
+this should be nothing new--
+
+43
+00:02:01,480 --> 00:02:04,020
+we're going to get
+this object.
+
+44
+00:02:04,020 --> 00:02:06,510
+So this is the input element.
+
+45
+00:02:06,510 --> 00:02:11,210
+We're going to search for
+ancestor, the closest ancestor
+
+46
+00:02:11,210 --> 00:02:14,730
+with the class of vacation, then
+we're going to get the
+
+47
+00:02:14,730 --> 00:02:17,060
+price from the data attribute.
+
+48
+00:02:17,060 --> 00:02:20,950
+That's going to return
+$399.99.
+
+49
+00:02:20,950 --> 00:02:24,050
+However, this is going to return
+a string, but we want
+
+50
+00:02:24,050 --> 00:02:26,680
+to do math on this variable.
+
+51
+00:02:26,680 --> 00:02:31,140
+So one way that we can convert
+this into a number is by
+
+52
+00:02:31,140 --> 00:02:34,340
+adding that plus to the
+beginning of this statement.
+
+53
+00:02:34,340 --> 00:02:37,260
+That's going to convert the
+string into a number, which we
+
+54
+00:02:37,260 --> 00:02:41,500
+can use later to do our
+multiplication.
+
+55
+00:02:41,500 --> 00:02:43,930
+So we have the price, but we
+need to get the quantity that
+
+56
+00:02:43,930 --> 00:02:45,830
+the user entered.
+
+57
+00:02:45,830 --> 00:02:48,590
+Now, remember, it's the input
+field itself that is
+
+58
+00:02:48,590 --> 00:02:50,740
+triggering the keyup event.
+
+59
+00:02:50,740 --> 00:02:54,380
+So we can probably use this
+to get that input field.
+
+60
+00:02:54,380 --> 00:02:58,970
+However, we need to get the
+value out of that input field.
+
+61
+00:02:58,970 --> 00:03:00,830
+Luckily, we have some
+helper methods.
+
+62
+00:03:00,830 --> 00:03:05,830
+We can use val to set the input
+value or just .val to
+
+63
+00:03:05,830 --> 00:03:07,640
+get the input value.
+
+64
+00:03:07,640 --> 00:03:11,180
+So you might think we can call
+this.val, but remember,
+
+65
+00:03:11,180 --> 00:03:14,320
+this is not a jQuery object
+yet, so we need to write
+
+66
+00:03:14,320 --> 00:03:17,160
+$(this).val(), 
+which will
+
+67
+00:03:17,160 --> 00:03:19,380
+properly return two.
+
+68
+00:03:19,380 --> 00:03:23,600
+But this returns a string and
+again, we need a number.
+
+69
+00:03:23,600 --> 00:03:26,780
+So we use that same convention
+we saw a minute ago and add a
+
+70
+00:03:26,780 --> 00:03:30,410
+plus to the beginning of this
+statement, like you see here.
+
+71
+00:03:30,410 --> 00:03:33,350
+This returns us the
+number two.
+
+72
+00:03:33,350 --> 00:03:35,290
+We'll bring that back up into
+our code, and the only thing
+
+73
+00:03:35,290 --> 00:03:38,560
+we have left is to multiply the
+two numbers together and
+
+74
+00:03:38,560 --> 00:03:42,340
+set that equal to the total
+value on the page.
+
+75
+00:03:42,340 --> 00:03:45,640
+In this case, we'll fetch the
+span with pound total as the
+
+76
+00:03:45,640 --> 00:03:50,540
+ID, and set the text to the
+price times the quantity.
+
+77
+00:03:50,540 --> 00:03:54,550
+And luckily for us, we can pass
+a number or a string when
+
+78
+00:03:54,550 --> 00:03:58,550
+we're setting a dom text node.
+
+79
+00:03:58,550 --> 00:04:01,080
+All right, so now we have a
+completed text, and whenever
+
+80
+00:04:01,080 --> 00:04:04,440
+that quantity is changed, the
+keyup event will trigger, and
+
+81
+00:04:04,440 --> 00:04:05,690
+our total will get updated.
+
+82
+00:04:05,690 --> 00:04:08,060
+
+
+83
+00:04:08,060 --> 00:04:11,140
+So here's our webpage again,
+and now, if we update the
+
+84
+00:04:11,140 --> 00:04:14,390
+quantity, we can see the total
+getting updated at the bottom
+
+85
+00:04:14,390 --> 00:04:15,640
+of the page.
+
+86
+00:04:15,640 --> 00:04:20,240
+
+
+87
+00:04:20,240 --> 00:04:22,510
+Time for you to implement some
+key events, and I'll see you
+
+88
+00:04:22,510 --> 00:04:23,760
+in the next section.

@@ -1,0 +1,382 @@
+﻿1
+00:00:00,000 --> 00:00:02,610
+
+
+2
+00:00:02,610 --> 00:00:06,350
+Up until now, we've used
+CSS-like selectors to select
+
+3
+00:00:06,350 --> 00:00:07,980
+different parts of the DOM.
+
+4
+00:00:07,980 --> 00:00:11,840
+However, sometimes it's faster
+to use something we call
+
+5
+00:00:11,840 --> 00:00:13,240
+traversing.
+
+6
+00:00:13,240 --> 00:00:15,430
+Let's take a closer look.
+
+7
+00:00:15,430 --> 00:00:16,810
+Here we are, back in our HTML.
+
+8
+00:00:16,810 --> 00:00:19,030
+And we want to select all
+the list items again.
+
+9
+00:00:19,030 --> 00:00:23,210
+But this time we don't want to
+use a descendant selector.
+
+10
+00:00:23,210 --> 00:00:24,650
+How can we do this
+using traversing?
+
+11
+00:00:24,650 --> 00:00:27,470
+
+
+12
+00:00:27,470 --> 00:00:29,110
+Here's our DOM again.
+
+13
+00:00:29,110 --> 00:00:32,110
+And in the previous level, we
+selected all the li's by
+
+14
+00:00:32,110 --> 00:00:35,010
+writing #destinations li.
+
+15
+00:00:35,010 --> 00:00:39,870
+To use traversing, we can call
+#destinations and then call
+
+16
+00:00:39,870 --> 00:00:43,720
+the Find method on the DOM
+object, which gets returned,
+
+17
+00:00:43,720 --> 00:00:47,560
+sending in the li parameter so
+that it finds all the list
+
+18
+00:00:47,560 --> 00:00:51,790
+items underneath the
+Destinations element.
+
+19
+00:00:51,790 --> 00:00:54,210
+When you're finding elements
+using traversing, it typically
+
+20
+00:00:54,210 --> 00:00:55,540
+has two parts.
+
+21
+00:00:55,540 --> 00:00:59,280
+The first is the selection, in
+this case #destinations.
+
+22
+00:00:59,280 --> 00:01:01,400
+And the second part is
+the traversal, in
+
+23
+00:01:01,400 --> 00:01:03,680
+this case find li.
+
+24
+00:01:03,680 --> 00:01:06,630
+Traversing, as you can see,
+takes a little bit more code.
+
+25
+00:01:06,630 --> 00:01:10,270
+But to find specific elements
+in the DOM, it's
+
+26
+00:01:10,270 --> 00:01:11,520
+a little bit faster.
+
+27
+00:01:11,520 --> 00:01:13,970
+
+
+28
+00:01:13,970 --> 00:01:16,870
+So remember how we used the
+first pseudo class to find the
+
+29
+00:01:16,870 --> 00:01:18,880
+first item in that list?
+
+30
+00:01:18,880 --> 00:01:21,750
+Well, to do that using
+traversing, we can simply
+
+31
+00:01:21,750 --> 00:01:25,320
+specify the first
+method, like so.
+
+32
+00:01:25,320 --> 00:01:27,990
+As you might imagine, instead
+of using the last pseudo
+
+33
+00:01:27,990 --> 00:01:30,800
+class, we can use
+the last method.
+
+34
+00:01:30,800 --> 00:01:33,420
+
+
+35
+00:01:33,420 --> 00:01:36,170
+So we know how to find the first
+element and the last
+
+36
+00:01:36,170 --> 00:01:37,270
+element with traversing.
+
+37
+00:01:37,270 --> 00:01:42,990
+But how might we find the middle
+element in this list?
+
+38
+00:01:42,990 --> 00:01:44,340
+We can do this using
+a technique
+
+39
+00:01:44,340 --> 00:01:46,870
+called walking the DOM.
+
+40
+00:01:46,870 --> 00:01:51,510
+So if we called li.first,
+it's going to give us
+
+41
+00:01:51,510 --> 00:01:53,420
+that first list item.
+
+42
+00:01:53,420 --> 00:01:56,060
+And if we wanted, we could chain
+another method onto it.
+
+43
+00:01:56,060 --> 00:02:01,040
+So we could call li first.next,
+and that would
+
+44
+00:02:01,040 --> 00:02:04,630
+return the middle list item,
+which is what we want.
+
+45
+00:02:04,630 --> 00:02:07,770
+This technique of calling
+multiple methods together is
+
+46
+00:02:07,770 --> 00:02:09,870
+called method chaining.
+
+47
+00:02:09,870 --> 00:02:12,170
+If we wanted to, we could keep
+on chaining more and more
+
+48
+00:02:12,170 --> 00:02:13,960
+methods onto this.
+
+49
+00:02:13,960 --> 00:02:18,330
+So if we called first.next.prev,
+which stands
+
+50
+00:02:18,330 --> 00:02:21,590
+for previous, it would go back
+to the first list item.
+
+51
+00:02:21,590 --> 00:02:24,380
+
+
+52
+00:02:24,380 --> 00:02:26,810
+Sometimes we're going to want
+to walk up the DOM.
+
+53
+00:02:26,810 --> 00:02:29,520
+We might be able to select
+a child element.
+
+54
+00:02:29,520 --> 00:02:32,610
+And then we want to walk up
+the DOM, to its parent.
+
+55
+00:02:32,610 --> 00:02:36,730
+How might we traverse
+up the DOM?
+
+56
+00:02:36,730 --> 00:02:39,340
+So here we've selected
+the first list item.
+
+57
+00:02:39,340 --> 00:02:42,670
+But what we might be interested
+in is the parent.
+
+58
+00:02:42,670 --> 00:02:45,400
+To get the parent, we
+would call first
+
+59
+00:02:45,400 --> 00:02:46,510
+to get to list item.
+
+60
+00:02:46,510 --> 00:02:48,950
+And then we can simply call
+parent, which is going to
+
+61
+00:02:48,950 --> 00:02:51,460
+select the unordered list,
+which is what we want.
+
+62
+00:02:51,460 --> 00:02:54,120
+
+
+63
+00:02:54,120 --> 00:02:57,600
+Sometimes we might want
+to walk down the DOM.
+
+64
+00:02:57,600 --> 00:02:59,740
+So we might have a parent,
+but we want to
+
+65
+00:02:59,740 --> 00:03:02,840
+walk down to its children.
+
+66
+00:03:02,840 --> 00:03:06,830
+So how do we traverse down?
+
+67
+00:03:06,830 --> 00:03:08,940
+Here's that unordered list,
+which has another unordered
+
+68
+00:03:08,940 --> 00:03:10,620
+list inside of it.
+
+69
+00:03:10,620 --> 00:03:13,370
+Now, if we only wanted the
+direct children of the
+
+70
+00:03:13,370 --> 00:03:16,340
+destination's unordered list,
+we could do that using
+
+71
+00:03:16,340 --> 00:03:20,410
+traversing by calling
+#destinations and using the
+
+72
+00:03:20,410 --> 00:03:23,630
+children method, specifying
+that we only want the
+
+73
+00:03:23,630 --> 00:03:26,710
+children, which are
+list items.
+
+74
+00:03:26,710 --> 00:03:29,140
+Earlier in this level
+we used find.
+
+75
+00:03:29,140 --> 00:03:31,670
+If we use find here, it
+would have selected
+
+76
+00:03:31,670 --> 00:03:33,430
+all of the list items.
+
+77
+00:03:33,430 --> 00:03:36,410
+However, we only wanted the
+direct descendants.
+
+78
+00:03:36,410 --> 00:03:39,000
+That's why we're using children
+here and specifying
+
+79
+00:03:39,000 --> 00:03:43,030
+that we want all the children
+that are list items.
+
+80
+00:03:43,030 --> 00:03:45,800
+All right, well, it's time for
+you to play around with
+
+81
+00:03:45,800 --> 00:03:47,500
+traversal in the challenges.
+
+82
+00:03:47,500 --> 00:03:48,750
+And I'll see you
+in level three.

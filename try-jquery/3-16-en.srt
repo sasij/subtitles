@@ -1,0 +1,656 @@
+﻿1
+00:00:00,000 --> 00:00:01,912
+
+
+2
+00:00:01,912 --> 00:00:04,870
+So back in our demo, in our
+vacation packages, you can see
+
+3
+00:00:04,870 --> 00:00:07,950
+we click on each button and it
+gives us a price, but all the
+
+4
+00:00:07,950 --> 00:00:10,890
+vacations always have
+the same price.
+
+5
+00:00:10,890 --> 00:00:13,050
+How might we give them
+different prices?
+
+6
+00:00:13,050 --> 00:00:16,420
+Well, here's one way
+we could do it.
+
+7
+00:00:16,420 --> 00:00:20,260
+Here's our HTML, and we're going
+to specify the price by
+
+8
+00:00:20,260 --> 00:00:24,880
+adding a data price attribute
+to the HTML.
+
+9
+00:00:24,880 --> 00:00:28,510
+The data tag is an HTML5
+attribute you can add to any
+
+10
+00:00:28,510 --> 00:00:31,650
+of your elements to provide
+additional information about
+
+11
+00:00:31,650 --> 00:00:33,690
+the objects on your page.
+
+12
+00:00:33,690 --> 00:00:36,000
+To interact with these
+attributes, we can call data,
+
+13
+00:00:36,000 --> 00:00:40,230
+than specify a name to get out
+the information, and we can
+
+14
+00:00:40,230 --> 00:00:44,470
+also set these attributes by
+providing a name and a value.
+
+15
+00:00:44,470 --> 00:00:46,200
+Here's an example of reading
+out that data.
+
+16
+00:00:46,200 --> 00:00:49,400
+We can fetch the nodes with the
+vacation class from the
+
+17
+00:00:49,400 --> 00:00:53,160
+dom, get the first one of those,
+then call data and
+
+18
+00:00:53,160 --> 00:00:55,750
+specify the price name.
+
+19
+00:00:55,750 --> 00:01:02,300
+Now, it'll return the price
+that we see here, $399.99.
+
+20
+00:01:02,300 --> 00:01:04,730
+Now, let's go back to our old
+code and refactor it to use
+
+21
+00:01:04,730 --> 00:01:07,130
+this data price attribute.
+
+22
+00:01:07,130 --> 00:01:09,610
+To do this, we're going to start
+with a button that was
+
+23
+00:01:09,610 --> 00:01:13,030
+clicked, which is represented
+here by this, we're going to
+
+24
+00:01:13,030 --> 00:01:17,240
+find the closest ancestor,
+which has the
+
+25
+00:01:17,240 --> 00:01:19,250
+.vacation class.
+
+26
+00:01:19,250 --> 00:01:21,800
+And then, finally, call the data
+method to get the price
+
+27
+00:01:21,800 --> 00:01:24,160
+value out of the dom.
+
+28
+00:01:24,160 --> 00:01:26,440
+We can then use that amount
+when we construct our
+
+29
+00:01:26,440 --> 00:01:29,910
+paragraph dom node, which shows
+the price, like so.
+
+30
+00:01:29,910 --> 00:01:33,490
+
+
+31
+00:01:33,490 --> 00:01:37,220
+Let's take these two lines and
+put them inside of our code.
+
+32
+00:01:37,220 --> 00:01:40,380
+So each vacation now, will
+have its own price.
+
+33
+00:01:40,380 --> 00:01:41,910
+However, there's some
+duplication
+
+34
+00:01:41,910 --> 00:01:43,570
+that's going on here.
+
+35
+00:01:43,570 --> 00:01:46,450
+You can see that we're fetching
+the vacation class
+
+36
+00:01:46,450 --> 00:01:48,870
+here and then again
+down below.
+
+37
+00:01:48,870 --> 00:01:51,970
+So let's eliminate
+this duplication.
+
+38
+00:01:51,970 --> 00:01:55,090
+We can do this by creating a new
+variable called vacation,
+
+39
+00:01:55,090 --> 00:01:58,350
+which will fetch us the closest
+vacation, and then we
+
+40
+00:01:58,350 --> 00:02:02,310
+set the amount, we can simply
+call that variable dot data,
+
+41
+00:02:02,310 --> 00:02:04,540
+and then when we append, we
+can, of course, use that
+
+42
+00:02:04,540 --> 00:02:05,790
+variable again.
+
+43
+00:02:05,790 --> 00:02:08,520
+
+
+44
+00:02:08,520 --> 00:02:10,860
+Now, if we use this code inside
+of our function, no
+
+45
+00:02:10,860 --> 00:02:14,180
+longer are we repeating
+ourselves, and we're only
+
+46
+00:02:14,180 --> 00:02:17,380
+querying the dom once for this
+element, which is going to
+
+47
+00:02:17,380 --> 00:02:18,630
+make it a little bit faster.
+
+48
+00:02:18,630 --> 00:02:21,460
+
+
+49
+00:02:21,460 --> 00:02:23,980
+Now, if we jump back into our
+browser, when we click Get
+
+50
+00:02:23,980 --> 00:02:27,860
+Price, we see that each of our
+vacations has its own price.
+
+51
+00:02:27,860 --> 00:02:32,240
+
+
+52
+00:02:32,240 --> 00:02:34,290
+This works great, but what if
+we start adding different
+
+53
+00:02:34,290 --> 00:02:36,600
+buttons to our web page?
+
+54
+00:02:36,600 --> 00:02:40,810
+This click handler is going to
+be called for all of them, so
+
+55
+00:02:40,810 --> 00:02:42,990
+we need to make this
+more specific.
+
+56
+00:02:42,990 --> 00:02:44,710
+Well, we could use
+a CSS selector.
+
+57
+00:02:44,710 --> 00:02:47,830
+We could say dot vacation
+button, so it's only going to
+
+58
+00:02:47,830 --> 00:02:50,990
+listen for click events
+on buttons inside of
+
+59
+00:02:50,990 --> 00:02:53,140
+our vacation class.
+
+60
+00:02:53,140 --> 00:02:55,300
+But there's a better way to
+write this, we can simply
+
+61
+00:02:55,300 --> 00:02:58,970
+fetch the nodes that have the
+vacation class and then call
+
+62
+00:02:58,970 --> 00:03:02,440
+on, we want to listen for click
+events, and then we'll
+
+63
+00:03:02,440 --> 00:03:06,770
+specify which elements inside
+the vacation class we want to
+
+64
+00:03:06,770 --> 00:03:07,670
+listen for.
+
+65
+00:03:07,670 --> 00:03:11,220
+In this case, button elements,
+and then our third argument
+
+66
+00:03:11,220 --> 00:03:13,540
+becomes our event handler
+function.
+
+67
+00:03:13,540 --> 00:03:16,740
+This technique is called
+event delegation.
+
+68
+00:03:16,740 --> 00:03:19,230
+We're only targeting
+buttons if it's
+
+69
+00:03:19,230 --> 00:03:21,555
+inside a vacation class.
+
+70
+00:03:21,555 --> 00:03:24,460
+
+
+71
+00:03:24,460 --> 00:03:26,610
+So now, if we jump back
+into our browser, our
+
+72
+00:03:26,610 --> 00:03:28,300
+buttons still work.
+
+73
+00:03:28,300 --> 00:03:29,120
+Sweet.
+
+74
+00:03:29,120 --> 00:03:32,595
+But, oh, we've got some filters
+up there, On Sale Now
+
+75
+00:03:32,595 --> 00:03:34,530
+and Expiring Soon.
+
+76
+00:03:34,530 --> 00:03:38,060
+Let's make those filters work.
+
+77
+00:03:38,060 --> 00:03:39,570
+Here's the HTML for
+the filters,
+
+78
+00:03:39,570 --> 00:03:41,280
+they're inside of a div.
+
+79
+00:03:41,280 --> 00:03:43,970
+They're buttons as well, so we
+want to make it so that when
+
+80
+00:03:43,970 --> 00:03:47,120
+we click On Sale Now, it only
+shows On Sale vacations and
+
+81
+00:03:47,120 --> 00:03:51,150
+when we click Expiring it only
+shows expiring vacations.
+
+82
+00:03:51,150 --> 00:03:54,140
+So to do this, we're going to
+write two different event
+
+83
+00:03:54,140 --> 00:03:58,470
+handlers for the buttons, and
+we'll highlight vacations with
+
+84
+00:03:58,470 --> 00:04:01,130
+these traits.
+
+85
+00:04:01,130 --> 00:04:03,740
+Here we are inside of our
+application.js.
+
+86
+00:04:03,740 --> 00:04:06,850
+First, we're going to fetch the
+div with the filters ID,
+
+87
+00:04:06,850 --> 00:04:09,430
+then we're going to use event
+delegation to listen for click
+
+88
+00:04:09,430 --> 00:04:13,600
+events for the on-sale
+filter class.
+
+89
+00:04:13,600 --> 00:04:15,980
+And inside of the event handler,
+we're going to first
+
+90
+00:04:15,980 --> 00:04:19,060
+find all vacations that are on
+sale, and then we're going to
+
+91
+00:04:19,060 --> 00:04:23,340
+add a class to these vacations
+so they highlight.
+
+92
+00:04:23,340 --> 00:04:25,370
+Here's the dom for our
+vacation list.
+
+93
+00:04:25,370 --> 00:04:29,030
+You can see that some of them
+have two classes, vacation and
+
+94
+00:04:29,030 --> 00:04:33,070
+on sale, and some of them just
+have one, being vacation.
+
+95
+00:04:33,070 --> 00:04:35,600
+So how might we select the ones
+that are just on sale?
+
+96
+00:04:35,600 --> 00:04:37,740
+Well, we can do this using
+a CSS selector.
+
+97
+00:04:37,740 --> 00:04:43,090
+We could just do dot vacation
+dot on sale, however, let's do
+
+98
+00:04:43,090 --> 00:04:47,210
+this using traversing, so we'll
+call dot vacation, and
+
+99
+00:04:47,210 --> 00:04:50,920
+then we'll filter those
+vacations to return just the
+
+100
+00:04:50,920 --> 00:04:53,985
+ones that have the
+on sale class.
+
+101
+00:04:53,985 --> 00:04:57,320
+
+
+102
+00:04:57,320 --> 00:04:59,750
+Let's move this code up
+into our function.
+
+103
+00:04:59,750 --> 00:05:03,380
+And now, the second step, we
+need to add a class on to
+
+104
+00:05:03,380 --> 00:05:05,120
+these vacations.
+
+105
+00:05:05,120 --> 00:05:07,590
+To add a class using
+jQuery, we can use
+
+106
+00:05:07,590 --> 00:05:09,470
+the addClass method.
+
+107
+00:05:09,470 --> 00:05:12,060
+Similarly, we can use
+the removeClass
+
+108
+00:05:12,060 --> 00:05:13,830
+method to remove a class.
+
+109
+00:05:13,830 --> 00:05:16,590
+So first, we'll grab all of the
+vacations which have the
+
+110
+00:05:16,590 --> 00:05:21,090
+class vacation and on sale,
+and we'll add the class of
+
+111
+00:05:21,090 --> 00:05:25,210
+highlighted onto all of them.
+
+112
+00:05:25,210 --> 00:05:27,520
+So let's move this back up
+into our code, and as we
+
+113
+00:05:27,520 --> 00:05:31,790
+mentioned, filter finds the
+right vacations and addClass
+
+114
+00:05:31,790 --> 00:05:35,510
+adds the highlighted class to
+all of those vacations.
+
+115
+00:05:35,510 --> 00:05:38,300
+We can do the same thing for our
+expiring filter, listening
+
+116
+00:05:38,300 --> 00:05:41,940
+for clicks on that expiring
+filter button.
+
+117
+00:05:41,940 --> 00:05:44,480
+Then when it's clicked, we will
+filter all the vacations,
+
+118
+00:05:44,480 --> 00:05:47,580
+which also have the expiring
+class, and add the class of
+
+119
+00:05:47,580 --> 00:05:49,450
+highlighted.
+
+120
+00:05:49,450 --> 00:05:51,110
+Let's take a look at
+this in action.
+
+121
+00:05:51,110 --> 00:05:54,680
+We click on two and we can see
+them highlighting, but, well,
+
+122
+00:05:54,680 --> 00:05:57,410
+everything's highlighted now, so
+if we continue to click the
+
+123
+00:05:57,410 --> 00:06:00,200
+buttons, nothing more happens.
+
+124
+00:06:00,200 --> 00:06:03,620
+So we need a way to unhighlight
+
+125
+00:06:03,620 --> 00:06:05,810
+all of these vacations.
+
+126
+00:06:05,810 --> 00:06:09,000
+One way we can do this is when
+a button is clicked, first
+
+127
+00:06:09,000 --> 00:06:12,450
+thing, we'll look for any
+highlighted classes, and we'll
+
+128
+00:06:12,450 --> 00:06:15,300
+remove that class of highlighted
+from them.
+
+129
+00:06:15,300 --> 00:06:17,850
+So we're getting rid of all
+highlighted classes from our
+
+130
+00:06:17,850 --> 00:06:21,210
+page before we then go and
+add highlighted back
+
+131
+00:06:21,210 --> 00:06:22,660
+to the proper vacations.
+
+132
+00:06:22,660 --> 00:06:25,400
+
+
+133
+00:06:25,400 --> 00:06:27,760
+So here we go, back on the page,
+and now when we click
+
+134
+00:06:27,760 --> 00:06:30,840
+through our On Sale and Expiring
+Now vacations, the
+
+135
+00:06:30,840 --> 00:06:32,150
+proper ones are highlighted.
+
+136
+00:06:32,150 --> 00:06:36,250
+
+
+137
+00:06:36,250 --> 00:06:37,980
+You've reached the end
+of level three.
+
+138
+00:06:37,980 --> 00:06:39,390
+Time to go to the challenges,
+and I'll see
+
+139
+00:06:39,390 --> 00:06:40,640
+you in level four.

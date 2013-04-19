@@ -1,0 +1,210 @@
+﻿1
+00:00:00,000 --> 00:00:02,510
+
+
+2
+00:00:02,510 --> 00:00:04,350
+In this section, we're going
+to look at some more events
+
+3
+00:00:04,350 --> 00:00:06,380
+that we can listen for
+on our webpages.
+
+4
+00:00:06,380 --> 00:00:09,190
+So here, inside of our webpage,
+we want to make it so
+
+5
+00:00:09,190 --> 00:00:13,230
+that when we hover over that
+little price tag that it also
+
+6
+00:00:13,230 --> 00:00:16,329
+displays the flight details.
+
+7
+00:00:16,329 --> 00:00:19,470
+So how would we do that?
+
+8
+00:00:19,470 --> 00:00:21,460
+Well, you've already seen most
+of the code that we need to
+
+9
+00:00:21,460 --> 00:00:25,230
+make this happen, namely
+grabbing a DOM element, using
+
+10
+00:00:25,230 --> 00:00:29,080
+the on method, passing in the
+h3, because we would want to
+
+11
+00:00:29,080 --> 00:00:31,220
+listen for events on h3.
+
+12
+00:00:31,220 --> 00:00:35,690
+And then we just need to slide
+down the ticket confirmation.
+
+13
+00:00:35,690 --> 00:00:37,390
+Some of the mouse events
+you can listen to.
+
+14
+00:00:37,390 --> 00:00:38,910
+Click, you're obviously
+familiar with.
+
+15
+00:00:38,910 --> 00:00:40,660
+But there's a bunch
+you can use.
+
+16
+00:00:40,660 --> 00:00:44,110
+In this case, we want to use
+mouseenter, which fires when
+
+17
+00:00:44,110 --> 00:00:46,465
+the mouse is first positioned
+over the element.
+
+18
+00:00:46,465 --> 00:00:49,060
+
+
+19
+00:00:49,060 --> 00:00:52,830
+So let's move mouseenter up
+into the code, just like so.
+
+20
+00:00:52,830 --> 00:00:54,870
+This is going to show the ticket
+when it's positioned
+
+21
+00:00:54,870 --> 00:00:57,040
+over that h3.
+
+22
+00:00:57,040 --> 00:00:58,320
+So let's take a look
+on the webpage.
+
+23
+00:00:58,320 --> 00:01:00,790
+And you'll notice, when we hover
+over that ticket icon,
+
+24
+00:01:00,790 --> 00:01:02,310
+it shows the details.
+
+25
+00:01:02,310 --> 00:01:05,150
+And still, if we click on the
+Flight Details button, that'll
+
+26
+00:01:05,150 --> 00:01:09,182
+also show the ticket
+confirmation.
+
+27
+00:01:09,182 --> 00:01:12,600
+This code that we've written has
+some duplication going on.
+
+28
+00:01:12,600 --> 00:01:14,140
+And we don't like duplication.
+
+29
+00:01:14,140 --> 00:01:16,260
+So how would we get rid of it?
+
+30
+00:01:16,260 --> 00:01:19,150
+Well, we could move the contents
+of each of those
+
+31
+00:01:19,150 --> 00:01:23,740
+Event Handlers into its own
+function called Show Ticket,
+
+32
+00:01:23,740 --> 00:01:25,840
+just like so.
+
+33
+00:01:25,840 --> 00:01:28,270
+Then we'll move that up to the
+top and change our Event
+
+34
+00:01:28,270 --> 00:01:32,790
+Handlers so that the third
+argument is simply that
+
+35
+00:01:32,790 --> 00:01:35,820
+function that we just defined.
+
+36
+00:01:35,820 --> 00:01:37,940
+You'll notice here that even
+though we're passing in a
+
+37
+00:01:37,940 --> 00:01:40,080
+function, we don't put
+parentheses at
+
+38
+00:01:40,080 --> 00:01:40,970
+the end of the name.
+
+39
+00:01:40,970 --> 00:01:44,080
+If we did, it would call the
+function immediately.
+
+40
+00:01:44,080 --> 00:01:46,475
+And we want it to call only when
+the event is triggered.
+
+41
+00:01:46,475 --> 00:01:49,060
+
+
+42
+00:01:49,060 --> 00:01:51,770
+And so now back on our webpage,
+we can see that both
+
+43
+00:01:51,770 --> 00:01:55,050
+of these events still fire
+properly and call that same
+
+44
+00:01:55,050 --> 00:01:58,410
+function, which we defined.
+
+45
+00:01:58,410 --> 00:02:00,000
+Time for you to try this
+in the challenges.

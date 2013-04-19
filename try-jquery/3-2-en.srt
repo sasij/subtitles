@@ -1,0 +1,494 @@
+1
+00:00:00,000 --> 00:00:00,180
+
+
+2
+00:00:00,180 --> 00:00:00,260
+[SINGING]
+
+3
+00:00:00,260 --> 00:00:03,570
+jQuery will help you
+build your dot-com.
+
+4
+00:00:03,570 --> 00:00:07,550
+Find an element inside
+of the DOM.
+
+5
+00:00:07,550 --> 00:00:11,000
+Ajax traversal manipulation.
+
+6
+00:00:11,000 --> 00:00:14,750
+Event handling and animation.
+
+7
+00:00:14,750 --> 00:00:18,370
+Providing you with
+versatility.
+
+8
+00:00:18,370 --> 00:00:20,805
+An API with extensibility.
+
+9
+00:00:20,805 --> 00:00:25,130
+jQuery is something
+you can't ignore.
+
+10
+00:00:25,130 --> 00:00:27,023
+Write less.
+
+11
+00:00:27,023 --> 00:00:28,273
+Do more.
+
+12
+00:00:28,273 --> 00:00:31,370
+
+
+13
+00:00:31,370 --> 00:00:33,870
+I'm Gregg Pollack, and you're
+watching "Try jQuery." This is
+
+14
+00:00:33,870 --> 00:00:36,070
+level three, but we're going
+to be talking about working
+
+15
+00:00:36,070 --> 00:00:39,340
+with the DOM. Let's take a look
+at the web page that we're
+
+16
+00:00:39,340 --> 00:00:40,730
+going to be working with.
+
+17
+00:00:40,730 --> 00:00:42,850
+Here you can vacation
+packages.
+
+18
+00:00:42,850 --> 00:00:45,000
+In this case, a Hawaiian
+vacation.
+
+19
+00:00:45,000 --> 00:00:46,130
+And we have that button.
+
+20
+00:00:46,130 --> 00:00:49,505
+And when we press that button,
+it changes to the price of
+
+21
+00:00:49,505 --> 00:00:50,420
+that Hawaiian Vacation.
+
+22
+00:00:50,420 --> 00:00:55,130
+In this case, $399.99.
+
+23
+00:00:55,130 --> 00:00:57,135
+Let's figure out how to
+write the jQuery to
+
+24
+00:00:57,135 --> 00:00:58,690
+make that button work.
+
+25
+00:00:58,690 --> 00:01:02,370
+So here is the DOM of our web
+page, as you can see.
+
+26
+00:01:02,370 --> 00:01:03,750
+We need to do two things.
+
+27
+00:01:03,750 --> 00:01:06,980
+First, we need to append
+a new DOM node to the
+
+28
+00:01:06,980 --> 00:01:08,820
+bottom with the price.
+
+29
+00:01:08,820 --> 00:01:13,260
+And then secondly, we need to
+remove the button altogether.
+
+30
+00:01:13,260 --> 00:01:14,735
+So how might we do this
+using jQuery?
+
+31
+00:01:14,735 --> 00:01:18,370
+
+
+32
+00:01:18,370 --> 00:01:21,320
+You might notice, here we're
+inside of our application.js,
+
+33
+00:01:21,320 --> 00:01:23,520
+where we're going to write
+all of our jQuery code.
+
+34
+00:01:23,520 --> 00:01:27,150
+And the first thing we start out
+with is our document.ready
+
+35
+00:01:27,150 --> 00:01:29,840
+function, as you see here.
+
+36
+00:01:29,840 --> 00:01:32,190
+Inside of there, the first thing
+we want to do is create
+
+37
+00:01:32,190 --> 00:01:35,310
+a new paragraph with
+the price.
+
+38
+00:01:35,310 --> 00:01:38,530
+So well, one way we could do
+this using JavaScript is we
+
+39
+00:01:38,530 --> 00:01:43,780
+could var price = "from
+$399.00", which is the text.
+
+40
+00:01:43,780 --> 00:01:47,120
+However, we want to create HTML
+here, so you might think
+
+41
+00:01:47,120 --> 00:01:49,900
+that we would just do
+From $399 and wrap
+
+42
+00:01:49,900 --> 00:01:51,500
+that inside of a paragraph.
+
+43
+00:01:51,500 --> 00:01:53,270
+But that still wouldn't
+be right.
+
+44
+00:01:53,270 --> 00:01:55,270
+In this case, we want to create
+a new DOM node by
+
+45
+00:01:55,270 --> 00:02:00,110
+sending the HTML into
+the jQuery function.
+
+46
+00:02:00,110 --> 00:02:02,080
+This will create a DOM
+node and set it equal
+
+47
+00:02:02,080 --> 00:02:03,510
+to the price variable.
+
+48
+00:02:03,510 --> 00:02:07,300
+However, it does not add this
+new node onto the DOM.
+
+49
+00:02:07,300 --> 00:02:09,210
+It's not attached
+anywhere yet.
+
+50
+00:02:09,210 --> 00:02:10,460
+That's going to be
+our next step.
+
+51
+00:02:10,460 --> 00:02:13,210
+
+
+52
+00:02:13,210 --> 00:02:15,510
+Now let's move that price
+variable into our
+
+53
+00:02:15,510 --> 00:02:18,580
+application.js, and there's a
+couple different ways that we
+
+54
+00:02:18,580 --> 00:02:20,310
+can add that node
+into our DOM.
+
+55
+00:02:20,310 --> 00:02:23,740
+We could use the append method,
+the prepend method,
+
+56
+00:02:23,740 --> 00:02:26,480
+the after method, or
+the before method.
+
+57
+00:02:26,480 --> 00:02:28,520
+And we're going to go into
+more detail what each
+
+58
+00:02:28,520 --> 00:02:31,280
+of these would do.
+
+59
+00:02:31,280 --> 00:02:33,450
+First, we need to select a node
+out of our DOM, which
+
+60
+00:02:33,450 --> 00:02:37,230
+will serve as a reference point
+to put our price node,
+
+61
+00:02:37,230 --> 00:02:39,140
+in this case, before.
+
+62
+00:02:39,140 --> 00:02:43,340
+So we're grabbing the vacation
+class element.
+
+63
+00:02:43,340 --> 00:02:47,100
+And then before the vacation
+class, we're adding the price
+
+64
+00:02:47,100 --> 00:02:50,010
+node. This is where I would add
+the paragraph, which in this
+
+65
+00:02:50,010 --> 00:02:52,200
+case, is not what we're
+looking for.
+
+66
+00:02:52,200 --> 00:02:54,820
+So let's try a different
+method.
+
+67
+00:02:54,820 --> 00:02:57,750
+What if we tried adding the
+price after the vacation node?
+
+68
+00:02:57,750 --> 00:03:00,910
+In this case, it would be put
+it down here at the bottom,
+
+69
+00:03:00,910 --> 00:03:04,640
+which is also not what
+we're looking for.
+
+70
+00:03:04,640 --> 00:03:07,150
+We could try using the
+prepend method.
+
+71
+00:03:07,150 --> 00:03:11,030
+In this case, the price node
+would be added as the first
+
+72
+00:03:11,030 --> 00:03:15,280
+child of the LI with
+class vacation.
+
+73
+00:03:15,280 --> 00:03:17,060
+That still is not quite right.
+
+74
+00:03:17,060 --> 00:03:20,430
+In this case, I think what we're
+looking for is append.
+
+75
+00:03:20,430 --> 00:03:24,770
+Append is going to add that
+price node as the last child
+
+76
+00:03:24,770 --> 00:03:26,810
+of our list item.
+
+77
+00:03:26,810 --> 00:03:27,220
+OK.
+
+78
+00:03:27,220 --> 00:03:30,010
+So we're appending the price
+in the right location.
+
+79
+00:03:30,010 --> 00:03:33,040
+The only step left is
+to remove the button
+
+80
+00:03:33,040 --> 00:03:34,760
+node from the DOM.
+
+81
+00:03:34,760 --> 00:03:37,530
+To do this, we simply
+fetch the node and
+
+82
+00:03:37,530 --> 00:03:39,710
+call the remove method.
+
+83
+00:03:39,710 --> 00:03:43,150
+That will remove it
+from the DOM.
+
+84
+00:03:43,150 --> 00:03:46,370
+So now with that code, when we
+load up the page, the DOM is
+
+85
+00:03:46,370 --> 00:03:47,020
+going to load.
+
+86
+00:03:47,020 --> 00:03:50,180
+And as soon as it's loaded,
+it's going to add that
+
+87
+00:03:50,180 --> 00:03:52,130
+paragraph and hide the button.
+
+88
+00:03:52,130 --> 00:03:55,160
+So we're going to see the price
+like you see there.
+
+89
+00:03:55,160 --> 00:03:56,870
+Now obviously, this
+isn't complete.
+
+90
+00:03:56,870 --> 00:03:59,860
+We want to make it so that when
+we click the button, it
+
+91
+00:03:59,860 --> 00:04:02,520
+changes, which we'll get into
+in the next section.
+
+92
+00:04:02,520 --> 00:04:04,190
+And before we get there, there's
+four other methods you
+
+93
+00:04:04,190 --> 00:04:05,790
+should know about.
+
+94
+00:04:05,790 --> 00:04:10,560
+There's the appendTo, prependTo,
+insertAfter, and
+
+95
+00:04:10,560 --> 00:04:12,680
+insertBefore.
+
+96
+00:04:12,680 --> 00:04:14,360
+These methods are different
+because of the
+
+97
+00:04:14,360 --> 00:04:16,029
+order of the syntax.
+
+98
+00:04:16,029 --> 00:04:19,089
+So in this case, if I wanted to
+do the same thing we were
+
+99
+00:04:19,089 --> 00:04:21,860
+doing before with append,
+I would write
+
+100
+00:04:21,860 --> 00:04:25,440
+price.appendTo vacation.
+
+101
+00:04:25,440 --> 00:04:29,610
+So the reference point
+comes at the end.
+
+102
+00:04:29,610 --> 00:04:31,910
+Some people think this
+is more readable.
+
+103
+00:04:31,910 --> 00:04:33,120
+I'll leave it up to you.
+
+104
+00:04:33,120 --> 00:04:34,890
+You can do it anyway you want.
+
+105
+00:04:34,890 --> 00:04:37,100
+And now it's time for you to
+get into the challenges.
+
+106
+00:00:00,000 --> 00:00:00,000
+00:04:37,100 --> 00:04:40,279
+
