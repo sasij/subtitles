@@ -1,0 +1,598 @@
+﻿1
+00:00:00,000 --> 00:00:02,349
+
+
+2
+00:00:02,349 --> 00:00:03,629
+I'm Gregg Pollack and
+you're watching
+
+3
+00:00:03,629 --> 00:00:05,909
+Rails 4, Zombie Outlaws.
+
+4
+00:00:05,909 --> 00:00:07,749
+In this level, we're going
+to be going over strong
+
+5
+00:00:07,749 --> 00:00:11,289
+parameters and remote forms.
+
+6
+00:00:11,289 --> 00:00:13,419
+When building web applications,
+it's important
+
+7
+00:00:13,419 --> 00:00:17,909
+to ensure the malicious users
+can't insert sensitive data
+
+8
+00:00:17,909 --> 00:00:20,969
+into your database by putting
+in form fields
+
+9
+00:00:20,969 --> 00:00:22,469
+like you see here.
+
+10
+00:00:22,469 --> 00:00:25,079
+This is the typical scenario
+where you are creating a new
+
+11
+00:00:25,079 --> 00:00:29,559
+user and someone tries to make
+them an admin user by maybe
+
+12
+00:00:29,559 --> 00:00:33,559
+using dev tools or inspector
+in the browser to add a new
+
+13
+00:00:33,559 --> 00:00:36,949
+field like admin 1.
+
+14
+00:00:36,949 --> 00:00:40,429
+In Rails 3, the model is
+responsible for white listing
+
+15
+00:00:40,429 --> 00:00:44,579
+parameters that get sent in
+from forms using attribute
+
+16
+00:00:44,579 --> 00:00:45,489
+accessible.
+
+17
+00:00:45,489 --> 00:00:48,399
+This allows us to specify which
+attributes can get set
+
+18
+00:00:48,399 --> 00:00:50,629
+by mass assignments like update
+
+19
+00:00:50,629 --> 00:00:53,019
+attributes, as you see here.
+
+20
+00:00:53,019 --> 00:00:56,489
+So with this white list, if we
+sent in the user name, it
+
+21
+00:00:56,489 --> 00:01:01,179
+would work, but if we sent in
+the user name and that admin
+
+22
+00:01:01,179 --> 00:01:03,679
+field, well it wouldn't work.
+
+23
+00:01:03,679 --> 00:01:06,029
+It would cause an error.
+
+24
+00:01:06,029 --> 00:01:08,849
+With Rails 4, we've moved the
+responsibility of white
+
+25
+00:01:08,849 --> 00:01:12,389
+listing parameters from the
+model to the controller.
+
+26
+00:01:12,389 --> 00:01:14,909
+So in the model we no longer
+need to specify attribute
+
+27
+00:01:14,909 --> 00:01:15,739
+accessible.
+
+28
+00:01:15,739 --> 00:01:18,629
+So now in our controller we
+have to specify which
+
+29
+00:01:18,629 --> 00:01:22,959
+parameters are required and
+which are permitted.
+
+30
+00:01:22,959 --> 00:01:24,209
+Let me show you how
+this works.
+
+31
+00:01:24,209 --> 00:01:27,169
+
+
+32
+00:01:27,169 --> 00:01:30,569
+Here's the parameter hash that
+our application is receiving.
+
+33
+00:01:30,569 --> 00:01:34,859
+If our code simply had params
+require user, that's saying
+
+34
+00:01:34,859 --> 00:01:38,079
+that we're requiring the user
+key to be inside of our
+
+35
+00:01:38,079 --> 00:01:39,309
+parameter hash.
+
+36
+00:01:39,309 --> 00:01:41,409
+Require works just like
+a validation.
+
+37
+00:01:41,409 --> 00:01:44,739
+We're validating that the key
+exists and if it does, it's
+
+38
+00:01:44,739 --> 00:01:47,919
+going to simply return an empty
+hash because we haven't
+
+39
+00:01:47,919 --> 00:01:50,359
+allowed any parameters
+to pass through yet.
+
+40
+00:01:50,359 --> 00:01:53,719
+If our parameter hash doesn't
+contain user, it's going to
+
+41
+00:01:53,719 --> 00:01:59,719
+throw an error and return a
+400 status code response.
+
+42
+00:01:59,719 --> 00:02:01,259
+Obviously, we want
+the user name.
+
+43
+00:02:01,259 --> 00:02:04,289
+And this is where the permit
+method comes in.
+
+44
+00:02:04,289 --> 00:02:05,889
+So here's our parameters.
+
+45
+00:02:05,889 --> 00:02:10,209
+If we call params require user
+permit name, it'll validate
+
+46
+00:02:10,209 --> 00:02:14,259
+that the user keyword exists and
+permit the name parameter
+
+47
+00:02:14,259 --> 00:02:15,669
+to pass through.
+
+48
+00:02:15,669 --> 00:02:18,019
+However, if we have a malicious
+user that sends in
+
+49
+00:02:18,019 --> 00:02:20,739
+that admin key you see there,
+the permit method is going to
+
+50
+00:02:20,739 --> 00:02:23,399
+strip out any invalid
+parameters, in this case,
+
+51
+00:02:23,399 --> 00:02:25,354
+admin and only give
+us the name.
+
+52
+00:02:25,354 --> 00:02:28,909
+
+
+53
+00:02:28,909 --> 00:02:32,669
+Permit also filters out invalid
+parameter types.
+
+54
+00:02:32,669 --> 00:02:34,389
+Here's all the parameter
+types that it's going
+
+55
+00:02:34,389 --> 00:02:35,739
+to accept by default.
+
+56
+00:02:35,739 --> 00:02:39,689
+
+
+57
+00:02:39,689 --> 00:02:42,539
+Also by default, all unpermitted
+parameters will
+
+58
+00:02:42,539 --> 00:02:44,149
+get logged.
+
+59
+00:02:44,149 --> 00:02:46,749
+However, if you'd like it to
+raise an exception when this
+
+60
+00:02:46,749 --> 00:02:49,759
+happens, you can edit your
+configuration inside your
+
+61
+00:02:49,759 --> 00:02:51,909
+application.rb and
+set it to raise an
+
+62
+00:02:51,909 --> 00:02:53,399
+error when this happens.
+
+63
+00:02:53,399 --> 00:02:55,999
+For more information about
+strong parameters, check out
+
+64
+00:02:55,999 --> 00:02:57,439
+the link down here.
+
+65
+00:02:57,439 --> 00:03:00,689
+
+
+66
+00:03:00,689 --> 00:03:03,219
+You might find that these new
+strong parameters cause some
+
+67
+00:03:03,219 --> 00:03:06,569
+duplication of code inside
+your controllers, maybe
+
+68
+00:03:06,569 --> 00:03:09,089
+something like this, where we're
+requiring and permitting
+
+69
+00:03:09,089 --> 00:03:12,749
+the same parameters in both our
+create and update methods.
+
+70
+00:03:12,749 --> 00:03:15,549
+One way we can DRY up this code
+is by extracting it into
+
+71
+00:03:15,549 --> 00:03:19,829
+a common method, in this case,
+our user params method.
+
+72
+00:03:19,829 --> 00:03:23,449
+Then inside of our create and
+update methods, we simply call
+
+73
+00:03:23,449 --> 00:03:24,699
+user params.
+
+74
+00:03:24,699 --> 00:03:26,649
+
+
+75
+00:03:26,649 --> 00:03:29,444
+If you still need to use
+attribute protected and
+
+76
+00:03:29,444 --> 00:03:32,259
+attribute accessible inside your
+Rails 4 application, you
+
+77
+00:03:32,259 --> 00:03:35,209
+still can but you're going to
+need to install it as a gem.
+
+78
+00:03:35,209 --> 00:03:37,869
+
+
+79
+00:03:37,869 --> 00:03:40,659
+For a while now, Rails has come
+with good form security
+
+80
+00:03:40,659 --> 00:03:42,969
+and it looks something
+like this.
+
+81
+00:03:42,969 --> 00:03:45,929
+When you generate a form,
+Rails creates a unique
+
+82
+00:03:45,929 --> 00:03:49,019
+authenticity token inside
+of that form.
+
+83
+00:03:49,019 --> 00:03:52,889
+Then when it gets submitted,
+it validates that token and
+
+84
+00:03:52,889 --> 00:03:56,058
+only if it matches, does the
+form properly go through to
+
+85
+00:03:56,058 --> 00:03:56,868
+your Rails app.
+
+86
+00:03:56,868 --> 00:03:59,899
+This way, malicious users don't
+have a token and can't
+
+87
+00:03:59,899 --> 00:04:01,819
+submit form data.
+
+88
+00:04:01,819 --> 00:04:05,649
+This also helps you prevent form
+spam, robots hacking your
+
+89
+00:04:05,649 --> 00:04:09,209
+web pages because they need an
+authenticity token every time
+
+90
+00:04:09,209 --> 00:04:10,499
+they submit that form.
+
+91
+00:04:10,499 --> 00:04:14,329
+They can't just submit the
+form over and over again.
+
+92
+00:04:14,329 --> 00:04:18,259
+In Rails 3, if you have a remote
+form, so remote: true,
+
+93
+00:04:18,259 --> 00:04:22,139
+as in it's going to use Ajax
+for the form, inside of the
+
+94
+00:04:22,139 --> 00:04:24,689
+HTML that it generates, it's
+still going to have the
+
+95
+00:04:24,689 --> 00:04:26,929
+authenticity token
+inside of it.
+
+96
+00:04:26,929 --> 00:04:30,919
+However, the Ajax request isn't
+going to even use it
+
+97
+00:04:30,919 --> 00:04:34,319
+because that same token is
+actually found inside the meta
+
+98
+00:04:34,319 --> 00:04:37,109
+tag on your page and that's
+where the unobtrusive
+
+99
+00:04:37,109 --> 00:04:38,759
+JavaScript that ships
+with Rails is
+
+100
+00:04:38,759 --> 00:04:40,639
+going to read it from.
+
+101
+00:04:40,639 --> 00:04:44,419
+In Rails 4, by default, if we're
+using a remote form, the
+
+102
+00:04:44,419 --> 00:04:48,049
+authenticity token is no longer
+going to be inside of
+
+103
+00:04:48,049 --> 00:04:50,859
+the form HTML that's
+generated for us.
+
+104
+00:04:50,859 --> 00:04:53,529
+This is nicer because for remote
+forms we weren't using
+
+105
+00:04:53,529 --> 00:04:55,979
+it anyways.
+
+106
+00:04:55,979 --> 00:04:58,959
+However, if our browser has
+JavaScript turned off for some
+
+107
+00:04:58,959 --> 00:05:02,859
+reason, the form is no longer
+going to work, but that might
+
+108
+00:05:02,859 --> 00:05:04,219
+not be a big deal to you.
+
+109
+00:05:04,219 --> 00:05:06,709
+However, if this is a big deal
+to you, you can re-enable this
+
+110
+00:05:06,709 --> 00:05:09,799
+authenticity token for remote
+forms by adding this
+
+111
+00:05:09,799 --> 00:05:12,869
+configuration line.
+
+112
+00:05:12,869 --> 00:05:14,209
+So what happens when
+an application
+
+113
+00:05:14,209 --> 00:05:16,379
+gets an invalid token?
+
+114
+00:05:16,379 --> 00:05:18,714
+Well here you can see we're
+sending an invalid token to
+
+115
+00:05:18,714 --> 00:05:22,599
+Rails 3 and by default, it's
+going to reset the session and
+
+116
+00:05:22,599 --> 00:05:25,309
+log this warning.
+
+117
+00:05:25,309 --> 00:05:28,409
+With Rails 4, we've been given a
+little more control over how
+
+118
+00:05:28,409 --> 00:05:30,649
+our application behaves
+when this happens.
+
+119
+00:05:30,649 --> 00:05:32,859
+By default in application.rb,
+we're going to see
+
+120
+00:05:32,859 --> 00:05:35,529
+protect_from_forgery
+with: :exception.
+
+121
+00:05:35,529 --> 00:05:36,409
+This is the default.
+
+122
+00:05:36,409 --> 00:05:39,839
+And of course, it'll raise an
+invalid authenticity token
+
+123
+00:05:39,839 --> 00:05:41,999
+when we receive an
+invalid token.
+
+124
+00:05:41,999 --> 00:05:45,569
+We could also change this to
+:null_session which would empty
+
+125
+00:05:45,569 --> 00:05:48,699
+our session but not trigger
+the error, or we could use
+
+126
+00:05:48,699 --> 00:05:52,359
+:reset_session which will create
+a new session for this
+
+127
+00:05:52,359 --> 00:05:54,099
+user destroying the old one.

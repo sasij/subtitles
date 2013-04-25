@@ -1,0 +1,685 @@
+﻿1
+00:00:00,000 --> 00:00:02,000
+
+
+2
+00:00:02,623 --> 00:00:04,043
+I'm Greg Pollack, and
+you're watching
+
+3
+00:00:04,043 --> 00:00:05,853
+Rails 4: Zombie Outlaws.
+
+4
+00:00:05,853 --> 00:00:08,253
+In this level we're going to
+be going over some new Ruby
+
+5
+00:00:08,253 --> 00:00:11,733
+features that affect rails,
+thread safety, and routes.
+
+6
+00:00:11,733 --> 00:00:14,243
+
+
+7
+00:00:14,243 --> 00:00:18,603
+Rails 3 introduced the match
+keyword to map custom routes.
+
+8
+00:00:18,603 --> 00:00:22,643
+So here, as you can see we're
+mapping a route to a specific
+
+9
+00:00:22,643 --> 00:00:25,083
+controller, in this case the
+items controller, and the
+
+10
+00:00:25,083 --> 00:00:26,523
+purchase action.
+
+11
+00:00:26,523 --> 00:00:29,393
+However, when we use that match
+keyword, it's matching
+
+12
+00:00:29,393 --> 00:00:32,023
+on every HTTP method.
+
+13
+00:00:32,023 --> 00:00:35,143
+So get, post, put, and delete.
+
+14
+00:00:35,143 --> 00:00:37,443
+This leaves us vulnerable
+sometimes to cross site
+
+15
+00:00:37,443 --> 00:00:39,353
+scripting attacks.
+
+16
+00:00:39,353 --> 00:00:42,083
+So here we can see, we have a
+cross site scripting attack
+
+17
+00:00:42,083 --> 00:00:44,783
+where a hacker might have
+embedded this link in a
+
+18
+00:00:44,783 --> 00:00:45,733
+different web page.
+
+19
+00:00:45,733 --> 00:00:48,643
+People click on it and it
+purchases an item, which
+
+20
+00:00:48,643 --> 00:00:50,163
+obviously isn't good.
+
+21
+00:00:50,163 --> 00:00:51,628
+The link is routed through
+a get request.
+
+22
+00:00:51,628 --> 00:00:56,403
+And in our case we want them
+to make this only post.
+
+23
+00:00:56,403 --> 00:00:58,703
+If you had a route like this
+in Rails 4 and you tried to
+
+24
+00:00:58,703 --> 00:01:01,053
+start up your application,
+you're going to get an error
+
+25
+00:01:01,053 --> 00:01:04,403
+that looks like this, Saying
+that you need to specify your
+
+26
+00:01:04,403 --> 00:01:06,103
+HTTP method.
+
+27
+00:01:06,103 --> 00:01:07,883
+So let's go ahead and
+rewrite this.
+
+28
+00:01:07,883 --> 00:01:10,263
+We can specify that this
+is a post request in
+
+29
+00:01:10,263 --> 00:01:11,513
+two different ways.
+
+30
+00:01:11,513 --> 00:01:16,223
+First, by replacing match with
+post or secondly, by using the
+
+31
+00:01:16,223 --> 00:01:21,093
+via keyword and specifying
+via: :post as an option.
+
+32
+00:01:21,093 --> 00:01:23,673
+Additionally, if you did want
+to route to accept all the
+
+33
+00:01:23,673 --> 00:01:27,748
+methods, you could specify via:
+:all for all of the methods.
+
+34
+00:01:27,748 --> 00:01:32,423
+
+
+35
+00:01:32,423 --> 00:01:34,983
+Let's say we have a Rails
+application with resources
+
+36
+00:01:34,983 --> 00:01:36,973
+items in our routes file.
+
+37
+00:01:36,973 --> 00:01:39,333
+Now if we print our routes from
+the command line, they'll
+
+38
+00:01:39,333 --> 00:01:41,794
+look something like this.
+
+39
+00:01:41,794 --> 00:01:45,122
+You'll notice we have that
+put method down there.
+
+40
+00:01:45,122 --> 00:01:48,603
+Well it turns out if we look
+inside the rest specification,
+
+41
+00:01:48,603 --> 00:01:52,023
+the put method requests that
+the entire entity be stored
+
+42
+00:01:52,023 --> 00:01:54,123
+under the supplied URL.
+
+43
+00:01:54,123 --> 00:01:56,613
+That typically means
+the entire request.
+
+44
+00:01:56,613 --> 00:01:58,943
+But in a Rails app, we only
+might be interested in
+
+45
+00:01:58,943 --> 00:02:02,763
+updating parts of
+our resource.
+
+46
+00:02:02,763 --> 00:02:05,893
+That's why in Rails 4, if we
+print our routes, we'll see a
+
+47
+00:02:05,893 --> 00:02:08,383
+new method patch.
+
+48
+00:02:08,383 --> 00:02:11,593
+Patch is for updating
+parts of a resource.
+
+49
+00:02:11,593 --> 00:02:12,893
+This is nothing new.
+
+50
+00:02:12,893 --> 00:02:16,043
+This is something that's existed
+inside the HTTP 1.1
+
+51
+00:02:16,043 --> 00:02:18,948
+specification, we're just
+now using it in Rails.
+
+52
+00:02:18,948 --> 00:02:23,003
+
+
+53
+00:02:23,003 --> 00:02:25,803
+So now when we go to generate
+an update form, we of course
+
+54
+00:02:25,803 --> 00:02:29,463
+use the form_for helper,
+as you see here.
+
+55
+00:02:29,463 --> 00:02:34,383
+An HTML that it generates is
+going to use the patch method.
+
+56
+00:02:34,383 --> 00:02:38,013
+Now, not all browsers support
+the patch method, which is why
+
+57
+00:02:38,013 --> 00:02:41,933
+you can see here that our form
+uses the post method.
+
+58
+00:02:41,933 --> 00:02:46,363
+And then Rails writes out this
+hidden method field, which
+
+59
+00:02:46,363 --> 00:02:48,923
+specifies the value of patch.
+
+60
+00:02:48,923 --> 00:02:52,223
+And of course, when Rails
+receives that request, it sees
+
+61
+00:02:52,223 --> 00:02:56,163
+that hidden method parameter
+and will use patch as the
+
+62
+00:02:56,163 --> 00:02:59,193
+method of our requests.
+
+63
+00:02:59,193 --> 00:03:02,348
+We can also use patch in all
+our controller test.
+
+64
+00:03:02,348 --> 00:03:09,273
+
+
+65
+00:03:09,273 --> 00:03:11,923
+Sometimes a routes files can
+have lots of duplications.
+
+66
+00:03:11,923 --> 00:03:15,003
+As you can see here we have
+messages, posts, and items and
+
+67
+00:03:15,003 --> 00:03:17,343
+they all have comments,
+categories, and
+
+68
+00:03:17,343 --> 00:03:19,933
+tags as nested resources.
+
+69
+00:03:19,933 --> 00:03:22,273
+How might we dry this up?
+
+70
+00:03:22,273 --> 00:03:25,313
+In Rails 4 we can dry this up
+using the concern method.
+
+71
+00:03:25,313 --> 00:03:28,363
+So at the top of a routes file
+we might specify a concern
+
+72
+00:03:28,363 --> 00:03:30,873
+called sociable which contain
+three different resources,
+
+73
+00:03:30,873 --> 00:03:32,983
+comments, categories,
+and tags.
+
+74
+00:03:32,983 --> 00:03:36,093
+To use this concern in our
+resources all we need to do is
+
+75
+00:03:36,093 --> 00:03:39,013
+specify concerns, sociable.
+
+76
+00:03:39,013 --> 00:03:42,653
+The will add our three resources
+under each of them.
+
+77
+00:03:42,653 --> 00:03:45,983
+This of course reads better and
+it's easier to maintain.
+
+78
+00:03:45,983 --> 00:03:49,753
+Sometimes we also might want
+to pass options into our
+
+79
+00:03:49,753 --> 00:03:52,213
+concern block.
+
+80
+00:03:52,213 --> 00:03:54,423
+To do this we add an options
+argument to the
+
+81
+00:03:54,423 --> 00:03:55,923
+block as you see here.
+
+82
+00:03:55,923 --> 00:03:59,263
+Then we need to call our
+concerns inside of a block.
+
+83
+00:03:59,263 --> 00:04:00,913
+And then we can pass
+any arguments in to
+
+84
+00:04:00,913 --> 00:04:02,633
+that options block.
+
+85
+00:04:02,633 --> 00:04:06,073
+In this case, we only want the
+resources under items like
+
+86
+00:04:06,073 --> 00:04:09,983
+comments, categories, and
+tags to be created.
+
+87
+00:04:09,983 --> 00:04:12,793
+To keep our code organized, we
+might want to extract our
+
+88
+00:04:12,793 --> 00:04:15,683
+concerns definition
+into an object.
+
+89
+00:04:15,683 --> 00:04:18,903
+That object will need
+to respond to call.
+
+90
+00:04:18,903 --> 00:04:21,233
+And we can even put it
+in a separate file.
+
+91
+00:04:21,233 --> 00:04:24,003
+So in this case we created
+a class called sociable.
+
+92
+00:04:24,003 --> 00:04:27,203
+This responds to the call method
+and inside of that we
+
+93
+00:04:27,203 --> 00:04:28,453
+map our resources.
+
+94
+00:04:28,453 --> 00:04:31,773
+
+
+95
+00:04:31,773 --> 00:04:35,783
+Back in Ruby 1.8.7, if we called
+ID on nil, it would
+
+96
+00:04:35,783 --> 00:04:38,153
+return the number 4.
+
+97
+00:04:38,153 --> 00:04:42,033
+This is because objects in Ruby
+all have an internal ID.
+
+98
+00:04:42,033 --> 00:04:45,873
+So if you called ID on zero or
+true or false, you'd get back
+
+99
+00:04:45,873 --> 00:04:48,873
+an ID and also a warning.
+
+100
+00:04:48,873 --> 00:04:51,663
+You would get back a warning
+that object ID will be
+
+101
+00:04:51,663 --> 00:04:52,573
+deprecating.
+
+102
+00:04:52,573 --> 00:04:55,433
+Instead you'll want to use
+object ID if you want to get
+
+103
+00:04:55,433 --> 00:04:57,343
+access to this internal ID.
+
+104
+00:04:57,343 --> 00:04:59,973
+So in Ruby 1.9.2 or higher
+versions, we can use this
+
+105
+00:04:59,973 --> 00:05:03,303
+object idea if for some reason
+we want to get access to this
+
+106
+00:05:03,303 --> 00:05:07,573
+internal I.D. However, if we
+call nil.id, it's going to
+
+107
+00:05:07,573 --> 00:05:09,168
+return a no method error.
+
+108
+00:05:09,168 --> 00:05:13,113
+
+
+109
+00:05:13,113 --> 00:05:15,333
+But what does this have
+to do with Rails?
+
+110
+00:05:15,333 --> 00:05:19,113
+Well let's say we're looking
+up a post with a specific
+
+111
+00:05:19,113 --> 00:05:23,663
+title and we return.first
+to get the first post.
+
+112
+00:05:23,663 --> 00:05:26,053
+And it returns nil as
+you can see here.
+
+113
+00:05:26,053 --> 00:05:30,403
+If we call ID on that post, well
+on the previous side we
+
+114
+00:05:30,403 --> 00:05:35,373
+saw that nil did have an ID, but
+in Rails 3 it would return
+
+115
+00:05:35,373 --> 00:05:38,833
+a runtime error, saying that
+you called ID for nil which
+
+116
+00:05:38,833 --> 00:05:41,223
+would mistakenly be 4,
+if you really wanted
+
+117
+00:05:41,223 --> 00:05:43,133
+that use object_id.
+
+118
+00:05:43,133 --> 00:05:46,823
+This error came from the whiny
+nil feature in Rails 3.
+
+119
+00:05:46,823 --> 00:05:51,003
+However, in Rails 4 we have to
+use at least Ruby 1.9.3.
+
+120
+00:05:51,003 --> 00:05:54,883
+So now when we mistakenly call
+ID on nil, it's going to
+
+121
+00:05:54,883 --> 00:05:56,623
+return that same no
+method error.
+
+122
+00:05:56,623 --> 00:05:59,773
+
+
+123
+00:05:59,773 --> 00:06:03,893
+Back in Rails 3, thread safety
+was disabled on production.
+
+124
+00:06:03,893 --> 00:06:06,873
+If you wanted to go into your
+production.rb, you could
+
+125
+00:06:06,873 --> 00:06:10,443
+simply un-comment
+config.threadsafe to make it
+
+126
+00:06:10,443 --> 00:06:11,123
+thread safe.
+
+127
+00:06:11,123 --> 00:06:14,003
+However, in Rails 4 this
+configuration option is
+
+128
+00:06:14,003 --> 00:06:14,993
+deprecated.
+
+129
+00:06:14,993 --> 00:06:17,913
+So if you created a new Rails
+4 app and you looked inside
+
+130
+00:06:17,913 --> 00:06:20,803
+your production.rb, you would
+see two new options which
+
+131
+00:06:20,803 --> 00:06:24,073
+enable thread safety by
+default on production.
+
+132
+00:06:24,073 --> 00:06:27,593
+The first is cache classes
+equals true.
+
+133
+00:06:27,593 --> 00:06:30,563
+This prevents class reloading
+between requests and ensures
+
+134
+00:06:30,563 --> 00:06:33,313
+rack lock is not included
+in the middleware stack.
+
+135
+00:06:33,313 --> 00:06:35,243
+So that your threads
+don't get locked.
+
+136
+00:06:35,243 --> 00:06:37,923
+And our second option is
+eager load equals true.
+
+137
+00:06:37,923 --> 00:06:41,383
+This insures that all of our
+code is loaded before we
+
+138
+00:06:41,383 --> 00:06:44,213
+create new threads
+as we need them.
+
+139
+00:06:44,213 --> 00:06:46,523
+To get the most out of thread
+safety, make sure you're using
+
+140
+00:06:46,523 --> 00:06:48,989
+a multi-threaded server
+like puma.
+
+141
+00:06:48,989 --> 00:06:51,803
+
+
+142
+00:06:51,803 --> 00:06:52,893
+You've reached the
+end of level one.
+
+143
+00:06:52,893 --> 00:06:55,303
+It's time for you to start
+coding up some Rails 4 in the
+
+144
+00:06:55,303 --> 00:06:56,916
+challenges.
+
+145
+00:06:56,916 --> 00:07:05,207
+[GUN SHOT]
+
+146
+00:07:05,232 --> 00:07:08,658
