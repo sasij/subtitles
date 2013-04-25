@@ -1,0 +1,338 @@
+﻿1
+00:00:02,693 --> 00:00:03,983
+I'm Gregg Pollack, and
+you're watching
+
+2
+00:00:03,983 --> 00:00:06,233
+Rails 4, Zombies Outlaws.
+
+3
+00:00:06,233 --> 00:00:08,373
+In this level, we're going to be
+going over some new testing
+
+4
+00:00:08,373 --> 00:00:10,413
+features in Rails 4.
+
+5
+00:00:10,413 --> 00:00:13,063
+In a default Rails 3
+application, here is what the
+
+6
+00:00:13,063 --> 00:00:15,833
+test folder structure
+looks like.
+
+7
+00:00:15,833 --> 00:00:17,783
+It should look familiar.
+
+8
+00:00:17,783 --> 00:00:19,963
+Things have changed a little
+bit in Rails 4.
+
+9
+00:00:19,963 --> 00:00:21,943
+Here's what the test
+folder structure
+
+10
+00:00:21,943 --> 00:00:24,643
+looks like by default.
+
+11
+00:00:24,643 --> 00:00:26,903
+First thing you might notice
+here is that no longer do we
+
+12
+00:00:26,903 --> 00:00:29,703
+have a functional directory.
+
+13
+00:00:29,703 --> 00:00:31,333
+Those were typically
+where we'd put our
+
+14
+00:00:31,333 --> 00:00:32,503
+controller tests, right?
+
+15
+00:00:32,503 --> 00:00:36,773
+So why not call that directory
+controllers, like we are now.
+
+16
+00:00:36,773 --> 00:00:40,473
+We also don't have the unit
+folder anymore, so we're going
+
+17
+00:00:40,473 --> 00:00:43,743
+to take the helpers folder and
+move that up to the top level.
+
+18
+00:00:43,743 --> 00:00:47,173
+Also you might notice that we
+have a models directory.
+
+19
+00:00:47,173 --> 00:00:47,913
+Makes sense.
+
+20
+00:00:47,913 --> 00:00:50,353
+That's typically where we
+put our model tests.
+
+21
+00:00:50,353 --> 00:00:52,763
+We still have the same fixtures
+and integration test
+
+22
+00:00:52,763 --> 00:00:54,883
+folders, and we have
+a new folder,
+
+23
+00:00:54,883 --> 00:00:58,323
+which is just for mailers.
+
+24
+00:00:58,323 --> 00:01:01,263
+To run our tests in Rails 3,
+we would typically run rake
+
+25
+00:01:01,263 --> 00:01:04,013
+test:units to run our unit test
+and rake test:functionals
+
+26
+00:01:04,013 --> 00:01:06,253
+to run our functional tests.
+
+27
+00:01:06,253 --> 00:01:08,753
+But now with the new directory
+structure, this doesn't make a
+
+28
+00:01:08,753 --> 00:01:10,703
+lot of sense anymore.
+
+29
+00:01:10,703 --> 00:01:13,703
+So now we can run rake
+test:models to run all the tests in
+
+30
+00:01:13,703 --> 00:01:16,863
+the models directory, rake
+test:controllers, rake
+
+31
+00:01:16,863 --> 00:01:19,088
+test:helpers, and rake
+test:mailers.
+
+32
+00:01:19,088 --> 00:01:21,883
+The old rake task will still
+work with this new folder
+
+33
+00:01:21,883 --> 00:01:24,153
+structure running the
+appropriate tests.
+
+34
+00:01:24,153 --> 00:01:27,523
+However, these new commands will
+only work with the new
+
+35
+00:01:27,523 --> 00:01:28,958
+folder structure, obviously.
+
+36
+00:01:31,483 --> 00:01:34,863
+Let's say we create a new
+migration for Rails app, like
+
+37
+00:01:34,863 --> 00:01:38,283
+so, but we don't run
+that migration.
+
+38
+00:01:38,283 --> 00:01:41,933
+If we then go and run an
+individual test, like you see
+
+39
+00:01:41,933 --> 00:01:45,693
+here in Rails 3, it's going to
+go ahead and execute it.
+
+40
+00:01:45,693 --> 00:01:47,283
+No warnings, no nothing.
+
+41
+00:01:47,283 --> 00:01:48,763
+It's going to run the test.
+
+42
+00:01:48,763 --> 00:01:51,403
+The test might pass or it might
+break because we haven't
+
+43
+00:01:51,403 --> 00:01:53,003
+run that migration.
+
+44
+00:01:53,003 --> 00:01:56,243
+Luckily in Rails 4, by default,
+if we have migrations
+
+45
+00:01:56,243 --> 00:01:59,683
+we haven't run yet, and we try
+to run an individual test,
+
+46
+00:01:59,683 --> 00:02:02,633
+it's going to give us a pending
+migration error, as
+
+47
+00:02:02,633 --> 00:02:04,943
+you see here.
+
+48
+00:02:04,943 --> 00:02:07,793
+The reason for this default
+behavior Rails 4 is that if
+
+49
+00:02:07,793 --> 00:02:11,063
+you look inside your
+test_helper.rb, you'll see
+
+50
+00:02:11,063 --> 00:02:14,343
+this line at the top that says
+"check pending." so that means
+
+51
+00:02:14,343 --> 00:02:16,533
+every time you try to run a
+test, it's going to check for
+
+52
+00:02:16,533 --> 00:02:20,073
+any pending migrations.
+
+53
+00:02:20,073 --> 00:02:23,973
+Rails 3 by default shipped
+with performance testing.
+
+54
+00:02:23,973 --> 00:02:26,005
+Bet you didn't know that.
+
+55
+00:02:26,005 --> 00:02:29,303
+But in Rails 4, they
+took it out.
+
+56
+00:02:29,303 --> 00:02:33,493
+But those of you did use this
+feature, all two of you, you
+
+57
+00:02:33,493 --> 00:02:38,193
+can reinstall it by adding it
+to gem file, running bundle,
+
+58
+00:02:38,193 --> 00:02:41,125
+and then you can generate your
+performance tests this way.
+
+59
+00:02:45,063 --> 00:02:49,073
+The default testing framework
+in Rails 4 is now MiniTest.
+
+60
+00:02:49,073 --> 00:02:50,773
+It used to be Test Unit.
+
+61
+00:02:50,773 --> 00:02:53,873
+But don't worry, the syntax
+hasn't changed.
+
+62
+00:02:53,873 --> 00:02:56,283
+This new library is a little bit
+more lighter weight, and
+
+63
+00:02:56,283 --> 00:02:58,427
+it uses the same API.
+
+64
+00:03:01,093 --> 00:03:04,543
+There is one nice new feature
+in MiniTest, though.
+
+65
+00:03:04,543 --> 00:03:08,283
+If we're in our test file here,
+and want to skip a test
+
+66
+00:03:08,283 --> 00:03:10,653
+for some reason, we can
+simply add the skip
+
+67
+00:03:10,653 --> 00:03:14,053
+keyword, as you see here.
+
+68
+00:03:14,053 --> 00:03:17,003
+Another feature of MiniTest is
+that we can specify test
+
+69
+00:03:17,003 --> 00:03:20,753
+options where we're using the
+verbose option, which is going
+
+70
+00:03:20,753 --> 00:03:25,293
+to show runtime and skip status
+for each of our tests.
+
+71
+00:03:25,293 --> 00:03:28,173
+This can be really useful if you
+need to track down a slow
+
+72
+00:03:28,173 --> 00:03:29,743
+test in your test suite.
