@@ -1,0 +1,632 @@
+﻿1
+00:00:00,000 --> 00:00:01,864
+
+
+2
+00:00:01,864 --> 00:00:03,720
+I'm Carlos Souza and
+you're watching
+
+3
+00:00:03,720 --> 00:00:05,900
+Rails 4, Zombie Outlaws.
+
+4
+00:00:05,900 --> 00:00:08,660
+In this level, we're going to
+be looking at more additions
+
+5
+00:00:08,660 --> 00:00:12,470
+to active record and
+active model.
+
+6
+00:00:12,470 --> 00:00:15,640
+Back in Rails 3, one way you
+could write scopes was by
+
+7
+00:00:15,640 --> 00:00:18,950
+passing your relation to either
+scope or default scope,
+
+8
+00:00:18,950 --> 00:00:22,220
+which was known as eager
+evaluated scopes.
+
+9
+00:00:22,220 --> 00:00:24,570
+They're now deprecated
+in Rails 4.
+
+10
+00:00:24,570 --> 00:00:27,010
+If you try using them, you're
+going to come across this
+
+11
+00:00:27,010 --> 00:00:28,260
+deprecation warning.
+
+12
+00:00:28,260 --> 00:00:31,080
+
+
+13
+00:00:31,080 --> 00:00:34,170
+You should now use the proc
+object syntax instead.
+
+14
+00:00:34,170 --> 00:00:36,970
+And for the default scope, you
+can either pass in a proc
+
+15
+00:00:36,970 --> 00:00:38,220
+object or a block.
+
+16
+00:00:38,220 --> 00:00:42,220
+
+
+17
+00:00:42,220 --> 00:00:44,480
+To understand the reason behind
+these deprecations,
+
+18
+00:00:44,480 --> 00:00:46,380
+let's take a look at
+the following code.
+
+19
+00:00:46,380 --> 00:00:49,310
+Here, we're passing a condition
+to the scope where
+
+20
+00:00:49,310 --> 00:00:51,580
+we have a date inside.
+
+21
+00:00:51,580 --> 00:00:54,620
+The issue here is that two weeks
+ago is only going to be
+
+22
+00:00:54,620 --> 00:00:57,820
+resolved when the class is
+loaded and not every time that
+
+23
+00:00:57,820 --> 00:01:01,520
+we run this query so the
+date will never change.
+
+24
+00:01:01,520 --> 00:01:04,560
+In the second example, although
+the first scope for
+
+25
+00:01:04,560 --> 00:01:07,700
+recent is correct, the fact that
+we're using the second
+
+26
+00:01:07,700 --> 00:01:11,410
+scope with the relation and
+calling the recent on that
+
+27
+00:01:11,410 --> 00:01:14,070
+which is forcing the previous
+scope to be resolved and,
+
+28
+00:01:14,070 --> 00:01:17,900
+again, forcing two weeks ago
+to always be the same date.
+
+29
+00:01:17,900 --> 00:01:21,480
+And that's why in Rails 4, you
+should always use the proc
+
+30
+00:01:21,480 --> 00:01:23,095
+object as an argument
+to scopes.
+
+31
+00:01:23,095 --> 00:01:25,980
+
+
+32
+00:01:25,980 --> 00:01:28,580
+Now let's take a look at a
+Users model that has a
+
+33
+00:01:28,580 --> 00:01:32,070
+visible post method that returns
+a collection of posts
+
+34
+00:01:32,070 --> 00:01:34,520
+based on the user role.
+
+35
+00:01:34,520 --> 00:01:37,630
+So when the user is a country
+manager or reviewer, it's
+
+36
+00:01:37,630 --> 00:01:39,710
+returning a subset
+of the post.
+
+37
+00:01:39,710 --> 00:01:43,660
+However, when it's a bad user,
+we're using an empty array to
+
+38
+00:01:43,660 --> 00:01:45,240
+represent an empty collection.
+
+39
+00:01:45,240 --> 00:01:48,310
+So the problem here is that if
+visible post return an empty
+
+40
+00:01:48,310 --> 00:01:51,490
+array, and then we try to call
+recent on that, we're going to
+
+41
+00:01:51,490 --> 00:01:54,400
+run into a no method error
+because there's no method
+
+42
+00:01:54,400 --> 00:01:55,650
+recent for an array.
+
+43
+00:01:55,650 --> 00:01:58,380
+
+
+44
+00:01:58,380 --> 00:02:01,990
+One way you can fix this is by
+checking the return value from
+
+45
+00:02:01,990 --> 00:02:03,370
+visible posts.
+
+46
+00:02:03,370 --> 00:02:06,050
+If there's any element on the
+return that we get from
+
+47
+00:02:06,050 --> 00:02:09,070
+visible post, then we' go
+ahead and call recent.
+
+48
+00:02:09,070 --> 00:02:12,930
+Otherwise, we, again, return
+an empty array just to make
+
+49
+00:02:12,930 --> 00:02:17,440
+sure that the caller for this
+code doesn't also break.
+
+50
+00:02:17,440 --> 00:02:19,450
+So this code isn't
+looking too good.
+
+51
+00:02:19,450 --> 00:02:22,590
+Let's see how we can solve
+this in Rails 4 using the
+
+52
+00:02:22,590 --> 00:02:26,750
+Post.none method that returns an
+active record relation and
+
+53
+00:02:26,750 --> 00:02:28,570
+never hits the database.
+
+54
+00:02:28,570 --> 00:02:31,960
+So in this case, we can remove
+all the conditionals and
+
+55
+00:02:31,960 --> 00:02:34,510
+simply call recent
+on the result.
+
+56
+00:02:34,510 --> 00:02:37,600
+Here's the possible outcomes
+for the visible post method
+
+57
+00:02:37,600 --> 00:02:39,940
+and we can see here that at the
+end it's obviously calling
+
+58
+00:02:39,940 --> 00:02:43,760
+post.none.recent which will
+return an empty collection.
+
+59
+00:02:43,760 --> 00:02:46,870
+Every method that we call on
+this chain will never hit the
+
+60
+00:02:46,870 --> 00:02:51,370
+database because we've
+called post.none.
+
+61
+00:02:51,370 --> 00:02:55,550
+In Rails 3, if wanted a query
+for all posts where the author
+
+62
+00:02:55,550 --> 00:02:58,550
+was not equal to the one that
+we're passing as an argument,
+
+63
+00:02:58,550 --> 00:03:01,570
+we could write something like
+this which works fine for most
+
+64
+00:03:01,570 --> 00:03:04,900
+of the values that we pass
+in except where it's nil.
+
+65
+00:03:04,900 --> 00:03:07,570
+When the author is nil, it's
+actually going to generate
+
+66
+00:03:07,570 --> 00:03:11,110
+this incorrect SQL syntax which
+will now blow up but
+
+67
+00:03:11,110 --> 00:03:14,190
+will return an incorrect
+result.
+
+68
+00:03:14,190 --> 00:03:18,090
+As a workaround, we can check
+for the value of author and if
+
+69
+00:03:18,090 --> 00:03:21,940
+it's nil, then we write
+the proper SQL syntax.
+
+70
+00:03:21,940 --> 00:03:25,410
+In Rails 4, we can use the not
+method which will negate the
+
+71
+00:03:25,410 --> 00:03:28,560
+query and will automatically
+check for when the author is
+
+72
+00:03:28,560 --> 00:03:31,240
+nil and it will generate
+the proper SQL syntax.
+
+73
+00:03:31,240 --> 00:03:35,520
+
+
+74
+00:03:35,520 --> 00:03:38,470
+Here we have a User model with
+the default scope that orders
+
+75
+00:03:38,470 --> 00:03:40,260
+the results by name.
+
+76
+00:03:40,260 --> 00:03:43,600
+If we wanted to call order
+again, which do you think
+
+77
+00:03:43,600 --> 00:03:44,850
+would take precedence?
+
+78
+00:03:44,850 --> 00:03:47,360
+
+
+79
+00:03:47,360 --> 00:03:50,910
+Turns out that in Rails 3, the
+first call to order, in this
+
+80
+00:03:50,910 --> 00:03:53,630
+case the one that's found in
+the default scope, takes
+
+81
+00:03:53,630 --> 00:03:54,890
+precedence.
+
+82
+00:03:54,890 --> 00:03:57,950
+Any additional calls to order
+will get appended to the end
+
+83
+00:03:57,950 --> 00:03:59,370
+of the SQL statement.
+
+84
+00:03:59,370 --> 00:04:01,920
+In Rails 4, this behavior's
+changed.
+
+85
+00:04:01,920 --> 00:04:03,460
+Now it's reversed.
+
+86
+00:04:03,460 --> 00:04:05,740
+New calls to order will
+take precedence
+
+87
+00:04:05,740 --> 00:04:09,160
+over existing calls.
+
+88
+00:04:09,160 --> 00:04:12,180
+In Rails 3, if you wanted to
+specify that an order was
+
+89
+00:04:12,180 --> 00:04:15,810
+descending, you would have to
+pass a SQL string like this.
+
+90
+00:04:15,810 --> 00:04:19,870
+In Rails 4, now you
+can pass a hash.
+
+91
+00:04:19,870 --> 00:04:22,010
+So this is the SQL that
+it generates.
+
+92
+00:04:22,010 --> 00:04:26,690
+Notice that the default sorting
+for name is ascending.
+
+93
+00:04:26,690 --> 00:04:30,380
+Also in Rails 4, order can
+now simply take a hash.
+
+94
+00:04:30,380 --> 00:04:32,920
+In this case, created at
+desc will generate
+
+95
+00:04:32,920 --> 00:04:34,170
+the following SQL.
+
+96
+00:04:34,170 --> 00:04:37,490
+
+
+97
+00:04:37,490 --> 00:04:39,510
+Let's look at the following
+scenario.
+
+98
+00:04:39,510 --> 00:04:43,010
+Say we wanted to query for posts
+and also include their
+
+99
+00:04:43,010 --> 00:04:47,180
+comments, however, we wanted to
+filter the posts for where
+
+100
+00:04:47,180 --> 00:04:52,160
+their comments had the name
+equal to the string 'foo'.
+
+101
+00:04:52,160 --> 00:04:55,500
+This code in Rails 4 shows a
+deprecation warning because
+
+102
+00:04:55,500 --> 00:04:59,920
+Rails has to look inside of that
+SQL string to figure out
+
+103
+00:04:59,920 --> 00:05:01,740
+what table this refers to.
+
+104
+00:05:01,740 --> 00:05:04,290
+This code is brittle and
+it's not guaranteed
+
+105
+00:05:04,290 --> 00:05:05,640
+to work in the future.
+
+106
+00:05:05,640 --> 00:05:08,980
+In Rails 4, you must use the
+references method to
+
+107
+00:05:08,980 --> 00:05:11,110
+explicitly tell when you're
+referencing a
+
+108
+00:05:11,110 --> 00:05:12,530
+table from a string.
+
+109
+00:05:12,530 --> 00:05:14,400
+In this case, you're referencing
+comments.
+
+110
+00:05:14,400 --> 00:05:17,340
+
+
+111
+00:05:17,340 --> 00:05:20,830
+Some cases do not require us to
+use the references method,
+
+112
+00:05:20,830 --> 00:05:25,160
+for example, when we're using
+hash based conditions.
+
+113
+00:05:25,160 --> 00:05:27,480
+And in this case over here,
+we're not using any
+
+114
+00:05:27,480 --> 00:05:28,250
+conditions.
+
+115
+00:05:28,250 --> 00:05:30,230
+We're simply ordering
+the results.
+
+116
+00:05:30,230 --> 00:05:34,090
+So we don't have to use
+the references method.
+
+117
+00:05:34,090 --> 00:05:37,310
+Back in Rails 3, active model
+was introduced, which pretty
+
+118
+00:05:37,310 --> 00:05:40,600
+much allowed us to treat any
+Ruby class like an active
+
+119
+00:05:40,600 --> 00:05:43,770
+record object without
+necessarily having a database
+
+120
+00:05:43,770 --> 00:05:45,280
+table behind it.
+
+121
+00:05:45,280 --> 00:05:48,080
+In this example, we have the
+support ticket class.
+
+122
+00:05:48,080 --> 00:05:51,640
+And by mixing in certain modules
+from active model, we
+
+123
+00:05:51,640 --> 00:05:54,640
+can treat objects from this
+class like an active record
+
+124
+00:05:54,640 --> 00:05:58,480
+object and use it in form
+helpers and also call methods
+
+125
+00:05:58,480 --> 00:06:03,050
+like valid, errors, and
+to param on them.
+
+126
+00:06:03,050 --> 00:06:07,630
+In Rails 4, we can include the
+ActiveModel::Model module--
+
+127
+00:06:07,630 --> 00:06:11,830
+yes, ActiveModel::Model which
+will basically mix in the same
+
+128
+00:06:11,830 --> 00:06:14,890
+modules that we saw before,
+but obviously,
+
+129
+00:06:14,890 --> 00:06:16,300
+writing a lot less code.
+
+130
+00:06:16,300 --> 00:06:18,730
+And if we look inside of that
+module, we can see that the
+
+131
+00:06:18,730 --> 00:06:21,100
+implementation is pretty
+straightforward.
+
+132
+00:06:21,100 --> 00:06:23,310
+It simply includes the
+module that we saw in
+
+133
+00:06:23,310 --> 00:06:24,560
+the previous slide.

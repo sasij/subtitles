@@ -1,0 +1,337 @@
+﻿1
+00:00:00,000 --> 00:00:01,892
+
+
+2
+00:00:01,892 --> 00:00:02,128
+[SINGING]
+
+3
+00:00:02,128 --> 00:00:05,780
+Wanted and captured without
+bail, locked and forgotten in
+
+4
+00:00:05,780 --> 00:00:06,175
+a rusty jail.
+
+5
+00:00:06,175 --> 00:00:08,430
+Zombies attacked, the
+townsfolk fled.
+
+6
+00:00:08,430 --> 00:00:10,390
+Those who were left
+became the undead.
+
+7
+00:00:10,390 --> 00:00:12,350
+He's the zombie outlaw.
+
+8
+00:00:12,350 --> 00:00:14,310
+He's the zombie outlaw.
+
+9
+00:00:14,310 --> 00:00:18,230
+And he's fighting the law
+that left him for dead,
+
+10
+00:00:18,230 --> 00:00:21,660
+for dead, for dead.
+
+11
+00:00:21,660 --> 00:00:27,070
+
+
+12
+00:00:27,070 --> 00:00:30,010
+My name is Carlo Souza, and
+you're watching Rails 4,
+
+13
+00:00:30,010 --> 00:00:32,689
+Zombie Outlaws. In this level,
+we're going to be
+
+14
+00:00:32,689 --> 00:00:35,330
+looking at views.
+
+15
+00:00:35,330 --> 00:00:38,580
+Say we have an Owner class
+which has many items.
+
+16
+00:00:38,580 --> 00:00:41,440
+And each item obviously
+belongs to an owner.
+
+17
+00:00:41,440 --> 00:00:45,180
+In Rails 3 and 4, if you wanted
+to build a Select box
+
+18
+00:00:45,180 --> 00:00:48,350
+for owners, you could do it
+with a single method call,
+
+19
+00:00:48,350 --> 00:00:50,920
+just by passing the collection
+of owners.
+
+20
+00:00:50,920 --> 00:00:53,620
+We can do this using the
+Collection Select method, as
+
+21
+00:00:53,620 --> 00:00:55,220
+you can see it over here.
+
+22
+00:00:55,220 --> 00:00:58,640
+But what if we need radio
+buttons or check boxes?
+
+23
+00:00:58,640 --> 00:01:02,120
+Well in Rails 3, if you wanted
+to do this, we needed a loop
+
+24
+00:01:02,120 --> 00:01:07,710
+and build each of the individual
+HTML elements.
+
+25
+00:01:07,710 --> 00:01:10,920
+Now in Rails 4, we have the
+collection_radio_button
+
+26
+00:01:10,920 --> 00:01:14,270
+methods that behave just like
+the collection_select and
+
+27
+00:01:14,270 --> 00:01:15,980
+takes the same arguments.
+
+28
+00:01:15,980 --> 00:01:18,920
+Also, if you have the
+many-to-many relationship, you
+
+29
+00:01:18,920 --> 00:01:22,300
+could use the collection_check_boxes
+method to dynamically
+
+30
+00:01:22,300 --> 00:01:26,120
+build check boxes
+for your models.
+
+31
+00:01:26,120 --> 00:01:29,300
+At some point, you might used
+the date_select form helper
+
+32
+00:01:29,300 --> 00:01:31,800
+that generates a set of select
+boxes that looks
+
+33
+00:01:31,800 --> 00:01:33,210
+something like this.
+
+34
+00:01:33,210 --> 00:01:35,770
+The HTML behind them, it's
+kind of verbose.
+
+35
+00:01:35,770 --> 00:01:38,360
+And he uses three individual
+arguments to
+
+36
+00:01:38,360 --> 00:01:39,550
+represent the date--
+
+37
+00:01:39,550 --> 00:01:42,915
+one for the year, one for the
+month, and one for the day.
+
+38
+00:01:42,915 --> 00:01:46,130
+
+
+39
+00:01:46,130 --> 00:01:49,860
+Rails 4 now, gives us the Date
+Field form helper, which
+
+40
+00:01:49,860 --> 00:01:53,190
+generates a much better
+looking HTML element.
+
+41
+00:01:53,190 --> 00:01:56,200
+Notice that uses the type
+"date." And since it uses a
+
+42
+00:01:56,200 --> 00:01:58,950
+single HTML element to represent
+the date, it also
+
+43
+00:01:58,950 --> 00:02:02,780
+returns a single parameter
+to our application.
+
+44
+00:02:02,780 --> 00:02:07,310
+If you're using a browser that
+supports this HTML5 type date,
+
+45
+00:02:07,310 --> 00:02:09,009
+then you're going to see
+a calendar that looks
+
+46
+00:02:09,009 --> 00:02:10,820
+something like this.
+
+47
+00:02:10,820 --> 00:02:13,610
+Otherwise, if your browser
+doesn't support this type,
+
+48
+00:02:13,610 --> 00:02:15,960
+then you're going to fall back
+to a text field that looks
+
+49
+00:02:15,960 --> 00:02:17,160
+something like this.
+
+50
+00:02:17,160 --> 00:02:20,250
+So for now, it's best to stick
+with a third-party library,
+
+51
+00:02:20,250 --> 00:02:24,550
+like jQuery-ui Date Picker,
+for example.
+
+52
+00:02:24,550 --> 00:02:26,740
+Now let's take a look at this
+Index action from our
+
+53
+00:02:26,740 --> 00:02:30,360
+controller that uses the Respond
+To block to return an
+
+54
+00:02:30,360 --> 00:02:34,480
+HTML or JSON response based
+on the request.
+
+55
+00:02:34,480 --> 00:02:37,780
+If a request comes in asking
+for JSON, this is what a
+
+56
+00:02:37,780 --> 00:02:39,440
+response would look like.
+
+57
+00:02:39,440 --> 00:02:42,640
+But what if you need to
+customize this JSON response?
+
+58
+00:02:42,640 --> 00:02:44,750
+Well, one way to do
+it is to use the
+
+59
+00:02:44,750 --> 00:02:46,600
+Jbuilder template handler.
+
+60
+00:02:46,600 --> 00:02:50,360
+This way, we can use the
+Jbuilder API to build our
+
+61
+00:02:50,360 --> 00:02:52,810
+custom JSON structure that gets
+
+62
+00:02:52,810 --> 00:02:54,540
+returned from the request.
+
+63
+00:02:54,540 --> 00:02:57,470
+In this case, here's what the
+output would look like.
+
+64
+00:02:57,470 --> 00:03:02,300
+
+
+65
+00:03:02,300 --> 00:03:05,970
+Rails 4 now gives us another
+template handler that allows
+
+66
+00:03:05,970 --> 00:03:07,510
+us to write pure Ruby.
+
+67
+00:03:07,510 --> 00:03:10,760
+In this case, we're using Ruby
+to build what our response
+
+68
+00:03:10,760 --> 00:03:11,480
+could look like.
+
+69
+00:03:11,480 --> 00:03:15,370
+And we're explicitly calling
+to JSON on our collection.
+
+70
+00:03:15,370 --> 00:03:18,380
+In order to use the Ruby
+template handler, all you have
+
+71
+00:03:18,380 --> 00:03:22,420
+to do is to add the .ruby
+extension to your view file.
+
+72
+00:03:22,420 --> 00:03:24,530
+And here's how the output
+would look like.

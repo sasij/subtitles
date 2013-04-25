@@ -1,0 +1,588 @@
+﻿1
+00:00:00,000 --> 00:00:01,880
+
+
+2
+00:00:01,880 --> 00:00:02,350
+[SINGING]
+
+3
+00:00:02,350 --> 00:00:05,650
+Wanted and captured without
+bail, locked and forgotten in
+
+4
+00:00:05,650 --> 00:00:06,638
+a rusty jail.
+
+5
+00:00:06,638 --> 00:00:09,108
+Zombies attacking, the
+townsfolk fled.
+
+6
+00:00:09,108 --> 00:00:10,096
+Those who were left
+became the undead.
+
+7
+00:00:10,590 --> 00:00:12,566
+He's a zombie outlaw.
+
+8
+00:00:12,566 --> 00:00:14,048
+He's a zombie outlaw.
+
+9
+00:00:14,048 --> 00:00:18,494
+And he's hunting the law
+that left him for dead,
+
+10
+00:00:18,494 --> 00:00:21,458
+for dead, for dead.
+
+11
+00:00:21,458 --> 00:00:26,892
+
+
+12
+00:00:26,892 --> 00:00:28,890
+I'm Carlos Souza, and
+you're watching
+
+13
+00:00:28,890 --> 00:00:30,940
+Rails 4: Zombie Outlaws.
+
+14
+00:00:30,940 --> 00:00:33,600
+In this level, we're going to be
+talking about active record
+
+15
+00:00:33,600 --> 00:00:36,970
+and active model.
+
+16
+00:00:36,970 --> 00:00:39,720
+So back in previous versions
+of Rails, you might have
+
+17
+00:00:39,720 --> 00:00:44,040
+gotten used to writing the old
+style finders, say, using
+
+18
+00:00:44,040 --> 00:00:48,140
+Post.find and then specifying
+that you want to find all and
+
+19
+00:00:48,140 --> 00:00:50,510
+then passing a hash with
+the conditions.
+
+20
+00:00:50,510 --> 00:00:53,760
+These old style finders are now
+deprecating and you should
+
+21
+00:00:53,760 --> 00:00:57,040
+just use the active relation
+API instead.
+
+22
+00:00:57,040 --> 00:01:01,530
+Rewriting that to Post.where
+author is admin.
+
+23
+00:01:01,530 --> 00:01:04,420
+If you really need to use the
+old style finders, then you
+
+24
+00:01:04,420 --> 00:01:07,230
+can still use them through the
+activerecord-deprecated_finders
+
+25
+00:01:07,230 --> 00:01:08,480
+gem.
+
+26
+00:01:08,480 --> 00:01:10,730
+
+
+27
+00:01:10,730 --> 00:01:13,670
+Dynamic finders that return
+collections are also
+
+28
+00:01:13,670 --> 00:01:14,910
+deprecated.
+
+29
+00:01:14,910 --> 00:01:17,770
+In this example, we're using the
+magic finder
+
+30
+00:01:17,770 --> 00:01:20,270
+find_all_by_title and passing a
+single argument.
+
+31
+00:01:21,010 --> 00:01:24,110
+Instead, we should just use
+the active relation API
+
+32
+00:01:24,110 --> 00:01:26,580
+post.where title equals Rails.
+
+33
+00:01:26,580 --> 00:01:30,530
+The same thing for
+find_last_by_author in this case.
+
+34
+00:01:30,530 --> 00:01:34,240
+You should just use the active
+relation query specifying the
+
+35
+00:01:34,240 --> 00:01:35,490
+last element.
+
+36
+00:01:35,490 --> 00:01:39,050
+
+
+37
+00:01:39,050 --> 00:01:41,880
+Dynamic finders that take a
+single argument are not
+
+38
+00:01:41,880 --> 00:01:43,170
+deprecated.
+
+39
+00:01:43,170 --> 00:01:47,970
+In this example, find_by_title
+will work fine in Rails 4.
+
+40
+00:01:47,970 --> 00:01:51,140
+However, there's a new way to
+do this query using the new
+
+41
+00:01:51,140 --> 00:01:54,910
+find_by method that takes a hash
+as an argument, which is
+
+42
+00:01:54,910 --> 00:01:57,440
+now the preferred
+way to do this.
+
+43
+00:01:57,440 --> 00:02:01,090
+Dynamic find_by finders that
+take a conditions hash are now
+
+44
+00:02:01,090 --> 00:02:02,530
+deprecated.
+
+45
+00:02:02,530 --> 00:02:06,400
+In this example, using the
+find_by_title passing the hash
+
+46
+00:02:06,400 --> 00:02:09,860
+as the second argument is not
+supported in Rails 4.
+
+47
+00:02:09,860 --> 00:02:12,740
+And again, you should use the
+find_by method passing the
+
+48
+00:02:12,740 --> 00:02:14,000
+single hash as an argument.
+
+49
+00:02:14,000 --> 00:02:17,200
+
+
+50
+00:02:17,200 --> 00:02:19,800
+Another reason why you should
+prefer the find_by method is
+
+51
+00:02:19,800 --> 00:02:22,610
+because it allows dynamic
+input more easily.
+
+52
+00:02:22,610 --> 00:02:25,610
+In this case, we could get the
+post params back from some
+
+53
+00:02:25,610 --> 00:02:30,150
+other method and pass it down
+to the find_by method.
+
+54
+00:02:30,150 --> 00:02:32,270
+And if you look at the
+implementation of the find by
+
+55
+00:02:32,270 --> 00:02:35,860
+method, you'll notice that
+find by is only a wrapper
+
+56
+00:02:35,860 --> 00:02:40,160
+around the where method that
+returns the first occurrence.
+
+57
+00:02:40,160 --> 00:02:42,880
+So find by takes pretty
+much the same
+
+58
+00:02:42,880 --> 00:02:44,460
+arguments that where does.
+
+59
+00:02:44,460 --> 00:02:48,170
+
+
+60
+00:02:48,170 --> 00:02:51,590
+Lastly, dynamic finders that
+create new records are also
+
+61
+00:02:51,590 --> 00:02:52,540
+deprecated.
+
+62
+00:02:52,540 --> 00:02:56,440
+In this example, find_or_
+initialize_by_title or
+
+63
+00:02:56,440 --> 00:02:59,910
+find_or_create_by_title were both
+deprecated in favor of the new
+
+64
+00:02:59,910 --> 00:03:04,330
+find_or_initialize_by and
+find_or_create_by methods that
+
+65
+00:03:04,330 --> 00:03:06,350
+both take a hash
+as an argument.
+
+66
+00:03:06,350 --> 00:03:13,960
+
+
+67
+00:03:13,960 --> 00:03:16,210
+There's yet another alternative
+to this method
+
+68
+00:03:16,210 --> 00:03:19,850
+introducing Rails 3, however,
+there's a couple of gotchas
+
+69
+00:03:19,850 --> 00:03:20,870
+with this alternative.
+
+70
+00:03:20,870 --> 00:03:23,010
+Let's take a look
+at an example.
+
+71
+00:03:23,010 --> 00:03:25,720
+Here, we're calling
+first or create on
+
+72
+00:03:25,720 --> 00:03:27,270
+the return of a query.
+
+73
+00:03:27,270 --> 00:03:30,200
+What's going to happen here is
+that if there's no existing
+
+74
+00:03:30,200 --> 00:03:32,870
+post with the title of
+Rails 4, then it'll
+
+75
+00:03:32,870 --> 00:03:34,420
+create a new post.
+
+76
+00:03:34,420 --> 00:03:37,330
+However, if you happen to have
+any call backs defined for
+
+77
+00:03:37,330 --> 00:03:42,210
+create, say, after you create,
+any query that runs on that
+
+78
+00:03:42,210 --> 00:03:45,960
+same model will run within
+the context of the scope.
+
+79
+00:03:45,960 --> 00:03:48,390
+In this case, we're querying
+for all posts
+
+80
+00:03:48,390 --> 00:03:50,220
+where author is admin.
+
+81
+00:03:50,220 --> 00:03:53,710
+However, this query is going to
+run within the context of
+
+82
+00:03:53,710 --> 00:03:56,620
+the initial query so it's
+actually going to select all
+
+83
+00:03:56,620 --> 00:04:01,010
+posts where author equals admin
+and title equals Rails
+
+84
+00:04:01,010 --> 00:04:03,100
+4, which is kind of an
+unexpected behavior.
+
+85
+00:04:03,100 --> 00:04:05,650
+
+
+86
+00:04:05,650 --> 00:04:08,740
+So this is another reason why
+should prefer the new method
+
+87
+00:04:08,740 --> 00:04:10,760
+find or create by.
+
+88
+00:04:10,760 --> 00:04:14,320
+In this method, if there's no
+existing post with the title
+
+89
+00:04:14,320 --> 00:04:17,160
+for Rails 4, then it's simply
+going to create a new post
+
+90
+00:04:17,160 --> 00:04:21,250
+with the title for Rails 4 and
+it does not affect scoping of
+
+91
+00:04:21,250 --> 00:04:23,500
+queries that run within
+the callback.
+
+92
+00:04:23,500 --> 00:04:26,810
+And as you can see here, the
+query insider after create
+
+93
+00:04:26,810 --> 00:04:29,890
+method is going to simply look
+for all posts where author
+
+94
+00:04:29,890 --> 00:04:31,140
+equals admin.
+
+95
+00:04:31,140 --> 00:04:33,540
+
+
+96
+00:04:33,540 --> 00:04:36,110
+We also had the update attribute
+method which would
+
+97
+00:04:36,110 --> 00:04:39,600
+take two arguments and in Rails
+3, we had the addition
+
+98
+00:04:39,600 --> 00:04:41,700
+of update column method
+that would do
+
+99
+00:04:41,700 --> 00:04:43,130
+basically the same thing.
+
+100
+00:04:43,130 --> 00:04:45,410
+The basic difference between
+these is that these on the
+
+101
+00:04:45,410 --> 00:04:48,460
+right here, they skip validation
+all together.
+
+102
+00:04:48,460 --> 00:04:51,450
+Rails 4 adds a new alternative
+to the update attributes
+
+103
+00:04:51,450 --> 00:04:54,910
+method simply called update,
+which behaves the same way and
+
+104
+00:04:54,910 --> 00:04:58,960
+is not the preferred way to
+update attributes for a model.
+
+105
+00:04:58,960 --> 00:05:01,410
+And for these guys on the
+right, we have an update
+
+106
+00:05:01,410 --> 00:05:04,990
+columns method which takes a
+hash as an argument and simply
+
+107
+00:05:04,990 --> 00:05:07,550
+builds a SQL statement
+and executes it
+
+108
+00:05:07,550 --> 00:05:08,940
+straight into the database.
+
+109
+00:05:08,940 --> 00:05:11,795
+Again, skipping all the
+validations for that model.
+
+110
+00:05:11,795 --> 00:05:14,590
+
+
+111
+00:05:14,590 --> 00:05:17,860
+So back in Rails 3, you might
+have used the scoped method
+
+112
+00:05:17,860 --> 00:05:21,170
+that basically allows you to
+dynamically build queries
+
+113
+00:05:21,170 --> 00:05:23,150
+depending on certain
+conditions.
+
+114
+00:05:23,150 --> 00:05:26,060
+In this example here for an
+index action on a controller,
+
+115
+00:05:26,060 --> 00:05:29,760
+we're calling tweet.scoped which
+does not run the query
+
+116
+00:05:29,760 --> 00:05:32,430
+and it returns an active
+relation object.
+
+117
+00:05:32,430 --> 00:05:34,710
+And based on certain
+conditions, we
+
+118
+00:05:34,710 --> 00:05:36,210
+can call other methods.
+
+119
+00:05:36,210 --> 00:05:41,120
+In this case, tweets.recent in
+case we have a params recent.
+
+120
+00:05:41,120 --> 00:05:44,860
+Rails 4 deprecates scoped and we
+should now just simply use
+
+121
+00:05:44,860 --> 00:05:48,630
+the all method which does not
+run the query right away and
+
+122
+00:05:48,630 --> 00:05:51,980
+returns a relation object that
+we can call other methods on.
+
+123
+00:05:51,980 --> 00:05:55,250
+So in this example, what we get
+back from tweet.all it's a
+
+124
+00:05:55,250 --> 00:05:58,060
+chainable method that, depending
+on the conditions,
+
+125
+00:05:58,060 --> 00:05:59,390
+we can call other methods on.

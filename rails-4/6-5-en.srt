@@ -1,0 +1,985 @@
+﻿1
+00:00:00,000 --> 00:00:05,120
+
+
+2
+00:00:05,120 --> 00:00:08,140
+Rails 4 now defaults to using
+a different memcache client,
+
+3
+00:00:08,140 --> 00:00:10,000
+one called Dalli.
+
+4
+00:00:10,000 --> 00:00:12,660
+Dalli is a high-performance pure
+Ruby client for accessing
+
+5
+00:00:12,660 --> 00:00:15,520
+memcached servers, and it
+has some benefits.
+
+6
+00:00:15,520 --> 00:00:17,780
+It's faster than the previous
+memcache client.
+
+7
+00:00:17,780 --> 00:00:19,890
+It provides proper failover
+with recovery
+
+8
+00:00:19,890 --> 00:00:21,410
+and adjustable timeouts.
+
+9
+00:00:21,410 --> 00:00:23,020
+It's easier to integrate
+with monitoring
+
+10
+00:00:23,020 --> 00:00:24,070
+tools like New Relic.
+
+11
+00:00:24,070 --> 00:00:24,920
+It's threadsafe.
+
+12
+00:00:24,920 --> 00:00:27,110
+And it's backwards compatible
+with the previous memcache
+
+13
+00:00:27,110 --> 00:00:28,690
+client API.
+
+14
+00:00:28,690 --> 00:00:30,920
+I'm really sorry that I read
+from the screen like that.
+
+15
+00:00:30,920 --> 00:00:32,920
+You'd never want to do that
+with presentations.
+
+16
+00:00:32,920 --> 00:00:35,550
+But now you know the benefits,
+and it's up
+
+17
+00:00:35,550 --> 00:00:36,570
+there on the slide.
+
+18
+00:00:36,570 --> 00:00:38,910
+Let's continue.
+
+19
+00:00:38,910 --> 00:00:40,250
+To use the new memcache
+client, you
+
+20
+00:00:40,250 --> 00:00:41,780
+don't have to do much.
+
+21
+00:00:41,780 --> 00:00:45,220
+Inside the configuration, well,
+it defaults to using
+
+22
+00:00:45,220 --> 00:00:47,660
+Dalli, so you don't have
+to change the default
+
+23
+00:00:47,660 --> 00:00:49,000
+cache_store.
+
+24
+00:00:49,000 --> 00:00:54,210
+However, you will need to add
+it in your gem file like so.
+
+25
+00:00:54,210 --> 00:00:56,710
+If not, you'll see this
+error message.
+
+26
+00:00:56,710 --> 00:00:59,600
+In case you're not familiar with
+the Rails caching API, it
+
+27
+00:00:59,600 --> 00:01:00,840
+looks something like this.
+
+28
+00:01:00,840 --> 00:01:02,250
+And this is nothing new.
+
+29
+00:01:02,250 --> 00:01:05,069
+It allows us to read and write
+key values from our cache and
+
+30
+00:01:05,069 --> 00:01:07,310
+call the fetch command
+which checks to see
+
+31
+00:01:07,310 --> 00:01:08,310
+if there's a value.
+
+32
+00:01:08,310 --> 00:01:11,480
+And if there isn't, it will
+properly set it based on what
+
+33
+00:01:11,480 --> 00:01:13,600
+we pass in the block.
+
+34
+00:01:13,600 --> 00:01:16,610
+By default in your
+production.rb, it sets perform
+
+35
+00:01:16,610 --> 00:01:18,190
+caching to true.
+
+36
+00:01:18,190 --> 00:01:20,360
+So if you want to play around
+with this in your development
+
+37
+00:01:20,360 --> 00:01:22,090
+environment, just make
+sure you set
+
+38
+00:01:22,090 --> 00:01:23,390
+perform caching to true.
+
+39
+00:01:23,390 --> 00:01:26,310
+
+
+40
+00:01:26,310 --> 00:01:29,120
+A new, exciting Rails 4 feature
+is cache digest.
+
+41
+00:01:29,120 --> 00:01:32,460
+But again, in order to
+understand what that means, we
+
+42
+00:01:32,460 --> 00:01:35,020
+need to make sure that we
+understand fragment caching
+
+43
+00:01:35,020 --> 00:01:37,150
+and russian doll caching.
+
+44
+00:01:37,150 --> 00:01:39,870
+So if you don't know
+this, don't worry.
+
+45
+00:01:39,870 --> 00:01:41,860
+We're going to go
+into an example.
+
+46
+00:01:41,860 --> 00:01:45,040
+So here we have a project page
+that has multiple documents
+
+47
+00:01:45,040 --> 00:01:47,510
+listed on it, and each
+of our documents
+
+48
+00:01:47,510 --> 00:01:50,110
+has multiple comments.
+
+49
+00:01:50,110 --> 00:01:52,030
+Here's what the ERB
+might look like.
+
+50
+00:01:52,030 --> 00:01:55,390
+At the top level, we render
+out the project documents.
+
+51
+00:01:55,390 --> 00:01:59,410
+Then this looks for a
+document partial.
+
+52
+00:01:59,410 --> 00:02:02,070
+The document partial renders
+out some documents.
+
+53
+00:02:02,070 --> 00:02:04,280
+Inside there, you can
+see we have a render
+
+54
+00:02:04,280 --> 00:02:05,880
+document.comments.
+
+55
+00:02:05,880 --> 00:02:09,300
+This, by default, is going to
+look for a comment partial in
+
+56
+00:02:09,300 --> 00:02:10,970
+the comments directory.
+
+57
+00:02:10,970 --> 00:02:14,070
+And it's just going to render
+out each of the comments.
+
+58
+00:02:14,070 --> 00:02:16,600
+If a lot of users access this
+page, we might want to
+
+59
+00:02:16,600 --> 00:02:18,640
+implement some fragment
+caching.
+
+60
+00:02:18,640 --> 00:02:20,060
+But what does that do?
+
+61
+00:02:20,060 --> 00:02:23,600
+Let's take a look at how
+that might work.
+
+62
+00:02:23,600 --> 00:02:25,580
+On our first request, the client
+is going to request the
+
+63
+00:02:25,580 --> 00:02:27,040
+page from our Rails app.
+
+64
+00:02:27,040 --> 00:02:29,530
+It's going to do that expensive
+template rendering,
+
+65
+00:02:29,530 --> 00:02:33,980
+and we want to store pieces of
+the page or fragments into our
+
+66
+00:02:33,980 --> 00:02:35,390
+server side cache.
+
+67
+00:02:35,390 --> 00:02:38,910
+We'll then send back the
+response to the browser.
+
+68
+00:02:38,910 --> 00:02:42,080
+Now the second time someone
+accesses that page, we no
+
+69
+00:02:42,080 --> 00:02:44,640
+longer have to do that expensive
+template rendering.
+
+70
+00:02:44,640 --> 00:02:47,930
+We can simply access the
+fragments from the cache and
+
+71
+00:02:47,930 --> 00:02:50,510
+return that to our browser,
+which is going to take a lot
+
+72
+00:02:50,510 --> 00:02:52,585
+less time than rendering out
+all those templates.
+
+73
+00:02:52,585 --> 00:02:55,940
+
+
+74
+00:02:55,940 --> 00:02:58,810
+To start implementing fragment
+caching, we're going to go
+
+75
+00:02:58,810 --> 00:03:03,930
+into our comment partial and
+wrap our list item in a cache
+
+76
+00:03:03,930 --> 00:03:05,940
+comment do block.
+
+77
+00:03:05,940 --> 00:03:07,830
+Here is our comment class.
+
+78
+00:03:07,830 --> 00:03:10,440
+It's simply an active
+record object.
+
+79
+00:03:10,440 --> 00:03:12,420
+And the first time this partial,
+gets rendered it's
+
+80
+00:03:12,420 --> 00:03:14,670
+going to check for
+the cache key.
+
+81
+00:03:14,670 --> 00:03:16,370
+Remember the cache
+key from earlier?
+
+82
+00:03:16,370 --> 00:03:20,510
+It's basically the model name
+and the ID and updated at.
+
+83
+00:03:20,510 --> 00:03:24,330
+Then, if it doesn't find the
+cache key in our server side
+
+84
+00:03:24,330 --> 00:03:27,290
+storage, it's going to render
+out the template and store the
+
+85
+00:03:27,290 --> 00:03:31,360
+resulting HTML inside
+of our cache.
+
+86
+00:03:31,360 --> 00:03:33,950
+Then the next time this partial
+gets accessed, it's
+
+87
+00:03:33,950 --> 00:03:37,260
+going to construct that cache
+key, check to see if that
+
+88
+00:03:37,260 --> 00:03:40,080
+cache key exists in our
+server side cache.
+
+89
+00:03:40,080 --> 00:03:40,910
+It's going to find it.
+
+90
+00:03:40,910 --> 00:03:43,530
+And it's simply going to return
+that HTML, and it
+
+91
+00:03:43,530 --> 00:03:45,635
+doesn't have to render what's
+in between our block.
+
+92
+00:03:45,635 --> 00:03:49,210
+
+
+93
+00:03:49,210 --> 00:03:51,970
+Let's go through the sequence
+of events one more time.
+
+94
+00:03:51,970 --> 00:03:53,130
+So the first request--
+
+95
+00:03:53,130 --> 00:03:55,200
+let's say it goes
+to comment 2--
+
+96
+00:03:55,200 --> 00:03:58,260
+it sets the cache, because
+that doesn't exist in the
+
+97
+00:03:58,260 --> 00:03:59,510
+cache storage.
+
+98
+00:03:59,510 --> 00:04:02,560
+The second request reads
+from the cache.
+
+99
+00:04:02,560 --> 00:04:06,750
+Now if comment 2 gets updated
+somehow, it's going to set the
+
+100
+00:04:06,750 --> 00:04:09,270
+updated at field, as Rails
+does by default.
+
+101
+00:04:09,270 --> 00:04:11,460
+Then the third request that
+comes along is going to look
+
+102
+00:04:11,460 --> 00:04:12,560
+up the cache key.
+
+103
+00:04:12,560 --> 00:04:14,920
+It's not going to find that
+it matches, so it will
+
+104
+00:04:14,920 --> 00:04:16,170
+regenerate the cache.
+
+105
+00:04:16,170 --> 00:04:18,690
+
+
+106
+00:04:18,690 --> 00:04:21,959
+This works great, but what if
+we make a change to the
+
+107
+00:04:21,959 --> 00:04:23,070
+comment template?
+
+108
+00:04:23,070 --> 00:04:26,300
+Here you can see we've
+added comment.author.
+
+109
+00:04:26,300 --> 00:04:29,860
+Well when that third request
+comes in, it's going to check
+
+110
+00:04:29,860 --> 00:04:30,920
+the cache key.
+
+111
+00:04:30,920 --> 00:04:33,260
+The cache key hasn't changed
+because the comment in the
+
+112
+00:04:33,260 --> 00:04:34,540
+database hasn't changed.
+
+113
+00:04:34,540 --> 00:04:38,400
+It still has the same ID and
+the same updated at field.
+
+114
+00:04:38,400 --> 00:04:41,210
+So it's going to show
+the old template.
+
+115
+00:04:41,210 --> 00:04:45,550
+So we need a way to
+deal with this.
+
+116
+00:04:45,550 --> 00:04:48,530
+One way to solve this problem is
+to add a version number to
+
+117
+00:04:48,530 --> 00:04:51,930
+how the cache key is created,
+as you see here.
+
+118
+00:04:51,930 --> 00:04:56,090
+Now, if we change the comment
+template, we simply need to
+
+119
+00:04:56,090 --> 00:04:57,770
+increment that version.
+
+120
+00:04:57,770 --> 00:05:00,670
+And then when we deploy and
+it goes to render out that
+
+121
+00:05:00,670 --> 00:05:03,765
+template, well, the cache key is
+going to be different, and
+
+122
+00:05:03,765 --> 00:05:07,210
+it's going to render it again.
+
+123
+00:05:07,210 --> 00:05:10,590
+Fortunately for us in Rails 4,
+we no longer need to version
+
+124
+00:05:10,590 --> 00:05:11,970
+our templates.
+
+125
+00:05:11,970 --> 00:05:15,860
+With Rails 4 when we update
+our comment template, it's
+
+126
+00:05:15,860 --> 00:05:18,050
+going to know that
+automatically, and it's going
+
+127
+00:05:18,050 --> 00:05:23,290
+to change the cache key so that
+we can refresh the cache.
+
+128
+00:05:23,290 --> 00:05:24,760
+Seems like magic, doesn't it?
+
+129
+00:05:24,760 --> 00:05:26,640
+So how does this work?
+
+130
+00:05:26,640 --> 00:05:29,480
+Well, it turns out that with
+Rails 4, there's another
+
+131
+00:05:29,480 --> 00:05:32,500
+argument added to the end
+of the cache key.
+
+132
+00:05:32,500 --> 00:05:35,840
+When it goes to create a cache
+key for this comment, not only
+
+133
+00:05:35,840 --> 00:05:39,490
+does it have model name, ID,
+and updated at, but it also
+
+134
+00:05:39,490 --> 00:05:42,600
+takes a look at the template
+itself that we're going to
+
+135
+00:05:42,600 --> 00:05:46,460
+render, does an MD5 of it,
+and adds that to the end
+
+136
+00:05:46,460 --> 00:05:47,920
+of this cache key.
+
+137
+00:05:47,920 --> 00:05:52,070
+This way, if that template
+changes, well, it's going to
+
+138
+00:05:52,070 --> 00:05:53,690
+generate a different
+cache key.
+
+139
+00:05:53,690 --> 00:05:56,730
+
+
+140
+00:05:56,730 --> 00:05:59,110
+So now let's go back to our
+original example where we have
+
+141
+00:05:59,110 --> 00:06:02,050
+a document, and a document
+has many comments.
+
+142
+00:06:02,050 --> 00:06:04,170
+This time, we're going
+to have caching at
+
+143
+00:06:04,170 --> 00:06:04,905
+two different levels.
+
+144
+00:06:04,905 --> 00:06:08,000
+We'll have caching at the
+document level, and we'll have
+
+145
+00:06:08,000 --> 00:06:10,410
+caching at the comment level.
+
+146
+00:06:10,410 --> 00:06:12,800
+So what happens when this
+page gets rendered?
+
+147
+00:06:12,800 --> 00:06:15,850
+
+
+148
+00:06:15,850 --> 00:06:17,180
+The first time it
+goes through, it
+
+149
+00:06:17,180 --> 00:06:18,830
+fetches document 1.
+
+150
+00:06:18,830 --> 00:06:21,750
+Then inside of document 1, it
+goes to render the comments.
+
+151
+00:06:21,750 --> 00:06:24,010
+It's going to render
+comment number 1.
+
+152
+00:06:24,010 --> 00:06:26,860
+It then is going to set the
+cache for comment number 1.
+
+153
+00:06:26,860 --> 00:06:29,320
+Then it's going to go ahead and
+render out comment number
+
+154
+00:06:29,320 --> 00:06:32,700
+2 and set the cache for
+comment number 2.
+
+155
+00:06:32,700 --> 00:06:34,830
+And then it's going to
+go back up to finish
+
+156
+00:06:34,830 --> 00:06:36,210
+rendering out the document.
+
+157
+00:06:36,210 --> 00:06:38,370
+Once that's done rendering, it's
+going to set the cache
+
+158
+00:06:38,370 --> 00:06:42,900
+for the HTML inside that
+entire cache block.
+
+159
+00:06:42,900 --> 00:06:45,640
+Then, if a second request comes
+along to get the first
+
+160
+00:06:45,640 --> 00:06:48,790
+document, well it's simply going
+to read it straight from
+
+161
+00:06:48,790 --> 00:06:51,130
+the document 1 cache.
+
+162
+00:06:51,130 --> 00:06:53,460
+It's not going to bother hitting
+the comment caches
+
+163
+00:06:53,460 --> 00:06:57,330
+because those are inside
+of the document cache.
+
+164
+00:06:57,330 --> 00:06:59,890
+So what happens when comment
+number 2 gets
+
+165
+00:06:59,890 --> 00:07:01,450
+updated in the database?
+
+166
+00:07:01,450 --> 00:07:04,420
+Well the next time a request
+comes in, this time for
+
+167
+00:07:04,420 --> 00:07:08,250
+document 1, well document hasn't
+changed, so it's simply
+
+168
+00:07:08,250 --> 00:07:11,560
+going to read that straight out
+of the cache, which isn't
+
+169
+00:07:11,560 --> 00:07:15,400
+good, because it's showing
+the old comment number 2.
+
+170
+00:07:15,400 --> 00:07:16,940
+So how do we get around this?
+
+171
+00:07:16,940 --> 00:07:20,030
+
+
+172
+00:07:20,030 --> 00:07:21,680
+One way we can get
+around this is by
+
+173
+00:07:21,680 --> 00:07:23,290
+updating the comment model.
+
+174
+00:07:23,290 --> 00:07:26,240
+You see up above where it says,
+belongs_to document?
+
+175
+00:07:26,240 --> 00:07:30,380
+We can simply add the
+option touch: true.
+
+176
+00:07:30,380 --> 00:07:34,520
+This time, when comment 2 gets
+updated, it's not only going
+
+177
+00:07:34,520 --> 00:07:37,750
+to set the updated at field for
+comment number 2, but it's
+
+178
+00:07:37,750 --> 00:07:42,510
+going to also set document
+1's updated at field.
+
+179
+00:07:42,510 --> 00:07:45,400
+So now when the third request
+comes in for document 1, it's
+
+180
+00:07:45,400 --> 00:07:47,950
+going to create a new cache key,
+rerender the content for
+
+181
+00:07:47,950 --> 00:07:49,310
+document 1.
+
+182
+00:07:49,310 --> 00:07:51,300
+Comment 1 hasn't changed,
+so it's going to read
+
+183
+00:07:51,300 --> 00:07:52,400
+that from the cache.
+
+184
+00:07:52,400 --> 00:07:55,310
+Comment 2, however, has changed,
+so it's going to
+
+185
+00:07:55,310 --> 00:07:58,800
+reset the cache there as well.
+
+186
+00:07:58,800 --> 00:08:01,720
+This works great, but what would
+happen if we changed the
+
+187
+00:08:01,720 --> 00:08:03,440
+comment template here?
+
+188
+00:08:03,440 --> 00:08:07,880
+How would the document cache
+key know that the comment
+
+189
+00:08:07,880 --> 00:08:09,590
+template has changed?
+
+190
+00:08:09,590 --> 00:08:12,670
+Well it turns out Rails
+4 cache digest
+
+191
+00:08:12,670 --> 00:08:14,840
+takes this into account.
+
+192
+00:08:14,840 --> 00:08:16,040
+How does it do this?
+
+193
+00:08:16,040 --> 00:08:18,610
+Well, if we look under the
+covers, we'll see that when it
+
+194
+00:08:18,610 --> 00:08:23,570
+creates an MD5 hash of a
+template, it actually combines
+
+195
+00:08:23,570 --> 00:08:28,590
+any inner templates inside
+of this cache block.
+
+196
+00:08:28,590 --> 00:08:31,120
+So here, when we create the
+cache key for document, it's
+
+197
+00:08:31,120 --> 00:08:34,230
+combining both the document
+template and the comment
+
+198
+00:08:34,230 --> 00:08:38,010
+template to come up
+with the MD5 hash.
+
+199
+00:08:38,010 --> 00:08:40,970
+This way, if any of the
+templates are changed, the key
+
+200
+00:08:40,970 --> 00:08:43,020
+for the document will be
+different, and it will
+
+201
+00:08:43,020 --> 00:08:44,270
+regenerate the cache.
+
+202
+00:08:44,270 --> 00:08:47,360
+
+
+203
+00:08:47,360 --> 00:08:49,990
+This works great, but there
+are some caveats.
+
+204
+00:08:49,990 --> 00:08:53,210
+If you're using a utility method
+or, say, a scope to
+
+205
+00:08:53,210 --> 00:08:57,310
+load in comments, it's
+not going to work.
+
+206
+00:08:57,310 --> 00:08:59,820
+The cache digest won't work.
+
+207
+00:08:59,820 --> 00:09:05,090
+You need to explicitly set the
+partial, like you see here, to
+
+208
+00:09:05,090 --> 00:09:08,120
+get cache digest to
+work properly.
+
+209
+00:09:08,120 --> 00:09:13,200
+Optionally, you can use this
+comment syntax which will tell
+
+210
+00:09:13,200 --> 00:09:15,870
+cache digest where to look
+up the comment partial.
