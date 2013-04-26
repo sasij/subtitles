@@ -1,0 +1,518 @@
+﻿1
+00:00:02,409 --> 00:00:04,509
+I'm Greg Pollack and
+you're watching
+
+2
+00:00:04,509 --> 00:00:06,259
+Rails 4 Zombie Outlaws.
+
+3
+00:00:06,259 --> 00:00:09,669
+In this level, we're going to
+be going over ETags, Dalli,
+
+4
+00:00:09,669 --> 00:00:13,209
+and Cache Digests.
+
+5
+00:00:13,209 --> 00:00:16,449
+One of the new features in Rails
+4 is declarative ETags.
+
+6
+00:00:16,449 --> 00:00:19,079
+But in order to understand how
+to use them, you need to
+
+7
+00:00:19,079 --> 00:00:20,779
+understand what ETags are.
+
+8
+00:00:20,779 --> 00:00:22,939
+And since that's something
+that not everybody
+
+9
+00:00:22,939 --> 00:00:25,549
+understands, I thought I would
+give a brief introduction.
+
+10
+00:00:25,549 --> 00:00:27,019
+If you already know what
+they are, feel
+
+11
+00:00:27,019 --> 00:00:29,099
+free to skip on ahead.
+
+12
+00:00:29,099 --> 00:00:31,869
+Rails 3 and 4 apps by
+default use ETags.
+
+13
+00:00:31,869 --> 00:00:33,129
+But what does that mean?
+
+14
+00:00:33,129 --> 00:00:36,279
+Well here's the default ETag
+behavior, here we have our
+
+15
+00:00:36,279 --> 00:00:39,169
+client, which is probably a
+browser that requests a web
+
+16
+00:00:39,169 --> 00:00:40,389
+page from our Rails app.
+
+17
+00:00:40,389 --> 00:00:43,529
+Our Rails app renders out the
+entire response body.
+
+18
+00:00:43,529 --> 00:00:47,139
+Then it creates an ETag by doing
+an MD5 hash on the
+
+19
+00:00:47,139 --> 00:00:48,334
+entire response body.
+
+20
+00:00:48,334 --> 00:00:51,249
+The code looks something
+like this.
+
+21
+00:00:51,249 --> 00:00:54,809
+Then it sends back to the client
+the response body and
+
+22
+00:00:54,809 --> 00:00:57,379
+the ETag as a header field.
+
+23
+00:00:57,379 --> 00:00:59,939
+The client is going to
+cache the response
+
+24
+00:00:59,939 --> 00:01:01,579
+and store the ETag.
+
+25
+00:01:01,579 --> 00:01:04,839
+Then the next time we request
+that same page, the client is
+
+26
+00:01:04,839 --> 00:01:10,209
+going to send the ETag in the
+if none match header.
+
+27
+00:01:10,209 --> 00:01:14,279
+Don't ask me why the header that
+it sends to the browser
+
+28
+00:01:14,279 --> 00:01:16,259
+isn't called ETag.
+
+29
+00:01:16,259 --> 00:01:19,849
+It's called, if none match,
+that's just what we use, it's
+
+30
+00:01:19,849 --> 00:01:22,709
+weird, just get used to it.
+
+31
+00:01:22,709 --> 00:01:24,959
+Once the Rails app receives the
+request, it renders out
+
+32
+00:01:24,959 --> 00:01:26,974
+the entire response body.
+
+33
+00:01:26,974 --> 00:01:29,664
+It then creates a ETag
+in the same way.
+
+34
+00:01:29,664 --> 00:01:33,579
+It then compares the ETag that
+was sent over with the one it
+
+35
+00:01:33,579 --> 00:01:34,749
+just generated.
+
+36
+00:01:34,749 --> 00:01:37,499
+If the ETags match,
+the body is not
+
+37
+00:01:37,499 --> 00:01:39,469
+sent back to our client.
+
+38
+00:01:39,469 --> 00:01:43,589
+It is simply sent the status
+code 304 not modified.
+
+39
+00:01:43,589 --> 00:01:46,019
+That tells our client's browser
+that nothing on the
+
+40
+00:01:46,019 --> 00:01:49,179
+page has changed since the last
+request and it can load
+
+41
+00:01:49,179 --> 00:01:50,904
+the entire page from
+their cache.
+
+42
+00:01:54,789 --> 00:01:58,619
+ETag stands for entity tag and
+it's simply a key we use to
+
+43
+00:01:58,619 --> 00:02:00,809
+see if the page has changed.
+
+44
+00:02:00,809 --> 00:02:03,169
+If we take a look under the
+covers at the headers that our
+
+45
+00:02:03,169 --> 00:02:05,259
+browser is sending and
+receiving, we can see on the
+
+46
+00:02:05,259 --> 00:02:07,979
+first request that it
+returned 200 OK.
+
+47
+00:02:07,979 --> 00:02:10,519
+Which means the entire body was
+included in the response
+
+48
+00:02:10,519 --> 00:02:12,179
+and cached by our browser.
+
+49
+00:02:12,179 --> 00:02:14,689
+You'll notice at the bottom
+here, we can see the actual
+
+50
+00:02:14,689 --> 00:02:18,289
+ETag that was sent with
+this response.
+
+51
+00:02:18,289 --> 00:02:21,719
+Here we can see on the second
+request that we sent the ETag
+
+52
+00:02:21,719 --> 00:02:24,689
+in the, if none match header,
+down there at the bottom.
+
+53
+00:02:24,689 --> 00:02:26,819
+And the server responded
+with a 304 status
+
+54
+00:02:26,819 --> 00:02:28,569
+code meaning not modified.
+
+55
+00:02:28,569 --> 00:02:31,449
+And our browser loaded the web
+page from our local cache.
+
+56
+00:02:33,989 --> 00:02:37,229
+As we mentioned, by default
+Rails calculates the ETag by
+
+57
+00:02:37,229 --> 00:02:40,779
+generating the entire response
+body and then generating an
+
+58
+00:02:40,779 --> 00:02:42,809
+ETag which it sends back
+to the client.
+
+59
+00:02:42,809 --> 00:02:45,479
+This is great on the client side
+because if it gets that
+
+60
+00:02:45,479 --> 00:02:48,359
+304 not modified code, that
+means it can load the entire
+
+61
+00:02:48,359 --> 00:02:51,329
+page from the local cache, and
+it doesn't have to re download
+
+62
+00:02:51,329 --> 00:02:52,269
+everything.
+
+63
+00:02:52,269 --> 00:02:55,949
+However, on the server side, we
+have to re render the page
+
+64
+00:02:55,949 --> 00:02:58,539
+every time to generate the ETag
+
+65
+00:02:58,539 --> 00:03:00,339
+which isn't that efficient.
+
+66
+00:03:00,339 --> 00:03:04,439
+If only there were a way to
+generate a more specific ETag.
+
+67
+00:03:04,439 --> 00:03:06,129
+That's where
+fresh_when comes in.
+
+68
+00:03:08,749 --> 00:03:11,709
+Here inside of our items
+controller, we're going to set
+
+69
+00:03:11,709 --> 00:03:13,259
+a custom ETag.
+
+70
+00:03:13,259 --> 00:03:16,179
+We can do that by using,
+fresh_when.
+
+71
+00:03:16,179 --> 00:03:19,059
+What this is going to do is
+it's going to set the ETag
+
+72
+00:03:19,059 --> 00:03:23,089
+equal to the cache key of
+that particular item.
+
+73
+00:03:23,089 --> 00:03:25,729
+The cache key as you can see
+here is a combination of the
+
+74
+00:03:25,729 --> 00:03:29,259
+model name, the ID, and
+the updated at field.
+
+75
+00:03:29,259 --> 00:03:32,499
+It then gets the MD5 hash of
+this key and that's what it
+
+76
+00:03:32,499 --> 00:03:35,589
+uses as the ETag.
+
+77
+00:03:35,589 --> 00:03:37,289
+So let's go through
+our client-server
+
+78
+00:03:37,289 --> 00:03:38,939
+scenario one more time.
+
+79
+00:03:38,939 --> 00:03:41,549
+This time when our server
+receives the request, it's
+
+80
+00:03:41,549 --> 00:03:44,279
+going to create an ETag right
+there in the controller.
+
+81
+00:03:44,279 --> 00:03:45,799
+Then render the body.
+
+82
+00:03:45,799 --> 00:03:49,479
+And then finally, send the
+response with our ETag based
+
+83
+00:03:49,479 --> 00:03:52,289
+on the items cache key.
+
+84
+00:03:52,289 --> 00:03:55,429
+Then if we access the same page
+for a second time, it's
+
+85
+00:03:55,429 --> 00:03:57,819
+going to send the ETag
+back to the server.
+
+86
+00:03:57,819 --> 00:04:00,979
+Rails is going to create the
+ETag in our controller again.
+
+87
+00:04:00,979 --> 00:04:03,809
+Compare the ETag to the one
+sent over by our browser.
+
+88
+00:04:03,809 --> 00:04:07,449
+And if our ETags match, it's
+going to send a 304 back to
+
+89
+00:04:07,449 --> 00:04:11,119
+our browser, and not bother with
+rendering out the body of
+
+90
+00:04:11,119 --> 00:04:12,669
+the web page.
+
+91
+00:04:12,669 --> 00:04:15,629
+So this fresh_when command
+really does two things.
+
+92
+00:04:15,629 --> 00:04:18,329
+First, it creates
+the ETag for us.
+
+93
+00:04:18,329 --> 00:04:22,489
+And then it checks to see if
+the client sent an ETag with
+
+94
+00:04:22,489 --> 00:04:24,959
+the request, if that
+matches the ETag
+
+95
+00:04:24,959 --> 00:04:26,109
+that it just generated.
+
+96
+00:04:26,109 --> 00:04:28,209
+And if it does it
+sends back 304.
+
+97
+00:04:28,209 --> 00:04:32,379
+Otherwise it will continue
+rendering out the web page.
+
+98
+00:04:32,379 --> 00:04:35,739
+If we have multiple actions in
+our controller that use ETags,
+
+99
+00:04:35,739 --> 00:04:38,579
+they might start to look pretty
+similar, and we might
+
+100
+00:04:38,579 --> 00:04:40,359
+be duplicating some code.
+
+101
+00:04:40,359 --> 00:04:44,099
+So how might we re factor this
+repetition? Well this is where
+
+102
+00:04:44,099 --> 00:04:46,179
+declarative ETags come in.
+
+103
+00:04:46,179 --> 00:04:50,479
+It allows us to declare a ETag
+at the top of our controller.
+
+104
+00:04:50,479 --> 00:04:53,319
+We could even declare multiple
+ETags at the top of our
+
+105
+00:04:53,319 --> 00:04:54,029
+controller.
+
+106
+00:04:54,029 --> 00:04:57,009
+So here we're declaring both
+current user ID, and current
+
+107
+00:04:57,009 --> 00:05:01,699
+user age, and this is going to
+get combined onto our ETag.
+
+108
+00:05:01,699 --> 00:05:04,179
+So as you see in the bottom
+here when we do fresh_when
+
+109
+00:05:04,179 --> 00:05:07,639
+item, this is the same as doing
+fresh_when item, current
+
+110
+00:05:07,639 --> 00:05:09,909
+user ID, current user age.
