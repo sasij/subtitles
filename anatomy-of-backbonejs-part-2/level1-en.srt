@@ -1,0 +1,644 @@
+1
+00:00:00,000 --> 00:00:00,145
+[SINGING]
+
+2
+00:00:00,145 --> 00:00:03,100
+Your client side JavaScript
+is starting to mold.
+
+3
+00:00:03,100 --> 00:00:06,560
+It's starting to resemble
+a bad spaghetti code.
+
+4
+00:00:06,560 --> 00:00:08,470
+And it is time to
+add structure.
+
+5
+00:00:08,470 --> 00:00:10,160
+But it won't take too long.
+
+6
+00:00:10,160 --> 00:00:13,590
+Gotta get your truth
+out of the DOM.
+
+7
+00:00:13,590 --> 00:00:14,960
+Take your data into models.
+
+8
+00:00:14,960 --> 00:00:17,080
+And you cannot lose.
+
+9
+00:00:17,080 --> 00:00:21,290
+We'll render out your models
+with the help of the views.
+
+10
+00:00:21,290 --> 00:00:23,415
+And if you don't want your
+JavaScript to end up like a
+
+11
+00:00:23,415 --> 00:00:25,170
+mess, it's time for
+the anatomy of
+
+12
+00:00:25,170 --> 00:00:28,862
+Backbone.js at Code School.
+
+13
+00:00:28,862 --> 00:00:31,780
+
+
+14
+00:00:31,780 --> 00:00:32,490
+I'm Gregg Pollack.
+
+15
+00:00:32,490 --> 00:00:35,660
+And you're watching the Anatomy
+of Backbone, Part Two.
+
+16
+00:00:35,660 --> 00:00:36,880
+In this first level,
+we're going to be
+
+17
+00:00:36,880 --> 00:00:39,460
+going into more models.
+
+18
+00:00:39,460 --> 00:00:40,740
+So just to review,
+we're getting our
+
+19
+00:00:40,740 --> 00:00:41,900
+truth out of the DOM.
+
+20
+00:00:41,900 --> 00:00:44,460
+Backbone provides the client
+side application
+
+21
+00:00:44,460 --> 00:00:46,190
+structure for our app.
+
+22
+00:00:46,190 --> 00:00:48,610
+We have models that represent
+data, views that
+
+23
+00:00:48,610 --> 00:00:50,000
+hook up to the DOM.
+
+24
+00:00:50,000 --> 00:00:52,640
+And then Backbone also takes
+care of synchronizing the data
+
+25
+00:00:52,640 --> 00:00:54,830
+back and forth from
+the server.
+
+26
+00:00:54,830 --> 00:00:57,390
+Jumping back into our Backbone
+app that we've been creating,
+
+27
+00:00:57,390 --> 00:00:59,710
+here is our TodoItem,
+which is a model.
+
+28
+00:00:59,710 --> 00:01:02,420
+And then we give
+it a urlRoot.
+
+29
+00:01:02,420 --> 00:01:06,550
+And we're assuming that that
+attaches to a Rails RESTful
+
+30
+00:01:06,550 --> 00:01:11,020
+endpoint, the Rails Flavor of an
+API, which our application
+
+31
+00:01:11,020 --> 00:01:13,920
+isn't always going to have that
+standard API, which we're
+
+32
+00:01:13,920 --> 00:01:15,980
+actually going to cover
+in this level.
+
+33
+00:01:15,980 --> 00:01:17,540
+How do we deal with that?
+
+34
+00:01:17,540 --> 00:01:20,400
+So then to get the
+TodoItem with ID equals
+
+35
+00:01:20,400 --> 00:01:22,140
+1, we run this code.
+
+36
+00:01:22,140 --> 00:01:25,590
+And then we call fetch, which
+fetches this JSON data, stores
+
+37
+00:01:25,590 --> 00:01:27,090
+that inside of our model.
+
+38
+00:01:27,090 --> 00:01:30,720
+But what if when we call fetch,
+our API is different
+
+39
+00:01:30,720 --> 00:01:33,060
+than the standard Rails
+interface, and it's sending
+
+40
+00:01:33,060 --> 00:01:35,320
+back something that
+looks like this?
+
+41
+00:01:35,320 --> 00:01:39,160
+Well inside of Backbone,
+there's a parse method.
+
+42
+00:01:39,160 --> 00:01:40,990
+This is what it looks
+like by default.
+
+43
+00:01:40,990 --> 00:01:42,040
+We don't have to define it.
+
+44
+00:01:42,040 --> 00:01:44,500
+But this is what its behavior
+looks like.
+
+45
+00:01:44,500 --> 00:01:48,280
+And with that default code, if
+we call todoItem.attributes,
+
+46
+00:01:48,280 --> 00:01:50,110
+when we got this JSON array--
+
+47
+00:01:50,110 --> 00:01:51,850
+well, it would be empty.
+
+48
+00:01:51,850 --> 00:01:53,920
+So how do we deal with that?
+
+49
+00:01:53,920 --> 00:01:57,160
+To fix this and properly parse
+the JSON, we are going to
+
+50
+00:01:57,160 --> 00:02:00,050
+define the parse method
+inside of Backbone.
+
+51
+00:02:00,050 --> 00:02:04,830
+And inside there, we simply have
+to write response.todo.
+
+52
+00:02:04,830 --> 00:02:07,860
+Instead of passing the response
+directly through, we
+
+53
+00:02:07,860 --> 00:02:11,440
+intercept it in this method and
+call .todo, so that the
+
+54
+00:02:11,440 --> 00:02:14,910
+proper JSON objects get
+sent into Backbone.
+
+55
+00:02:14,910 --> 00:02:18,050
+Now we called that attributes,
+we can see that our Backbone
+
+56
+00:02:18,050 --> 00:02:20,100
+model returns the
+proper values.
+
+57
+00:02:20,100 --> 00:02:24,820
+
+
+58
+00:02:24,820 --> 00:02:27,960
+What if instead of fetching the
+JSON, we wanted to create
+
+59
+00:02:27,960 --> 00:02:31,380
+a model with some pre-existing
+data like this?
+
+60
+00:02:31,380 --> 00:02:35,180
+But notice this is that weird
+different format again.
+
+61
+00:02:35,180 --> 00:02:37,890
+In this case, if we call
+.attributes, we can see that,
+
+62
+00:02:37,890 --> 00:02:39,420
+well, it didn't work.
+
+63
+00:02:39,420 --> 00:02:42,410
+It didn't properly go through
+the parse method.
+
+64
+00:02:42,410 --> 00:02:44,630
+To fix this, we can add
+another option to our
+
+65
+00:02:44,630 --> 00:02:45,610
+constructor--
+
+66
+00:02:45,610 --> 00:02:47,940
+in this case parse: true.
+
+67
+00:02:47,940 --> 00:02:49,900
+This will tell the model
+to run the JSON
+
+68
+00:02:49,900 --> 00:02:51,270
+through the parse method.
+
+69
+00:02:51,270 --> 00:02:52,830
+And it will properly parse
+the attributes.
+
+70
+00:02:52,830 --> 00:02:56,880
+
+
+71
+00:02:56,880 --> 00:02:59,340
+But what if the API we're
+working with sends back a
+
+72
+00:02:59,340 --> 00:03:01,110
+different property name?
+
+73
+00:03:01,110 --> 00:03:04,410
+You can see here that we
+have d-e-s-c instead of
+
+74
+00:03:04,410 --> 00:03:06,930
+description, which is what
+we're expecting.
+
+75
+00:03:06,930 --> 00:03:09,800
+To deal with this inside the
+parse method, we can simply
+
+76
+00:03:09,800 --> 00:03:13,390
+define response.description
+and set that equal to the
+
+77
+00:03:13,390 --> 00:03:16,020
+description that got sent
+in from the JSON.
+
+78
+00:03:16,020 --> 00:03:17,750
+And we need to make sure
+we delete the old
+
+79
+00:03:17,750 --> 00:03:19,410
+name for that property.
+
+80
+00:03:19,410 --> 00:03:21,650
+Then we just return
+the response.
+
+81
+00:03:21,650 --> 00:03:25,410
+And now when we call
+.attributes, we get back the
+
+82
+00:03:25,410 --> 00:03:27,010
+proper JSON object.
+
+83
+00:03:27,010 --> 00:03:31,210
+
+
+84
+00:03:31,210 --> 00:03:32,760
+So we have our todoItem.
+
+85
+00:03:32,760 --> 00:03:36,110
+And if we update one of the
+attributes and we call save,
+
+86
+00:03:36,110 --> 00:03:39,480
+that's going to call toJSON
+and send that back to the
+
+87
+00:03:39,480 --> 00:03:40,970
+server using a put.
+
+88
+00:03:40,970 --> 00:03:44,110
+But the API we've been working
+with is expecting the JSON in
+
+89
+00:03:44,110 --> 00:03:46,720
+that different format
+we saw a minute ago.
+
+90
+00:03:46,720 --> 00:03:49,170
+So how do we modify that
+JSON before we send
+
+91
+00:03:49,170 --> 00:03:51,700
+it back to the server?
+
+92
+00:03:51,700 --> 00:03:54,620
+We can fix this by overriding
+the JSON method.
+
+93
+00:03:54,620 --> 00:03:57,840
+So here is the default behavior
+of the JSON method.
+
+94
+00:03:57,840 --> 00:04:01,170
+And then here's the default
+output, which in this case is
+
+95
+00:04:01,170 --> 00:04:02,410
+not what we want.
+
+96
+00:04:02,410 --> 00:04:05,260
+So to fix this, as you might
+imagine, we just need to
+
+97
+00:04:05,260 --> 00:04:08,360
+override the toJSON method.
+
+98
+00:04:08,360 --> 00:04:11,130
+So here you can see we're simply
+wrapping the attributes
+
+99
+00:04:11,130 --> 00:04:13,470
+inside a todo property.
+
+100
+00:04:13,470 --> 00:04:16,535
+This properly outputs what
+our API is expecting.
+
+101
+00:04:16,535 --> 00:04:19,200
+
+
+102
+00:04:19,200 --> 00:04:20,709
+But of course, we
+forgot one part.
+
+103
+00:04:20,709 --> 00:04:22,563
+What about the description
+becoming d-e-s-c?
+
+104
+00:04:22,563 --> 00:04:26,350
+
+
+105
+00:04:26,350 --> 00:04:29,970
+To fix this inside of our JSON,
+we can simply set the
+
+106
+00:04:29,970 --> 00:04:32,060
+d-e-s-c property.
+
+107
+00:04:32,060 --> 00:04:34,560
+And then we're going to use the
+underscore library's pick
+
+108
+00:04:34,560 --> 00:04:38,760
+method, which allows us to send
+in a JavaScript object
+
+109
+00:04:38,760 --> 00:04:41,290
+and pick out the properties
+that we want to
+
+110
+00:04:41,290 --> 00:04:42,580
+be included in it.
+
+111
+00:04:42,580 --> 00:04:45,800
+So we'll have an object with
+just the d-e-s-c and status
+
+112
+00:04:45,800 --> 00:04:49,070
+property, which then allows us
+to create the proper object
+
+113
+00:04:49,070 --> 00:04:50,320
+that our API is expecting.
+
+114
+00:04:50,320 --> 00:04:53,820
+
+
+115
+00:04:53,820 --> 00:04:55,570
+But there's a problem
+with this though.
+
+116
+00:04:55,570 --> 00:04:58,190
+Now we can't use toJSON
+in our view to
+
+117
+00:04:58,190 --> 00:05:00,540
+render out our template.
+
+118
+00:05:00,540 --> 00:05:02,550
+Well how would we fix this?
+
+119
+00:05:02,550 --> 00:05:04,320
+Here's the code inside of
+our render function
+
+120
+00:05:04,320 --> 00:05:06,960
+where we call toJSON.
+
+121
+00:05:06,960 --> 00:05:09,090
+So we can't use to
+JSON anymore.
+
+122
+00:05:09,090 --> 00:05:12,400
+To fix this instead of using
+toJSON, we can use
+
+123
+00:05:12,400 --> 00:05:16,340
+model.attributes, which will
+give us back the JavaScript
+
+124
+00:05:16,340 --> 00:05:18,080
+object we're looking for.
+
+125
+00:05:18,080 --> 00:05:21,270
+toJSON should only be used for
+serializing the data back
+
+126
+00:05:21,270 --> 00:05:24,260
+to the server.
+
+127
+00:05:24,260 --> 00:05:26,140
+One more thing we might have
+to deal with in an
+
+128
+00:05:26,140 --> 00:05:31,250
+unconventional API is a
+non-standard ID attribute.
+
+129
+00:05:31,250 --> 00:05:33,390
+So here when we call fetch,
+you can see that our ID
+
+130
+00:05:33,390 --> 00:05:36,170
+attribute is _id.
+
+131
+00:05:36,170 --> 00:05:40,020
+So if we try to parse this and
+call .id on the model, we
+
+132
+00:05:40,020 --> 00:05:42,410
+would get back undefined.
+
+133
+00:05:42,410 --> 00:05:45,900
+To fix this, we simply need to
+specify the ID attribute
+
+134
+00:05:45,900 --> 00:05:47,960
+property inside of our model.
+
+135
+00:05:47,960 --> 00:05:50,280
+Once we do that, it's going
+to properly parse this
+
+136
+00:05:50,280 --> 00:05:53,910
+field as the ID.
+
+137
+00:05:53,910 --> 00:05:55,110
+That's the end of level one.
+
+138
+00:05:55,110 --> 00:05:57,160
+It's time for you to get your
+hands dirty in the challenges.
+
+139
+00:00:00,000 --> 00:00:00,000
+00:05:57,160 --> 00:06:00,151
+

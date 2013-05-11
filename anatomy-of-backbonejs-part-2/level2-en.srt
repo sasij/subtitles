@@ -1,0 +1,687 @@
+1
+00:00:00,000 --> 00:00:00,290
+[SINGING]
+
+2
+00:00:00,290 --> 00:00:03,100
+Your client-side JavaScript
+is starting to mold.
+
+3
+00:00:03,100 --> 00:00:06,550
+It's starting to resemble
+a bad spaghetti code.
+
+4
+00:00:06,550 --> 00:00:09,150
+And it is time to add
+structure, but it
+
+5
+00:00:09,150 --> 00:00:10,170
+won't take too long.
+
+6
+00:00:10,170 --> 00:00:13,590
+Gotta get your truth
+out of the DOM.
+
+7
+00:00:13,590 --> 00:00:16,380
+Take your data into models
+that you cannot lose.
+
+8
+00:00:16,380 --> 00:00:20,900
+We'll render out your models
+with the help of the views.
+
+9
+00:00:20,900 --> 00:00:23,120
+And if you don't want your
+JavaScript to end up like a
+
+10
+00:00:23,120 --> 00:00:25,460
+mess, it's time for
+The Anatomy of
+
+11
+00:00:25,460 --> 00:00:28,388
+Backbone.js at Code School.
+
+12
+00:00:28,388 --> 00:00:31,810
+
+
+13
+00:00:31,810 --> 00:00:33,885
+You're watching The Anatomy
+of Backbone, Part Two.
+
+14
+00:00:33,885 --> 00:00:36,650
+In this level, we're going to be
+going over some customized
+
+15
+00:00:36,650 --> 00:00:38,170
+collections.
+
+16
+00:00:38,170 --> 00:00:42,140
+Let's review how we work with
+Backbone Collections.
+
+17
+00:00:42,140 --> 00:00:44,430
+Here you can see how we
+define a collection.
+
+18
+00:00:44,430 --> 00:00:46,830
+To populate a collection,
+we call fetch.
+
+19
+00:00:46,830 --> 00:00:49,400
+This is going to return an
+array of JSON objects.
+
+20
+00:00:49,400 --> 00:00:51,650
+And then if we call
+todoItems.length, we can get
+
+21
+00:00:51,650 --> 00:00:53,550
+back how many models are
+in a collection.
+
+22
+00:00:53,550 --> 00:00:56,640
+
+
+23
+00:00:56,640 --> 00:00:59,290
+Once again, what do we do when
+the API we're working with
+
+24
+00:00:59,290 --> 00:01:01,940
+returns a non-standard
+response?
+
+25
+00:01:01,940 --> 00:01:04,319
+Perhaps something that
+looks like this.
+
+26
+00:01:04,319 --> 00:01:06,100
+Here, you see we have a total.
+
+27
+00:01:06,100 --> 00:01:08,310
+We have the number of
+items per page.
+
+28
+00:01:08,310 --> 00:01:10,480
+We even have a current page.
+
+29
+00:01:10,480 --> 00:01:12,800
+And then, todos data is wrapped
+
+30
+00:01:12,800 --> 00:01:14,610
+inside of a todos property.
+
+31
+00:01:14,610 --> 00:01:17,760
+Under the covers, Backbone
+Collections also has a parse
+
+32
+00:01:17,760 --> 00:01:19,680
+method, which looks like this.
+
+33
+00:01:19,680 --> 00:01:22,800
+And with the current code, if
+we called toJSON, well, it
+
+34
+00:01:22,800 --> 00:01:25,690
+doesn't know how to
+parse this object.
+
+35
+00:01:25,690 --> 00:01:27,520
+To fix this, once again, we can
+
+36
+00:01:27,520 --> 00:01:29,800
+redefine our parse function.
+
+37
+00:01:29,800 --> 00:01:33,530
+We're going to want to store the
+per_page, page, and total
+
+38
+00:01:33,530 --> 00:01:34,130
+properties.
+
+39
+00:01:34,130 --> 00:01:36,670
+So we can just do
+that like this.
+
+40
+00:01:36,670 --> 00:01:40,040
+And then we simply want to
+return the todos array.
+
+41
+00:01:40,040 --> 00:01:42,890
+These new properties can simply
+be accessed by calling
+
+42
+00:01:42,890 --> 00:01:46,660
+.perPage, .page, or .total.
+
+43
+00:01:46,660 --> 00:01:48,290
+And these aren't special
+properties.
+
+44
+00:01:48,290 --> 00:01:49,880
+They aren't defined
+anywhere else.
+
+45
+00:01:49,880 --> 00:01:53,010
+Remember, we're working inside
+JavaScript, so we can just
+
+46
+00:01:53,010 --> 00:01:56,720
+randomly define new properties
+inside of a JavaScript object.
+
+47
+00:01:56,720 --> 00:01:58,840
+And now, if we call toJSON,
+it works as intended.
+
+48
+00:01:58,840 --> 00:02:03,670
+
+
+49
+00:02:03,670 --> 00:02:05,950
+So working with this API,
+when we call fetch, it
+
+50
+00:02:05,950 --> 00:02:07,530
+returns this JSON.
+
+51
+00:02:07,530 --> 00:02:09,389
+Now we're properly parsing it.
+
+52
+00:02:09,389 --> 00:02:12,830
+But what if we wanted
+to turn a few pages?
+
+53
+00:02:12,830 --> 00:02:16,110
+What if we wanted to get
+page number six?
+
+54
+00:02:16,110 --> 00:02:20,810
+We would need to call a GET
+request with a parameter.
+
+55
+00:02:20,810 --> 00:02:22,870
+In this case, page equals 6.
+
+56
+00:02:22,870 --> 00:02:25,690
+But how would we do that
+inside Backbone?
+
+57
+00:02:25,690 --> 00:02:29,330
+We can do that by sending an
+additional object into fetch.
+
+58
+00:02:29,330 --> 00:02:32,330
+In this case, we're going to
+specify that we want to send
+
+59
+00:02:32,330 --> 00:02:35,770
+additional data on to the
+request, and that data is
+
+60
+00:02:35,770 --> 00:02:38,030
+going to be page six.
+
+61
+00:02:38,030 --> 00:02:41,180
+This will construct the proper
+URL and do the request.
+
+62
+00:02:41,180 --> 00:02:44,050
+However, since we're setting the
+current page when we first
+
+63
+00:02:44,050 --> 00:02:46,910
+fetch the collection, we could
+make this code a little more
+
+64
+00:02:46,910 --> 00:02:51,000
+dynamic, and call fetch on
+the page which is our
+
+65
+00:02:51,000 --> 00:02:53,320
+current page plus one.
+
+66
+00:02:53,320 --> 00:02:55,220
+This would get us the next
+page of todo items.
+
+67
+00:02:55,220 --> 00:02:59,630
+
+
+68
+00:02:59,630 --> 00:03:02,050
+Now we know how to fetch the
+next page, but how would we
+
+69
+00:03:02,050 --> 00:03:06,790
+put this next page link in
+our app and make it work?
+
+70
+00:03:06,790 --> 00:03:07,950
+Here's some code you
+should remember
+
+71
+00:03:07,950 --> 00:03:09,690
+from the first course.
+
+72
+00:03:09,690 --> 00:03:12,450
+Inside of a review, we have an
+initialize function, which
+
+73
+00:03:12,450 --> 00:03:14,990
+listens for the collection
+reset event.
+
+74
+00:03:14,990 --> 00:03:18,090
+We have a render function,
+which calls addAll.
+
+75
+00:03:18,090 --> 00:03:21,160
+The addAll function empties out
+our elements, and it goes
+
+76
+00:03:21,160 --> 00:03:24,210
+through each item in our
+collection, calling addOne
+
+77
+00:03:24,210 --> 00:03:25,630
+for each todoItem.
+
+78
+00:03:25,630 --> 00:03:29,410
+Lastly in the addOne function,
+we create a todo view for each
+
+79
+00:03:29,410 --> 00:03:32,730
+todo item, and then render that
+out and append that
+
+80
+00:03:32,730 --> 00:03:35,300
+to the collection element.
+
+81
+00:03:35,300 --> 00:03:38,150
+So how do we use this collection
+view to render out
+
+82
+00:03:38,150 --> 00:03:39,430
+a next link?
+
+83
+00:03:39,430 --> 00:03:42,860
+One way we could do this is by
+adding a template into this
+
+84
+00:03:42,860 --> 00:03:45,090
+collection view, which
+will render out the
+
+85
+00:03:45,090 --> 00:03:46,500
+link that we want.
+
+86
+00:03:46,500 --> 00:03:49,610
+Then inside of our render
+function, after we add all the
+
+87
+00:03:49,610 --> 00:03:52,990
+todoItems, we can append the
+HTML from this template,
+
+88
+00:03:52,990 --> 00:03:54,670
+sending in the proper
+page that we want
+
+89
+00:03:54,670 --> 00:03:55,920
+this link to go to.
+
+90
+00:03:55,920 --> 00:03:58,460
+
+
+91
+00:03:58,460 --> 00:03:59,690
+That's all we need to do here.
+
+92
+00:03:59,690 --> 00:04:02,880
+But we should still jump
+into the router and
+
+93
+00:04:02,880 --> 00:04:04,130
+add this page URL.
+
+94
+00:04:04,130 --> 00:04:06,930
+
+
+95
+00:04:06,930 --> 00:04:09,840
+Before we do that, let's quickly
+review our router.
+
+96
+00:04:09,840 --> 00:04:11,870
+So here we have just
+one route.
+
+97
+00:04:11,870 --> 00:04:13,250
+We have the index route.
+
+98
+00:04:13,250 --> 00:04:15,760
+Inside of our initialize
+function, we're instantiating
+
+99
+00:04:15,760 --> 00:04:19,610
+the collection and the
+collection view, rendering out
+
+100
+00:04:19,610 --> 00:04:23,290
+that collection, appending it
+to the app div, and then
+
+101
+00:04:23,290 --> 00:04:26,090
+defining the index route
+function, which will just
+
+102
+00:04:26,090 --> 00:04:27,880
+fetch the todo items.
+
+103
+00:04:27,880 --> 00:04:30,100
+So at our page route,
+we simply add
+
+104
+00:04:30,100 --> 00:04:32,530
+this path to our routes.
+
+105
+00:04:32,530 --> 00:04:35,000
+And then to find the page route
+function, notice this
+
+106
+00:04:35,000 --> 00:04:38,220
+has a parameter it gets from
+the path called page.
+
+107
+00:04:38,220 --> 00:04:41,880
+And then we simply fetch the
+todo items, sending in the
+
+108
+00:04:41,880 --> 00:04:43,130
+proper page.
+
+109
+00:04:43,130 --> 00:04:48,770
+
+
+110
+00:04:48,770 --> 00:04:51,350
+Let's take a look at this
+code in action.
+
+111
+00:04:51,350 --> 00:04:54,330
+So here, you can see
+our todo list.
+
+112
+00:04:54,330 --> 00:04:56,520
+When we click next page,
+it brings us to the
+
+113
+00:04:56,520 --> 00:04:58,020
+next page of todos.
+
+114
+00:04:58,020 --> 00:05:01,870
+We can even click Back if we
+want to, or Refresh, because
+
+115
+00:05:01,870 --> 00:05:03,290
+every time we click
+next page, it's
+
+116
+00:05:03,290 --> 00:05:06,950
+updating the URL properly.
+
+117
+00:05:06,950 --> 00:05:10,000
+Backbone provides an easy way
+to sort your data using the
+
+118
+00:05:10,000 --> 00:05:11,740
+comparator property.
+
+119
+00:05:11,740 --> 00:05:14,380
+So here inside of our
+collection, if we say
+
+120
+00:05:14,380 --> 00:05:18,240
+comparator status, so now when
+we call fetch and we get the
+
+121
+00:05:18,240 --> 00:05:22,100
+data, Backbone is going to
+sort our models into the
+
+122
+00:05:22,100 --> 00:05:23,490
+specified order.
+
+123
+00:05:23,490 --> 00:05:25,000
+In this case, sorted
+by status.
+
+124
+00:05:25,000 --> 00:05:27,570
+
+
+125
+00:05:27,570 --> 00:05:30,180
+To do more complex sorting, we
+can set the comparator equal
+
+126
+00:05:30,180 --> 00:05:31,660
+to a function.
+
+127
+00:05:31,660 --> 00:05:34,300
+This function will take in two
+parameters which are two
+
+128
+00:05:34,300 --> 00:05:35,360
+different models.
+
+129
+00:05:35,360 --> 00:05:37,500
+We can then compare two
+items on that model.
+
+130
+00:05:37,500 --> 00:05:40,270
+In this case, we're comparing
+the status, so we'll sort
+
+131
+00:05:40,270 --> 00:05:43,790
+status in reverse order.
+
+132
+00:05:43,790 --> 00:05:45,320
+And once we call fetch,
+then use the
+
+133
+00:05:45,320 --> 00:05:46,760
+comparator to sort our models.
+
+134
+00:05:46,760 --> 00:05:51,690
+
+
+135
+00:05:51,690 --> 00:05:54,040
+What if we wanted to count how
+many models in our collection
+
+136
+00:05:54,040 --> 00:05:55,270
+are complete?
+
+137
+00:05:55,270 --> 00:05:58,590
+Well, one way we can do that
+is by defining a completed
+
+138
+00:05:58,590 --> 00:06:00,410
+count function.
+
+139
+00:06:00,410 --> 00:06:04,730
+Inside of that, we're going to
+want to use the where function
+
+140
+00:06:04,730 --> 00:06:07,810
+to filter all of the items in
+our collection that have
+
+141
+00:06:07,810 --> 00:06:09,210
+status complete.
+
+142
+00:06:09,210 --> 00:06:12,770
+And then we can call length on
+that returned array to give us
+
+143
+00:06:12,770 --> 00:06:14,880
+the number of complete items.
+
+144
+00:06:14,880 --> 00:06:18,000
+So if this was our collection
+data, and we called completed
+
+145
+00:06:18,000 --> 00:06:22,060
+count, we would get
+returned one.
+
+146
+00:06:22,060 --> 00:06:22,950
+That's the end of level two.
+
+147
+00:06:22,950 --> 00:06:24,720
+It's time to code up some
+collections in the challenges.
+
+148
+00:00:00,000 --> 00:00:00,000
+00:06:24,720 --> 00:06:28,290
+

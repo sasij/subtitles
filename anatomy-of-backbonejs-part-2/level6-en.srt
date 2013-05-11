@@ -1,0 +1,578 @@
+1
+00:00:00,000 --> 00:00:00,290
+[SINGING]
+
+2
+00:00:00,290 --> 00:00:03,100
+Your client side JavaScript
+is starting to mold.
+
+3
+00:00:03,100 --> 00:00:06,550
+It's starting to resemble
+a bad spaghetti code.
+
+4
+00:00:06,550 --> 00:00:09,140
+And it is time to add
+structure but it
+
+5
+00:00:09,140 --> 00:00:10,170
+won't take too long.
+
+6
+00:00:10,170 --> 00:00:13,590
+Gotta get your truth
+out of the DOM.
+
+7
+00:00:13,590 --> 00:00:17,080
+Take your data into models that
+you cannot lose, we'll
+
+8
+00:00:17,080 --> 00:00:20,300
+render out your models with
+the help of the views.
+
+9
+00:00:20,300 --> 00:00:23,120
+And if you don't want your
+JavaScript to end up like a
+
+10
+00:00:23,120 --> 00:00:25,460
+mess, it's time for
+the Anatomy of
+
+11
+00:00:25,460 --> 00:00:31,850
+Backbone JS at Code School.
+
+12
+00:00:31,850 --> 00:00:34,540
+You're watching The Anatomy of
+Backbone Part Two, and this is
+
+13
+00:00:34,540 --> 00:00:36,650
+Level Six where we're going
+to be going over app
+
+14
+00:00:36,650 --> 00:00:38,780
+organization.
+
+15
+00:00:38,780 --> 00:00:41,570
+All of the Backbone objects
+we've defined thus far have
+
+16
+00:00:41,570 --> 00:00:44,810
+been in the Global Namespace,
+which can lead to problems.
+
+17
+00:00:44,810 --> 00:00:47,110
+First, it can lead to
+naming collisions.
+
+18
+00:00:47,110 --> 00:00:51,510
+Second, we're having to put
+the type of object it is
+
+19
+00:00:51,510 --> 00:00:54,880
+inside the name, which
+just feels wrong.
+
+20
+00:00:54,880 --> 00:00:57,340
+And then lastly, the
+maintainability of the app is
+
+21
+00:00:57,340 --> 00:00:59,730
+going to be difficult.
+
+22
+00:00:59,730 --> 00:01:01,920
+One way we could solve this
+problem is by creating a
+
+23
+00:01:01,920 --> 00:01:05,400
+single global object where
+we store everything.
+
+24
+00:01:05,400 --> 00:01:08,370
+So here you can see we've
+got Models, Views, and
+
+25
+00:01:08,370 --> 00:01:12,230
+Collections, and then we
+simply put our Backbone
+
+26
+00:01:12,230 --> 00:01:13,870
+objects inside of those.
+
+27
+00:01:13,870 --> 00:01:18,460
+So App.Models.ToDoItem,
+App.Views, App.Collections,
+
+28
+00:01:18,460 --> 00:01:21,620
+App.Views, and we can just store
+one off objects like our
+
+29
+00:01:21,620 --> 00:01:23,940
+router at the top level.
+
+30
+00:01:23,940 --> 00:01:26,740
+Now when we go to instantiate
+these classes, we simply add
+
+31
+00:01:26,740 --> 00:01:28,470
+the Namespace, in this case
+App.Models.ToDoItem.
+
+32
+00:01:28,470 --> 00:01:33,500
+
+
+33
+00:01:33,500 --> 00:01:34,910
+Now let's talk about links.
+
+34
+00:01:34,910 --> 00:01:38,370
+We might have links in our
+existing HTML that we want to
+
+35
+00:01:38,370 --> 00:01:40,680
+call Backbone actions.
+
+36
+00:01:40,680 --> 00:01:44,000
+So one way we could do this
+is by using jQuery.
+
+37
+00:01:44,000 --> 00:01:47,020
+So every time a link is
+clicked, we'll prevent
+
+38
+00:01:47,020 --> 00:01:49,730
+default, and then we'll
+navigate to the
+
+39
+00:01:49,730 --> 00:01:51,920
+target of that link.
+
+40
+00:01:51,920 --> 00:01:54,060
+However, what if we wanted
+Backbone to handle
+
+41
+00:01:54,060 --> 00:01:56,610
+our links for us?
+
+42
+00:01:56,610 --> 00:01:58,800
+The first thing we can do to
+make this cleaner is to move
+
+43
+00:01:58,800 --> 00:02:03,410
+this jQuery code inside of our
+App Global Object, maybe
+
+44
+00:02:03,410 --> 00:02:05,380
+inside of a start function
+like so.
+
+45
+00:02:05,380 --> 00:02:06,750
+This also might be
+where we put our
+
+46
+00:02:06,750 --> 00:02:08,840
+Backbone.history.start function.
+
+47
+00:02:08,840 --> 00:02:11,320
+And to start our application, we
+can simply call App.start.
+
+48
+00:02:11,320 --> 00:02:14,030
+
+
+49
+00:02:14,030 --> 00:02:16,490
+However, the way we're listening
+for events here is a
+
+50
+00:02:16,490 --> 00:02:17,720
+view concern.
+
+51
+00:02:17,720 --> 00:02:20,100
+Backbone is capable
+of handling it.
+
+52
+00:02:20,100 --> 00:02:24,160
+So let's move this inside of
+our View Event hierarchy.
+
+53
+00:02:24,160 --> 00:02:27,500
+To do this, we're going to make
+our application itself a
+
+54
+00:02:27,500 --> 00:02:29,020
+Backbone View.
+
+55
+00:02:29,020 --> 00:02:31,830
+This allows us to use the
+Backbone Events handler.
+
+56
+00:02:31,830 --> 00:02:33,960
+So inside here, we can
+specify the event
+
+57
+00:02:33,960 --> 00:02:35,860
+when a link is clicked.
+
+58
+00:02:35,860 --> 00:02:38,640
+To instantiate the app, we're
+going to send in the entire
+
+59
+00:02:38,640 --> 00:02:41,490
+document body so it will
+listen for events
+
+60
+00:02:41,490 --> 00:02:42,740
+anywhere on the page.
+
+61
+00:02:42,740 --> 00:02:46,410
+
+
+62
+00:02:46,410 --> 00:02:49,150
+Since we only want to create
+one instance of this App
+
+63
+00:02:49,150 --> 00:02:52,700
+class, we can simplify this
+code a little and actually
+
+64
+00:02:52,700 --> 00:02:55,540
+instantiate this view right
+after we define
+
+65
+00:02:55,540 --> 00:02:57,450
+the class, like so.
+
+66
+00:02:57,450 --> 00:03:00,580
+Notice the parameters are now
+at the bottom of this code.
+
+67
+00:03:00,580 --> 00:03:02,680
+Now to start our application
+running, we simply need to
+
+68
+00:03:02,680 --> 00:03:03,930
+call App.start.
+
+69
+00:03:03,930 --> 00:03:09,530
+
+
+70
+00:03:09,530 --> 00:03:12,910
+Here's our link HTML again, and
+here's our Event Handler.
+
+71
+00:03:12,910 --> 00:03:15,430
+So this is going to capture
+all links on the page.
+
+72
+00:03:15,430 --> 00:03:19,440
+But sometimes, we may not want
+to capture all events.
+
+73
+00:03:19,440 --> 00:03:22,305
+For example, this Support link
+here, that might be a link to
+
+74
+00:03:22,305 --> 00:03:24,720
+a different web page that
+doesn't use Backbone.
+
+75
+00:03:24,720 --> 00:03:26,910
+We might want to refresh
+the entire page.
+
+76
+00:03:26,910 --> 00:03:28,850
+So how do we specify
+which links we
+
+77
+00:03:28,850 --> 00:03:30,560
+want Backbone to handle?
+
+78
+00:03:30,560 --> 00:03:34,790
+One way we could do this is by
+adding a data attribute.
+
+79
+00:03:34,790 --> 00:03:37,960
+So here we have
+data-internal=true, and then
+
+80
+00:03:37,960 --> 00:03:42,320
+inside our Event Handler, we can
+specify to only listen for
+
+81
+00:03:42,320 --> 00:03:44,500
+links that have this
+data element.
+
+82
+00:03:44,500 --> 00:03:49,920
+
+
+83
+00:03:49,920 --> 00:03:52,440
+Since we have a view that
+encompasses our entire
+
+84
+00:03:52,440 --> 00:03:55,690
+document body, if we want, we
+can put some template code
+
+85
+00:03:55,690 --> 00:04:00,420
+into this App View which has
+some of our initial HTML.
+
+86
+00:04:00,420 --> 00:04:02,950
+This is why sometimes when you
+go to websites that use
+
+87
+00:04:02,950 --> 00:04:06,820
+Backbone and you view the
+source, there's not much HTML
+
+88
+00:04:06,820 --> 00:04:07,700
+on the page.
+
+89
+00:04:07,700 --> 00:04:11,070
+It's probably because it's
+getting loaded initially by a
+
+90
+00:04:11,070 --> 00:04:14,680
+view that encompasses the
+entire document body.
+
+91
+00:04:14,680 --> 00:04:17,950
+So to do that here, we have
+a basic template.
+
+92
+00:04:17,950 --> 00:04:22,240
+We're going to render it, and
+then call the Start function.
+
+93
+00:04:22,240 --> 00:04:24,640
+It renders out some initial
+HTML to the body.
+
+94
+00:04:24,640 --> 00:04:28,680
+
+
+95
+00:04:28,680 --> 00:04:31,380
+Inside of the start method
+is also a good place to
+
+96
+00:04:31,380 --> 00:04:36,170
+instantiate our Collections,
+our Views, render out our
+
+97
+00:04:36,170 --> 00:04:38,270
+Views and append that to
+the page, and then
+
+98
+00:04:38,270 --> 00:04:40,490
+fetch the todoItems.
+
+99
+00:04:40,490 --> 00:04:42,650
+This works fine, but if you're
+loading a page for the first
+
+100
+00:04:42,650 --> 00:04:46,150
+time, you're actually doing two
+requests to load the page,
+
+101
+00:04:46,150 --> 00:04:49,670
+one to load the initial HTML,
+and then you're doing an AJAX
+
+102
+00:04:49,670 --> 00:04:51,780
+request to fetch all the data.
+
+103
+00:04:51,780 --> 00:04:54,740
+But what if you could put
+that initial data
+
+104
+00:04:54,740 --> 00:04:56,830
+also inside your HTML?
+
+105
+00:04:56,830 --> 00:04:59,110
+That would be quicker, and you
+wouldn't have to do that
+
+106
+00:04:59,110 --> 00:05:01,680
+callback for all of your data.
+
+107
+00:05:01,680 --> 00:05:04,350
+The first step to do something
+like that is to simply put
+
+108
+00:05:04,350 --> 00:05:07,910
+your data inside of a variable
+inside of the HTML that we're
+
+109
+00:05:07,910 --> 00:05:09,300
+initially sending over.
+
+110
+00:05:09,300 --> 00:05:10,920
+In this case, we have
+a little bootstrap
+
+111
+00:05:10,920 --> 00:05:12,700
+variable with our data.
+
+112
+00:05:12,700 --> 00:05:15,010
+We're going to send that
+bootstrap variable into our
+
+113
+00:05:15,010 --> 00:05:16,360
+start function.
+
+114
+00:05:16,360 --> 00:05:18,940
+The start function receives a
+bootstrap parameter, and then
+
+115
+00:05:18,940 --> 00:05:21,715
+we send that into our Collection
+to initialize all
+
+116
+00:05:21,715 --> 00:05:22,965
+of our todoItems.
+
+117
+00:05:22,965 --> 00:05:25,630
+
+
+118
+00:05:25,630 --> 00:05:27,770
+That's all there is to it, and
+we've sped up our application
+
+119
+00:05:27,770 --> 00:05:30,691
+because it no longer has to do
+that AJAX request to fetch all
+
+120
+00:05:30,691 --> 00:05:35,020
+the To Dos after the
+page is loaded.
+
+121
+00:05:35,020 --> 00:05:37,970
+Let's have you organize some of
+our Backbone code, and I'll
+
+122
+00:05:37,970 --> 00:05:39,220
+see you in the final level.
+
+123
+00:00:00,000 --> 00:00:00,000
+00:05:39,220 --> 00:05:42,508
+

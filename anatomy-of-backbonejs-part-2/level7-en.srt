@@ -1,0 +1,834 @@
+1
+00:00:00,000 --> 00:00:00,140
+[SINGING]
+
+2
+00:00:00,140 --> 00:00:03,100
+Your client-side JavaScript
+to starting to mold.
+
+3
+00:00:03,100 --> 00:00:06,560
+It's starting to resemble a
+bad spaghetti code.
+
+4
+00:00:06,560 --> 00:00:10,160
+And it is time add structure,
+but it won't take too long.
+
+5
+00:00:10,160 --> 00:00:13,590
+Gotta get your truth
+out of the DOM.
+
+6
+00:00:13,590 --> 00:00:16,730
+Take your data and the models
+that you cannot lose.
+
+7
+00:00:16,730 --> 00:00:20,300
+We'll render out your models
+with the help of the views.
+
+8
+00:00:20,300 --> 00:00:23,120
+And if you don't want your
+JavaScript to end up like a
+
+9
+00:00:23,120 --> 00:00:27,404
+mess, it's time for
+the Anatomy of
+
+10
+00:00:27,404 --> 00:00:31,780
+Backbone.js at Code School.
+
+11
+00:00:31,780 --> 00:00:33,960
+You're watching the Anatomy
+of Backbone Part 2.
+
+12
+00:00:33,960 --> 00:00:35,480
+And this is level seven,
+where we're going to
+
+13
+00:00:35,480 --> 00:00:38,460
+be customizing Backbone.
+
+14
+00:00:38,460 --> 00:00:40,960
+So here we are back in
+our TodoItemView.
+
+15
+00:00:40,960 --> 00:00:45,090
+And notice here that we're using
+a banana instead of our
+
+16
+00:00:45,090 --> 00:00:48,970
+typical template keyword, just
+to remind you that views don't
+
+17
+00:00:48,970 --> 00:00:53,320
+care how you use templates or
+what kind of template you use.
+
+18
+00:00:53,320 --> 00:00:57,040
+It's very easy to use other ones
+such as handlebars, EJS,
+
+19
+00:00:57,040 --> 00:00:59,260
+or Google Clojure Templates.
+
+20
+00:00:59,260 --> 00:01:01,630
+We're going to take a look
+at a couple alternatives.
+
+21
+00:01:01,630 --> 00:01:04,349
+So here's an Underscore
+template where we have
+
+22
+00:01:04,349 --> 00:01:07,750
+description, and assigned_to
+as variables
+
+23
+00:01:07,750 --> 00:01:09,020
+that get filled in.
+
+24
+00:01:09,020 --> 00:01:11,920
+And then the equivalent Mustache
+template would look
+
+25
+00:01:11,920 --> 00:01:13,130
+something like this.
+
+26
+00:01:13,130 --> 00:01:17,420
+Notice we're using curly
+braces here.
+
+27
+00:01:17,420 --> 00:01:21,130
+Mustache doesn't allow for
+arbitrary JavaScript.
+
+28
+00:01:21,130 --> 00:01:23,250
+So you've got to do things
+slightly differently.
+
+29
+00:01:23,250 --> 00:01:25,470
+Let's take a closer look.
+
+30
+00:01:25,470 --> 00:01:28,410
+So if you want to use Mustache
+inside your view, you're going
+
+31
+00:01:28,410 --> 00:01:31,580
+to want to call Mustache.compile
+and then
+
+32
+00:01:31,580 --> 00:01:34,840
+include the string that has
+your Mustache HTML in it.
+
+33
+00:01:34,840 --> 00:01:37,560
+Mustache.compile returns a
+function, just like to
+
+34
+00:01:37,560 --> 00:01:40,150
+_.template does.
+
+35
+00:01:40,150 --> 00:01:43,930
+So as we saw a moment ago, if
+are view sends in this data,
+
+36
+00:01:43,930 --> 00:01:47,020
+with underscore, this is how
+we put it into our HTML.
+
+37
+00:01:47,020 --> 00:01:50,460
+And with Mustache, we use
+the curly braces.
+
+38
+00:01:50,460 --> 00:01:52,310
+But how would we
+render an array
+
+39
+00:01:52,310 --> 00:01:56,670
+names inside of Mustache?
+
+40
+00:01:56,670 --> 00:01:57,640
+Here's our array.
+
+41
+00:01:57,640 --> 00:02:01,540
+With underscore, we would use
+JavaScript, calling the _.each
+
+42
+00:02:01,540 --> 00:02:05,100
+method, which is a
+little verbose.
+
+43
+00:02:05,100 --> 00:02:07,480
+Mustache, I think, is a
+little bit cleaner.
+
+44
+00:02:07,480 --> 00:02:12,240
+We simply specify names, and
+then inside of that, we have
+
+45
+00:02:12,240 --> 00:02:15,150
+our little loop, and we just
+have to do curly braces with a
+
+46
+00:02:15,150 --> 00:02:20,060
+dot, specify we want to print
+out each item in that array.
+
+47
+00:02:20,060 --> 00:02:22,910
+But what if we had an
+array of objects,
+
+48
+00:02:22,910 --> 00:02:25,020
+like this, with people?
+
+49
+00:02:25,020 --> 00:02:28,120
+Well, in underscore, we would,
+again, go through each of
+
+50
+00:02:28,120 --> 00:02:29,955
+them, like so.
+
+51
+00:02:29,955 --> 00:02:32,970
+And with Mustache, we would
+do this, where we
+
+52
+00:02:32,970 --> 00:02:35,540
+just specify the keys.
+
+53
+00:02:35,540 --> 00:02:40,300
+As you can see, it's a little
+easier to read.
+
+54
+00:02:40,300 --> 00:02:43,140
+Let's take a look at a few more
+mustache conventions.
+
+55
+00:02:43,140 --> 00:02:46,580
+So if our view sends in data,
+completed false, and we only
+
+56
+00:02:46,580 --> 00:02:49,410
+want to show done if completed
+is true, we do this in
+
+57
+00:02:49,410 --> 00:02:52,580
+Mustache which would print out,
+"Are you done?" because
+
+58
+00:02:52,580 --> 00:02:54,520
+completed is false.
+
+59
+00:02:54,520 --> 00:02:57,170
+If our array of names was blank,
+and we had the same
+
+60
+00:02:57,170 --> 00:03:00,180
+Mustache code you saw a few
+slides ago, it would simply
+
+61
+00:03:00,180 --> 00:03:03,480
+print out the uls, and no lis.
+
+62
+00:03:03,480 --> 00:03:06,960
+And if you wanted to print out
+some HTML if completed was
+
+63
+00:03:06,960 --> 00:03:10,610
+false, we could do it like
+this, using that carrot.
+
+64
+00:03:10,610 --> 00:03:13,710
+So in this case, it would print
+out, "Are you done?
+
+65
+00:03:13,710 --> 00:03:19,030
+Nope!" Mustache allows you to
+send functions into it if you
+
+66
+00:03:19,030 --> 00:03:22,200
+need more complex behavior
+inside your template.
+
+67
+00:03:22,200 --> 00:03:25,655
+So here, we have a header
+function which simply wraps
+
+68
+00:03:25,655 --> 00:03:29,100
+our rendered text
+inside of an h1.
+
+69
+00:03:29,100 --> 00:03:30,780
+Here's what our template
+would look like.
+
+70
+00:03:30,780 --> 00:03:33,210
+So it's going to render
+Hello, name.
+
+71
+00:03:33,210 --> 00:03:35,160
+Name, in this case, is Eric.
+
+72
+00:03:35,160 --> 00:03:37,900
+And then it's going to wrap
+that inside of an h1.
+
+73
+00:03:37,900 --> 00:03:41,930
+
+
+74
+00:03:41,930 --> 00:03:45,480
+By default backbone has a very
+RESTful persistence strategy.
+
+75
+00:03:45,480 --> 00:03:49,510
+So when we go to Read data, we
+call fetch, which causes a Get
+
+76
+00:03:49,510 --> 00:03:50,760
+request to happen.
+
+77
+00:03:50,760 --> 00:03:54,700
+When we need to update, we call
+Save, which triggers a
+
+78
+00:03:54,700 --> 00:03:55,930
+Put request.
+
+79
+00:03:55,930 --> 00:03:59,400
+When we need to delete, we call
+destroy, which triggers a
+
+80
+00:03:59,400 --> 00:04:00,990
+delete request.
+
+81
+00:04:00,990 --> 00:04:04,680
+And when we need to create, we
+simply create a new TodoItem,
+
+82
+00:04:04,680 --> 00:04:07,670
+like you see here, Save
+it, and it's going to
+
+83
+00:04:07,670 --> 00:04:10,470
+do a post to /todos.
+
+84
+00:04:10,470 --> 00:04:13,460
+But what if we wanted to
+override the default behavior
+
+85
+00:04:13,460 --> 00:04:19,339
+and make it so that our backbone
+model was read-only?
+
+86
+00:04:19,339 --> 00:04:21,760
+Remember how we overrode the
+parse method in level one to
+
+87
+00:04:21,760 --> 00:04:23,770
+override the default behavior?
+
+88
+00:04:23,770 --> 00:04:26,260
+We're going to do the same thing
+here to make a model
+
+89
+00:04:26,260 --> 00:04:30,160
+read-only by overriding
+the sync function.
+
+90
+00:04:30,160 --> 00:04:32,500
+The sync function has
+three parameters--
+
+91
+00:04:32,500 --> 00:04:35,160
+method, model, and options.
+
+92
+00:04:35,160 --> 00:04:37,840
+In this case, we're going to
+check to see if the method is
+
+93
+00:04:37,840 --> 00:04:39,460
+equal to read.
+
+94
+00:04:39,460 --> 00:04:42,750
+If it is, we do want to
+sync with the server.
+
+95
+00:04:42,750 --> 00:04:44,420
+And if it isn't, we're
+simply going to
+
+96
+00:04:44,420 --> 00:04:46,370
+error out to the console.
+
+97
+00:04:46,370 --> 00:04:50,440
+The method parameter is either
+going to be read, create,
+
+98
+00:04:50,440 --> 00:04:53,320
+update, or delete.
+
+99
+00:04:53,320 --> 00:04:56,200
+And when we call fetch now,
+it's going to work.
+
+100
+00:04:56,200 --> 00:04:58,985
+But if we call save, that's when
+it's going to print out,
+
+101
+00:04:58,985 --> 00:05:03,860
+" cannot update a TodoItem
+model." So now, we know how to
+
+102
+00:05:03,860 --> 00:05:07,060
+override the default behavior
+of our persistence strategy,
+
+103
+00:05:07,060 --> 00:05:08,510
+but what if we wanted
+to create our
+
+104
+00:05:08,510 --> 00:05:10,330
+own persistence strategy?
+
+105
+00:05:10,330 --> 00:05:13,970
+Perhaps we would have a switch
+statement, which does certain
+
+106
+00:05:13,970 --> 00:05:17,660
+things when create, read,
+update, or delete are sent in
+
+107
+00:05:17,660 --> 00:05:19,150
+as the method.
+
+108
+00:05:19,150 --> 00:05:24,040
+Let's do this making a
+localStorage persistence strategy.
+
+109
+00:05:24,040 --> 00:05:27,540
+So in case you're not familiar
+with localStorage, this is
+
+110
+00:05:27,540 --> 00:05:30,740
+browser-side storage that
+most browsers have.
+
+111
+00:05:30,740 --> 00:05:33,250
+You can call setItem to
+set a key and value.
+
+112
+00:05:33,250 --> 00:05:36,100
+For example, we can set
+animal as the key
+
+113
+00:05:36,100 --> 00:05:37,570
+and dog is the value.
+
+114
+00:05:37,570 --> 00:05:40,750
+And then, when we call getItem
+animal, we get back dog, as
+
+115
+00:05:40,750 --> 00:05:41,930
+you would expect.
+
+116
+00:05:41,930 --> 00:05:43,360
+We can remove an item.
+
+117
+00:05:43,360 --> 00:05:44,670
+If we try to get an
+item that doesn't
+
+118
+00:05:44,670 --> 00:05:46,580
+exist, it returns undefined.
+
+119
+00:05:46,580 --> 00:05:49,380
+And lastly, we can use a nice
+object syntax, where we
+
+120
+00:05:49,380 --> 00:05:52,390
+specify the key between brackets
+and set that equal to
+
+121
+00:05:52,390 --> 00:05:54,250
+the value that we want.
+
+122
+00:05:54,250 --> 00:05:55,960
+We can obviously read
+this back out
+
+123
+00:05:55,960 --> 00:05:57,590
+using the same format.
+
+124
+00:05:57,590 --> 00:05:59,650
+Here's all the browsers that
+support local storage.
+
+125
+00:05:59,650 --> 00:06:02,960
+So we really are talking about
+storing this data on
+
+126
+00:06:02,960 --> 00:06:05,700
+somebody's browser.
+
+127
+00:06:05,700 --> 00:06:08,930
+Let's implement this local
+storage persistence strategy,
+
+128
+00:06:08,930 --> 00:06:11,280
+starting with the
+create method.
+
+129
+00:06:11,280 --> 00:06:13,240
+So if the create method
+is sent in, we
+
+130
+00:06:13,240 --> 00:06:14,790
+need to create a key.
+
+131
+00:06:14,790 --> 00:06:17,080
+In this case, we're simply
+going to prefix it with
+
+132
+00:06:17,080 --> 00:06:20,110
+TodoItem and then
+send in the ID.
+
+133
+00:06:20,110 --> 00:06:23,110
+Then we're going to set
+that with this key and
+
+134
+00:06:23,110 --> 00:06:25,650
+stringify the model.
+
+135
+00:06:25,650 --> 00:06:29,120
+This automatically calls the
+toJSON function on the model
+
+136
+00:06:29,120 --> 00:06:32,520
+and then turns it into a string,
+which we can store in
+
+137
+00:06:32,520 --> 00:06:34,320
+somebody's browser.
+
+138
+00:06:34,320 --> 00:06:37,660
+So now, when we create a new
+TodoItem, like so, it's going
+
+139
+00:06:37,660 --> 00:06:38,920
+to store it in the browser.
+
+140
+00:06:38,920 --> 00:06:41,860
+And if we use something like
+devtools, we can actually
+
+141
+00:06:41,860 --> 00:06:44,840
+inspect it, and see, like this,
+that it's stored the
+
+142
+00:06:44,840 --> 00:06:46,090
+value like so.
+
+143
+00:06:46,090 --> 00:06:48,790
+
+
+144
+00:06:48,790 --> 00:06:52,540
+Now, to implement the Read
+method, we need to construct
+
+145
+00:06:52,540 --> 00:06:55,490
+the key again, get the result
+from local storage using the
+
+146
+00:06:55,490 --> 00:06:59,830
+key, then, if that result
+does exist, parse that
+
+147
+00:06:59,830 --> 00:07:02,090
+string back into JSON.
+
+148
+00:07:02,090 --> 00:07:04,990
+Then we need to check to see the
+success callback exists.
+
+149
+00:07:04,990 --> 00:07:07,350
+And if it does, return
+the result.
+
+150
+00:07:07,350 --> 00:07:10,440
+Now we can create a new
+todoItem, call fetch, which
+
+151
+00:07:10,440 --> 00:07:12,260
+will read this todoItem
+out of local storage.
+
+152
+00:07:12,260 --> 00:07:15,770
+And then if we call
+todoItem.attributes, we can
+
+153
+00:07:15,770 --> 00:07:17,620
+see that our localStorage
+strategy worked.
+
+154
+00:07:17,620 --> 00:07:21,570
+
+
+155
+00:07:21,570 --> 00:07:24,650
+If a key doesn't exist in local
+storage, we might also
+
+156
+00:07:24,650 --> 00:07:26,570
+want to do something on error.
+
+157
+00:07:26,570 --> 00:07:28,100
+So here, we're going to
+check to see if the
+
+158
+00:07:28,100 --> 00:07:29,890
+error callback exist.
+
+159
+00:07:29,890 --> 00:07:32,500
+And if it does, then we're going
+to error out, "couldn't
+
+160
+00:07:32,500 --> 00:07:37,310
+find TodoItem." Now, if we
+create a new TodoItem, and we
+
+161
+00:07:37,310 --> 00:07:41,000
+attempt to fetch the value, and
+we pass in an error call
+
+162
+00:07:41,000 --> 00:07:44,300
+back, that error callback will
+be run and, in this case,
+
+163
+00:07:44,300 --> 00:07:47,820
+print an Alert message.
+
+164
+00:07:47,820 --> 00:07:49,910
+So now you know how
+to create a local
+
+165
+00:07:49,910 --> 00:07:51,570
+storage persistence strategy.
+
+166
+00:07:51,570 --> 00:07:54,670
+But if that's what you really
+want, somebody's already
+
+167
+00:07:54,670 --> 00:07:55,960
+created that for you.
+
+168
+00:07:55,960 --> 00:07:59,380
+If you go to this GitHub URL,
+you can simply include this
+
+169
+00:07:59,380 --> 00:08:03,440
+JavaScript in your code and
+specify when you create a
+
+170
+00:08:03,440 --> 00:08:06,660
+collection that you want to
+use this localStorage.
+
+171
+00:08:06,660 --> 00:08:10,120
+And it will automatically take
+care of reading, creating,
+
+172
+00:08:10,120 --> 00:08:12,850
+updating, and destroying out
+of local storage for your
+
+173
+00:08:12,850 --> 00:08:15,810
+Backbone models.
+
+174
+00:08:15,810 --> 00:08:17,380
+Only a few more challenges
+before you
+
+175
+00:08:17,380 --> 00:08:18,630
+complete this course.
+
+176
+00:08:18,630 --> 00:08:19,890
+We'll see you in the
+wrap up video.
+
+177
+00:00:00,000 --> 00:00:00,000
+00:08:19,890 --> 00:08:23,170
+

@@ -1,0 +1,1391 @@
+1
+00:00:00,000 --> 00:00:00,880
+
+2
+00:00:00,880 --> 00:00:02,500
+You're watching 3 For 5.
+
+3
+00:00:02,500 --> 00:00:03,590
+I'm Jason VanLue.
+
+4
+00:00:03,590 --> 00:00:04,840
+And this is Level One.
+
+5
+00:00:04,840 --> 00:00:09,100
+
+6
+00:00:09,100 --> 00:00:30,224
+[MUSIC PLAYING]
+
+7
+00:00:30,224 --> 00:00:33,540
+In this level, we're going
+to talk about HTML5.
+
+8
+00:00:33,540 --> 00:00:36,630
+Now, as you probably know, HTML5
+is the newest version of
+
+9
+00:00:36,630 --> 00:00:38,350
+HTML and XHTML.
+
+10
+00:00:38,350 --> 00:00:41,320
+Now, as we were developing this
+course, a large debate
+
+11
+00:00:41,320 --> 00:00:44,840
+came up about whether or not
+to call it HTML5 or just
+
+12
+00:00:44,840 --> 00:00:46,330
+plain, old HTML.
+
+13
+00:00:46,330 --> 00:00:49,160
+In fact the WHAT Working Group,
+the original creators
+
+14
+00:00:49,160 --> 00:00:52,390
+of the HTML5 spec, came out and
+said that we should call
+
+15
+00:00:52,390 --> 00:00:54,190
+it just HTML.
+
+16
+00:00:54,190 --> 00:00:57,660
+Well, a lot of people still like
+to refer to it as HTML5,
+
+17
+00:00:57,660 --> 00:01:01,040
+to differentiate between
+previous versions of HTML.
+
+18
+00:01:01,040 --> 00:01:02,210
+So what are we supposed to do?
+
+19
+00:01:02,210 --> 00:01:04,400
+We're creating this
+course on HTML5.
+
+20
+00:01:04,400 --> 00:01:07,120
+And they go and change
+the name on us.
+
+21
+00:01:07,120 --> 00:01:08,910
+So you say HTML5.
+
+22
+00:01:08,910 --> 00:01:10,440
+I say HTML.
+
+23
+00:01:10,440 --> 00:01:12,610
+In the words of Louis Armstrong,
+should we just call
+
+24
+00:01:12,610 --> 00:01:13,980
+the whole thing off?
+
+25
+00:01:13,980 --> 00:01:15,280
+Well, no, I don't think so.
+
+26
+00:01:15,280 --> 00:01:18,250
+You see, eventually, we'll
+probably call this HTML.
+
+27
+00:01:18,250 --> 00:01:20,460
+But for the purposes of this
+course, we'll go ahead and
+
+28
+00:01:20,460 --> 00:01:22,410
+refer to it as HTML5.
+
+29
+00:01:22,410 --> 00:01:23,900
+So that we don't
+confuse folks.
+
+30
+00:01:23,900 --> 00:01:26,590
+And because, well, we're
+just cool like that.
+
+31
+00:01:26,590 --> 00:01:28,490
+So what's the big deal
+about HTML5?
+
+32
+00:01:28,490 --> 00:01:31,550
+Well, we have some awesome new
+elements, like new semantic
+
+33
+00:01:31,550 --> 00:01:34,650
+tags, canvas, rich
+media, and more.
+
+34
+00:01:34,650 --> 00:01:36,520
+For the purposes of this course,
+we're just going to
+
+35
+00:01:36,520 --> 00:01:38,870
+focus on the semantic tags.
+
+36
+00:01:38,870 --> 00:01:41,490
+We'll also hit canvas and
+some of the rich media pieces,
+
+37
+00:01:41,490 --> 00:01:42,740
+later on in the course.
+
+38
+00:01:42,740 --> 00:01:45,190
+
+39
+00:01:45,190 --> 00:01:48,400
+So in HTML5, we have some
+new tags on the block.
+
+40
+00:01:48,400 --> 00:01:51,630
+In 2005, Google conducted a
+survey of over 3 billion
+
+41
+00:01:51,630 --> 00:01:54,730
+websites, in which they studied
+the most common ID and
+
+42
+00:01:54,730 --> 00:01:58,090
+class attributes that web
+designers and developers use
+
+43
+00:01:58,090 --> 00:01:59,860
+to name their HTML elements.
+
+44
+00:01:59,860 --> 00:02:04,050
+And their findings became the
+basis for the new HTML5 spec.
+
+45
+00:02:04,050 --> 00:02:07,970
+So as we look at some of the
+new tags for HTML5, this
+
+46
+00:02:07,970 --> 00:02:09,720
+obviously isn't an
+exhaustive list.
+
+47
+00:02:09,720 --> 00:02:11,720
+But it's some of the more
+widely used tags.
+
+48
+00:02:11,720 --> 00:02:12,450
+And it's what we're going to be
+
+49
+00:02:12,450 --> 00:02:15,990
+focusing on in this course.
+
+50
+00:02:15,990 --> 00:02:17,370
+First, we're going to
+start with doc type
+
+51
+00:02:17,370 --> 00:02:18,260
+and the head elements.
+
+52
+00:02:18,260 --> 00:02:21,580
+Now, if you're like me, I've
+copied and pasted the doc type
+
+53
+00:02:21,580 --> 00:02:23,220
+hundreds of times in websites.
+
+54
+00:02:23,220 --> 00:02:24,850
+I mean, who remembers this?
+
+55
+00:02:24,850 --> 00:02:28,310
+Well, it's nice in HTML5 for
+lazy designers like myself
+
+56
+00:02:28,310 --> 00:02:30,840
+because it gives us a very
+simple and easy option.
+
+57
+00:02:30,840 --> 00:02:31,690
+I can remember this.
+
+58
+00:02:31,690 --> 00:02:34,760
+I can even type it with my
+own hands, if I want to.
+
+59
+00:02:34,760 --> 00:02:38,210
+Moving on to the HTML root
+element, this also get much
+
+60
+00:02:38,210 --> 00:02:40,280
+more simplified in HTML5.
+
+61
+00:02:40,280 --> 00:02:42,670
+So instead of writing something
+like this, we can
+
+62
+00:02:42,670 --> 00:02:44,880
+write something like this.
+
+63
+00:02:44,880 --> 00:02:48,170
+Also, in the head elements, our
+character encoding gets a
+
+64
+00:02:48,170 --> 00:02:49,140
+lot easier.
+
+65
+00:02:49,140 --> 00:02:51,910
+So instead of writing something
+like this, all we
+
+66
+00:02:51,910 --> 00:02:53,360
+need to define is this.
+
+67
+00:02:53,360 --> 00:02:56,930
+And it's the same exact thing.
+
+68
+00:02:56,930 --> 00:02:59,560
+And then also, when we look at
+our links, we no longer have
+
+69
+00:02:59,560 --> 00:03:01,350
+to include the type attribute.
+
+70
+00:03:01,350 --> 00:03:05,370
+So instead of needing to type
+text CSS or text JavaScript,
+
+71
+00:03:05,370 --> 00:03:07,140
+we can go ahead and
+leave that out.
+
+72
+00:03:07,140 --> 00:03:10,320
+So our link elements look like
+this, relative to style sheet
+
+73
+00:03:10,320 --> 00:03:13,580
+and then the actual link URL.
+
+74
+00:03:13,580 --> 00:03:16,170
+So let's first take a look
+at our header element.
+
+75
+00:03:16,170 --> 00:03:19,220
+Now, the header tag in HTML5
+is defined as "a group of
+
+76
+00:03:19,220 --> 00:03:22,370
+introductory or navigational
+aids." Now, we all know
+
+77
+00:03:22,370 --> 00:03:23,200
+what a header is.
+
+78
+00:03:23,200 --> 00:03:25,350
+We've been using in
+all of our sites.
+
+79
+00:03:25,350 --> 00:03:27,510
+It's usually the top portion
+of your site.
+
+80
+00:03:27,510 --> 00:03:30,580
+And it includes the standard
+branding elements, logo, tag
+
+81
+00:03:30,580 --> 00:03:33,000
+line, and maybe some
+key call-to-action
+
+82
+00:03:33,000 --> 00:03:34,310
+elements, as well.
+
+83
+00:03:34,310 --> 00:03:37,090
+So previously, we might have
+mocked up the header something
+
+84
+00:03:37,090 --> 00:03:40,240
+like this, div id="header," with
+an each an h1 "OMG, Look
+
+85
+00:03:40,240 --> 00:03:42,760
+at the Zombies." Now, this
+is still valid HTML5.
+
+86
+00:03:42,760 --> 00:03:44,240
+And it works perfectly.
+
+87
+00:03:44,240 --> 00:03:47,480
+But in HTML5, we now have the
+option to organize this a
+
+88
+00:03:47,480 --> 00:03:49,755
+little bit better and
+more intuitively.
+
+89
+00:03:49,755 --> 00:03:52,770
+It might look something like
+this, where we add our header
+
+90
+00:03:52,770 --> 00:03:55,186
+tags, keep the h1.
+
+91
+00:03:55,186 --> 00:03:58,520
+Now, the nice thing about the
+HTML5 header tag is we're not
+
+92
+00:03:58,520 --> 00:04:01,240
+limited to its use just
+once in a page.
+
+93
+00:04:01,240 --> 00:04:02,990
+We can use this multiple
+times.
+
+94
+00:04:02,990 --> 00:04:06,410
+So previously, with our div id
+header, we would only be able
+
+95
+00:04:06,410 --> 00:04:07,760
+to use that once.
+
+96
+00:04:07,760 --> 00:04:10,870
+Now, with the new header tag in
+HTML5, as long as we have a
+
+97
+00:04:10,870 --> 00:04:13,990
+container element in the page,
+we can have a header section
+
+98
+00:04:13,990 --> 00:04:15,460
+for that, if we want it.
+
+99
+00:04:15,460 --> 00:04:20,079
+So let's say we have a section
+id, zombie-family.
+
+100
+00:04:20,079 --> 00:04:21,940
+And we'd like to have
+a header in that.
+
+101
+00:04:21,940 --> 00:04:22,830
+It's perfectly fine.
+
+102
+00:04:22,830 --> 00:04:25,300
+We can just add our header
+tags, add an h1, "We Are
+
+103
+00:04:25,300 --> 00:04:28,950
+Family." And that's
+semantic markup.
+
+104
+00:04:28,950 --> 00:04:30,920
+Let's also say we wanted
+to add a tag line.
+
+105
+00:04:30,920 --> 00:04:33,480
+So in addition to the "We Are
+Family" heading, we wanted to
+
+106
+00:04:33,480 --> 00:04:36,810
+say, "All your brains are belong
+to us." We can do this
+
+107
+00:04:36,810 --> 00:04:39,080
+and even organize this
+more effectively by
+
+108
+00:04:39,080 --> 00:04:40,620
+including an hgroup.
+
+109
+00:04:40,620 --> 00:04:43,110
+And basically, what this is,
+is just a nice grouping of
+
+110
+00:04:43,110 --> 00:04:46,800
+related information, within
+a header tag.
+
+111
+00:04:46,800 --> 00:04:49,260
+So let's move on
+now to the nav tag.
+
+112
+00:04:49,260 --> 00:04:52,550
+The nav tag in HTML5 is defined
+as "a section of the
+
+113
+00:04:52,550 --> 00:04:55,700
+page that links to other pages
+on the site or to other
+
+114
+00:04:55,700 --> 00:04:59,330
+sections of that particular
+page." Duh, we all know what a
+
+115
+00:04:59,330 --> 00:05:00,960
+navigation item is.
+
+116
+00:05:00,960 --> 00:05:04,120
+So the nav tag is basically
+just a navigation area.
+
+117
+00:05:04,120 --> 00:05:07,920
+In this particular example, with
+Frank Chimero's site, we
+
+118
+00:05:07,920 --> 00:05:09,610
+all know that the top-right
+portion is the
+
+119
+00:05:09,610 --> 00:05:11,130
+main navigation area.
+
+120
+00:05:11,130 --> 00:05:13,327
+But let's say we have a section
+of the site, maybe in
+
+121
+00:05:13,327 --> 00:05:16,160
+a side bar, that also has
+a grouping of links.
+
+122
+00:05:16,160 --> 00:05:19,260
+How can we tell if this is a
+navigation section or just a
+
+123
+00:05:19,260 --> 00:05:21,250
+grouping of links?
+
+124
+00:05:21,250 --> 00:05:23,330
+HTML5 makes this a lot easier.
+
+125
+00:05:23,330 --> 00:05:26,210
+Because now, we can define
+the nav tag.
+
+126
+00:05:26,210 --> 00:05:28,930
+So previously, we might have
+marked up something like this,
+
+127
+00:05:28,930 --> 00:05:31,670
+div id="navigation," with our
+unordered list and our
+
+128
+00:05:31,670 --> 00:05:34,060
+navigation items, within
+that list.
+
+129
+00:05:34,060 --> 00:05:37,500
+Now with HTML5, we can replace
+our divs with a nav tag.
+
+130
+00:05:37,500 --> 00:05:42,030
+And now we know that section
+is a navigation section.
+
+131
+00:05:42,030 --> 00:05:45,200
+So next, let's look at
+the section tag.
+
+132
+00:05:45,200 --> 00:05:48,220
+The section tag in HTML5 is
+defined as "a grouping of
+
+133
+00:05:48,220 --> 00:05:52,110
+content based around a theme."
+Now, sometimes, your section
+
+134
+00:05:52,110 --> 00:05:54,720
+elements can replace your div
+elements, maybe more of your
+
+135
+00:05:54,720 --> 00:05:56,770
+high-level organizational
+divs.
+
+136
+00:05:56,770 --> 00:05:59,000
+But it doesn't necessarily mean
+that you have to replace
+
+137
+00:05:59,000 --> 00:06:01,120
+all of your divs
+with sections.
+
+138
+00:06:01,120 --> 00:06:03,940
+A section also must be
+able to stand alone.
+
+139
+00:06:03,940 --> 00:06:05,760
+So let's look at an example.
+
+140
+00:06:05,760 --> 00:06:07,510
+Let's say we have a section
+of our site called
+
+141
+00:06:07,510 --> 00:06:09,410
+ACC Basketball News.
+
+142
+00:06:09,410 --> 00:06:10,990
+Previously, we might
+have marked up this
+
+143
+00:06:10,990 --> 00:06:12,660
+section, like so.
+
+144
+00:06:12,660 --> 00:06:16,670
+div id="acc-news." And we have
+a title, "ACC Basketball
+
+145
+00:06:16,670 --> 00:06:20,340
+News," a subtitle "UNC Beats
+Duke In Championship Game,"
+
+146
+00:06:20,340 --> 00:06:22,470
+and then, our paragraph
+content.
+
+147
+00:06:22,470 --> 00:06:25,250
+So how might we mark this
+up in HTML5, using
+
+148
+00:06:25,250 --> 00:06:26,500
+this section tag?
+
+149
+00:06:26,500 --> 00:06:31,010
+Well, we could add the section
+tag in place of our div tags.
+
+150
+00:06:31,010 --> 00:06:34,020
+And now, we can also add
+our header tag as well.
+
+151
+00:06:34,020 --> 00:06:36,290
+Because remember what we talked
+about before, with our
+
+152
+00:06:36,290 --> 00:06:38,490
+ability to use the header
+tag in multiple
+
+153
+00:06:38,490 --> 00:06:39,780
+sections of the site.
+
+154
+00:06:39,780 --> 00:06:42,910
+So in this case, "ACC Basketball
+News" is the title
+
+155
+00:06:42,910 --> 00:06:43,930
+of this section.
+
+156
+00:06:43,930 --> 00:06:46,410
+So we can include that
+in our header tags.
+
+157
+00:06:46,410 --> 00:06:50,130
+We can also change the h3 to
+an h2, "UNC Beats Duke In
+
+158
+00:06:50,130 --> 00:06:53,670
+Championship Game." And our
+paragraph copy stays the same,
+
+159
+00:06:53,670 --> 00:06:56,190
+same content, marked
+up semantically and
+
+160
+00:06:56,190 --> 00:06:58,880
+effectively in HTML5.
+
+161
+00:06:58,880 --> 00:07:01,150
+So now, let's look at
+the article tag.
+
+162
+00:07:01,150 --> 00:07:04,660
+The article tag in HTML5 is
+defined as "an independent,
+
+163
+00:07:04,660 --> 00:07:08,710
+self-contained composition."
+These could be news posts,
+
+164
+00:07:08,710 --> 00:07:10,870
+magazine articles,
+user comments.
+
+165
+00:07:10,870 --> 00:07:12,030
+It's pretty straightforward.
+
+166
+00:07:12,030 --> 00:07:15,640
+The article is essentially an
+article, a news posting,
+
+167
+00:07:15,640 --> 00:07:17,380
+something like that.
+
+168
+00:07:17,380 --> 00:07:18,840
+Now, what's the difference
+between an
+
+169
+00:07:18,840 --> 00:07:20,450
+article and a section?
+
+170
+00:07:20,450 --> 00:07:22,360
+It's a question I hear a lot.
+
+171
+00:07:22,360 --> 00:07:25,490
+And a section can contain
+multiple articles.
+
+172
+00:07:25,490 --> 00:07:28,260
+Remember, a section is a
+grouping of related content,
+
+173
+00:07:28,260 --> 00:07:31,650
+whereas, an article
+is independent.
+
+174
+00:07:31,650 --> 00:07:36,000
+So let's look at our example
+again, our div id="acc news,"
+
+175
+00:07:36,000 --> 00:07:38,190
+with our title and
+paragraph copy.
+
+176
+00:07:38,190 --> 00:07:41,840
+And if you remember, when we
+changed it HTML5, we added our
+
+177
+00:07:41,840 --> 00:07:44,560
+section tags and our
+header tags.
+
+178
+00:07:44,560 --> 00:07:47,750
+In this case, we've also added
+article tags as well.
+
+179
+00:07:47,750 --> 00:07:50,700
+So now, we can group our
+content, "UNC Beats Duke In
+
+180
+00:07:50,700 --> 00:07:53,150
+Championship Game,"
+and our paragraph
+
+181
+00:07:53,150 --> 00:07:55,440
+content, within that article.
+
+182
+00:07:55,440 --> 00:07:59,770
+Now notice also, we've also
+included more header tags.
+
+183
+00:07:59,770 --> 00:08:03,450
+In this case, the header for
+this particular article is UNC
+
+184
+00:08:03,450 --> 00:08:04,450
+Beats Duke.
+
+185
+00:08:04,450 --> 00:08:08,250
+So now, we have two sections
+of header tags within this
+
+186
+00:08:08,250 --> 00:08:09,550
+entire section element.
+
+187
+00:08:09,550 --> 00:08:11,810
+And that's perfectly OK,
+perfectly semantic.
+
+188
+00:08:11,810 --> 00:08:14,430
+
+189
+00:08:14,430 --> 00:08:17,550
+Andy Clark, in his book,
+Hardboiled Web Design, has a
+
+190
+00:08:17,550 --> 00:08:22,240
+pretty good quote to help us to
+define what an article is.
+
+191
+00:08:22,240 --> 00:08:24,420
+He says, "one way to check
+if article is the most
+
+192
+00:08:24,420 --> 00:08:27,390
+appropriate element is to see if
+an article's content makes
+
+193
+00:08:27,390 --> 00:08:28,780
+sense on its own.
+
+194
+00:08:28,780 --> 00:08:31,340
+For example, would it makes
+sense on its own, when viewed
+
+195
+00:08:31,340 --> 00:08:34,355
+in an RSS reader, like a
+Reeder for the iPad?"
+
+196
+00:08:34,355 --> 00:08:36,919
+So as you're thinking through
+your content and working on
+
+197
+00:08:36,919 --> 00:08:39,720
+your markup, this is a good
+quote to keep in mind.
+
+198
+00:08:39,720 --> 00:08:42,580
+If you're wanting to define
+something as an article, does
+
+199
+00:08:42,580 --> 00:08:46,010
+it work in say a standalone
+RSS reader on your iPad.
+
+200
+00:08:46,010 --> 00:08:48,340
+It's a good question
+to ask yourself.
+
+201
+00:08:48,340 --> 00:08:50,860
+So the next tag is
+the aside tag.
+
+202
+00:08:50,860 --> 00:08:54,360
+The aside tag is defined as
+"content related to an article
+
+203
+00:08:54,360 --> 00:08:57,340
+but not critical to its
+understanding." So this might
+
+204
+00:08:57,340 --> 00:09:00,400
+be those golden nuggets of
+useless information that you
+
+205
+00:09:00,400 --> 00:09:02,810
+bring up at dinner parties
+such as, "the airspeed
+
+206
+00:09:02,810 --> 00:09:05,410
+velocity of an unladen swallow."
+It could also be
+
+207
+00:09:05,410 --> 00:09:08,650
+pull quotes, call outs,
+those kind of things.
+
+208
+00:09:08,650 --> 00:09:10,420
+So let's go back
+to our example.
+
+209
+00:09:10,420 --> 00:09:12,750
+Remember our article here,
+"UNC Beats Duke In
+
+210
+00:09:12,750 --> 00:09:15,380
+Championship Game," our
+paragraph copy, "The Blue
+
+211
+00:09:15,380 --> 00:09:18,540
+Devils are routed by the Tar
+Heels." Now, we can include an
+
+212
+00:09:18,540 --> 00:09:22,250
+aside within this article that
+says "Former Duke Players Cry
+
+213
+00:09:22,250 --> 00:09:23,720
+at Game's End."
+
+214
+00:09:23,720 --> 00:09:26,830
+Now, this isn't essential to
+your understanding of the
+
+215
+00:09:26,830 --> 00:09:28,210
+actual article.
+
+216
+00:09:28,210 --> 00:09:31,920
+But it's just information that
+helps spruce up that article.
+
+217
+00:09:31,920 --> 00:09:36,040
+This is a good example of
+an aside might be used.
+
+218
+00:09:36,040 --> 00:09:38,320
+Finally, the last tag that we're
+going to look at is the
+
+219
+00:09:38,320 --> 00:09:40,580
+footer tag.
+
+220
+00:09:40,580 --> 00:09:44,010
+Now, the footer tag is defined
+as a section that "includes
+
+221
+00:09:44,010 --> 00:09:46,970
+information that closes out a
+particular section of the
+
+222
+00:09:46,970 --> 00:09:49,660
+page." Now just like the
+header, we all know
+
+223
+00:09:49,660 --> 00:09:51,770
+what a footer is.
+
+224
+00:09:51,770 --> 00:09:55,210
+Footer though, in HTML5, doesn't
+have to be only at the
+
+225
+00:09:55,210 --> 00:09:56,480
+bottom of the page.
+
+226
+00:09:56,480 --> 00:09:59,250
+Just like the header tag, you
+can use the footer tag in
+
+227
+00:09:59,250 --> 00:10:01,820
+multiple areas of the site.
+
+228
+00:10:01,820 --> 00:10:05,210
+You can add this tag to any
+containing element, to close
+
+229
+00:10:05,210 --> 00:10:06,740
+out that section.
+
+230
+00:10:06,740 --> 00:10:08,870
+Let's look at our
+example again.
+
+231
+00:10:08,870 --> 00:10:12,050
+So in this example, this is how
+we might have previously
+
+232
+00:10:12,050 --> 00:10:14,050
+marked up a footer section.
+
+233
+00:10:14,050 --> 00:10:17,790
+div id="footer," with our h3,
+"Talk to Me Goose," and then
+
+234
+00:10:17,790 --> 00:10:19,660
+our paragraph, copyright
+information
+
+235
+00:10:19,660 --> 00:10:21,130
+Maverick & Goose Ventures.
+
+236
+00:10:21,130 --> 00:10:25,840
+So how might we change this
+into HTML5 markup?
+
+237
+00:10:25,840 --> 00:10:28,860
+Well, we would add our footer
+tags in place of our div tag.
+
+238
+00:10:28,860 --> 00:10:30,740
+And we would keep the
+content the same.
+
+239
+00:10:30,740 --> 00:10:32,860
+Now, additionally, remember that
+I mentioned that we can
+
+240
+00:10:32,860 --> 00:10:35,800
+use the footer tag in multiple
+areas of the site.
+
+241
+00:10:35,800 --> 00:10:37,720
+So it doesn't necessarily
+just have to be at the
+
+242
+00:10:37,720 --> 00:10:39,400
+bottom of our page.
+
+243
+00:10:39,400 --> 00:10:42,270
+So let's say that we have a
+section with a header "Top
+
+244
+00:10:42,270 --> 00:10:44,300
+Gun" And we have
+our paragraph--
+
+245
+00:10:44,300 --> 00:10:45,080
+"He's too close.
+
+246
+00:10:45,080 --> 00:10:48,150
+I'm switching to guns." We can
+add a footer to this section,
+
+247
+00:10:48,150 --> 00:10:51,360
+"Highway to the Danger Zone."
+Perfectly semantic markup, and
+
+248
+00:10:51,360 --> 00:10:53,230
+it allows us to better
+organize our
+
+249
+00:10:53,230 --> 00:10:54,830
+information on our page.
+
+250
+00:10:54,830 --> 00:10:58,380
+
+251
+00:10:58,380 --> 00:11:00,380
+So that's just a brief overview
+of some of the more
+
+252
+00:11:00,380 --> 00:11:03,310
+widely used HTML5 tags.
+
+253
+00:11:03,310 --> 00:11:06,130
+Now again, as I mentioned, this
+isn't an exhaustive list.
+
+254
+00:11:06,130 --> 00:11:08,110
+We're actually going to be
+covering a couple of more
+
+255
+00:11:08,110 --> 00:11:11,695
+tags, as we go through
+the course.
+
+256
+00:11:11,695 --> 00:11:14,640
+So we have all of these great
+new features in HTML5.
+
+257
+00:11:14,640 --> 00:11:17,750
+But the question remains, how
+usable are these features.
+
+258
+00:11:17,750 --> 00:11:19,430
+When should we start
+to use them?
+
+259
+00:11:19,430 --> 00:11:23,410
+Well, the answer to that
+question is, right now.
+
+260
+00:11:23,410 --> 00:11:26,610
+Now, when it comes to HTML5,
+really, all it is-- it's an
+
+261
+00:11:26,610 --> 00:11:28,990
+extension of previous
+versions of HTML.
+
+262
+00:11:28,990 --> 00:11:31,370
+It just builds on what
+already is there and
+
+263
+00:11:31,370 --> 00:11:32,610
+what already is working.
+
+264
+00:11:32,610 --> 00:11:36,950
+So you're HTML4 code is
+still valid in HTML5.
+
+265
+00:11:36,950 --> 00:11:39,290
+That's a big deal because it
+means that all of your old
+
+266
+00:11:39,290 --> 00:11:42,070
+elements still are going
+to work in HTML5.
+
+267
+00:11:42,070 --> 00:11:44,670
+Essentially, HTML5 is
+just building on
+
+268
+00:11:44,670 --> 00:11:46,660
+what's already there.
+
+269
+00:11:46,660 --> 00:11:49,250
+How do we know which browsers
+support HTML5?
+
+270
+00:11:49,250 --> 00:11:52,450
+Well, the big three already
+do, Firefox, Chrome, and
+
+271
+00:11:52,450 --> 00:11:55,330
+Safari, also, the latest
+versions of Opera.
+
+272
+00:11:55,330 --> 00:11:56,820
+And believe it or not, Internet
+
+273
+00:11:56,820 --> 00:11:59,990
+Explorer 9 supports HTML5.
+
+274
+00:11:59,990 --> 00:12:03,650
+But alas, our old foe, Internet
+Explorer 8 and below
+
+275
+00:12:03,650 --> 00:12:06,100
+currently don't support HTML5.
+
+276
+00:12:06,100 --> 00:12:07,290
+So what do you do?
+
+277
+00:12:07,290 --> 00:12:09,890
+Well, depending on who your
+target market is and who
+
+278
+00:12:09,890 --> 00:12:12,250
+you're building the site for,
+you might be able to get away
+
+279
+00:12:12,250 --> 00:12:14,140
+with not supporting
+IE8 and below.
+
+280
+00:12:14,140 --> 00:12:16,590
+But chances are, you're probably
+going to have to
+
+281
+00:12:16,590 --> 00:12:20,180
+support some of those earlier
+versions of the browser.
+
+282
+00:12:20,180 --> 00:12:20,920
+So what do you do?
+
+283
+00:12:20,920 --> 00:12:25,080
+Well, Remy Sharp created this
+pretty awesome little script
+
+284
+00:12:25,080 --> 00:12:29,610
+that enables HTML5 elements in
+browser versions earlier than
+
+285
+00:12:29,610 --> 00:12:30,730
+Internet Explorer 9.
+
+286
+00:12:30,730 --> 00:12:33,220
+So all you would do is you would
+enter this script in
+
+287
+00:12:33,220 --> 00:12:34,200
+your head element.
+
+288
+00:12:34,200 --> 00:12:37,230
+And basically, what this says
+is-- if a user is in a browser
+
+289
+00:12:37,230 --> 00:12:40,110
+earlier than Internet Explorer
+9, cue this script.
+
+290
+00:12:40,110 --> 00:12:42,990
+And your HTML5 tags will work.
+
+291
+00:12:42,990 --> 00:12:46,290
+All of the other browsers,
+Firefox, Safari, et cetera,
+
+292
+00:12:46,290 --> 00:12:48,190
+they're just going to
+ignore this code.
+
+293
+00:12:48,190 --> 00:12:50,075
+And we're good to go.
+
+294
+00:12:50,075 --> 00:12:53,360
+So that's an overview
+of HTML5.
+
+295
+00:12:53,360 --> 00:12:55,660
+Now, it's time for you to apply
+what you've learned and
+
+296
+00:12:55,660 --> 00:12:56,910
+get coding.
+
+297
+00:12:56,910 --> 00:12:59,446

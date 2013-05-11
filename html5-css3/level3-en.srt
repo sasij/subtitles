@@ -1,0 +1,1545 @@
+1
+00:00:00,000 --> 00:00:01,820
+
+2
+00:00:01,820 --> 00:00:03,470
+You're watching 3 For 5.
+
+3
+00:00:03,470 --> 00:00:04,760
+I'm Jason VanLue.
+
+4
+00:00:04,760 --> 00:00:06,010
+And this is Level Three.
+
+5
+00:00:06,010 --> 00:00:11,158
+
+6
+00:00:11,158 --> 00:00:33,460
+[MUSIC PLAYING]
+
+7
+00:00:33,460 --> 00:00:36,060
+In this level, we're going to
+look at header and navigation
+
+8
+00:00:36,060 --> 00:00:37,680
+elements, some of the
+most important
+
+9
+00:00:37,680 --> 00:00:39,380
+elements on your website.
+
+10
+00:00:39,380 --> 00:00:42,440
+First, I'd like to introduce
+you to our case study site
+
+11
+00:00:42,440 --> 00:00:44,390
+that we're going to be using
+throughout the rest of the
+
+12
+00:00:44,390 --> 00:00:46,260
+course, to sort of
+practically apply
+
+13
+00:00:46,260 --> 00:00:47,740
+what we've been learning.
+
+14
+00:00:47,740 --> 00:00:50,840
+So this is Border & Radius, a
+local brew house with great
+
+15
+00:00:50,840 --> 00:00:52,870
+food and even better beer.
+
+16
+00:00:52,870 --> 00:00:54,790
+Sounds like my kind of place.
+
+17
+00:00:54,790 --> 00:00:57,230
+Now, we're going to be using
+this site and breaking down
+
+18
+00:00:57,230 --> 00:01:00,680
+individual elements of the site,
+to apply some of the
+
+19
+00:01:00,680 --> 00:01:05,480
+HTML5 and CSS3 expertise
+that you now have.
+
+20
+00:01:05,480 --> 00:01:07,920
+As we move through each level,
+we're going to be focusing on
+
+21
+00:01:07,920 --> 00:01:11,680
+three primary points, design,
+markup, and style.
+
+22
+00:01:11,680 --> 00:01:14,490
+But before we go any further,
+let's chat for brief moment
+
+23
+00:01:14,490 --> 00:01:17,390
+about what makes up a successful
+navigation and a
+
+24
+00:01:17,390 --> 00:01:18,640
+successful header.
+
+25
+00:01:18,640 --> 00:01:20,940
+
+26
+00:01:20,940 --> 00:01:23,260
+So we have five points that we
+want to consider, when it
+
+27
+00:01:23,260 --> 00:01:26,010
+comes to designing and
+developing effective header
+
+28
+00:01:26,010 --> 00:01:28,180
+and navigation sections
+of our site.
+
+29
+00:01:28,180 --> 00:01:30,480
+The first is know your user.
+
+30
+00:01:30,480 --> 00:01:33,010
+Now you want to know your user,
+no matter what site
+
+31
+00:01:33,010 --> 00:01:34,470
+you're developing.
+
+32
+00:01:34,470 --> 00:01:37,080
+A one-size-fits-all approach
+to web design
+
+33
+00:01:37,080 --> 00:01:38,240
+just doesn't work.
+
+34
+00:01:38,240 --> 00:01:40,430
+So you want to make sure that
+you're keeping your user in
+
+35
+00:01:40,430 --> 00:01:42,870
+mind, when you're building
+these elements.
+
+36
+00:01:42,870 --> 00:01:44,990
+The second is keep it clean.
+
+37
+00:01:44,990 --> 00:01:47,110
+Now, we want to make sure that
+our header and navigation
+
+38
+00:01:47,110 --> 00:01:49,280
+elements are free from
+distraction.
+
+39
+00:01:49,280 --> 00:01:52,120
+So that means that we want our
+branding to be prominent.
+
+40
+00:01:52,120 --> 00:01:55,360
+And maybe a couple of key
+call-to-action points are also
+
+41
+00:01:55,360 --> 00:01:57,340
+appropriate for that section
+that section.
+
+42
+00:01:57,340 --> 00:01:59,740
+Third, we have three
+to four elements.
+
+43
+00:01:59,740 --> 00:02:02,620
+Now, we all should know what
+the top priorities of the
+
+44
+00:02:02,620 --> 00:02:04,310
+sites that we're building are.
+
+45
+00:02:04,310 --> 00:02:06,770
+We should ask ourselves the
+question, what do we want the
+
+46
+00:02:06,770 --> 00:02:09,080
+user to do, when they
+access our site.
+
+47
+00:02:09,080 --> 00:02:12,100
+Now, all of those priorities
+don't necessarily have to be
+
+48
+00:02:12,100 --> 00:02:15,300
+totally flushed out in your
+header or your navigation.
+
+49
+00:02:15,300 --> 00:02:18,170
+But maybe you have a couple of
+key call-to-action points or
+
+50
+00:02:18,170 --> 00:02:21,910
+key links that you want to call
+your user's attention to.
+
+51
+00:02:21,910 --> 00:02:24,410
+The header is a perfect
+place to put that.
+
+52
+00:02:24,410 --> 00:02:27,040
+We also want to simplify
+our navigation.
+
+53
+00:02:27,040 --> 00:02:30,130
+So we don't have 28 different
+links to all of our pages of
+
+54
+00:02:30,130 --> 00:02:32,210
+our site in our main
+navigation.
+
+55
+00:02:32,210 --> 00:02:35,630
+I think it's a good practice to
+keep our main navigation at
+
+56
+00:02:35,630 --> 00:02:37,890
+around six to eight
+primary links.
+
+57
+00:02:37,890 --> 00:02:39,930
+And then, you can decide how
+you want to drill down the
+
+58
+00:02:39,930 --> 00:02:42,200
+rest of your navigation
+from there.
+
+59
+00:02:42,200 --> 00:02:44,080
+Finally, we want to
+be a tour guide.
+
+60
+00:02:44,080 --> 00:02:47,200
+Now, it's our job as designers
+and developers to guide our
+
+61
+00:02:47,200 --> 00:02:50,040
+users to where we want them
+to go on the site.
+
+62
+00:02:50,040 --> 00:02:53,450
+So it's important for us to
+think like a user, as we're
+
+63
+00:02:53,450 --> 00:02:55,960
+building these websites.
+
+64
+00:02:55,960 --> 00:02:56,330
+All right.
+
+65
+00:02:56,330 --> 00:02:59,190
+So let's quickly go through
+some design practices and
+
+66
+00:02:59,190 --> 00:03:04,130
+strategy that we use to build
+the Border & Radius site.
+
+67
+00:03:04,130 --> 00:03:07,170
+So in talking with the client,
+over a few pints, of course,
+
+68
+00:03:07,170 --> 00:03:09,860
+we went through the five points
+we discussed earlier.
+
+69
+00:03:09,860 --> 00:03:12,240
+Let's apply those points
+to our design.
+
+70
+00:03:12,240 --> 00:03:14,330
+First, know your user.
+
+71
+00:03:14,330 --> 00:03:16,940
+Border & Radius knows that their
+customers are drawn by
+
+72
+00:03:16,940 --> 00:03:19,070
+the history of the brew house,
+as well as their changing
+
+73
+00:03:19,070 --> 00:03:20,300
+organic menu.
+
+74
+00:03:20,300 --> 00:03:22,980
+We wanted these to be featured
+prominently, since each is a
+
+75
+00:03:22,980 --> 00:03:25,040
+valuable component
+of the brand.
+
+76
+00:03:25,040 --> 00:03:26,780
+Second, keep it clean.
+
+77
+00:03:26,780 --> 00:03:28,880
+This section is certainly
+very clean.
+
+78
+00:03:28,880 --> 00:03:31,130
+It matches up with the
+restaurant's existing branding
+
+79
+00:03:31,130 --> 00:03:34,060
+and keeps unnecessary
+distractions to a minimum.
+
+80
+00:03:34,060 --> 00:03:37,340
+Third, three to four elements,
+we have two key elements,
+
+81
+00:03:37,340 --> 00:03:40,110
+history and menu, in this
+section, in addition to the
+
+82
+00:03:40,110 --> 00:03:41,140
+branding elements.
+
+83
+00:03:41,140 --> 00:03:42,410
+So this works.
+
+84
+00:03:42,410 --> 00:03:44,610
+Fourth, simplify navigation.
+
+85
+00:03:44,610 --> 00:03:46,610
+We have seven links, which
+is towards the
+
+86
+00:03:46,610 --> 00:03:47,790
+upper end of our limit.
+
+87
+00:03:47,790 --> 00:03:50,650
+But since we've chosen to use a
+fairly wide page layout and
+
+88
+00:03:50,650 --> 00:03:54,490
+have kept our overall styling
+simple, it works.
+
+89
+00:03:54,490 --> 00:03:56,350
+Finally, be tour guides.
+
+90
+00:03:56,350 --> 00:03:59,230
+We've constructed the layout and
+overall design of the site
+
+91
+00:03:59,230 --> 00:04:02,360
+with the user in mind, helping
+to guide them to the most
+
+92
+00:04:02,360 --> 00:04:04,400
+important elements on
+this page and in
+
+93
+00:04:04,400 --> 00:04:07,500
+the rest of the site.
+
+94
+00:04:07,500 --> 00:04:07,880
+All right.
+
+95
+00:04:07,880 --> 00:04:09,820
+So now let's move on
+to the markup.
+
+96
+00:04:09,820 --> 00:04:12,590
+So here's is our header
+and our navigation.
+
+97
+00:04:12,590 --> 00:04:16,420
+So previously, in HTML4, we
+might have marked this up to
+
+98
+00:04:16,420 --> 00:04:17,570
+look something like this.
+
+99
+00:04:17,570 --> 00:04:19,920
+We have our div id="header."
+And then, we have
+
+100
+00:04:19,920 --> 00:04:21,329
+three anchor points.
+
+101
+00:04:21,329 --> 00:04:23,880
+We have our two images,
+"better-beer" and
+
+102
+00:04:23,880 --> 00:04:27,020
+"menu-promo." And then,
+we also have our logo.
+
+103
+00:04:27,020 --> 00:04:29,280
+Now, if we add our navigation,
+it would look
+
+104
+00:04:29,280 --> 00:04:30,290
+something like this.
+
+105
+00:04:30,290 --> 00:04:33,320
+We have a div id="navigation,"
+with an unordered list, with our
+
+106
+00:04:33,320 --> 00:04:35,270
+navigation elements there.
+
+107
+00:04:35,270 --> 00:04:39,050
+So how might we use our new
+HTML5 skills to refactor this
+
+108
+00:04:39,050 --> 00:04:40,770
+into HTML5.
+
+109
+00:04:40,770 --> 00:04:45,650
+Well, we could move our header
+element into a header tag and
+
+110
+00:04:45,650 --> 00:04:47,270
+we could also move
+our navigation
+
+111
+00:04:47,270 --> 00:04:49,340
+elements into a nav tag.
+
+112
+00:04:49,340 --> 00:04:51,870
+So all of this is still
+valid HTML.
+
+113
+00:04:51,870 --> 00:04:54,460
+But we've just organized our
+markup a little bit better.
+
+114
+00:04:54,460 --> 00:04:58,510
+
+115
+00:04:58,510 --> 00:05:01,560
+So in this case, I've chosen to
+give the primary navigation
+
+116
+00:05:01,560 --> 00:05:03,150
+and the header an ID.
+
+117
+00:05:03,150 --> 00:05:07,220
+Now, if you remember, in HTML5,
+we can use HTML5 tags
+
+118
+00:05:07,220 --> 00:05:09,390
+in multiple areas on our page.
+
+119
+00:05:09,390 --> 00:05:11,630
+This is something that you
+shouldn't do with IDs.
+
+120
+00:05:11,630 --> 00:05:14,440
+So if you have a div
+id="header," for instance, you
+
+121
+00:05:14,440 --> 00:05:16,400
+really should only
+use that once.
+
+122
+00:05:16,400 --> 00:05:19,360
+Well, with the HTML5 header
+tag, we can use that in
+
+123
+00:05:19,360 --> 00:05:21,300
+multiple sections of the page.
+
+124
+00:05:21,300 --> 00:05:23,595
+I know, in our site, we're
+going to be using it in
+
+125
+00:05:23,595 --> 00:05:24,610
+multiple sections.
+
+126
+00:05:24,610 --> 00:05:28,040
+So I've chosen, in this case,
+to give it an ID, to give me
+
+127
+00:05:28,040 --> 00:05:31,050
+more options and variety
+in styling.
+
+128
+00:05:31,050 --> 00:05:33,100
+Otherwise, our markup
+looks exactly the
+
+129
+00:05:33,100 --> 00:05:34,840
+same as it did before.
+
+130
+00:05:34,840 --> 00:05:37,240
+So that's our markup for
+these two sections.
+
+131
+00:05:37,240 --> 00:05:38,760
+Now, let's go ahead and
+move into style.
+
+132
+00:05:38,760 --> 00:05:41,460
+
+133
+00:05:41,460 --> 00:05:42,910
+So let's review our
+elements again.
+
+134
+00:05:42,910 --> 00:05:44,610
+And we'll start with
+the header.
+
+135
+00:05:44,610 --> 00:05:46,960
+So we have a header with
+the ID of main.
+
+136
+00:05:46,960 --> 00:05:50,420
+And we have two images, Better
+Beer and Menu Promo, in
+
+137
+00:05:50,420 --> 00:05:51,930
+addition to our logo.
+
+138
+00:05:51,930 --> 00:05:54,710
+So let's start with styling
+the two images.
+
+139
+00:05:54,710 --> 00:05:56,490
+We'll start with Better Beer.
+
+140
+00:05:56,490 --> 00:05:59,230
+So here are the basic styles
+for the Better Beer image.
+
+141
+00:05:59,230 --> 00:06:01,820
+Now, what we want to do is we
+want to create a rollover
+
+142
+00:06:01,820 --> 00:06:03,050
+state for this image.
+
+143
+00:06:03,050 --> 00:06:05,430
+So in this case, what we're
+going to do is we're going to
+
+144
+00:06:05,430 --> 00:06:08,470
+use our opacity property
+in CSS3.
+
+145
+00:06:08,470 --> 00:06:10,800
+And we're going to say that our
+static image is going to
+
+146
+00:06:10,800 --> 00:06:13,780
+have an opacity value of 0.65.
+
+147
+00:06:13,780 --> 00:06:16,820
+Then, when we add our hover
+state, we're actually going to
+
+148
+00:06:16,820 --> 00:06:19,090
+set our opacity value to one.
+
+149
+00:06:19,090 --> 00:06:21,770
+So what this does is, when we
+roll over the image, we're
+
+150
+00:06:21,770 --> 00:06:23,590
+actually seeing the
+full image.
+
+151
+00:06:23,590 --> 00:06:27,170
+When it's in its static state,
+it's actually a little opaque.
+
+152
+00:06:27,170 --> 00:06:30,310
+And you can kind of see how
+this renders, here.
+
+153
+00:06:30,310 --> 00:06:32,805
+Now, this is a neat little
+way of doing it.
+
+154
+00:06:32,805 --> 00:06:34,770
+Because before, we would
+have had to save out
+
+155
+00:06:34,770 --> 00:06:36,290
+two different images.
+
+156
+00:06:36,290 --> 00:06:39,790
+In this case, we can save out
+just one image and adjust the
+
+157
+00:06:39,790 --> 00:06:42,280
+opacity, using CSS.
+
+158
+00:06:42,280 --> 00:06:45,450
+Now, let's look at our second
+image, menu-promo.
+
+159
+00:06:45,450 --> 00:06:47,750
+This is going to follow the
+same concept as our Better
+
+160
+00:06:47,750 --> 00:06:48,720
+Beer image.
+
+161
+00:06:48,720 --> 00:06:51,480
+So here are the basic styles
+for menu-promo.
+
+162
+00:06:51,480 --> 00:06:54,030
+We're going to go ahead and add
+an opacity value to the
+
+163
+00:06:54,030 --> 00:06:56,240
+static state of 0.65.
+
+164
+00:06:56,240 --> 00:06:59,750
+And we're also going to add an
+opacity value of one to our
+
+165
+00:06:59,750 --> 00:07:00,830
+hover state.
+
+166
+00:07:00,830 --> 00:07:04,180
+So just like our Better Beer
+image, we have a static state
+
+167
+00:07:04,180 --> 00:07:06,910
+that is a little opaque and when
+you roll over it, you're
+
+168
+00:07:06,910 --> 00:07:08,085
+going to see the full image.
+
+169
+00:07:08,085 --> 00:07:11,470
+It's a great way of creating
+rollovers states with CSS,
+
+170
+00:07:11,470 --> 00:07:15,730
+with really not a lot
+of time involved.
+
+171
+00:07:15,730 --> 00:07:17,760
+OK, so let's talk
+about our logo.
+
+172
+00:07:17,760 --> 00:07:20,110
+Now, for our logo, we could have
+done the same thing as we
+
+173
+00:07:20,110 --> 00:07:22,780
+did for our previous two images
+and just adjust the
+
+174
+00:07:22,780 --> 00:07:25,240
+opacity values on hover.
+
+175
+00:07:25,240 --> 00:07:27,650
+But instead, let's get a little
+crazy and actually add
+
+176
+00:07:27,650 --> 00:07:30,380
+a CSS transition to
+the hover state.
+
+177
+00:07:30,380 --> 00:07:34,470
+First, let's look at our basic
+styles for our logo.
+
+178
+00:07:34,470 --> 00:07:37,180
+Now, we're going to add
+CSS transitions
+
+179
+00:07:37,180 --> 00:07:38,950
+to our style sheet.
+
+180
+00:07:38,950 --> 00:07:41,140
+So here's what the code
+would look like.
+
+181
+00:07:41,140 --> 00:07:44,010
+Now notice we have our vendor
+prefixes first, for WebKit,
+
+182
+00:07:44,010 --> 00:07:47,580
+Mozilla, and Opera, and then,
+the basic property following.
+
+183
+00:07:47,580 --> 00:07:50,250
+Now, let's spend a little bit
+of time talking about CSS
+
+184
+00:07:50,250 --> 00:07:52,040
+transitions.
+
+185
+00:07:52,040 --> 00:07:56,570
+CSS transitions create smooth
+animations using CSS, as
+
+186
+00:07:56,570 --> 00:07:59,160
+opposed to maybe JavaScript,
+which is what we would have
+
+187
+00:07:59,160 --> 00:08:00,470
+used before.
+
+188
+00:08:00,470 --> 00:08:03,390
+Now, CSS transitions have three
+properties that we want
+
+189
+00:08:03,390 --> 00:08:04,400
+to consider.
+
+190
+00:08:04,400 --> 00:08:07,070
+The first is the transition
+property.
+
+191
+00:08:07,070 --> 00:08:09,560
+Now, the transition property
+tells us what piece of the
+
+192
+00:08:09,560 --> 00:08:11,360
+object is being affected.
+
+193
+00:08:11,360 --> 00:08:14,030
+So in this case, it's going
+to be the opacity.
+
+194
+00:08:14,030 --> 00:08:17,380
+Now, we could have chosen the
+background, or the color, or
+
+195
+00:08:17,380 --> 00:08:18,430
+another property.
+
+196
+00:08:18,430 --> 00:08:21,620
+But we'll stick with the
+opacity, for this transition.
+
+197
+00:08:21,620 --> 00:08:24,530
+The second property is the
+transition duration.
+
+198
+00:08:24,530 --> 00:08:27,370
+Now, this tells us how long
+the transition lasts.
+
+199
+00:08:27,370 --> 00:08:29,600
+You can play around with
+different values, to get your
+
+200
+00:08:29,600 --> 00:08:30,730
+desired effect.
+
+201
+00:08:30,730 --> 00:08:34,070
+But in this case, we're going
+to go with 0.2 seconds.
+
+202
+00:08:34,070 --> 00:08:36,870
+Finally, our third transition
+property is the
+
+203
+00:08:36,870 --> 00:08:38,470
+transition-timing function.
+
+204
+00:08:38,470 --> 00:08:40,530
+And this basically tells
+us how we want the
+
+205
+00:08:40,530 --> 00:08:41,919
+transition to work.
+
+206
+00:08:41,919 --> 00:08:45,490
+So in this case, we want to use
+the ease-in-out property,
+
+207
+00:08:45,490 --> 00:08:49,930
+which is going to give it a
+nice intro-outro effect.
+
+208
+00:08:49,930 --> 00:08:51,620
+Now, there are five
+properties for the
+
+209
+00:08:51,620 --> 00:08:53,610
+transition-timing function.
+
+210
+00:08:53,610 --> 00:08:57,900
+We have ease, ease-in,
+ease-in-out, linear, and
+
+211
+00:08:57,900 --> 00:08:59,090
+bezier curve.
+
+212
+00:08:59,090 --> 00:09:01,290
+Now, for the most part, you
+probably want to stick with
+
+213
+00:09:01,290 --> 00:09:05,250
+ease and linear, as those are
+the most commonly used.
+
+214
+00:09:05,250 --> 00:09:08,040
+So now that we have our CSS
+transition in place for this
+
+215
+00:09:08,040 --> 00:09:10,660
+element, we're going to go ahead
+and add a hover state,
+
+216
+00:09:10,660 --> 00:09:14,400
+in which we set the opacity
+value to 0.70.
+
+217
+00:09:14,400 --> 00:09:16,600
+So let's sort of summarize
+what we've done in this
+
+218
+00:09:16,600 --> 00:09:18,510
+transition here.
+
+219
+00:09:18,510 --> 00:09:21,440
+First, we've created a
+transition in which we're
+
+220
+00:09:21,440 --> 00:09:23,090
+going to affect the opacity.
+
+221
+00:09:23,090 --> 00:09:25,520
+We're going to do that
+for 0.2 seconds.
+
+222
+00:09:25,520 --> 00:09:28,500
+And we're going to use the
+ease-in-out function to give
+
+223
+00:09:28,500 --> 00:09:30,870
+kind of an intro-outro effect.
+
+224
+00:09:30,870 --> 00:09:33,070
+And what that's going to do
+is, when we hover over the
+
+225
+00:09:33,070 --> 00:09:37,430
+logo, it's going to drop
+the opacity to 0.7.
+
+226
+00:09:37,430 --> 00:09:38,860
+So let's go to the live site.
+
+227
+00:09:38,860 --> 00:09:41,530
+And I'll show you what
+we've built thus far.
+
+228
+00:09:41,530 --> 00:09:45,200
+So for our Better Beer image and
+our Menu Promo image, you
+
+229
+00:09:45,200 --> 00:09:48,410
+can see the opacity rollovers
+that we have in place.
+
+230
+00:09:48,410 --> 00:09:51,100
+Pretty neat that we can use just
+one image and adjust the
+
+231
+00:09:51,100 --> 00:09:53,670
+opacity directly with CSS.
+
+232
+00:09:53,670 --> 00:09:56,320
+And if we take look at the logo,
+you can see how it fades
+
+233
+00:09:56,320 --> 00:09:59,750
+in and out smoothly, courtesy of
+the CSS transition that we
+
+234
+00:09:59,750 --> 00:10:01,080
+just built.
+
+235
+00:10:01,080 --> 00:10:03,960
+Now let's move on to
+the navigation.
+
+236
+00:10:03,960 --> 00:10:05,950
+So in this navigation,
+we have a few things
+
+237
+00:10:05,950 --> 00:10:07,310
+that need to be styled.
+
+238
+00:10:07,310 --> 00:10:09,290
+We have a background that
+we want to style
+
+239
+00:10:09,290 --> 00:10:10,650
+with the box shadow.
+
+240
+00:10:10,650 --> 00:10:13,000
+We have our text, which we
+want to style with a text
+
+241
+00:10:13,000 --> 00:10:16,200
+shadow and actually add an
+@font-face declaration.
+
+242
+00:10:16,200 --> 00:10:18,580
+And then, we're going to
+add a transition on
+
+243
+00:10:18,580 --> 00:10:19,980
+the rollover effect.
+
+244
+00:10:19,980 --> 00:10:22,920
+So let's start with the
+@font-face declaration.
+
+245
+00:10:22,920 --> 00:10:25,560
+So the first thing we're going
+to do is add our @font-face
+
+246
+00:10:25,560 --> 00:10:27,600
+declaration to the top
+of our style sheet.
+
+247
+00:10:27,600 --> 00:10:30,300
+Now, if you remember, we can
+hit up the website Font
+
+248
+00:10:30,300 --> 00:10:34,020
+Squirrel, which will generate
+the CSS that we need to set
+
+249
+00:10:34,020 --> 00:10:35,620
+this @font-face property.
+
+250
+00:10:35,620 --> 00:10:37,590
+And in doing that, we'll
+get code that looks
+
+251
+00:10:37,590 --> 00:10:39,170
+something like this.
+
+252
+00:10:39,170 --> 00:10:41,910
+Now, notice we're using
+DroidSansBold for our
+
+253
+00:10:41,910 --> 00:10:42,910
+navigation.
+
+254
+00:10:42,910 --> 00:10:46,110
+Once we have that, we'll go
+into our CSS and continue
+
+255
+00:10:46,110 --> 00:10:48,500
+styling out the main
+navigation section.
+
+256
+00:10:48,500 --> 00:10:51,250
+So if you remember in our
+markup, we had a nav with an
+
+257
+00:10:51,250 --> 00:10:52,650
+ID of primary.
+
+258
+00:10:52,650 --> 00:10:55,340
+So here we have the hatch
+primary elements.
+
+259
+00:10:55,340 --> 00:10:58,720
+Now, you'll notice that I've
+already put the DroidSansBold
+
+260
+00:10:58,720 --> 00:11:00,630
+font in my font stack.
+
+261
+00:11:00,630 --> 00:11:03,120
+Remember, we've declared that
+already, in an @font-face
+
+262
+00:11:03,120 --> 00:11:05,100
+property at the top of
+our style sheet.
+
+263
+00:11:05,100 --> 00:11:08,380
+So now we're calling that
+font, in our font stack.
+
+264
+00:11:08,380 --> 00:11:10,730
+Now we're going to add a box
+shadow to the background of
+
+265
+00:11:10,730 --> 00:11:12,160
+our navigation element.
+
+266
+00:11:12,160 --> 00:11:14,720
+So here's what the code might
+look like for that.
+
+267
+00:11:14,720 --> 00:11:17,790
+Now, notice we have our vendor
+prefixes first, WebKit
+
+268
+00:11:17,790 --> 00:11:20,440
+box-shadow and Mozilla
+box-shadow, in addition to our
+
+269
+00:11:20,440 --> 00:11:22,390
+regular box-shadow property.
+
+270
+00:11:22,390 --> 00:11:26,550
+And remember, our values are
+x-offset, y-offset, and then
+
+271
+00:11:26,550 --> 00:11:29,540
+blur, in addition to
+our color value.
+
+272
+00:11:29,540 --> 00:11:32,640
+And then, we put that above
+our font stack, which
+
+273
+00:11:32,640 --> 00:11:35,440
+remember, includes our
+DroidSansBold font that we
+
+274
+00:11:35,440 --> 00:11:38,060
+declared with an @font-face.
+
+275
+00:11:38,060 --> 00:11:39,640
+Now that's done, let's
+go ahead and start
+
+276
+00:11:39,640 --> 00:11:40,655
+styling out our text.
+
+277
+00:11:40,655 --> 00:11:43,000
+So here are the basic
+styles for that.
+
+278
+00:11:43,000 --> 00:11:44,880
+Now notice, we've added
+a text-shadow.
+
+279
+00:11:44,880 --> 00:11:48,240
+And just like box-shadow, we
+have our values, x-offset,
+
+280
+00:11:48,240 --> 00:11:51,230
+y-offset, blur, and color.
+
+281
+00:11:51,230 --> 00:11:54,390
+So in this case, we have a dark
+text color on a light
+
+282
+00:11:54,390 --> 00:11:54,920
+background.
+
+283
+00:11:54,920 --> 00:11:58,440
+So remember, we're going to do
+a text-shadow that is offset
+
+284
+00:11:58,440 --> 00:12:00,460
+bottom-right, with
+a light color.
+
+285
+00:12:00,460 --> 00:12:02,780
+Because we want to give it that
+letter-pressed effect,
+
+286
+00:12:02,780 --> 00:12:05,510
+like it's being stamped
+into the background.
+
+287
+00:12:05,510 --> 00:12:07,950
+We also want to define
+a border-radius
+
+288
+00:12:07,950 --> 00:12:09,230
+for our hover state.
+
+289
+00:12:09,230 --> 00:12:11,880
+Because who wants just boring
+rectangles in the background?
+
+290
+00:12:11,880 --> 00:12:13,660
+Why not round those corners?
+
+291
+00:12:13,660 --> 00:12:17,040
+So in this case, we've added our
+vendor prefixes first, for
+
+292
+00:12:17,040 --> 00:12:18,650
+our border-radius property.
+
+293
+00:12:18,650 --> 00:12:21,730
+And we've defined our radius
+to be five pixels.
+
+294
+00:12:21,730 --> 00:12:23,600
+Here's how that might render.
+
+295
+00:12:23,600 --> 00:12:26,590
+Finally, we're going to add a
+CSS transition to this, to
+
+296
+00:12:26,590 --> 00:12:28,710
+really tie everything
+together.
+
+297
+00:12:28,710 --> 00:12:30,220
+So in this case, we're
+going to do our
+
+298
+00:12:30,220 --> 00:12:31,650
+vendor prefixes first.
+
+299
+00:12:31,650 --> 00:12:33,360
+Remember to include Opera.
+
+300
+00:12:33,360 --> 00:12:34,900
+And then, we have our
+basic transition
+
+301
+00:12:34,900 --> 00:12:36,300
+property at the bottom.
+
+302
+00:12:36,300 --> 00:12:39,160
+Now remember, in our case
+previous transition example,
+
+303
+00:12:39,160 --> 00:12:42,280
+we just used the property
+opacity, when we're talking
+
+304
+00:12:42,280 --> 00:12:44,390
+about what portion of the
+object we want to be
+
+305
+00:12:44,390 --> 00:12:45,440
+transitioned.
+
+306
+00:12:45,440 --> 00:12:47,850
+In this case, we want everything
+to be included in
+
+307
+00:12:47,850 --> 00:12:48,850
+the transition.
+
+308
+00:12:48,850 --> 00:12:51,542
+So we're going to use the
+transition property all.
+
+309
+00:12:51,542 --> 00:12:54,650
+We're going to set the
+time function at 0.3.
+
+310
+00:12:54,650 --> 00:12:57,620
+And then, we're also going to
+use our ease-in-out function,
+
+311
+00:12:57,620 --> 00:13:00,580
+just like we did in our last
+transition property.
+
+312
+00:13:00,580 --> 00:13:02,850
+So let's go ahead and take
+a look at the live site.
+
+313
+00:13:02,850 --> 00:13:04,520
+And I'll show you what
+the navigation looks
+
+314
+00:13:04,520 --> 00:13:07,840
+like in real time.
+
+315
+00:13:07,840 --> 00:13:10,510
+So we have our navigation
+section with a box-shadow on
+
+316
+00:13:10,510 --> 00:13:11,540
+our background.
+
+317
+00:13:11,540 --> 00:13:13,560
+And you can see how
+our DroidSansBold
+
+318
+00:13:13,560 --> 00:13:15,360
+text renders properly.
+
+319
+00:13:15,360 --> 00:13:16,940
+Let's check out the rollovers.
+
+320
+00:13:16,940 --> 00:13:19,570
+As you can see, we changed
+the color of the text.
+
+321
+00:13:19,570 --> 00:13:21,380
+Now you can see the
+text-shadow.
+
+322
+00:13:21,380 --> 00:13:23,470
+And we also have our
+smooth transition.
+
+323
+00:13:23,470 --> 00:13:26,340
+To me, it's much better than
+just a simple hover state.
+
+324
+00:13:26,340 --> 00:13:27,700
+It's a small detail.
+
+325
+00:13:27,700 --> 00:13:31,000
+But I really think it adds
+a lot to this section.
+
+326
+00:13:31,000 --> 00:13:33,350
+Now that we've gone over how to
+craft effective header and
+
+327
+00:13:33,350 --> 00:13:34,770
+navigation elements.
+
+328
+00:13:34,770 --> 00:13:36,270
+It's time for you to
+apply what you've
+
+329
+00:13:36,270 --> 00:13:37,590
+learned in this level.
+
+330
+00:13:37,590 --> 00:13:38,840
+Let's start coding.
+
+331
+00:13:38,840 --> 00:13:41,221

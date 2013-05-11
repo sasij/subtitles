@@ -1,0 +1,1585 @@
+1
+00:00:00,000 --> 00:00:02,000
+
+2
+00:00:02,000 --> 00:00:03,440
+In this level we're going
+to be talking
+
+3
+00:00:03,440 --> 00:00:05,480
+about footers and forms.
+
+4
+00:00:05,480 --> 00:00:08,730
+Now we have some great new form
+elements is HTML5, so
+
+5
+00:00:08,730 --> 00:00:10,840
+we're going to start with those
+first, and then we'll
+
+6
+00:00:10,840 --> 00:00:12,470
+close out the course
+with our footer.
+
+7
+00:00:12,470 --> 00:00:16,379
+
+8
+00:00:16,379 --> 00:00:38,980
+[MUSIC PLAYING]
+
+9
+00:00:38,980 --> 00:00:40,730
+So just like with the other
+levels, we're going to be
+
+10
+00:00:40,730 --> 00:00:43,720
+using our case study site,
+Border and Radius, to sort of
+
+11
+00:00:43,720 --> 00:00:45,670
+take us through some practical
+application
+
+12
+00:00:45,670 --> 00:00:46,830
+of what we're learning.
+
+13
+00:00:46,830 --> 00:00:50,260
+But first, let's go through a
+couple of key points, both for
+
+14
+00:00:50,260 --> 00:00:51,510
+forms and for footers.
+
+15
+00:00:51,510 --> 00:00:54,470
+
+16
+00:00:54,470 --> 00:00:56,470
+All right, so with
+forms first, we
+
+17
+00:00:56,470 --> 00:00:57,930
+have intuitive usability.
+
+18
+00:00:57,930 --> 00:00:59,130
+Now what do I mean by that?
+
+19
+00:00:59,130 --> 00:01:02,240
+Well, many times your form
+elements are some of the most
+
+20
+00:01:02,240 --> 00:01:04,220
+important elements
+on your page.
+
+21
+00:01:04,220 --> 00:01:07,750
+They could be contact forms, or
+newsletter sign ups, or a
+
+22
+00:01:07,750 --> 00:01:10,080
+lot of different things, so it's
+important to keep them
+
+23
+00:01:10,080 --> 00:01:13,550
+intuitive and usable
+for your user.
+
+24
+00:01:13,550 --> 00:01:15,880
+Second, we have no
+ugly ducklings.
+
+25
+00:01:15,880 --> 00:01:18,890
+Now, forms can usually be quite
+technical in nature, but
+
+26
+00:01:18,890 --> 00:01:21,460
+that doesn't mean that they
+don't need design.
+
+27
+00:01:21,460 --> 00:01:23,990
+A lot of times we can just put
+our forms together and not
+
+28
+00:01:23,990 --> 00:01:25,280
+really style them.
+
+29
+00:01:25,280 --> 00:01:28,500
+Since they are key elements on
+our page, and a lot of times
+
+30
+00:01:28,500 --> 00:01:31,630
+have key call to action points,
+it's important that we spend
+
+31
+00:01:31,630 --> 00:01:34,710
+just as much time styling them
+as some of the other elements
+
+32
+00:01:34,710 --> 00:01:36,510
+on our page.
+
+33
+00:01:36,510 --> 00:01:39,740
+With our footer, first, we want
+to utilize the space.
+
+34
+00:01:39,740 --> 00:01:42,730
+Now, most of our users are going
+to read our websites
+
+35
+00:01:42,730 --> 00:01:45,090
+from the top down, which means
+most of the time they're going
+
+36
+00:01:45,090 --> 00:01:47,610
+to end up at the bottom
+where our footer is.
+
+37
+00:01:47,610 --> 00:01:51,030
+And our footer is a great area
+to place navigation items, or
+
+38
+00:01:51,030 --> 00:01:52,740
+key call to action elements.
+
+39
+00:01:52,740 --> 00:01:55,050
+A lot of things can be put in
+your footer if you want to
+
+40
+00:01:55,050 --> 00:01:56,260
+draw attention to them.
+
+41
+00:01:56,260 --> 00:01:58,450
+So make sure that you're
+utilizing the space
+
+42
+00:01:58,450 --> 00:01:59,840
+appropriately.
+
+43
+00:01:59,840 --> 00:02:02,410
+Second, we don't want
+to forget the style.
+
+44
+00:02:02,410 --> 00:02:05,910
+Just like with our forms, where
+we can leave out a lot
+
+45
+00:02:05,910 --> 00:02:08,460
+of the styling, with our footer,
+most of the time it's
+
+46
+00:02:08,460 --> 00:02:11,790
+the last thing that we design
+because we usually design from
+
+47
+00:02:11,790 --> 00:02:13,720
+the top down, starting
+with our header.
+
+48
+00:02:13,720 --> 00:02:15,700
+So we want to make sure that
+we're putting, once again,
+
+49
+00:02:15,700 --> 00:02:19,630
+just as much emphasis and time
+into our footer design as the
+
+50
+00:02:19,630 --> 00:02:22,390
+rest of our site.
+
+51
+00:02:22,390 --> 00:02:24,620
+All right, so let's look at
+the three main points that
+
+52
+00:02:24,620 --> 00:02:26,270
+we're covering throughout
+the course,
+
+53
+00:02:26,270 --> 00:02:28,385
+design, markup and style.
+
+54
+00:02:28,385 --> 00:02:30,940
+Let's head back to our Border
+and Radius site and take a
+
+55
+00:02:30,940 --> 00:02:33,550
+look at the design strategy
+behind our form
+
+56
+00:02:33,550 --> 00:02:36,520
+and our footer elements.
+
+57
+00:02:36,520 --> 00:02:39,130
+Let's take a look at our form
+element first, which is the
+
+58
+00:02:39,130 --> 00:02:41,040
+third block element
+that includes a
+
+59
+00:02:41,040 --> 00:02:43,020
+newsletter sign up box.
+
+60
+00:02:43,020 --> 00:02:45,790
+Now, we could leave the styling
+of the form totally up
+
+61
+00:02:45,790 --> 00:02:49,070
+to the browsers, but why give up
+control when you can style
+
+62
+00:02:49,070 --> 00:02:51,470
+forms effectively and easily.
+
+63
+00:02:51,470 --> 00:02:54,110
+In this case, the design is
+fairly simple since it's not
+
+64
+00:02:54,110 --> 00:02:57,130
+really a complex form, but
+we've used some CSS3
+
+65
+00:02:57,130 --> 00:03:00,230
+properties, such as rounded
+corners, gradients, and text
+
+66
+00:03:00,230 --> 00:03:02,890
+effects, to help the form
+be more cohesive with
+
+67
+00:03:02,890 --> 00:03:04,900
+the rest of the site.
+
+68
+00:03:04,900 --> 00:03:07,710
+Moving on to the footer, with
+a site like this we really
+
+69
+00:03:07,710 --> 00:03:09,950
+don't need to include
+a ton of elements.
+
+70
+00:03:09,950 --> 00:03:12,400
+In this case we've chosen to
+tie-in the history of Border
+
+71
+00:03:12,400 --> 00:03:15,340
+and Radius since this is an
+important branding element.
+
+72
+00:03:15,340 --> 00:03:17,500
+And we carried the design
+through with the monotone
+
+73
+00:03:17,500 --> 00:03:20,130
+image like you see in the
+header, and have also included
+
+74
+00:03:20,130 --> 00:03:22,790
+standard navigation and
+copyright elements.
+
+75
+00:03:22,790 --> 00:03:25,180
+But as with the form, we decided
+to kick things up a
+
+76
+00:03:25,180 --> 00:03:27,240
+notch with CSS3 properties.
+
+77
+00:03:27,240 --> 00:03:29,070
+We'll go through these
+specifically in
+
+78
+00:03:29,070 --> 00:03:30,800
+just a little bit.
+
+79
+00:03:30,800 --> 00:03:32,890
+Now that we've covered design,
+let's go ahead and move on to
+
+80
+00:03:32,890 --> 00:03:34,020
+the markup.
+
+81
+00:03:34,020 --> 00:03:36,100
+Now in HTML5, as I mentioned,
+we have some
+
+82
+00:03:36,100 --> 00:03:38,020
+great new form elements.
+
+83
+00:03:38,020 --> 00:03:40,930
+These includes some new input
+types, native placeholder
+
+84
+00:03:40,930 --> 00:03:44,220
+text, auto-focus, and
+form validation.
+
+85
+00:03:44,220 --> 00:03:46,380
+So before we hit the actual
+markup, let's go through a
+
+86
+00:03:46,380 --> 00:03:48,800
+couple of these in
+more detail.
+
+87
+00:03:48,800 --> 00:03:51,920
+With our email and URL input
+types we can actually define
+
+88
+00:03:51,920 --> 00:03:54,740
+in the markup what type
+of field that we have.
+
+89
+00:03:54,740 --> 00:03:58,010
+Now, this is great for devices
+such as the iPhone or the
+
+90
+00:03:58,010 --> 00:04:01,200
+iPad, which have different
+keyboards depending on what
+
+91
+00:04:01,200 --> 00:04:03,280
+sort of form field that
+you're using.
+
+92
+00:04:03,280 --> 00:04:06,560
+So, in this case, we have an
+email form field, and that's
+
+93
+00:04:06,560 --> 00:04:09,930
+going to generate the keyboard
+that's specific for emails.
+
+94
+00:04:09,930 --> 00:04:12,880
+So this is a great usability
+factor because it allows the
+
+95
+00:04:12,880 --> 00:04:15,990
+user to go directly into what
+they want to do, in this case,
+
+96
+00:04:15,990 --> 00:04:19,120
+typing in their email address,
+as opposed to trying to find
+
+97
+00:04:19,120 --> 00:04:20,810
+all of the characters.
+
+98
+00:04:20,810 --> 00:04:23,840
+Now our number, date and color
+input types currently aren't
+
+99
+00:04:23,840 --> 00:04:27,480
+supported in contemporary
+browsers all that well, but as
+
+100
+00:04:27,480 --> 00:04:29,580
+they become more supported
+you're going to see them in
+
+101
+00:04:29,580 --> 00:04:30,890
+use a lot more.
+
+102
+00:04:30,890 --> 00:04:33,230
+And this is because it's going
+to give, once again, some
+
+103
+00:04:33,230 --> 00:04:35,680
+great new usability features
+to our forms.
+
+104
+00:04:35,680 --> 00:04:37,990
+In this case, like you can see
+in the demo, we can actually
+
+105
+00:04:37,990 --> 00:04:41,420
+bring up different very shades
+of color wheels or color
+
+106
+00:04:41,420 --> 00:04:44,640
+selectors to actually define
+what we're looking for.
+
+107
+00:04:44,640 --> 00:04:47,920
+And we can also do the same
+thing for date pickers and
+
+108
+00:04:47,920 --> 00:04:50,450
+number sliders, for example.
+
+109
+00:04:50,450 --> 00:04:52,840
+Finally, we have the search
+input type, and this thing is
+
+110
+00:04:52,840 --> 00:04:53,760
+pretty slick.
+
+111
+00:04:53,760 --> 00:04:57,200
+In web browsers like Safari
+and Chrome, the browser
+
+112
+00:04:57,200 --> 00:05:00,590
+actually renders rounded
+corners automatically.
+
+113
+00:05:00,590 --> 00:05:03,690
+And it also adds a little x
+button, just like you would
+
+114
+00:05:03,690 --> 00:05:06,530
+see in a native, say,
+Mac application.
+
+115
+00:05:06,530 --> 00:05:08,900
+And this is great because if
+you're entering a search and
+
+116
+00:05:08,900 --> 00:05:10,600
+all of a sudden you realize
+that's not what you want to
+
+117
+00:05:10,600 --> 00:05:12,860
+search for, you can click
+on that button and it
+
+118
+00:05:12,860 --> 00:05:15,340
+automatically erases
+your entire search.
+
+119
+00:05:15,340 --> 00:05:18,180
+So, once again, this is a much
+more usable feature and it's
+
+120
+00:05:18,180 --> 00:05:22,200
+going to allow us to do a lot
+more with our form fields.
+
+121
+00:05:22,200 --> 00:05:25,100
+Now, I mentioned that webkit
+browsers automatically add
+
+122
+00:05:25,100 --> 00:05:26,160
+rounded corners.
+
+123
+00:05:26,160 --> 00:05:28,540
+If this is something that you
+don't necessarily want to
+
+124
+00:05:28,540 --> 00:05:31,480
+have, maybe you want to have a
+custom design search field,
+
+125
+00:05:31,480 --> 00:05:34,540
+all you need to do is enter this
+code in your CSS and then
+
+126
+00:05:34,540 --> 00:05:36,400
+you'll be able to style
+however you want.
+
+127
+00:05:36,400 --> 00:05:40,190
+
+128
+00:05:40,190 --> 00:05:42,330
+All right, so let's go ahead
+and jump into the markup.
+
+129
+00:05:42,330 --> 00:05:45,120
+And first, let's take a look at
+what we're actually going
+
+130
+00:05:45,120 --> 00:05:45,930
+to be marking up.
+
+131
+00:05:45,930 --> 00:05:48,710
+In this case it's our email
+newsletter box.
+
+132
+00:05:48,710 --> 00:05:51,270
+So previously we might have
+constructed our markup
+
+133
+00:05:51,270 --> 00:05:52,750
+to look like this.
+
+134
+00:05:52,750 --> 00:05:55,960
+We have our div id newsletter,
+and then we have our various
+
+135
+00:05:55,960 --> 00:05:57,640
+form fields beneath that.
+
+136
+00:05:57,640 --> 00:06:00,490
+So in HTML5 how might
+we mark this up?
+
+137
+00:06:00,490 --> 00:06:02,580
+Well, we're going to do
+a couple of things.
+
+138
+00:06:02,580 --> 00:06:06,130
+First, like you would expect,
+we're going to replace our top
+
+139
+00:06:06,130 --> 00:06:08,290
+level div with a section
+because, once again, it's a
+
+140
+00:06:08,290 --> 00:06:10,230
+grouping of related content.
+
+141
+00:06:10,230 --> 00:06:13,270
+We're going to add our header
+tag with a new h1 for email
+
+142
+00:06:13,270 --> 00:06:16,100
+newsletter, and then we're going
+to do a couple of things
+
+143
+00:06:16,100 --> 00:06:17,730
+with our individual
+form fields.
+
+144
+00:06:17,730 --> 00:06:21,370
+Let's go ahead and take a look
+at those in more detail.
+
+145
+00:06:21,370 --> 00:06:24,010
+The first thing that we're going
+to do, as you can see,
+
+146
+00:06:24,010 --> 00:06:26,440
+is we're going to add our input
+type email, which is one
+
+147
+00:06:26,440 --> 00:06:28,420
+of those new input types
+that we talked about
+
+148
+00:06:28,420 --> 00:06:30,110
+a little bit earlier.
+
+149
+00:06:30,110 --> 00:06:32,460
+We're also going to add
+placeholder text.
+
+150
+00:06:32,460 --> 00:06:34,910
+Now this is pretty cool because
+previously you'd only
+
+151
+00:06:34,910 --> 00:06:37,960
+be able to have placeholder text
+that disappeared when you
+
+152
+00:06:37,960 --> 00:06:41,120
+clicked inside the form field
+through JavaScript or
+
+153
+00:06:41,120 --> 00:06:42,350
+something like that.
+
+154
+00:06:42,350 --> 00:06:45,100
+Now we can do it natively
+through HTML5.
+
+155
+00:06:45,100 --> 00:06:47,250
+So, in this case, we're just
+going to add this value
+
+156
+00:06:47,250 --> 00:06:50,380
+placeholder, and then whatever
+we would like to exist inside
+
+157
+00:06:50,380 --> 00:06:51,310
+of our form field.
+
+158
+00:06:51,310 --> 00:06:53,470
+In this case, it's
+an email address.
+
+159
+00:06:53,470 --> 00:06:56,440
+Finally, if we want to make our
+form fields required, all
+
+160
+00:06:56,440 --> 00:06:58,730
+we have to do is enter required
+at the end of our
+
+161
+00:06:58,730 --> 00:07:00,390
+string like you see here.
+
+162
+00:07:00,390 --> 00:07:03,250
+And, natively in HTML5,
+our form fields
+
+163
+00:07:03,250 --> 00:07:05,870
+are required fields.
+
+164
+00:07:05,870 --> 00:07:08,140
+All right, now that we've
+completed our email newsletter
+
+165
+00:07:08,140 --> 00:07:10,860
+markup, let's go ahead and
+move on to our footer.
+
+166
+00:07:10,860 --> 00:07:13,490
+Now, we're not going to be doing
+anything game changing
+
+167
+00:07:13,490 --> 00:07:15,900
+in our footer markup, but we
+are going to be adding a
+
+168
+00:07:15,900 --> 00:07:17,870
+couple of new HTML5 elements.
+
+169
+00:07:17,870 --> 00:07:20,540
+So let's take a look at how we
+might have previously marked
+
+170
+00:07:20,540 --> 00:07:22,240
+up our footer.
+
+171
+00:07:22,240 --> 00:07:24,730
+First, we have our containing
+element, which in this case is
+
+172
+00:07:24,730 --> 00:07:26,540
+div id primary foot.
+
+173
+00:07:26,540 --> 00:07:29,630
+And then we have our div ID
+history section which includes
+
+174
+00:07:29,630 --> 00:07:32,400
+a little bit of information
+about Border and Radius and
+
+175
+00:07:32,400 --> 00:07:35,980
+has that monotone image
+like you saw before.
+
+176
+00:07:35,980 --> 00:07:39,230
+So in HTML5 we're only going to
+make a couple of changes.
+
+177
+00:07:39,230 --> 00:07:41,910
+As you might expect, we're going
+to change our containing
+
+178
+00:07:41,910 --> 00:07:44,250
+element, div, into
+a footer tag.
+
+179
+00:07:44,250 --> 00:07:47,400
+And we're also going to change
+our history section into an
+
+180
+00:07:47,400 --> 00:07:50,280
+actual HTML5 section because,
+once again, it's a grouping of
+
+181
+00:07:50,280 --> 00:07:51,810
+related content.
+
+182
+00:07:51,810 --> 00:07:55,520
+We're going to add our header,
+our history in this case, and
+
+183
+00:07:55,520 --> 00:07:58,370
+that wraps up the HTML5 for
+that particular markup.
+
+184
+00:07:58,370 --> 00:08:02,110
+
+185
+00:08:02,110 --> 00:08:04,910
+Next we have our footer
+navigation and a little bit of
+
+186
+00:08:04,910 --> 00:08:07,350
+copyright information
+below that.
+
+187
+00:08:07,350 --> 00:08:10,250
+So here's how we might have
+marked that up previously.
+
+188
+00:08:10,250 --> 00:08:14,230
+So in HTML5, just a couple of
+quick little changes here.
+
+189
+00:08:14,230 --> 00:08:16,910
+Instead of having a div ID
+info, we're just going to
+
+190
+00:08:16,910 --> 00:08:18,510
+change that to section.
+
+191
+00:08:18,510 --> 00:08:22,120
+And instead of having div ID
+footer nav, we can go ahead
+
+192
+00:08:22,120 --> 00:08:24,970
+and change that to our nav tag
+because it is navigation.
+
+193
+00:08:24,970 --> 00:08:28,370
+
+194
+00:08:28,370 --> 00:08:31,070
+All right, so now we've got our
+markup complete, let's go
+
+195
+00:08:31,070 --> 00:08:34,250
+ahead and work on the style for
+our email newsletter box
+
+196
+00:08:34,250 --> 00:08:35,500
+and our footer elements.
+
+197
+00:08:35,500 --> 00:08:38,190
+
+198
+00:08:38,190 --> 00:08:40,590
+All right, first, let's take a
+look at our markup once again
+
+199
+00:08:40,590 --> 00:08:43,150
+just to give us a reminder of
+what we're working with.
+
+200
+00:08:43,150 --> 00:08:45,880
+So if you remember, we have our
+section id newsletter, and
+
+201
+00:08:45,880 --> 00:08:47,820
+then our actual form fields.
+
+202
+00:08:47,820 --> 00:08:50,730
+So let's get our basic styles
+out of the way first,
+
+203
+00:08:50,730 --> 00:08:51,980
+like you see here.
+
+204
+00:08:51,980 --> 00:08:54,330
+
+205
+00:08:54,330 --> 00:08:56,540
+Next, we're going to be focusing
+on styling the
+
+206
+00:08:56,540 --> 00:08:59,770
+specific fields within the
+email newsletter sign up.
+
+207
+00:08:59,770 --> 00:09:02,050
+So as you can see here we're
+just going to add our standard
+
+208
+00:09:02,050 --> 00:09:05,060
+border radius property with our
+vendor prefixes ahead of
+
+209
+00:09:05,060 --> 00:09:07,910
+our standard property, and we're
+going to add a radius
+
+210
+00:09:07,910 --> 00:09:10,280
+value of five pixels.
+
+211
+00:09:10,280 --> 00:09:11,990
+As you can see by these
+images, we have
+
+212
+00:09:11,990 --> 00:09:13,480
+a before and after.
+
+213
+00:09:13,480 --> 00:09:16,470
+So before we have our just
+standard rectangles, and then
+
+214
+00:09:16,470 --> 00:09:19,590
+after we have our
+rounded corners.
+
+215
+00:09:19,590 --> 00:09:22,370
+Next we're going to work
+on our submit button.
+
+216
+00:09:22,370 --> 00:09:25,180
+Now our submit button is pretty
+cool because prior to
+
+217
+00:09:25,180 --> 00:09:29,500
+CSS3 we would only be able to
+create this using an image.
+
+218
+00:09:29,500 --> 00:09:31,130
+For our submit button we're
+going to render
+
+219
+00:09:31,130 --> 00:09:33,130
+everything in CSS3.
+
+220
+00:09:33,130 --> 00:09:35,360
+Let's go ahead and take a look
+at how we might do that.
+
+221
+00:09:35,360 --> 00:09:37,810
+First, we're going to get our
+basic styles out of the way
+
+222
+00:09:37,810 --> 00:09:39,345
+like you see here.
+
+223
+00:09:39,345 --> 00:09:41,860
+The next thing that we're going
+to do, is we're going to
+
+224
+00:09:41,860 --> 00:09:45,720
+add text shadow, and we're also
+going around the corners.
+
+225
+00:09:45,720 --> 00:09:48,100
+So, in this case, you can see
+our text shadow is once again
+
+226
+00:09:48,100 --> 00:09:49,810
+our letterpress effect.
+
+227
+00:09:49,810 --> 00:09:53,400
+And we're going to add a border
+radius of eight pixels.
+
+228
+00:09:53,400 --> 00:09:56,240
+Next we're going to add a CSS
+gradient to our button.
+
+229
+00:09:56,240 --> 00:09:59,180
+Now if you can remember when we
+covered CSS gradients back
+
+230
+00:09:59,180 --> 00:10:01,970
+in Level 2, they can be
+a little bit tricky.
+
+231
+00:10:01,970 --> 00:10:05,450
+So for this button I've once
+again used John Allsopp's CSS
+
+232
+00:10:05,450 --> 00:10:08,250
+gradient creator, and it's
+given me the code
+
+233
+00:10:08,250 --> 00:10:09,730
+like you see here.
+
+234
+00:10:09,730 --> 00:10:12,410
+So, in this case, we're going to
+create a gradient from kind
+
+235
+00:10:12,410 --> 00:10:15,860
+of a darker gray to a little
+bit of a lighter gray.
+
+236
+00:10:15,860 --> 00:10:18,280
+And let's go ahead and take a
+look at that button rendered
+
+237
+00:10:18,280 --> 00:10:20,980
+completely in CSS3
+in our browser.
+
+238
+00:10:20,980 --> 00:10:22,720
+All right, so the last thing
+that we're going to do for our
+
+239
+00:10:22,720 --> 00:10:24,390
+button is add a hover state.
+
+240
+00:10:24,390 --> 00:10:28,120
+Now in CSS, and in particular
+CSS3, we have a number of
+
+241
+00:10:28,120 --> 00:10:30,890
+different options that we can
+use for hover states.
+
+242
+00:10:30,890 --> 00:10:33,600
+You've seen a couple of those
+in this course already.
+
+243
+00:10:33,600 --> 00:10:36,190
+In this case we're going to keep
+it pretty simple and just
+
+244
+00:10:36,190 --> 00:10:39,110
+add a standard box shadow so
+that when you hover over the
+
+245
+00:10:39,110 --> 00:10:41,740
+button it just lifts it off
+the page a little bit.
+
+246
+00:10:41,740 --> 00:10:43,910
+So our code would look
+something like this.
+
+247
+00:10:43,910 --> 00:10:47,240
+An x value of one pixel, a y
+value of one pixel, and then
+
+248
+00:10:47,240 --> 00:10:49,360
+we're going to give a
+three pixel blur.
+
+249
+00:10:49,360 --> 00:10:52,040
+Now the only thing to mention
+here is that we've added in
+
+250
+00:10:52,040 --> 00:10:54,150
+opacity value of 0.4.
+
+251
+00:10:54,150 --> 00:10:56,880
+So we've kept the color as
+standard black, and then
+
+252
+00:10:56,880 --> 00:11:00,960
+dropped the opacity to 0.4 as
+opposed to trying to find a
+
+253
+00:11:00,960 --> 00:11:02,560
+gray color that works.
+
+254
+00:11:02,560 --> 00:11:05,887
+This is a quick and easy fix to
+adding some drop shadow to
+
+255
+00:11:05,887 --> 00:11:08,000
+your elements.
+
+256
+00:11:08,000 --> 00:11:10,300
+All right, so now that we have
+that done the last thing we
+
+257
+00:11:10,300 --> 00:11:12,990
+need to do is go ahead
+and style our footer.
+
+258
+00:11:12,990 --> 00:11:16,350
+Now our footer includes some
+pretty basic style so I've
+
+259
+00:11:16,350 --> 00:11:19,370
+included them in the reference
+slides for this course, but
+
+260
+00:11:19,370 --> 00:11:21,720
+I'm not going to go through
+those in depth right now
+
+261
+00:11:21,720 --> 00:11:24,920
+because they're pretty much
+just standard CSS styles.
+
+262
+00:11:24,920 --> 00:11:27,510
+What I want to do is go ahead
+and jump ahead to the actual
+
+263
+00:11:27,510 --> 00:11:30,790
+CSS3 properties that we're going
+to add for a couple of
+
+264
+00:11:30,790 --> 00:11:32,200
+elements in our footer.
+
+265
+00:11:32,200 --> 00:11:34,980
+So let's go ahead and take a
+look at the copyright section
+
+266
+00:11:34,980 --> 00:11:36,750
+of the footer.
+
+267
+00:11:36,750 --> 00:11:38,840
+All right, so the specific
+element that we're going to
+
+268
+00:11:38,840 --> 00:11:42,250
+target with CSS3 properties is
+going to be the bottle image
+
+269
+00:11:42,250 --> 00:11:44,310
+next to our copyright
+information.
+
+270
+00:11:44,310 --> 00:11:46,740
+So what we want to do here
+is we want to add a CSS
+
+271
+00:11:46,740 --> 00:11:48,610
+transition on hover.
+
+272
+00:11:48,610 --> 00:11:50,560
+So the way that we're going to
+do this is we're going to set
+
+273
+00:11:50,560 --> 00:11:53,360
+our basic styles first,
+like you see here.
+
+274
+00:11:53,360 --> 00:11:56,620
+And then we're going to add our
+CSS transition property.
+
+275
+00:11:56,620 --> 00:11:58,730
+Vendor prefixes first,
+of course.
+
+276
+00:11:58,730 --> 00:12:01,370
+And in this case we're going to
+transition the opacity of
+
+277
+00:12:01,370 --> 00:12:03,910
+the image with an ease-in-out
+function like
+
+278
+00:12:03,910 --> 00:12:05,220
+we typically use.
+
+279
+00:12:05,220 --> 00:12:07,370
+And then on the hover state
+we're going to add an opacity
+
+280
+00:12:07,370 --> 00:12:08,800
+value of 0.5.
+
+281
+00:12:08,800 --> 00:12:11,470
+Now, if you notice, on our
+static state, we have an
+
+282
+00:12:11,470 --> 00:12:14,040
+opacity value of 0.15.
+
+283
+00:12:14,040 --> 00:12:17,180
+So in this case we're going to
+be going from a more opaque
+
+284
+00:12:17,180 --> 00:12:20,570
+image in a static state,
+to a less opaque image
+
+285
+00:12:20,570 --> 00:12:22,230
+in the hover state.
+
+286
+00:12:22,230 --> 00:12:24,140
+So ready to take a look
+at how this fits
+
+287
+00:12:24,140 --> 00:12:25,500
+together in the browser?
+
+288
+00:12:25,500 --> 00:12:27,380
+All right, let's head on over
+to Border and Radius
+
+289
+00:12:27,380 --> 00:12:28,630
+and check it out.
+
+290
+00:12:28,630 --> 00:12:31,030
+
+291
+00:12:31,030 --> 00:12:33,890
+Let's first take a look at our
+newsletter sign up form.
+
+292
+00:12:33,890 --> 00:12:36,030
+Here's a look at what this would
+look like if we didn't
+
+293
+00:12:36,030 --> 00:12:38,710
+use some of our new
+CSS3 properties.
+
+294
+00:12:38,710 --> 00:12:42,270
+Once again, it's usable, but
+it's a bit boring and bland.
+
+295
+00:12:42,270 --> 00:12:45,270
+By adding CSS3 properties we
+get a form that looks like
+
+296
+00:12:45,270 --> 00:12:49,150
+this, rounded corners, native
+placeholder text, and a button
+
+297
+00:12:49,150 --> 00:12:53,110
+with gradients and rounded
+corners all in CSS3.
+
+298
+00:12:53,110 --> 00:12:55,810
+And if we move on to our footer,
+most of our content is
+
+299
+00:12:55,810 --> 00:12:57,230
+pretty straightforward.
+
+300
+00:12:57,230 --> 00:12:59,510
+You can see that we have a text
+shadow with our history
+
+301
+00:12:59,510 --> 00:13:01,340
+copy, which is a nice element.
+
+302
+00:13:01,340 --> 00:13:03,450
+And you can see how we rendered
+our footer background
+
+303
+00:13:03,450 --> 00:13:06,490
+to be opaque so the texture
+bleeds through the color.
+
+304
+00:13:06,490 --> 00:13:08,850
+And here you can see the
+transition that we added to
+
+305
+00:13:08,850 --> 00:13:11,070
+our bottle image.
+
+306
+00:13:11,070 --> 00:13:13,530
+So congratulations, we've built
+the Border and Radius
+
+307
+00:13:13,530 --> 00:13:17,260
+homepage in semantic HTML5
+markup, and with some kicking
+
+308
+00:13:17,260 --> 00:13:19,020
+CSS3 properties.
+
+309
+00:13:19,020 --> 00:13:22,100
+Hopefully this has been helpful,
+functional example of
+
+310
+00:13:22,100 --> 00:13:23,685
+how to use these great
+new features.
+
+311
+00:13:23,685 --> 00:13:26,210
+
+312
+00:13:26,210 --> 00:13:27,810
+But wait there's more.
+
+313
+00:13:27,810 --> 00:13:30,450
+Since you've made it this far,
+we wanted to throw in a little
+
+314
+00:13:30,450 --> 00:13:31,270
+something special.
+
+315
+00:13:31,270 --> 00:13:34,630
+So we'd like to invite you
+to have a drink on us.
+
+316
+00:13:34,630 --> 00:13:35,880
+Now what do we mean by that?
+
+317
+00:13:35,880 --> 00:13:38,690
+Well let's go back to our Border
+and Radius site and
+
+318
+00:13:38,690 --> 00:13:40,640
+I'll show you.
+
+319
+00:13:40,640 --> 00:13:43,300
+So let's check out our bottle
+image again, I think you'll
+
+320
+00:13:43,300 --> 00:13:45,570
+find a few things
+have changed.
+
+321
+00:13:45,570 --> 00:13:47,260
+Yep, that's a spinning bottle.
+
+322
+00:13:47,260 --> 00:13:49,820
+And if you look real close you
+can actually see the liquid
+
+323
+00:13:49,820 --> 00:13:51,970
+inside of the bottle
+being drained.
+
+324
+00:13:51,970 --> 00:13:54,890
+So I assume you're taking us
+up on our offer a drink.
+
+325
+00:13:54,890 --> 00:13:56,180
+Pretty cool, huh?
+
+326
+00:13:56,180 --> 00:13:59,800
+The power of CSS3, it really is
+amazing some of the stuff
+
+327
+00:13:59,800 --> 00:14:01,300
+that we can do.
+
+328
+00:14:01,300 --> 00:14:03,290
+Now if you're interested in
+taking a look at the code that
+
+329
+00:14:03,290 --> 00:14:05,850
+we used to create this, we've
+included at the end of the
+
+330
+00:14:05,850 --> 00:14:07,510
+slides for this level.
+
+331
+00:14:07,510 --> 00:14:09,780
+Enjoy and cheers.
+
+332
+00:14:09,780 --> 00:14:12,860
+All right, so that concludes the
+last level of the course.
+
+333
+00:14:12,860 --> 00:14:14,990
+Congratulations for making
+it this far, but you're
+
+334
+00:14:14,990 --> 00:14:16,620
+not quite done yet.
+
+335
+00:14:16,620 --> 00:14:18,990
+Let's go ahead and apply what
+we've learned in this level
+
+336
+00:14:18,990 --> 00:14:20,240
+and jump into the code.
+
+337
+00:14:20,240 --> 00:14:22,629

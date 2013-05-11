@@ -1,0 +1,510 @@
+1
+00:00:00,000 --> 00:00:00,145
+[SINGING]
+
+2
+00:00:00,145 --> 00:00:03,100
+Your client side JavaScript
+is starting to mold.
+
+3
+00:00:03,100 --> 00:00:06,550
+It's starting to resemble
+a bad spaghetti code.
+
+4
+00:00:06,550 --> 00:00:08,470
+And it is time to
+add structure.
+
+5
+00:00:08,470 --> 00:00:10,170
+But it won't take too long.
+
+6
+00:00:10,170 --> 00:00:12,740
+Gotta get your truth
+out of the DOM.
+
+7
+00:00:12,740 --> 00:00:17,080
+Take your data into models
+and you cannot lose.
+
+8
+00:00:17,080 --> 00:00:19,811
+We'll render out your models
+with the help of the views.
+
+9
+00:00:19,811 --> 00:00:23,316
+And if you don't want your
+JavaScript to end up like a
+
+10
+00:00:23,316 --> 00:00:25,170
+mess, it's time for
+the Anatomy of
+
+11
+00:00:25,170 --> 00:00:31,800
+Backbone.js at Code School.
+
+12
+00:00:31,800 --> 00:00:34,120
+You're watching the Anatomy
+of Backbone, Part Two.
+
+13
+00:00:34,120 --> 00:00:35,220
+And in level three,
+we're going to be
+
+14
+00:00:35,220 --> 00:00:37,960
+talking about real routes.
+
+15
+00:00:37,960 --> 00:00:41,260
+If our to do application was
+able to search, we might have
+
+16
+00:00:41,260 --> 00:00:45,690
+a router that looks like this,
+where we have search and then
+
+17
+00:00:45,690 --> 00:00:46,630
+query option.
+
+18
+00:00:46,630 --> 00:00:48,430
+And then also our search
+results might
+
+19
+00:00:48,430 --> 00:00:49,520
+have multiple pages.
+
+20
+00:00:49,520 --> 00:00:51,310
+So we need to specify that.
+
+21
+00:00:51,310 --> 00:00:52,080
+Here's our search route
+
+22
+00:00:52,080 --> 00:00:53,680
+function where we have two
+
+23
+00:00:53,680 --> 00:00:56,230
+parameters, query and page.
+
+24
+00:00:56,230 --> 00:00:58,850
+And we're simply going to log
+those out to the console.
+
+25
+00:00:58,850 --> 00:01:03,420
+So if we navigate to
+search/milk, the result is
+
+26
+00:01:03,420 --> 00:01:06,790
+going to be milk, comma,
+zero, obviously.
+
+27
+00:01:06,790 --> 00:01:10,730
+And if we navigate to
+search/milk page two, we get
+
+28
+00:01:10,730 --> 00:01:13,590
+back milk, comma, 2.
+
+29
+00:01:13,590 --> 00:01:14,700
+So good so far.
+
+30
+00:01:14,700 --> 00:01:18,610
+But there's a way that we can
+get rid of some of this
+
+31
+00:01:18,610 --> 00:01:19,800
+duplication.
+
+32
+00:01:19,800 --> 00:01:22,660
+And instead of listing out these
+routes in two different
+
+33
+00:01:22,660 --> 00:01:24,970
+lines, we can do them in one.
+
+34
+00:01:24,970 --> 00:01:27,150
+We do this simply by
+using parentheses.
+
+35
+00:01:27,150 --> 00:01:30,350
+Parentheses give us an optional
+part of our route.
+
+36
+00:01:30,350 --> 00:01:31,710
+So now the same routes
+still work.
+
+37
+00:01:31,710 --> 00:01:34,220
+But we can define them
+in a single line.
+
+38
+00:01:34,220 --> 00:01:37,530
+But what if we wanted this
+route to also match
+
+39
+00:01:37,530 --> 00:01:41,600
+search/milk/p2 and have
+that trailing slash.
+
+40
+00:01:41,600 --> 00:01:45,580
+It's not uncommon to want to
+have your URLs be able to take
+
+41
+00:01:45,580 --> 00:01:47,720
+that trailing slash.
+
+42
+00:01:47,720 --> 00:01:51,550
+We can do this by adding another
+optional part of our
+
+43
+00:01:51,550 --> 00:01:56,060
+route, which just has the slash
+in between parentheses.
+
+44
+00:01:56,060 --> 00:02:01,650
+So now when we go to this route,
+it's going to work.
+
+45
+00:02:01,650 --> 00:02:03,870
+When people use our search
+form, they might type in
+
+46
+00:02:03,870 --> 00:02:05,660
+multiple words.
+
+47
+00:02:05,660 --> 00:02:09,410
+This is going to get encoded
+in the URL like so.
+
+48
+00:02:09,410 --> 00:02:13,490
+But it's actually never going
+to get decoded in our app.
+
+49
+00:02:13,490 --> 00:02:17,530
+And we don't want to have to
+search for                    
+
+50
+00:02:17,530 --> 00:02:19,420
+So how do we decode that?
+
+51
+00:02:19,420 --> 00:02:20,320
+Well it's pretty simple.
+
+52
+00:02:20,320 --> 00:02:24,580
+We just need to add a line,
+decodeURIComponent, and send
+
+53
+00:02:24,580 --> 00:02:25,990
+in the query parameter.
+
+54
+00:02:25,990 --> 00:02:27,930
+This will properly decode
+this string, so we
+
+55
+00:02:27,930 --> 00:02:29,180
+can search for it.
+
+56
+00:02:29,180 --> 00:02:31,430
+
+
+57
+00:02:31,430 --> 00:02:34,810
+Also in our router, here's
+how we show a todoItem.
+
+58
+00:02:34,810 --> 00:02:38,300
+And right now the function
+itself is simply going to log
+
+59
+00:02:38,300 --> 00:02:40,210
+out the ID that we send in.
+
+60
+00:02:40,210 --> 00:02:45,410
+So if we go todos/2, it's
+going to log out, 2.
+
+61
+00:02:45,410 --> 00:02:50,000
+But what if we sent in a non
+numeric parameter, in this
+
+62
+00:02:50,000 --> 00:02:51,970
+case notanid?
+
+63
+00:02:51,970 --> 00:02:54,810
+Well it's going to trigger
+that same function.
+
+64
+00:02:54,810 --> 00:02:58,070
+And it's going to look for
+an ID with notanid.
+
+65
+00:02:58,070 --> 00:03:02,710
+So how might we filter this
+route, so that it only accepts
+
+66
+00:03:02,710 --> 00:03:04,890
+numeric IDs?
+
+67
+00:03:04,890 --> 00:03:09,360
+To do this, we can use a regex
+and call todorouter.route,
+
+68
+00:03:09,360 --> 00:03:12,560
+specify the regex that we want
+and specify the route function
+
+69
+00:03:12,560 --> 00:03:13,840
+we want it to call.
+
+70
+00:03:13,840 --> 00:03:14,580
+This would work.
+
+71
+00:03:14,580 --> 00:03:17,720
+Now when we call todos/notanid,
+it wouldn't
+
+72
+00:03:17,720 --> 00:03:20,770
+trigger the show route.
+
+73
+00:03:20,770 --> 00:03:22,480
+Obviously this code
+isn't optimal.
+
+74
+00:03:22,480 --> 00:03:25,220
+We're defining a route from
+outside of the router.
+
+75
+00:03:25,220 --> 00:03:28,730
+And we want to define all of our
+routes inside the router.
+
+76
+00:03:28,730 --> 00:03:32,490
+However, a JavaScript object
+like we've been using to
+
+77
+00:03:32,490 --> 00:03:36,560
+define our routes can't accept a
+regular expression as a key.
+
+78
+00:03:36,560 --> 00:03:40,240
+So the way to do this is inside
+of the Initialize
+
+79
+00:03:40,240 --> 00:03:42,490
+function as you see here.
+
+80
+00:03:42,490 --> 00:03:44,940
+This allows us to keep the
+route inside the router.
+
+81
+00:03:44,940 --> 00:03:49,230
+
+
+82
+00:03:49,230 --> 00:03:51,870
+We can use some pretty advanced
+regular expressions.
+
+83
+00:03:51,870 --> 00:03:53,010
+You see that code up there?
+
+84
+00:03:53,010 --> 00:03:54,780
+I don't even know
+what that means.
+
+85
+00:03:54,780 --> 00:03:57,210
+But it's advanced.
+
+86
+00:03:57,210 --> 00:04:01,670
+So this matches a bunch of
+different search routes.
+
+87
+00:04:01,670 --> 00:04:03,360
+Doesn't match some other ones.
+
+88
+00:04:03,360 --> 00:04:06,380
+And in order to figure out how
+to do the regular expression
+
+89
+00:04:06,380 --> 00:04:10,790
+stuff like this, check
+out this URL.
+
+90
+00:04:10,790 --> 00:04:14,000
+The router allows us to have
+some catch all routes.
+
+91
+00:04:14,000 --> 00:04:17,200
+For example if we wanted a route
+that gets called when
+
+92
+00:04:17,200 --> 00:04:20,440
+none of our other route
+paths get matched, we
+
+93
+00:04:20,440 --> 00:04:22,560
+could do *path.
+
+94
+00:04:22,560 --> 00:04:25,910
+And that would call the
+notFound request function, in
+
+95
+00:04:25,910 --> 00:04:29,330
+this case just saying sorry,
+there's no content here.
+
+96
+00:04:29,330 --> 00:04:31,880
+So we navigate to nothinghere,
+which
+
+97
+00:04:31,880 --> 00:04:32,940
+doesn't match a route,
+
+98
+00:04:32,940 --> 00:04:35,090
+it's going to give us
+this alert message.
+
+99
+00:04:35,090 --> 00:04:38,480
+
+
+100
+00:04:38,480 --> 00:04:40,860
+One way this can be useful is to
+get the different parts of
+
+101
+00:04:40,860 --> 00:04:41,970
+a file path.
+
+102
+00:04:41,970 --> 00:04:44,730
+So our route is file/*path.
+
+103
+00:04:44,730 --> 00:04:48,900
+That calls the file request
+function, which in this case
+
+104
+00:04:48,900 --> 00:04:51,570
+is just going to split out the
+path and log them all out to
+
+105
+00:04:51,570 --> 00:04:52,600
+the console.
+
+106
+00:04:52,600 --> 00:04:56,580
+So if we call file/this/is/a/file,
+we get back
+
+107
+00:04:56,580 --> 00:05:00,620
+each part of that path, this
+is a file, in an array.
+
+108
+00:05:00,620 --> 00:05:03,170
+
+
+109
+00:05:03,170 --> 00:05:06,530
+Why don't you jump into some
+real routes in the challenges?
+
+110
+00:00:00,000 --> 00:00:00,000
+00:05:06,530 --> 00:05:10,914
+
