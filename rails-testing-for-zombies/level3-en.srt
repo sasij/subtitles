@@ -1,0 +1,507 @@
+1
+00:00:00,000 --> 00:00:01,320
+[MUSIC PLAYING]
+
+2
+00:00:01,320 --> 00:00:04,028
+(SINGING) Yes the zombies
+are back now, and
+
+3
+00:00:04,028 --> 00:00:07,521
+they're ready to test.
+
+4
+00:00:07,521 --> 00:00:09,683
+They'll take that development
+curve and tear
+
+5
+00:00:09,683 --> 00:00:12,012
+it from your chest.
+
+6
+00:00:12,012 --> 00:00:17,501
+Refactor your mind, take a test
+from red to green,
+
+7
+00:00:17,501 --> 00:00:20,495
+all with an undead theme.
+
+8
+00:00:20,495 --> 00:00:24,510
+
+
+9
+00:00:24,510 --> 00:00:26,860
+You're watching Rails
+Testing for Zombies.
+
+10
+00:00:26,860 --> 00:00:29,210
+And this is level three, where
+we're going to be cleaning up
+
+11
+00:00:29,210 --> 00:00:31,450
+some of the code we wrote
+in level two.
+
+12
+00:00:31,450 --> 00:00:34,170
+So let's get started.
+
+13
+00:00:34,170 --> 00:00:37,720
+Here's the code to where we
+tested the tweets association,
+
+14
+00:00:37,720 --> 00:00:41,680
+and here's the code where we
+tested the avatar_url method.
+
+15
+00:00:41,680 --> 00:00:43,060
+You may notice that
+there's some
+
+16
+00:00:43,060 --> 00:00:44,540
+duplication going on here.
+
+17
+00:00:44,540 --> 00:00:48,210
+And if there's anything we like
+doing as Ruby developers,
+
+18
+00:00:48,210 --> 00:00:49,220
+it's keeping it DRY.
+
+19
+00:00:49,220 --> 00:00:50,900
+We don't like repeating
+ourselves.
+
+20
+00:00:50,900 --> 00:00:54,586
+So how might we refactor this so
+we don't have to write z =
+
+21
+00:00:54,586 --> 00:00:56,940
+zombies(:ash) every time?
+
+22
+00:00:56,940 --> 00:01:02,080
+So let's move this line of code
+up into a setup method.
+
+23
+00:01:02,080 --> 00:01:05,160
+This setup method, by default,
+is going to get run
+
+24
+00:01:05,160 --> 00:01:07,700
+before every test.
+
+25
+00:01:07,700 --> 00:01:10,770
+In order to have this variable
+accessible, we need to make it
+
+26
+00:01:10,770 --> 00:01:11,690
+an instance variable.
+
+27
+00:01:11,690 --> 00:01:14,200
+So we're going to add that @
+symbol up at the top, and then
+
+28
+00:01:14,200 --> 00:01:16,230
+add that @ symbol in front
+of the variable
+
+29
+00:01:16,230 --> 00:01:18,110
+wherever we use it.
+
+30
+00:01:18,110 --> 00:01:20,660
+Let's take a look at two more
+tests that we might figure out
+
+31
+00:01:20,660 --> 00:01:22,220
+some way refactor.
+
+32
+00:01:22,220 --> 00:01:24,280
+Here we're testing that we have
+an error message when
+
+33
+00:01:24,280 --> 00:01:25,680
+name is blank.
+
+34
+00:01:25,680 --> 00:01:28,920
+We also need another test for
+the graveyard validation to
+
+35
+00:01:28,920 --> 00:01:32,170
+ensure that the graveyard
+field can't be blank.
+
+36
+00:01:32,170 --> 00:01:34,180
+Again, there's a lot of
+duplication going on here.
+
+37
+00:01:34,180 --> 00:01:37,030
+Each of these is testing if it's
+valid and then testing to
+
+38
+00:01:37,030 --> 00:01:39,450
+see if the right error
+message exists.
+
+39
+00:01:39,450 --> 00:01:41,120
+So let's refactor.
+
+40
+00:01:41,120 --> 00:01:42,620
+Let's take those two lines.
+
+41
+00:01:42,620 --> 00:01:45,500
+We're going to bring them up
+into another method we're
+
+42
+00:01:45,500 --> 00:01:48,130
+going to call assert_presence. 
+
+43
+00:01:48,130 --> 00:01:49,590
+It's going to have
+two parameters--
+
+44
+00:01:49,590 --> 00:01:51,420
+model and field.
+
+45
+00:01:51,420 --> 00:01:54,010
+We're going to check to see
+if the model is valid.
+
+46
+00:01:54,010 --> 00:01:55,700
+We're then going to get
+all of the errors on
+
+47
+00:01:55,700 --> 00:01:56,960
+that specific field.
+
+48
+00:01:56,960 --> 00:01:58,130
+That will return an array.
+
+49
+00:01:58,130 --> 00:02:00,790
+We'll join that array together
+to single string, which we'll
+
+50
+00:02:00,790 --> 00:02:03,350
+match against that regular
+expression.
+
+51
+00:02:03,350 --> 00:02:05,630
+Then, we'll create a custom
+failure message which says
+
+52
+00:02:05,630 --> 00:02:09,160
+Presence error for #{field} not
+found on #{model.class}.
+
+53
+00:02:09,160 --> 00:02:11,880
+Then in our test, all we have
+to do is call that method.
+
+54
+00:02:11,880 --> 00:02:16,680
+assert_presence for z and then
+the name column, and then
+
+55
+00:02:16,680 --> 00:02:19,830
+assert_presence z and then
+the graveyard column.
+
+56
+00:02:19,830 --> 00:02:21,560
+Sweet, we've refactored
+this code.
+
+57
+00:02:21,560 --> 00:02:22,930
+But you may have noticed
+something.
+
+58
+00:02:22,930 --> 00:02:25,840
+The way that we refactored this,
+it would be nice to be
+
+59
+00:02:25,840 --> 00:02:28,590
+able to use this in other models
+that also validate
+
+60
+00:02:28,590 --> 00:02:30,880
+presence and need to
+test against that.
+
+61
+00:02:30,880 --> 00:02:34,860
+So instead of having it in the
+zombie test, let's move it up
+
+62
+00:02:34,860 --> 00:02:37,740
+into the test_helper.
+
+63
+00:02:37,740 --> 00:02:40,360
+With this method in our
+test_helper, we'll have access
+
+64
+00:02:40,360 --> 00:02:44,070
+to it from any of
+our test files.
+
+65
+00:02:44,070 --> 00:02:48,220
+Now I want to introduce you to
+our first external test gem
+
+66
+00:02:48,220 --> 00:02:49,640
+called Shoulda.
+
+67
+00:02:49,640 --> 00:02:52,640
+Shoulda makes tests easy on
+the fingers and the eyes.
+
+68
+00:02:52,640 --> 00:02:55,500
+It will allow us to write less
+code and get more done.
+
+69
+00:02:55,500 --> 00:02:58,250
+So in order to install it in
+our Rails application, we
+
+70
+00:02:58,250 --> 00:03:00,810
+simply need to add a line
+to our Gemfile.
+
+71
+00:03:00,810 --> 00:03:03,780
+We only want this gem to be
+available in the test
+
+72
+00:03:03,780 --> 00:03:04,360
+environment.
+
+73
+00:03:04,360 --> 00:03:06,820
+That's why we have
+group :test do.
+
+74
+00:03:06,820 --> 00:03:09,520
+To test one of our presence
+validations with Shoulda,
+
+75
+00:03:09,520 --> 00:03:12,890
+instead of doing what we did a
+minute ago, we can just write
+
+76
+00:03:12,890 --> 00:03:16,060
+a single line, should
+validate_presence_of.
+
+77
+00:03:16,060 --> 00:03:19,820
+And then, we send in a symbol
+which is the column names.
+
+78
+00:03:19,820 --> 00:03:23,010
+So inside of our zombie test,
+we just write should
+
+79
+00:03:23,010 --> 00:03:24,770
+validate_presence_of(:name).
+
+80
+00:03:24,770 --> 00:03:26,170
+We might have should
+validate_presence_of(:graveyard),
+
+81
+00:03:26,170 --> 00:03:29,060
+should ensure_length_of
+
+82
+00:03:29,060 --> 00:03:31,880
+(:name).is_at_most(15).
+
+83
+00:03:31,880 --> 00:03:33,520
+And these are all Shoulda
+helper methods.
+
+84
+00:03:33,520 --> 00:03:35,720
+You can look up in the
+documentation to get a list of
+
+85
+00:03:35,720 --> 00:03:36,400
+all of them.
+
+86
+00:03:36,400 --> 00:03:39,800
+But they all test exactly
+what they say they test.
+
+87
+00:03:39,800 --> 00:03:42,380
+It should have_many(:tweets).
+
+88
+00:03:42,380 --> 00:03:44,170
+A couple other ones that
+are really helpful--
+
+89
+00:03:44,170 --> 00:03:47,610
+should validate_uniqueness_of,
+should ensure_length_of.
+
+90
+00:03:47,610 --> 00:03:50,600
+And you can chain on extra
+methods like-- is_at_least(5);
+
+91
+00:03:50,600 --> 00:03:54,460
+is_at_most(20); should
+validate_numercality_of, for a
+
+92
+00:03:54,460 --> 00:03:58,410
+column that has to be numeric;
+should_not allow_value("blah")
+
+93
+00:03:58,410 --> 00:04:02,900
+for email; should allow_value,
+for an email address; should
+
+94
+00:04:02,900 --> 00:04:05,300
+ensure_inclusion_of;
+should_not
+
+95
+00:04:05,300 --> 00:04:07,660
+allow_mass_assignment_of,
+because obviously, you don't
+
+96
+00:04:07,660 --> 00:04:10,070
+want to allow mass assignment
+of the password field.
+
+97
+00:04:10,070 --> 00:04:12,710
+That would be bad; should
+belong_to_zombie for the
+
+98
+00:04:12,710 --> 00:04:15,260
+relationship; and lastly, should
+validate_acceptance_of,
+
+99
+00:04:15,260 --> 00:04:19,709
+in terms of service, in this
+case for a Boolean field.
+
+100
+00:04:19,709 --> 00:04:21,440
+To get more information on
+Shoulda and to look up the
+
+101
+00:04:21,440 --> 00:04:23,790
+documentation so you can
+reference all of these
+
+102
+00:04:23,790 --> 00:04:26,420
+matchers I showed you a second
+ago, be sure to check out the
+
+103
+00:04:26,420 --> 00:04:28,990
+link down below this video.
+
+104
+00:04:28,990 --> 00:04:31,230
+And that pretty much wraps
+up a level three.
+
+105
+00:04:31,230 --> 00:04:33,960
+It was a short one because I
+want you guys to get better at
+
+106
+00:04:33,960 --> 00:04:36,910
+writing tests, refactoring your
+tests, and using Shoulda.
+
+107
+00:04:36,910 --> 00:04:38,160
+Good luck.
+
+108
+00:04:38,160 --> 00:04:40,981

@@ -1,0 +1,779 @@
+1
+00:00:00,000 --> 00:00:25,140
+[MUSIC PLAYING]
+
+2
+00:00:25,140 --> 00:00:28,660
+You're watching Rails Testing
+for Zombies, and this is level
+
+3
+00:00:28,660 --> 00:00:33,080
+four where we're going to be
+talking about mocks and stubs.
+
+4
+00:00:33,080 --> 00:00:37,130
+So you remember back with Rails
+for Zombies 2, we talked
+
+5
+00:00:37,130 --> 00:00:41,340
+about a zombie having one weapon
+or has_one weapon.
+
+6
+00:00:41,340 --> 00:00:44,220
+We're going to create a method
+in there called "decapitate,"
+
+7
+00:00:44,220 --> 00:00:47,370
+which calls into that weapon
+call slice, sends in the
+
+8
+00:00:47,370 --> 00:00:51,320
+zombie to get its head sliced
+off, and then sets the status
+
+9
+00:00:51,320 --> 00:00:53,790
+of the zombie to "dead again."
+
+10
+00:00:53,790 --> 00:00:57,540
+The test for this might look
+something like this, where we
+
+11
+00:00:57,540 --> 00:01:01,630
+have "decapitate should set
+status to dead again." We're
+
+12
+00:01:01,630 --> 00:01:05,239
+calling the decapitate method
+and then asserting equal "dead
+
+13
+00:01:05,239 --> 00:01:07,510
+again" to zombie status.
+
+14
+00:01:07,510 --> 00:01:08,980
+Pretty straightforward.
+
+15
+00:01:08,980 --> 00:01:12,340
+However, this test
+is not very good.
+
+16
+00:01:12,340 --> 00:01:13,310
+Why is that?
+
+17
+00:01:13,310 --> 00:01:16,920
+Because that slice method
+on weapon--
+
+18
+00:01:16,920 --> 00:01:19,050
+well, that could be
+pretty complex.
+
+19
+00:01:19,050 --> 00:01:20,690
+We don't know what's
+going on in there.
+
+20
+00:01:20,690 --> 00:01:24,300
+It might have 10 steps in there
+that might fail, and
+
+21
+00:01:24,300 --> 00:01:28,050
+then our test here fails, when
+all it's trying to test is
+
+22
+00:01:28,050 --> 00:01:30,740
+that the status is
+getting set.
+
+23
+00:01:30,740 --> 00:01:34,590
+So we almost need a way here so
+that we can test just that
+
+24
+00:01:34,590 --> 00:01:37,150
+that status is getting set
+without having to change our
+
+25
+00:01:37,150 --> 00:01:39,120
+source code.
+
+26
+00:01:39,120 --> 00:01:40,260
+So take a look here.
+
+27
+00:01:40,260 --> 00:01:41,680
+We have these two
+objects, right.
+
+28
+00:01:41,680 --> 00:01:45,060
+So we have the decapitate method
+inside zombie that
+
+29
+00:01:45,060 --> 00:01:48,400
+calls the slice method
+inside weapon.
+
+30
+00:01:48,400 --> 00:01:51,970
+But we almost need a way to
+make it so that that slice
+
+31
+00:01:51,970 --> 00:01:53,910
+method doesn't get run--
+
+32
+00:01:53,910 --> 00:01:56,380
+or that it's sort of faked
+out in some way.
+
+33
+00:01:56,380 --> 00:01:58,410
+We need to fake that call.
+
+34
+00:01:58,410 --> 00:02:01,400
+In order to do that, we need
+to introduce a new external
+
+35
+00:02:01,400 --> 00:02:03,790
+library called mocha.
+
+36
+00:02:03,790 --> 00:02:07,080
+Mocha is a library for
+mocking and stubbing.
+
+37
+00:02:07,080 --> 00:02:09,300
+To include it in our
+application, we need to once
+
+38
+00:02:09,300 --> 00:02:10,905
+again modify the gem file.
+
+39
+00:02:10,905 --> 00:02:13,640
+Of course, don't forget once you
+modify the gem file, you
+
+40
+00:02:13,640 --> 00:02:15,380
+need to run bundle.
+
+41
+00:02:15,380 --> 00:02:17,870
+Then we can start writing
+stubs and mocks.
+
+42
+00:02:17,870 --> 00:02:19,390
+But what are stubs and mocks.
+
+43
+00:02:19,390 --> 00:02:23,280
+Well a stub is for replacing a
+method with code that returns
+
+44
+00:02:23,280 --> 00:02:25,010
+a specified result--
+
+45
+00:02:25,010 --> 00:02:27,490
+so sort of faking
+out a method.
+
+46
+00:02:27,490 --> 00:02:32,060
+And mocks are basically a stub
+with an assertion hidden
+
+47
+00:02:32,060 --> 00:02:36,490
+inside of it to make sure the
+method actually gets called.
+
+48
+00:02:36,490 --> 00:02:40,110
+These two concepts are really
+hard to understand, especially
+
+49
+00:02:40,110 --> 00:02:42,240
+if you're hearing about them
+for the first time.
+
+50
+00:02:42,240 --> 00:02:45,100
+So I'm going to try to repeat
+myself a couple times.
+
+51
+00:02:45,100 --> 00:02:48,180
+If you have to watch the video a
+few times, don't be ashamed.
+
+52
+00:02:48,180 --> 00:02:48,760
+Just do it.
+
+53
+00:02:48,760 --> 00:02:52,310
+These are hard concepts
+to understand.
+
+54
+00:02:52,310 --> 00:02:55,190
+So back over in our example, we
+need a way so that when our
+
+55
+00:02:55,190 --> 00:02:59,270
+decapitate method gets called
+and it calls out to slice, we
+
+56
+00:02:59,270 --> 00:03:03,060
+need a way to sort of fake out
+that method and have it just
+
+57
+00:03:03,060 --> 00:03:05,650
+return nothing, have
+it return nil.
+
+58
+00:03:05,650 --> 00:03:11,570
+To do that, all we need to do
+is call weapon.stub(:slice).
+
+59
+00:03:11,570 --> 00:03:15,430
+So we're stubbing out the
+slice method inside this
+
+60
+00:03:15,430 --> 00:03:17,920
+instance of weapon.
+
+61
+00:03:17,920 --> 00:03:20,390
+So let's move this back
+into our test.
+
+62
+00:03:20,390 --> 00:03:23,490
+So here's our test method again,
+"decapitate should set
+
+63
+00:03:23,490 --> 00:03:26,150
+status to dead again."
+We stub out the slice
+
+64
+00:03:26,150 --> 00:03:27,810
+method for this test.
+
+65
+00:03:27,810 --> 00:03:30,680
+We call the decapitate method,
+and we assert that the zombie
+
+66
+00:03:30,680 --> 00:03:34,070
+status is "dead again." So now
+our test is much better.
+
+67
+00:03:34,070 --> 00:03:36,190
+We're faking out that
+slice method call.
+
+68
+00:03:36,190 --> 00:03:37,870
+It's just returning nil.
+
+69
+00:03:37,870 --> 00:03:40,620
+The status is getting set,
+and we're testing for it.
+
+70
+00:03:40,620 --> 00:03:41,830
+That's great.
+
+71
+00:03:41,830 --> 00:03:45,140
+But we almost need another test
+here for this method.
+
+72
+00:03:45,140 --> 00:03:48,420
+Not only do we need to test that
+the status gets changed,
+
+73
+00:03:48,420 --> 00:03:51,020
+but we also should test
+that that slice
+
+74
+00:03:51,020 --> 00:03:55,060
+method itself gets called.
+
+75
+00:03:55,060 --> 00:03:56,890
+OK, so how would we do that.
+
+76
+00:03:56,890 --> 00:03:58,500
+Well here we are,
+back over here.
+
+77
+00:03:58,500 --> 00:04:01,020
+We need to stub out the slice
+method, but we also need to
+
+78
+00:04:01,020 --> 00:04:02,710
+make sure it gets called.
+
+79
+00:04:02,710 --> 00:04:04,910
+That's where mock comes in.
+
+80
+00:04:04,910 --> 00:04:09,240
+So here, we're going to say
+zombie.weapon.expects(:slice).
+
+81
+00:04:09,240 --> 00:04:09,420
+
+
+82
+00:04:09,420 --> 00:04:12,340
+That's going to mock out the
+slice method, and it's also
+
+83
+00:04:12,340 --> 00:04:16,300
+going to assert that the method
+itself gets called.
+
+84
+00:04:16,300 --> 00:04:19,060
+We move this back into
+our test, we call
+
+85
+00:04:19,060 --> 00:04:22,070
+weapon.expects(:slice),
+and then we call
+
+86
+00:04:22,070 --> 00:04:23,580
+the decapitate method.
+
+87
+00:04:23,580 --> 00:04:26,960
+Notice here we don't have an
+assert method, but we do have
+
+88
+00:04:26,960 --> 00:04:30,340
+that little beaker there to show
+you that there's kind of
+
+89
+00:04:30,340 --> 00:04:32,890
+an assert going on
+under the covers.
+
+90
+00:04:32,890 --> 00:04:36,470
+It's checking to see that that
+slice method gets called.
+
+91
+00:04:36,470 --> 00:04:38,855
+And if it doesn't get called,
+it's going to fail our test.
+
+92
+00:04:38,855 --> 00:04:41,650
+
+
+93
+00:04:41,650 --> 00:04:43,670
+Now let's take a look at another
+example where we might
+
+94
+00:04:43,670 --> 00:04:45,710
+need a mock and a stub.
+
+95
+00:04:45,710 --> 00:04:49,390
+So inside of our zombie class,
+we have a geolocate method.
+
+96
+00:04:49,390 --> 00:04:51,210
+There, we call an external
+service.
+
+97
+00:04:51,210 --> 00:04:54,680
+We'll call it "Zoogle." It
+has a graveyard locator.
+
+98
+00:04:54,680 --> 00:04:56,970
+We send in the graveyard
+and we get back a
+
+99
+00:04:56,970 --> 00:04:58,760
+latitude and longitude.
+
+100
+00:04:58,760 --> 00:05:01,630
+So how might we test this.
+
+101
+00:05:01,630 --> 00:05:03,870
+We might test that geolocate
+calls the
+
+102
+00:05:03,870 --> 00:05:05,880
+Zoogle graveyard locator.
+
+103
+00:05:05,880 --> 00:05:07,620
+All we want to do is test
+that the graveyard
+
+104
+00:05:07,620 --> 00:05:09,540
+locator gets called.
+
+105
+00:05:09,540 --> 00:05:12,640
+So we say Zoogle.expects(:
+graveyard_locator).
+
+106
+00:05:12,640 --> 00:05:14,310
+Then we invoke the method.
+
+107
+00:05:14,310 --> 00:05:16,990
+We also might want to test the
+proper parameter gets sent
+
+108
+00:05:16,990 --> 00:05:21,090
+into this method, so we can say
+with(@zombie.graveyard).
+
+109
+00:05:21,090 --> 00:05:24,250
+This is going to stub the method
+and add an assertion to
+
+110
+00:05:24,250 --> 00:05:26,540
+make sure that the graveyard
+locator method gets called
+
+111
+00:05:26,540 --> 00:05:28,610
+with the correct parameters.
+
+112
+00:05:28,610 --> 00:05:31,650
+Now let's mix it up a bit and
+make that geolocate method a
+
+113
+00:05:31,650 --> 00:05:33,300
+little bit harder to test.
+
+114
+00:05:33,300 --> 00:05:36,130
+This time, that external service
+is going to return a
+
+115
+00:05:36,130 --> 00:05:41,410
+hash, which we're going to
+combine into a string.
+
+116
+00:05:41,410 --> 00:05:44,050
+So if you take a look back at
+our test code down here,
+
+117
+00:05:44,050 --> 00:05:48,790
+you're going to notice that our
+mock is going to need to
+
+118
+00:05:48,790 --> 00:05:52,650
+return a value, otherwise
+it's going to error out.
+
+119
+00:05:52,650 --> 00:05:54,350
+Otherwise, that method
+won't work.
+
+120
+00:05:54,350 --> 00:05:57,800
+To do that, we simply need to
+chain another method and call
+
+121
+00:05:57,800 --> 00:06:02,520
+returns, and specify what hash
+we want it to return.
+
+122
+00:06:02,520 --> 00:06:04,300
+With this, our tests now pass.
+
+123
+00:06:04,300 --> 00:06:07,210
+However, with the new complexity
+in our geolocate
+
+124
+00:06:07,210 --> 00:06:09,590
+method, we now have two things
+we need to test.
+
+125
+00:06:09,590 --> 00:06:12,010
+We need to test that the
+external service gets called,
+
+126
+00:06:12,010 --> 00:06:14,540
+but we also need to test that
+the proper latitude and
+
+127
+00:06:14,540 --> 00:06:17,390
+longitude string gets
+put together.
+
+128
+00:06:17,390 --> 00:06:21,020
+So how would we write
+that test.
+
+129
+00:06:21,020 --> 00:06:23,620
+Well we were using
+a mock before.
+
+130
+00:06:23,620 --> 00:06:25,740
+Now we need a stub.
+
+131
+00:06:25,740 --> 00:06:28,900
+We need to stub out that
+external method call and test
+
+132
+00:06:28,900 --> 00:06:30,500
+that the proper string
+gets created.
+
+133
+00:06:30,500 --> 00:06:31,480
+Let's try that.
+
+134
+00:06:31,480 --> 00:06:35,290
+So here we have our stub and
+then we'll say assert_equal
+
+135
+00:06:35,290 --> 00:06:40,420
+"2, 3" when we call geolocate.
+
+136
+00:06:40,420 --> 00:06:42,310
+Before we go to the challenges,
+we're going to
+
+137
+00:06:42,310 --> 00:06:44,570
+make it even more difficult
+to test.
+
+138
+00:06:44,570 --> 00:06:47,620
+So let's revise geolocate
+one more time.
+
+139
+00:06:47,620 --> 00:06:50,220
+This time, we're going to
+get back an object--
+
+140
+00:06:50,220 --> 00:06:51,440
+a location object--
+
+141
+00:06:51,440 --> 00:06:53,500
+and we're going to use
+that location object
+
+142
+00:06:53,500 --> 00:06:55,370
+to create that string.
+
+143
+00:06:55,370 --> 00:06:58,360
+And you see we're calling
+loc.latitude and
+
+144
+00:06:58,360 --> 00:07:00,670
+loc.longitude.
+
+145
+00:07:00,670 --> 00:07:02,370
+So how might we test that.
+
+146
+00:07:02,370 --> 00:07:04,840
+We're not just talking about
+a single hash anymore.
+
+147
+00:07:04,840 --> 00:07:09,210
+It's almost like what we need
+to do is create an object--
+
+148
+00:07:09,210 --> 00:07:14,710
+an object that has a latitude
+method and a longitude method
+
+149
+00:07:14,710 --> 00:07:17,250
+that just return numbers.
+
+150
+00:07:17,250 --> 00:07:20,220
+To test this, we can use
+the stub command.
+
+151
+00:07:20,220 --> 00:07:23,550
+With the stub command,
+we send in a hash.
+
+152
+00:07:23,550 --> 00:07:26,270
+Each of those keys inside those
+hash are turned into
+
+153
+00:07:26,270 --> 00:07:29,300
+methods, which return
+the key value.
+
+154
+00:07:29,300 --> 00:07:31,740
+So it's a lot like what
+you see above.
+
+155
+00:07:31,740 --> 00:07:36,160
+We'll then make the graveyard
+locator method return that
+
+156
+00:07:36,160 --> 00:07:37,640
+stub object.
+
+157
+00:07:37,640 --> 00:07:40,080
+And then we just need to assert
+that the proper string
+
+158
+00:07:40,080 --> 00:07:41,330
+is created.
+
+159
+00:07:41,330 --> 00:07:43,540
+
+
+160
+00:07:43,540 --> 00:07:44,370
+All right.
+
+161
+00:07:44,370 --> 00:07:46,760
+That was a lot of information,
+mocks and stubs.
+
+162
+00:07:46,760 --> 00:07:49,490
+It's not simple things,
+even for a zombie.
+
+163
+00:07:49,490 --> 00:07:52,530
+So now it's time for you to get
+into the challenges and
+
+164
+00:07:52,530 --> 00:07:54,860
+get your hands dirty with
+some mocks and stubs.
+
+165
+00:07:54,860 --> 00:07:56,110
+Good luck.
+
+166
+00:07:56,110 --> 00:07:57,077

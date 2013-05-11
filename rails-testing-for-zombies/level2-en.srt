@@ -1,0 +1,996 @@
+1
+00:00:00,000 --> 00:00:24,620
+[MUSIC PLAYING]
+
+2
+00:00:24,620 --> 00:00:28,430
+You're watching Rails Testing
+for Zombies, and this is level
+
+3
+00:00:28,430 --> 00:00:31,480
+two, where we're going to be
+talking about model testing.
+
+4
+00:00:31,480 --> 00:00:33,400
+So we're going to take what you
+know about unit testing
+
+5
+00:00:33,400 --> 00:00:36,510
+and figure out how to test our
+Active Record models inside of
+
+6
+00:00:36,510 --> 00:00:38,380
+our Rails app.
+
+7
+00:00:38,380 --> 00:00:40,910
+When we run rails generate
+scaffold inside of a Rails
+
+8
+00:00:40,910 --> 00:00:43,970
+app, it generates a bunch of
+files for us, some of which
+
+9
+00:00:43,970 --> 00:00:46,000
+may be tests.
+
+10
+00:00:46,000 --> 00:00:50,930
+You can see here it generated
+a test/unit/zombie_test.rb.
+
+11
+00:00:50,930 --> 00:00:54,100
+It also generated for us a
+fixture, which we'll see later
+
+12
+00:00:54,100 --> 00:00:56,000
+on in this level.
+
+13
+00:00:56,000 --> 00:00:59,460
+If we open up the
+zombie_test.rb, inside there
+
+14
+00:00:59,460 --> 00:01:02,310
+at the top, we'll see that
+it requires test helper.
+
+15
+00:01:02,310 --> 00:01:03,690
+This is a configuration file.
+
+16
+00:01:03,690 --> 00:01:07,030
+Inside here, we can require
+other testing libraries, we
+
+17
+00:01:07,030 --> 00:01:10,420
+can write custom methods that
+all of our tests get access
+
+18
+00:01:10,420 --> 00:01:13,640
+to, and of course, we can write
+configuration in here.
+
+19
+00:01:13,640 --> 00:01:16,890
+You can see it defined a zombie
+test class, and did it
+
+20
+00:01:16,890 --> 00:01:19,030
+write any tests for us.
+
+21
+00:01:19,030 --> 00:01:19,590
+No.
+
+22
+00:01:19,590 --> 00:01:22,290
+Sorry, Rails doesn't write
+your tests for you.
+
+23
+00:01:22,290 --> 00:01:23,380
+That would be amazing,
+but it doesn't.
+
+24
+00:01:23,380 --> 00:01:25,900
+We need to write our
+own model tests.
+
+25
+00:01:25,900 --> 00:01:28,900
+But before we get into that,
+we're writing model tests.
+
+26
+00:01:28,900 --> 00:01:31,510
+Model tests run against
+Active Record.
+
+27
+00:01:31,510 --> 00:01:33,820
+Active Record interfaces
+with our database.
+
+28
+00:01:33,820 --> 00:01:36,500
+So we need to take a step back
+and talk a little bit about
+
+29
+00:01:36,500 --> 00:01:39,170
+configuring a database
+to do testing with.
+
+30
+00:01:39,170 --> 00:01:42,320
+If we look inside of our
+database.yml file, we'll see
+
+31
+00:01:42,320 --> 00:01:45,580
+that there are three different
+environments by default--
+
+32
+00:01:45,580 --> 00:01:48,120
+one of which is the
+test environment.
+
+33
+00:01:48,120 --> 00:01:49,910
+This is only for testing.
+
+34
+00:01:49,910 --> 00:01:52,950
+So we need to make sure this
+test database is d populated
+
+35
+00:01:52,950 --> 00:01:54,930
+with the right database
+structure so we can test
+
+36
+00:01:54,930 --> 00:01:56,140
+against it.
+
+37
+00:01:56,140 --> 00:01:57,060
+How do we do that.
+
+38
+00:01:57,060 --> 00:01:58,960
+Well, there's a couple different
+rake tasks we need
+
+39
+00:01:58,960 --> 00:02:02,880
+to be familiar with, starting
+with rake db:test:prepare.
+
+40
+00:02:02,880 --> 00:02:05,050
+That's going to check to see if
+there's any migrations we
+
+41
+00:02:05,050 --> 00:02:06,130
+need to run.
+
+42
+00:02:06,130 --> 00:02:08,660
+If there aren't any we need to
+run, then it's going to simply
+
+43
+00:02:08,660 --> 00:02:13,380
+load the schema.rb file
+into our test database.
+
+44
+00:02:13,380 --> 00:02:15,110
+A few other commands you
+should know about.
+
+45
+00:02:15,110 --> 00:02:16,660
+The rake test command--
+
+46
+00:02:16,660 --> 00:02:21,680
+or just rake by default-- is
+going to run db:test:prepare,
+
+47
+00:02:21,680 --> 00:02:24,920
+and then it's going to try
+to run all of your tests.
+
+48
+00:02:24,920 --> 00:02:28,430
+To run an individual test file,
+we would simply write
+
+49
+00:02:28,430 --> 00:02:29,740
+this in the command line.
+
+50
+00:02:29,740 --> 00:02:32,300
+You'll notice that we're using
+the dash capital I again, to
+
+51
+00:02:32,300 --> 00:02:34,000
+specify our load path.
+
+52
+00:02:34,000 --> 00:02:36,610
+This is because at the top of
+that test file, remember, it
+
+53
+00:02:36,610 --> 00:02:39,450
+requires test helper,
+and that test helper
+
+54
+00:02:39,450 --> 00:02:40,950
+is in the test directory.
+
+55
+00:02:40,950 --> 00:02:43,880
+So we need to specify dash
+capital I, test.
+
+56
+00:02:43,880 --> 00:02:45,430
+Just like so.
+
+57
+00:02:45,430 --> 00:02:49,040
+To run a single test case, we
+simply run that same command
+
+58
+00:02:49,040 --> 00:02:52,220
+and then dash n and then
+the name of the test.
+
+59
+00:02:52,220 --> 00:02:54,800
+So let's go ahead and create our
+first model test already.
+
+60
+00:02:54,800 --> 00:02:57,450
+I'm pretty sure we're going to
+want to put a validation on
+
+61
+00:02:57,450 --> 00:03:00,510
+the name field inside of our
+Zombie class, so let's write
+
+62
+00:03:00,510 --> 00:03:03,630
+the test first before we write
+the implementation.
+
+63
+00:03:03,630 --> 00:03:05,390
+So here we have a function
+called
+
+64
+00:03:05,390 --> 00:03:07,460
+test_invalid_without_a_name.
+
+65
+00:03:07,460 --> 00:03:10,670
+Inside there, we create
+a new zombie.
+
+66
+00:03:10,670 --> 00:03:13,940
+And then we're going to assert
+that the zombie is not valid,
+
+67
+00:03:13,940 --> 00:03:17,690
+and specify a custom failure
+message, "Name is not being
+
+68
+00:03:17,690 --> 00:03:18,890
+validated."
+
+69
+00:03:18,890 --> 00:03:20,570
+Now before we run the test, the
+one thing you might have
+
+70
+00:03:20,570 --> 00:03:23,890
+noticed about ZombieTest
+is that it inherits from
+
+71
+00:03:23,890 --> 00:03:26,060
+ActiveSupport::TestCase.
+
+72
+00:03:26,060 --> 00:03:28,620
+This is a class from Rails that
+gives you access to a
+
+73
+00:03:28,620 --> 00:03:30,110
+bunch of helper methods.
+
+74
+00:03:30,110 --> 00:03:33,340
+One of the helper methods allows
+you to write your test
+
+75
+00:03:33,340 --> 00:03:35,600
+definitions in a nicer form.
+
+76
+00:03:35,600 --> 00:03:38,690
+We can rewrite the test
+definition to say test
+
+77
+00:03:38,690 --> 00:03:41,480
+"invalid without a name"
+do, and include
+
+78
+00:03:41,480 --> 00:03:42,550
+the test in the block.
+
+79
+00:03:42,550 --> 00:03:44,310
+A little more readable.
+
+80
+00:03:44,310 --> 00:03:47,250
+Now let's run our test by
+using the rake command.
+
+81
+00:03:47,250 --> 00:03:47,870
+And--
+
+82
+00:03:47,870 --> 00:03:48,950
+uh-oh.
+
+83
+00:03:48,950 --> 00:03:50,800
+Looks like we forgot
+to run a migration.
+
+84
+00:03:50,800 --> 00:03:53,210
+So let's go back and
+run that migration.
+
+85
+00:03:53,210 --> 00:03:55,320
+So rake db migrate.
+
+86
+00:03:55,320 --> 00:03:57,550
+Our database is migrated.
+
+87
+00:03:57,550 --> 00:04:01,580
+Now we can go ahead and run
+rake again, and it fails.
+
+88
+00:04:01,580 --> 00:04:02,370
+Yay, it fails.
+
+89
+00:04:02,370 --> 00:04:03,190
+It was supposed to fail.
+
+90
+00:04:03,190 --> 00:04:04,070
+Don't worry.
+
+91
+00:04:04,070 --> 00:04:07,060
+Remember, the first step is to
+write a test and make it fail.
+
+92
+00:04:07,060 --> 00:04:10,300
+So let's jump back now and
+write our validation.
+
+93
+00:04:10,300 --> 00:04:13,240
+Here we are in our zombie.rb
+file, and all we have to write
+
+94
+00:04:13,240 --> 00:04:15,740
+is validates :name,
+presence :true.
+
+95
+00:04:15,740 --> 00:04:18,540
+If we run our tests
+again, they pass.
+
+96
+00:04:18,540 --> 00:04:21,890
+Now that we've written a test to
+ensure that our validation
+
+97
+00:04:21,890 --> 00:04:25,140
+fails if we don't have a name,
+let's write a test to make
+
+98
+00:04:25,140 --> 00:04:28,970
+sure that if we have all the
+properties on zombie that it
+
+99
+00:04:28,970 --> 00:04:31,090
+does pass-- that it is valid.
+
+100
+00:04:31,090 --> 00:04:32,560
+So we're going to test
+"valid with all
+
+101
+00:04:32,560 --> 00:04:34,940
+attributes." We have a zombie.
+
+102
+00:04:34,940 --> 00:04:35,650
+We set the name.
+
+103
+00:04:35,650 --> 00:04:37,070
+We set the graveyard.
+
+104
+00:04:37,070 --> 00:04:39,120
+We're going to assert
+that it's valid.
+
+105
+00:04:39,120 --> 00:04:41,760
+And if it errors out, we're
+going to say "zombie was not
+
+106
+00:04:41,760 --> 00:04:42,640
+valid."
+
+107
+00:04:42,640 --> 00:04:44,360
+Now you may see a pattern
+emerging.
+
+108
+00:04:44,360 --> 00:04:46,760
+Very often in our model test,
+the first line is going to
+
+109
+00:04:46,760 --> 00:04:51,200
+start out by creating a new
+zombie and setting fields over
+
+110
+00:04:51,200 --> 00:04:53,130
+and over and over again.
+
+111
+00:04:53,130 --> 00:04:55,810
+So how do we stop this
+duplication.
+
+112
+00:04:55,810 --> 00:04:58,880
+Well this is where
+fixtures come in.
+
+113
+00:04:58,880 --> 00:05:01,660
+Remember at the beginning of
+the level when we ran the
+
+114
+00:05:01,660 --> 00:05:04,370
+Rails generate scaffold, it
+created for us this fixture
+
+115
+00:05:04,370 --> 00:05:05,490
+file here--
+
+116
+00:05:05,490 --> 00:05:07,320
+Zombies.yml.
+
+117
+00:05:07,320 --> 00:05:09,950
+Inside there, by default, it
+looks something like this.
+
+118
+00:05:09,950 --> 00:05:13,030
+We obviously want to customize
+this a little bit more.
+
+119
+00:05:13,030 --> 00:05:16,660
+So we're going to do that and
+specify a zombie named Ash and
+
+120
+00:05:16,660 --> 00:05:18,650
+a zombie named Tim.
+
+121
+00:05:18,650 --> 00:05:21,340
+Now instead of creating a new
+zombie every time, we can just
+
+122
+00:05:21,340 --> 00:05:23,810
+do z equals zombies(:ash).
+
+123
+00:05:23,810 --> 00:05:27,030
+What this command is doing, is
+it's actually pulling zombie
+
+124
+00:05:27,030 --> 00:05:30,010
+Ash out of the database into
+an Active Record object and
+
+125
+00:05:30,010 --> 00:05:32,290
+setting that equal to
+the z variable.
+
+126
+00:05:32,290 --> 00:05:34,630
+So how do fixtures
+work exactly?
+
+127
+00:05:34,630 --> 00:05:37,440
+Well when you run your tests,
+the first thing that happens
+
+128
+00:05:37,440 --> 00:05:40,550
+is that your Rails application
+goes, grabs all the fixtures,
+
+129
+00:05:40,550 --> 00:05:43,420
+puts them all into the
+test database.
+
+130
+00:05:43,420 --> 00:05:44,670
+Does that at the very
+beginning when
+
+131
+00:05:44,670 --> 00:05:45,910
+you run your test.
+
+132
+00:05:45,910 --> 00:05:49,340
+Then when you run a test, if
+anything gets changed there in
+
+133
+00:05:49,340 --> 00:05:52,290
+the database, at the end of
+that individual test, any
+
+134
+00:05:52,290 --> 00:05:54,230
+changes get rolled back.
+
+135
+00:05:54,230 --> 00:05:58,140
+It's transactional
+for each test.
+
+136
+00:05:58,140 --> 00:06:01,670
+Now we can take that command,
+move it back into our test.
+
+137
+00:06:01,670 --> 00:06:03,350
+Let's go ahead and create
+another test too, called
+
+138
+00:06:03,350 --> 00:06:06,970
+"invalid name games error
+message." So here, we're going
+
+139
+00:06:06,970 --> 00:06:10,020
+to set name equal to nil, so
+we're sort of resetting our
+
+140
+00:06:10,020 --> 00:06:13,250
+fixture, checking to see if it's
+valid, and we're going to
+
+141
+00:06:13,250 --> 00:06:17,990
+assert that the /can't be blank/
+validation message gets
+
+142
+00:06:17,990 --> 00:06:21,220
+put into the errors
+hash properly.
+
+143
+00:06:21,220 --> 00:06:23,710
+And if not, it's going to give
+the failure message "Presence
+
+144
+00:06:23,710 --> 00:06:26,180
+error not found on zombie."
+
+145
+00:06:26,180 --> 00:06:27,550
+Enough with validations.
+
+146
+00:06:27,550 --> 00:06:30,730
+Let's create a new method on
+our zombie class using test
+
+147
+00:06:30,730 --> 00:06:32,500
+first development.
+
+148
+00:06:32,500 --> 00:06:36,360
+So we're going to say "can
+generate avatar_url." We're
+
+149
+00:06:36,360 --> 00:06:39,240
+going to use our fixture
+to get zombie(:ash).
+
+150
+00:06:39,240 --> 00:06:41,640
+Then we're going to assert that
+this string gets returned
+
+151
+00:06:41,640 --> 00:06:44,810
+when we call z.avatar_url.
+
+152
+00:06:44,810 --> 00:06:45,180
+All right.
+
+153
+00:06:45,180 --> 00:06:46,270
+We have a test.
+
+154
+00:06:46,270 --> 00:06:47,310
+We would run the test.
+
+155
+00:06:47,310 --> 00:06:49,030
+Hopefully it would fail.
+
+156
+00:06:49,030 --> 00:06:51,740
+Then we're going to go back
+into our model and let's
+
+157
+00:06:51,740 --> 00:06:53,100
+define that method.
+
+158
+00:06:53,100 --> 00:06:57,130
+So inside the zombie class,
+we're going to have avatar_url
+
+159
+00:06:57,130 --> 00:06:59,350
+returns this string.
+
+160
+00:06:59,350 --> 00:07:02,540
+If we run it again, all of
+our tests should pass.
+
+161
+00:07:02,540 --> 00:07:04,560
+What about testing model
+relationships.
+
+162
+00:07:04,560 --> 00:07:06,610
+Because remember, we're building
+Twitter for Zombies,
+
+163
+00:07:06,610 --> 00:07:10,270
+so our zombie has many tweets.
+
+164
+00:07:10,270 --> 00:07:14,290
+So one way we could test that,
+is saying test "should respond
+
+165
+00:07:14,290 --> 00:07:17,820
+to tweets." We're going to have
+an assert_respond_to.
+
+166
+00:07:17,820 --> 00:07:21,380
+So here, we're going to make
+sure that our zombie Ash has a
+
+167
+00:07:21,380 --> 00:07:23,470
+method called tweets.
+
+168
+00:07:23,470 --> 00:07:26,640
+We can also test this by saying
+that our zombie should
+
+169
+00:07:26,640 --> 00:07:28,170
+contain tweets.
+
+170
+00:07:28,170 --> 00:07:33,120
+So we get the zombie and then we
+assert that z.tweets equals
+
+171
+00:07:33,120 --> 00:07:34,696
+two tweets.
+
+172
+00:07:34,696 --> 00:07:35,650
+Uh-oh.
+
+173
+00:07:35,650 --> 00:07:36,810
+We need tweets now.
+
+174
+00:07:36,810 --> 00:07:39,620
+We need tweets out
+of the database.
+
+175
+00:07:39,620 --> 00:07:43,450
+So this might be a good chance
+to go back and add some tweets
+
+176
+00:07:43,450 --> 00:07:47,370
+fixtures, which we can
+use for this test.
+
+177
+00:07:47,370 --> 00:07:49,410
+Here inside the tweets fixture,
+we're going to
+
+178
+00:07:49,410 --> 00:07:50,550
+declare two tweets.
+
+179
+00:07:50,550 --> 00:07:55,020
+We have Ash's first tweet
+and Ash's second tweet.
+
+180
+00:07:55,020 --> 00:07:58,460
+You'll notice that each of
+them has a zombie ID 1.
+
+181
+00:07:58,460 --> 00:08:01,420
+But if you remember back to our
+zombie fixture, we never
+
+182
+00:08:01,420 --> 00:08:03,240
+declared any IDs.
+
+183
+00:08:03,240 --> 00:08:06,400
+So we're going to have to reopen
+that zombie fixture,
+
+184
+00:08:06,400 --> 00:08:09,530
+and specify that Ash has an
+ID of 1, and maybe Tim
+
+185
+00:08:09,530 --> 00:08:10,800
+has an ID of 2.
+
+186
+00:08:10,800 --> 00:08:13,020
+And that will get properly
+set in our database.
+
+187
+00:08:13,020 --> 00:08:15,750
+Now if we call
+zombies(:ash).tweets, it will
+
+188
+00:08:15,750 --> 00:08:17,980
+return all of Ash's tweets.
+
+189
+00:08:17,980 --> 00:08:22,100
+And that's basically the same
+thing as creating an array
+
+190
+00:08:22,100 --> 00:08:26,070
+where we return both
+of these fixtures.
+
+191
+00:08:26,070 --> 00:08:27,130
+So we go back to
+our assertion.
+
+192
+00:08:27,130 --> 00:08:30,970
+We might say assert that this
+array is equal to what gets
+
+193
+00:08:30,970 --> 00:08:34,559
+returned when we call
+zombies(:ash).tweets.
+
+194
+00:08:34,559 --> 00:08:36,690
+However, this is kind
+of a brittle test.
+
+195
+00:08:36,690 --> 00:08:37,820
+It's not so good.
+
+196
+00:08:37,820 --> 00:08:40,570
+Down the line, we might have
+more tweets for Ash.
+
+197
+00:08:40,570 --> 00:08:42,030
+Things might get changed.
+
+198
+00:08:42,030 --> 00:08:45,850
+So how might we write this
+test in a better way?
+
+199
+00:08:45,850 --> 00:08:48,300
+Instead, we could test that
+zombie tweets should only
+
+200
+00:08:48,300 --> 00:08:50,590
+contain tweets that
+belong to zombie.
+
+201
+00:08:50,590 --> 00:08:54,120
+We could do this by going
+through all of Ash's tweets
+
+202
+00:08:54,120 --> 00:09:00,250
+and ensuring that they belong
+to him by using that .all?
+
+203
+00:09:00,250 --> 00:09:00,860
+command.
+
+204
+00:09:00,860 --> 00:09:03,630
+So that's going to go through
+each of them and make sure
+
+205
+00:09:03,630 --> 00:09:05,860
+that that conditional
+is always true.
+
+206
+00:09:05,860 --> 00:09:08,380
+
+
+207
+00:09:08,380 --> 00:09:09,250
+I know that was a
+lot of content.
+
+208
+00:09:09,250 --> 00:09:10,680
+No shame if you want
+to go back and
+
+209
+00:09:10,680 --> 00:09:12,090
+watch the video again.
+
+210
+00:09:12,090 --> 00:09:13,360
+But get ready.
+
+211
+00:09:13,360 --> 00:09:14,670
+Coming at you.
+
+212
+00:09:14,670 --> 00:09:16,630
+Rails model challenges.
+
+213
+00:09:16,630 --> 00:09:17,880
+Get to it.
+
+214
+00:09:17,880 --> 00:09:20,490
