@@ -1,0 +1,1142 @@
+1
+00:00:00,000 --> 00:00:00,400
+
+2
+00:00:00,400 --> 00:00:02,630
+You're watching Rails Best
+Practices, Super Deluxe
+
+3
+00:00:02,630 --> 00:00:04,110
+Championship Edition.
+
+4
+00:00:04,110 --> 00:00:05,945
+I'm Greg Pollack, and
+this is Level Four.
+
+5
+00:00:05,945 --> 00:00:32,299
+
+6
+00:00:32,299 --> 00:00:35,780
+Level Four is entitled Model
+Bert, and as you might guess,
+
+7
+00:00:35,780 --> 00:00:38,860
+we're going to be going over
+more model best practices,
+
+8
+00:00:38,860 --> 00:00:43,990
+starting with N plus
+1 is Not For Fun.
+
+9
+00:00:43,990 --> 00:00:45,470
+So here's some code.
+
+10
+00:00:45,470 --> 00:00:48,620
+We're trying to find all the
+recent followers, and we're
+
+11
+00:00:48,620 --> 00:00:52,710
+going to list them out by name,
+and call .to_sentence.
+
+12
+00:00:52,710 --> 00:00:55,160
+So I get back something
+that looks like this.
+
+13
+00:00:55,160 --> 00:00:57,440
+Now if we take a moment to think
+about what queries are
+
+14
+00:00:57,440 --> 00:00:59,430
+going on in the back
+end, it might look
+
+15
+00:00:59,430 --> 00:01:00,850
+something like this.
+
+16
+00:01:00,850 --> 00:01:05,330
+So first, we're getting all the
+followers for our user.
+
+17
+00:01:05,330 --> 00:01:09,700
+Then we want to get the name, so
+we select user ID 2, ID 3,
+
+18
+00:01:09,700 --> 00:01:11,410
+basically for all of them.
+
+19
+00:01:11,410 --> 00:01:12,550
+We need to get the
+user account to
+
+20
+00:01:12,550 --> 00:01:14,070
+get the name, right?
+
+21
+00:01:14,070 --> 00:01:15,640
+And this is not good.
+
+22
+00:01:15,640 --> 00:01:16,920
+So how do we get around that?
+
+23
+00:01:16,920 --> 00:01:21,130
+Well, we get around that by
+using the includes method.
+
+24
+00:01:21,130 --> 00:01:24,630
+So we're going to includes(:user),
+and then it basically
+
+25
+00:01:24,630 --> 00:01:28,830
+does two queries, one to get the
+follower, and one to get
+
+26
+00:01:28,830 --> 00:01:31,170
+all the users.
+
+27
+00:01:31,170 --> 00:01:33,690
+It's also worth mentioning
+the bullet gem.
+
+28
+00:01:33,690 --> 00:01:35,810
+The bullet gem, you install in
+your application, and it lets
+
+29
+00:01:35,810 --> 00:01:38,580
+you know if you're running
+N plus 1 queries.
+
+30
+00:01:38,580 --> 00:01:41,360
+So if you have a big, bloated
+app that is running tons of
+
+31
+00:01:41,360 --> 00:01:43,740
+queries that maybe it shouldn't
+be, check out the
+
+32
+00:01:43,740 --> 00:01:46,570
+bullet gem.
+
+33
+00:01:46,570 --> 00:01:47,810
+Next up, we're going to
+talk a little bit
+
+34
+00:01:47,810 --> 00:01:49,260
+about counter caching.
+
+35
+00:01:49,260 --> 00:01:51,680
+So here's some code where we're
+going through a list of
+
+36
+00:01:51,680 --> 00:01:55,030
+tweets, we're printing out the
+tweet, and then printing out
+
+37
+00:01:55,030 --> 00:01:57,560
+the number of times it's
+been retweeted.
+
+38
+00:01:57,560 --> 00:02:00,280
+The output might look
+something like this.
+
+39
+00:02:00,280 --> 00:02:03,050
+The first thing we might notice
+about the output is
+
+40
+00:02:03,050 --> 00:02:05,090
+that it's kind of got some bad
+English going on here.
+
+41
+00:02:05,090 --> 00:02:06,720
+It's saying one retweets,
+when really, it
+
+42
+00:02:06,720 --> 00:02:08,630
+should be one retweet.
+
+43
+00:02:08,630 --> 00:02:11,850
+And so we can improve this
+code by simply using the
+
+44
+00:02:11,850 --> 00:02:15,080
+pluralize method,
+just like so.
+
+45
+00:02:15,080 --> 00:02:17,720
+And then when we run that, it's
+going to properly do two
+
+46
+00:02:17,720 --> 00:02:21,050
+retweets, one retweet,
+and zero retweets.
+
+47
+00:02:21,050 --> 00:02:22,150
+Much better.
+
+48
+00:02:22,150 --> 00:02:24,840
+Now let's take a look at what
+this function is doing.
+
+49
+00:02:24,840 --> 00:02:29,100
+So basically, for each tweet,
+it's going to select all
+
+50
+00:02:29,100 --> 00:02:32,040
+retweets where the
+user ID equals
+
+51
+00:02:32,040 --> 00:02:33,400
+that user.
+
+52
+00:02:33,400 --> 00:02:36,420
+It's going to populate an array
+of tweet objects, and
+
+53
+00:02:36,420 --> 00:02:38,280
+then it's going to
+call length.
+
+54
+00:02:38,280 --> 00:02:41,910
+That's what happens when you
+call .length on an array.
+
+55
+00:02:41,910 --> 00:02:43,780
+So that's obviously
+not efficient.
+
+56
+00:02:43,780 --> 00:02:46,510
+What if we used count instead?
+
+57
+00:02:46,510 --> 00:02:49,160
+What would it be doing,
+then, on the back end?
+
+58
+00:02:49,160 --> 00:02:53,330
+Well, for each tweet, select all
+retweets where the user ID
+
+59
+00:02:53,330 --> 00:02:56,355
+is our current user, and then
+it's going to properly do a
+
+60
+00:02:56,355 --> 00:02:58,090
+count query.
+
+61
+00:02:58,090 --> 00:03:01,200
+That's still obviously not any
+good, because we're doing one
+
+62
+00:03:01,200 --> 00:03:04,060
+count query for every single
+tweet every time we go
+
+63
+00:03:04,060 --> 00:03:05,790
+through this loop.
+
+64
+00:03:05,790 --> 00:03:07,360
+So how do we improve that?
+
+65
+00:03:07,360 --> 00:03:10,290
+Well, we want to use
+a counter cache.
+
+66
+00:03:10,290 --> 00:03:12,370
+Once we put a counter
+cache in place--
+
+67
+00:03:12,370 --> 00:03:14,050
+I'll show you how to do
+that in a minute--
+
+68
+00:03:14,050 --> 00:03:18,080
+we'll be able to call .size,
+and then for each tweet, it's
+
+69
+00:03:18,080 --> 00:03:21,040
+going to select all the
+retweets, and then
+
+70
+00:03:21,040 --> 00:03:22,700
+there's no step two.
+
+71
+00:03:22,700 --> 00:03:25,420
+It's going to know how many
+retweets that it has on each
+
+72
+00:03:25,420 --> 00:03:27,760
+item there in the database.
+
+73
+00:03:27,760 --> 00:03:28,970
+So how does it do that?
+
+74
+00:03:28,970 --> 00:03:30,220
+Let's take a look.
+
+75
+00:03:30,220 --> 00:03:33,260
+
+76
+00:03:33,260 --> 00:03:35,370
+Before we dive into code, we
+need to make sure everyone
+
+77
+00:03:35,370 --> 00:03:38,590
+understands what a retweet
+really is.
+
+78
+00:03:38,590 --> 00:03:43,810
+So here we have an original
+tweet, and we have a retweet.
+
+79
+00:03:43,810 --> 00:03:47,590
+It's the same model.
+
+80
+00:03:47,590 --> 00:03:52,260
+So a tweet belongs to what I'm
+going to call an original_tweet
+
+81
+00:03:52,260 --> 00:03:57,310
+and an original_tweet
+has_many retweets.
+
+82
+00:03:57,310 --> 00:04:00,520
+But it's a self-referential
+relationship.
+
+83
+00:04:00,520 --> 00:04:03,680
+So what does that look like on
+the model side of things?
+
+84
+00:04:03,680 --> 00:04:06,640
+In the class model, we have
+Tweet belongs_to original_tweet,
+
+85
+00:04:06,640 --> 00:04:11,770
+class_name Tweet, 
+foreign_key tweet_id, and then
+
+86
+00:04:11,770 --> 00:04:14,730
+the other relationship direction
+we have has_many
+
+87
+00:04:14,730 --> 00:04:17,470
+retweets, class_name tweet,
+foreign_key tweet_id.
+
+88
+00:04:17,470 --> 00:04:20,370
+So that's how we do the
+self-referential relationship.
+
+89
+00:04:20,370 --> 00:04:22,780
+To add a counter cache, the
+first thing we need to do is
+
+90
+00:04:22,780 --> 00:04:25,090
+add account column
+in a migration.
+
+91
+00:04:25,090 --> 00:04:27,480
+So here, we're going to add a
+column to the tweets table
+
+92
+00:04:27,480 --> 00:04:29,710
+called retweets_count.
+
+93
+00:04:29,710 --> 00:04:34,380
+And it's important to notice
+that an original_tweet is
+
+94
+00:04:34,380 --> 00:04:38,770
+going to be the one that
+has a retweets_count.
+
+95
+00:04:38,770 --> 00:04:41,250
+To create the counter cache,
+the first thing you might
+
+96
+00:04:41,250 --> 00:04:44,660
+think we need to do is add
+counter_cache true.
+
+97
+00:04:44,660 --> 00:04:47,200
+However, if we actually had this
+code-- and this is what I
+
+98
+00:04:47,200 --> 00:04:48,980
+started with in my code--
+
+99
+00:04:48,980 --> 00:04:52,180
+it errored out-- basically said,
+"Unable to find tweets_count."
+
+100
+00:04:52,180 --> 00:04:54,920
+This is because by
+default, when you have a
+
+101
+00:04:54,920 --> 00:04:57,950
+counter_cache column, it's going
+to look for the class
+
+102
+00:04:57,950 --> 00:05:00,350
+name, it's going to
+pluralize that, 
+
+103
+00:05:00,350 --> 00:05:00,970
+and append _count
+
+104
+00:05:00,970 --> 00:05:02,920
+so in other words,
+tweets_count.
+
+105
+00:05:02,920 --> 00:05:05,580
+So what we need to do to make
+this work is take
+
+106
+00:05:05,580 --> 00:05:08,820
+retweets_count, move that up, 
+and now we're going to specify the
+
+107
+00:05:08,820 --> 00:05:11,430
+name of the count column that
+we're going to use.
+
+108
+00:05:11,430 --> 00:05:15,140
+With this in place, when we
+create a new tweet, not only
+
+109
+00:05:15,140 --> 00:05:17,950
+will it go and create that new
+record in the database, but
+
+110
+00:05:17,950 --> 00:05:21,320
+it's also run a query which
+looks something like this.
+
+111
+00:05:21,320 --> 00:05:23,170
+So we're basically incrementing
+
+112
+00:05:23,170 --> 00:05:24,420
+that counter column.
+
+113
+00:05:24,420 --> 00:05:27,670
+
+114
+00:05:27,670 --> 00:05:29,730
+It's important that you know
+the different ways you can
+
+115
+00:05:29,730 --> 00:05:34,190
+count the items in a has many
+relationship, and which ones
+
+116
+00:05:34,190 --> 00:05:35,160
+not to use.
+
+117
+00:05:35,160 --> 00:05:37,720
+So here's a table that
+makes it simple.
+
+118
+00:05:37,720 --> 00:05:40,640
+Without a cache counter, if we
+call .length, it's going to
+
+119
+00:05:40,640 --> 00:05:43,560
+pull all the records, and then
+call length on the array.
+
+120
+00:05:43,560 --> 00:05:44,240
+With .count
+
+121
+00:05:44,240 --> 00:05:46,310
+it's actually going to
+run a count query, and with
+
+122
+00:05:46,310 --> 00:05:48,790
+.size, it's also going to
+run a count query.
+
+123
+00:05:48,790 --> 00:05:51,460
+If we're properly using a cache
+counter, when we use
+
+124
+00:05:51,460 --> 00:05:54,000
+.length, it's also going to pull
+all records and called
+
+125
+00:05:54,000 --> 00:05:55,580
+.length on the array.
+
+126
+00:05:55,580 --> 00:05:57,830
+With .count, it's going to do a
+count query, and with
+
+127
+00:05:57,830 --> 00:05:59,800
+.size, it's not going to
+do any query all.
+
+128
+00:05:59,800 --> 00:06:01,590
+It's simply going to
+look at the cache.
+
+129
+00:06:01,590 --> 00:06:06,065
+So I guess you could say in this
+case, size does matter.
+
+130
+00:06:06,065 --> 00:06:09,290
+
+131
+00:06:09,290 --> 00:06:12,576
+Let's take a look
+at a rate task.
+
+132
+00:06:12,576 --> 00:06:15,620
+What's bad about that?
+
+133
+00:06:15,620 --> 00:06:19,260
+Well, if we have millions and
+millions, maybe even billions,
+
+134
+00:06:19,260 --> 00:06:22,730
+of tweets, the first thing this
+is going to try to do is
+
+135
+00:06:22,730 --> 00:06:25,620
+get all of them, and load
+them into memory.
+
+136
+00:06:25,620 --> 00:06:27,090
+That's not good at all.
+
+137
+00:06:27,090 --> 00:06:28,660
+How do we get around that?
+
+138
+00:06:28,660 --> 00:06:32,110
+Well, this is where we might
+want to use find_each.
+
+139
+00:06:32,110 --> 00:06:35,570
+By default, find each is going
+to pull batches 1,000 at a
+
+140
+00:06:35,570 --> 00:06:39,040
+time, and run that block, and
+then pull another 1,000, and
+
+141
+00:06:39,040 --> 00:06:42,640
+then run that block, and
+repeat until it's done.
+
+142
+00:06:42,640 --> 00:06:45,990
+If we want, we can specify
+the batch size to use.
+
+143
+00:06:45,990 --> 00:06:48,220
+In this case, we have 200,
+so it's going to be
+
+144
+00:06:48,220 --> 00:06:52,210
+pulling 200 at a time.
+
+145
+00:06:52,210 --> 00:06:54,470
+Our best practices tutorial
+wouldn't be complete without
+
+146
+00:06:54,470 --> 00:06:56,540
+going over the Law of Demeter.
+
+147
+00:06:56,540 --> 00:06:58,880
+If you're familiar with this
+already, bear with me.
+
+148
+00:06:58,880 --> 00:07:00,640
+I'm going to be using it in a
+slightly different way that
+
+149
+00:07:00,640 --> 00:07:02,550
+you may not have seen before.
+
+150
+00:07:02,550 --> 00:07:05,300
+So Law of Demeter says, "Each
+unit should have limited
+
+151
+00:07:05,300 --> 00:07:06,710
+knowledge about other units.
+
+152
+00:07:06,710 --> 00:07:10,140
+Basically, don't talk to
+strangers." So if we have
+
+153
+00:07:10,140 --> 00:07:14,170
+three objects, A, B, and C, what
+we're saying is, A can
+
+154
+00:07:14,170 --> 00:07:18,680
+talk to B, B can talk to C, but
+A shouldn't really know
+
+155
+00:07:18,680 --> 00:07:22,370
+about C at all, or be able to
+communicate with C. In the
+
+156
+00:07:22,370 --> 00:07:25,020
+example I'm about to show you,
+we're going to look at the
+
+157
+00:07:25,020 --> 00:07:27,470
+tweet, user, and account
+settings object.
+
+158
+00:07:27,470 --> 00:07:31,540
+So in this case, tweet really
+has no right to know about
+
+159
+00:07:31,540 --> 00:07:33,250
+account settings.
+
+160
+00:07:33,250 --> 00:07:35,040
+So here's a little
+code snippet.
+
+161
+00:07:35,040 --> 00:07:36,790
+Inside of our tweet model,
+we have a method
+
+162
+00:07:36,790 --> 00:07:38,190
+called location data.
+
+163
+00:07:38,190 --> 00:07:41,910
+We want to check to see if the
+user has location on tweets
+
+164
+00:07:41,910 --> 00:07:44,360
+turned on, and if they do,
+return the location.
+
+165
+00:07:44,360 --> 00:07:47,350
+Otherwise, return
+unavailable.
+
+166
+00:07:47,350 --> 00:07:50,030
+Now a Law of Demeter violation
+here happens when we realize
+
+167
+00:07:50,030 --> 00:07:54,380
+that the tweet shouldn't know
+about account setting.
+
+168
+00:07:54,380 --> 00:07:56,110
+So how might we fix this?
+
+169
+00:07:56,110 --> 00:07:59,230
+Well, one way to fix this would
+be to simply create a
+
+170
+00:07:59,230 --> 00:08:03,010
+method on user called
+location_on_tweets.
+
+171
+00:08:03,010 --> 00:08:04,940
+There's a cool way
+we can do this.
+
+172
+00:08:04,940 --> 00:08:07,660
+Inside of our user model, what
+we're going to do is we're
+
+173
+00:08:07,660 --> 00:08:09,820
+going to use delegate.
+
+174
+00:08:09,820 --> 00:08:11,290
+We're going to say delegate
+location_on_tweets
+
+175
+00:08:11,290 --> 00:08:14,330
+to account_setting.
+
+176
+00:08:14,330 --> 00:08:16,350
+We can add additional
+methods as well.
+
+177
+00:08:16,350 --> 00:08:19,160
+We could say delegate
+both of these two
+
+178
+00:08:19,160 --> 00:08:21,180
+methods to account_setting.
+
+179
+00:08:21,180 --> 00:08:23,472
+In this case, we're delegating
+to two methods in the account
+
+180
+00:08:23,472 --> 00:08:26,270
+setting model that happened
+to be linked directly to
+
+181
+00:08:26,270 --> 00:08:27,960
+attributes in our database.
+
+182
+00:08:27,960 --> 00:08:31,190
+However, it should be said, when
+using delegate, you can
+
+183
+00:08:31,190 --> 00:08:34,130
+link it to any method
+on any other class.
+
+184
+00:08:34,130 --> 00:08:36,440
+It doesn't have to be linked
+to an attribute.
+
+185
+00:08:36,440 --> 00:08:38,270
+So now we're properly using
+Law of Demeter.
+
+186
+00:08:38,270 --> 00:08:40,909
+But what happens with the
+delegate method if we have a
+
+187
+00:08:40,909 --> 00:08:44,570
+user that doesn't have an
+account setting object
+
+188
+00:08:44,570 --> 00:08:46,300
+associated with it?
+
+189
+00:08:46,300 --> 00:08:50,210
+Well, if we did 
+self.user.location_on_tweets,
+
+190
+00:08:50,210 --> 00:08:53,520
+and that user didn't have an account
+setting, it would basically
+
+191
+00:08:53,520 --> 00:08:56,750
+error out, which
+is not so good.
+
+192
+00:08:56,750 --> 00:08:58,100
+So this is why I want to
+let you know about
+
+193
+00:08:58,100 --> 00:08:59,660
+an option on delegate.
+
+194
+00:08:59,660 --> 00:09:03,410
+You can specify allow_nil
+true.
+
+195
+00:09:03,410 --> 00:09:06,490
+This will make it so that if you
+call self.user.location_on_tweets,
+
+196
+00:09:06,490 --> 00:09:09,370
+and a user doesn't
+have account settings, it's
+
+197
+00:09:09,370 --> 00:09:10,525
+just going to return nil.
+
+198
+00:09:10,525 --> 00:09:12,680
+It's not going to error out,
+and you don't have to deal
+
+199
+00:09:12,680 --> 00:09:14,905
+with conditionals to see if
+it's been set or not.
+
+200
+00:09:14,905 --> 00:09:17,520
+
+201
+00:09:17,520 --> 00:09:19,450
+Next up, if you've been in Rails
+for a while, odds are at
+
+202
+00:09:19,450 --> 00:09:22,400
+some point, you've had a model
+that had something like this,
+
+203
+00:09:22,400 --> 00:09:24,000
+a display name.
+
+204
+00:09:24,000 --> 00:09:27,670
+And in the view, you just call
+user.display_name.
+
+205
+00:09:27,670 --> 00:09:29,550
+Well, there's another convention
+you probably should
+
+206
+00:09:29,550 --> 00:09:30,750
+know about.
+
+207
+00:09:30,750 --> 00:09:35,860
+Basically, if you define in your
+user model a to_s method,
+
+208
+00:09:35,860 --> 00:09:39,610
+you then don't have to call any
+methods to print out the
+
+209
+00:09:39,610 --> 00:09:41,030
+so-called display name.
+
+210
+00:09:41,030 --> 00:09:45,110
+You can just do @user, and it
+will properly call the to_s
+
+211
+00:09:45,110 --> 00:09:48,240
+method and get you back what
+you previously called your
+
+212
+00:09:48,240 --> 00:09:49,490
+display name.
+
+213
+00:09:49,490 --> 00:09:51,730
+
+214
+00:09:51,730 --> 00:09:53,520
+Next up, we're going to talk
+a little bit about
+
+215
+00:09:53,520 --> 00:09:55,020
+SEO-friendly URLs--
+
+216
+00:09:55,020 --> 00:09:57,680
+or basically, human readable
+URLs, which are which are a
+
+217
+00:09:57,680 --> 00:09:58,900
+great practice.
+
+218
+00:09:58,900 --> 00:10:01,255
+So by default, Rails of the box,
+you're going to get URLs
+
+219
+00:10:01,255 --> 00:10:03,400
+that also look something like
+this, which aren't very
+
+220
+00:10:03,400 --> 00:10:05,920
+pretty, and aren't
+very friendly.
+
+221
+00:10:05,920 --> 00:10:07,390
+What would a friendly
+URL look like?
+
+222
+00:10:07,390 --> 00:10:09,790
+Maybe something more
+like this.
+
+223
+00:10:09,790 --> 00:10:12,680
+Rails out of the box gives you
+a very easy way to start
+
+224
+00:10:12,680 --> 00:10:17,510
+generating friendly URLs that
+look a little bit like this.
+
+225
+00:10:17,510 --> 00:10:19,120
+How do we make this happen?
+
+226
+00:10:19,120 --> 00:10:21,440
+Inside of our topic model, we
+have to declare a method
+
+227
+00:10:21,440 --> 00:10:23,300
+called to_param.
+
+228
+00:10:23,300 --> 00:10:25,810
+Inside there, it's just going to
+create a string, which has
+
+229
+00:10:25,810 --> 00:10:29,490
+the ID, along with
+name.parameterize.
+
+230
+00:10:29,490 --> 00:10:32,420
+Now that we have that code in
+place, when we create a link,
+
+231
+00:10:32,420 --> 00:10:36,370
+like so, it's going to generate
+a URL, which looks
+
+232
+00:10:36,370 --> 00:10:38,700
+like what I showed
+you a minute ago.
+
+233
+00:10:38,700 --> 00:10:41,940
+When somebody goes to that URL,
+the ID is going to get
+
+234
+00:10:41,940 --> 00:10:46,220
+equal to that string, it's
+going to call Topic.find(params[:id]),
+
+235
+00:10:46,220 --> 00:10:49,060
+basically sending
+that string, and the find
+
+236
+00:10:49,060 --> 00:10:53,120
+method actually is going to call
+to_i, which is going to run
+
+237
+00:10:53,120 --> 00:10:55,840
+basically find, and
+then that ID.
+
+238
+00:10:55,840 --> 00:10:58,600
+So really, that's all the code
+that you need to set, and you
+
+239
+00:10:58,600 --> 00:11:00,030
+get these beautiful
+URLs which are
+
+240
+00:11:00,030 --> 00:11:04,530
+SEO-friendly and human readable.
+
+241
+00:11:04,530 --> 00:11:07,070
+Now it's time for you to take
+these techniques I taught you,
+
+242
+00:11:07,070 --> 00:11:09,760
+and use them in the challenges
+to get to Level Five.
+
+243
+00:11:09,760 --> 00:11:12,005
