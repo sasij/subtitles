@@ -1,0 +1,1676 @@
+1
+00:00:00,000 --> 00:00:20,390
+[MUSIC PLAYING]
+
+2
+00:00:20,390 --> 00:00:22,210
+Good job getting through all
+the level one challenges.
+
+3
+00:00:22,210 --> 00:00:24,540
+And now, we're on to
+level two, Models
+
+4
+00:00:24,540 --> 00:00:26,280
+Still Taste Like Chicken.
+
+5
+00:00:26,280 --> 00:00:28,040
+So we're going to be going
+through some model best
+
+6
+00:00:28,040 --> 00:00:31,090
+practices, starting with Named
+Scope, Callbacks, some new
+
+7
+00:00:31,090 --> 00:00:34,480
+Relationship Options, Includes,
+and then finally,
+
+8
+00:00:34,480 --> 00:00:35,730
+has_many :through.
+
+9
+00:00:35,730 --> 00:00:37,300
+
+10
+00:00:37,300 --> 00:00:38,950
+Throughout these slides, you're
+going to see some
+
+11
+00:00:38,950 --> 00:00:40,500
+symbols that look like this--
+
+12
+00:00:40,500 --> 00:00:42,840
+one for bad code, one
+for good code.
+
+13
+00:00:42,840 --> 00:00:43,530
+That's for your reference.
+
+14
+00:00:43,530 --> 00:00:46,000
+If you go through the slides
+later and you need to figure
+
+15
+00:00:46,000 --> 00:00:48,150
+out which is the bad code, which
+is the good code, just
+
+16
+00:00:48,150 --> 00:00:49,390
+look for these symbols.
+
+17
+00:00:49,390 --> 00:00:51,850
+You also might see some zombies
+wandering through
+
+18
+00:00:51,850 --> 00:00:52,460
+these slides.
+
+19
+00:00:52,460 --> 00:00:54,250
+They don't mean anything
+in particular.
+
+20
+00:00:54,250 --> 00:00:58,380
+And you might also see some
+brains which means don't get
+
+21
+00:00:58,380 --> 00:01:02,780
+too hungry, but it is organic
+and no sugar added.
+
+22
+00:01:02,780 --> 00:01:05,290
+So let's jump into
+Named Scope.
+
+23
+00:01:05,290 --> 00:01:07,530
+So here we have a
+RottingZombiesController.
+
+24
+00:01:07,530 --> 00:01:10,620
+Inside here, there's an index
+action where we're querying
+
+25
+00:01:10,620 --> 00:01:14,590
+for all of the zombies where
+rotting is true.
+
+26
+00:01:14,590 --> 00:01:17,030
+Now, we're very often in this
+application going to be
+
+27
+00:01:17,030 --> 00:01:20,780
+querying for rotting zombies, so
+you think maybe there's a
+
+28
+00:01:20,780 --> 00:01:22,480
+better way to do this.
+
+29
+00:01:22,480 --> 00:01:23,140
+Well, there is.
+
+30
+00:01:23,140 --> 00:01:25,660
+We're going to take that
+where method there.
+
+31
+00:01:25,660 --> 00:01:28,900
+We're going to move that
+into the Zombie model.
+
+32
+00:01:28,900 --> 00:01:32,400
+Inside the Zombie model, we're
+going to say scope :rotting.
+
+33
+00:01:32,400 --> 00:01:34,000
+So we're creating
+a Named Scope.
+
+34
+00:01:34,000 --> 00:01:35,960
+The name in this case
+is rotting.
+
+35
+00:01:35,960 --> 00:01:38,290
+Then back in our controller,
+we can simply do
+
+36
+00:01:38,290 --> 00:01:40,050
+Zombie.rotting.
+
+37
+00:01:40,050 --> 00:01:41,690
+It's going to call that
+method and return
+
+38
+00:01:41,690 --> 00:01:42,940
+all the rotting zombies.
+
+39
+00:01:42,940 --> 00:01:45,780
+
+40
+00:01:45,780 --> 00:01:48,750
+Now let's take a look at a few
+more examples of Named Scopes,
+
+41
+00:01:48,750 --> 00:01:52,180
+starting with fresh which gives
+us all the zombies that
+
+42
+00:01:52,180 --> 00:01:55,050
+are less than 20 years of age.
+
+43
+00:01:55,050 --> 00:01:57,480
+We can also get all of the
+recent zombies sorted by
+
+44
+00:01:57,480 --> 00:02:00,570
+created_at, limit only
+three of them.
+
+45
+00:02:00,570 --> 00:02:02,710
+So we can chain these
+things together.
+
+46
+00:02:02,710 --> 00:02:05,290
+We can also use method chaining
+to create queries.
+
+47
+00:02:05,290 --> 00:02:08,240
+So we can say
+Zombie.rotting.limit(5).
+
+48
+00:02:08,240 --> 00:02:10,770
+We can say Zombie.recent.rotting
+and then
+
+49
+00:02:10,770 --> 00:02:13,450
+finally,
+Zombie.recent.fresh.rotting if
+
+50
+00:02:13,450 --> 00:02:16,050
+we want to chain them
+all together.
+
+51
+00:02:16,050 --> 00:02:17,860
+In a moment we're going to
+talk about Callbacks.
+
+52
+00:02:17,860 --> 00:02:19,420
+But right now, we have
+an objective.
+
+53
+00:02:19,420 --> 00:02:22,510
+We need to write some code to
+check to see when the zombie
+
+54
+00:02:22,510 --> 00:02:26,530
+age is greater than 20, set
+rotting equal to true.
+
+55
+00:02:26,530 --> 00:02:29,300
+First, we're going to see how
+we might implement this,
+
+56
+00:02:29,300 --> 00:02:31,590
+badly, in our zombies
+controller.
+
+57
+00:02:31,590 --> 00:02:33,670
+So let's jump into the
+zombies controller.
+
+58
+00:02:33,670 --> 00:02:37,140
+So here's your typical update
+action which was generated
+
+59
+00:02:37,140 --> 00:02:39,050
+from our scaffold.
+
+60
+00:02:39,050 --> 00:02:41,870
+In here, we're going to say if
+@zombie.age > 20,
+
+61
+00:02:41,870 --> 00:02:45,270
+set @zombie.rotting = true
+
+62
+00:02:45,270 --> 00:02:47,360
+And you can see I've got that
+symbol up there to signify
+
+63
+00:02:47,360 --> 00:02:48,850
+that this is bad code.
+
+64
+00:02:48,850 --> 00:02:50,600
+But why is it bad?
+
+65
+00:02:50,600 --> 00:02:53,250
+Well, there are many other
+places that we're updating
+
+66
+00:02:53,250 --> 00:02:56,270
+zombies and might be
+changing the age.
+
+67
+00:02:56,270 --> 00:02:58,480
+And if we do that in other
+places, it's not
+
+68
+00:02:58,480 --> 00:02:59,410
+going to set rotting.
+
+69
+00:02:59,410 --> 00:03:01,870
+It's only going to set rotting
+here in the update method.
+
+70
+00:03:01,870 --> 00:03:04,170
+So how can we do better?
+
+71
+00:03:04,170 --> 00:03:06,340
+Well, we're going to take this
+logic, and we're going to move
+
+72
+00:03:06,340 --> 00:03:08,720
+it into the model.
+
+73
+00:03:08,720 --> 00:03:11,620
+So here we are in the
+Zombie model.
+
+74
+00:03:11,620 --> 00:03:14,700
+We're going to wrap it in a
+method called make_rotting,
+
+75
+00:03:14,700 --> 00:03:17,240
+and then, we're going to tell
+it to call this method every
+
+76
+00:03:17,240 --> 00:03:21,530
+time it saves zombies-- in this
+case, before it saves it.
+
+77
+00:03:21,530 --> 00:03:22,990
+However, this code
+as it's written
+
+78
+00:03:22,990 --> 00:03:24,230
+wouldn't completely work.
+
+79
+00:03:24,230 --> 00:03:26,590
+We still have some invalid
+variables in there.
+
+80
+00:03:26,590 --> 00:03:28,820
+We have those instance variables
+which came from our
+
+81
+00:03:28,820 --> 00:03:29,680
+controller.
+
+82
+00:03:29,680 --> 00:03:33,280
+So let's get rid of the bad
+code and rewrite this.
+
+83
+00:03:33,280 --> 00:03:36,360
+We're going to write if age
+> 20 then 
+
+84
+00:03:36,360 --> 00:03:37,050
+self.rotting = true
+
+85
+00:03:37,050 --> 00:03:38,360
+And now it's going to work.
+
+86
+00:03:38,360 --> 00:03:41,090
+Now, if you haven't written many
+model methods, this might
+
+87
+00:03:41,090 --> 00:03:42,080
+look a little odd.
+
+88
+00:03:42,080 --> 00:03:45,190
+Why do we have self dot in front
+of rotting and not age?
+
+89
+00:03:45,190 --> 00:03:49,710
+Well, it turns out when we call
+age there, we're reading.
+
+90
+00:03:49,710 --> 00:03:51,440
+So it's going to
+look for an age
+
+91
+00:03:51,440 --> 00:03:52,790
+variable inside that method.
+
+92
+00:03:52,790 --> 00:03:55,020
+It's not going to find it, and
+then it's going to look at the
+
+93
+00:03:55,020 --> 00:03:58,310
+scope of our model--
+so of the instance.
+
+94
+00:03:58,310 --> 00:04:01,080
+So it's going to pull
+the age attribute.
+
+95
+00:04:01,080 --> 00:04:04,870
+With rotting though, we're
+actually setting a variable.
+
+96
+00:04:04,870 --> 00:04:06,890
+Since we're setting the
+variable, if we didn't have
+
+97
+00:04:06,890 --> 00:04:10,160
+self dot, it would set the
+variable using the scope of
+
+98
+00:04:10,160 --> 00:04:13,330
+just the method, and we wouldn't
+have access to it
+
+99
+00:04:13,330 --> 00:04:14,490
+outside of the method.
+
+100
+00:04:14,490 --> 00:04:17,089
+So here we specify self.rotting,
+so it knows
+
+101
+00:04:17,089 --> 00:04:21,589
+we're talking about the
+attribute in our database.
+
+102
+00:04:21,589 --> 00:04:24,210
+There's one other way we can
+improve this code, refactor it
+
+103
+00:04:24,210 --> 00:04:26,380
+a little bit, and that
+is by simply doing
+
+104
+00:04:26,380 --> 00:04:27,210
+it all on one line.
+
+105
+00:04:27,210 --> 00:04:33,000
+And we can say 
+self.rotting = true if age > 20
+
+106
+00:04:33,000 --> 00:04:33,700
+
+107
+00:04:33,700 --> 00:04:34,620
+There are a bunch of
+different model
+
+108
+00:04:34,620 --> 00:04:35,820
+callbacks that we can use.
+
+109
+00:04:35,820 --> 00:04:38,390
+But before I show you them,
+we need to make sure you
+
+110
+00:04:38,390 --> 00:04:41,080
+understand that returning
+false in any of these
+
+111
+00:04:41,080 --> 00:04:44,230
+callbacks will completely halt
+whatever you're doing.
+
+112
+00:04:44,230 --> 00:04:46,470
+So here, we have a Brain
+model, and we
+
+113
+00:04:46,470 --> 00:04:48,610
+have a taste method.
+
+114
+00:04:48,610 --> 00:04:50,220
+The taste method
+returns false.
+
+115
+00:04:50,220 --> 00:04:52,150
+In Ruby, we don't really
+need to have that
+
+116
+00:04:52,150 --> 00:04:53,950
+return the method anywhere.
+
+117
+00:04:53,950 --> 00:04:56,140
+We can just say false.
+
+118
+00:04:56,140 --> 00:04:59,290
+This method is going to called
+before save, which means it's
+
+119
+00:04:59,290 --> 00:05:00,480
+going to stop.
+
+120
+00:05:00,480 --> 00:05:03,060
+It's going to stop the
+save from happening.
+
+121
+00:05:03,060 --> 00:05:05,430
+So if we jump into the console,
+we create a new
+
+122
+00:05:05,430 --> 00:05:08,890
+brain, and we try to save it,
+it's going to return false.
+
+123
+00:05:08,890 --> 00:05:12,690
+We're never going to be
+able to save a brain.
+
+124
+00:05:12,690 --> 00:05:16,500
+So you just have to be careful
+of return values when you're
+
+125
+00:05:16,500 --> 00:05:19,650
+doing callbacks, because if you
+return false, it's simply
+
+126
+00:05:19,650 --> 00:05:20,790
+going to stop.
+
+127
+00:05:20,790 --> 00:05:23,570
+Also, if you're a zombie,
+be careful of fire.
+
+128
+00:05:23,570 --> 00:05:25,110
+Fire bad.
+
+129
+00:05:25,110 --> 00:05:26,360
+Bad zombie.
+
+130
+00:05:26,360 --> 00:05:28,430
+
+131
+00:05:28,430 --> 00:05:30,370
+Here's a list of all the
+callbacks that you get access
+
+132
+00:05:30,370 --> 00:05:32,860
+to from inside an Active
+Record model.
+
+133
+00:05:32,860 --> 00:05:35,790
+You can see here we've got both
+before_save, after_save,
+
+134
+00:05:35,790 --> 00:05:37,210
+before_destroy, after_destroy.
+
+135
+00:05:37,210 --> 00:05:39,670
+A couple points to
+be made here--
+
+136
+00:05:39,670 --> 00:05:41,100
+you can use multiple callbacks,
+
+137
+00:05:41,100 --> 00:05:42,090
+even of the same type.
+
+138
+00:05:42,090 --> 00:05:45,010
+So I could have a bunch of
+different before_save methods
+
+139
+00:05:45,010 --> 00:05:46,360
+if I wanted to.
+
+140
+00:05:46,360 --> 00:05:50,000
+And as we mentioned before, if
+any of these return false,
+
+141
+00:05:50,000 --> 00:05:51,490
+then it's going to stop.
+
+142
+00:05:51,490 --> 00:05:55,630
+And if it's a before_create or
+before_save or before_update,
+
+143
+00:05:55,630 --> 00:05:57,995
+well, it's not going to get
+saved to the database.
+
+144
+00:05:57,995 --> 00:06:00,660
+To give me a couple of examples
+of callbacks in real
+
+145
+00:06:00,660 --> 00:06:03,920
+Rails apps, you might have,
+in your user model, an
+
+146
+00:06:03,920 --> 00:06:06,140
+after_create
+:send_welcome_email.
+
+147
+00:06:06,140 --> 00:06:09,130
+So every time you create a user,
+after it's saved, send a
+
+148
+00:06:09,130 --> 00:06:10,330
+welcome email.
+
+149
+00:06:10,330 --> 00:06:13,300
+You might also have before_save
+: encrypt_password
+
+150
+00:06:13,300 --> 00:06:15,650
+so that when someone types in a
+new password and they create
+
+151
+00:06:15,650 --> 00:06:19,560
+an account, they can save the
+password, create a salt maybe.
+
+152
+00:06:19,560 --> 00:06:21,410
+And lastly, you might also
+have before_destroy
+
+153
+00:06:21,410 --> 00:06:23,490
+:set_deleted_flag.
+
+154
+00:06:23,490 --> 00:06:26,410
+So you may never want to
+actually really delete a user
+
+155
+00:06:26,410 --> 00:06:29,810
+out of your database, in which
+case you might have a deleted
+
+156
+00:06:29,810 --> 00:06:31,910
+at date/time field.
+
+157
+00:06:31,910 --> 00:06:35,030
+So inside your before_destroy,
+you might actually set that
+
+158
+00:06:35,030 --> 00:06:38,840
+date/time field and then return
+false, which would halt
+
+159
+00:06:38,840 --> 00:06:40,120
+that destroy from
+ever happening.
+
+160
+00:06:40,120 --> 00:06:42,710
+So it wouldn't actually destroy
+it from the database,
+
+161
+00:06:42,710 --> 00:06:44,890
+but you could still
+call destroy.
+
+162
+00:06:44,890 --> 00:06:48,680
+It would halt it, because
+it would return false.
+
+163
+00:06:48,680 --> 00:06:50,865
+All right, we're about halfway
+done with level two.
+
+164
+00:06:50,865 --> 00:06:52,910
+Next up, we're going to
+be talking about some
+
+165
+00:06:52,910 --> 00:06:54,390
+relationships.
+
+166
+00:06:54,390 --> 00:06:56,860
+Remember relationships, back
+in Rails for Zombies 1?
+
+167
+00:06:56,860 --> 00:06:58,790
+We talked about belongs_to
+and has_many?
+
+168
+00:06:58,790 --> 00:07:01,820
+Now we're going to be talking
+about has_one.
+
+169
+00:07:01,820 --> 00:07:06,470
+So our example here is we have
+a zombie which may or may not
+
+170
+00:07:06,470 --> 00:07:07,860
+have a brain.
+
+171
+00:07:07,860 --> 00:07:09,390
+You can see a zombie
+has a brain.
+
+172
+00:07:09,390 --> 00:07:10,460
+This one has half a brain.
+
+173
+00:07:10,460 --> 00:07:12,200
+This one has no brain.
+
+174
+00:07:12,200 --> 00:07:14,920
+So how do we do that
+in our code?
+
+175
+00:07:14,920 --> 00:07:17,820
+First step, we're going to
+generate a new model.
+
+176
+00:07:17,820 --> 00:07:20,820
+So we could say rails
+g model brain.
+
+177
+00:07:20,820 --> 00:07:24,440
+Our brain is going to have a
+zombie_id which is an integer.
+
+178
+00:07:24,440 --> 00:07:28,370
+That's how we know which zombie
+this brain belongs to.
+
+179
+00:07:28,370 --> 00:07:30,940
+We're also going to have a
+status which is a string, the
+
+180
+00:07:30,940 --> 00:07:33,910
+status of the brain, and
+of course, flavor.
+
+181
+00:07:33,910 --> 00:07:36,010
+Flavor is very important
+for zombie brains.
+
+182
+00:07:36,010 --> 00:07:38,160
+So when we run this command,
+it's going to create a
+
+183
+00:07:38,160 --> 00:07:39,830
+migration for us.
+
+184
+00:07:39,830 --> 00:07:42,480
+It's also going to
+create our model.
+
+185
+00:07:42,480 --> 00:07:44,220
+Let's jump into this
+migration.
+
+186
+00:07:44,220 --> 00:07:46,800
+Inside this migration, we're
+going to see that it creates
+
+187
+00:07:46,800 --> 00:07:50,880
+the brains table and all of the
+columns that we specified.
+
+188
+00:07:50,880 --> 00:07:52,720
+We're also going to add
+one small snippet of
+
+189
+00:07:52,720 --> 00:07:53,980
+code to this migration.
+
+190
+00:07:53,980 --> 00:07:57,770
+We're going to specify a foreign
+key index on zombie_id
+
+191
+00:07:57,770 --> 00:07:59,560
+to keep our database
+efficient.
+
+192
+00:07:59,560 --> 00:08:02,590
+If you don't know what a foreign
+key is, maybe read up
+
+193
+00:08:02,590 --> 00:08:04,290
+on databases.
+
+194
+00:08:04,290 --> 00:08:05,970
+When we're ready to create this
+table, we're going to, of
+
+195
+00:08:05,970 --> 00:08:10,045
+course, run rake db:migrate.
+
+196
+00:08:10,045 --> 00:08:12,710
+Now that we have the database
+table, we have to represent
+
+197
+00:08:12,710 --> 00:08:14,620
+that relationship inside
+of our model.
+
+198
+00:08:14,620 --> 00:08:17,940
+So here's the Brain model, and
+here's the Zombie model.
+
+199
+00:08:17,940 --> 00:08:22,100
+Inside the Brain model, we
+simply say belongs_to :zombie,
+
+200
+00:08:22,100 --> 00:08:25,450
+and in the Zombie model,
+we say has_one :brain.
+
+201
+00:08:25,450 --> 00:08:27,060
+It's as simple as that.
+
+202
+00:08:27,060 --> 00:08:29,060
+Let's jump into the console now
+and play around with this
+
+203
+00:08:29,060 --> 00:08:30,350
+relationship.
+
+204
+00:08:30,350 --> 00:08:32,299
+So here's our last zombie.
+
+205
+00:08:32,299 --> 00:08:33,500
+Let's grab that.
+
+206
+00:08:33,500 --> 00:08:37,039
+We can then create a brain by
+just calling z.create_brain,
+
+207
+00:08:37,039 --> 00:08:38,770
+sending in the attributes.
+
+208
+00:08:38,770 --> 00:08:41,270
+And that will return the
+brain we just created.
+
+209
+00:08:41,270 --> 00:08:44,200
+We could also just call z.brain
+on our zombie, and
+
+210
+00:08:44,200 --> 00:08:47,050
+that's just also going to
+return that same brain.
+
+211
+00:08:47,050 --> 00:08:49,590
+
+212
+00:08:49,590 --> 00:08:52,660
+But what happens when
+we destroy a zombie?
+
+213
+00:08:52,660 --> 00:08:53,900
+Does the brain go with it?
+
+214
+00:08:53,900 --> 00:08:55,610
+Well, let's take a look.
+
+215
+00:08:55,610 --> 00:08:57,240
+So we're going to grab
+the first zombie.
+
+216
+00:08:57,240 --> 00:08:58,820
+There's our zombie there.
+
+217
+00:08:58,820 --> 00:09:02,020
+We're going to grab the
+brain of that zombie.
+
+218
+00:09:02,020 --> 00:09:03,200
+There it is.
+
+219
+00:09:03,200 --> 00:09:07,200
+We're going to then destroy
+the zombie.
+
+220
+00:09:07,200 --> 00:09:08,400
+It's destroyed.
+
+221
+00:09:08,400 --> 00:09:09,540
+There we go.
+
+222
+00:09:09,540 --> 00:09:12,760
+And then finally, we're going
+to find the brain, and the
+
+223
+00:09:12,760 --> 00:09:13,830
+brain is still there.
+
+224
+00:09:13,830 --> 00:09:15,500
+The brain is still exists.
+
+225
+00:09:15,500 --> 00:09:19,210
+We need to destroy the zombie
+brain with the zombie.
+
+226
+00:09:19,210 --> 00:09:21,440
+Well, how might we do that?
+
+227
+00:09:21,440 --> 00:09:23,370
+To figure out to do that,
+we're going to go to
+
+228
+00:09:23,370 --> 00:09:26,430
+railsapi.com, and we're going
+to search for the has_one
+
+229
+00:09:26,430 --> 00:09:27,340
+relationship.
+
+230
+00:09:27,340 --> 00:09:29,330
+In there, we're going to see a
+lot of different relationship
+
+231
+00:09:29,330 --> 00:09:33,610
+options, including the
+dependent option.
+
+232
+00:09:33,610 --> 00:09:34,440
+How do we use that?
+
+233
+00:09:34,440 --> 00:09:36,800
+Well, let's give it a try.
+
+234
+00:09:36,800 --> 00:09:39,190
+So in the zombie model, we're
+going to say has_one :brain,
+
+235
+00:09:39,190 --> 00:09:40,440
+dependent: :destroy.
+
+236
+00:09:40,440 --> 00:09:42,940
+
+237
+00:09:42,940 --> 00:09:44,380
+Well, let's jump back
+into the console and
+
+238
+00:09:44,380 --> 00:09:45,700
+see what this does.
+
+239
+00:09:45,700 --> 00:09:46,950
+We fetch our zombie.
+
+240
+00:09:46,950 --> 00:09:49,760
+
+241
+00:09:49,760 --> 00:09:52,390
+And then when we destroy the
+zombie, we can see in the SQL
+
+242
+00:09:52,390 --> 00:09:54,260
+that it generates, that
+it destroys both the
+
+243
+00:09:54,260 --> 00:09:56,300
+zombie and the brain.
+
+244
+00:09:56,300 --> 00:09:58,970
+
+245
+00:09:58,970 --> 00:10:00,700
+Active Record relationships
+have a bunch of different
+
+246
+00:10:00,700 --> 00:10:03,700
+options you can use, not only
+dependent: :destroy, but you
+
+247
+00:10:03,700 --> 00:10:06,890
+can also change the foreign key
+index if you want to have
+
+248
+00:10:06,890 --> 00:10:08,380
+a different foreign key.
+
+249
+00:10:08,380 --> 00:10:11,080
+You can even change the primary
+key if you want.
+
+250
+00:10:11,080 --> 00:10:14,330
+You can also specify validate:
+true on a relationship.
+
+251
+00:10:14,330 --> 00:10:16,850
+So in this case, if we had
+validate: true on brain, when
+
+252
+00:10:16,850 --> 00:10:19,590
+we saved a zombie, it would also
+validate to make sure the
+
+253
+00:10:19,590 --> 00:10:21,030
+brain validates as well.
+
+254
+00:10:21,030 --> 00:10:22,380
+If not, it wouldn't save it.
+
+255
+00:10:22,380 --> 00:10:23,850
+It would return false.
+
+256
+00:10:23,850 --> 00:10:26,610
+And there's lots of other
+relationship options.
+
+257
+00:10:26,610 --> 00:10:27,860
+Check the documentation.
+
+258
+00:10:27,860 --> 00:10:29,950
+
+259
+00:10:29,950 --> 00:10:32,500
+Next up, we're going to talk
+about the include method.
+
+260
+00:10:32,500 --> 00:10:34,330
+You can see up here,
+we have a view.
+
+261
+00:10:34,330 --> 00:10:38,020
+We're listing out the name and
+the brain flavors for each of
+
+262
+00:10:38,020 --> 00:10:39,240
+our zombie.
+
+263
+00:10:39,240 --> 00:10:40,790
+What might the code look
+like for this?
+
+264
+00:10:40,790 --> 00:10:43,010
+Well, here we are in
+the controller.
+
+265
+00:10:43,010 --> 00:10:44,830
+We're getting all
+of the zombies.
+
+266
+00:10:44,830 --> 00:10:47,720
+Inside of our view, we're going
+to list out each of the
+
+267
+00:10:47,720 --> 00:10:51,730
+zombies, list out their name,
+and call zombie.brain.flavor
+
+268
+00:10:51,730 --> 00:10:53,800
+to get the flavors
+of their brains.
+
+269
+00:10:53,800 --> 00:10:56,050
+And if we look back on our
+server to see what SQL was
+
+270
+00:10:56,050 --> 00:10:58,440
+running, we would see this.
+
+271
+00:10:58,440 --> 00:11:00,950
+This is not so good, right?
+
+272
+00:11:00,950 --> 00:11:06,070
+It's doing a query for each
+brain for each of the zombies.
+
+273
+00:11:06,070 --> 00:11:08,990
+We call this sometimes
+an n plus 1 query.
+
+274
+00:11:08,990 --> 00:11:10,390
+It's a bad thing.
+
+275
+00:11:10,390 --> 00:11:11,490
+It's not very efficient.
+
+276
+00:11:11,490 --> 00:11:13,180
+It doesn't scale very well.
+
+277
+00:11:13,180 --> 00:11:14,500
+How do we get around this?
+
+278
+00:11:14,500 --> 00:11:16,990
+Well, this is where the include
+keyword comes in.
+
+279
+00:11:16,990 --> 00:11:18,630
+So we're going to say zombies =
+Zombie.includes(brain).all.
+
+280
+00:11:18,630 --> 00:11:23,050
+
+281
+00:11:23,050 --> 00:11:24,540
+What SQL does it run?
+
+282
+00:11:24,540 --> 00:11:26,120
+Let's take a look.
+
+283
+00:11:26,120 --> 00:11:28,355
+You can see here it's getting
+all the zombies, and then it's
+
+284
+00:11:28,355 --> 00:11:31,240
+querying for all of the brains
+for all of these zombies.
+
+285
+00:11:31,240 --> 00:11:32,490
+Much more efficient.
+
+286
+00:11:32,490 --> 00:11:35,540
+
+287
+00:11:35,540 --> 00:11:37,410
+Lastly, we're going to talk
+about the has_many :through
+
+288
+00:11:37,410 --> 00:11:38,670
+relationship.
+
+289
+00:11:38,670 --> 00:11:41,560
+And in this case in our example,
+our zombie may play
+
+290
+00:11:41,560 --> 00:11:43,460
+multiple roles in
+our zombie army.
+
+291
+00:11:43,460 --> 00:11:47,760
+We have a captain, a scout, a
+soldier, and, of course, a
+
+292
+00:11:47,760 --> 00:11:48,760
+brain taster.
+
+293
+00:11:48,760 --> 00:11:50,920
+And a zombie can have
+multiple roles.
+
+294
+00:11:50,920 --> 00:11:53,260
+So let's go ahead and implement
+this relationship.
+
+295
+00:11:53,260 --> 00:11:55,980
+So we obviously have a Zombie
+table, and we have a Role
+
+296
+00:11:55,980 --> 00:11:57,840
+table which could be
+scout, captain,
+
+297
+00:11:57,840 --> 00:11:59,890
+soldier, and brain taster.
+
+298
+00:11:59,890 --> 00:12:02,410
+Based on the knowledge you have
+thus far, you might think
+
+299
+00:12:02,410 --> 00:12:05,500
+that we should just add a
+role_id to the zombie table
+
+300
+00:12:05,500 --> 00:12:07,340
+and then have zombie
+belongs_to roll.
+
+301
+00:12:07,340 --> 00:12:10,340
+However, the problem with this
+is it's only going to work if
+
+302
+00:12:10,340 --> 00:12:12,820
+a zombie has a single role,
+and we want our zombies to
+
+303
+00:12:12,820 --> 00:12:14,430
+have multiple roles.
+
+304
+00:12:14,430 --> 00:12:16,460
+So how do we do that?
+
+305
+00:12:16,460 --> 00:12:18,240
+Well, we're going to
+need another table.
+
+306
+00:12:18,240 --> 00:12:20,350
+We're going to need an
+Assignments table which sits
+
+307
+00:12:20,350 --> 00:12:23,420
+in between Zombie and Role.
+
+308
+00:12:23,420 --> 00:12:26,490
+Inside that Assignments table,
+we're going to have a role.id
+
+309
+00:12:26,490 --> 00:12:28,900
+and a zombie.id.
+
+310
+00:12:28,900 --> 00:12:31,340
+Through the role.id, Assignments
+is going to belong
+
+311
+00:12:31,340 --> 00:12:35,530
+to Role, and through the
+zombie.id, Assignments going
+
+312
+00:12:35,530 --> 00:12:38,410
+to belong to Zombie.
+
+313
+00:12:38,410 --> 00:12:40,630
+On the other side of the
+relationship, we're going to
+
+314
+00:12:40,630 --> 00:12:44,440
+say Zombie has_many assignments
+and Role has_many
+
+315
+00:12:44,440 --> 00:12:47,320
+assignments as well.
+
+316
+00:12:47,320 --> 00:12:49,630
+Before we jump into has_many
+through, let's create the
+
+317
+00:12:49,630 --> 00:12:51,350
+migrations for these tables.
+
+318
+00:12:51,350 --> 00:12:54,280
+So here we have
+CreateAssignments, we have a
+
+319
+00:12:54,280 --> 00:12:58,590
+zombie.id which is an integer, a
+role.id which is an integer.
+
+320
+00:12:58,590 --> 00:13:01,200
+Lastly, we're going to have two
+foreign keys-- a zombie.id
+
+321
+00:13:01,200 --> 00:13:03,000
+and a role.id.
+
+322
+00:13:03,000 --> 00:13:04,780
+We also want to create the Roles
+table which is going to
+
+323
+00:13:04,780 --> 00:13:05,700
+be really simple.
+
+324
+00:13:05,700 --> 00:13:06,750
+It's only going to
+have a title,
+
+325
+00:13:06,750 --> 00:13:08,100
+like captain or soldier.
+
+326
+00:13:08,100 --> 00:13:11,020
+
+327
+00:13:11,020 --> 00:13:12,640
+Now let's jump into our model.
+
+328
+00:13:12,640 --> 00:13:14,970
+So here we have the Assignment
+model which is going to
+
+329
+00:13:14,970 --> 00:13:18,650
+belongs_to :zombie and
+belongs_to :role.
+
+330
+00:13:18,650 --> 00:13:22,490
+We'll have our Zombie model,
+Zombie has_many :assignments,
+
+331
+00:13:22,490 --> 00:13:25,470
+and of course, Roll has_many
+:assignments.
+
+332
+00:13:25,470 --> 00:13:27,280
+Now, here's where things
+get interesting.
+
+333
+00:13:27,280 --> 00:13:29,460
+We need a way to represent
+the relationship
+
+334
+00:13:29,460 --> 00:13:32,690
+between Zombie and Role.
+
+335
+00:13:32,690 --> 00:13:35,130
+That's where that has_many
+:through comes in.
+
+336
+00:13:35,130 --> 00:13:37,201
+So we're going to say Zombie
+has_many :roles, through:
+
+337
+00:13:37,201 --> 00:13:38,451
+:assignments.
+
+338
+00:13:38,451 --> 00:13:41,190
+
+339
+00:13:41,190 --> 00:13:43,620
+We can represent the other
+side of the relationship.
+
+340
+00:13:43,620 --> 00:13:45,006
+We can say Role has_many
+:zombies, through:
+
+341
+00:13:45,006 --> 00:13:46,256
+:assignments.
+
+342
+00:13:46,256 --> 00:13:48,760
+
+343
+00:13:48,760 --> 00:13:49,200
+OK.
+
+344
+00:13:49,200 --> 00:13:51,420
+Now that we've declared these,
+let's jump into the console
+
+345
+00:13:51,420 --> 00:13:52,440
+and see what it looks
+like when we
+
+346
+00:13:52,440 --> 00:13:54,240
+start coding some rails.
+
+347
+00:13:54,240 --> 00:13:56,880
+So we can say Zombie.last.
+
+348
+00:13:56,880 --> 00:13:58,900
+So we're going to fetch
+the last zombie.
+
+349
+00:13:58,900 --> 00:14:03,070
+We can then give a zombie a
+role by doing z.roles <<
+
+350
+00:14:03,070 --> 00:14:04,660
+Role.find_by_title("Captain").
+
+351
+00:14:04,660 --> 00:14:07,305
+It's the same thing as
+just doing push.
+
+352
+00:14:07,305 --> 00:14:08,820
+It's just an array.
+
+353
+00:14:08,820 --> 00:14:10,790
+That's going to query for the
+Role, and then it's going to
+
+354
+00:14:10,790 --> 00:14:14,980
+insert a row into assignments
+to represent that.
+
+355
+00:14:14,980 --> 00:14:18,970
+We can also call z.roles to get
+all the zombies' roles.
+
+356
+00:14:18,970 --> 00:14:21,645
+And that's going to do a single
+query doing an INNER
+
+357
+00:14:21,645 --> 00:14:24,430
+JOIN on our database using both
+the Assignments and the
+
+358
+00:14:24,430 --> 00:14:27,020
+Roles tables.
+
+359
+00:14:27,020 --> 00:14:28,410
+So we've reached the
+end of Models
+
+360
+00:14:28,410 --> 00:14:29,500
+Still Taste Like Chicken.
+
+361
+00:14:29,500 --> 00:14:31,390
+Now, it's your turn to get
+your hands dirty with the
+
+362
+00:14:31,390 --> 00:14:32,330
+challenges.
+
+363
+00:14:32,330 --> 00:14:33,580
+Good luck.
+
+364
+00:14:33,580 --> 00:14:36,970
