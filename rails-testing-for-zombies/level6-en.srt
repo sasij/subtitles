@@ -1,0 +1,1933 @@
+1
+00:00:00,000 --> 00:00:00,830
+
+
+2
+00:00:00,830 --> 00:00:27,550
+[PLAYING MUSIC]
+
+3
+00:00:27,550 --> 00:00:30,510
+You're watching Rails Testing
+for Zombies, and this is Level
+
+4
+00:00:30,510 --> 00:00:33,060
+Six, Using Factories.
+
+5
+00:00:33,060 --> 00:00:35,840
+Now, all throughout this course
+we've been focused
+
+6
+00:00:35,840 --> 00:00:38,020
+mostly on fixtures when
+we're trying to
+
+7
+00:00:38,020 --> 00:00:40,830
+load data for testing.
+
+8
+00:00:40,830 --> 00:00:43,270
+This level is all about
+another alternative to
+
+9
+00:00:43,270 --> 00:00:46,280
+fixtures, which is
+called factories.
+
+10
+00:00:46,280 --> 00:00:49,330
+So what is it that's so terrible
+about fixtures?
+
+11
+00:00:49,330 --> 00:00:51,020
+Well, I mean, if you've been
+around the Rails community
+
+12
+00:00:51,020 --> 00:00:53,720
+long enough, you probably heard
+that fixtures are bad,
+
+13
+00:00:53,720 --> 00:00:56,300
+so let's look at maybe some of
+the things that aren't so good
+
+14
+00:00:56,300 --> 00:00:59,120
+about them, although to this
+point we do see that they do
+
+15
+00:00:59,120 --> 00:01:00,620
+their job well.
+
+16
+00:01:00,620 --> 00:01:04,140
+So one of the problems is that
+associations are hard.
+
+17
+00:01:04,140 --> 00:01:06,500
+Greg showed this to you in some
+of the earlier levels
+
+18
+00:01:06,500 --> 00:01:09,240
+where to create a zombie that
+had tweets, we had to
+
+19
+00:01:09,240 --> 00:01:11,900
+reference that zombie as its
+zombie ID from the tweet
+
+20
+00:01:11,900 --> 00:01:13,750
+fixture back to the zombie.
+
+21
+00:01:13,750 --> 00:01:16,680
+You could see that that could
+get to be really difficult
+
+22
+00:01:16,680 --> 00:01:19,390
+when you start to get
+a lot of fixtures or
+
+23
+00:01:19,390 --> 00:01:21,720
+a lot of test cases.
+
+24
+00:01:21,720 --> 00:01:24,930
+You'll quickly learn that your
+fixtures file exponentially
+
+25
+00:01:24,930 --> 00:01:28,520
+grow with edge cases, because
+you might want a zombie with a
+
+26
+00:01:28,520 --> 00:01:30,990
+name or a zombie with a certain
+name or a zombie with
+
+27
+00:01:30,990 --> 00:01:34,060
+a certain graveyard, and
+so it multiplies out.
+
+28
+00:01:34,060 --> 00:01:36,390
+And finally, you'll find that
+they really do repeat a lot--
+
+29
+00:01:36,390 --> 00:01:39,360
+it's a lot of this is my zombie,
+this is his name, this
+
+30
+00:01:39,360 --> 00:01:41,500
+is his graveyard, this is my
+zombie, this is his name, this
+
+31
+00:01:41,500 --> 00:01:44,590
+is his graveyard, and factories
+really try to kind
+
+32
+00:01:44,590 --> 00:01:47,730
+of appease all of
+these issues.
+
+33
+00:01:47,730 --> 00:01:49,950
+So in this level, we're going
+to talk about Factory Girl,
+
+34
+00:01:49,950 --> 00:01:51,680
+which is another external gem.
+
+35
+00:01:51,680 --> 00:01:53,900
+This one's written by thoughtbot
+that you can use to
+
+36
+00:01:53,900 --> 00:01:55,750
+implement the factory pattern.
+
+37
+00:01:55,750 --> 00:01:59,270
+So what Factory Girl does is it
+allows you to define valid
+
+38
+00:01:59,270 --> 00:02:02,910
+model attributes, it allows you
+to easily modify them at
+
+39
+00:02:02,910 --> 00:02:06,660
+run time or at test time, and
+it allows you to inherit and
+
+40
+00:02:06,660 --> 00:02:08,710
+modify attributes and
+configurations
+
+41
+00:02:08,710 --> 00:02:11,260
+between your factories.
+
+42
+00:02:11,260 --> 00:02:12,890
+So how do we install it?
+
+43
+00:02:12,890 --> 00:02:17,090
+Well, just like everything else
+we go to the Gemfile.
+
+44
+00:02:17,090 --> 00:02:19,350
+In this case, you're going to
+notice that I'm actually
+
+45
+00:02:19,350 --> 00:02:23,290
+grouping the Factory Girl gem
+into development and test
+
+46
+00:02:23,290 --> 00:02:25,250
+groups, not just test alone.
+
+47
+00:02:25,250 --> 00:02:27,410
+And you'll also notice that
+instead of using the Factory
+
+48
+00:02:27,410 --> 00:02:30,230
+Girl gem, which is kind of the
+generic, I'm using 
+
+49
+00:02:30,230 --> 00:02:31,570
+factory_girl_rails.
+
+50
+00:02:31,570 --> 00:02:35,050
+So what this does is it allows
+Rails to add hooks to
+
+51
+00:02:35,050 --> 00:02:37,790
+automatically generate our
+factory files for us when we
+
+52
+00:02:37,790 --> 00:02:42,140
+do things like run the Rails
+generator for a model.
+
+53
+00:02:42,140 --> 00:02:43,380
+So let's see what running
+that model
+
+54
+00:02:43,380 --> 00:02:44,820
+generator might look like.
+
+55
+00:02:44,820 --> 00:02:48,450
+So here, we'll say rails
+generate model zombie.
+
+56
+00:02:48,450 --> 00:02:50,270
+On the command line, we'll go
+ahead and say that a zombie
+
+57
+00:02:50,270 --> 00:02:53,800
+has a name and a graveyard,
+both of which are strings.
+
+58
+00:02:53,800 --> 00:02:56,310
+And if you look closely in the
+generator, you'll see that it
+
+59
+00:02:56,310 --> 00:03:00,240
+actually invokes Factory Girl,
+and it will create a new file
+
+60
+00:03:00,240 --> 00:03:02,980
+for you at
+test/factories/zombies.
+
+61
+00:03:02,980 --> 00:03:05,362
+It's the pluralized form
+of the model name
+
+62
+00:03:05,362 --> 00:03:06,860
+that you gave it.
+
+63
+00:03:06,860 --> 00:03:09,820
+What does that zombies factory
+file look like?
+
+64
+00:03:09,820 --> 00:03:12,230
+By default, it's going to look
+something like this.
+
+65
+00:03:12,230 --> 00:03:14,420
+It's going to say
+FactoryGirl.define--
+
+66
+00:03:14,420 --> 00:03:17,420
+so Factory Girl, name
+of the gem--
+
+67
+00:03:17,420 --> 00:03:20,030
+and that block that it takes is
+basically saying inside of
+
+68
+00:03:20,030 --> 00:03:22,340
+here, I want to define
+some factories.
+
+69
+00:03:22,340 --> 00:03:25,180
+And inside of this, we actually
+have a DSL written by
+
+70
+00:03:25,180 --> 00:03:28,480
+thoughtbot that is purely
+about these factories.
+
+71
+00:03:28,480 --> 00:03:31,370
+So here it's going to say I have
+a factory called zombie,
+
+72
+00:03:31,370 --> 00:03:32,920
+it's going to default to the
+model name that we used
+
+73
+00:03:32,920 --> 00:03:36,510
+earlier, and it's going to say,
+oh, since we defined some
+
+74
+00:03:36,510 --> 00:03:38,300
+attributes of the command line,
+it's going to go ahead
+
+75
+00:03:38,300 --> 00:03:40,210
+and put those in for
+us just like it did
+
+76
+00:03:40,210 --> 00:03:41,610
+with fixtures earlier.
+
+77
+00:03:41,610 --> 00:03:44,530
+So you're going to see name,
+MyString, graveyard, 
+
+78
+00:03:44,530 --> 00:03:46,060
+MyString again, because
+we defined
+
+79
+00:03:46,060 --> 00:03:48,970
+them as strings earlier.
+
+80
+00:03:48,970 --> 00:03:51,820
+And let's just quickly look back
+at how this might relate
+
+81
+00:03:51,820 --> 00:03:53,700
+to the earlier fixture file
+that was automatically
+
+82
+00:03:53,700 --> 00:03:55,240
+generated by Rails before.
+
+83
+00:03:55,240 --> 00:03:57,600
+I should also note here that
+because we're using the hooks
+
+84
+00:03:57,600 --> 00:04:00,540
+for Factory Girl, it's actually
+not going to generate
+
+85
+00:04:00,540 --> 00:04:02,890
+the fixtures for us anymore
+but rather generate the
+
+86
+00:04:02,890 --> 00:04:04,130
+factories instead.
+
+87
+00:04:04,130 --> 00:04:06,050
+So let's look at
+the two files.
+
+88
+00:04:06,050 --> 00:04:07,760
+So on the left hand side,
+you see we've got
+
+89
+00:04:07,760 --> 00:04:11,220
+test/fixtures/zombies.yml,
+that's the .yml file.
+
+90
+00:04:11,220 --> 00:04:14,730
+In this case we've Ash, name,
+Ash, graveyard, Oak Park, and
+
+91
+00:04:14,730 --> 00:04:16,890
+to the right of that you see our
+factory definition file,
+
+92
+00:04:16,890 --> 00:04:19,779
+which is located in
+test/factories/zombies.
+
+93
+00:04:19,779 --> 00:04:22,880
+So it's in factories rather
+than fixtures, it's a Ruby
+
+94
+00:04:22,880 --> 00:04:26,170
+file rather a .yml file, and
+it's pluralized just like the
+
+95
+00:04:26,170 --> 00:04:27,560
+fixture was before.
+
+96
+00:04:27,560 --> 00:04:30,530
+So here you've got
+FactoryGirl.define do, factory
+
+97
+00:04:30,530 --> 00:04:33,060
+zombie, so we're creating a
+factory called zombie, and
+
+98
+00:04:33,060 --> 00:04:36,040
+here I've dictated that the name
+is Ash and the graveyard
+
+99
+00:04:36,040 --> 00:04:37,380
+is Oak Park.
+
+100
+00:04:37,380 --> 00:04:39,900
+And then how do we actually
+use this in our tests?
+
+101
+00:04:39,900 --> 00:04:43,200
+So whereas before we would say
+zombies in all lowercase and
+
+102
+00:04:43,200 --> 00:04:45,450
+pluralized and pass it an
+attribute that matched the
+
+103
+00:04:45,450 --> 00:04:48,350
+name that we defined earlier, in
+this case Ash, when we use
+
+104
+00:04:48,350 --> 00:04:51,080
+a factory we can just
+say, Factory(:zombie)
+
+105
+00:04:51,080 --> 00:04:53,590
+We want to say basically
+factory, give us
+
+106
+00:04:53,590 --> 00:04:55,110
+a new zombie, right?
+
+107
+00:04:55,110 --> 00:04:57,270
+So it looks like that.
+
+108
+00:04:57,270 --> 00:04:59,220
+Let's look a little bit
+at this factory method
+
+109
+00:04:59,220 --> 00:05:00,300
+that we used here.
+
+110
+00:05:00,300 --> 00:05:03,890
+So it's a little bit weird
+because it's a method that is
+
+111
+00:05:03,890 --> 00:05:06,870
+capitalized as if it were a
+class name or a module but
+
+112
+00:05:06,870 --> 00:05:10,530
+it's taking a parameter, which
+is the factory that we want to
+
+113
+00:05:10,530 --> 00:05:11,740
+instantiate.
+
+114
+00:05:11,740 --> 00:05:16,390
+That actually equates to
+FactoryGirl.create with the
+
+115
+00:05:16,390 --> 00:05:17,530
+same factory name.
+
+116
+00:05:17,530 --> 00:05:19,360
+So it's just kind of a shortcut
+to make writing our
+
+117
+00:05:19,360 --> 00:05:22,470
+tests a little bit easier if
+what we want to do is create.
+
+118
+00:05:22,470 --> 00:05:25,170
+And I say if what we want to do
+is create, because Factory
+
+119
+00:05:25,170 --> 00:05:27,630
+Girl actually gives us a few
+different options of what we
+
+120
+00:05:27,630 --> 00:05:29,350
+might want to do with
+our factories.
+
+121
+00:05:29,350 --> 00:05:30,680
+So the first one we've
+discussed is
+
+122
+00:05:30,680 --> 00:05:34,150
+FactoryGirl.create and what
+that's going to do is going to
+
+123
+00:05:34,150 --> 00:05:37,220
+create and instantiate a new
+zombie, give it the attributes
+
+124
+00:05:37,220 --> 00:05:39,620
+that we've defined, save it to
+the database, and then give us
+
+125
+00:05:39,620 --> 00:05:41,430
+back that saved zombie.
+
+126
+00:05:41,430 --> 00:05:45,190
+So what that boils down to is
+Factory Girl, take this action
+
+127
+00:05:45,190 --> 00:05:46,660
+and perform it on
+this factory.
+
+128
+00:05:46,660 --> 00:05:50,720
+The other actions that we can
+take are FactoryGirl.build,
+
+129
+00:05:50,720 --> 00:05:53,130
+where it will create a new
+zombie, load it with
+
+130
+00:05:53,130 --> 00:05:58,110
+attributes but not save it, and
+also not validate it, or
+
+131
+00:05:58,110 --> 00:06:00,600
+you could do
+FactoryGirl.attributes_for
+
+132
+00:06:00,600 --> 00:06:02,270
+this particular factory.
+
+133
+00:06:02,270 --> 00:06:05,060
+And rather than returning a
+zombie instance, it's simply
+
+134
+00:06:05,060 --> 00:06:07,750
+going to return you a hash of
+attributes that make up a
+
+135
+00:06:07,750 --> 00:06:10,160
+valid zombie.
+
+136
+00:06:10,160 --> 00:06:12,580
+Let's look back at fixtures
+real quick just to compare
+
+137
+00:06:12,580 --> 00:06:16,160
+again some of the differences as
+these things start to grow.
+
+138
+00:06:16,160 --> 00:06:18,990
+So over here you see a fixture
+file with zombies in it.
+
+139
+00:06:18,990 --> 00:06:20,820
+In this case, I've got
+three zombies--
+
+140
+00:06:20,820 --> 00:06:23,090
+I've got Ash in Oak
+Park, Bill in Oak
+
+141
+00:06:23,090 --> 00:06:26,270
+Park, and Mike in Sunnyvale.
+
+142
+00:06:26,270 --> 00:06:28,510
+How could we do this
+as a factory?
+
+143
+00:06:28,510 --> 00:06:32,650
+Well, in our factory file we
+would do FactoryGirl.define,
+
+144
+00:06:32,650 --> 00:06:35,740
+factory zombie, so it's a
+generic zombie factory.
+
+145
+00:06:35,740 --> 00:06:38,110
+I'm going to say that my generic
+zombie is always
+
+146
+00:06:38,110 --> 00:06:40,570
+called Ash and I'm going to say
+that my generic some is
+
+147
+00:06:40,570 --> 00:06:41,900
+always in Oak Park.
+
+148
+00:06:41,900 --> 00:06:43,100
+I could then define
+an inherited
+
+149
+00:06:43,100 --> 00:06:44,540
+factory underneath that--
+
+150
+00:06:44,540 --> 00:06:46,710
+in this case, I'll call it
+zombie_bill just so has a
+
+151
+00:06:46,710 --> 00:06:48,770
+different name, and I'm
+going to override
+
+152
+00:06:48,770 --> 00:06:50,250
+the name to be Bill.
+
+153
+00:06:50,250 --> 00:06:52,370
+So what it's going to do is it's
+going to take the parent
+
+154
+00:06:52,370 --> 00:06:54,220
+one, which is zombie, it's
+going to load those
+
+155
+00:06:54,220 --> 00:06:57,270
+attributes, and it's going to
+override with anything that
+
+156
+00:06:57,270 --> 00:06:58,360
+I've specifically defined.
+
+157
+00:06:58,360 --> 00:07:00,810
+So in this case, name will get
+overridden as Bill, but I'm
+
+158
+00:07:00,810 --> 00:07:04,320
+going to take in graveyard
+Oak Park from the parent.
+
+159
+00:07:04,320 --> 00:07:07,420
+And in the case of Mike where
+both values are different, I
+
+160
+00:07:07,420 --> 00:07:10,210
+can still define it as a child
+of the original zombie
+
+161
+00:07:10,210 --> 00:07:11,960
+factory, but I'm just going
+to override both
+
+162
+00:07:11,960 --> 00:07:14,570
+values in this case.
+
+163
+00:07:14,570 --> 00:07:16,920
+So let's look a little bit
+at how to actually
+
+164
+00:07:16,920 --> 00:07:18,650
+interact with a factory.
+
+165
+00:07:18,650 --> 00:07:21,520
+Let's say, for example, that we
+have a zombie class where
+
+166
+00:07:21,520 --> 00:07:23,520
+we do some validation,
+which Gregg actually
+
+167
+00:07:23,520 --> 00:07:24,700
+talked about earlier.
+
+168
+00:07:24,700 --> 00:07:26,970
+So we're validating the presence
+of name and we're
+
+169
+00:07:26,970 --> 00:07:29,570
+validating the presence of
+graveyard, in this case.
+
+170
+00:07:29,570 --> 00:07:32,040
+So let's say we're writing a
+test, and in that test we're
+
+171
+00:07:32,040 --> 00:07:34,950
+going to say we want a couple
+of zombies, for example.
+
+172
+00:07:34,950 --> 00:07:37,530
+Maybe we want to test to make
+sure one zombie doesn't equal
+
+173
+00:07:37,530 --> 00:07:38,780
+another zombie.
+
+174
+00:07:38,780 --> 00:07:42,530
+So we might say zombie_1
+equals factory zombie.
+
+175
+00:07:42,530 --> 00:07:44,440
+So that's going to use the
+default zombie factory, it's
+
+176
+00:07:44,440 --> 00:07:47,930
+going to create us a zombie
+named Ash in Oak Park, and
+
+177
+00:07:47,930 --> 00:07:50,830
+it's going to store that
+onto zombie_1.
+
+178
+00:07:50,830 --> 00:07:54,000
+Maybe in that same test we say
+we need our second zombie, so
+
+179
+00:07:54,000 --> 00:07:57,050
+I'm going to say zombie_2
+equals factory, give me
+
+180
+00:07:57,050 --> 00:07:58,410
+another zombie.
+
+181
+00:07:58,410 --> 00:08:00,700
+Well, the factory is
+going to say, OK.
+
+182
+00:08:00,700 --> 00:08:03,710
+Well, name is Ash, graveyard
+is Oak Park.
+
+183
+00:08:03,710 --> 00:08:06,430
+If you look closely up to the
+validations at the top you see
+
+184
+00:08:06,430 --> 00:08:08,260
+we also have a uniqueness
+constraint.
+
+185
+00:08:08,260 --> 00:08:10,770
+So in this case when we call
+the factory, it's going to
+
+186
+00:08:10,770 --> 00:08:13,540
+instantiate a zombie with a name
+Ash and a graveyard of
+
+187
+00:08:13,540 --> 00:08:15,570
+Oak Park, but this time when
+it goes to save it to the
+
+188
+00:08:15,570 --> 00:08:18,340
+database before returning it to
+us, it's going to throw an
+
+189
+00:08:18,340 --> 00:08:20,020
+exception and explode.
+
+190
+00:08:20,020 --> 00:08:23,040
+In this case, we get an
+ActiveRecord::RecordInvalid,
+
+191
+00:08:23,040 --> 00:08:25,510
+because we've got the uniqueness
+constraint on name.
+
+192
+00:08:25,510 --> 00:08:28,170
+We already created a zombie
+with the name of Ash,
+
+193
+00:08:28,170 --> 00:08:30,880
+validations fail.
+
+194
+00:08:30,880 --> 00:08:32,350
+So how do we make this work?
+
+195
+00:08:32,350 --> 00:08:33,820
+Let's say you have a test
+that you do need
+
+196
+00:08:33,820 --> 00:08:34,820
+both of those to load.
+
+197
+00:08:34,820 --> 00:08:37,020
+How do you get around
+the validations?
+
+198
+00:08:37,020 --> 00:08:40,320
+Well, if you remember earlier
+we actually defined two or
+
+199
+00:08:40,320 --> 00:08:42,669
+three factories where we
+had different names.
+
+200
+00:08:42,669 --> 00:08:44,310
+That would get around
+the validation.
+
+201
+00:08:44,310 --> 00:08:46,560
+So one option here is to rewrite
+zombie_ 2 equals
+
+202
+00:08:46,560 --> 00:08:50,680
+factory zombie as zombie_2
+equals factory zombie_bill.
+
+203
+00:08:50,680 --> 00:08:52,750
+What that's going to do is use
+the other factory with a
+
+204
+00:08:52,750 --> 00:08:55,210
+different name that's basically
+to sidestep the
+
+205
+00:08:55,210 --> 00:08:56,920
+validation and everything
+will work.
+
+206
+00:08:56,920 --> 00:08:59,070
+The downside there is that we're
+now no longer better
+
+207
+00:08:59,070 --> 00:09:02,300
+than fixtures, because if we
+have to define a new factory
+
+208
+00:09:02,300 --> 00:09:06,140
+every time we need a variation
+it's basically fixtures again.
+
+209
+00:09:06,140 --> 00:09:08,170
+So how else could we have
+solved this problem?
+
+210
+00:09:08,170 --> 00:09:10,440
+Well, Factory Girl actually
+allows you to override
+
+211
+00:09:10,440 --> 00:09:13,270
+attributes at run time as I
+mentioned at the beginning.
+
+212
+00:09:13,270 --> 00:09:17,060
+So we could say zombie_2 equals
+factory zombie
+
+213
+00:09:17,060 --> 00:09:19,330
+name: 'Ash1'.
+
+214
+00:09:19,330 --> 00:09:22,630
+We happen to know the first one
+was named Ash, so in our
+
+215
+00:09:22,630 --> 00:09:25,090
+test we can just say, I need a
+new one after that one and I'm
+
+216
+00:09:25,090 --> 00:09:26,540
+going to call it Ash1.
+
+217
+00:09:26,540 --> 00:09:29,300
+That'll do it, and that's great,
+but there's actually an
+
+218
+00:09:29,300 --> 00:09:31,400
+even better way to go,
+which Factory Girl
+
+219
+00:09:31,400 --> 00:09:33,700
+gives us, called sequences.
+
+220
+00:09:33,700 --> 00:09:37,150
+Sequences allow us to generate
+unique information based on
+
+221
+00:09:37,150 --> 00:09:39,710
+the number of times that
+information was called.
+
+222
+00:09:39,710 --> 00:09:41,950
+So over here in this definition,
+you can see
+
+223
+00:09:41,950 --> 00:09:45,010
+FactoryGirl.define do, factory zombie
+do, and now I have a
+
+224
+00:09:45,010 --> 00:09:47,810
+sequence name, so I'm calling
+the sequence method and the
+
+225
+00:09:47,810 --> 00:09:49,940
+attribute that I want the
+sequence to run on and be
+
+226
+00:09:49,940 --> 00:09:52,750
+applied to, and I'm passing
+it a block.
+
+227
+00:09:52,750 --> 00:09:56,140
+The block takes one argument,
+which is a numeric, and that
+
+228
+00:09:56,140 --> 00:09:57,920
+block represents the number
+of times that
+
+229
+00:09:57,920 --> 00:09:59,200
+sequence has been called.
+
+230
+00:09:59,200 --> 00:10:01,770
+So if I call the zombie factory
+one time, that'll be a
+
+231
+00:10:01,770 --> 00:10:02,420
+number one.
+
+232
+00:10:02,420 --> 00:10:04,350
+If I call it five times,
+it'll be a number
+
+233
+00:10:04,350 --> 00:10:06,350
+five, ten times, ten.
+
+234
+00:10:06,350 --> 00:10:08,510
+So in this case, I'm just
+taking that numeric and
+
+235
+00:10:08,510 --> 00:10:10,850
+applying it directly to the
+string, so I'm guaranteed a
+
+236
+00:10:10,850 --> 00:10:11,630
+unique name--
+
+237
+00:10:11,630 --> 00:10:14,120
+Ash1, Ash2, Ash3.
+
+238
+00:10:14,120 --> 00:10:16,620
+So getting back to the example
+that started this, we might
+
+239
+00:10:16,620 --> 00:10:19,710
+have a test that says zombie_1
+equals factory zombie.
+
+240
+00:10:19,710 --> 00:10:21,780
+Great, we get our
+zombie Ash back.
+
+241
+00:10:21,780 --> 00:10:25,910
+And now we could say, zombie_2
+equals factory zombie.
+
+242
+00:10:25,910 --> 00:10:27,950
+You'll notice that the two names
+are different and both
+
+243
+00:10:27,950 --> 00:10:30,540
+of them are saved and no
+exceptions were thrown.
+
+244
+00:10:30,540 --> 00:10:32,770
+That means that we could
+do something like this.
+
+245
+00:10:32,770 --> 00:10:36,870
+We could say, in this test we
+need 1,000 zombies, so we'll
+
+246
+00:10:36,870 --> 00:10:40,160
+say 1,000 times give me a
+zombie, which will create a
+
+247
+00:10:40,160 --> 00:10:42,990
+new saved zombie each
+one of those times.
+
+248
+00:10:42,990 --> 00:10:45,770
+So you're going to see zombie_1,
+Ash1, zombie_2,
+
+249
+00:10:45,770 --> 00:10:51,240
+Ash2, zombie_3, Ash3, four,
+five, six, up to 1,000.
+
+250
+00:10:51,240 --> 00:10:53,870
+And that means we now have
+a zombie factory.
+
+251
+00:10:53,870 --> 00:10:58,860
+
+
+252
+00:10:58,860 --> 00:11:01,680
+So now that we've seen how to
+make a zombie with a factory,
+
+253
+00:11:01,680 --> 00:11:04,810
+let's look at a case where we
+need to make an association.
+
+254
+00:11:04,810 --> 00:11:08,010
+So in this case, we're going
+to introduce a weapon model
+
+255
+00:11:08,010 --> 00:11:11,350
+and say a weapon must always
+belong to a zombie.
+
+256
+00:11:11,350 --> 00:11:13,320
+So we have a belongs_to
+zombie and
+
+257
+00:11:13,320 --> 00:11:14,330
+validates presence of zombie.
+
+258
+00:11:14,330 --> 00:11:16,940
+So in theory, a weapon can't
+exist without a zombie.
+
+259
+00:11:16,940 --> 00:11:18,700
+How would you define
+that factory?
+
+260
+00:11:18,700 --> 00:11:20,690
+Well, you might do something
+like this.
+
+261
+00:11:20,690 --> 00:11:23,240
+So in our
+test/factories/weapon.rb, we
+
+262
+00:11:23,240 --> 00:11:26,550
+would define a new
+weapon factory.
+
+263
+00:11:26,550 --> 00:11:29,380
+Let's say this weapon
+is a broadsword.
+
+264
+00:11:29,380 --> 00:11:32,920
+We're going to say association
+zombie, and what that's going
+
+265
+00:11:32,920 --> 00:11:34,930
+to do is that Factory Girl is
+actually going to look at our
+
+266
+00:11:34,930 --> 00:11:35,710
+weapon class.
+
+267
+00:11:35,710 --> 00:11:38,720
+It's going to see that we have
+an association named zombie,
+
+268
+00:11:38,720 --> 00:11:40,120
+so it's going to say
+OK, I know where to
+
+269
+00:11:40,120 --> 00:11:41,580
+apply this zombie to.
+
+270
+00:11:41,580 --> 00:11:44,430
+Factory Girl is also going to
+look into itself and say there
+
+271
+00:11:44,430 --> 00:11:47,880
+is a zombie already defined as
+a factory that I can use.
+
+272
+00:11:47,880 --> 00:11:51,350
+So in your weapon factory, you
+say association zombie, it
+
+273
+00:11:51,350 --> 00:11:53,650
+knows what the local method is
+on the weapon, and it knows
+
+274
+00:11:53,650 --> 00:11:55,700
+what the factory is to
+create that zombie.
+
+275
+00:11:55,700 --> 00:12:00,220
+So now whenever we just say
+weapon equals factory weapon,
+
+276
+00:12:00,220 --> 00:12:03,220
+we not only get a weapon but we
+also get a zombie that it
+
+277
+00:12:03,220 --> 00:12:04,560
+belongs to.
+
+278
+00:12:04,560 --> 00:12:07,150
+The idea behind factories as
+that they're always valid when
+
+279
+00:12:07,150 --> 00:12:09,060
+you call them.
+
+280
+00:12:09,060 --> 00:12:12,230
+So now let's look at another
+case, still with associations
+
+281
+00:12:12,230 --> 00:12:14,950
+but this time let's look at it
+from the zombie's perspective.
+
+282
+00:12:14,950 --> 00:12:19,390
+So you can see we've got class
+zombie has one weapon.
+
+283
+00:12:19,390 --> 00:12:22,060
+So we've restricted zombies to
+only having one weapon, but we
+
+284
+00:12:22,060 --> 00:12:24,360
+haven't required them to have
+a weapon, so a zombie may or
+
+285
+00:12:24,360 --> 00:12:25,290
+may not have one.
+
+286
+00:12:25,290 --> 00:12:27,800
+They're valid without one and
+that's perfectly fine.
+
+287
+00:12:27,800 --> 00:12:30,870
+So how might you dictate a
+factory where, let's say, we
+
+288
+00:12:30,870 --> 00:12:33,940
+need for a particular test
+a zombie with a weapon?
+
+289
+00:12:33,940 --> 00:12:37,260
+So what we might do is open our
+definition and we might
+
+290
+00:12:37,260 --> 00:12:40,080
+make a high level factory called
+armed zombie, in this
+
+291
+00:12:40,080 --> 00:12:42,620
+case, because in theory I might
+have already defined a
+
+292
+00:12:42,620 --> 00:12:44,510
+zombie factory.
+
+293
+00:12:44,510 --> 00:12:47,550
+So here we've got our armed
+zombie, sequence name, we get
+
+294
+00:12:47,550 --> 00:12:50,280
+the unique name, association
+weapon, which we just learned
+
+295
+00:12:50,280 --> 00:12:50,910
+about before.
+
+296
+00:12:50,910 --> 00:12:54,330
+So whenever we create a zombie,
+it will automatically
+
+297
+00:12:54,330 --> 00:12:55,530
+have a weapon.
+
+298
+00:12:55,530 --> 00:12:57,120
+It's got a graveyard
+of Oak Park.
+
+299
+00:12:57,120 --> 00:12:59,840
+That's great, except that if you
+actually try to use this
+
+300
+00:12:59,840 --> 00:13:02,050
+it's going to explode, and it's
+going to explode because
+
+301
+00:13:02,050 --> 00:13:03,670
+Factory Girl doesn't
+know anything
+
+302
+00:13:03,670 --> 00:13:05,400
+about an armed zombie.
+
+303
+00:13:05,400 --> 00:13:07,900
+Because this factory is defined
+at the top level,
+
+304
+00:13:07,900 --> 00:13:09,930
+there is no parent
+to this factory.
+
+305
+00:13:09,930 --> 00:13:12,040
+It's just going to take
+the name and try to
+
+306
+00:13:12,040 --> 00:13:13,250
+turn it into a constant.
+
+307
+00:13:13,250 --> 00:13:14,800
+So it's going to say OK,
+you want a factory
+
+308
+00:13:14,800 --> 00:13:16,050
+called armed_zombie?
+
+309
+00:13:16,050 --> 00:13:18,940
+I'm going to assume you have
+an ArmedZombie class.
+
+310
+00:13:18,940 --> 00:13:20,790
+That's not going to work in this
+case, so how do we get
+
+311
+00:13:20,790 --> 00:13:21,780
+around that?
+
+312
+00:13:21,780 --> 00:13:25,000
+Well, factories actually
+take parameters.
+
+313
+00:13:25,000 --> 00:13:25,970
+They're optional.
+
+314
+00:13:25,970 --> 00:13:28,800
+In this case we could
+say, class zombie.
+
+315
+00:13:28,800 --> 00:13:30,580
+And so what that's going to say
+is, Factory Girl's going
+
+316
+00:13:30,580 --> 00:13:33,390
+to say, you need an armed
+zombie, I know how to make an
+
+317
+00:13:33,390 --> 00:13:35,500
+armed zombie and I know what
+class represents and armed
+
+318
+00:13:35,500 --> 00:13:37,580
+zombie and everything
+will be great.
+
+319
+00:13:37,580 --> 00:13:41,220
+Or better yet, since we had
+already defined a zombie
+
+320
+00:13:41,220 --> 00:13:44,660
+factory, we could just define
+an armed zombie as a
+
+321
+00:13:44,660 --> 00:13:47,720
+subfactory to the original one
+and it will just inherit the
+
+322
+00:13:47,720 --> 00:13:50,680
+inferred name from the parent.
+
+323
+00:13:50,680 --> 00:13:53,710
+And even better, we might say
+well, for this particular
+
+324
+00:13:53,710 --> 00:13:57,000
+factory, we don't just want the
+generic weapon, which if
+
+325
+00:13:57,000 --> 00:13:58,990
+you remember back was
+a broadsword.
+
+326
+00:13:58,990 --> 00:14:01,930
+Maybe for this particular
+factory all of these zombies
+
+327
+00:14:01,930 --> 00:14:06,640
+have hatchets, and so we can
+say association, weapon,
+
+328
+00:14:06,640 --> 00:14:07,890
+factory, hatchet.
+
+329
+00:14:07,890 --> 00:14:10,640
+
+
+330
+00:14:10,640 --> 00:14:13,070
+So how do factories actually
+look in tests?
+
+331
+00:14:13,070 --> 00:14:15,250
+We've seen how they operate,
+we've seen how to define them,
+
+332
+00:14:15,250 --> 00:14:17,190
+let's see how to actually
+use them.
+
+333
+00:14:17,190 --> 00:14:19,770
+So here's a test that we might
+have written earlier at the
+
+334
+00:14:19,770 --> 00:14:20,690
+unit level.
+
+335
+00:14:20,690 --> 00:14:23,880
+So in this case we are loading a
+zombie from the fixtures, we
+
+336
+00:14:23,880 --> 00:14:27,150
+are decapitating the zombie, and
+we are asserting that his
+
+337
+00:14:27,150 --> 00:14:30,050
+status is now dead again.
+
+338
+00:14:30,050 --> 00:14:32,360
+It's fine, it's a perfectly
+good test.
+
+339
+00:14:32,360 --> 00:14:35,280
+There's a couple of issues here,
+though, in that one,
+
+340
+00:14:35,280 --> 00:14:39,155
+we're still using fixtures, but
+two, we don't know what
+
+341
+00:14:39,155 --> 00:14:42,700
+the status was necessarily
+before we called decapitate.
+
+342
+00:14:42,700 --> 00:14:45,810
+So this test could be passing,
+because maybe the fixture
+
+343
+00:14:45,810 --> 00:14:48,630
+actually defined his status as
+dead again-- decapitate didn't
+
+344
+00:14:48,630 --> 00:14:52,640
+actually do anything, and here
+we are, a passing test that
+
+345
+00:14:52,640 --> 00:14:54,360
+didn't actually test anything.
+
+346
+00:14:54,360 --> 00:14:58,180
+So maybe to get around that you
+had a particular fixture
+
+347
+00:14:58,180 --> 00:15:01,110
+called not dead again zombie.
+
+348
+00:15:01,110 --> 00:15:03,630
+Maybe the status was dead
+in the fixture.
+
+349
+00:15:03,630 --> 00:15:06,580
+So in this case, you're kind
+of saying I know that it
+
+350
+00:15:06,580 --> 00:15:08,125
+wasn't dead again
+to start with.
+
+351
+00:15:08,125 --> 00:15:10,470
+I'm asserting that after
+decapitate it's dead again.
+
+352
+00:15:10,470 --> 00:15:12,900
+That's a better test,
+but you can see we
+
+353
+00:15:12,900 --> 00:15:14,340
+now have new fixtures.
+
+354
+00:15:14,340 --> 00:15:17,690
+So using factories, we might
+actually just say zombie
+
+355
+00:15:17,690 --> 00:15:20,380
+equals FactoryGirl.build
+zombie.
+
+356
+00:15:20,380 --> 00:15:22,410
+In this case, I used build
+instead of create because I
+
+357
+00:15:22,410 --> 00:15:24,880
+don't actually care if it's
+saved, but we're running into
+
+358
+00:15:24,880 --> 00:15:27,680
+the original issue of we don't
+explicitly know what the
+
+359
+00:15:27,680 --> 00:15:30,020
+status was before decapitate
+was called.
+
+360
+00:15:30,020 --> 00:15:33,150
+So we might get around that by
+just doing a run time setting
+
+361
+00:15:33,150 --> 00:15:36,010
+and saying status is dead when
+I create you, I'm going to
+
+362
+00:15:36,010 --> 00:15:37,400
+decapitate you, I'm
+going to make sure
+
+363
+00:15:37,400 --> 00:15:40,450
+you're dead again after.
+
+364
+00:15:40,450 --> 00:15:42,490
+So now that we've seen what it
+looks like at unit level,
+
+365
+00:15:42,490 --> 00:15:44,840
+let's take a look at an
+integration test.
+
+366
+00:15:44,840 --> 00:15:47,410
+So here's something that we kind
+of saw a little bit of
+
+367
+00:15:47,410 --> 00:15:49,730
+earlier, so we're going to
+test that navigation is
+
+368
+00:15:49,730 --> 00:15:51,340
+available to the zombie page.
+
+369
+00:15:51,340 --> 00:15:53,920
+We are going to load a zombie
+from the fixtures, we're going
+
+370
+00:15:53,920 --> 00:15:56,610
+to load a tweet for that zombie
+from the fixtures,
+
+371
+00:15:56,610 --> 00:15:58,720
+we're going to visit the root
+URL-- again, we're using
+
+372
+00:15:58,720 --> 00:15:59,880
+Capybara here--
+
+373
+00:15:59,880 --> 00:16:02,870
+and we're going to say within a
+particular area of the page
+
+374
+00:16:02,870 --> 00:16:05,650
+we want to make sure there is a
+link to the zombie and that
+
+375
+00:16:05,650 --> 00:16:08,400
+when I click on that link, I end
+up on the zombie's page.
+
+376
+00:16:08,400 --> 00:16:11,360
+So using factories, we
+could say zombie
+
+377
+00:16:11,360 --> 00:16:12,810
+equals factory zombie.
+
+378
+00:16:12,810 --> 00:16:15,190
+We could say tweet equals
+factory tweet.
+
+379
+00:16:15,190 --> 00:16:17,460
+In this case, you can see I
+actually passed the zombie
+
+380
+00:16:17,460 --> 00:16:20,290
+into the tweet, and that's
+because the tweet factory, in
+
+381
+00:16:20,290 --> 00:16:23,640
+all likelihood, has an
+association to a zombie
+
+382
+00:16:23,640 --> 00:16:26,420
+already and if I just said
+factory tweet, it's actually
+
+383
+00:16:26,420 --> 00:16:29,470
+going to create a new tweet with
+a new zombie that isn't
+
+384
+00:16:29,470 --> 00:16:31,460
+the same one that
+I just created.
+
+385
+00:16:31,460 --> 00:16:33,420
+So in this case, I pass in the
+zombie that I've already
+
+386
+00:16:33,420 --> 00:16:36,820
+created so it overrides that
+autocreation, and now I have a
+
+387
+00:16:36,820 --> 00:16:38,380
+zombie, a tweet, and everything
+
+388
+00:16:38,380 --> 00:16:40,190
+else stays the same.
+
+389
+00:16:40,190 --> 00:16:43,490
+Even better than that, I could
+actually just say tweet equals
+
+390
+00:16:43,490 --> 00:16:46,240
+factory tweet knowing that it
+would create a tweet and a
+
+391
+00:16:46,240 --> 00:16:48,640
+zombie for that tweet, and then
+I could just say zombie
+
+392
+00:16:48,640 --> 00:16:50,630
+equals tweet.zombie.
+
+393
+00:16:50,630 --> 00:16:53,610
+I only called a factory once, I
+happen to know that it will
+
+394
+00:16:53,610 --> 00:16:55,960
+automatically create the
+association for me.
+
+395
+00:16:55,960 --> 00:16:57,453
+Everything else stays
+the same.
+
+396
+00:16:57,453 --> 00:16:59,870
+[MUSIC PLAYING]
+
+397
+00:16:59,870 --> 00:17:02,700
+Congratulations, you've made
+to the end of all of the
+
+398
+00:17:02,700 --> 00:17:06,460
+videos for this course, and
+you now know how to make a
+
+399
+00:17:06,460 --> 00:17:09,069
+zombie factory, and we're
+actually going to test you on
+
+400
+00:17:09,069 --> 00:17:10,480
+that right now.
+
+401
+00:17:10,480 --> 00:17:13,540
+But please stay tuned because at
+the end of your challenges,
+
+402
+00:17:13,540 --> 00:17:15,810
+we're going to have a wrap up
+video to tell you where you
+
+403
+00:17:15,810 --> 00:17:17,060
+can go to learn more.
+
+404
+00:17:17,060 --> 00:17:20,832

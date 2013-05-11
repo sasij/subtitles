@@ -1,0 +1,499 @@
+1
+00:00:00,000 --> 00:00:00,260
+
+2
+00:00:00,260 --> 00:00:01,070
+Congratulations.
+
+3
+00:00:01,070 --> 00:00:03,830
+You've made it to the end
+of Rails For Zombies 2.
+
+4
+00:00:03,830 --> 00:00:06,770
+You deserve a lollipop with
+a first prize on it.
+
+5
+00:00:06,770 --> 00:00:07,710
+Or, or wait.
+
+6
+00:00:07,710 --> 00:00:09,780
+How about a heart on a stick?
+
+7
+00:00:09,780 --> 00:00:10,980
+Yeah, that's more zombie like.
+
+8
+00:00:10,980 --> 00:00:11,430
+Oh, wait.
+
+9
+00:00:11,430 --> 00:00:14,250
+Oh, wait, better yet, how
+about a brain pop?
+
+10
+00:00:14,250 --> 00:00:15,110
+Here's what's crazy.
+
+11
+00:00:15,110 --> 00:00:19,250
+There's really such a thing
+as a brain pop.
+
+12
+00:00:19,250 --> 00:00:21,640
+Everything I'm about to talk
+about, including the brain
+
+13
+00:00:21,640 --> 00:00:24,400
+pops, can be found on the
+links in the sidebar,
+
+14
+00:00:24,400 --> 00:00:27,040
+including a Rails For Zombies
+2 t-shirt which looks like
+
+15
+00:00:27,040 --> 00:00:30,100
+this on the front and
+this on the back.
+
+16
+00:00:30,100 --> 00:00:32,619
+We also still have Rails For
+Zombies one t-shirts available
+
+17
+00:00:32,619 --> 00:00:34,606
+if you want to go retro.
+
+18
+00:00:34,606 --> 00:00:36,470
+You've come pretty far learning
+Rails, but you're
+
+19
+00:00:36,470 --> 00:00:38,210
+probably wondering
+where to go next.
+
+20
+00:00:38,210 --> 00:00:39,220
+Well, it's a good question.
+
+21
+00:00:39,220 --> 00:00:40,760
+I'm going to give you
+lots of options.
+
+22
+00:00:40,760 --> 00:00:42,570
+First up, you may want to
+download the source for the
+
+23
+00:00:42,570 --> 00:00:44,320
+completed course Rails app.
+
+24
+00:00:44,320 --> 00:00:46,650
+This is a functioning Rails app
+that contains all the code
+
+25
+00:00:46,650 --> 00:00:49,370
+samples you saw in the slides,
+and everything you completed
+
+26
+00:00:49,370 --> 00:00:50,650
+in the challenges.
+
+27
+00:00:50,650 --> 00:00:53,220
+If you've already created a
+Rails app or two on your own,
+
+28
+00:00:53,220 --> 00:00:55,400
+or, you know, you go and do
+that, you might want to come
+
+29
+00:00:55,400 --> 00:00:58,030
+back and check out our Rails
+best practices course.
+
+30
+00:00:58,030 --> 00:01:00,850
+We go over ways to keep your
+application organized and more
+
+31
+00:01:00,850 --> 00:01:01,950
+maintainable.
+
+32
+00:01:01,950 --> 00:01:04,099
+When it's time to create email
+subscriptions on your Rails
+
+33
+00:01:04,099 --> 00:01:06,510
+app and do mass mailing, don't
+forget to check out
+
+34
+00:01:06,510 --> 00:01:09,960
+madmimi.com and use the
+Mad Mimi Ruby Gen.
+
+35
+00:01:09,960 --> 00:01:12,140
+You might notice below you have
+some prizes, including a
+
+36
+00:01:12,140 --> 00:01:13,700
+link that will get
+you one month of
+
+37
+00:01:13,700 --> 00:01:15,910
+RailsCasts Pro for free.
+
+38
+00:01:15,910 --> 00:01:18,050
+In case you're not familiar,
+Ryan Bates releases one free
+
+39
+00:01:18,050 --> 00:01:21,000
+Rails screencast over on
+rails.com per week.
+
+40
+00:01:21,000 --> 00:01:23,410
+And recently he decided to
+introduce a pro subscription
+
+41
+00:01:23,410 --> 00:01:26,130
+where he's putting out more
+advanced screencasts.
+
+42
+00:01:26,130 --> 00:01:28,890
+$10.00 off the
+railstutorial.org's PDF
+
+43
+00:01:28,890 --> 00:01:30,005
+screencast bundle.
+
+44
+00:01:30,005 --> 00:01:32,610
+You see, Michael Hartl created
+this great Ruby on Rails
+
+45
+00:01:32,610 --> 00:01:36,270
+tutorial, which if you click
+this book button right here,
+
+46
+00:01:36,270 --> 00:01:37,480
+you can read for free.
+
+47
+00:01:37,480 --> 00:01:39,410
+The whole thing online.
+
+48
+00:01:39,410 --> 00:01:41,350
+If you want to support him,
+though, if you go back to the
+
+49
+00:01:41,350 --> 00:01:44,140
+front page and scroll down,
+you'll see that the PDF is
+
+50
+00:01:44,140 --> 00:01:48,360
+available for $26.00 the
+screencast $85.00, and both
+
+51
+00:01:48,360 --> 00:01:51,510
+the screencast and the
+PDF for $95.00.
+
+52
+00:01:51,510 --> 00:01:52,510
+And here's the cool thing.
+
+53
+00:01:52,510 --> 00:01:55,780
+If you use the discount code
+codeschool, you can get $10.00
+
+54
+00:01:55,780 --> 00:01:58,080
+off the bundle, which means it's
+the same price as getting
+
+55
+00:01:58,080 --> 00:02:00,360
+just the screencast, so you
+might as well get that.
+
+56
+00:02:00,360 --> 00:02:02,110
+Also, a great resource
+for learning Rails
+
+57
+00:02:02,110 --> 00:02:03,640
+are the Rails guides.
+
+58
+00:02:03,640 --> 00:02:04,070
+Really.
+
+59
+00:02:04,070 --> 00:02:06,630
+Take the time, read through
+these, they are full of great
+
+60
+00:02:06,630 --> 00:02:08,240
+information.
+
+61
+00:02:08,240 --> 00:02:11,050
+Also, Ryan Bates' railscast.com
+is a great
+
+62
+00:02:11,050 --> 00:02:13,600
+resource for learning all sorts
+of things about Rails
+
+63
+00:02:13,600 --> 00:02:15,150
+and Rails libraries.
+
+64
+00:02:15,150 --> 00:02:17,280
+I'm also a really big fan of the
+Agile Web Development with
+
+65
+00:02:17,280 --> 00:02:17,910
+Rails book.
+
+66
+00:02:17,910 --> 00:02:21,260
+That's how I learned Rails
+with the first edition.
+
+67
+00:02:21,260 --> 00:02:22,800
+Now it's in its fourth
+edition, and it even
+
+68
+00:02:22,800 --> 00:02:25,300
+covers Rails 3.1.
+
+69
+00:02:25,300 --> 00:02:27,535
+Also got to make sure you know
+about Ruby 5, that's Envy
+
+70
+00:02:27,535 --> 00:02:29,880
+Labs' twice weekly news podcast
+where we cover the
+
+71
+00:02:29,880 --> 00:02:31,905
+latest news in the
+Ruby community.
+
+72
+00:02:31,905 --> 00:02:34,650
+You can find it on iTunes, and
+it's a really good thing to
+
+73
+00:02:34,650 --> 00:02:37,100
+listen to you, like, say, when
+you're mowing the lawn,
+
+74
+00:02:37,100 --> 00:02:39,800
+driving your hot dog,
+or washing your cat.
+
+75
+00:02:39,800 --> 00:02:42,695
+And if you're not an audio
+person, that's OK.
+
+76
+00:02:42,695 --> 00:02:43,990
+You can subscribe
+to the RSS feed.
+
+77
+00:02:43,990 --> 00:02:45,942
+It's full of a lot of
+information you should know as
+
+78
+00:02:45,942 --> 00:02:47,120
+a Ruby developer.
+
+79
+00:02:47,120 --> 00:02:48,900
+Lastly, got to let you know
+about Top Ruby Jobs.
+
+80
+00:02:48,900 --> 00:02:51,150
+If you're looking for a Ruby job
+now, or you're trying to
+
+81
+00:02:51,150 --> 00:02:53,980
+recruit a Ruby developer,
+check out Top Ruby Jobs.
+
+82
+00:02:53,980 --> 00:02:56,860
+And now we've reached
+the credits.
+
+83
+00:02:56,860 --> 00:02:59,490
+First we need to thank everybody
+at Envy Labs.
+
+84
+00:02:59,490 --> 00:03:01,030
+There's now, at this point when
+I'm making this video,
+
+85
+00:03:01,030 --> 00:03:03,740
+there's 20 people here, and each
+of them contributed in
+
+86
+00:03:03,740 --> 00:03:05,630
+some way to this video,
+most definitely.
+
+87
+00:03:05,630 --> 00:03:07,700
+Got to thank Oliver Tosh,
+who did all the film.
+
+88
+00:03:07,700 --> 00:03:10,450
+Production Tyler Koeller, who
+did the intro video, and
+
+89
+00:03:10,450 --> 00:03:11,952
+Everett Simpson, who did
+the jingle that's
+
+90
+00:03:11,952 --> 00:03:12,950
+stuck in your head.
+
+91
+00:03:12,950 --> 00:03:15,390
+And of course, I need
+to thank you.
+
+92
+00:03:15,390 --> 00:03:18,130
+Thank you for sporting Code
+School, getting all the way
+
+93
+00:03:18,130 --> 00:03:20,430
+through the course, learning
+some Rails.
+
+94
+00:03:20,430 --> 00:03:22,880
+If you want to show
+your appreciation,
+
+95
+00:03:22,880 --> 00:03:24,500
+please give us a review.
+
+96
+00:03:24,500 --> 00:03:26,840
+Click on that review button on
+this page, and let us know
+
+97
+00:03:26,840 --> 00:03:27,740
+what you think.
+
+98
+00:03:27,740 --> 00:03:29,880
+This also might be a good
+opportunity to tell all your
+
+99
+00:03:29,880 --> 00:03:32,200
+Twitter friends about your
+awesome accomplishment.
+
+100
+00:03:32,200 --> 00:03:33,890
+See that Twitter link
+over there?
+
+101
+00:03:33,890 --> 00:03:38,540
+If you have any feedback, feel
+free to tweet @codeschool, and
+
+102
+00:03:38,540 --> 00:03:40,600
+definitely follow Code School
+if you want to be aware of
+
+103
+00:03:40,600 --> 00:03:42,350
+additional courses that
+we're going to create.
+
+104
+00:03:42,350 --> 00:03:45,160
+There are definitely more Rails
+ones in the pipeline.
+
+105
+00:03:45,160 --> 00:03:48,170
+So, I hope you have a great
+week, and thanks for playing.
+
+106
+00:03:48,170 --> 00:03:50,613

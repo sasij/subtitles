@@ -1,0 +1,1445 @@
+1
+00:00:00,000 --> 00:00:00,590
+
+2
+00:00:00,590 --> 00:00:02,890
+You're watching Rails Best
+Practices: Super Deluxe
+
+3
+00:00:02,890 --> 00:00:05,330
+Championship Edition.
+I'm Greg Pollack.
+
+4
+00:00:05,330 --> 00:00:07,550
+And this is level five.
+
+5
+00:00:07,550 --> 00:00:14,220
+[HUMMING]
+
+6
+00:00:14,220 --> 00:00:22,194
+
+7
+00:00:22,194 --> 00:00:28,190
+[HUMMING]
+
+8
+00:00:28,190 --> 00:00:30,500
+You've made it all the way to
+the final level, level five,
+
+9
+00:00:30,500 --> 00:00:32,490
+where we're going to be taking
+a look at how to improve some
+
+10
+00:00:32,490 --> 00:00:33,810
+of your view code.
+
+11
+00:00:33,810 --> 00:00:36,540
+So remember, the example we're
+working through is Twitter.
+
+12
+00:00:36,540 --> 00:00:39,890
+And on the sidebar of this main
+Twitter page, we've got a
+
+13
+00:00:39,890 --> 00:00:40,950
+bunch of information.
+
+14
+00:00:40,950 --> 00:00:43,410
+And we're going to take a closer
+look, in particular, at
+
+15
+00:00:43,410 --> 00:00:47,960
+the Following and
+Followers list.
+
+16
+00:00:47,960 --> 00:00:50,410
+It may seem intuitive, but one
+of the most important best
+
+17
+00:00:50,410 --> 00:00:53,430
+practices for view is to keep
+the queries out of your
+
+18
+00:00:53,430 --> 00:00:54,330
+view.
+
+19
+00:00:54,330 --> 00:00:56,900
+So for this example, we might
+have something that reads like
+
+20
+00:00:56,900 --> 00:01:00,030
+this, where we're listing out
+who we should follow.
+
+21
+00:01:00,030 --> 00:01:02,860
+And it really should have
+an instance variable.
+
+22
+00:01:02,860 --> 00:01:05,060
+So let's go ahead
+and add that.
+
+23
+00:01:05,060 --> 00:01:08,220
+So we're going to move the query
+down into our tweets
+
+24
+00:01:08,220 --> 00:01:10,630
+controller, store it in
+an instance variable
+
+25
+00:01:10,630 --> 00:01:12,540
+called who_to_follow.
+
+26
+00:01:12,540 --> 00:01:15,190
+And then just access that who
+to follow instance variable
+
+27
+00:01:15,190 --> 00:01:18,730
+back up in our view.
+
+28
+00:01:18,730 --> 00:01:20,590
+Let's take a look at some
+more view code.
+
+29
+00:01:20,590 --> 00:01:23,000
+So here we have a div, where
+we're listing out our
+
+30
+00:01:23,000 --> 00:01:26,230
+followers, the current count
+of our followers, going
+
+31
+00:01:26,230 --> 00:01:29,110
+through and listing out each
+of them with an image.
+
+32
+00:01:29,110 --> 00:01:31,680
+And then down below, we have
+the people we're following,
+
+33
+00:01:31,680 --> 00:01:32,495
+the following count.
+
+34
+00:01:32,495 --> 00:01:34,480
+And then we're looping through
+each of the people that we
+
+35
+00:01:34,480 --> 00:01:36,120
+recently followed.
+
+36
+00:01:36,120 --> 00:01:38,750
+This piece of code is a good
+candidate for a helper for two
+
+37
+00:01:38,750 --> 00:01:40,030
+different reasons.
+
+38
+00:01:40,030 --> 00:01:43,650
+First of all, we've got a lot
+of complex Ruby code in our
+
+39
+00:01:43,650 --> 00:01:46,460
+HTML, which makes it look
+a little bit cryptic.
+
+40
+00:01:46,460 --> 00:01:48,990
+And second of all, you can see
+here, both of these snippets
+
+41
+00:01:48,990 --> 00:01:51,400
+of HTML are very similar.
+
+42
+00:01:51,400 --> 00:01:53,760
+So similar that we could create
+a single helper that
+
+43
+00:01:53,760 --> 00:01:56,900
+creates both sets of divs.
+
+44
+00:01:56,900 --> 00:01:58,660
+Once we create our helper,
+our view is going to look
+
+45
+00:01:58,660 --> 00:02:02,150
+something like this,
+where we have two
+
+46
+00:02:02,150 --> 00:02:03,840
+different Follow boxes.
+
+47
+00:02:03,840 --> 00:02:06,280
+And we pass in all of the
+attributes needed
+
+48
+00:02:06,280 --> 00:02:08,460
+to render the HTML.
+
+49
+00:02:08,460 --> 00:02:10,889
+So now if we open up the tweets
+helper, we can write
+
+50
+00:02:10,889 --> 00:02:12,110
+the follow_box method.
+
+51
+00:02:12,110 --> 00:02:14,510
+The first thing we're going to
+do is just simply store the
+
+52
+00:02:14,510 --> 00:02:17,150
+HTML in an str variable.
+
+53
+00:02:17,150 --> 00:02:19,790
+We're then going to go through
+each of the recent followers,
+
+54
+00:02:19,790 --> 00:02:22,520
+store that in the string, and
+then call raw on the HTML
+
+55
+00:02:22,520 --> 00:02:25,150
+before it gets returned so that
+it's not escaped when we
+
+56
+00:02:25,150 --> 00:02:27,100
+print it out on the page.
+
+57
+00:02:27,100 --> 00:02:29,840
+I know, I know, this helper
+looks really ugly.
+
+58
+00:02:29,840 --> 00:02:32,550
+So let's go ahead and start
+cleaning it up.
+
+59
+00:02:32,550 --> 00:02:34,700
+The first thing we can
+do is use a proper 
+
+60
+00:02:34,700 --> 00:02:36,250
+link_to and image_tag.
+
+61
+00:02:36,250 --> 00:02:38,390
+So let's go ahead and
+rearrange it.
+
+62
+00:02:38,390 --> 00:02:41,400
+So we can say, link_to user do
+
+63
+00:02:41,400 --> 00:02:45,240
+So we're using the block form
+of the link_to method.
+
+64
+00:02:45,240 --> 00:02:48,660
+image_tag, just like that.
+
+65
+00:02:48,660 --> 00:02:50,050
+The next way we can clean
+this up is by
+
+66
+00:02:50,050 --> 00:02:52,200
+using some HTML helpers.
+
+67
+00:02:52,200 --> 00:02:54,520
+So let's go ahead and do that.
+
+68
+00:02:54,520 --> 00:02:56,370
+So here you can see
+we're going to use
+
+69
+00:02:56,370 --> 00:02:59,790
+content_tag, div class.
+
+70
+00:02:59,790 --> 00:03:01,550
+And then content_tag.
+
+71
+00:03:01,550 --> 00:03:03,910
+And then we're going to
+enclose it in a block.
+
+72
+00:03:03,910 --> 00:03:06,770
+The last way we can improve this
+code is by trying to get
+
+73
+00:03:06,770 --> 00:03:09,270
+rid of that str variable.
+
+74
+00:03:09,270 --> 00:03:10,490
+It's just sort of annoying
+that we have
+
+75
+00:03:10,490 --> 00:03:12,470
+to carry that around.
+
+76
+00:03:12,470 --> 00:03:15,640
+To get rid of that variable,
+we can rewrite it like so.
+
+77
+00:03:15,640 --> 00:03:17,890
+So here you can see we're just
+adding a bunch of these
+
+78
+00:03:17,890 --> 00:03:18,860
+strings together.
+
+79
+00:03:18,860 --> 00:03:21,800
+We're doing a collect instead
+of an each, an then joining
+
+80
+00:03:21,800 --> 00:03:23,050
+the collect together.
+
+81
+00:03:23,050 --> 00:03:26,870
+
+82
+00:03:26,870 --> 00:03:29,340
+So now we're going to take a
+look at another example from
+
+83
+00:03:29,340 --> 00:03:30,510
+this Twitter page.
+
+84
+00:03:30,510 --> 00:03:32,590
+We're going to look at
+the Trends section.
+
+85
+00:03:32,590 --> 00:03:34,640
+If you've played around with
+this before, you'll know that
+
+86
+00:03:34,640 --> 00:03:35,860
+it's Ajax friendly.
+
+87
+00:03:35,860 --> 00:03:38,780
+So when you change the country,
+it'll actually change
+
+88
+00:03:38,780 --> 00:03:40,280
+the trends.
+
+89
+00:03:40,280 --> 00:03:44,290
+So we're basically going to
+create a partial for that
+
+90
+00:03:44,290 --> 00:03:46,140
+particular section.
+
+91
+00:03:46,140 --> 00:03:47,450
+You know, you create a partial
+for two reasons.
+
+92
+00:03:47,450 --> 00:03:49,720
+One, if we're going to reuse
+that content elsewhere.
+
+93
+00:03:49,720 --> 00:03:51,800
+And the second reason you might
+want to do it is if
+
+94
+00:03:51,800 --> 00:03:54,580
+you're doing some form of Ajax
+and you want to re-render that
+
+95
+00:03:54,580 --> 00:03:57,040
+part of the page.
+
+96
+00:03:57,040 --> 00:03:59,360
+So here in our indexed view, we
+might have a Trends title.
+
+97
+00:03:59,360 --> 00:04:02,230
+And then we're rendering out
+the trending partial.
+
+98
+00:04:02,230 --> 00:04:05,430
+Our trending partial might
+look something like this.
+
+99
+00:04:05,430 --> 00:04:08,360
+We have a trending area, which
+might be the country.
+
+100
+00:04:08,360 --> 00:04:10,740
+We then loop through all the
+different topics which are
+
+101
+00:04:10,740 --> 00:04:13,830
+trending, link to them, and add
+an image_tag if they're
+
+102
+00:04:13,830 --> 00:04:15,560
+marked as promoted.
+
+103
+00:04:15,560 --> 00:04:18,990
+The first thing we can do to
+improve this code is up at the
+
+104
+00:04:18,990 --> 00:04:23,160
+top of the page, instead of
+doing render partial trending,
+
+105
+00:04:23,160 --> 00:04:26,700
+we can just do render
+trending.
+
+106
+00:04:26,700 --> 00:04:28,840
+The other thing that's kind of
+gross about this partial is
+
+107
+00:04:28,840 --> 00:04:31,380
+that we have some instance
+variables in there.
+
+108
+00:04:31,380 --> 00:04:33,740
+It's sort of a bad practice to
+have instance variables in
+
+109
+00:04:33,740 --> 00:04:34,630
+your partials.
+
+110
+00:04:34,630 --> 00:04:37,280
+So let's go ahead and
+move those up into
+
+111
+00:04:37,280 --> 00:04:38,850
+our original view.
+
+112
+00:04:38,850 --> 00:04:41,750
+We'll then specify local
+variables, which we'll then
+
+113
+00:04:41,750 --> 00:04:43,850
+use inside of the partial.
+
+114
+00:04:43,850 --> 00:04:47,550
+In this case, called
+area and topics.
+
+115
+00:04:47,550 --> 00:04:50,230
+You see in that loop we're
+pretty each of the topics
+
+116
+00:04:50,230 --> 00:04:52,720
+using an li, or list item?
+
+117
+00:04:52,720 --> 00:04:55,140
+Well, if there's a standardized
+way of printing
+
+118
+00:04:55,140 --> 00:04:57,960
+out topics that we're using
+throughout the website, we
+
+119
+00:04:57,960 --> 00:05:00,720
+might consider pulling that
+out into its own partial,
+
+120
+00:05:00,720 --> 00:05:02,940
+which might look something
+like this.
+
+121
+00:05:02,940 --> 00:05:07,070
+So maybe inside of the topics
+view directory, we have a
+
+122
+00:05:07,070 --> 00:05:09,930
+topic partial, like so.
+
+123
+00:05:09,930 --> 00:05:12,890
+And then inside of our trending
+partial, we would
+
+124
+00:05:12,890 --> 00:05:17,160
+just do render topic,
+topic, topic, topic.
+
+125
+00:05:17,160 --> 00:05:19,660
+There's a lot of topics
+there, isn't there?
+
+126
+00:05:19,660 --> 00:05:21,580
+Yeah, not so nice.
+
+127
+00:05:21,580 --> 00:05:22,900
+There's a better way
+to write this.
+
+128
+00:05:22,900 --> 00:05:25,590
+We can simply do render topic.
+
+129
+00:05:25,590 --> 00:05:28,790
+And by default, it's going to
+use the class name to find the
+
+130
+00:05:28,790 --> 00:05:33,700
+partial in the topics directory
+called topic.
+
+131
+00:05:33,700 --> 00:05:36,270
+There's one more way we can
+simplify this further by
+
+132
+00:05:36,270 --> 00:05:39,440
+bringing the collection into
+the partial syntax.
+
+133
+00:05:39,440 --> 00:05:43,060
+So we simply say, render
+partial => topics/topic,
+
+134
+00:05:43,060 --> 00:05:45,020
+collection => topics.
+
+135
+00:05:45,020 --> 00:05:47,120
+And it's going to use that
+partial and iterate through it
+
+136
+00:05:47,120 --> 00:05:49,700
+for every item in
+that collection.
+
+137
+00:05:49,700 --> 00:05:51,770
+Again, there's a better
+way to write this.
+
+138
+00:05:51,770 --> 00:05:54,850
+We can simply write,
+render topics.
+
+139
+00:05:54,850 --> 00:05:56,540
+And if everything is named
+right, it's going to
+
+140
+00:05:56,540 --> 00:05:57,790
+print out our list.
+
+141
+00:05:57,790 --> 00:05:59,870
+
+142
+00:05:59,870 --> 00:06:02,520
+Next up, we're going to look at
+a few small view snippets
+
+143
+00:06:02,520 --> 00:06:04,060
+that might look familiar.
+
+144
+00:06:04,060 --> 00:06:06,020
+If you've got some code that
+looks like this, where you're
+
+145
+00:06:06,020 --> 00:06:09,480
+checking to see if something is
+blank, you can also write
+
+146
+00:06:09,480 --> 00:06:13,910
+that as, unless user.email?
+
+147
+00:06:13,910 --> 00:06:16,940
+So you can rid of using
+the blank keyword.
+
+148
+00:06:16,940 --> 00:06:18,420
+Also we have something
+that looks like,
+
+149
+00:06:18,420 --> 00:06:19,940
+if user.email.present?
+
+150
+00:06:19,940 --> 00:06:22,500
+So present is the opposite
+of blank.
+
+151
+00:06:22,500 --> 00:06:26,530
+We can write, if user.email?
+
+152
+00:06:26,530 --> 00:06:29,130
+
+153
+00:06:29,130 --> 00:06:32,310
+Let's say we want to print out
+the location of the user based
+
+154
+00:06:32,310 --> 00:06:35,100
+on what location information
+we have.
+
+155
+00:06:35,100 --> 00:06:36,300
+We can do something like this.
+
+156
+00:06:36,300 --> 00:06:39,030
+So we want to print out the city
+if we have the city, the
+
+157
+00:06:39,030 --> 00:06:40,540
+state if we have the state.
+
+158
+00:06:40,540 --> 00:06:42,480
+Otherwise just "unknown."
+
+159
+00:06:42,480 --> 00:06:43,950
+There's a problem
+here, though.
+
+160
+00:06:43,950 --> 00:06:48,500
+If city or state is actually a
+blank string, it's going to
+
+161
+00:06:48,500 --> 00:06:51,830
+return just that blank string.
+
+162
+00:06:51,830 --> 00:06:53,710
+So how might we get
+around that?
+
+163
+00:06:53,710 --> 00:06:56,490
+One way you may have dealt with
+this problem is simply by
+
+164
+00:06:56,490 --> 00:06:57,840
+checking to see if
+it's present.
+
+165
+00:06:57,840 --> 00:06:59,830
+And if it's present,
+set a variable.
+
+166
+00:06:59,830 --> 00:07:03,330
+And then you can really do
+city or state or "unknown."
+
+167
+00:07:03,330 --> 00:07:05,420
+But there's a better way
+to do this, using
+
+168
+00:07:05,420 --> 00:07:06,990
+the presence method.
+
+169
+00:07:06,990 --> 00:07:10,480
+So here, it's checking to
+see if city is blank.
+
+170
+00:07:10,480 --> 00:07:12,650
+If it's blank, then it's
+returning false and moving on
+
+171
+00:07:12,650 --> 00:07:14,060
+to the next item.
+
+172
+00:07:14,060 --> 00:07:15,570
+Is state blank?
+
+173
+00:07:15,570 --> 00:07:16,835
+Maybe it's not like blank.
+
+174
+00:07:16,835 --> 00:07:17,550
+Maybe there's something there.
+
+175
+00:07:17,550 --> 00:07:21,200
+And it's going to return
+it at that point.
+
+176
+00:07:21,200 --> 00:07:23,490
+Here's some of view code where
+we're either printing out the
+
+177
+00:07:23,490 --> 00:07:26,460
+city or "unknown."
+
+178
+00:07:26,460 --> 00:07:30,920
+Well, what might happen
+if city is nil?
+
+179
+00:07:30,920 --> 00:07:33,870
+Well, in this case, it's going
+to return undefined method
+
+180
+00:07:33,870 --> 00:07:36,680
+titleize Nil:NilClass.
+
+181
+00:07:36,680 --> 00:07:38,780
+Not so good.
+
+182
+00:07:38,780 --> 00:07:40,050
+How might you deal with this?
+
+183
+00:07:40,050 --> 00:07:44,000
+Well, the simple answer might be
+to just add a conditional.
+
+184
+00:07:44,000 --> 00:07:46,790
+If the user city exists,
+then titleize it.
+
+185
+00:07:46,790 --> 00:07:48,730
+Otherwise, return unknown.
+
+186
+00:07:48,730 --> 00:07:51,330
+You might write this all in
+one line using the ternary
+
+187
+00:07:51,330 --> 00:07:54,120
+operator, something like this.
+
+188
+00:07:54,120 --> 00:07:57,020
+But there's a better way
+to do this using try.
+
+189
+00:07:57,020 --> 00:08:00,370
+So here we can do,
+user.city.try(:titleize)
+
+190
+00:08:00,370 --> 00:08:03,260
+In this case, titleize will only
+be called if city exists.
+
+191
+00:08:03,260 --> 00:08:05,035
+Otherwise, it's just going
+to return "unknown."
+
+192
+00:08:05,035 --> 00:08:08,540
+
+193
+00:08:08,540 --> 00:08:10,450
+Next up, we're going to take
+a look at some HTML that we
+
+194
+00:08:10,450 --> 00:08:13,045
+might use if we had
+favorite tweets.
+
+195
+00:08:13,045 --> 00:08:16,700
+
+196
+00:08:16,700 --> 00:08:19,530
+So we're back in our index view
+where we're iterating
+
+197
+00:08:19,530 --> 00:08:21,200
+through each of the tweets.
+
+198
+00:08:21,200 --> 00:08:24,740
+Our div has a unique ID of tweet
+underscore tweet ID.
+
+199
+00:08:24,740 --> 00:08:28,210
+And we have a special class
+only if that tweet is a
+
+200
+00:08:28,210 --> 00:08:29,660
+favorite of ours.
+
+201
+00:08:29,660 --> 00:08:31,700
+We're then going to print
+out the tweet itself
+
+202
+00:08:31,700 --> 00:08:33,539
+and close the div.
+
+203
+00:08:33,539 --> 00:08:36,669
+Since we have so much Ruby in
+our HTML, this might be a good
+
+204
+00:08:36,669 --> 00:08:39,260
+candidate to refactor
+into a helper.
+
+205
+00:08:39,260 --> 00:08:40,490
+In this case, our helper's
+going to be
+
+206
+00:08:40,490 --> 00:08:43,289
+called tweet_div_for.
+
+207
+00:08:43,289 --> 00:08:46,170
+And it's going to be
+a block helper.
+
+208
+00:08:46,170 --> 00:08:48,230
+We're going to define this
+block helper inside the
+
+209
+00:08:48,230 --> 00:08:49,930
+tweets_helper file.
+
+210
+00:08:49,930 --> 00:08:53,170
+We're sending in the tweet,
+the user, and the block.
+
+211
+00:08:53,170 --> 00:08:54,440
+First, we're going to
+check to see if
+
+212
+00:08:54,440 --> 00:08:55,720
+this tweet is a favorite.
+
+213
+00:08:55,720 --> 00:08:58,340
+We're going to create
+the class variable.
+
+214
+00:08:58,340 --> 00:09:01,160
+We're then going to
+do div for, tweet.
+
+215
+00:09:01,160 --> 00:09:04,220
+When you send a record into div
+for like this, it's going
+
+216
+00:09:04,220 --> 00:09:08,660
+to create an ID consisting of
+the class name followed by the
+
+217
+00:09:08,660 --> 00:09:11,050
+ID, just as we want.
+
+218
+00:09:11,050 --> 00:09:12,280
+We're then going to
+set the class.
+
+219
+00:09:12,280 --> 00:09:13,550
+And then we're going to yield.
+
+220
+00:09:13,550 --> 00:09:17,025
+What yield prints in this
+example is the tweet.status.
+
+221
+00:09:17,025 --> 00:09:21,280
+
+222
+00:09:21,280 --> 00:09:23,160
+Now let's take a deeper look
+at yield and some best
+
+223
+00:09:23,160 --> 00:09:24,970
+practices we can use it with.
+
+224
+00:09:24,970 --> 00:09:27,120
+So you're probably most familiar
+with yield because
+
+225
+00:09:27,120 --> 00:09:28,980
+you've seen it inside your
+layouts, which looks
+
+226
+00:09:28,980 --> 00:09:30,800
+something like this.
+
+227
+00:09:30,800 --> 00:09:34,760
+But what happens when we want to
+insert some content into a
+
+228
+00:09:34,760 --> 00:09:37,950
+certain part of our layout that
+our normal view doesn't
+
+229
+00:09:37,950 --> 00:09:39,410
+have access to?
+
+230
+00:09:39,410 --> 00:09:42,930
+Well, this is where we might
+want to create another yield,
+
+231
+00:09:42,930 --> 00:09:45,410
+give it a name, like sidebar.
+
+232
+00:09:45,410 --> 00:09:47,920
+Then in our view, we can create
+content for block and
+
+233
+00:09:47,920 --> 00:09:50,190
+specify the HTML we
+want printed in
+
+234
+00:09:50,190 --> 00:09:52,460
+that specific location.
+
+235
+00:09:52,460 --> 00:09:56,760
+But what if all of the actions
+in our tweets controller need
+
+236
+00:09:56,760 --> 00:09:58,250
+that sidebar?
+
+237
+00:09:58,250 --> 00:10:01,550
+Well, we could take all of
+the content for blocks.
+
+238
+00:10:01,550 --> 00:10:04,520
+And we could copy and paste them
+into each of the views,
+
+239
+00:10:04,520 --> 00:10:06,430
+which wouldn't be
+very efficient.
+
+240
+00:10:06,430 --> 00:10:09,180
+Or we can do something else.
+
+241
+00:10:09,180 --> 00:10:13,430
+Maybe what we do here is create
+a new layout for
+
+242
+00:10:13,430 --> 00:10:16,730
+our tweets controller
+called with_sidebar.
+
+243
+00:10:16,730 --> 00:10:20,930
+The with sidebar layout has our
+content_for(:sidebar) block.
+
+244
+00:10:20,930 --> 00:10:22,570
+And then we tell our application
+to render the
+
+245
+00:10:22,570 --> 00:10:26,130
+normal application layout.
+
+246
+00:10:26,130 --> 00:10:27,150
+Did I blow your mind?
+
+247
+00:10:27,150 --> 00:10:28,700
+I know it's a little complex.
+
+248
+00:10:28,700 --> 00:10:30,770
+Let's go over it
+one more time.
+
+249
+00:10:30,770 --> 00:10:34,640
+So first, we have our
+layout with sidebar.
+
+250
+00:10:34,640 --> 00:10:37,290
+The layout with sidebar defines
+our content_for.
+
+251
+00:10:37,290 --> 00:10:38,960
+And then we tell our application
+to render the
+
+252
+00:10:38,960 --> 00:10:41,100
+normal layout.
+
+253
+00:10:41,100 --> 00:10:44,090
+Some people call this technique
+nested layouts.
+
+254
+00:10:44,090 --> 00:10:47,100
+And it's really beneficial when
+you have a controller and
+
+255
+00:10:47,100 --> 00:10:49,660
+you want every action in that
+controller to render
+
+256
+00:10:49,660 --> 00:10:50,910
+a content_for block.
+
+257
+00:10:50,910 --> 00:10:53,840
+
+258
+00:10:53,840 --> 00:10:56,610
+I've got one more example I show
+you guys of using yield
+
+259
+00:10:56,610 --> 00:10:58,290
+for a best practice.
+
+260
+00:10:58,290 --> 00:11:03,300
+And it has to do with meta
+content and the title at the
+
+261
+00:11:03,300 --> 00:11:04,630
+top of your page.
+
+262
+00:11:04,630 --> 00:11:06,400
+You see, you take a look
+at this page here.
+
+263
+00:11:06,400 --> 00:11:09,435
+This is the show tweet page, if
+you're actually viewing an
+
+264
+00:11:09,435 --> 00:11:10,560
+individual tweet.
+
+265
+00:11:10,560 --> 00:11:12,630
+And I'm calling attention
+here to the title.
+
+266
+00:11:12,630 --> 00:11:15,810
+
+267
+00:11:15,810 --> 00:11:17,360
+So here's our application
+layout.
+
+268
+00:11:17,360 --> 00:11:19,820
+You can see here we
+have a title.
+
+269
+00:11:19,820 --> 00:11:22,130
+We're optionally setting
+a description.
+
+270
+00:11:22,130 --> 00:11:24,460
+And we also have a default
+if that hasn't been set.
+
+271
+00:11:24,460 --> 00:11:26,820
+And same thing with key words.
+
+272
+00:11:26,820 --> 00:11:29,050
+This is a common pattern you may
+have used in one of your
+
+273
+00:11:29,050 --> 00:11:30,020
+Rails apps.
+
+274
+00:11:30,020 --> 00:11:33,390
+And then, of course, in your
+controller, you set the title
+
+275
+00:11:33,390 --> 00:11:35,170
+of the description
+and the keywords
+
+276
+00:11:35,170 --> 00:11:36,290
+when it really matters.
+
+277
+00:11:36,290 --> 00:11:38,630
+In this case, we're setting
+it on the show action.
+
+278
+00:11:38,630 --> 00:11:40,822
+And we're setting the title
+equal to the user name, the
+
+279
+00:11:40,822 --> 00:11:43,870
+description equal to the status,
+and key words equal to
+
+280
+00:11:43,870 --> 00:11:45,460
+the hashtags.
+
+281
+00:11:45,460 --> 00:11:48,630
+I consider this a bad practice
+for two reasons.
+
+282
+00:11:48,630 --> 00:11:51,160
+First of all, you're cluttering
+up your controller
+
+283
+00:11:51,160 --> 00:11:53,370
+with instance variables.
+
+284
+00:11:53,370 --> 00:11:56,850
+And so every time you need to
+set these, you've got three
+
+285
+00:11:56,850 --> 00:11:59,560
+more instance variables in every
+one of your actions.
+
+286
+00:11:59,560 --> 00:12:02,370
+The second reason why this kind
+of sucks is that you're
+
+287
+00:12:02,370 --> 00:12:04,820
+dealing with stuff that doesn't
+really belong in the
+
+288
+00:12:04,820 --> 00:12:05,340
+controller.
+
+289
+00:12:05,340 --> 00:12:07,790
+These are sort of
+view concerns.
+
+290
+00:12:07,790 --> 00:12:09,430
+So we should probably
+figure out how to
+
+291
+00:12:09,430 --> 00:12:10,940
+move them to the view.
+
+292
+00:12:10,940 --> 00:12:13,490
+So how might we do
+that using yield?
+
+293
+00:12:13,490 --> 00:12:15,820
+In this case, we're going to
+replace each of our instance
+
+294
+00:12:15,820 --> 00:12:18,050
+variables with yield.
+
+295
+00:12:18,050 --> 00:12:19,560
+What does this get us?
+
+296
+00:12:19,560 --> 00:12:21,840
+Well, now we can go into
+each of our views.
+
+297
+00:12:21,840 --> 00:12:25,030
+And we can use content_for to
+set title, description, and
+
+298
+00:12:25,030 --> 00:12:27,090
+keywords and keep
+it in the view,
+
+299
+00:12:27,090 --> 00:12:29,370
+where I think it belongs.
+
+300
+00:12:29,370 --> 00:12:31,730
+If we wanted to make this
+look even nicer, we
+
+301
+00:12:31,730 --> 00:12:34,400
+could create a helper.
+
+302
+00:12:34,400 --> 00:12:35,860
+So in our application
+helper, I'm going to
+
+303
+00:12:35,860 --> 00:12:38,090
+create a title method.
+
+304
+00:12:38,090 --> 00:12:39,530
+I'll create a description
+method.
+
+305
+00:12:39,530 --> 00:12:42,010
+And I'll create a
+keywords method.
+
+306
+00:12:42,010 --> 00:12:46,210
+Then in our view, all we simply
+have to do is title,
+
+307
+00:12:46,210 --> 00:12:48,140
+description, and keywords.
+
+308
+00:12:48,140 --> 00:12:52,250
+And it's become a lot cleaner
+and easier to read.
+
+309
+00:12:52,250 --> 00:12:53,770
+Well, you've watched
+all the videos now,
+
+310
+00:12:53,770 --> 00:12:55,140
+level one through five.
+
+311
+00:12:55,140 --> 00:12:57,670
+All that's left is to do the
+level five challenges to
+
+312
+00:12:57,670 --> 00:12:59,340
+complete the course.
+
+313
+00:12:59,340 --> 00:13:00,590
+Good luck.
+
+314
+00:13:00,590 --> 00:13:02,115

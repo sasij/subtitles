@@ -1,0 +1,1194 @@
+1
+00:00:00,000 --> 00:00:25,100
+[MUSIC PLAYING]
+
+2
+00:00:25,100 --> 00:00:27,830
+You're watching Rails
+Testing for Zombies.
+
+3
+00:00:27,830 --> 00:00:29,070
+In this first level,
+we're going to be
+
+4
+00:00:29,070 --> 00:00:30,085
+going over unit testing.
+
+5
+00:00:30,085 --> 00:00:32,790
+But before we do that, we need
+to talk a little bit about
+
+6
+00:00:32,790 --> 00:00:35,080
+testing philosophy.
+
+7
+00:00:35,080 --> 00:00:36,840
+You could say there's four
+different philosophies.
+
+8
+00:00:36,840 --> 00:00:39,440
+First is, of course,
+no testing at all.
+
+9
+00:00:39,440 --> 00:00:40,215
+Not really a philosophy.
+
+10
+00:00:40,215 --> 00:00:41,740
+You just don't write
+any tests.
+
+11
+00:00:41,740 --> 00:00:43,660
+But that's where everybody
+starts, right.
+
+12
+00:00:43,660 --> 00:00:46,330
+The next phase is verification
+testing.
+
+13
+00:00:46,330 --> 00:00:48,770
+This is where you're going to
+write code and then write
+
+14
+00:00:48,770 --> 00:00:51,960
+tests that wrap around
+your code.
+
+15
+00:00:51,960 --> 00:00:54,760
+The next step is test first.
+
+16
+00:00:54,760 --> 00:00:57,040
+This is what we're going to be
+going through in this course,
+
+17
+00:00:57,040 --> 00:00:58,510
+where we write a test.
+
+18
+00:00:58,510 --> 00:00:59,930
+It's a failing test.
+
+19
+00:00:59,930 --> 00:01:02,690
+We then write enough code to
+make the test pass, and then
+
+20
+00:01:02,690 --> 00:01:05,870
+we reflect and see if we need
+to refactor that code.
+
+21
+00:01:05,870 --> 00:01:06,590
+Lastly--
+
+22
+00:01:06,590 --> 00:01:08,400
+what we're not going over
+in this course--
+
+23
+00:01:08,400 --> 00:01:10,740
+is strict test driven design.
+
+24
+00:01:10,740 --> 00:01:12,640
+This is where you eventually
+want to be.
+
+25
+00:01:12,640 --> 00:01:16,990
+And it's where your tests you
+use to define the behavior are
+
+26
+00:01:16,990 --> 00:01:20,740
+almost the design of your
+application, and that defines
+
+27
+00:01:20,740 --> 00:01:25,480
+how your application gets
+developed and crafted.
+
+28
+00:01:25,480 --> 00:01:28,780
+So you might be wondering, what
+exactly is unit testing.
+
+29
+00:01:28,780 --> 00:01:31,650
+Well when we say unit testing,
+we're talking about testing
+
+30
+00:01:31,650 --> 00:01:33,280
+pieces of our application--
+
+31
+00:01:33,280 --> 00:01:34,610
+pieces of source--
+
+32
+00:01:34,610 --> 00:01:37,490
+in isolation from the rest
+of the applications.
+
+33
+00:01:37,490 --> 00:01:40,820
+So you're going to end up with
+lots of individual unit tests.
+
+34
+00:01:40,820 --> 00:01:44,080
+So when any one piece breaks,
+you're going to know exactly
+
+35
+00:01:44,080 --> 00:01:47,000
+how to fix it, hopefully, which
+makes your application a
+
+36
+00:01:47,000 --> 00:01:48,930
+lot easier to debug.
+
+37
+00:01:48,930 --> 00:01:52,190
+Also a lot of people think that
+good unit tests lead to
+
+38
+00:01:52,190 --> 00:01:53,670
+good documentation.
+
+39
+00:01:53,670 --> 00:01:55,610
+If you're looking at somebody
+else's code base and you need
+
+40
+00:01:55,610 --> 00:01:58,040
+to know how it works, well,
+looking at the test might give
+
+41
+00:01:58,040 --> 00:02:00,890
+you a good hint.
+
+42
+00:02:00,890 --> 00:02:03,390
+Test::Unit was created in the
+very early days of Ruby by
+
+43
+00:02:03,390 --> 00:02:04,460
+Nathaniel Talbot.
+
+44
+00:02:04,460 --> 00:02:07,510
+Now you might be wondering, why
+are we doing Test::Unit
+
+45
+00:02:07,510 --> 00:02:09,180
+and not something like RSpec.
+
+46
+00:02:09,180 --> 00:02:10,520
+You may have heard of RSpec.
+
+47
+00:02:10,520 --> 00:02:13,690
+Well Test::Unit is a more
+basic testing library.
+
+48
+00:02:13,690 --> 00:02:17,490
+It's also the testing library
+that Rails uses by default.
+
+49
+00:02:17,490 --> 00:02:20,040
+So if you ever want to read
+through the Rails source or
+
+50
+00:02:20,040 --> 00:02:22,800
+contribute back to Rails, you're
+going to have to know
+
+51
+00:02:22,800 --> 00:02:24,330
+Test::Unit.
+
+52
+00:02:24,330 --> 00:02:27,190
+Test::Unit is also similar to
+many other testing libraries
+
+53
+00:02:27,190 --> 00:02:30,040
+from many other languages, so
+it'll be easier to learn if
+
+54
+00:02:30,040 --> 00:02:32,400
+you're coming from
+another language.
+
+55
+00:02:32,400 --> 00:02:34,680
+Let's go ahead and take a look
+at the basic structure of a
+
+56
+00:02:34,680 --> 00:02:36,070
+Test::Unit file.
+
+57
+00:02:36,070 --> 00:02:38,510
+The name of the file is probably
+going to be the
+
+58
+00:02:38,510 --> 00:02:42,030
+subject you want to
+test _test.rb.
+
+59
+00:02:42,030 --> 00:02:43,860
+Inside that file, you're
+going to require
+
+60
+00:02:43,860 --> 00:02:45,570
+the test/unit library.
+
+61
+00:02:45,570 --> 00:02:48,930
+The test/unit library gets
+included with Ruby by default.
+
+62
+00:02:48,930 --> 00:02:51,490
+It's not a gem you have to
+install, so all we have to do
+
+63
+00:02:51,490 --> 00:02:52,760
+is require it.
+
+64
+00:02:52,760 --> 00:02:56,880
+Inside the test file, we declare
+a class that has the
+
+65
+00:02:56,880 --> 00:03:00,740
+subject capitalized and then the
+word "Test." This inherits
+
+66
+00:03:00,740 --> 00:03:03,150
+from Test::Unit::TestCase.
+
+67
+00:03:03,150 --> 00:03:05,470
+We then can write a bunch
+of methods, which
+
+68
+00:03:05,470 --> 00:03:07,410
+are each of our tests.
+
+69
+00:03:07,410 --> 00:03:10,570
+So here we have test, and then
+we specify what we are testing
+
+70
+00:03:10,570 --> 00:03:11,890
+with underscores.
+
+71
+00:03:11,890 --> 00:03:15,090
+Inside the test, the basic
+building block is going to be
+
+72
+00:03:15,090 --> 00:03:16,170
+a assertion.
+
+73
+00:03:16,170 --> 00:03:18,470
+So this is what we are asserting
+to be true or
+
+74
+00:03:18,470 --> 00:03:20,710
+asserting to match.
+
+75
+00:03:20,710 --> 00:03:23,640
+You see that test tube beaker
+icon over there?
+
+76
+00:03:23,640 --> 00:03:25,120
+Throughout our entire
+course, you're going
+
+77
+00:03:25,120 --> 00:03:26,040
+to see that a lot.
+
+78
+00:03:26,040 --> 00:03:29,140
+And that's to signify where the
+assertion is inside each
+
+79
+00:03:29,140 --> 00:03:30,490
+of our tests.
+
+80
+00:03:30,490 --> 00:03:34,210
+Each test typically
+has one assertion.
+
+81
+00:03:34,210 --> 00:03:35,340
+That's sort of a
+best practice.
+
+82
+00:03:35,340 --> 00:03:37,660
+You'll see people sometimes
+doing a lot of assertions per
+
+83
+00:03:37,660 --> 00:03:40,670
+test, but it's kind
+of a bad practice.
+
+84
+00:03:40,670 --> 00:03:43,320
+Let's go ahead and write
+really basic test.
+
+85
+00:03:43,320 --> 00:03:46,560
+We're going to call it
+boolean_test.rb.
+
+86
+00:03:46,560 --> 00:03:49,510
+Inside the file, we're going
+to require test/unit.
+
+87
+00:03:49,510 --> 00:03:52,280
+We call this BooleanTest.
+
+88
+00:03:52,280 --> 00:03:56,230
+Our first test is called
+test_true_is_true.
+
+89
+00:03:56,230 --> 00:03:58,170
+We're going to send a single
+parameter into the assert
+
+90
+00:03:58,170 --> 00:04:01,340
+method, and if that parameter
+is true, then that test is
+
+91
+00:04:01,340 --> 00:04:02,510
+going to pass.
+
+92
+00:04:02,510 --> 00:04:05,430
+If the parameter is false,
+obviously not going to pass.
+
+93
+00:04:05,430 --> 00:04:07,595
+So let's go ahead and run this
+on the command line, ruby
+
+94
+00:04:07,595 --> 00:04:09,650
+boolean_test.
+
+95
+00:04:09,650 --> 00:04:11,980
+And here we see, the
+test passed.
+
+96
+00:04:11,980 --> 00:04:14,410
+That little dot right there,
+that's telling us that we had
+
+97
+00:04:14,410 --> 00:04:17,120
+one test, and the test passed.
+
+98
+00:04:17,120 --> 00:04:18,700
+If we have a bunch of tests,
+we're going to
+
+99
+00:04:18,700 --> 00:04:20,540
+see a lot of dots.
+
+100
+00:04:20,540 --> 00:04:23,440
+If we change the parameter in
+our assert method to "false"
+
+101
+00:04:23,440 --> 00:04:25,960
+here, and then we run it from
+the command line, you're going
+
+102
+00:04:25,960 --> 00:04:28,590
+to see here that
+our test fails.
+
+103
+00:04:28,590 --> 00:04:30,780
+We get that "f."
+
+104
+00:04:30,780 --> 00:04:33,590
+You might notice here that the
+failure message isn't really
+
+105
+00:04:33,590 --> 00:04:34,510
+that helpful.
+
+106
+00:04:34,510 --> 00:04:36,170
+It's not very descriptive.
+
+107
+00:04:36,170 --> 00:04:39,110
+So sometimes in tests, we need
+a way to specify a more
+
+108
+00:04:39,110 --> 00:04:40,680
+descriptive error message.
+
+109
+00:04:40,680 --> 00:04:43,520
+We can do that by simply sending
+in a second parameter
+
+110
+00:04:43,520 --> 00:04:44,900
+to the assert method.
+
+111
+00:04:44,900 --> 00:04:48,050
+In this case, we're saying,
+"true should be truthy." Then
+
+112
+00:04:48,050 --> 00:04:51,190
+if we run the test again, if it
+fails, it's going to give
+
+113
+00:04:51,190 --> 00:04:52,985
+us that nice, descriptive
+error message.
+
+114
+00:04:52,985 --> 00:04:56,340
+
+
+115
+00:04:56,340 --> 00:04:58,220
+Let's jump into a
+better example.
+
+116
+00:04:58,220 --> 00:05:00,930
+This time, we're going to extend
+the string class to
+
+117
+00:05:00,930 --> 00:05:02,260
+give it some methods.
+
+118
+00:05:02,260 --> 00:05:04,490
+So we're going to start
+test first--
+
+119
+00:05:04,490 --> 00:05:05,680
+writing the test.
+
+120
+00:05:05,680 --> 00:05:09,090
+So here, we're inside string
+extension test.
+
+121
+00:05:09,090 --> 00:05:11,000
+There's our class.
+
+122
+00:05:11,000 --> 00:05:13,800
+Our first test is going
+to be test_is_number.
+
+123
+00:05:13,800 --> 00:05:15,070
+So we're going to test
+to see if that
+
+124
+00:05:15,070 --> 00:05:17,010
+string contains a number.
+
+125
+00:05:17,010 --> 00:05:19,490
+Normally with test first, we'd
+only write one test at a time,
+
+126
+00:05:19,490 --> 00:05:21,670
+but for the sake of this
+example, I'm going to write a
+
+127
+00:05:21,670 --> 00:05:22,760
+second one.
+
+128
+00:05:22,760 --> 00:05:28,210
+We're going to test to see if
+the string is not a number.
+
+129
+00:05:28,210 --> 00:05:29,490
+So we wrote the tests.
+
+130
+00:05:29,490 --> 00:05:31,000
+Let's go ahead and run them.
+
+131
+00:05:31,000 --> 00:05:32,970
+And yes, they fail.
+
+132
+00:05:32,970 --> 00:05:35,100
+They error out, as
+they should.
+
+133
+00:05:35,100 --> 00:05:37,340
+That's the first step
+in test first.
+
+134
+00:05:37,340 --> 00:05:39,590
+We want to write
+a failing test.
+
+135
+00:05:39,590 --> 00:05:42,390
+Now that we have failing tests,
+we can go ahead and try
+
+136
+00:05:42,390 --> 00:05:45,150
+to implement the method.
+
+137
+00:05:45,150 --> 00:05:47,220
+To implement our code, we're
+going to create a new file
+
+138
+00:05:47,220 --> 00:05:48,780
+called string_extension.
+
+139
+00:05:48,780 --> 00:05:50,650
+You can see these asserts
+down here at the bottom.
+
+140
+00:05:50,650 --> 00:05:52,750
+I put them there so that you
+can keep in mind what we're
+
+141
+00:05:52,750 --> 00:05:54,200
+trying to implement.
+
+142
+00:05:54,200 --> 00:05:55,630
+The first thing we're
+going to do is open
+
+143
+00:05:55,630 --> 00:05:57,550
+up the String class.
+
+144
+00:05:57,550 --> 00:06:01,080
+Inside there, we're going to
+define a is_number method.
+
+145
+00:06:01,080 --> 00:06:02,430
+We're going to check to
+see if the current
+
+146
+00:06:02,430 --> 00:06:04,130
+string has all the numbers.
+
+147
+00:06:04,130 --> 00:06:06,150
+That's just a little
+regular expression.
+
+148
+00:06:06,150 --> 00:06:09,020
+If it does, we're going to
+return "true," otherwise we'll
+
+149
+00:06:09,020 --> 00:06:12,530
+return "false."
+
+150
+00:06:12,530 --> 00:06:14,920
+Before we run the test, we need
+to go back into our test
+
+151
+00:06:14,920 --> 00:06:18,590
+file and include that string
+extension, like so.
+
+152
+00:06:18,590 --> 00:06:21,490
+Once we do that, we
+can run the test.
+
+153
+00:06:21,490 --> 00:06:26,030
+Now you'll notice here I'm
+specifying dash capital I dot.
+
+154
+00:06:26,030 --> 00:06:28,660
+When we run the test manually
+like this and we're acquiring
+
+155
+00:06:28,660 --> 00:06:31,330
+other files, we need to
+specify the load path.
+
+156
+00:06:31,330 --> 00:06:34,190
+We need to specify where our
+Ruby application can find the
+
+157
+00:06:34,190 --> 00:06:37,810
+other files that this
+test requires.
+
+158
+00:06:37,810 --> 00:06:39,040
+So we do that here.
+
+159
+00:06:39,040 --> 00:06:40,740
+We then run the test.
+
+160
+00:06:40,740 --> 00:06:44,270
+You can see here, two tests were
+run, and we made it pass.
+
+161
+00:06:44,270 --> 00:06:44,750
+Sweet.
+
+162
+00:06:44,750 --> 00:06:48,940
+So that's the second step when
+we do test first development.
+
+163
+00:06:48,940 --> 00:06:51,740
+Our last step is going to
+refactor our code if we can,
+
+164
+00:06:51,740 --> 00:06:53,810
+now that we have
+passing tests.
+
+165
+00:06:53,810 --> 00:06:56,030
+And sure enough, you might have
+already noticed, I can
+
+166
+00:06:56,030 --> 00:06:59,660
+simplify this to simply have
+this single conditional
+
+167
+00:06:59,660 --> 00:07:01,620
+because it returns
+true or false.
+
+168
+00:07:01,620 --> 00:07:05,070
+So we refactor it, then we can
+go back and run our tests.
+
+169
+00:07:05,070 --> 00:07:07,870
+
+
+170
+00:07:07,870 --> 00:07:08,450
+So here we are.
+
+171
+00:07:08,450 --> 00:07:11,180
+We ran our tests, and
+they all still pass.
+
+172
+00:07:11,180 --> 00:07:13,380
+Now sometimes when we talk about
+test first development,
+
+173
+00:07:13,380 --> 00:07:17,860
+we say "red, green, refactor."
+Red, meaning
+
+174
+00:07:17,860 --> 00:07:20,160
+write a test that fails.
+
+175
+00:07:20,160 --> 00:07:24,550
+Green, meaning write enough code
+to make those tests pass.
+
+176
+00:07:24,550 --> 00:07:27,860
+And then refactor, of course,
+reflect back on our code and
+
+177
+00:07:27,860 --> 00:07:31,160
+see if we can improve it.
+
+178
+00:07:31,160 --> 00:07:33,090
+Let's walk through one more
+example before you get to the
+
+179
+00:07:33,090 --> 00:07:33,990
+challenges.
+
+180
+00:07:33,990 --> 00:07:36,440
+We're going to create
+a humanize method.
+
+181
+00:07:36,440 --> 00:07:39,580
+The humanize method eventually
+is going to lowercase and
+
+182
+00:07:39,580 --> 00:07:42,240
+capitalize a string.
+
+183
+00:07:42,240 --> 00:07:44,490
+So inside of our string
+extension test, we're going to
+
+184
+00:07:44,490 --> 00:07:46,200
+write a really basic test.
+
+185
+00:07:46,200 --> 00:07:50,770
+We're going to make sure that
+the string class responds to
+
+186
+00:07:50,770 --> 00:07:52,510
+the humanize method.
+
+187
+00:07:52,510 --> 00:07:54,550
+We can use assert_respond_to.
+
+188
+00:07:54,550 --> 00:07:57,730
+So as you can see here, we're
+sending in an object, and then
+
+189
+00:07:57,730 --> 00:07:59,620
+it's going to test to
+make sure that it
+
+190
+00:07:59,620 --> 00:08:02,180
+has a humanize method.
+
+191
+00:08:02,180 --> 00:08:04,250
+Rather than defining the entire
+function, we're just
+
+192
+00:08:04,250 --> 00:08:06,840
+going to write enough code
+to make the test pass--
+
+193
+00:08:06,840 --> 00:08:09,830
+which in this case, is simply
+defining the function.
+
+194
+00:08:09,830 --> 00:08:12,460
+We run the test,
+and it passes.
+
+195
+00:08:12,460 --> 00:08:14,940
+Now we can write another test.
+
+196
+00:08:14,940 --> 00:08:15,815
+We're going to write
+test_humanize_returns_something.
+
+197
+00:08:15,815 --> 00:08:17,970
+
+
+198
+00:08:17,970 --> 00:08:20,150
+So here we're going to
+say assert_not_nil.
+
+199
+00:08:20,150 --> 00:08:22,630
+We're asserting that
+this method returns
+
+200
+00:08:22,630 --> 00:08:24,630
+something that isn't nil.
+
+201
+00:08:24,630 --> 00:08:27,070
+We're also going to give it an
+optional error message so that
+
+202
+00:08:27,070 --> 00:08:28,830
+if it errors out, we
+have a better idea
+
+203
+00:08:28,830 --> 00:08:30,620
+of what went wrong.
+
+204
+00:08:30,620 --> 00:08:32,770
+Then again, in our string
+extension class, we write just
+
+205
+00:08:32,770 --> 00:08:34,329
+enough code to make it pass.
+
+206
+00:08:34,329 --> 00:08:37,419
+
+207
+00:08:37,419 --> 00:08:38,830
+Let's go ahead and write
+another test.
+
+208
+00:08:38,830 --> 00:08:41,309
+We're going to use assert_equal
+this time.
+
+209
+00:08:41,309 --> 00:08:43,309
+Assert_equal takes
+two parameters.
+
+210
+00:08:43,309 --> 00:08:47,850
+The first parameter is what we
+expect to receive back from
+
+211
+00:08:47,850 --> 00:08:49,160
+the second parameter.
+
+212
+00:08:49,160 --> 00:08:53,010
+So as you can see here, we're
+saying we expect to have this
+
+213
+00:08:53,010 --> 00:08:54,690
+string get returned.
+
+214
+00:08:54,690 --> 00:08:57,870
+And then the second parameter,
+we actually call the humanize
+
+215
+00:08:57,870 --> 00:08:59,090
+method on a string.
+
+216
+00:08:59,090 --> 00:09:00,980
+And we want these two
+to match, otherwise
+
+217
+00:09:00,980 --> 00:09:02,620
+the test will fail.
+
+218
+00:09:02,620 --> 00:09:04,680
+Now inside of our humanize
+method, all we have to do is
+
+219
+00:09:04,680 --> 00:09:05,930
+call .downcase.capitalize.
+
+220
+00:09:05,930 --> 00:09:08,160
+
+
+221
+00:09:08,160 --> 00:09:12,920
+Run our tests, and
+now they pass.
+
+222
+00:09:12,920 --> 00:09:16,220
+Another test we could write
+is test just for brains.
+
+223
+00:09:16,220 --> 00:09:19,570
+We're going to use the
+assert_match assertion.
+
+224
+00:09:19,570 --> 00:09:22,790
+Here, it takes a regex as the
+first parameter, and it tries
+
+225
+00:09:22,790 --> 00:09:26,680
+to match that regex against
+the second parameter.
+
+226
+00:09:26,680 --> 00:09:29,730
+And if it matches,
+it will pass--
+
+227
+00:09:29,730 --> 00:09:32,310
+which it does.
+
+228
+00:09:32,310 --> 00:09:34,710
+Our method is called humanize,
+and we want to make sure
+
+229
+00:09:34,710 --> 00:09:37,740
+there's no zombies inside
+of our humanize method.
+
+230
+00:09:37,740 --> 00:09:43,140
+So we're going to make sure that
+a runtime error is raised
+
+231
+00:09:43,140 --> 00:09:47,280
+when we call humanize on a
+string that contains the word
+
+232
+00:09:47,280 --> 00:09:50,250
+"zombie." If we run this test
+right now, of course it's
+
+233
+00:09:50,250 --> 00:09:51,190
+going to fail.
+
+234
+00:09:51,190 --> 00:09:52,160
+That's good.
+
+235
+00:09:52,160 --> 00:09:54,150
+We want to make sure
+that it fails.
+
+236
+00:09:54,150 --> 00:09:56,440
+Then of course, the second step,
+we're going to add the
+
+237
+00:09:56,440 --> 00:09:57,700
+implementation.
+
+238
+00:09:57,700 --> 00:10:01,390
+So here, we're going to say, if
+the string contains zombie,
+
+239
+00:10:01,390 --> 00:10:03,100
+raise a runtime error.
+
+240
+00:10:03,100 --> 00:10:05,400
+And if we run the tests at this
+point, they all pass.
+
+241
+00:10:05,400 --> 00:10:08,150
+
+242
+00:10:08,150 --> 00:10:10,500
+Test::Unit comes with a bunch
+of different assertions.
+
+243
+00:10:10,500 --> 00:10:11,720
+Here's a couple of them.
+
+244
+00:10:11,720 --> 00:10:12,590
+We have assert--
+
+245
+00:10:12,590 --> 00:10:14,320
+which looks for conditional--
+
+246
+00:10:14,320 --> 00:10:16,580
+assert_equal, assert_not_equal,
+
+247
+00:10:16,580 --> 00:10:21,920
+assert_respond_to, assert_nil,
+assert_not_nil, assert_match,
+
+248
+00:10:21,920 --> 00:10:25,810
+assert_no_match, assert_raise,
+and assert_kind_of, if you
+
+249
+00:10:25,810 --> 00:10:28,770
+want to make sure an object
+is a certain class.
+
+250
+00:10:28,770 --> 00:10:30,820
+If you need the error message
+for each of these to be more
+
+251
+00:10:30,820 --> 00:10:33,850
+specific, they can all take an
+additional parameter, which is
+
+252
+00:10:33,850 --> 00:10:36,540
+a string, and you can type in
+exactly what you want the
+
+253
+00:10:36,540 --> 00:10:39,268
+error message to be.
+
+254
+00:10:39,268 --> 00:10:41,440
+You've reached the end of
+Level One talking about
+
+255
+00:10:41,440 --> 00:10:41,910
+Test::Unit.
+
+256
+00:10:41,910 --> 00:10:44,630
+It's time to get your hands
+dirty in the challenges.
+
+257
+00:10:44,630 --> 00:10:45,880
+Good luck.
+
+258
+00:10:45,880 --> 00:10:47,786

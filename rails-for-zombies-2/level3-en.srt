@@ -1,0 +1,2344 @@
+1
+00:00:00,000 --> 00:00:03,420
+(SINGING) Put down your brains
+and your entrails.
+
+2
+00:00:03,420 --> 00:00:07,340
+It's time to stop and learn
+some Rails, 'cause we got
+
+3
+00:00:07,340 --> 00:00:12,175
+something new to grab-- "Rails
+for Zombies" by Envy Labs.
+
+4
+00:00:12,175 --> 00:00:20,590
+
+5
+00:00:20,590 --> 00:00:22,380
+Congratulations, you made
+it to Level 3--
+
+6
+00:00:22,380 --> 00:00:23,900
+REST in Pieces.
+
+7
+00:00:23,900 --> 00:00:26,220
+In this level, we're going to
+be looking through REST.
+
+8
+00:00:26,220 --> 00:00:29,330
+You get a brief introduction
+to REST, revisit some URL
+
+9
+00:00:29,330 --> 00:00:31,450
+helpers, take a closer
+look at forms.
+
+10
+00:00:31,450 --> 00:00:33,830
+We haven't really done forms
+yet, so I'm going to get you
+
+11
+00:00:33,830 --> 00:00:35,610
+familiar with the
+form helpers.
+
+12
+00:00:35,610 --> 00:00:38,050
+We'll then jump into nested
+resources, look at some
+
+13
+00:00:38,050 --> 00:00:40,650
+partials, and some additional
+view helpers, which you may
+
+14
+00:00:40,650 --> 00:00:42,460
+need to use in your
+rails views.
+
+15
+00:00:42,460 --> 00:00:44,700
+So let's jump into it.
+
+16
+00:00:44,700 --> 00:00:45,650
+So REST stands for
+
+17
+00:00:45,650 --> 00:00:48,010
+Representational State Transfer.
+
+18
+00:00:48,010 --> 00:00:50,230
+And it was coined by this guy,
+Roy Fielding, in his
+
+19
+00:00:50,230 --> 00:00:51,240
+dissertation.
+
+20
+00:00:51,240 --> 00:00:54,840
+I highly recommend that you
+skip his dissertation.
+
+21
+00:00:54,840 --> 00:00:56,170
+It's a lot of technical
+reading.
+
+22
+00:00:56,170 --> 00:00:57,900
+It'll put to sleep.
+
+23
+00:00:57,900 --> 00:01:00,580
+But a good example of REST--
+it has a lot of REST
+
+24
+00:01:00,580 --> 00:01:01,280
+principles--
+
+25
+00:01:01,280 --> 00:01:03,630
+is simply the HTTP protocol.
+
+26
+00:01:03,630 --> 00:01:07,330
+The protocol contains resources
+addressable through
+
+27
+00:01:07,330 --> 00:01:11,270
+URIs, or Uniform Resource
+Identifiers.
+
+28
+00:01:11,270 --> 00:01:14,900
+The HTTP protocol also
+has standard methods.
+
+29
+00:01:14,900 --> 00:01:17,490
+A bunch of them-- four of them
+that we care about in this
+
+30
+00:01:17,490 --> 00:01:20,715
+case-- are GET, POST,
+PUT, and DELETE.
+
+31
+00:01:20,715 --> 00:01:22,620
+If you want to learn more
+about REST and building
+
+32
+00:01:22,620 --> 00:01:25,500
+RESTful web services, check out
+the book by the same name
+
+33
+00:01:25,500 --> 00:01:27,410
+by Leonard Richardson
+and Sam Ruby.
+
+34
+00:01:27,410 --> 00:01:30,130
+
+35
+00:01:30,130 --> 00:01:31,700
+In the early days
+of Rails, things
+
+36
+00:01:31,700 --> 00:01:33,660
+weren't always so RESTful.
+
+37
+00:01:33,660 --> 00:01:35,070
+Let me show you an example.
+
+38
+00:01:35,070 --> 00:01:36,530
+Here's a controller--
+
+39
+00:01:36,530 --> 00:01:37,760
+a UserController--
+
+40
+00:01:37,760 --> 00:01:39,440
+and here are some actions
+in there.
+
+41
+00:01:39,440 --> 00:01:42,180
+You see the actions are
+all over the place.
+
+42
+00:01:42,180 --> 00:01:44,600
+This is bad because, well,
+it lends itself to huge
+
+43
+00:01:44,600 --> 00:01:46,100
+controllers with lots
+of methods and
+
+44
+00:01:46,100 --> 00:01:47,820
+lots of codes in it--
+
+45
+00:01:47,820 --> 00:01:48,690
+not so good--
+
+46
+00:01:48,690 --> 00:01:51,870
+also bad because there's going
+to be multiple models per
+
+47
+00:01:51,870 --> 00:01:54,780
+controller, which is
+also not good.
+
+48
+00:01:54,780 --> 00:01:57,890
+It's sort of become a best
+practice to only have one
+
+49
+00:01:57,890 --> 00:02:01,802
+concern per controller, one
+resource per controller.
+
+50
+00:02:01,802 --> 00:02:04,800
+With Rails 1, things started
+getting more RESTful.
+
+51
+00:02:04,800 --> 00:02:06,990
+You can see here we have our
+standard show, create, update,
+
+52
+00:02:06,990 --> 00:02:10,630
+and destroy actions, and in
+comments next to them, you can
+
+53
+00:02:10,630 --> 00:02:14,710
+see how we call them, using
+GET, POST, POST, and POST.
+
+54
+00:02:14,710 --> 00:02:17,260
+Not so good yet, because we're
+repeating the verb.
+
+55
+00:02:17,260 --> 00:02:20,660
+If you look at the verb here,
+which is GET and POST, and the
+
+56
+00:02:20,660 --> 00:02:23,830
+actual URIs, we're repeating
+the verb.
+
+57
+00:02:23,830 --> 00:02:25,510
+If that doesn't make
+sense, we'll come
+
+58
+00:02:25,510 --> 00:02:27,610
+back to it in a second.
+
+59
+00:02:27,610 --> 00:02:29,970
+As you saw a minute ago with
+Rails 1, we have our standard
+
+60
+00:02:29,970 --> 00:02:32,960
+actions of show, create,
+update, and destroy.
+
+61
+00:02:32,960 --> 00:02:36,810
+These actions map pretty well
+to SQL statements, namely
+
+62
+00:02:36,810 --> 00:02:41,220
+select, create, update,
+and delete.
+
+63
+00:02:41,220 --> 00:02:43,980
+Then how we're doing them in
+REST with the controller,
+
+64
+00:02:43,980 --> 00:02:50,760
+we're using GET, POST,
+POST, and POST--
+
+65
+00:02:50,760 --> 00:02:52,930
+something kind of fishy here.
+
+66
+00:02:52,930 --> 00:02:56,240
+With Rails 2 and above, though,
+we have the same
+
+67
+00:02:56,240 --> 00:03:02,280
+actions, same SQL, except we're
+using get, post, put,
+
+68
+00:03:02,280 --> 00:03:04,140
+and delete.
+
+69
+00:03:04,140 --> 00:03:07,150
+So that should feel a little bit
+better because we're using
+
+70
+00:03:07,150 --> 00:03:09,430
+the proper verb.
+
+71
+00:03:09,430 --> 00:03:15,650
+So update is to put, and
+destroy is to delete.
+
+72
+00:03:15,650 --> 00:03:19,070
+Let's take a look at the verbs
+and the URI side by side.
+
+73
+00:03:19,070 --> 00:03:20,730
+So the verb we're using--
+
+74
+00:03:20,730 --> 00:03:23,330
+GET, POST, POST, and POST.
+
+75
+00:03:23,330 --> 00:03:26,500
+And then in Rails 1, we were
+using /users/show/3,
+
+76
+00:03:26,500 --> 00:03:28,640
+/users/create, /users/update/3,
+and
+
+77
+00:03:28,640 --> 00:03:30,310
+/users/destroy/3.
+
+78
+00:03:30,310 --> 00:03:31,130
+Can you see this?
+
+79
+00:03:31,130 --> 00:03:32,520
+We're repeating the verb.
+
+80
+00:03:32,520 --> 00:03:35,210
+We're repeating update
+and destroy twice.
+
+81
+00:03:35,210 --> 00:03:38,370
+In Rails 2 and above, we're
+using GET, POST, PUT, and
+
+82
+00:03:38,370 --> 00:03:42,130
+DELETE, which means we can
+simplify this, get rid of
+
+83
+00:03:42,130 --> 00:03:46,230
+those verbs inside of our URIs
+and simply have /users/3,
+
+84
+00:03:46,230 --> 00:03:49,880
+/users, /users/3,
+and /users/3--
+
+85
+00:03:49,880 --> 00:03:51,960
+much cleaner.
+
+86
+00:03:51,960 --> 00:03:54,420
+Now, we're going to go through
+some REST flash cards to get
+
+87
+00:03:54,420 --> 00:03:56,460
+things solidified
+in your brain.
+
+88
+00:03:56,460 --> 00:03:59,350
+So I'm going to give you an
+action, could be a method
+
+89
+00:03:59,350 --> 00:04:01,680
+name, and then, together, we're
+going to figure out the
+
+90
+00:04:01,680 --> 00:04:05,610
+proper verb and the noun,
+starting with Show user.
+
+91
+00:04:05,610 --> 00:04:08,690
+So when I say Show user,
+what is that?
+
+92
+00:04:08,690 --> 00:04:13,390
+Well, that means GET User.
+
+93
+00:04:13,390 --> 00:04:15,280
+And this little URL down there,
+that's giving you sort
+
+94
+00:04:15,280 --> 00:04:18,399
+of an example of a URL
+you might use to
+
+95
+00:04:18,399 --> 00:04:20,570
+identify this user.
+
+96
+00:04:20,570 --> 00:04:22,520
+Create user-- what's
+that going to be?
+
+97
+00:04:22,520 --> 00:04:28,000
+Well, that's going to be POST
+User-- create is to post.
+
+98
+00:04:28,000 --> 00:04:29,280
+What about Update user?
+
+99
+00:04:29,280 --> 00:04:32,070
+Well, as we learned a minute
+ago, update is PUT,
+
+100
+00:04:32,070 --> 00:04:34,010
+so we do PUT User.
+
+101
+00:04:34,010 --> 00:04:35,480
+What about Destroy?
+
+102
+00:04:35,480 --> 00:04:39,030
+Well, Destroy is DELETE User.
+
+103
+00:04:39,030 --> 00:04:41,680
+Now, we're going to make it a
+little bit more complicated.
+
+104
+00:04:41,680 --> 00:04:45,250
+What about Play Global
+Thermonuclear War?
+
+105
+00:04:45,250 --> 00:04:49,490
+How might we represent that
+as a REST verb and noun?
+
+106
+00:04:49,490 --> 00:04:51,660
+Well, what are we doing when
+we're playing a game?
+
+107
+00:04:51,660 --> 00:04:56,510
+We are creating a game, so
+we might make this POST
+
+108
+00:04:56,510 --> 00:04:58,550
+GlobalThermonuclearWar--
+
+109
+00:04:58,550 --> 00:04:59,490
+makes sense.
+
+110
+00:04:59,490 --> 00:05:02,695
+What about Process credit
+card transaction?
+
+111
+00:05:02,695 --> 00:05:03,010
+Hm.
+
+112
+00:05:03,010 --> 00:05:05,460
+Well, let's think about what
+are we doing in that credit
+
+113
+00:05:05,460 --> 00:05:06,330
+card transaction.
+
+114
+00:05:06,330 --> 00:05:11,320
+We're creating a credit card
+transaction, so we're doing
+
+115
+00:05:11,320 --> 00:05:14,280
+POST Transaction.
+
+116
+00:05:14,280 --> 00:05:15,560
+Take a look at that
+URL down there.
+
+117
+00:05:15,560 --> 00:05:17,690
+I'm actually using a
+nested URL here.
+
+118
+00:05:17,690 --> 00:05:21,750
+I'm signifying that it's for
+order number 5, and that
+
+119
+00:05:21,750 --> 00:05:24,920
+credit card transaction
+with order number 5.
+
+120
+00:05:24,920 --> 00:05:26,685
+What about Subscribe
+to mailing list?
+
+121
+00:05:26,685 --> 00:05:29,050
+Well, what are we doing?
+
+122
+00:05:29,050 --> 00:05:37,050
+We're creating a subscription,
+so POST Subscription--
+
+123
+00:05:37,050 --> 00:05:37,990
+makes sense.
+
+124
+00:05:37,990 --> 00:05:39,060
+What about Logout?
+
+125
+00:05:39,060 --> 00:05:41,240
+OK, this one's tricky.
+
+126
+00:05:41,240 --> 00:05:44,750
+What are we creating or
+destroying in this case, when
+
+127
+00:05:44,750 --> 00:05:46,370
+we log out?
+
+128
+00:05:46,370 --> 00:05:48,450
+Well, really what we're
+talking about
+
+129
+00:05:48,450 --> 00:05:49,650
+is a session, right?
+
+130
+00:05:49,650 --> 00:05:53,560
+When we log in, we're creating a
+session, so when we log out,
+
+131
+00:05:53,560 --> 00:05:55,930
+we are deleting a Session.
+
+132
+00:05:55,930 --> 00:05:58,750
+
+133
+00:05:58,750 --> 00:06:00,490
+Hopefully, with these examples,
+REST is starting to
+
+134
+00:06:00,490 --> 00:06:01,940
+make a little more
+sense to you.
+
+135
+00:06:01,940 --> 00:06:04,790
+Let's jump back into how
+Rails is doing it.
+
+136
+00:06:04,790 --> 00:06:10,200
+So in Rails 1, here's our
+actions and our URLs.
+
+137
+00:06:10,200 --> 00:06:14,450
+And in Rails 2, here's the same
+actions, and here are the
+
+138
+00:06:14,450 --> 00:06:17,205
+proper URLs, or nouns.
+
+139
+00:06:17,205 --> 00:06:20,630
+It should feel a little
+bit cleaner.
+
+140
+00:06:20,630 --> 00:06:22,190
+One thing you might be wondering
+if you're taking a
+
+141
+00:06:22,190 --> 00:06:25,530
+close look at these URLs is
+how do we link to them,
+
+142
+00:06:25,530 --> 00:06:28,790
+because some of these URLs,
+the nouns are the same--
+
+143
+00:06:28,790 --> 00:06:30,295
+/users/3.
+
+144
+00:06:30,295 --> 00:06:32,910
+Well, let's take a look at how
+we might do that in Rails.
+
+145
+00:06:32,910 --> 00:06:36,480
+For our show or our GET request,
+we simply do link_to
+
+146
+00:06:36,480 --> 00:06:38,510
+'show' and then specify
+the zombie.
+
+147
+00:06:38,510 --> 00:06:40,990
+For the create request,
+we do 'create',
+
+148
+00:06:40,990 --> 00:06:42,840
+zombie, method: :post.
+
+149
+00:06:42,840 --> 00:06:44,730
+For calling the update,
+we could call
+
+150
+00:06:44,730 --> 00:06:46,080
+zombie, method: :put.
+
+151
+00:06:46,080 --> 00:06:48,950
+And for destroy, we could do
+zombie, method: :delete.
+
+152
+00:06:48,950 --> 00:06:50,920
+Now, on post input,
+we typically
+
+153
+00:06:50,920 --> 00:06:51,660
+wouldn't have a link.
+
+154
+00:06:51,660 --> 00:06:53,640
+They'd typically be
+a form, but this
+
+155
+00:06:53,640 --> 00:06:54,970
+is still valid syntax.
+
+156
+00:06:54,970 --> 00:06:56,690
+Right now, some of
+you are thinking
+
+157
+00:06:56,690 --> 00:06:57,730
+wait a minute here,
+
+158
+00:06:57,730 --> 00:06:58,360
+wait a minute here.
+
+159
+00:06:58,360 --> 00:07:02,190
+Browsers don't support
+PUT and DELETE.
+
+160
+00:07:02,190 --> 00:07:03,470
+Yeah, they don't.
+
+161
+00:07:03,470 --> 00:07:05,220
+That's actually a pretty
+good point.
+
+162
+00:07:05,220 --> 00:07:08,550
+So how is it that our Rails
+application understands both
+
+163
+00:07:08,550 --> 00:07:09,695
+PUT and DELETE?
+
+164
+00:07:09,695 --> 00:07:11,500
+Well, let's take a look at
+what these links are
+
+165
+00:07:11,500 --> 00:07:13,250
+generating under the covers.
+
+166
+00:07:13,250 --> 00:07:15,270
+What they're generating is
+something that looks like this
+
+167
+00:07:15,270 --> 00:07:16,850
+on our page.
+
+168
+00:07:16,850 --> 00:07:21,880
+Here you might notice two
+HTML5 data attributes.
+
+169
+00:07:21,880 --> 00:07:22,040
+Hm.
+
+170
+00:07:22,040 --> 00:07:22,710
+That's interesting.
+
+171
+00:07:22,710 --> 00:07:23,850
+What are those doing there?
+
+172
+00:07:23,850 --> 00:07:26,370
+Well, it turns out that Rails
+by default has some
+
+173
+00:07:26,370 --> 00:07:29,690
+unobtrusive JavaScript that
+looks for these attributes and
+
+174
+00:07:29,690 --> 00:07:33,310
+it finds these attributes, it
+grabs them, and changes the
+
+175
+00:07:33,310 --> 00:07:36,090
+code to create forms.
+
+176
+00:07:36,090 --> 00:07:39,460
+So in this case, it's going to
+create a post form, and it's
+
+177
+00:07:39,460 --> 00:07:43,590
+going to hide that method inside
+this hidden input field
+
+178
+00:07:43,590 --> 00:07:45,940
+called method, and it's
+going to specify
+
+179
+00:07:45,940 --> 00:07:47,220
+the method in there.
+
+180
+00:07:47,220 --> 00:07:50,040
+Then when our Rails app sees
+that method parameter, it's
+
+181
+00:07:50,040 --> 00:07:53,630
+going to grab it and set
+that as our method.
+
+182
+00:07:53,630 --> 00:07:55,220
+It does this all
+under the hood.
+
+183
+00:07:55,220 --> 00:07:59,010
+You never have to worry about
+doing it yourself manually or
+
+184
+00:07:59,010 --> 00:08:00,890
+even worrying about that
+browsers don't
+
+185
+00:08:00,890 --> 00:08:02,210
+support PUT or DELETE.
+
+186
+00:08:02,210 --> 00:08:05,320
+It's all invisible to you.
+
+187
+00:08:05,320 --> 00:08:07,920
+Remember, back in Zombies 1, we
+talked a little bit about
+
+188
+00:08:07,920 --> 00:08:11,310
+routes and this line,
+resources :zombies.
+
+189
+00:08:11,310 --> 00:08:13,090
+That's the line that
+creates all of our
+
+190
+00:08:13,090 --> 00:08:14,960
+RESTful Rails routes.
+
+191
+00:08:14,960 --> 00:08:17,460
+Well, to list out all the
+routes that it creates,
+
+192
+00:08:17,460 --> 00:08:20,690
+there's a rake task for that
+called rake routes.
+
+193
+00:08:20,690 --> 00:08:24,720
+You can see here it prints out
+our path names, our verbs, our
+
+194
+00:08:24,720 --> 00:08:26,940
+URLs, followed by
+the action and
+
+195
+00:08:26,940 --> 00:08:28,920
+controller that gets called.
+
+196
+00:08:28,920 --> 00:08:31,390
+These paths on the left side, we
+can use as a key to figure
+
+197
+00:08:31,390 --> 00:08:34,390
+out what to put in our
+link_to calls.
+
+198
+00:08:34,390 --> 00:08:37,309
+So, here, we have link_to
+zombies_path, link_to
+
+199
+00:08:37,309 --> 00:08:41,020
+new_zombie_path, link_to
+edit_zombie_path.
+
+200
+00:08:41,020 --> 00:08:43,340
+Here we have zombie_path.
+
+201
+00:08:43,340 --> 00:08:45,950
+And to do that last one, Show
+Zombie, we can also write that
+
+202
+00:08:45,950 --> 00:08:49,060
+by sending in the
+actual zombie.
+
+203
+00:08:49,060 --> 00:08:51,220
+These zombie helpers, like
+zombies_path and
+
+204
+00:08:51,220 --> 00:08:55,720
+new_zombie_path, generate the
+relative path to the resource.
+
+205
+00:08:55,720 --> 00:08:58,430
+But what if we want
+the full URL?
+
+206
+00:08:58,430 --> 00:09:01,800
+Let's say we want to provide
+that URL so people can copy
+
+207
+00:09:01,800 --> 00:09:05,640
+and paste it, let's say, into
+their blog, or social media,
+
+208
+00:09:05,640 --> 00:09:09,820
+or you're creating a tweet, or
+you're liking it on Facebook,
+
+209
+00:09:09,820 --> 00:09:11,380
+or even in your email.
+
+210
+00:09:11,380 --> 00:09:13,590
+You're sending out an email,
+and you need to provide the
+
+211
+00:09:13,590 --> 00:09:15,770
+full path-- the whole URL?
+
+212
+00:09:15,770 --> 00:09:19,440
+Well, in that case, we can use
+these same paths, but we just
+
+213
+00:09:19,440 --> 00:09:23,110
+do zombies_url instead
+of _path.
+
+214
+00:09:23,110 --> 00:09:25,850
+That's going to print out the
+absolute path with the URL.
+
+215
+00:09:25,850 --> 00:09:29,860
+
+216
+00:09:29,860 --> 00:09:30,910
+We're about halfway done.
+
+217
+00:09:30,910 --> 00:09:34,540
+Now, we're going to jump back
+into Forms and Input Helpers.
+
+218
+00:09:34,540 --> 00:09:37,310
+So if you took a look in the
+scaffold that we generated, it
+
+219
+00:09:37,310 --> 00:09:40,410
+has a form_for line that looks
+something like this--
+
+220
+00:09:40,410 --> 00:09:42,430
+form_for zombie.
+
+221
+00:09:42,430 --> 00:09:45,700
+If zombie isn't saved to the
+database yet, it's going to
+
+222
+00:09:45,700 --> 00:09:49,310
+generate a form which looks
+like this-- doing a post.
+
+223
+00:09:49,310 --> 00:09:51,550
+And if our zombie's already
+saved to the database, it's
+
+224
+00:09:51,550 --> 00:09:53,550
+going to create this HTML.
+
+225
+00:09:53,550 --> 00:09:56,130
+You can see here it's specifying
+that the method on
+
+226
+00:09:56,130 --> 00:09:59,590
+this form is 'put'.
+
+227
+00:09:59,590 --> 00:10:01,150
+At the bottom of our
+form, you'll see it
+
+228
+00:10:01,150 --> 00:10:03,050
+has a submit helper.
+
+229
+00:10:03,050 --> 00:10:05,340
+It calls f.submit.
+
+230
+00:10:05,340 --> 00:10:08,260
+If the zombie isn't saved to
+the database, it's going to
+
+231
+00:10:08,260 --> 00:10:12,110
+create a commit button with the
+value of Create Zombie.
+
+232
+00:10:12,110 --> 00:10:14,480
+And if zombie's already saved to
+the database, it's going to
+
+233
+00:10:14,480 --> 00:10:19,150
+create a button with the
+value Update Zombie.
+
+234
+00:10:19,150 --> 00:10:22,400
+Now, let's jump into some input
+fields, starting with
+
+235
+00:10:22,400 --> 00:10:23,390
+text field.
+
+236
+00:10:23,390 --> 00:10:26,780
+When we submit this form, it's
+going to send these request
+
+237
+00:10:26,780 --> 00:10:27,590
+parameters.
+
+238
+00:10:27,590 --> 00:10:30,010
+We could see these if we
+looked in our log.
+
+239
+00:10:30,010 --> 00:10:32,210
+If zombie isn't saved to the
+database yet, it's going to
+
+240
+00:10:32,210 --> 00:10:34,820
+print out something that
+looks like this.
+
+241
+00:10:34,820 --> 00:10:36,790
+If zombie's already saved to the
+database, it's going to
+
+242
+00:10:36,790 --> 00:10:39,250
+print out the same thing, except
+it's going to put the
+
+243
+00:10:39,250 --> 00:10:41,480
+zombie name, which in
+this case is Eric.
+
+244
+00:10:41,480 --> 00:10:44,200
+And if a zombie name has a
+validation error-- if it
+
+245
+00:10:44,200 --> 00:10:45,720
+doesn't get saved properly--
+
+246
+00:10:45,720 --> 00:10:47,970
+it's going to wrap that
+and in a div called
+
+247
+00:10:47,970 --> 00:10:51,320
+"field_with_errors", which will
+allow us to put a big red
+
+248
+00:10:51,320 --> 00:10:53,800
+box around that field to
+signify that it has a
+
+249
+00:10:53,800 --> 00:10:57,120
+validation error.
+
+250
+00:10:57,120 --> 00:10:59,010
+The other helper you're going
+to see in your scaffold that
+
+251
+00:10:59,010 --> 00:11:01,790
+was created for you by default
+are these labels.
+
+252
+00:11:01,790 --> 00:11:04,190
+So here we have f.label :name.
+
+253
+00:11:04,190 --> 00:11:06,010
+This is going to render
+out label for-
+
+254
+00:11:06,010 --> 00:11:07,800
+"zombie_name">Name--
+
+255
+00:11:07,800 --> 00:11:11,100
+just a label for you to
+use with your CSS.
+
+256
+00:11:11,100 --> 00:11:13,490
+And if the zombie has a
+validation error, it's going
+
+257
+00:11:13,490 --> 00:11:16,880
+to wrap that, again, in a div
+called "field_with_errors".
+
+258
+00:11:16,880 --> 00:11:20,080
+So if we have a validation on
+our zombie name, which I think
+
+259
+00:11:20,080 --> 00:11:23,090
+we do, to make sure that it
+has a name, it's going to
+
+260
+00:11:23,090 --> 00:11:24,880
+print out something that
+looks like this in
+
+261
+00:11:24,880 --> 00:11:28,420
+our scaffold by default.
+
+262
+00:11:28,420 --> 00:11:30,820
+Here are a couple common input
+helpers that you might use in
+
+263
+00:11:30,820 --> 00:11:31,660
+your Rails app.
+
+264
+00:11:31,660 --> 00:11:33,790
+We have text_area,
+which in this case,
+
+265
+00:11:33,790 --> 00:11:34,820
+we're using for bio.
+
+266
+00:11:34,820 --> 00:11:37,510
+It's going to print out
+a big text area box.
+
+267
+00:11:37,510 --> 00:11:40,360
+We have check_box, which is
+really useful for booleans--
+
+268
+00:11:40,360 --> 00:11:41,800
+true or false.
+
+269
+00:11:41,800 --> 00:11:44,340
+For radio buttons, we can list
+out a bunch of them here,
+
+270
+00:11:44,340 --> 00:11:46,510
+where we're selecting
+the decomposition
+
+271
+00:11:46,510 --> 00:11:48,820
+status of the zombie.
+
+272
+00:11:48,820 --> 00:11:51,680
+For a select box, we use a
+syntax that looks like this,
+
+273
+00:11:51,680 --> 00:11:53,850
+so we can select the
+decomposition status--
+
+274
+00:11:53,850 --> 00:11:55,770
+"fresh", "rotting",
+or "stale".
+
+275
+00:11:55,770 --> 00:11:58,810
+Sometimes we have select boxes
+where an attribute is
+
+276
+00:11:58,810 --> 00:12:00,770
+associated with a number.
+
+277
+00:12:00,770 --> 00:12:03,930
+So, in this case, if "fresh"
+was 1, and "rotting" was 2,
+
+278
+00:12:03,930 --> 00:12:08,620
+and "stale" was 3, we would
+write this out.
+
+279
+00:12:08,620 --> 00:12:10,860
+Next, I'm going to tell you
+about a couple additional text
+
+280
+00:12:10,860 --> 00:12:14,110
+input helpers which have
+different types.
+
+281
+00:12:14,110 --> 00:12:17,770
+So each of these has input,
+but then they have type.
+
+282
+00:12:17,770 --> 00:12:20,020
+For example, the first
+one has password.
+
+283
+00:12:20,020 --> 00:12:23,040
+The browser is going to see that
+typed password, and it's
+
+284
+00:12:23,040 --> 00:12:24,960
+going to know that it should
+have dots instead of the
+
+285
+00:12:24,960 --> 00:12:27,660
+actual password, so people
+can't read your screen.
+
+286
+00:12:27,660 --> 00:12:30,010
+Next up is the number_field
+helper, which in some
+
+287
+00:12:30,010 --> 00:12:32,302
+browsers, it's going to give
+you a number field on the
+
+288
+00:12:32,302 --> 00:12:34,530
+side, and some, it even
+gives you commas
+
+289
+00:12:34,530 --> 00:12:36,160
+in your number fields.
+
+290
+00:12:36,160 --> 00:12:37,870
+Then you have a range_field.
+
+291
+00:12:37,870 --> 00:12:42,030
+Again, some browsers choose to
+implement this as a slider.
+
+292
+00:12:42,030 --> 00:12:44,570
+Most browsers aren't going to
+do anything special with the
+
+293
+00:12:44,570 --> 00:12:45,270
+email_field.
+
+294
+00:12:45,270 --> 00:12:47,720
+Maybe, eventually, they'll
+do some client side
+
+295
+00:12:47,720 --> 00:12:49,120
+validation on email.
+
+296
+00:12:49,120 --> 00:12:52,610
+But where this is, I think, most
+useful, is when you have
+
+297
+00:12:52,610 --> 00:12:54,810
+mobile browsers, because mobile
+browsers will give a
+
+298
+00:12:54,810 --> 00:12:55,560
+different keyboard.
+
+299
+00:12:55,560 --> 00:12:58,160
+You tell someone to type in an
+email address on your iPhone,
+
+300
+00:12:58,160 --> 00:12:59,600
+it's going to look like this.
+
+301
+00:12:59,600 --> 00:13:01,440
+Same deal with url_field.
+
+302
+00:13:01,440 --> 00:13:04,690
+On most desktop browsers, it's
+not going to do anything
+
+303
+00:13:04,690 --> 00:13:07,820
+special, but on your iPhone,
+it's going to look like this.
+
+304
+00:13:07,820 --> 00:13:10,590
+And then, finally,
+telephone_field.
+
+305
+00:13:10,590 --> 00:13:14,060
+Again, it looks like this
+on your iPhone.
+
+306
+00:13:14,060 --> 00:13:17,360
+Next up, I want to introduce
+you guys to nested routes.
+
+307
+00:13:17,360 --> 00:13:19,920
+Let's jump back into
+our routes.rb.
+
+308
+00:13:19,920 --> 00:13:23,030
+Here you can see we have
+resources :zombies and
+
+309
+00:13:23,030 --> 00:13:25,200
+resources :tweets.
+
+310
+00:13:25,200 --> 00:13:28,370
+Some of the URLs that we might
+get based on these routes--
+
+311
+00:13:28,370 --> 00:13:32,030
+well, to find a tweet, we would
+have /tweets/2, and to
+
+312
+00:13:32,030 --> 00:13:35,000
+find all zombies tweets, we
+might use /tweets?zombie_id=4.
+
+313
+00:13:35,000 --> 00:13:38,120
+
+314
+00:13:38,120 --> 00:13:39,610
+This should feel a little
+fishy to you.
+
+315
+00:13:39,610 --> 00:13:40,800
+It's not so good.
+
+316
+00:13:40,800 --> 00:13:43,480
+It's not very RESTful.
+
+317
+00:13:43,480 --> 00:13:46,920
+Tweets shouldn't really exist
+without a zombie, so we can be
+
+318
+00:13:46,920 --> 00:13:49,550
+doing better RESTfully here.
+
+319
+00:13:49,550 --> 00:13:50,350
+So how do we do that?
+
+320
+00:13:50,350 --> 00:13:52,840
+How do we maybe use the
+nested resource?
+
+321
+00:13:52,840 --> 00:13:54,260
+What we're going to do here is
+we're going to switch it
+
+322
+00:13:54,260 --> 00:13:57,270
+around, so we're going to have
+resources :zombies do
+
+323
+00:13:57,270 --> 00:13:59,450
+resources :tweets.
+
+324
+00:13:59,450 --> 00:14:03,330
+OK, so we sort of nested
+tweets inside zombies.
+
+325
+00:14:03,330 --> 00:14:06,120
+This gives us access
+to different URLs.
+
+326
+00:14:06,120 --> 00:14:09,780
+So here we can say,
+/zombies/4/tweets/2, and then
+
+327
+00:14:09,780 --> 00:14:13,470
+to find all zombies' tweets, we
+can do /zombies/4/tweets.
+
+328
+00:14:13,470 --> 00:14:16,260
+A couple things we need to do
+to make this work throughout
+
+329
+00:14:16,260 --> 00:14:18,680
+our Rails application, we're
+going to need to update our
+
+330
+00:14:18,680 --> 00:14:22,780
+controller and update all
+the links and form_for.
+
+331
+00:14:22,780 --> 00:14:24,150
+So let's go ahead
+and do that--
+
+332
+00:14:24,150 --> 00:14:26,220
+see what it looks like.
+
+333
+00:14:26,220 --> 00:14:29,140
+So here's our two actions, and
+here are the parameters that
+
+334
+00:14:29,140 --> 00:14:30,150
+it's sending in.
+
+335
+00:14:30,150 --> 00:14:33,230
+So you can see, based on these
+parameters, how it's sending
+
+336
+00:14:33,230 --> 00:14:36,160
+in the zombie_id versus
+the tweet id.
+
+337
+00:14:36,160 --> 00:14:38,170
+The tweet ID is just
+ID, whereas the
+
+338
+00:14:38,170 --> 00:14:40,690
+zombie ID is just zombie_id.
+
+339
+00:14:40,690 --> 00:14:42,250
+So here's our TweetsController.
+
+340
+00:14:42,250 --> 00:14:44,180
+Inside of our TweetsController,
+we're going
+
+341
+00:14:44,180 --> 00:14:47,470
+to have our show action
+to show a tweet.
+
+342
+00:14:47,470 --> 00:14:50,620
+And before we get into
+our show action, we
+
+343
+00:14:50,620 --> 00:14:52,260
+can find the zombie.
+
+344
+00:14:52,260 --> 00:14:54,400
+Every action in this controller
+is going to be
+
+345
+00:14:54,400 --> 00:14:58,210
+associated with a zombie, so
+let's find the zombie.
+
+346
+00:14:58,210 --> 00:15:00,940
+Let's wrap that in a method
+called get_zombie, then we can
+
+347
+00:15:00,940 --> 00:15:04,630
+call that using a before_filter
+at the top of
+
+348
+00:15:04,630 --> 00:15:05,800
+our controller.
+
+349
+00:15:05,800 --> 00:15:07,440
+So we're going to fetch
+the zombie before we
+
+350
+00:15:07,440 --> 00:15:08,190
+get into the action.
+
+351
+00:15:08,190 --> 00:15:10,890
+Then once we get into
+the action, show.
+
+352
+00:15:10,890 --> 00:15:14,440
+We can call tweet =
+zombie.tweets.find to find the
+
+353
+00:15:14,440 --> 00:15:16,860
+tweet for that zombie.
+
+354
+00:15:16,860 --> 00:15:20,060
+Wrapping it like this calling
+zombie tweets is basically
+
+355
+00:15:20,060 --> 00:15:24,270
+using the scope of that zombie
+to make sure that the tweets
+
+356
+00:15:24,270 --> 00:15:27,370
+we have access to under that
+zombie are just the tweets for
+
+357
+00:15:27,370 --> 00:15:30,470
+that zombie.
+
+358
+00:15:30,470 --> 00:15:33,750
+Now, let's try to find all
+the tweets for Zombie 4.
+
+359
+00:15:33,750 --> 00:15:36,110
+This is going to call the
+index action in our
+
+360
+00:15:36,110 --> 00:15:36,930
+controller.
+
+361
+00:15:36,930 --> 00:15:42,190
+And inside there, all we do is
+@tweets = @zombie.tweets because
+
+362
+00:15:42,190 --> 00:15:46,360
+we're finding all the tweets
+for that zombie.
+
+363
+00:15:46,360 --> 00:15:49,090
+So that resources line is
+nested, which is going to
+
+364
+00:15:49,090 --> 00:15:51,840
+create some different looking
+routes for us.
+
+365
+00:15:51,840 --> 00:15:53,100
+How do we figure out
+what they are?
+
+366
+00:15:53,100 --> 00:15:55,120
+Well, we run rake routes.
+
+367
+00:15:55,120 --> 00:15:57,420
+So here's what the rake routes
+file looks like.
+
+368
+00:15:57,420 --> 00:16:00,970
+We have zombie tweets in
+many different places.
+
+369
+00:16:00,970 --> 00:16:03,330
+We can use this print-out to
+figure out how to link to
+
+370
+00:16:03,330 --> 00:16:06,890
+zombie tweets, so here's how
+we get to zombie tweets.
+
+371
+00:16:06,890 --> 00:16:10,510
+We can get a new tweet using
+new_zombie_tweet_path.
+
+372
+00:16:10,510 --> 00:16:12,040
+Here's how we do an edit.
+
+373
+00:16:12,040 --> 00:16:16,330
+Notice here we need to send in
+both the zombie and the tweet.
+
+374
+00:16:16,330 --> 00:16:18,905
+Here's how we show a specific
+tweet for a zombie.
+
+375
+00:16:18,905 --> 00:16:22,060
+And here's the short version
+of doing that--
+
+376
+00:16:22,060 --> 00:16:24,860
+basically wrapping both
+variables in an array.
+
+377
+00:16:24,860 --> 00:16:27,200
+We can also use that array
+when we go to write the
+
+378
+00:16:27,200 --> 00:16:29,930
+destroy link.
+
+379
+00:16:29,930 --> 00:16:31,630
+Where might we see these
+links in action?
+
+380
+00:16:31,630 --> 00:16:33,785
+Well, let's jump into
+our index view.
+
+381
+00:16:33,785 --> 00:16:35,600
+Here you can see we're iterating
+through all of the
+
+382
+00:16:35,600 --> 00:16:38,900
+different tweets, and we can
+"Show", "Edit", "Destroy", and
+
+383
+00:16:38,900 --> 00:16:42,880
+"New", all using these new
+routes that were created from
+
+384
+00:16:42,880 --> 00:16:44,165
+our nested route.
+
+385
+00:16:44,165 --> 00:16:45,580
+Another view we're going
+to have to change
+
+386
+00:16:45,580 --> 00:16:47,440
+slightly is our form.
+
+387
+00:16:47,440 --> 00:16:50,440
+So we look inside of our form
+here, and we need to include
+
+388
+00:16:50,440 --> 00:16:53,720
+not only the tweet, but also
+the zombie in an array.
+
+389
+00:16:53,720 --> 00:16:56,530
+
+390
+00:16:56,530 --> 00:16:59,000
+Let's jump back into the
+TweetsController.
+
+391
+00:16:59,000 --> 00:17:02,090
+So here you can see our standard
+create method that
+
+392
+00:17:02,090 --> 00:17:05,940
+our scaffold created for us.
+
+393
+00:17:05,940 --> 00:17:09,619
+We need to modify this to
+reflect our new routes.
+
+394
+00:17:09,619 --> 00:17:11,750
+First, at the top, we can change
+this so that it has
+
+395
+00:17:11,750 --> 00:17:13,190
+@zombie.tweets.
+
+396
+00:17:13,190 --> 00:17:16,760
+Then we can say redirect_to
+@zombie, @tweet--
+
+397
+00:17:16,760 --> 00:17:20,280
+render json, @zombie, @tweet--
+location, @zombie, @tweet.
+
+398
+00:17:20,280 --> 00:17:21,530
+And that's all we have to do.
+
+399
+00:17:21,530 --> 00:17:24,280
+
+400
+00:17:24,280 --> 00:17:25,720
+We're almost done
+with this level.
+
+401
+00:17:25,720 --> 00:17:28,640
+All that's left is talking about
+partials and a couple
+
+402
+00:17:28,640 --> 00:17:30,410
+view helpers.
+
+403
+00:17:30,410 --> 00:17:32,220
+You may already be familiar
+with partials.
+
+404
+00:17:32,220 --> 00:17:35,090
+And the most common partial
+out there is this form
+
+405
+00:17:35,090 --> 00:17:38,090
+partial, which was created by
+our scaffold for what we need
+
+406
+00:17:38,090 --> 00:17:39,510
+to create and update--
+
+407
+00:17:39,510 --> 00:17:40,810
+the tweet.
+
+408
+00:17:40,810 --> 00:17:43,390
+We can tell it's a partial
+because it has that underscore
+
+409
+00:17:43,390 --> 00:17:44,320
+method there.
+
+410
+00:17:44,320 --> 00:17:48,270
+And if we look inside of our new
+view, we can see where it
+
+411
+00:17:48,270 --> 00:17:50,070
+gets inserted.
+
+412
+00:17:50,070 --> 00:17:53,580
+And here is the edit view, and
+we can see where it renders
+
+413
+00:17:53,580 --> 00:17:57,950
+the form into our edit view.
+
+414
+00:17:57,950 --> 00:18:00,950
+Next up, we're going to talk a
+little bit about security.
+
+415
+00:18:00,950 --> 00:18:02,980
+You don't want people
+to be able to do
+
+416
+00:18:02,980 --> 00:18:04,680
+this in your website--
+
+417
+00:18:04,680 --> 00:18:08,520
+put in malicious JavaScript and
+then get it to execute on
+
+418
+00:18:08,520 --> 00:18:10,860
+other people's browsers when
+they view the page, right?
+
+419
+00:18:10,860 --> 00:18:13,410
+Your user input need
+to be escaped.
+
+420
+00:18:13,410 --> 00:18:16,220
+Hopefully, it does something
+like this, where it escapes
+
+421
+00:18:16,220 --> 00:18:19,470
+that script to use the proper
+escaping there.
+
+422
+00:18:19,470 --> 00:18:25,440
+Well, back in Rails 2, when it
+came to user input, by default
+
+423
+00:18:25,440 --> 00:18:27,970
+when we printed something to
+the screen, it would be
+
+424
+00:18:27,970 --> 00:18:30,020
+unsafe, like this.
+
+425
+00:18:30,020 --> 00:18:33,800
+We always had to remember to use
+that h command to properly
+
+426
+00:18:33,800 --> 00:18:35,730
+get things to escape.
+
+427
+00:18:35,730 --> 00:18:38,790
+But in Rails 3, all variables
+that we print out to our views
+
+428
+00:18:38,790 --> 00:18:41,760
+are going to be escaped
+by default.
+
+429
+00:18:41,760 --> 00:18:42,380
+This is great.
+
+430
+00:18:42,380 --> 00:18:44,710
+You're less likely to shoot
+yourself in the foot.
+
+431
+00:18:44,710 --> 00:18:47,560
+However, there are some cases
+where you do want to print out
+
+432
+00:18:47,560 --> 00:18:51,300
+user-generated HTML and
+JavaScript to the screen, in
+
+433
+00:18:51,300 --> 00:18:54,450
+which case, you just need
+to use the raw command.
+
+434
+00:18:54,450 --> 00:18:56,240
+So raw's not going to
+escape anything.
+
+435
+00:18:56,240 --> 00:18:58,930
+It's going to print it out.
+
+436
+00:18:58,930 --> 00:19:01,150
+So here we have some view code
+where we're printing out all
+
+437
+00:19:01,150 --> 00:19:02,750
+of the tweets--
+
+438
+00:19:02,750 --> 00:19:04,940
+putting them each in a div.
+
+439
+00:19:04,940 --> 00:19:06,760
+Each div has a unique
+ID because maybe
+
+440
+00:19:06,760 --> 00:19:08,820
+we're doing some AJAX.
+
+441
+00:19:08,820 --> 00:19:13,290
+Well, you should be familiar
+with the div_for helper.
+
+442
+00:19:13,290 --> 00:19:13,880
+So check it out.
+
+443
+00:19:13,880 --> 00:19:16,690
+We can write this using the
+div_for helper like so, and
+
+444
+00:19:16,690 --> 00:19:20,050
+it's going to do the
+same exact thing.
+
+445
+00:19:20,050 --> 00:19:23,120
+What it's doing under the
+covers, as well, is it's
+
+446
+00:19:23,120 --> 00:19:27,280
+calling the dom_id on our active
+record object, and
+
+447
+00:19:27,280 --> 00:19:29,460
+that's how it's getting
+the ID, which it's
+
+448
+00:19:29,460 --> 00:19:31,405
+using in the div.
+
+449
+00:19:31,405 --> 00:19:31,790
+Hm.
+
+450
+00:19:31,790 --> 00:19:34,920
+This will come in useful later
+when we're writing some AJAX,
+
+451
+00:19:34,920 --> 00:19:36,810
+and we're writing some
+JavaScript, and we need to
+
+452
+00:19:36,810 --> 00:19:39,540
+maybe do something to that
+specific div, we're going to
+
+453
+00:19:39,540 --> 00:19:43,190
+call dom_id for that specific
+object, get back the dom_id
+
+454
+00:19:43,190 --> 00:19:48,340
+that we want to make
+disappear or reappear.
+
+455
+00:19:48,340 --> 00:19:49,880
+Next, we're going to take a
+look at a couple string
+
+456
+00:19:49,880 --> 00:19:52,330
+helpers, starting
+with truncate.
+
+457
+00:19:52,330 --> 00:19:54,310
+So, in this case, we're taking
+"I need brains!" and
+
+458
+00:19:54,310 --> 00:19:55,980
+truncating it to 10
+characters, which,
+
+459
+00:19:55,980 --> 00:19:59,490
+unfortunately, is going to
+print out "I need bra".
+
+460
+00:19:59,490 --> 00:20:02,720
+
+461
+00:20:02,720 --> 00:20:05,070
+Zombies don't need bras, so
+what we're going to do
+
+462
+00:20:05,070 --> 00:20:07,430
+instead, we're going to have one
+more parameter, so it's no
+
+463
+00:20:07,430 --> 00:20:08,260
+longer any bra.
+
+464
+00:20:08,260 --> 00:20:09,410
+We're going to add
+a separator.
+
+465
+00:20:09,410 --> 00:20:12,980
+So this is saying, basically,
+make sure the last character
+
+466
+00:20:12,980 --> 00:20:14,590
+is a space.
+
+467
+00:20:14,590 --> 00:20:17,200
+So, in this case, it's just
+going to print out "I need",
+
+468
+00:20:17,200 --> 00:20:19,362
+which is better.
+
+469
+00:20:19,362 --> 00:20:22,370
+Next up is the pluralize helper,
+where we can send in a
+
+470
+00:20:22,370 --> 00:20:26,380
+number of things and then a
+word, and if it's one item,
+
+471
+00:20:26,380 --> 00:20:27,870
+it's going to say,
+"I see 1 zombie.
+
+472
+00:20:27,870 --> 00:20:31,010
+If it's two, it's going to
+say, "I see 2 zombies".
+
+473
+00:20:31,010 --> 00:20:34,190
+ActiveSupport adds a bunch of
+string helpers, one of which
+
+474
+00:20:34,190 --> 00:20:35,320
+is titleize.
+
+475
+00:20:35,320 --> 00:20:37,980
+So if we want to make sure all
+of our names on our websites
+
+476
+00:20:37,980 --> 00:20:41,080
+are titleized, we can call
+titleize and it'll print out
+
+477
+00:20:41,080 --> 00:20:44,554
+"His name was Ash William".
+
+478
+00:20:44,554 --> 00:20:47,550
+The next helper we're going
+to look at is to_sentence.
+
+479
+00:20:47,550 --> 00:20:50,530
+So this takes an array, and
+it's simply going to put
+
+480
+00:20:50,530 --> 00:20:52,000
+commas and an and.
+
+481
+00:20:52,000 --> 00:20:53,730
+So, in this case,
+we have Captain,
+
+482
+00:20:53,730 --> 00:20:56,900
+Soldier, and Brain Taster.
+
+483
+00:20:56,900 --> 00:20:59,010
+There's also time_ago_in_words,
+which is really useful
+
+484
+00:20:59,010 --> 00:21:01,100
+for date/time fields.
+
+485
+00:21:01,100 --> 00:21:05,490
+So we can say, "He was buried
+alive 2 days ago".
+
+486
+00:21:05,490 --> 00:21:06,980
+If you're dealing with money,
+
+487
+00:21:06,980 --> 00:21:08,960
+number_to_currency is pretty helpful.
+
+488
+00:21:08,960 --> 00:21:10,870
+It'll format things properly.
+
+489
+00:21:10,870 --> 00:21:13,310
+And lastly, number_to_human
+is really nice when you're
+
+490
+00:21:13,310 --> 00:21:14,650
+dealing with large numbers.
+
+491
+00:21:14,650 --> 00:21:16,840
+So we can just put in a bunch of
+numbers and it'll translate
+
+492
+00:21:16,840 --> 00:21:21,950
+that to, "Ash is 13.2
+billion years old".
+
+493
+00:21:21,950 --> 00:21:24,480
+The best way to learn about more
+view helpers is to simply
+
+494
+00:21:24,480 --> 00:21:28,100
+take a read through the Active
+Support Core Extensions guide.
+
+495
+00:21:28,100 --> 00:21:29,600
+There's a ton of great material
+in there.
+
+496
+00:21:29,600 --> 00:21:32,410
+
+497
+00:21:32,410 --> 00:21:34,420
+So you've reached the
+end of Level 3.
+
+498
+00:21:34,420 --> 00:21:35,590
+You've done a great
+job so far.
+
+499
+00:21:35,590 --> 00:21:37,420
+You definitely deserve
+some brains.
+
+500
+00:21:37,420 --> 00:21:40,355
+But, first, in code challenges,
+you'll apply what
+
+501
+00:21:40,355 --> 00:21:41,605
+you've learned.
+
+502
+00:21:41,605 --> 00:21:44,904
