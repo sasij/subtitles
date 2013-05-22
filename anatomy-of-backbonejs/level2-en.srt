@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:00,290
 [SINGING]
 
@@ -15,7 +15,7 @@ a bad spaghetti code.
 4
 00:00:06,550 --> 00:00:09,290
 And it is time to add structure,
-but it won't 
+but it won't
 
 5
 00:00:09,290 --> 00:00:10,170
@@ -51,519 +51,507 @@ the Anatomy of
 Backbone.js at Code School.
 
 12
-00:00:28,480 --> 00:00:35,014
-
-13
 00:00:35,014 --> 00:00:36,570
 You're watching the Anatomy
 of Backbone.
 
-14
+13
 00:00:36,570 --> 00:00:38,850
 And this is level two, where
 we're going to take a look at
 
-15
+14
 00:00:38,850 --> 00:00:41,860
 Backbone models in a little
 bit more detail.
 
-16
+15
 00:00:41,860 --> 00:00:44,140
 So remember from level
 one, we defined a
 
-17
+16
 00:00:44,140 --> 00:00:46,160
 model class, like so.
 
-18
+17
 00:00:46,160 --> 00:00:50,060
 We then defined a model
 instance like this.
 
-19
+18
 00:00:50,060 --> 00:00:54,190
 Then to get an attribute,
 we would call get.
 
-20
+19
 00:00:54,190 --> 00:00:59,000
 To set an attribute,
 we would call set.
 
-21
+20
 00:00:59,000 --> 00:01:01,250
 So in order to do page loads,
 the first thing we're going to
 
-22
+21
 00:01:01,250 --> 00:01:05,310
 want to do is to fetch the JSON
 data from the server.
 
-23
+22
 00:01:05,310 --> 00:01:06,980
 How would we do that
 in Backbone and
 
-24
+23
 00:01:06,980 --> 00:01:08,650
 load it into our model?
 
-25
+24
 00:01:08,650 --> 00:01:10,790
-So here's our 
+So here's our
 todoItem instance.
 
-26
+25
 00:01:10,790 --> 00:01:15,550
 We can set the URL to get JSON
 by setting the url property.
 
-27
+26
 00:01:15,550 --> 00:01:18,410
 And then, we can populate the
 model from the server by
 
-28
+27
 00:01:18,410 --> 00:01:20,930
 calling .fetch.
 
-29
+28
 00:01:20,930 --> 00:01:24,130
 This is going to go to that URL,
 pull down the JSON, load
 
-30
+29
 00:01:24,130 --> 00:01:28,290
 that into our model, and then
 we can call get to get that
 
-31
+30
 00:01:28,290 --> 00:01:30,160
 data out of our model.
 
-32
+31
 00:01:30,160 --> 00:01:33,350
 Now the URL that we have
 here, /todo, isn't a
 
-33
+32
 00:01:33,350 --> 00:01:35,360
 very good URL, right?
 
-34
+33
 00:01:35,360 --> 00:01:38,970
 Because we're talking about
 one todoItem, and we're
 
-35
+34
 00:01:38,970 --> 00:01:40,170
 calling /todo.
 
-36
+35
 00:01:40,170 --> 00:01:41,650
 So how might we fix that?
 
-37
+36
 00:01:41,650 --> 00:01:44,810
 How might we do this in
 a more RESTful way?
 
-38
+37
 00:01:44,810 --> 00:01:49,800
 Well, if we go back into how we
 define our model class, we
 
-39
+38
 00:01:49,800 --> 00:01:52,950
 can specify a URL root.
 
-40
+39
 00:01:52,950 --> 00:01:55,580
 By default, it's going to
 use that URL to get
 
-41
+40
 00:01:55,580 --> 00:01:56,750
 data from our server.
 
-42
+41
 00:01:56,750 --> 00:01:59,720
 And it's going to interact with
 our server in a RESTful
 
-43
+42
 00:01:59,720 --> 00:02:05,440
 way using sort of the Rails
 flavored version of REST.
 
-44
+43
 00:02:05,440 --> 00:02:10,000
 To fetch the todo with ID of
 1, we simply send the ID
 
-45
+44
 00:02:10,000 --> 00:02:12,510
 when we define our
 todo instance.
 
-46
+45
 00:02:12,510 --> 00:02:15,570
 To fetch the data for the to
 do, we just call fetch.
 
-47
+46
 00:02:15,570 --> 00:02:19,540
 That's going to do a get request
 to the todo/1 URL.
 
-48
+47
 00:02:19,540 --> 00:02:21,960
 It's going to return the
 JSON and populate the
 
-49
+48
 00:02:21,960 --> 00:02:23,610
 instance with that data.
 
-50
+49
 00:02:23,610 --> 00:02:26,160
 To update the todoItem
 on our client, we
 
-51
+50
 00:02:26,160 --> 00:02:28,270
 call the set command.
 
-52
+51
 00:02:28,270 --> 00:02:30,550
 And then, if we want to
 synchronize that with the
 
-53
+52
 00:02:30,550 --> 00:02:33,840
 server like we saw before,
 we call the save command.
 
-54
+53
 00:02:33,840 --> 00:02:36,360
 And in this case, it's going
 to do a put request to the
 
-55
+54
 00:02:36,360 --> 00:02:39,970
 todo/1 URL and send the
 JSON parameters
 
-56
+55
 00:02:39,970 --> 00:02:42,130
 with the model data.
 
-57
+56
 00:02:42,130 --> 00:02:45,440
 What about when we want to
 create a new todoItem?
 
-58
+57
 00:02:45,440 --> 00:02:47,460
 What might that look like?
 
-59
+58
 00:02:47,460 --> 00:02:49,510
 Here, we define a
 new instance.
 
-60
+59
 00:02:49,510 --> 00:02:50,590
 We set the data.
 
-61
+60
 00:02:50,590 --> 00:02:53,130
 We're going to set
 the description.
 
-62
+61
 00:02:53,130 --> 00:02:54,550
 Save the todoItem.
 
-63
+62
 00:02:54,550 --> 00:02:59,190
 And that's going to do a POST
 request to /todos with the
 
-64
+63
 00:02:59,190 --> 00:03:00,650
 JSON parameters.
 
-65
+64
 00:03:00,650 --> 00:03:03,080
 We can see that this todoItem
 was properly created on
 
-66
+65
 00:03:03,080 --> 00:03:06,880
 the server, because when we call
 get ID, we get back the
 
-67
+66
 00:03:06,880 --> 00:03:07,890
 number two.
 
-68
+67
 00:03:07,890 --> 00:03:10,370
 Then, if you want to destroy
 this todoItem, we can simply
 
-69
+68
 00:03:10,370 --> 00:03:11,640
 call destroy.
 
-70
+69
 00:03:11,640 --> 00:03:16,220
 And that sends a delete request
 to the todos/2 URL.
 
-71
+70
 00:03:16,220 --> 00:03:19,130
 If we ever want to get the JSON
 object out of our model,
 
-72
+71
 00:03:19,130 --> 00:03:22,310
 like maybe when we want to
 render it into the view later,
 
-73
+72
 00:03:22,310 --> 00:03:23,560
 we can call toJSON.
 
-74
-00:03:23,560 --> 00:03:27,590
-
-75
+73
 00:03:27,590 --> 00:03:30,890
 Another nice option when we're
 defining the TodoItem class
 
-76
+74
 00:03:30,890 --> 00:03:34,060
 is the ability to specify
 default values.
 
-77
+75
 00:03:34,060 --> 00:03:36,800
 So here you can see, we're
 setting defaults for both the
 
-78
+76
 00:03:36,800 --> 00:03:39,580
 description and the
 status attributes.
 
-79
+77
 00:03:39,580 --> 00:03:42,600
 So now, when we create a new
 todoItem, and we call get
 
-80
+78
 00:03:42,600 --> 00:03:47,115
 description or get status, it
 returns the default values.
 
-81
-00:03:47,115 --> 00:03:50,020
-
-82
+79
 00:03:50,020 --> 00:03:52,860
 One of the unifying concepts
 of Backbone.js
 
-83
+80
 00:03:52,860 --> 00:03:54,400
 is the use of events.
 
-84
+81
 00:03:54,400 --> 00:03:57,370
 And the first place we see this
 is at the model layer.
 
-85
+82
 00:03:57,370 --> 00:03:59,880
 So here, you can see we're
 defining an event.
 
-86
+83
 00:03:59,880 --> 00:04:01,400
 Event can be named anything.
 
-87
+84
 00:04:01,400 --> 00:04:03,780
 So here you can see we're
 listening for an event called
 
-88
+85
 00:04:03,780 --> 00:04:08,320
 event-name on our to
 do item instance.
 
-89
+86
 00:04:08,320 --> 00:04:11,330
 When the event-name event gets
 triggered, we're going to call
 
-90
+87
 00:04:11,330 --> 00:04:13,630
 a function here which
 will call an alert.
 
-91
+88
 00:04:13,630 --> 00:04:18,290
 To trigger this event, we can
 just call trigger event-name.
 
-92
+89
 00:04:18,290 --> 00:04:20,620
 This may look really familiar
 if you already
 
-93
+90
 00:04:20,620 --> 00:04:22,690
 write lots of jQuery.
 
-94
+91
 00:04:22,690 --> 00:04:25,590
 Now Backbone models already come
 with some special events
 
-95
+92
 00:04:25,590 --> 00:04:27,410
 that will get triggered
 on their own.
 
-96
+93
 00:04:27,410 --> 00:04:29,470
 The most common one you're
 going to see
 
-97
+94
 00:04:29,470 --> 00:04:31,540
 is the change event.
 
-98
+95
 00:04:31,540 --> 00:04:34,960
 So here we're saying listen for
 some changes to our model.
 
-99
+96
 00:04:34,960 --> 00:04:38,660
 And when that happens, call
 the doThing function.
 
-100
+97
 00:04:38,660 --> 00:04:41,090
 Our doThing function might
 be declared elsewhere.
 
-101
+98
 00:04:41,090 --> 00:04:43,670
 And you can see it just
 gets called here.
 
-102
+99
 00:04:43,670 --> 00:04:47,160
 If we called set on our
 todoItem, and we changed an
 
-103
+100
 00:04:47,160 --> 00:04:49,760
 attribute, this would
 automatically get triggered.
 
-104
+101
 00:04:49,760 --> 00:04:51,810
 If you wanted to set the
 attribute without triggering
 
-105
+102
 00:04:51,810 --> 00:04:55,130
 the event, we could send in the
 silent parameter like so.
 
-106
+103
 00:04:55,130 --> 00:04:58,120
 And if we want to remove the
 event listener, we can just
 
-107
+104
 00:04:58,120 --> 00:05:01,320
 call off instead of on.
 
-108
+105
 00:05:01,320 --> 00:05:04,580
 To listen for an event, we
 called the on function and
 
-109
+106
 00:05:04,580 --> 00:05:06,920
 send in an event and a method.
 
-110
+107
 00:05:06,920 --> 00:05:08,760
 What are the special events?
 
-111
+108
 00:05:08,760 --> 00:05:12,490
 Well, the built-in events that
 come with Backbone include the
 
-112
+109
 00:05:12,490 --> 00:05:14,120
 change event that we just saw.
 
-113
+110
 00:05:14,120 --> 00:05:16,680
 We can listen for a change
 in a specific attribute.
 
-114
+111
 00:05:16,680 --> 00:05:20,200
 We can listen for when the model
 gets destroyed, when it
 
-115
+112
 00:05:20,200 --> 00:05:23,600
 synchronized with a server,
 when there's an error.
 
-116
+113
 00:05:23,600 --> 00:05:26,120
 And finally, we can listen for
 when any event is triggered
 
-117
+114
 00:05:26,120 --> 00:05:29,730
 using the all event.
 
-118
+115
 00:05:29,730 --> 00:05:31,040
 So now we've talked
 a little bit more
 
-119
+116
 00:05:31,040 --> 00:05:33,150
 about Backbone models.
 
-120
+117
 00:05:33,150 --> 00:05:34,880
 It's time to jump into
 the challenges.
 
-121
+118
 00:05:34,880 --> 00:05:37,190
 And when you come back, we'll
 talk about Backbone views.
-
-122
-00:05:37,190 --> 00:05:40,010

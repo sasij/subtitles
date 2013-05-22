@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:00,140
 [SINGING]
 
@@ -164,577 +164,556 @@ The collection view doesn't
 render any of its HTML itself.
 
 36
-00:01:36,305 --> 00:01:38,930
-
-37
 00:01:38,930 --> 00:01:42,530
 Defining a collection view is
 just the same as a model view.
 
-38
+37
 00:01:42,530 --> 00:01:46,570
 Here we're creating a TodoList
 view and then creating a new
 
-39
+38
 00:01:46,570 --> 00:01:48,550
 instance of that view.
 
-40
+39
 00:01:48,550 --> 00:01:51,040
 But this time, instead of
 passing in a model, we're
 
-41
+40
 00:01:51,040 --> 00:01:53,170
 passing in a collection.
 
-42
+41
 00:01:53,170 --> 00:01:56,980
 Let's take our first crack at
 writing the collection views
 
-43
+42
 00:01:56,980 --> 00:01:58,480
 render function.
 
-44
+43
 00:01:58,480 --> 00:02:00,480
 So we have our collection
 in render.
 
-45
+44
 00:02:00,480 --> 00:02:04,040
 And we want to go through each
 model in the collection.
 
-46
+45
 00:02:04,040 --> 00:02:05,810
 And we're going to use
 forEach for that.
 
-47
+46
 00:02:05,810 --> 00:02:08,979
 Inside of our forEach loop,
 we're going to create a
 
-48
+47
 00:02:08,979 --> 00:02:11,160
 todoView for each model.
 
-49
+48
 00:02:11,160 --> 00:02:15,630
 And then we're going to render
 each todoView and take that
 
-50
+49
 00:02:15,630 --> 00:02:18,140
 view's element and
 append it to our
 
-51
+50
 00:02:18,140 --> 00:02:19,960
 collection view's element.
 
-52
+51
 00:02:19,960 --> 00:02:22,090
 There's a problem with
 this code, though.
 
-53
+52
 00:02:22,090 --> 00:02:25,800
 Earlier we saw when we listen to
 events on a collection or a
 
-54
+53
 00:02:25,800 --> 00:02:30,410
 model, we sometimes have to pass
 in a context parameter.
 
-55
+54
 00:02:30,410 --> 00:02:32,790
 And it works the same
 way with forEach.
 
-56
+55
 00:02:32,790 --> 00:02:36,880
 So here whenever this function
 is called inside of forEach
 
-57
+56
 00:02:36,880 --> 00:02:39,540
 it's going to have the
 wrong context.
 
-58
+57
 00:02:39,540 --> 00:02:42,180
 So let's do a little refactoring
 to fix this.
 
-59
+58
 00:02:42,180 --> 00:02:45,340
 First, we're going to add a new
 function called addOne.
 
-60
+59
 00:02:45,340 --> 00:02:49,430
 This is going to do what out
 forEach loop was doing before
 
-61
+60
 00:02:49,430 --> 00:02:51,060
 except now it's its
 own function.
 
-62
+61
 00:02:51,060 --> 00:02:54,590
 Then we update the render
 function and pass the addOne
 
-63
+62
 00:02:54,590 --> 00:02:56,420
 function to forEach.
 
-64
+63
 00:02:56,420 --> 00:03:00,290
 We also have to add a second
 argument to forEach to make
 
-65
+64
 00:03:00,290 --> 00:03:05,310
 sure the context of addOne
 is called on the view.
 
-66
+65
 00:03:05,310 --> 00:03:07,390
 Let's see this render
 in action.
 
-67
+66
 00:03:07,390 --> 00:03:09,990
 First, we'll create a new
 instance of the collection
 
-68
+67
 00:03:09,990 --> 00:03:13,560
 view passing in our todoList
 collection.
 
-69
+68
 00:03:13,560 --> 00:03:14,660
 Then we render it.
 
-70
+69
 00:03:14,660 --> 00:03:17,940
 And when we print it out to the
 console, you can see that
 
-71
+70
 00:03:17,940 --> 00:03:21,560
 we've got both model views
 inside of the collection
 
-72
+71
 00:03:21,560 --> 00:03:24,920
 view's top level element.
 
-73
+72
 00:03:24,920 --> 00:03:27,340
 What's going to happen, though,
 when we try to add a
 
-74
+73
 00:03:27,340 --> 00:03:30,290
 new todoItem to our
 collection?
 
-75
+74
 00:03:30,290 --> 00:03:32,880
 Right now, it's not going
 to update the view.
 
-76
+75
 00:03:32,880 --> 00:03:36,050
 We have to change our collection
 view first. Let's
 
-77
+76
 00:03:36,050 --> 00:03:39,980
 add an initialize function
 to our collection view.
 
-78
+77
 00:03:39,980 --> 00:03:42,590
 And just like we did with the
 model views, we'll listen to
 
-79
+78
 00:03:42,590 --> 00:03:44,070
 the add event.
 
-80
+79
 00:03:44,070 --> 00:03:47,080
 And whenever that add event is
 triggered, we'll call the
 
-81
+80
 00:03:47,080 --> 00:03:48,950
 addOne function.
 
-82
+81
 00:03:48,950 --> 00:03:51,740
 And we won't forget our
 third parameter.
 
-83
+82
 00:03:51,740 --> 00:03:56,760
 Now when we add our new todoItem
 to the todoList, our
 
-84
+83
 00:03:56,760 --> 00:03:59,290
 view will be updated.
 
-85
+84
 00:03:59,290 --> 00:04:01,740
 So now let's see
 that in action.
 
-86
+85
 00:04:01,740 --> 00:04:04,230
 Here we've already got a
 couple todoItems in our
 
-87
+86
 00:04:04,230 --> 00:04:06,370
 collection already
 on the view.
 
-88
+87
 00:04:06,370 --> 00:04:09,760
 And we're going to go on the
 console and add a new todoItem
 
-89
+88
 00:04:09,760 --> 00:04:11,190
 with a description and status.
 
-90
+89
 00:04:11,190 --> 00:04:14,180
 And as you can see, the
 view has been updated
 
-91
+90
 00:04:14,180 --> 00:04:15,940
 with our new todoItem.
 
-92
+91
 00:04:15,940 --> 00:04:17,329
 And let's just see that again.
 
-93
+92
 00:04:17,329 --> 00:04:20,529
 Instead this time, let's change
 the status to complete
 
-94
+93
 00:04:20,529 --> 00:04:21,910
 and give it a different
 description.
 
-95
+94
 00:04:21,910 --> 00:04:25,025
 And we can see that it
 works correctly.
 
-96
-00:04:25,025 --> 00:04:28,530
-
-97
+95
 00:04:28,530 --> 00:04:32,830
 Just like adding a new item to
 the collection at first didn't
 
-98
+96
 00:04:32,830 --> 00:04:36,750
 update our DOM, right now, if we
 fetch a bunch of new items
 
-99
+97
 00:04:36,750 --> 00:04:39,500
 from the server, our DOM isn't
 going to get updated.
 
-100
+98
 00:04:39,500 --> 00:04:42,680
 When we call fetch on the
 collection, it's going to fire
 
-101
+99
 00:04:42,680 --> 00:04:43,770
 the reset event.
 
-102
+100
 00:04:43,770 --> 00:04:48,020
 We can listen to this event in
 the collection view and call
 
-103
+101
 00:04:48,020 --> 00:04:52,360
 this new function addAll when
 that event is fired.
 
-104
+102
 00:04:52,360 --> 00:04:55,760
 Now all we have to do is define
 addAll, which pretty
 
-105
+103
 00:04:55,760 --> 00:05:00,140
 much just does what render was
 doing before and update render
 
-106
+104
 00:05:00,140 --> 00:05:02,080
 to use the addAll function.
 
-107
-00:05:02,080 --> 00:05:04,800
-
-108
+105
 00:05:04,800 --> 00:05:07,640
 Let's see the reset
 event in action.
 
-109
+106
 00:05:07,640 --> 00:05:10,740
 So to start, we're going to
 take our collection view.
 
-110
+107
 00:05:10,740 --> 00:05:12,410
 And we're going to render it.
 
-111
+108
 00:05:12,410 --> 00:05:15,670
 Then we're going to add the
 collection view's top level
 
-112
+109
 00:05:15,670 --> 00:05:17,250
 element into the DOM.
 
-113
+110
 00:05:17,250 --> 00:05:20,870
 So now when we get our
 collection and call fetch
 
-114
+111
 00:05:20,870 --> 00:05:22,490
 on it, it's going
 to fetch the new
 
-115
+112
 00:05:22,490 --> 00:05:24,050
 data from the server.
 
-116
+113
 00:05:24,050 --> 00:05:26,780
 And when that reset event
 is fired, it's going
 
-117
+114
 00:05:26,780 --> 00:05:28,290
 to update the DOM.
 
-118
+115
 00:05:28,290 --> 00:05:30,250
 There is one problem, though.
 
-119
+116
 00:05:30,250 --> 00:05:33,960
 Let's say we try to remove an
 item from the collection.
 
-120
+117
 00:05:33,960 --> 00:05:35,950
 Shouldn't that remove
 it from the view?
 
-121
+118
 00:05:35,950 --> 00:05:39,640
 Well, as you can see here, it's
 not updating the view.
 
-122
+119
 00:05:39,640 --> 00:05:42,640
 To fix this problem, we're
 actually not going to need to
 
-123
+120
 00:05:42,640 --> 00:05:44,460
 touch the collection
 view at all.
 
-124
+121
 00:05:44,460 --> 00:05:47,710
 And I'll show you how
 using custom events.
 
-125
+122
 00:05:47,710 --> 00:05:52,150
 We know that, when we remove an
 item from the collection,
 
-126
+123
 00:05:52,150 --> 00:05:54,930
 the remove event is triggered.
 
-127
+124
 00:05:54,930 --> 00:05:57,780
 When we remove an item from a
 collection, we don't actually
 
-128
+125
 00:05:57,780 --> 00:05:59,630
 destroy the item.
 
-129
+126
 00:05:59,630 --> 00:06:02,270
 If we do destroy it, it would
 have removed it from the view.
 
-130
+127
 00:06:02,270 --> 00:06:03,820
 But that's not what we want.
 
-131
+128
 00:06:03,820 --> 00:06:06,390
 So instead let's use
 custom events.
 
-132
+129
 00:06:06,390 --> 00:06:09,780
 In our todoList collection,
 we're going to define the
 
-133
+130
 00:06:09,780 --> 00:06:11,460
 initialize function.
 
-134
+131
 00:06:11,460 --> 00:06:13,580
 And we're going to say, whatever
 the remove event is
 
-135
+132
 00:06:13,580 --> 00:06:18,140
 fired on this collection
 instance, call hideModel.
 
-136
+133
 00:06:18,140 --> 00:06:20,350
 Now we define the hideModel
 function.
 
-137
+134
 00:06:20,350 --> 00:06:22,760
 And as you remember
 from level five.
 
-138
+135
 00:06:22,760 --> 00:06:24,690
 The function is going
 to accept the
 
-139
+136
 00:06:24,690 --> 00:06:26,410
 model that is removed.
 
-140
+137
 00:06:26,410 --> 00:06:29,530
 So now, inside of our hideModel
 function, we're going to
 
-141
+138
 00:06:29,530 --> 00:06:33,470
 trigger a new custom event
 called hide on that model.
 
-142
+139
 00:06:33,470 --> 00:06:37,190
 And then we can open up our
 TodoItem view and listen for
 
-143
+140
 00:06:37,190 --> 00:06:38,630
 that hide event.
 
-144
+141
 00:06:38,630 --> 00:06:41,280
 And whenever that is triggered,
 we can remove the
 
-145
+142
 00:06:41,280 --> 00:06:43,830
 view from the DOM.
 
-146
+143
 00:06:43,830 --> 00:06:45,580
 Bringing it all together,
 let's see
 
-147
+144
 00:06:45,580 --> 00:06:47,960
 it work in our browser.
 
-148
+145
 00:06:47,960 --> 00:06:51,390
 So here we have our three items.
 And we're going to
 
-149
+146
 00:06:51,390 --> 00:06:54,870
 remove the first item
 from the collection.
 
-150
+147
 00:06:54,870 --> 00:06:58,460
 In using those hide events,
 it's going to remove the
 
-151
+148
 00:06:58,460 --> 00:07:00,450
 single item from the view.
 
-152
-00:07:00,450 --> 00:07:03,160
-
-153
+149
 00:07:03,160 --> 00:07:06,290
 That's it for Level Six:
 Collections and Views.
 
-154
+150
 00:07:06,290 --> 00:07:07,800
 Good luck in the
 challenge area.
 
-155
+151
 00:07:07,800 --> 00:07:10,350
 We'll see you back here for the
 last level, level seven,
 
-156
+152
 00:07:10,350 --> 00:07:13,590
 where we'll be going over
 routers and history.
-
-157
-00:07:13,590 --> 00:07:13,740
-
-158
-00:07:13,740 --> 00:07:14,990
-
-159
-00:07:14,990 --> 00:07:15,840

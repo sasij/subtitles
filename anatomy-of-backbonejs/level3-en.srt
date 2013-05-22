@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:00,145
 [MUSIC PLAYING]
 
@@ -62,7 +62,7 @@ a closer look at views.
 
 14
 00:00:39,450 --> 00:00:43,630
-So here, let's define a 
+So here, let's define a
 SimpleView class, nothing in it.
 
 15
@@ -202,463 +202,448 @@ We can call simply
 todoView.$el.html.
 
 43
-00:02:08,550 --> 00:02:09,440
-
-44
 00:02:09,440 --> 00:02:13,070
 This is good because that el--
 we don't know what the ID's
 
-45
+44
 00:02:13,070 --> 00:02:13,610
 going to be.
 
-46
+45
 00:02:13,610 --> 00:02:16,940
 What we construct out of our
 view might be dynamic.
 
-47
+46
 00:02:16,940 --> 00:02:20,990
 So it's much better to
 simply use this.
 
-48
+47
 00:02:20,990 --> 00:02:23,460
 Let's take a look at the view
 code that you saw back in
 
-49
+48
 00:02:23,460 --> 00:02:25,660
 level one that looks something
 like this.
 
-50
+49
 00:02:25,660 --> 00:02:27,920
 Hopefully, it makes a little
 more sense this time
 
-51
+50
 00:02:27,920 --> 00:02:28,840
 you're seeing it.
 
-52
+51
 00:02:28,840 --> 00:02:32,120
 To construct your HTML, we
 called the render function,
 
-53
+52
 00:02:32,120 --> 00:02:35,000
 then we called
 console.log(todoView.el) and
 
-54
+53
 00:02:35,000 --> 00:02:37,200
 it printed out Pick up milk.
 
-55
+54
 00:02:37,200 --> 00:02:40,220
 Let's revise the class
 definition a little bit, first
 
-56
+55
 00:02:40,220 --> 00:02:43,220
 adding the tag name,
 ID, and class name.
 
-57
+56
 00:02:43,220 --> 00:02:45,280
 You can see we're wrapping
 with the el with a jQuery
 
-58
+57
 00:02:45,280 --> 00:02:47,770
 function, and we just learned
 there's a shortcut for this,
 
-59
+58
 00:02:47,770 --> 00:02:50,160
 so let's modify it
 accordingly.
 
-60
+59
 00:02:50,160 --> 00:02:53,430
 To generate the HTML from our
 view, we just call the render
 
-61
+60
 00:02:53,430 --> 00:02:55,430
 function and we can
 print out the el
 
-62
+61
 00:02:55,430 --> 00:02:56,680
 property to the console.
 
-63
-00:02:56,680 --> 00:02:59,220
-
-64
+62
 00:02:59,220 --> 00:03:02,590
 We're generating our view HTML
 by simply creating a variable
 
-65
+63
 00:03:02,590 --> 00:03:05,930
 with all of our HTML, we're
 appending it all together.
 
-66
+64
 00:03:05,930 --> 00:03:09,570
 And you can imagine, if we had
 a lot of HTML and a lot of
 
-67
+65
 00:03:09,570 --> 00:03:12,420
 attributes we were printing out
 inside of it, it would get
 
-68
+66
 00:03:12,420 --> 00:03:15,280
 really hairy and ugly.
 
-69
+67
 00:03:15,280 --> 00:03:18,630
 We can organize that by using
 some sort of client-side
 
-70
+68
 00:03:18,630 --> 00:03:20,460
 templating framework.
 
-71
+69
 00:03:20,460 --> 00:03:22,410
 Backbone comes with
 the underscore
 
-72
+70
 00:03:22,410 --> 00:03:24,110
 library for doing this.
 
-73
+71
 00:03:24,110 --> 00:03:26,230
 Not that the underscore
 library's just for templating,
 
-74
+72
 00:03:26,230 --> 00:03:29,070
 the underscore library actually
 is a big utility
 
-75
+73
 00:03:29,070 --> 00:03:32,600
 library that gives us some great
 stuff, one of which is
 
-76
+74
 00:03:32,600 --> 00:03:34,290
 the templating function.
 
-77
+75
 00:03:34,290 --> 00:03:37,500
 To use the underscore library,
 we just use the underscore and
 
-78
+76
 00:03:37,500 --> 00:03:39,740
 we're going to use the template
 function and send in
 
-79
+77
 00:03:39,740 --> 00:03:42,550
 the string which is
 our _template.
 
-80
+78
 00:03:42,550 --> 00:03:44,940
 Then inside of our render
 function, we're going to
 
-81
+79
 00:03:44,940 --> 00:03:47,330
 create the attributes variable,
 setting that equal
 
-82
+80
 00:03:47,330 --> 00:03:49,230
 to the JSON from our model.
 
-83
+81
 00:03:49,230 --> 00:03:51,420
 To render the template, we
 just call the template
 
-84
+82
 00:03:51,420 --> 00:03:54,100
 function and send in
 those attributes.
 
-85
+83
 00:03:54,100 --> 00:03:57,250
 Then if we render out the HTML
 just like we did before, we'll
 
-86
+84
 00:03:57,250 --> 00:03:59,340
 get the same result, this
 time using a template.
 
-87
-00:03:59,340 --> 00:04:02,510
-
-88
+85
 00:04:02,510 --> 00:04:05,630
 Although the Underscore.js
 library comes with Backbone,
 
-89
+86
 00:04:05,630 --> 00:04:08,010
 that doesn't have to be what
 you use for client-side
 
-90
+87
 00:04:08,010 --> 00:04:09,120
 templating.
 
-91
+88
 00:04:09,120 --> 00:04:11,610
 We could also use Mustache.js.
 
-92
+89
 00:04:11,610 --> 00:04:13,320
 It might look something
 like this.
 
-93
+90
 00:04:13,320 --> 00:04:15,020
 We could use Haml.js.
 
-94
+91
 00:04:15,020 --> 00:04:19,370
 We could also use Eco or any
 other templating library.
 
-95
+92
 00:04:19,370 --> 00:04:20,260
 But here's our template.
 
-96
+93
 00:04:20,260 --> 00:04:23,230
 And we want to make it so that
 when somebody clicks on that
 
-97
+94
 00:04:23,230 --> 00:04:25,950
 h3, it pops up an alert.
 
-98
+95
 00:04:25,950 --> 00:04:28,650
 If we were to do this in
 jQuery, it might look
 
-99
+96
 00:04:28,650 --> 00:04:32,070
 something like this where we
 set a click listener on h3,
 
-100
+97
 00:04:32,070 --> 00:04:34,650
 which will call the alert
 status function.
 
-101
+98
 00:04:34,650 --> 00:04:36,520
 However, this is typically
 not how we do
 
-102
+99
 00:04:36,520 --> 00:04:38,390
 DOM events in Backbone.
 
-103
+100
 00:04:38,390 --> 00:04:41,410
 You see, in Backbone, views are
 responsible for responding
 
-104
+101
 00:04:41,410 --> 00:04:43,490
 to any UI interaction.
 
-105
+102
 00:04:43,490 --> 00:04:47,540
 So these events are defined
 inside of our views like so.
 
-106
+103
 00:04:47,540 --> 00:04:49,990
 Instead of our view class
 definition, we
 
-107
+104
 00:04:49,990 --> 00:04:52,270
 have an events object.
 
-108
+105
 00:04:52,270 --> 00:04:56,640
 We specify that when the h3
 element is clicked, call the
 
-109
+106
 00:04:56,640 --> 00:04:58,510
 alert status method.
 
-110
+107
 00:04:58,510 --> 00:05:00,530
 We then define the alert
 status function
 
-111
+108
 00:05:00,530 --> 00:05:01,860
 inside of the view.
 
-112
+109
 00:05:01,860 --> 00:05:03,430
 Now, you're probably wondering,
 is this alert going
 
-113
+110
 00:05:03,430 --> 00:05:06,700
 to pop up whenever I click
 on any h3 on my page?
 
-114
+111
 00:05:06,700 --> 00:05:08,040
 Well, no.
 
-115
+112
 00:05:08,040 --> 00:05:09,700
 Backbone's smarter than that.
 
-116
+113
 00:05:09,700 --> 00:05:12,375
 If you looked inside of a
 Backbone code, you would see
 
-117
+114
 00:05:12,375 --> 00:05:16,500
 that that h3 event is
 scoped to inside of
 
-118
+115
 00:05:16,500 --> 00:05:17,895
 this particular element.
 
-119
+116
 00:05:17,895 --> 00:05:20,590
 It's actually calling the
 jQuery delegate method.
 
-120
+117
 00:05:20,590 --> 00:05:25,410
 So that means inside of this
 element if there's any h3s
 
-121
+118
 00:05:25,410 --> 00:05:28,400
 when they're clicked, call
 the alert status.
 
-122
+119
 00:05:28,400 --> 00:05:30,560
 Now, let's take a look at
 a more complex event
 
-123
+120
 00:05:30,560 --> 00:05:31,650
 declaration.
 
-124
+121
 00:05:31,650 --> 00:05:34,630
-Here, we have a 
+Here, we have a
 DocumentView class.
 
-125
+122
 00:05:34,630 --> 00:05:38,300
 Inside there, you can see I'm
 defining multiple events.
 
-126
+123
 00:05:38,300 --> 00:05:40,020
 At the top of event,
 you'll notice it
 
-127
+124
 00:05:40,020 --> 00:05:43,140
 doesn't have any selector.
 
-128
+125
 00:05:43,140 --> 00:05:45,500
 As you can imagine with the code
 that we saw previously,
 
-129
+126
 00:05:45,500 --> 00:05:48,190
 what that means is if I double
 click anywhere inside of this
 
-130
+127
 00:05:48,190 --> 00:05:51,450
 element, it's going to call
 the open function.
 
-131
+128
 00:05:51,450 --> 00:05:54,490
 The format of events looks
 something like this.
 
-132
+129
 00:05:54,490 --> 00:05:58,100
 We specify an event, we specify
 a selector, and then
 
-133
+130
 00:05:58,100 --> 00:06:00,470
 the function to call.
 
-134
+131
 00:06:00,470 --> 00:06:03,090
 If you're using jQuery, here are
 all the different events
 
-135
+132
 00:06:03,090 --> 00:06:04,340
 that you could listen to.
 
-136
-00:06:04,340 --> 00:06:07,910
-
-137
+133
 00:06:07,910 --> 00:06:10,960
 Remember, you can always create
 custom events at the
 
-138
+134
 00:06:10,960 --> 00:06:15,916
 model level or even at the view
 level. That about wraps up
 
-139
+135
 00:06:15,916 --> 00:06:17,350
 this level.
 
-140
+136
 00:06:17,350 --> 00:06:20,840
 So have some fun with the
 challenges and Eric Allam will
 
-141
+137
 00:06:20,840 --> 00:06:22,290
 meet you on level four.
-
-142
-00:06:22,290 --> 00:06:25,322

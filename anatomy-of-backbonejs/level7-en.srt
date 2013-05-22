@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:00,280
 [SINGING]
 
@@ -51,871 +51,859 @@ the Anatomy of
 Backbone.js at Code School.
 
 12
-00:00:28,908 --> 00:00:31,776
-
-13
 00:00:31,776 --> 00:00:34,650
 [MUSIC PLAYING]
 
-14
+13
 00:00:34,650 --> 00:00:37,310
 You're watching the Anatomy
 of Backbone.js.
 
-15
+14
 00:00:37,310 --> 00:00:38,940
 This is Level 7:
 
-16
+15
 00:00:38,940 --> 00:00:40,830
 Routers and History.
 
-17
+16
 00:00:40,830 --> 00:00:43,330
 So we have a little problem
 in our app right now.
 
-18
+17
 00:00:43,330 --> 00:00:46,670
 As you can see, over to the
 right of each item, we have a
 
-19
+18
 00:00:46,670 --> 00:00:47,560
 little link.
 
-20
+19
 00:00:47,560 --> 00:00:51,050
 And we want that link to take us
 to a page that'll show just
 
-21
+20
 00:00:51,050 --> 00:00:52,400
 that one item.
 
-22
+21
 00:00:52,400 --> 00:00:55,660
 But we don't want to refresh
 the whole page.
 
-23
+22
 00:00:55,660 --> 00:00:58,860
 We actually just want to use a
 little bit of JavaScript, as
 
-24
+23
 00:00:58,860 --> 00:01:00,850
 you can see here--
 
-25
+24
 00:01:00,850 --> 00:01:06,690
 using something like jQuery to
 just show that one item.
 
-26
+25
 00:01:06,690 --> 00:01:09,720
 Let's see what happens when we
 implement this link using
 
-27
+26
 00:01:09,720 --> 00:01:11,370
 plain jQuery.
 
-28
+27
 00:01:11,370 --> 00:01:15,180
 When I click on the link, I am
 shown just that one item.
 
-29
+28
 00:01:15,180 --> 00:01:17,580
 But now let's say I want to hit
 the Back button to go back
 
-30
+29
 00:01:17,580 --> 00:01:20,800
 to the full list. Well when I
 do that, I'm actually taken
 
-31
+30
 00:01:20,800 --> 00:01:23,560
 out of the entire app
 back to Google.
 
-32
+31
 00:01:23,560 --> 00:01:25,160
 This is not what we want.
 
-33
+32
 00:01:25,160 --> 00:01:27,990
 And, actually, Backbone has this
 problem solved with the
 
-34
+33
 00:01:27,990 --> 00:01:30,370
 router and history.
 
-35
+34
 00:01:30,370 --> 00:01:33,010
 First, let's introduce
 Backbone's router.
 
-36
+35
 00:01:33,010 --> 00:01:37,600
 Now the router's job is to
 map URLs to actions.
 
-37
+36
 00:01:37,600 --> 00:01:41,470
 As you can see here, we're
 creating a new router.
 
-38
+37
 00:01:41,470 --> 00:01:44,870
 And we're going to pass
 in a routes object.
 
-39
+38
 00:01:44,870 --> 00:01:49,320
 This is going to map a URL
 to a single action.
 
-40
+39
 00:01:49,320 --> 00:01:54,060
 In this case, when the URL
 todos, the action will be
 
-41
+40
 00:01:54,060 --> 00:01:56,630
 index. And that index:
 function is
 
-42
+41
 00:01:56,630 --> 00:01:58,800
 defined on the router.
 
-43
+42
 00:01:58,800 --> 00:02:05,330
 So when the URL in your browser
 is say, /todos or
 
-44
+43
 00:02:05,330 --> 00:02:08,590
 #todos, the index action
 will be called.
 
-45
+44
 00:02:08,590 --> 00:02:11,430
 If you're unfamiliar with that
 hash mark syntax, we're going
 
-46
+45
 00:02:11,430 --> 00:02:13,570
 to cover it a little
 bit later.
 
-47
+46
 00:02:13,570 --> 00:02:17,090
 Let's dive a little bit more
 into that routes object.
 
-48
+47
 00:02:17,090 --> 00:02:20,340
 As you can see here, we're
 defining a new route,
 
-49
+48
 00:02:20,340 --> 00:02:24,350
 and that's going to match
 todos/:id and call the
 
-50
+49
 00:02:24,350 --> 00:02:25,540
 show action.
 
-51
+50
 00:02:25,540 --> 00:02:29,600
 But this id is actually
 a parameter.
 
-52
+51
 00:02:29,600 --> 00:02:30,850
 It can be anything.
 
-53
+52
 00:02:30,850 --> 00:02:34,890
 For example, it could be
 /todos/1, /todos/2,
 
-54
+53
 00:02:34,890 --> 00:02:36,180
 /todos/hello.
 
-55
+54
 00:02:36,180 --> 00:02:39,560
 And that parameter that is
 matched will actually get
 
-56
+55
 00:02:39,560 --> 00:02:42,970
 passed to the show action.
 
-57
+56
 00:02:42,970 --> 00:02:46,000
 Let's look at a couple more
 route matchers that you can
 
-58
+57
 00:02:46,000 --> 00:02:47,780
 use in your routers.
 
-59
+58
 00:02:47,780 --> 00:02:50,840
 Our first one here is going
 to match search/:query.
 
-60
+59
 00:02:50,840 --> 00:02:52,760
 For example, search/ruby.
 
-61
+60
 00:02:52,760 --> 00:02:57,100
 And that'll pass that one
 parameter into the action.
 
-62
+61
 00:02:57,100 --> 00:03:01,120
 The second one will actually
 match two parameters--
 
-63
+62
 00:03:01,120 --> 00:03:03,430
 the first one being query
 and the second one being
 
-64
+63
 00:03:03,430 --> 00:03:07,260
 page, And both of those will
 get passed to the action.
 
-65
+64
 00:03:07,260 --> 00:03:10,590
 Same kind of thing with the
 third example here where both
 
-66
+65
 00:03:10,590 --> 00:03:13,370
 name and mode will get
 passed to the action.
 
-67
+66
 00:03:13,370 --> 00:03:16,550
 And then there's a wild card
 matcher which will match
 
-68
+67
 00:03:16,550 --> 00:03:18,820
 everything after a
 certain point.
 
-69
+68
 00:03:18,820 --> 00:03:24,070
 So in this example,
 hello/world.txt will get set
 
-70
+69
 00:03:24,070 --> 00:03:27,570
 as the only parameter
 to the action.
 
-71
+70
 00:03:27,570 --> 00:03:30,740
 Now you may be wondering how
 do we trigger these routes.
 
-72
+71
 00:03:30,740 --> 00:03:34,160
 Well we can use the router's
 navigate function.
 
-73
+72
 00:03:34,160 --> 00:03:37,630
 With that all we have to
 do is pass in the URL
 
-74
+73
 00:03:37,630 --> 00:03:39,250
 as the first argument.
 
-75
+74
 00:03:39,250 --> 00:03:43,730
 And if we actually want to
 trigger the action, we pass in
 
-76
+75
 00:03:43,730 --> 00:03:44,640
 trigger: true.
 
-77
+76
 00:03:44,640 --> 00:03:49,240
 If we didn't pass in trigger:
 true here, the browser URL
 
-78
+77
 00:03:49,240 --> 00:03:52,450
 would update, but our action
 would not be called.
 
-79
+78
 00:03:52,450 --> 00:03:55,310
 And, of course, we can just
 use normal links.
 
-80
+79
 00:03:55,310 --> 00:03:58,870
 Unfortunately, these aren't
 actually going to work yet.
 
-81
+80
 00:03:58,870 --> 00:04:02,330
 And before we show you how to
 fix it, let's go back and see
 
-82
+81
 00:04:02,330 --> 00:04:06,210
 how people have solved this
 history problem before.
 
-83
+82
 00:04:06,210 --> 00:04:10,020
 You may be familiar with using
 the Gmail web client.
 
-84
+83
 00:04:10,020 --> 00:04:13,470
 And they solve history by using
 that hash mark thing
 
-85
+84
 00:04:13,470 --> 00:04:15,070
 that I was showing
 you earlier.
 
-86
+85
 00:04:15,070 --> 00:04:17,955
 As you can see here, when I
 click on the Starred, we're
 
-87
+86
 00:04:17,955 --> 00:04:20,010
 not actually doing a
 whole page refresh.
 
-88
+87
 00:04:20,010 --> 00:04:24,310
 But we are changing the
 URL to #starred.
 
-89
+88
 00:04:24,310 --> 00:04:27,210
 And this way when you click
 Back, it's not actually going
 
-90
+89
 00:04:27,210 --> 00:04:28,400
 to take you back all the way.
 
-91
+90
 00:04:28,400 --> 00:04:30,980
 It's just going to take you back
 to where you were before
 
-92
+91
 00:04:30,980 --> 00:04:32,810
 you clicked Starred.
 
-93
+92
 00:04:32,810 --> 00:04:36,700
 Now Basecamp Next does this a
 little differently but in a
 
-94
+93
 00:04:36,700 --> 00:04:37,930
 similar way.
 
-95
+94
 00:04:37,930 --> 00:04:41,260
 Instead of using that hash mark
 that Gmail used, they
 
-96
+95
 00:04:41,260 --> 00:04:45,320
 actually use a new HTML5
 API called pushState.
 
-97
+96
 00:04:45,320 --> 00:04:48,140
 And this lets them update
 the browser URL.
 
-98
+97
 00:04:48,140 --> 00:04:50,300
 And instead of using
 a hash mark, it
 
-99
+98
 00:04:50,300 --> 00:04:51,740
 uses the regular slash.
 
-100
+99
 00:04:51,740 --> 00:04:54,030
 So it looks like a real URL.
 
-101
+100
 00:04:54,030 --> 00:04:57,570
 Backbone will actually let you
 do both of these approaches to
 
-102
+101
 00:04:57,570 --> 00:04:59,610
 saving history in the browser.
 
-103
+102
 00:04:59,610 --> 00:05:01,810
 But I would suggest
 using pushState.
 
-104
+103
 00:05:01,810 --> 00:05:05,150
 Now browser support isn't
 great right now.
 
-105
+104
 00:05:05,150 --> 00:05:06,770
 But it's really close.
 
-106
+105
 00:05:06,770 --> 00:05:09,390
 And there's a lot of advantages
 to using pushState
 
-107
+106
 00:05:09,390 --> 00:05:12,640
 as I'll go over later.
 
-108
+107
 00:05:12,640 --> 00:05:14,910
 Let's go back to our
 Backbone code.
 
-109
+108
 00:05:14,910 --> 00:05:18,400
 As we saw earlier, our navigate
 and our links weren't
 
-110
+109
 00:05:18,400 --> 00:05:19,170
 working yet.
 
-111
+110
 00:05:19,170 --> 00:05:23,190
 Now to make these work, we first
 have to use the backbone
 
-112
+111
 00:05:23,190 --> 00:05:24,770
 history API.
 
-113
+112
 00:05:24,770 --> 00:05:28,080
 All we have to do is call
 Backbone.history.start():
 
-114
+113
 00:05:28,080 --> 00:05:32,000
 And as you can see here, if
 we call start with no
 
-115
+114
 00:05:32,000 --> 00:05:34,950
 parameters pushState
 is going to be off.
 
-116
+115
 00:05:34,950 --> 00:05:37,110
 And our URLs are going
 to have that hash
 
-117
+116
 00:05:37,110 --> 00:05:37,870
 mark in front of them.
 
-118
+117
 00:05:37,870 --> 00:05:39,420
 And this is not great.
 
-119
+118
 00:05:39,420 --> 00:05:42,020
 Instead when you call
 start you can pass
 
-120
+119
 00:05:42,020 --> 00:05:43,830
 in {pushState: true}.
 
-121
+120
 00:05:43,830 --> 00:05:47,530
 And now when we navigate on our
 router, we'll have a slash
 
-122
+121
 00:05:47,530 --> 00:05:51,260
 in front of our URL instead
 of that hash mark.
 
-123
+122
 00:05:51,260 --> 00:05:55,700
 Let's take these concepts and
 implement our Todo app router.
 
-124
+123
 00:05:55,700 --> 00:05:59,250
 Here we're creating a router
 class much like we did with
 
-125
+124
 00:05:59,250 --> 00:06:01,150
 models and collections
 and views.
 
-126
+125
 00:06:01,150 --> 00:06:04,980
 When we create that class, we
 pass in a routes object.
 
-127
+126
 00:06:04,980 --> 00:06:08,910
 And we're going to start out
 by defining the show action
 
-128
+127
 00:06:08,910 --> 00:06:12,950
 which'll match on todo/:id
 
-129
+128
 00:06:12,950 --> 00:06:15,200
 Now let's define that
 show action
 
-130
+129
 00:06:15,200 --> 00:06:17,690
 accepting the id as a parameter.
 
-131
+130
 00:06:17,690 --> 00:06:22,730
 And we're going to call this
 focusOnTodoItem function on a
 
-132
+131
 00:06:22,730 --> 00:06:24,270
 todoList collection.
 
-133
+132
 00:06:24,270 --> 00:06:27,850
 This focusOnTodoItem function
 has already been defined.
 
-134
+133
 00:06:27,850 --> 00:06:32,380
 And all it will do is to reset
 the collection to show only
 
-135
+134
 00:06:32,380 --> 00:06:36,150
 the TodoItem that matches the
 id that is passed in.
 
-136
+135
 00:06:36,150 --> 00:06:38,450
 But you might be wondering
 where we're getting that
 
-137
+136
 00:06:38,450 --> 00:06:39,510
 todoList from.
 
-138
+137
 00:06:39,510 --> 00:06:41,960
 Well I'm going to define
 an initialize
 
-139
+138
 00:06:41,960 --> 00:06:43,890
 function on our router.
 
-140
+139
 00:06:43,890 --> 00:06:48,390
 This function takes an options
 object and will assign the
 
-141
+140
 00:06:48,390 --> 00:06:52,080
 TodoList to the router
 from the options.
 
-142
+141
 00:06:52,080 --> 00:06:55,310
 Now when we create our
 TodoRouter instance.
 
-143
+142
 00:06:55,310 --> 00:06:59,310
 We pass in an object with
 TodoList collection.
 
-144
+143
 00:06:59,310 --> 00:07:03,680
 What happens if after the user
 goes to the show action,
 
-145
+144
 00:07:03,680 --> 00:07:04,970
 they hit the Back button?
 
-146
+145
 00:07:04,970 --> 00:07:08,190
 Well they're going to end up
 back on the root route which
 
-147
+146
 00:07:08,190 --> 00:07:09,690
 has no URL.
 
-148
+147
 00:07:09,690 --> 00:07:13,530
 So we need to define the root
 route on our router.
 
-149
+148
 00:07:13,530 --> 00:07:17,280
 We do that by just using an
 empty string as seen here.
 
-150
+149
 00:07:17,280 --> 00:07:20,970
 And we want to call the index
 action when the root
 
-151
+150
 00:07:20,970 --> 00:07:22,610
 route is matched.
 
-152
+151
 00:07:22,610 --> 00:07:26,570
 Now when we define our index
 action all we're going to do
 
-153
+152
 00:07:26,570 --> 00:07:29,060
 is call fetch on
 the collection.
 
-154
+153
 00:07:29,060 --> 00:07:32,340
 And this will get all the
 todoItems from the server and
 
-155
+154
 00:07:32,340 --> 00:07:35,550
 display that to the user.
 
-156
+155
 00:07:35,550 --> 00:07:37,910
 Now let's see our router
 in action.
 
-157
+156
 00:07:37,910 --> 00:07:40,920
 As you can see here, we've got
 a list of todoItems. And when
 
-158
+157
 00:07:40,920 --> 00:07:44,480
 I click on that link, I'm shown
 just that one todoItem.
 
-159
+158
 00:07:44,480 --> 00:07:48,200
 And our URL in the browser
 has been updated.
 
-160
+159
 00:07:48,200 --> 00:07:50,500
 Now when I hit the Back button,
 I'm going to go back
 
-161
+160
 00:07:50,500 --> 00:07:53,930
 to the root route, and my list
 is going to refresh.
 
-162
+161
 00:07:53,930 --> 00:07:56,560
 And I can click on other links
 and go back and forth.
 
-163
+162
 00:07:56,560 --> 00:08:00,650
 And the history works
 as we expect.
 
-164
+163
 00:08:00,650 --> 00:08:04,070
 To finish it all up, we can use
 our router as a good place
 
-165
+164
 00:08:04,070 --> 00:08:06,860
 to organize some of the code
 that we've been writing.
 
-166
+165
 00:08:06,860 --> 00:08:10,240
 Instead of defining a whole new
 router class, since we're
 
-167
+166
 00:08:10,240 --> 00:08:13,180
 only really going to have one
 router instance, let's just go
 
-168
+167
 00:08:13,180 --> 00:08:16,240
 ahead and create the router
 instance directly.
 
-169
+168
 00:08:16,240 --> 00:08:20,360
 Now we have our routes that
 matches are root route to the
 
-170
+169
 00:08:20,360 --> 00:08:24,380
-index action and our 
+index action and our
 todos/:id to the show
 
-171
+170
 00:08:24,380 --> 00:08:25,730
 action just like before.
 
-172
+171
 00:08:25,730 --> 00:08:29,930
 When we initialize our router,
 we will go ahead and create a
 
-173
+172
 00:08:29,930 --> 00:08:31,770
 new TodoList collection.
 
-174
+173
 00:08:31,770 --> 00:08:35,409
 Then we will create our TodoList
 view and pass in that
 
-175
+174
 00:08:35,409 --> 00:08:36,380
 collection.
 
-176
+175
 00:08:36,380 --> 00:08:40,120
 The last thing we need to do in
 initialize is append that
 
-177
+176
 00:08:40,120 --> 00:08:43,400
 collection views element
 to our DOM.
 
-178
+177
 00:08:43,400 --> 00:08:46,140
 We're going to define a new
 function called start.
 
-179
+178
 00:08:46,140 --> 00:08:50,020
 And all that's going to do is
 call back our history start
 
-180
+179
 00:08:50,020 --> 00:08:52,140
 with pushState: true.
 
-181
+180
 00:08:52,140 --> 00:08:55,610
 Next our index function which
 we've seen before, and our
 
-182
+181
 00:08:55,610 --> 00:08:58,640
 show function as well.
 
-183
+182
 00:08:58,640 --> 00:09:01,620
 The really neat thing about
 using our router to organize
 
-184
+183
 00:09:01,620 --> 00:09:05,990
 our code this way is when our
 page first loads, we can use
 
-185
+184
 00:09:05,990 --> 00:09:08,010
 the jQuery ready function.
 
-186
+185
 00:09:08,010 --> 00:09:11,140
 And all we have to do is
 call TodoApp.start.
 
-187
+186
 00:09:11,140 --> 00:09:13,740
 And that'll start our whole
 app and everything will be
 
-188
+187
 00:09:13,740 --> 00:09:14,680
 initialized.
 
-189
+188
 00:09:14,680 --> 00:09:15,930
 And we'll be good to go.
 
-190
-00:09:15,930 --> 00:09:18,650
-
-191
+189
 00:09:18,650 --> 00:09:20,450
 Well that's it for Level 7:
 
-192
+190
 00:09:20,450 --> 00:09:21,840
 Routers and History.
 
-193
+191
 00:09:21,840 --> 00:09:23,420
 I hope you enjoyed the course.
 
-194
+192
 00:09:23,420 --> 00:09:25,420
 Now you have some
 more work to do.
 
-195
+193
 00:09:25,420 --> 00:09:26,620
 But I'm out of here.
-
-196
-00:09:26,620 --> 00:09:27,870
-
-197
-00:09:27,870 --> 00:09:30,474

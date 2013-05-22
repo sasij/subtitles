@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:32,530
 [MUSIC PLAYING]
 
@@ -541,50 +541,47 @@ resulting HTML to the console
 by just calling todoView.el.
 
 115
-00:05:31,450 --> 00:05:33,140
-
-116
 00:05:33,140 --> 00:05:36,510
 So now that you've got a brief
 glimpse into the model and
 
-117
+116
 00:05:36,510 --> 00:05:39,700
 view layer inside Backbone, it's
 time to get your hands
 
-118
+117
 00:05:39,700 --> 00:05:41,350
 dirty with some challenges.
 
-119
+118
 00:05:41,350 --> 00:05:42,980
 Don't worry about all
 the details that
 
-120
+119
 00:05:42,980 --> 00:05:44,020
 are going on here.
 
-121
+120
 00:05:44,020 --> 00:05:46,660
 In level 2 and level 3, we're
 going to go into models and
 
-122
+121
 00:05:46,660 --> 00:05:48,230
 views in more detail.
 
-123
+122
 00:05:48,230 --> 00:05:51,370
 For now, get your hands dirty
 with some challenges and have
 
-124
+123
 00:05:51,370 --> 00:05:52,740
 some fun putting up
 some Backbone.
 
-125
+124
 00:05:52,740 --> 00:05:56,010
 [MUSIC PLAYING]
