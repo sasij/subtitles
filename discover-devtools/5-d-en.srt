@@ -1,0 +1,168 @@
+﻿1
+00:00:02,110 --> 00:00:04,250
+Lastly, it looks like we're
+serving an image that hasn't
+
+2
+00:00:04,250 --> 00:00:07,320
+been scaled down to the size
+that we're displaying it at.
+
+3
+00:00:07,320 --> 00:00:10,640
+That image there, we're getting
+displayed at 35 pixels
+
+4
+00:00:10,640 --> 00:00:12,140
+by 35 pixels.
+
+5
+00:00:12,140 --> 00:00:14,380
+But we're downloading an image
+that is much bigger and
+
+6
+00:00:14,380 --> 00:00:17,130
+leaving it to the browser
+to scale it down.
+
+7
+00:00:17,130 --> 00:00:20,860
+In a perfect world, the image
+that we downloaded would be 35
+
+8
+00:00:20,860 --> 00:00:23,200
+pixels by 35 pixels.
+
+9
+00:00:23,200 --> 00:00:27,970
+It's also a JPEG, JPEGs are
+good for photographs.
+
+10
+00:00:27,970 --> 00:00:30,310
+But when we're dealing with
+icons and other images with
+
+11
+00:00:30,310 --> 00:00:32,689
+large areas of solid color,
+you might want
+
+12
+00:00:32,689 --> 00:00:34,890
+to use a PNG instead.
+
+13
+00:00:34,890 --> 00:00:39,220
+So I've scaled down the image
+and I reexported it as a PNG.
+
+14
+00:00:39,220 --> 00:00:41,210
+Let's update the file
+name in our HTML.
+
+15
+00:00:44,230 --> 00:00:46,280
+There we go.
+
+16
+00:00:46,280 --> 00:00:48,870
+The image was 19 kilobytes
+before and now
+
+17
+00:00:48,870 --> 00:00:50,360
+it's down to two.
+
+18
+00:00:50,360 --> 00:00:52,030
+It's going to download faster.
+
+19
+00:00:52,030 --> 00:00:54,690
+Not only that, but it's
+the right size.
+
+20
+00:00:54,690 --> 00:00:57,430
+So the browser doesn't have to
+re-size the image and the page
+
+21
+00:00:57,430 --> 00:00:59,540
+is going to load slightly
+faster.
+
+22
+00:00:59,540 --> 00:01:01,320
+You might also notice on
+the screen that the
+
+23
+00:01:01,320 --> 00:01:05,450
+DOMcontentloaded event is firing
+at 175 milliseconds.
+
+24
+00:01:05,450 --> 00:01:08,090
+This is because we set that
+JavaScript to load
+
+25
+00:01:08,090 --> 00:01:10,830
+asynchronously a minute
+ago, async.
+
+26
+00:01:10,830 --> 00:01:13,430
+And this event isn't going to
+wait anymore for scripts to
+
+27
+00:01:13,430 --> 00:01:14,680
+load before it fires.
+
+28
+00:01:17,210 --> 00:01:19,200
+Now if we go back and check
+on our grade, we're up
+
+29
+00:01:19,200 --> 00:01:21,460
+to 96 out of 100.
+
+30
+00:01:21,460 --> 00:01:23,530
+Not bad.
+
+31
+00:01:23,530 --> 00:01:25,510
+Our app is heading in
+the right direction.
+
+32
+00:01:25,510 --> 00:01:27,880
+Now these techniques might not
+apply to the applications
+
+33
+00:01:27,880 --> 00:01:28,920
+you're working on.
+
+34
+00:01:28,920 --> 00:01:31,560
+But hopefully you have the
+knowledge now to optimize your
+
+35
+00:01:31,560 --> 00:01:35,250
+application using the page
+speed extension.
+
+36
+00:01:35,250 --> 00:01:36,500
+Good luck in the challenges.
