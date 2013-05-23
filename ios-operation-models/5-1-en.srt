@@ -1,0 +1,783 @@
+﻿1
+00:00:00,160 --> 00:00:00,260
+[SINGING]
+
+2
+00:00:00,260 --> 00:00:03,460
+He's got your data in his pocket
+and a gun in his hand.
+
+3
+00:00:03,460 --> 00:00:06,475
+He's got his finger on the
+trigger and a secret plan.
+
+4
+00:00:06,475 --> 00:00:10,340
+He'll take mutable arrays and
+put them in formation using
+
+5
+00:00:10,340 --> 00:00:12,756
+your view controllers for
+his world domination.
+
+6
+00:00:12,756 --> 00:00:15,335
+He'll take your data
+into models
+
+7
+00:00:15,335 --> 00:00:16,340
+before it explodes.
+
+8
+00:00:16,340 --> 00:00:20,650
+The only secret agent who
+encodes and decodes.
+
+9
+00:00:20,650 --> 00:00:21,900
+He's Mr. Higgie.
+
+10
+00:00:28,280 --> 00:00:28,660
+All right.
+
+11
+00:00:28,660 --> 00:00:31,559
+Welcome to Level Five of
+iOS Operation Models.
+
+12
+00:00:31,800 --> 00:00:33,500
+In this level, we're going to
+be talking about how to
+
+13
+00:00:33,500 --> 00:00:37,150
+archive data in models
+to a file.
+
+14
+00:00:37,150 --> 00:00:39,030
+Planet Hig is working
+pretty well.
+
+15
+00:00:39,030 --> 00:00:41,550
+Higgie can get a list of places
+that are near him, he
+
+16
+00:00:41,550 --> 00:00:43,880
+can view specific information
+about each one of those
+
+17
+00:00:43,880 --> 00:00:46,470
+places, he can view information
+about the city
+
+18
+00:00:46,470 --> 00:00:48,590
+that he's visiting, and he can
+even leave himself little
+
+19
+00:00:48,590 --> 00:00:50,570
+travel notes along the way.
+
+20
+00:00:50,570 --> 00:00:53,680
+But it all kind of falls apart
+if Higgie closes the app and
+
+21
+00:00:53,680 --> 00:00:55,990
+tries to reopen it.
+
+22
+00:00:55,990 --> 00:00:58,830
+An app that loses all of its
+data every time it's closed,
+
+23
+00:00:58,830 --> 00:01:01,050
+is not going to be a
+very powerful app.
+
+24
+00:01:01,050 --> 00:01:01,540
+Aw, come on.
+
+25
+00:01:01,540 --> 00:01:04,700
+It took me forever to
+make that edit!
+
+26
+00:01:04,700 --> 00:01:07,770
+So let's look at what we can
+do in order to save data in
+
+27
+00:01:07,770 --> 00:01:09,010
+between app sessions.
+
+28
+00:01:09,010 --> 00:01:11,200
+We'll need a couple pieces
+to make this work.
+
+29
+00:01:11,200 --> 00:01:13,970
+And the first one is
+called NSCoding.
+
+30
+00:01:13,970 --> 00:01:17,670
+Now a model object can contain a
+wide variety of data, things
+
+31
+00:01:17,670 --> 00:01:23,020
+like NSStrings, NSArrays,
+NSDictionaries, and NSNumbers.
+
+32
+00:01:23,020 --> 00:01:27,220
+And the NSCoding protocol is
+like a package that takes all
+
+33
+00:01:27,220 --> 00:01:30,920
+those different pieces of data
+and puts them into one format.
+
+34
+00:01:30,920 --> 00:01:33,380
+Once we have it all in that one
+format, we can then save
+
+35
+00:01:33,380 --> 00:01:36,250
+it to a file on a disk and
+read back from that file
+
+36
+00:01:36,250 --> 00:01:39,510
+whenever we want to expand
+our data again.
+
+37
+00:01:39,510 --> 00:01:42,270
+Really the way that NSCoding
+works is kind of like sending
+
+38
+00:01:42,270 --> 00:01:44,360
+a package through the mail.
+
+39
+00:01:44,360 --> 00:01:46,560
+Let's say you have a present
+to deliver to someone.
+
+40
+00:01:46,560 --> 00:01:48,130
+You can't just take
+that present and
+
+41
+00:01:48,130 --> 00:01:49,120
+put it in the mailbox.
+
+42
+00:01:49,120 --> 00:01:52,020
+You have to put it inside of a
+box first and you have to wrap
+
+43
+00:01:52,020 --> 00:01:54,300
+it all up and tape
+the box down.
+
+44
+00:01:54,300 --> 00:01:56,780
+Once we have that box with
+our city model in it,
+
+45
+00:01:56,780 --> 00:01:59,810
+NSKeyedArchiver and
+NSKeyedUnarchiver are going to
+
+46
+00:01:59,810 --> 00:02:03,050
+act as the delivery person that
+takes our data from the
+
+47
+00:02:03,050 --> 00:02:06,560
+city model and moves it from
+point A to point B.
+
+48
+00:02:06,560 --> 00:02:09,729
+In this case, the place where
+we want our city model to go
+
+49
+00:02:09,729 --> 00:02:11,930
+is to be archived in a file.
+
+50
+00:02:11,930 --> 00:02:14,250
+And when we need to get the data
+out of the file system,
+
+51
+00:02:14,250 --> 00:02:16,670
+we call our delivery person
+again by using
+
+52
+00:02:16,670 --> 00:02:21,500
+NSKeyedUnarchiver to get a new
+fresh copy of the object.
+
+53
+00:02:21,500 --> 00:02:25,250
+We need to adopt the NSCoding
+protocol in the city model so
+
+54
+00:02:25,250 --> 00:02:27,890
+we can do that in
+the city.h file.
+
+55
+00:02:27,890 --> 00:02:30,850
+And then in the city.m file,
+we need to implement
+
+56
+00:02:30,850 --> 00:02:33,460
+initWithCoder and
+encodeWithCoder.
+
+57
+00:02:33,460 --> 00:02:35,500
+Now notice that
+encodeWithCoder does not
+
+58
+00:02:35,500 --> 00:02:38,000
+return any specific object.
+
+59
+00:02:38,000 --> 00:02:40,580
+But initWithCoder should always
+return a model object
+
+60
+00:02:40,580 --> 00:02:42,880
+instance of the model class
+that you're in,
+
+61
+00:02:42,880 --> 00:02:45,860
+in this case, city.
+
+62
+00:02:45,860 --> 00:02:48,890
+Implementing encodeWithCoder
+is pretty simple.
+
+63
+00:02:48,890 --> 00:02:51,290
+You can see that the
+encodeWithCoder method pulls
+
+64
+00:02:51,290 --> 00:02:53,540
+in one argument of
+type NSCoder.
+
+65
+00:02:53,540 --> 00:02:56,500
+And in our previous analogy,
+NSCoder is the box that
+
+66
+00:02:56,500 --> 00:02:58,580
+contains all of our data.
+
+67
+00:02:58,580 --> 00:03:00,940
+In encodeWithCoder, we're going
+to want to take all of
+
+68
+00:03:00,940 --> 00:03:03,370
+our data and put
+it in that box.
+
+69
+00:03:03,370 --> 00:03:07,090
+So we pass the
+encodeObjectForKey message for
+
+70
+00:03:07,090 --> 00:03:09,810
+each one of the properties
+that are in our model.
+
+71
+00:03:09,810 --> 00:03:11,790
+The first property
+is self.name.
+
+72
+00:03:11,790 --> 00:03:14,660
+So we passed the self.name
+object into the
+
+73
+00:03:14,660 --> 00:03:16,340
+encodeObject method.
+
+74
+00:03:16,340 --> 00:03:19,310
+And the key that we choose could
+be any string but we
+
+75
+00:03:19,310 --> 00:03:21,820
+probably want to take a string
+that relates to the name of
+
+76
+00:03:21,820 --> 00:03:25,330
+the model property so we don't
+get confused later on.
+
+77
+00:03:25,330 --> 00:03:28,320
+Well then repeat this for each
+one of the model properties in
+
+78
+00:03:28,320 --> 00:03:30,490
+the city model.
+
+79
+00:03:30,490 --> 00:03:33,610
+InitWithCoder does the opposite
+of encodeWithCoder.
+
+80
+00:03:33,610 --> 00:03:37,200
+It takes in that box full of
+data and it unwraps the box so
+
+81
+00:03:37,200 --> 00:03:39,560
+all the data inside
+can get out.
+
+82
+00:03:39,560 --> 00:03:41,640
+It looks very similar to
+a standard initializer.
+
+83
+00:03:41,640 --> 00:03:45,770
+It starts off with self equal
+super init, it then checks if
+
+84
+00:03:45,770 --> 00:03:48,640
+the self object was created, and
+then we need to go through
+
+85
+00:03:48,640 --> 00:03:51,760
+each one of the properties
+in our model and decode
+
+86
+00:03:51,760 --> 00:03:55,530
+objectForKey for each one of the
+keys that we just set in
+
+87
+00:03:55,530 --> 00:03:56,780
+encodeWithCoder.
+
+88
+00:03:59,540 --> 00:04:01,780
+InitWithCoder and
+encodeWithCoder don't ever get
+
+89
+00:04:01,780 --> 00:04:04,410
+called directly, but instead,
+they have that set of helper
+
+90
+00:04:04,410 --> 00:04:08,610
+classes that are the delivery
+person, NSKeyedArchiver and
+
+91
+00:04:08,610 --> 00:04:10,660
+NSKeyedUnarchiver.
+
+92
+00:04:10,660 --> 00:04:14,490
+So to create a model from an
+archive, we pass the unarchive
+
+93
+00:04:14,490 --> 00:04:18,740
+object with file message to the
+NSKeyedUnarchiver class.
+
+94
+00:04:18,740 --> 00:04:23,020
+And that's going to return
+to us a model.
+
+95
+00:04:23,020 --> 00:04:26,100
+To archive a model with the
+encodeWithCoder method, we're
+
+96
+00:04:26,100 --> 00:04:28,320
+first going to need
+to have a model.
+
+97
+00:04:28,320 --> 00:04:31,920
+Here I've created a city model
+based on the initwithJSON
+
+98
+00:04:31,920 --> 00:04:33,310
+initializer.
+
+99
+00:04:33,310 --> 00:04:36,740
+And then we pass the archive
+route object to file message
+
+100
+00:04:36,740 --> 00:04:39,700
+to the NSKeyedArchiver class.
+
+101
+00:04:39,700 --> 00:04:42,890
+The object we want to archive,
+of course, is city and the
+
+102
+00:04:42,890 --> 00:04:45,530
+file, again, is going
+to be a path to our
+
+103
+00:04:45,530 --> 00:04:48,010
+model archive file.
+
+104
+00:04:48,010 --> 00:04:50,760
+Now both of these need a path
+to the archive file which is
+
+105
+00:04:50,760 --> 00:04:52,850
+that warehouse that's going
+to store all of our data.
+
+106
+00:04:52,850 --> 00:04:54,590
+So let's look at how we
+can get that path.
+
+107
+00:04:57,920 --> 00:05:00,650
+Every iOS app actually consists
+of a couple of
+
+108
+00:05:00,650 --> 00:05:01,750
+subfolders.
+
+109
+00:05:01,750 --> 00:05:04,950
+The first one is a folder called
+App.bundle and this is
+
+110
+00:05:04,950 --> 00:05:06,760
+going to be all of the
+compiled code that
+
+111
+00:05:06,760 --> 00:05:08,680
+makes your app run.
+
+112
+00:05:08,680 --> 00:05:11,700
+This folder is read only so
+you can't write any custom
+
+113
+00:05:11,700 --> 00:05:13,310
+data to it.
+
+114
+00:05:13,310 --> 00:05:16,360
+Next, there's a set of folders
+called Documents, Library, and
+
+115
+00:05:16,360 --> 00:05:20,000
+Temp, and then Library also
+has two subfolders called
+
+116
+00:05:20,000 --> 00:05:22,760
+Caches and Preferences that
+get used to store some
+
+117
+00:05:22,760 --> 00:05:25,370
+temporary cache and
+preference data.
+
+118
+00:05:25,370 --> 00:05:27,750
+The best bet for us to save
+our model data is in the
+
+119
+00:05:27,750 --> 00:05:30,810
+Documents folder because that's
+a writable folder and a
+
+120
+00:05:30,810 --> 00:05:33,520
+good place to store data.
+
+121
+00:05:33,520 --> 00:05:35,920
+So we need a way to
+programmatically access that
+
+122
+00:05:35,920 --> 00:05:38,740
+Documents folder if we're going
+to save model data in it
+
+123
+00:05:38,740 --> 00:05:41,200
+and pull model data out of it.
+
+124
+00:05:41,200 --> 00:05:44,670
+So first we need to grab a
+listing of all documents
+
+125
+00:05:44,670 --> 00:05:47,180
+directories that could be in
+our application and that's
+
+126
+00:05:47,180 --> 00:05:48,340
+what this first line does.
+
+127
+00:05:48,340 --> 00:05:51,190
+It creates an NSArray called
+paths that contains all the
+
+128
+00:05:51,190 --> 00:05:53,580
+possible document directories.
+
+129
+00:05:53,580 --> 00:05:56,070
+Now because by default our app
+is only going to have one
+
+130
+00:05:56,070 --> 00:05:59,170
+documents directory, we need to
+pull that directory out of
+
+131
+00:05:59,170 --> 00:06:00,890
+the path's array by referencing
+
+132
+00:06:00,890 --> 00:06:03,660
+it at position zero.
+
+133
+00:06:03,660 --> 00:06:06,650
+Finally, to create our full
+archive path, we need to take
+
+134
+00:06:06,650 --> 00:06:09,330
+the path to the documents
+directory and we need to
+
+135
+00:06:09,330 --> 00:06:13,380
+append onto that the name
+of our archive file.
+
+136
+00:06:13,380 --> 00:06:16,170
+Now we can name our archive file
+anything that we want but
+
+137
+00:06:16,170 --> 00:06:19,030
+it's usually a good idea to name
+it something related to
+
+138
+00:06:19,030 --> 00:06:20,600
+the data being saved.
+
+139
+00:06:20,600 --> 00:06:23,960
+So here we're saving a city
+model data so I'm going to
+
+140
+00:06:23,960 --> 00:06:25,210
+call this city.model.
+
+141
+00:06:27,480 --> 00:06:30,880
+Now that we have that archive
+path stored in an NSString
+
+142
+00:06:30,880 --> 00:06:35,820
+called archive path, we can use
+that archive path variable
+
+143
+00:06:35,820 --> 00:06:39,620
+inside of the NSKeyedArchiver
+archive root object to file
+
+144
+00:06:39,620 --> 00:06:43,570
+method and the NSKeyedUnarchiver
+unarchive
+
+145
+00:06:43,570 --> 00:06:44,860
+object with file method.
+
+146
+00:06:48,280 --> 00:06:50,390
+But we can probably do even
+better than that.
+
+147
+00:06:50,390 --> 00:06:53,250
+That's a lot of code to write
+over and over and over again.
+
+148
+00:06:53,250 --> 00:06:57,310
+So let's declare a class method
+which is just a static
+
+149
+00:06:57,310 --> 00:06:59,940
+method that we don't have to
+instantiate an object in order
+
+150
+00:06:59,940 --> 00:07:03,840
+to be able to call called
+get path to archive.
+
+151
+00:07:03,840 --> 00:07:06,690
+Whenever we want to call the get
+path to archive method, we
+
+152
+00:07:06,690 --> 00:07:11,740
+want it to return a path
+to this city model.
+
+153
+00:07:11,740 --> 00:07:14,040
+Notice that little plus sign
+in front of the get path to
+
+154
+00:07:14,040 --> 00:07:15,120
+archive method.
+
+155
+00:07:15,120 --> 00:07:17,400
+That means that this is a
+class method and not an
+
+156
+00:07:17,400 --> 00:07:18,490
+instance method.
+
+157
+00:07:18,490 --> 00:07:20,870
+That means that whatever we need
+to call it, we don't need
+
+158
+00:07:20,870 --> 00:07:24,000
+to create an instance of the
+city model first, we can just
+
+159
+00:07:24,000 --> 00:07:28,560
+pass the getPathToArchive
+message to city.
+
+160
+00:07:28,560 --> 00:07:31,050
+Since this method returns
+a path to the city model
+
+161
+00:07:31,050 --> 00:07:33,730
+archive, in the NSKeyedArchiver
+and
+
+162
+00:07:33,730 --> 00:07:38,260
+NSKeyedUnarchiver methods, we
+can just call city getPathToArchive
+
+163
+00:07:38,260 --> 00:07:40,280
+and get that path.
+
+164
+00:07:43,530 --> 00:07:45,310
+It's time again to try your
+hand at some challenges.

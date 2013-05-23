@@ -1,0 +1,682 @@
+﻿1
+00:00:00,680 --> 00:00:02,700
+While we're making things more
+convenient, let's try to
+
+2
+00:00:02,700 --> 00:00:05,630
+refactor the way that we call
+NSKeyedArchiver and
+
+3
+00:00:05,630 --> 00:00:07,390
+NSKeyedUnarchiver.
+
+4
+00:00:07,390 --> 00:00:09,330
+We're going to be calling
+those a lot.
+
+5
+00:00:09,330 --> 00:00:11,450
+And it's a lot of code to write
+every time that we want
+
+6
+00:00:11,450 --> 00:00:13,930
+to perform this simple
+operation.
+
+7
+00:00:13,930 --> 00:00:17,010
+So let's take those NSKeyed
+methods and wrap them inside
+
+8
+00:00:17,010 --> 00:00:19,380
+of two class methods.
+
+9
+00:00:19,380 --> 00:00:22,210
+One's called, saveCity, which
+takes in a city model as an
+
+10
+00:00:22,210 --> 00:00:24,780
+argument and saves it to disk.
+
+11
+00:00:24,780 --> 00:00:27,570
+And the other is called getCity,
+which doesn't take in
+
+12
+00:00:27,570 --> 00:00:29,820
+any arguments, but returns
+a city model
+
+13
+00:00:29,820 --> 00:00:31,230
+object from the archive.
+
+14
+00:00:37,530 --> 00:00:39,940
+Now let's talk about when and
+where you need to call this
+
+15
+00:00:39,940 --> 00:00:41,510
+archiving code.
+
+16
+00:00:41,510 --> 00:00:44,220
+The first place is during
+instantiation, which in the
+
+17
+00:00:44,220 --> 00:00:47,250
+case of the city model, is
+with initWithJSON method.
+
+18
+00:00:49,850 --> 00:00:52,510
+Now at the end of the
+initWithJSON method, after the
+
+19
+00:00:52,510 --> 00:00:54,910
+model properties have been set,
+we're going to want to
+
+20
+00:00:54,910 --> 00:00:57,610
+call saveCity and pass
+in self as the
+
+21
+00:00:57,610 --> 00:00:59,310
+object we want to archive.
+
+22
+00:00:59,310 --> 00:01:01,900
+This creates a fresh archive,
+based on the data that was
+
+23
+00:01:01,900 --> 00:01:03,465
+just loaded into
+our City model.
+
+24
+00:01:07,140 --> 00:01:09,350
+The next place that we're going
+to want to archive is
+
+25
+00:01:09,350 --> 00:01:12,680
+after we make any changes to our
+data, which in Planet Hig
+
+26
+00:01:12,680 --> 00:01:14,075
+is in the EditNote
+ViewController.
+
+27
+00:01:17,490 --> 00:01:20,070
+The place in the EditNote
+ViewController where data
+
+28
+00:01:20,070 --> 00:01:23,150
+changes is in the
+textfieldShouldReturn method.
+
+29
+00:01:23,150 --> 00:01:27,040
+We're setting self.city.notes
+equal to the text that the
+
+30
+00:01:27,040 --> 00:01:30,550
+user just typed into the 
+UITextField, and we want to go
+
+31
+00:01:30,550 --> 00:01:33,030
+ahead and save a copy
+of that change.
+
+32
+00:01:33,030 --> 00:01:35,730
+So we call, again, the saveCity
+method, this time
+
+33
+00:01:35,730 --> 00:01:37,960
+passing in self.city
+as an argument.
+
+34
+00:01:41,160 --> 00:01:43,520
+And finally, we're going to want
+to save the current state
+
+35
+00:01:43,520 --> 00:01:46,800
+of our model whenever
+the app closes.
+
+36
+00:01:46,800 --> 00:01:50,250
+Wait, the code runs even
+when the app closes?
+
+37
+00:01:50,250 --> 00:01:52,830
+That's right, Mr. Higgie, code
+does run as the app is
+
+38
+00:01:52,830 --> 00:01:55,630
+closing, and when it's
+opening again, too.
+
+39
+00:01:55,630 --> 00:01:58,240
+If we look in our AppDelegate
+file, you can see that it
+
+40
+00:01:58,240 --> 00:02:01,470
+adopts a protocol called
+UIApplicationDelegate.
+
+41
+00:02:01,470 --> 00:02:03,100
+It's done this all along,
+we've just never
+
+42
+00:02:03,100 --> 00:02:04,980
+noticed it until now.
+
+43
+00:02:04,980 --> 00:02:07,590
+And when we adopt that
+UIApplicationDelegate
+
+44
+00:02:07,590 --> 00:02:10,570
+protocol, we get a certain
+set of methods.
+
+45
+00:02:10,570 --> 00:02:13,720
+Methods like applicationwillF
+inishLaunchingWithOptions,
+
+46
+00:02:13,720 --> 00:02:15,860
+applicationDidBecomeActive,
+applicationDidEnterBackground.
+
+47
+00:02:20,930 --> 00:02:23,470
+Let's learn about the place that
+each of these methods has
+
+48
+00:02:23,470 --> 00:02:25,860
+in the application life cycle.
+
+49
+00:02:25,860 --> 00:02:29,070
+So first, the user taps an app
+icon on their Home screen for
+
+50
+00:02:29,070 --> 00:02:31,105
+the very first time, and
+the application:will
+
+51
+00:02:31,105 --> 00:02:34,920
+FinishLaunchingWithOptions
+method fires.
+
+52
+00:02:34,920 --> 00:02:37,780
+Next, the application:didF
+inishLaunchingWithOptions
+
+53
+00:02:37,780 --> 00:02:39,210
+fires after the
+
+54
+00:02:39,210 --> 00:02:42,260
+willFinishLaunching method is done.
+
+55
+00:02:42,260 --> 00:02:44,700
+Then, the
+application:WillEnterForeground
+
+56
+00:02:44,700 --> 00:02:46,760
+method fires.
+
+57
+00:02:46,760 --> 00:02:48,870
+Then the
+application:DidBecomeActive
+
+58
+00:02:48,870 --> 00:02:54,240
+method fires, at which point
+app visuals appear.
+
+59
+00:02:54,240 --> 00:02:56,140
+Then normal usage of
+the app occurs.
+
+60
+00:02:56,140 --> 00:02:59,300
+Moving around between table
+views, selecting a cell in a
+
+61
+00:02:59,300 --> 00:03:03,380
+table view, making an edit
+with a UI text field.
+
+62
+00:03:03,380 --> 00:03:05,630
+And at some point, for some
+reason, the app gets
+
+63
+00:03:05,630 --> 00:03:06,500
+interrupted.
+
+64
+00:03:06,500 --> 00:03:09,680
+Maybe a phone call comes in,
+or maybe the Home button is
+
+65
+00:03:09,680 --> 00:03:12,090
+tapped, so the app
+is then closed.
+
+66
+00:03:12,090 --> 00:03:14,330
+And as soon as that interruption
+happens, the
+
+67
+00:03:14,330 --> 00:03:18,130
+application:WillResignActive
+method is fired.
+
+68
+00:03:18,130 --> 00:03:21,800
+Immediately followed by the
+applicationDidEnterBackground.
+
+69
+00:03:21,800 --> 00:03:23,970
+As soon as the
+applicationDidEnterBackground
+
+70
+00:03:23,970 --> 00:03:26,800
+method is fired, the apps
+sort of exists in this
+
+71
+00:03:26,800 --> 00:03:30,150
+half-running, half-not running
+state, where it's basically
+
+72
+00:03:30,150 --> 00:03:31,790
+asleep in the background.
+
+73
+00:03:31,790 --> 00:03:33,340
+And not a whole lot
+of stuff happens
+
+74
+00:03:33,340 --> 00:03:35,030
+when the app is asleep.
+
+75
+00:03:35,030 --> 00:03:37,700
+At some point, the app is opened
+up again, which wakes
+
+76
+00:03:37,700 --> 00:03:40,760
+it up, and the
+applicationWillEnterForeground
+
+77
+00:03:40,760 --> 00:03:42,150
+method gets called.
+
+78
+00:03:42,150 --> 00:03:44,680
+And then the cycle just repeats
+like a big circle.
+
+79
+00:03:48,380 --> 00:03:51,160
+Based on the diagram we just
+saw, we're going to want to
+
+80
+00:03:51,160 --> 00:03:54,110
+archive the model in the
+applicationDidEnterBackground
+
+81
+00:03:54,110 --> 00:03:56,970
+method, and we're going to want
+to unarchive the model in
+
+82
+00:03:56,970 --> 00:03:57,110
+the
+
+83
+00:03:57,110 --> 00:03:59,430
+applicationWillEnterForeground method.
+
+84
+00:03:59,430 --> 00:04:00,970
+But we have a problem.
+
+85
+00:04:00,970 --> 00:04:04,200
+The City Model is currently
+in CityViewController.
+
+86
+00:04:04,200 --> 00:04:06,150
+It's not in the AppDelegate.
+
+87
+00:04:06,150 --> 00:04:08,000
+So how do we create a connection
+between the
+
+88
+00:04:08,000 --> 00:04:10,470
+AppDelegate and the
+CityViewController so that we
+
+89
+00:04:10,470 --> 00:04:14,350
+can take advantage of these
+two AppDelegate methods?
+
+90
+00:04:14,350 --> 00:04:16,209
+We can use something that
+we've seen before,
+
+91
+00:04:16,209 --> 00:04:18,060
+Notifications.
+
+92
+00:04:18,060 --> 00:04:20,980
+Every one of those methods that
+the UIApplicationDelegate
+
+93
+00:04:20,980 --> 00:04:24,110
+implements, also has a
+corresponding notification
+
+94
+00:04:24,110 --> 00:04:27,120
+that fires whenever that
+method happens.
+
+95
+00:04:27,120 --> 00:04:28,725
+We're going to want to listen
+for the UIApplicationDid
+
+96
+00:04:28,725 --> 00:04:32,920
+EnterBackgroundNotification
+message inside of the
+
+97
+00:04:32,920 --> 00:04:35,350
+CityViewController.
+
+98
+00:04:35,350 --> 00:04:38,070
+The class where we want to
+listen for the notification is
+
+99
+00:04:38,070 --> 00:04:40,900
+self, or the CityViewController.
+
+100
+00:04:40,900 --> 00:04:43,360
+The selector we want to call,
+whenever this notification is
+
+101
+00:04:43,360 --> 00:04:46,220
+received, is enteringBackground.
+
+102
+00:04:46,220 --> 00:04:48,980
+The name of the notification
+we're listening for is, again,
+
+103
+00:04:48,980 --> 00:04:50,230
+UIApplicationDid
+EnterBackgroundNotification.
+
+104
+00:04:52,680 --> 00:04:56,620
+And the object is nil, just
+like it was before.
+
+105
+00:04:56,620 --> 00:04:59,730
+When the notification is heard,
+the enteringBackground
+
+106
+00:04:59,730 --> 00:05:01,080
+method is called.
+
+107
+00:05:01,080 --> 00:05:05,640
+And that method should save
+a copy of the city object.
+
+108
+00:05:05,640 --> 00:05:07,920
+Don't forget to recreate
+the model when
+
+109
+00:05:07,920 --> 00:05:09,660
+the app opens again.
+
+110
+00:05:09,660 --> 00:05:11,360
+Thanks for the reminder,
+Mr. Higgie.
+
+111
+00:05:11,360 --> 00:05:11,990
+He's right.
+
+112
+00:05:11,990 --> 00:05:13,740
+We're also going to want
+to listen for when the
+
+113
+00:05:13,740 --> 00:05:15,820
+application enters
+the foreground.
+
+114
+00:05:15,820 --> 00:05:18,620
+And when it does, we're going to
+want to call a method that
+
+115
+00:05:18,620 --> 00:05:20,890
+gets a copy of the City object
+from the archive.
+
+116
+00:05:23,780 --> 00:05:26,540
+This listener to looks similar
+to the last one.
+
+117
+00:05:26,540 --> 00:05:28,740
+The difference is, the
+notification that we're
+
+118
+00:05:28,740 --> 00:05:30,070
+listening for is now
+UIApplicationWill
+
+119
+00:05:30,070 --> 00:05:31,320
+EnterForegroundNotification.
+
+120
+00:05:33,040 --> 00:05:35,380
+And the selector we call
+when that's heard is
+
+121
+00:05:35,380 --> 00:05:37,200
+enteringForeground.
+
+122
+00:05:37,200 --> 00:05:41,460
+In enteringForeground, we want
+to set self.city equal to the
+
+123
+00:05:41,460 --> 00:05:44,770
+City getCity, so that
+we get a new copy of
+
+124
+00:05:44,770 --> 00:05:46,020
+the archived model.
+
+125
+00:05:48,810 --> 00:05:51,680
+Another place where you might
+want to unarchive model data
+
+126
+00:05:51,680 --> 00:05:54,890
+is in any view that needs a
+models data, but doesn't
+
+127
+00:05:54,890 --> 00:05:58,010
+explicitly get a copy
+passed into it.
+
+128
+00:05:58,010 --> 00:06:00,980
+So if you look at
+PlaceTableViewController to
+
+129
+00:06:00,980 --> 00:06:03,640
+PlaceViewController, a Place
+model was passed
+
+130
+00:06:03,640 --> 00:06:05,010
+between those two.
+
+131
+00:06:05,010 --> 00:06:07,950
+In CityViewController a City
+model is passed into the
+
+132
+00:06:07,950 --> 00:06:09,610
+EditNodeViewController.
+
+133
+00:06:09,610 --> 00:06:12,890
+But if the CityViewController
+needed to get a City model
+
+134
+00:06:12,890 --> 00:06:15,250
+into the
+PlaceTableViewController,
+
+135
+00:06:15,250 --> 00:06:18,110
+there's no explicit passing
+of that object.
+
+136
+00:06:18,110 --> 00:06:19,940
+So in PlaceTableViewController,
+that
+
+137
+00:06:19,940 --> 00:06:23,610
+would be a place to
+unarchive the model.
+
+138
+00:06:23,610 --> 00:06:27,470
+If this were the case, then we
+need to import the City.h file
+
+139
+00:06:27,470 --> 00:06:31,540
+into PlaceTableViewController
+and create a City property,
+
+140
+00:06:31,540 --> 00:06:35,290
+and then set self.city equal
+to the City getCity, to
+
+141
+00:06:35,290 --> 00:06:37,970
+retrieve a copy of the City
+object from the archive.
+
+142
+00:06:40,650 --> 00:06:43,360
+Now it's your turn to finish up
+archiving and unarchiving
+
+143
+00:06:43,360 --> 00:06:44,610
+models in InstaPhoto.

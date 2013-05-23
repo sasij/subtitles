@@ -1,0 +1,619 @@
+﻿1
+00:00:00,170 --> 00:00:00,370
+[SINGING]
+
+2
+00:00:00,370 --> 00:00:03,460
+He's got your data in his pocket
+and a gun in his hand.
+
+3
+00:00:03,460 --> 00:00:06,555
+He's got his finger on the
+trigger and a secret plan.
+
+4
+00:00:06,555 --> 00:00:10,340
+He'll take mutable arrays and
+put them in formation using
+
+5
+00:00:10,340 --> 00:00:13,132
+your view controllers for
+his world dominiation.
+
+6
+00:00:13,132 --> 00:00:14,800
+He'll take your
+data into models
+
+7
+00:00:14,800 --> 00:00:17,980
+before it explodes, the
+only secret agent
+
+8
+00:00:17,980 --> 00:00:21,330
+who encodes and decodes.
+
+9
+00:00:21,330 --> 00:00:22,580
+He's Mr. Higgie.
+
+10
+00:00:27,990 --> 00:00:32,080
+Hi and welcome back to Level
+3 of iOS Operation Models.
+
+11
+00:00:32,080 --> 00:00:34,960
+In this level, now that we have
+models with data inside
+
+12
+00:00:34,960 --> 00:00:37,940
+of them, we're going to look at
+how to populate views with
+
+13
+00:00:37,940 --> 00:00:41,180
+data from models.
+
+14
+00:00:41,180 --> 00:00:44,150
+So if we look at the structure
+of Planet Hig so far, we've
+
+15
+00:00:44,150 --> 00:00:46,270
+already looked at the
+CityViewController, so let's
+
+16
+00:00:46,270 --> 00:00:49,500
+spend some time looking at the
+PlaceTableViewController and
+
+17
+00:00:49,500 --> 00:00:52,120
+see how that table view
+gets its data.
+
+18
+00:00:54,700 --> 00:00:58,700
+It gets its data from a file
+called placedata.json, and the
+
+19
+00:00:58,700 --> 00:01:04,430
+structure of placedata.json is
+an NSArray that contains three
+
+20
+00:01:04,430 --> 00:01:07,730
+NSDictionary objects, and each
+one of those NSDictionary
+
+21
+00:01:07,730 --> 00:01:10,630
+objects contains
+two NSStrings.
+
+22
+00:01:10,630 --> 00:01:13,540
+So we have array of dictionaries
+instead of just a
+
+23
+00:01:13,540 --> 00:01:16,870
+single dictionary, like
+we had with city.
+
+24
+00:01:16,870 --> 00:01:20,320
+If we followed our standard way
+AFJSONRequest operation,
+
+25
+00:01:20,320 --> 00:01:24,850
+we would make a request for
+placedata.json, and when that
+
+26
+00:01:24,850 --> 00:01:28,430
+request was received, we
+would have an NSArray--
+
+27
+00:01:28,430 --> 00:01:30,640
+I'm calling this one places--
+
+28
+00:01:30,640 --> 00:01:33,360
+that we store the JSON
+response in.
+
+29
+00:01:33,360 --> 00:01:35,190
+And this works, but
+it's not creating
+
+30
+00:01:35,190 --> 00:01:36,800
+any place model objects.
+
+31
+00:01:36,800 --> 00:01:40,360
+It's just creating dictionaries
+in an array.
+
+32
+00:01:40,360 --> 00:01:43,800
+So let's refactor to store an
+array of place models instead
+
+33
+00:01:43,800 --> 00:01:45,480
+of dictionaries.
+
+34
+00:01:45,480 --> 00:01:48,190
+First, in
+PlaceTableViewController.h,
+
+35
+00:01:48,190 --> 00:01:51,290
+we'll need to import place.h h
+so we can access the place
+
+36
+00:01:51,290 --> 00:01:53,270
+model from inside
+this controller.
+
+37
+00:01:53,270 --> 00:01:55,950
+And we don't actually need to
+change the NSArray property
+
+38
+00:01:55,950 --> 00:01:57,410
+because we're still going
+to end up with
+
+39
+00:01:57,410 --> 00:02:00,640
+an NSArray of objects.
+
+40
+00:02:00,640 --> 00:02:04,450
+Then, inside of
+PlaceTableViewController.m, we
+
+41
+00:02:04,450 --> 00:02:08,650
+can create several different
+place objects and use the
+
+42
+00:02:08,650 --> 00:02:12,290
+convenience initializer,
+initWithName description, and
+
+43
+00:02:12,290 --> 00:02:14,525
+the values that come from
+the JSON response.
+
+44
+00:02:14,525 --> 00:02:18,770
+And then store all of those
+in the self.places array.
+
+45
+00:02:18,770 --> 00:02:21,160
+And this works too, but it's
+not very efficient.
+
+46
+00:02:21,160 --> 00:02:23,720
+For example, what if there are
+20 objects that we need to
+
+47
+00:02:23,720 --> 00:02:26,220
+create, or 100 objects that
+we need to create?
+
+48
+00:02:26,220 --> 00:02:27,950
+That's going to be a lot
+of code repetition
+
+49
+00:02:27,950 --> 00:02:30,190
+that we don't need.
+
+50
+00:02:30,190 --> 00:02:32,760
+The solution we're looking for
+is part of the Objective C
+
+51
+00:02:32,760 --> 00:02:35,580
+language, and it's called
+fast enumeration.
+
+52
+00:02:35,580 --> 00:02:38,450
+Fast enumeration is basically
+just an easy way to create a
+
+53
+00:02:38,450 --> 00:02:42,200
+for loop and loop through
+individual pieces inside of
+
+54
+00:02:42,200 --> 00:02:44,440
+some array all at once.
+
+55
+00:02:44,440 --> 00:02:47,610
+Imagine that we have an NSArray
+called catNames, and
+
+56
+00:02:47,610 --> 00:02:50,260
+that array has four names
+inside of it--
+
+57
+00:02:50,260 --> 00:02:54,510
+Fluffy, Pepper, Whiskers,
+and HiggieCat.
+
+58
+00:02:54,510 --> 00:02:57,110
+If we want to enumerate through
+each one of those
+
+59
+00:02:57,110 --> 00:02:59,089
+items in the array one at a
+time, we can use the for in
+
+60
+00:03:00,590 --> 00:03:01,710
+enumerator.
+
+61
+00:03:01,710 --> 00:03:04,950
+And the way this works is that
+we write "for," and then
+
+62
+00:03:04,950 --> 00:03:09,040
+inside the parentheses, we
+declare an object that will be
+
+63
+00:03:09,040 --> 00:03:12,850
+local to that loop and the data
+type for that object.
+
+64
+00:03:12,850 --> 00:03:17,890
+So here I've declared NSString
+catName, and then I say in
+
+65
+00:03:17,890 --> 00:03:19,730
+catNames array.
+
+66
+00:03:19,730 --> 00:03:22,910
+Now inside of that loop, we can
+do anything that we want.
+
+67
+00:03:22,910 --> 00:03:25,100
+Here I'll just NSLog out
+the value so we can
+
+68
+00:03:25,100 --> 00:03:26,000
+see that it's working.
+
+69
+00:03:26,000 --> 00:03:30,170
+And I can NSLog, cat name is,
+the catName variable that's
+
+70
+00:03:30,170 --> 00:03:32,346
+local to this enumerator.
+
+71
+00:03:32,346 --> 00:03:36,350
+If we run this code, we see the
+console output is cat name
+
+72
+00:03:36,350 --> 00:03:40,095
+is Fluffy, cat name is Pepper,
+cat name is Whiskers, and cat
+
+73
+00:03:40,095 --> 00:03:42,176
+name is HiggieCat.
+
+74
+00:03:42,176 --> 00:03:44,550
+Now this is gonna
+speed things up.
+
+75
+00:03:44,550 --> 00:03:46,470
+You bet it is, Mr. Higgie.
+
+76
+00:03:46,470 --> 00:03:49,150
+So now let's go back to our
+original problem, figuring out
+
+77
+00:03:49,150 --> 00:03:52,670
+a way to quickly create
+place model objects.
+
+78
+00:03:52,670 --> 00:03:56,820
+Our goal is to have an NSArray
+called places that has place
+
+79
+00:03:56,820 --> 00:04:00,610
+object 1, place object 2, place
+object 3, all the way up
+
+80
+00:04:00,610 --> 00:04:04,840
+to as many place objects as we
+need stored in a single array.
+
+81
+00:04:04,840 --> 00:04:07,800
+To accomplish this, we're going
+to want to create a for
+
+82
+00:04:07,800 --> 00:04:12,080
+in loop where we pass in
+a single NSDictionary--
+
+83
+00:04:12,080 --> 00:04:14,160
+I'm calling ours
+oneDictionary--
+
+84
+00:04:14,160 --> 00:04:17,390
+that exists inside
+the JSON object.
+
+85
+00:04:17,390 --> 00:04:20,670
+And then inside the loop, I'll
+create a temporary place
+
+86
+00:04:20,670 --> 00:04:23,750
+object using the initWithName
+description convenience
+
+87
+00:04:23,750 --> 00:04:28,800
+initializer and the values that
+exist in that dictionary,
+
+88
+00:04:28,800 --> 00:04:31,390
+and then I'll take the
+self.places array and
+
+89
+00:04:31,390 --> 00:04:34,970
+add the new place
+object onto it.
+
+90
+00:04:34,970 --> 00:04:36,755
+But this is not going to work.
+
+91
+00:04:36,755 --> 00:04:40,250
+The reason is we can't actually
+modify an NSArray
+
+92
+00:04:40,250 --> 00:04:43,360
+after it's been created.
+
+93
+00:04:43,360 --> 00:04:46,880
+So Objective C has two types of
+some classes called mutable
+
+94
+00:04:46,880 --> 00:04:48,210
+and immutable.
+
+95
+00:04:48,210 --> 00:04:51,450
+NSArray is an immutable class,
+which means that once it's
+
+96
+00:04:51,450 --> 00:04:53,500
+been instantiated, you
+can't change the
+
+97
+00:04:53,500 --> 00:04:55,520
+objects inside of it.
+
+98
+00:04:55,520 --> 00:04:59,800
+So Objective C provides a set of
+mutable class versions for
+
+99
+00:04:59,800 --> 00:05:02,825
+every one of the immutable
+classes that it has.
+
+100
+00:05:02,825 --> 00:05:05,100
+And you can see a list
+of these here.
+
+101
+00:05:05,100 --> 00:05:08,490
+NSString has an equivalent
+called and NSMutableString.
+
+102
+00:05:08,490 --> 00:05:10,110
+NSArray has an equivalent
+called
+
+103
+00:05:10,110 --> 00:05:13,040
+NSMutableArray, and so on.
+
+104
+00:05:13,040 --> 00:05:15,490
+Now you're probably asking,
+why can't I use mutable
+
+105
+00:05:15,490 --> 00:05:16,810
+classes all the time?
+
+106
+00:05:16,810 --> 00:05:19,540
+Why do immutable classes
+even exist?
+
+107
+00:05:19,540 --> 00:05:22,030
+Well, there's some complicated
+reasons, like memory
+
+108
+00:05:22,030 --> 00:05:25,240
+management and threading, that
+can be affected when you use
+
+109
+00:05:25,240 --> 00:05:27,930
+mutable versus immutable.
+
+110
+00:05:27,930 --> 00:05:30,840
+But using mutable classes can
+also be a problem if you're
+
+111
+00:05:30,840 --> 00:05:33,520
+trying to keep track of your
+data and make sure that it's
+
+112
+00:05:33,520 --> 00:05:36,370
+not getting accidentally
+rewritten.
+
+113
+00:05:36,370 --> 00:05:38,410
+To solve our problem, we're
+going to use an
+
+114
+00:05:38,410 --> 00:05:41,390
+NSMutableArray, but we're only
+going to use it really quick
+
+115
+00:05:41,390 --> 00:05:44,290
+and in a temporary fashion, and
+we're going to reassign
+
+116
+00:05:44,290 --> 00:05:49,060
+the output of that mutable array
+to an immutable version.
+
+117
+00:05:49,060 --> 00:05:51,190
+So here you can see we're
+creating a temporary
+
+118
+00:05:51,190 --> 00:05:54,270
+NSMutableArray outside
+of the enumerator.
+
+119
+00:05:54,270 --> 00:05:56,210
+And then inside of the
+enumerateor, we're still
+
+120
+00:05:56,210 --> 00:05:59,390
+creating a new place object
+for each one of the
+
+121
+00:05:59,390 --> 00:06:02,710
+dictionaries inside of our JSON
+response, and then we're
+
+122
+00:06:02,710 --> 00:06:06,880
+adding the new object to
+the temporary array.
+
+123
+00:06:06,880 --> 00:06:09,410
+When the enumerator finishes
+running, we should have
+
+124
+00:06:09,410 --> 00:06:13,570
+tempArray filled with
+place model objects.
+
+125
+00:06:13,570 --> 00:06:17,530
+Then we take the place model
+objects in the tempArray, and
+
+126
+00:06:17,530 --> 00:06:20,480
+we recast it as an NSArray
+so we can store it in
+
+127
+00:06:20,480 --> 00:06:21,730
+self.places.
+
+128
+00:06:25,550 --> 00:06:28,420
+So now it's your turn to try a
+few challenges related to fast
+
+129
+00:06:28,420 --> 00:06:29,670
+enumeration.

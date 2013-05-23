@@ -1,0 +1,471 @@
+﻿1
+00:00:00,170 --> 00:00:00,270
+[SINGING]
+
+2
+00:00:00,270 --> 00:00:03,460
+He's got your data in his pocket
+and a gun in his hand.
+
+3
+00:00:03,460 --> 00:00:06,950
+He's got his finger on the
+trigger and a secret plan.
+
+4
+00:00:06,950 --> 00:00:10,340
+He'll take mutable arrays and
+put them in formation using
+
+5
+00:00:10,340 --> 00:00:11,700
+your View Controllers
+for his--
+
+6
+00:00:11,700 --> 00:00:12,756
+World domination.
+
+7
+00:00:12,756 --> 00:00:12,944
+[SINGING]
+
+8
+00:00:12,944 --> 00:00:16,690
+He'll take your data into
+models before it explodes, the
+
+9
+00:00:16,690 --> 00:00:20,880
+only secret agent who
+encodes and decodes.
+
+10
+00:00:20,880 --> 00:00:22,310
+He's Mr. Higgie.
+
+11
+00:00:28,200 --> 00:00:31,330
+You're watching level six of
+iOS Operation: Models.
+
+12
+00:00:31,330 --> 00:00:33,940
+And in this level, we're going
+to add some features to Planet
+
+13
+00:00:33,940 --> 00:00:37,690
+Hig to make it more useful and
+have a better user experience.
+
+14
+00:00:37,690 --> 00:00:39,850
+One of the first features we're
+going to add is the
+
+15
+00:00:39,850 --> 00:00:42,960
+ability to view a list of
+interesting places, and Higgie
+
+16
+00:00:42,960 --> 00:00:46,420
+is going to be able to mark
+places as interesting and then
+
+17
+00:00:46,420 --> 00:00:49,640
+view them on a single
+list later on.
+
+18
+00:00:49,640 --> 00:00:51,940
+To accomplish this, the
+structure of Planet Hig is
+
+19
+00:00:51,940 --> 00:00:53,660
+going to be modified
+a little bit.
+
+20
+00:00:53,660 --> 00:00:54,765
+We've still got our
+InterestingPlaces
+
+21
+00:00:54,765 --> 00:00:57,730
+TableViewController, but we're
+going to need to create
+
+22
+00:00:57,730 --> 00:01:00,240
+a connection between
+PlaceViewController and
+
+23
+00:01:00,240 --> 00:01:02,800
+InterestingPlacesViewController.
+
+24
+00:01:02,800 --> 00:01:05,120
+Looking at the structure of
+Planet Hig, you see that we've
+
+25
+00:01:05,120 --> 00:01:07,350
+got almost everything
+implemented except for
+
+26
+00:01:07,350 --> 00:01:09,790
+InterestingPlaces
+TableViewController, so let's
+
+27
+00:01:09,790 --> 00:01:11,720
+look at how we're going to
+implement that and where that
+
+28
+00:01:11,720 --> 00:01:13,810
+data is going to come from.
+
+29
+00:01:13,810 --> 00:01:16,340
+In the City Model, we're going
+to add an NSArray called
+
+30
+00:01:16,340 --> 00:01:19,250
+interestingPlaces, and that
+interestingPlaces array is
+
+31
+00:01:19,250 --> 00:01:22,190
+simply going to store a list
+of Place model objects that
+
+32
+00:01:22,190 --> 00:01:25,500
+have been marked as interesting
+by Higgie.
+
+33
+00:01:25,500 --> 00:01:27,970
+Just like we did when we added
+a Notes property to the City
+
+34
+00:01:27,970 --> 00:01:30,770
+model, we're going to want to
+set a default value for that
+
+35
+00:01:30,770 --> 00:01:33,940
+interestingPlaces array in
+initWithJSON method.
+
+36
+00:01:33,940 --> 00:01:36,550
+In this case, we're going to
+set it to nil because by
+
+37
+00:01:36,550 --> 00:01:38,750
+default, there are no places
+that have been marked as
+
+38
+00:01:38,750 --> 00:01:40,920
+interesting.
+
+39
+00:01:40,920 --> 00:01:43,610
+So the place where Higgie is
+going to mark a place as
+
+40
+00:01:43,610 --> 00:01:46,150
+interesting is in
+PlaceViewController.
+
+41
+00:01:46,150 --> 00:01:49,870
+So in PlaceViewController, we'll
+import City.h and create
+
+42
+00:01:49,870 --> 00:01:52,890
+a City property, and we're also
+going to define a method
+
+43
+00:01:52,890 --> 00:01:54,810
+called makeThisPlaceInteresting,
+
+44
+00:01:54,810 --> 00:01:57,670
+which is going to be triggered
+whenever Higgie taps a UI
+
+45
+00:01:57,670 --> 00:01:58,920
+button in the interface.
+
+46
+00:02:02,080 --> 00:02:05,240
+In the viewWillAppear method in
+PlaceViewController, we're
+
+47
+00:02:05,240 --> 00:02:07,150
+creating our standard
+UI button and
+
+48
+00:02:07,150 --> 00:02:09,060
+adding it as a sub view.
+
+49
+00:02:09,060 --> 00:02:11,840
+And the target action for that
+button is a selector called
+
+50
+00:02:11,840 --> 00:02:13,890
+makeThisPlaceInteresting.
+
+51
+00:02:13,890 --> 00:02:15,770
+So whenever the user
+taps on the button,
+
+52
+00:02:15,770 --> 00:02:17,490
+makeThisPlaceInteresting
+will be called.
+
+53
+00:02:21,210 --> 00:02:23,180
+And we're going to do a couple
+of things inside of
+
+54
+00:02:23,180 --> 00:02:24,830
+makeThisPlaceInteresting.
+
+55
+00:02:24,830 --> 00:02:28,520
+First we're going to get a
+current copy of the city model
+
+56
+00:02:28,520 --> 00:02:30,890
+from the archive.
+
+57
+00:02:30,890 --> 00:02:33,970
+Next, we're going to create an
+NSMutableArray temporary
+
+58
+00:02:33,970 --> 00:02:37,300
+array and initialize it
+with the contents of
+
+59
+00:02:37,300 --> 00:02:40,060
+self.city.interestingPlaces.
+
+60
+00:02:40,060 --> 00:02:43,170
+This is going to give us a
+temporary mutable array that
+
+61
+00:02:43,170 --> 00:02:46,260
+we can add an object to when
+Higgie marks it as
+
+62
+00:02:46,260 --> 00:02:47,940
+interesting.
+
+63
+00:02:47,940 --> 00:02:51,720
+Next, we add the current
+place object into
+
+64
+00:02:51,720 --> 00:02:54,730
+the temporary array.
+
+65
+00:02:54,730 --> 00:02:58,060
+Then we set
+self.city.interestingPlaces,
+
+66
+00:02:58,060 --> 00:03:01,780
+which is the NS array inside the
+model, equal to this new
+
+67
+00:03:01,780 --> 00:03:05,290
+temporary array that has an
+additional item added.
+
+68
+00:03:05,290 --> 00:03:07,875
+And finally, since we modified
+the state of the City Model,
+
+69
+00:03:07,875 --> 00:03:11,830
+we'll want to archive
+it to disk.
+
+70
+00:03:11,830 --> 00:03:14,590
+So if we look at what that code
+looks like, we now have a
+
+71
+00:03:14,590 --> 00:03:17,990
+UI button in the middle of
+PlaceViewController, and we
+
+72
+00:03:17,990 --> 00:03:21,160
+tap on that UI button,
+internally the City Model
+
+73
+00:03:21,160 --> 00:03:24,860
+nterestingPlaces property is
+being updated to contain that
+
+74
+00:03:24,860 --> 00:03:27,190
+current place.
+
+75
+00:03:27,190 --> 00:03:29,580
+So next, we'll want to update
+the interestingPlaces
+
+76
+00:03:29,580 --> 00:03:33,550
+TableViewController to show a
+list of all of the content of
+
+77
+00:03:33,550 --> 00:03:36,200
+that interestingPlaces array.
+
+78
+00:03:36,200 --> 00:03:38,730
+We've got our standard UI
+TableViewController methods
+
+79
+00:03:38,730 --> 00:03:40,940
+that we need to work with here,
+which are TableView
+
+80
+00:03:40,940 --> 00:03:43,495
+numberOfRowsInSection,
+TableView cellForRow
+
+81
+00:03:43,495 --> 00:03:46,180
+AtIndexPath, and TableView
+didSelectRowAtIndexPath.
+
+82
+00:03:48,830 --> 00:03:51,855
+In numberOfRowsInSection, we
+can return self.city.
+
+83
+00:03:51,855 --> 00:03:56,440
+interestingPlaces.count to make sure
+that we have the right number
+
+84
+00:03:56,440 --> 00:03:59,290
+of rows that appear
+in the table.
+
+85
+00:03:59,290 --> 00:04:03,010
+In cellForRowAtIndexPath, we
+create a new cell and then we
+
+86
+00:04:03,010 --> 00:04:07,700
+set the cell's textLabel.text
+property equal to the Name
+
+87
+00:04:07,700 --> 00:04:11,350
+property of the place model at
+that position in the array.
+
+88
+00:04:11,350 --> 00:04:14,660
+And then in TableView
+didSelectRowAtIndexPath, we're
+
+89
+00:04:14,660 --> 00:04:18,820
+going to go ahead and create a
+new PlaceViewController, set
+
+90
+00:04:18,820 --> 00:04:21,589
+the Place property of the
+PlaceViewController equal to
+
+91
+00:04:21,589 --> 00:04:24,520
+the Place model at this position
+in the array, and
+
+92
+00:04:24,520 --> 00:04:25,830
+then push out to the
+PlaceViewController.
+
+93
+00:04:28,430 --> 00:04:31,380
+Now if we start at the
+PlaceViewController, mark a
+
+94
+00:04:31,380 --> 00:04:33,630
+place as interesting, and
+then switch over to the
+
+95
+00:04:33,630 --> 00:04:36,400
+InterestingPlaces
+TableViewController tab, we
+
+96
+00:04:36,400 --> 00:04:38,590
+can see that that place
+appears in the list.
+
+97
+00:04:41,680 --> 00:04:44,020
+Now it's time for you to set up
+some similar functionality
+
+98
+00:04:44,020 --> 00:04:45,380
+in InstaPhoto in
+the challenges.

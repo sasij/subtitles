@@ -1,0 +1,406 @@
+﻿1
+00:00:00,480 --> 00:00:03,290
+We've got an NS array
+called, self.places.
+
+2
+00:00:03,290 --> 00:00:06,100
+And now we need to put that data
+to use in the
+
+3
+00:00:06,100 --> 00:00:07,430
+PlaceTableViewController.
+
+4
+00:00:07,430 --> 00:00:09,550
+Like all UITableView
+Controllers we need to
+
+5
+00:00:09,550 --> 00:00:13,830
+implement these three methods
+tableView numberOfRowsInSection,
+
+6
+00:00:13,830 --> 00:00:16,910
+tableView cellForRowIndexPath,
+and
+
+7
+00:00:16,910 --> 00:00:19,570
+tableView didSelectRowIndexPath.
+
+8
+00:00:19,570 --> 00:00:21,850
+And when we're done our output
+should look like the
+
+9
+00:00:21,850 --> 00:00:24,610
+screen on the right.
+
+10
+00:00:24,610 --> 00:00:26,240
+We're not doing anything
+new and tricky.
+
+11
+00:00:26,240 --> 00:00:30,370
+This is the standard approach
+to creating UI table views.
+
+12
+00:00:30,370 --> 00:00:32,720
+So in tableView 
+numberOfRowsInSection,
+
+13
+00:00:32,720 --> 00:00:36,570
+we're going to want to use the
+count of our places array, and
+
+14
+00:00:36,570 --> 00:00:40,330
+return that so we have the
+correct number of rows.
+
+15
+00:00:40,330 --> 00:00:43,470
+In tableView
+cellForRowIndexPath,
+
+16
+00:00:43,470 --> 00:00:46,630
+we'll use our standard code for
+creating a cell, checking
+
+17
+00:00:46,630 --> 00:00:48,550
+if it hasn't been created yet.
+
+18
+00:00:48,550 --> 00:00:51,300
+And then we need to set the
+textLabel.text property of the
+
+19
+00:00:51,300 --> 00:00:56,500
+cell, equal to data that's
+inside the self.places array.
+
+20
+00:00:56,500 --> 00:00:59,500
+Now you're probably going to
+want to write self.places,
+
+21
+00:00:59,500 --> 00:01:03,750
+indexPath.row.name, and think
+you can access the name
+
+22
+00:01:03,750 --> 00:01:07,860
+property of the place model
+that's in that array position.
+
+23
+00:01:07,860 --> 00:01:10,230
+But that's actually
+incorrect syntax.
+
+24
+00:01:10,230 --> 00:01:12,130
+The reason is, is that Objective
+C is going to
+
+25
+00:01:12,130 --> 00:01:14,970
+interpret this as trying to
+take the name property of
+
+26
+00:01:14,970 --> 00:01:18,490
+indexPath.row, instead of
+the place object that
+
+27
+00:01:18,490 --> 00:01:21,510
+indexPath.row returns.
+
+28
+00:01:21,510 --> 00:01:24,800
+So instead we can use the
+messaging notation and get the
+
+29
+00:01:24,800 --> 00:01:27,050
+correct property out
+of the object.
+
+30
+00:01:27,050 --> 00:01:30,180
+And here self.places
+at indexpath.row will
+
+31
+00:01:30,180 --> 00:01:32,450
+first return a place object.
+
+32
+00:01:32,450 --> 00:01:36,170
+And then the name message will
+pull the name property out of
+
+33
+00:01:36,170 --> 00:01:38,230
+that place object.
+
+34
+00:01:38,230 --> 00:01:41,940
+And finally in table view,
+didSelectRowAtIndexPath, we're
+
+35
+00:01:41,940 --> 00:01:45,450
+going to deselect the row that
+was currently tapped.
+
+36
+00:01:45,450 --> 00:01:47,570
+We're going to create
+a new place view
+
+37
+00:01:47,570 --> 00:01:48,930
+controller called placeVC.
+
+38
+00:01:48,930 --> 00:01:52,390
+And then we're going to set
+the place property of the
+
+39
+00:01:52,390 --> 00:01:56,360
+PlaceViewController equal to
+the current place model that
+
+40
+00:01:56,360 --> 00:01:57,320
+was tapped.
+
+41
+00:01:57,320 --> 00:01:58,635
+That we can access from
+self.places@indexPath.row.
+
+42
+00:02:01,750 --> 00:02:04,010
+And then finally we're going
+to want to push that place
+
+43
+00:02:04,010 --> 00:02:07,260
+view controller on to the
+navigation stack using
+
+44
+00:02:07,260 --> 00:02:11,380
+self.navigationController,
+pushViewController:placeVC,
+
+45
+00:02:11,380 --> 00:02:12,630
+and will animate
+the transition.
+
+46
+00:02:16,250 --> 00:02:18,650
+So here you can see what our
+place table view controller
+
+47
+00:02:18,650 --> 00:02:21,430
+looks like, after we set up
+all the UI table view
+
+48
+00:02:21,430 --> 00:02:22,750
+controller code correctly.
+
+49
+00:02:25,610 --> 00:02:28,400
+Next, since we're pushing to
+PlaceViewController from
+
+50
+00:02:28,400 --> 00:02:30,890
+PlaceTableViewController,
+we're going to want to set
+
+51
+00:02:30,890 --> 00:02:33,830
+PlaceViewController up so
+that it can manage a place
+
+52
+00:02:33,830 --> 00:02:35,990
+object that we're
+sending into it.
+
+53
+00:02:35,990 --> 00:02:39,810
+So in PlaceViewController.h,
+I'll import the place.h
+
+54
+00:02:39,810 --> 00:02:43,220
+header, so I can access
+the place model class.
+
+55
+00:02:43,220 --> 00:02:45,095
+And then I'll declare a
+property called Place.
+
+56
+00:02:51,410 --> 00:02:54,310
+In PlaceViewControllers
+implementation, I'll set up
+
+57
+00:02:54,310 --> 00:02:56,775
+all of my labels in
+viewDidLoad.
+
+58
+00:02:59,490 --> 00:03:02,300
+And then I'll set the data
+inside of those labels in
+
+59
+00:03:02,300 --> 00:03:03,680
+viewWillAppear.
+
+60
+00:03:03,680 --> 00:03:06,060
+And of course the data that I'm
+pulling from is going to
+
+61
+00:03:06,060 --> 00:03:07,325
+be coming from the
+self.place object.
+
+62
+00:03:09,870 --> 00:03:13,120
+Once PlaceViewController is
+set up, we're now able to tap
+
+63
+00:03:13,120 --> 00:03:17,170
+a cell in PlaceTableViewController,
+and be pushed over
+
+64
+00:03:17,170 --> 00:03:20,450
+to a PlaceViewController class
+that lists all of the
+
+65
+00:03:20,450 --> 00:03:23,400
+information in that
+place object.
+
+66
+00:03:23,400 --> 00:03:25,420
+As long as we're filling all our
+different controllers with
+
+67
+00:03:25,420 --> 00:03:28,080
+data, let's go ahead and fill
+the CityViewController up
+
+68
+00:03:28,080 --> 00:03:30,260
+with data from the city model.
+
+69
+00:03:30,260 --> 00:03:32,730
+First let's imports city.h
+into the city
+
+70
+00:03:32,730 --> 00:03:34,480
+view controller class.
+
+71
+00:03:34,480 --> 00:03:36,380
+And then create a property
+for the city model.
+
+72
+00:03:41,560 --> 00:03:43,260
+Just like we did with place.
+
+73
+00:03:43,260 --> 00:03:43,810
+That's right.
+
+74
+00:03:43,810 --> 00:03:46,730
+And CityViewController.m
+looks similar to
+
+75
+00:03:46,730 --> 00:03:49,110
+PlaceViewController.m.
+
+76
+00:03:49,110 --> 00:03:52,490
+In viewDidLoad we create
+copies of all of our labels.
+
+77
+00:03:52,490 --> 00:03:55,480
+And in viewWillAppear, we
+set the text properties of
+
+78
+00:03:55,480 --> 00:03:58,530
+those labels using data that's
+inside of the city model.
+
+79
+00:04:05,020 --> 00:04:07,480
+Once we have data in all three
+of those controllers, you can
+
+80
+00:04:07,480 --> 00:04:11,640
+see that Planet Hig is really
+starting to come together.
+
+81
+00:04:11,640 --> 00:04:13,350
+And here's what the structure
+of our classes
+
+82
+00:04:13,350 --> 00:04:14,600
+looks like so far.
+
+83
+00:04:17,380 --> 00:04:18,940
+And that's all we
+need to display
+
+84
+00:04:18,940 --> 00:04:20,352
+model data in to views.
+
+85
+00:04:20,352 --> 00:04:22,199
+And now it's your turn to
+try a few challenges.

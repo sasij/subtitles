@@ -1,0 +1,373 @@
+﻿1
+00:00:00,540 --> 00:00:03,640
+Often we need to create multiple
+model objects based
+
+2
+00:00:03,640 --> 00:00:05,790
+on one model class.
+
+3
+00:00:05,790 --> 00:00:09,610
+To do that, we just alloc init
+multiple model objects and set
+
+4
+00:00:09,610 --> 00:00:12,774
+the properties individually
+of each.
+
+5
+00:00:12,774 --> 00:00:15,830
+That's a lot of repetition.
+
+6
+00:00:15,830 --> 00:00:18,780
+If there's one thing Mr. Higgy
+hates, it's wasting time with
+
+7
+00:00:18,780 --> 00:00:20,360
+repetition.
+
+8
+00:00:20,360 --> 00:00:22,740
+So to fix this, we can use
+what's called a convenience
+
+9
+00:00:22,740 --> 00:00:27,670
+initializer to combine object
+instantiation and data setting
+
+10
+00:00:27,670 --> 00:00:29,250
+into one step.
+
+11
+00:00:29,250 --> 00:00:31,700
+So here we've created a method
+called init with name
+
+12
+00:00:31,700 --> 00:00:33,790
+description that we can
+use instead of the
+
+13
+00:00:33,790 --> 00:00:35,840
+standard init method.
+
+14
+00:00:35,840 --> 00:00:39,000
+Notice that this initializer
+takes two arguments, one for
+
+15
+00:00:39,000 --> 00:00:42,050
+the name property of the place
+model and one for the
+
+16
+00:00:42,050 --> 00:00:44,580
+description property
+of the place model.
+
+17
+00:00:44,580 --> 00:00:46,200
+Unfortunately, we don't
+get these kinds
+
+18
+00:00:46,200 --> 00:00:47,100
+of methods for free.
+
+19
+00:00:47,100 --> 00:00:50,260
+We have to define them in our
+model if we want to use them.
+
+20
+00:00:50,260 --> 00:00:53,350
+So we'll start by going to the
+place.h class and declaring
+
+21
+00:00:53,350 --> 00:00:57,140
+the init with name description
+method, like we see here.
+
+22
+00:00:59,800 --> 00:01:02,430
+And then to implement the init
+with name description method,
+
+23
+00:01:02,430 --> 00:01:05,670
+it's very similar to how our
+default initializer works.
+
+24
+00:01:05,670 --> 00:01:08,790
+We first have to write self
+equals super init.
+
+25
+00:01:08,790 --> 00:01:11,010
+And then we're going to want
+to check if that object was
+
+26
+00:01:11,010 --> 00:01:12,710
+created correctly first.
+
+27
+00:01:12,710 --> 00:01:15,260
+So we write if self.
+
+28
+00:01:15,260 --> 00:01:17,350
+If self was not created
+correctly, we don't want to be
+
+29
+00:01:17,350 --> 00:01:19,810
+trying to set properties
+on it.
+
+30
+00:01:19,810 --> 00:01:23,800
+But if it is, we want to set the
+self.name property equal
+
+31
+00:01:23,800 --> 00:01:27,090
+to aName and the
+self.description property
+
+32
+00:01:27,090 --> 00:01:29,350
+equal to aDescription,
+
+33
+00:01:29,350 --> 00:01:33,340
+aName and aDescription being
+the local arguments for the
+
+34
+00:01:33,340 --> 00:01:36,200
+strings that the user sent in.
+
+35
+00:01:36,200 --> 00:01:39,510
+Then we return a copy of that
+self object and we have a
+
+36
+00:01:39,510 --> 00:01:42,570
+place object containing the name
+and description that were
+
+37
+00:01:42,570 --> 00:01:45,960
+passed into the convenience
+initializer.
+
+38
+00:01:45,960 --> 00:01:49,060
+And now we can run this
+initializer with the init with
+
+39
+00:01:49,060 --> 00:01:53,000
+name description method we
+declared in the place model.
+
+40
+00:01:53,000 --> 00:01:55,550
+We've got a great convenience
+initializer but what happens
+
+41
+00:01:55,550 --> 00:01:58,360
+when we call init in
+our application?
+
+42
+00:01:58,360 --> 00:02:01,070
+Now let's create two places, one
+with our new convenience
+
+43
+00:02:01,070 --> 00:02:04,970
+initializer and one with the
+standard init message.
+
+44
+00:02:04,970 --> 00:02:07,400
+When we log out the name
+property of each of these new
+
+45
+00:02:07,400 --> 00:02:10,430
+model objects, we can expect
+to get two names
+
+46
+00:02:10,430 --> 00:02:11,820
+logged to the console.
+
+47
+00:02:11,820 --> 00:02:14,370
+But instead, place one correctly
+logs out the name
+
+48
+00:02:14,370 --> 00:02:17,164
+property and place
+two logs out nil.
+
+49
+00:02:17,164 --> 00:02:20,470
+What country is nil in?
+
+50
+00:02:20,470 --> 00:02:23,000
+What Higgy's pointing out is
+that we don't ever want one of
+
+51
+00:02:23,000 --> 00:02:26,360
+our model properties to
+have a nil value.
+
+52
+00:02:26,360 --> 00:02:29,380
+To prevent these kinds of nil
+values, we can add some code
+
+53
+00:02:29,380 --> 00:02:32,850
+to our init method that calls
+our convenience initializer
+
+54
+00:02:32,850 --> 00:02:36,880
+init with name description and
+returns an instance of an
+
+55
+00:02:36,880 --> 00:02:38,730
+object that has some
+default values
+
+56
+00:02:38,730 --> 00:02:42,380
+inside of it, like this.
+
+57
+00:02:42,380 --> 00:02:46,000
+Now if we create two place
+models, one with the init with
+
+58
+00:02:46,000 --> 00:02:48,850
+name description initializer
+and one with the standard
+
+59
+00:02:48,850 --> 00:02:51,870
+initializer, the standard
+initializer will actually be
+
+60
+00:02:51,870 --> 00:02:54,740
+calling init with name
+description.
+
+61
+00:02:54,740 --> 00:02:57,950
+Then, if we log out the name
+property of each of our place
+
+62
+00:02:57,950 --> 00:03:00,375
+objects, we will have
+no nil values.
+
+63
+00:03:03,870 --> 00:03:05,830
+There are several conventions
+that you'll want to follow
+
+64
+00:03:05,830 --> 00:03:07,850
+when you're creating
+new models.
+
+65
+00:03:07,850 --> 00:03:09,630
+The first relates to
+memory management.
+
+66
+00:03:09,630 --> 00:03:11,100
+You want to always declare your
+
+67
+00:03:11,100 --> 00:03:14,270
+properties as strong nonatomic.
+
+68
+00:03:14,270 --> 00:03:17,140
+Next, any arguments that you
+pass into a convenience
+
+69
+00:03:17,140 --> 00:03:21,630
+initializer should start with
+either a, an, or the.
+
+70
+00:03:21,630 --> 00:03:26,070
+So instead of arguments like
+city and address, these should
+
+71
+00:03:26,070 --> 00:03:30,070
+be written as aCity
+or anAddress.
+
+72
+00:03:30,070 --> 00:03:32,340
+And finally, if you have a long
+method name which you
+
+73
+00:03:32,340 --> 00:03:34,140
+usually will when you're
+creating convenience
+
+74
+00:03:34,140 --> 00:03:37,030
+initializer, you should line up
+the different parts of the
+
+75
+00:03:37,030 --> 00:03:39,580
+method name by vertically
+aligning the colons that
+
+76
+00:03:39,580 --> 00:03:43,205
+separate the argument data types
+and the argument names.
+
+77
+00:03:47,180 --> 00:03:49,470
+You've reached the end of the
+video so now it's time to try
+
+78
+00:03:49,470 --> 00:03:50,720
+some more challenges.

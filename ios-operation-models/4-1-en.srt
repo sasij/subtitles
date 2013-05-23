@@ -1,0 +1,336 @@
+﻿1
+00:00:00,170 --> 00:00:00,270
+[SINGING]
+
+2
+00:00:00,270 --> 00:00:03,460
+He's got your data in his pocket
+and a gun in his hand.
+
+3
+00:00:03,460 --> 00:00:06,950
+He's got his finger on the
+trigger and a secret plan.
+
+4
+00:00:06,950 --> 00:00:10,340
+He'll take mutable arrays and
+put them in formation using
+
+5
+00:00:10,340 --> 00:00:12,100
+your controllers for his--
+
+6
+00:00:12,100 --> 00:00:12,756
+World domination.
+
+7
+00:00:12,756 --> 00:00:12,944
+[SINGING]
+
+8
+00:00:12,944 --> 00:00:16,690
+He'll take your dollar and the
+models before it explodes, the
+
+9
+00:00:16,690 --> 00:00:20,880
+only secret agent who
+encodes and decodes.
+
+10
+00:00:20,880 --> 00:00:22,130
+He's Mr. Higgie.
+
+11
+00:00:28,070 --> 00:00:30,870
+Hi, and welcome back to
+iOS: Operation Models.
+
+12
+00:00:30,870 --> 00:00:33,750
+In level four, we're going to
+talk about editing data inside
+
+13
+00:00:33,750 --> 00:00:36,930
+of Models after it's
+been instantiated.
+
+14
+00:00:36,930 --> 00:00:39,480
+Planet Hig's data is in a
+pretty good place, but Higgie
+
+15
+00:00:39,480 --> 00:00:42,320
+wants to be able to add notes
+about a city that he's
+
+16
+00:00:42,320 --> 00:00:44,330
+visiting from the City
+View Controller.
+
+17
+00:00:44,330 --> 00:00:46,670
+It really is a useful feature.
+
+18
+00:00:46,670 --> 00:00:49,000
+It really is a useful feature.
+
+19
+00:00:49,000 --> 00:00:50,880
+Ultimately, we're going to want
+to get to a point where
+
+20
+00:00:50,880 --> 00:00:53,240
+we can tap an Edit button at
+the top right of the View
+
+21
+00:00:53,240 --> 00:00:56,690
+Controller and open up an Edit
+View Controller where we can
+
+22
+00:00:56,690 --> 00:00:59,430
+edit note information
+about that city.
+
+23
+00:00:59,430 --> 00:01:02,370
+Then when we tap on Save Note,
+we'll be sent back over to the
+
+24
+00:01:02,370 --> 00:01:06,100
+City View Controller and we'll
+see our updated note data.
+
+25
+00:01:06,100 --> 00:01:08,790
+So to start, we're going to need
+to add a Notes property
+
+26
+00:01:08,790 --> 00:01:09,780
+to the City Model.
+
+27
+00:01:09,780 --> 00:01:12,620
+And you can see that in City.h,
+we're adding an
+
+28
+00:01:12,620 --> 00:01:14,245
+NSString property
+called Notes.
+
+29
+00:01:19,100 --> 00:01:21,550
+And in the init with JSON
+implementation, we're going to
+
+30
+00:01:21,550 --> 00:01:25,460
+want to set self.notes equal to
+some default value because
+
+31
+00:01:25,460 --> 00:01:27,550
+the JSON file doesn't have
+any of that note
+
+32
+00:01:27,550 --> 00:01:28,800
+data inside of it.
+
+33
+00:01:33,120 --> 00:01:36,480
+Next, we'll need a UI Label and
+a UI Text Field inside of
+
+34
+00:01:36,480 --> 00:01:38,620
+the City View Controller.
+
+35
+00:01:38,620 --> 00:01:41,610
+In CityViewController.h, we've
+already got our City Model
+
+36
+00:01:41,610 --> 00:01:44,460
+Property, and we're also going
+to need a UI Label and a UI
+
+37
+00:01:44,460 --> 00:01:48,670
+Text Field to store the notes
+and the editable version of
+
+38
+00:01:48,670 --> 00:01:50,370
+those notes.
+
+39
+00:01:50,370 --> 00:01:52,420
+And then in
+CityViewController.m, we'll
+
+40
+00:01:52,420 --> 00:01:55,670
+need to allocate and initialize
+a City Model Object
+
+41
+00:01:55,670 --> 00:01:58,100
+and then allocate and initialize
+a Notes Label
+
+42
+00:01:58,100 --> 00:02:01,300
+Object and a Notes
+Field Object.
+
+43
+00:02:01,300 --> 00:02:03,960
+Also notice that we're setting
+the text value of the Notes
+
+44
+00:02:03,960 --> 00:02:05,980
+Label using the data that's
+in self.city.notes.
+
+45
+00:02:09,250 --> 00:02:12,350
+If we want to set the text
+inside of a UI Text Field, we
+
+46
+00:02:12,350 --> 00:02:15,640
+just access the Notes Fields
+Text Property and set that
+
+47
+00:02:15,640 --> 00:02:17,810
+equal to some string.
+
+48
+00:02:17,810 --> 00:02:20,120
+On the flip side, if we want
+to access the text that's
+
+49
+00:02:20,120 --> 00:02:23,300
+already inside of Notes Field,
+we can just reference the text
+
+50
+00:02:23,300 --> 00:02:27,430
+property directly in something
+like an NS log.
+
+51
+00:02:27,430 --> 00:02:30,270
+Now the keyboard that pops up
+is customizable also, and
+
+52
+00:02:30,270 --> 00:02:32,990
+Objective C provides a number
+of constants to help you
+
+53
+00:02:32,990 --> 00:02:35,820
+decide which keyboard
+should display.
+
+54
+00:02:35,820 --> 00:02:40,180
+The default keyboard type is UI
+Keyboard Type Default, but
+
+55
+00:02:40,180 --> 00:02:43,180
+there are some other constants
+like UI Keyboard Type Decimal
+
+56
+00:02:43,180 --> 00:02:46,980
+Pad, which brings up a numeric
+keypad, and UI Keyboard Type
+
+57
+00:02:46,980 --> 00:02:50,600
+Email Address, which brings up
+the default keyboard with an
+
+58
+00:02:50,600 --> 00:02:53,380
+at symbol and a period symbol
+in it to make writing email
+
+59
+00:02:53,380 --> 00:02:57,420
+addresses easier, and a whole
+list of other keyboards, too.
+
+60
+00:02:57,420 --> 00:03:00,140
+You decide which keyboard should
+display by changing the
+
+61
+00:03:00,140 --> 00:03:04,410
+Keyboard Type Property
+of a UI Text Field.
+
+62
+00:03:04,410 --> 00:03:06,640
+Another useful property of
+UI Text Field is the
+
+63
+00:03:06,640 --> 00:03:08,300
+Border Style Property.
+
+64
+00:03:08,300 --> 00:03:11,100
+There's four borders styles
+that you can choose from,
+
+65
+00:03:11,100 --> 00:03:15,740
+UITextBorderStyleNone,
+UITextBorderStyleLine,
+
+66
+00:03:15,740 --> 00:03:18,450
+UITextBorderStyleBezel, and
+UITextBorderStyleRoundedRect.
+
+67
+00:03:22,190 --> 00:03:23,890
+For the Notes Field, we're
+going to use a
+
+68
+00:03:23,890 --> 00:03:27,690
+UITextBorderStyleRoundedRect so
+we can see the field easily
+
+69
+00:03:27,690 --> 00:03:29,445
+and distinguish it from
+the other UI labels.
+
+70
+00:03:31,990 --> 00:03:34,540
+Now it's time for you to try
+some UI Text Field challenges.

@@ -1,0 +1,317 @@
+﻿1
+00:00:00,630 --> 00:00:03,530
+You probably noticed that while
+the keyboard pops up when you
+
+2
+00:00:03,530 --> 00:00:06,600
+tap inside of the UI text field,
+it doesn't go away when
+
+3
+00:00:06,600 --> 00:00:08,100
+you tap out of it.
+
+4
+00:00:08,100 --> 00:00:10,440
+In order to make the keyboard go
+away, you're going to need
+
+5
+00:00:10,440 --> 00:00:13,740
+a special class called UI
+Text Field Delegate.
+
+6
+00:00:17,210 --> 00:00:20,010
+The UI text field delegate class
+has a bunch of methods
+
+7
+00:00:20,010 --> 00:00:22,230
+that are useful for dealing with
+all the different states
+
+8
+00:00:22,230 --> 00:00:23,960
+that a keyboard could be in.
+
+9
+00:00:23,960 --> 00:00:26,760
+So we've got things like, text
+field should begin editing,
+
+10
+00:00:26,760 --> 00:00:30,650
+text field should end editing,
+text field did end editing.
+
+11
+00:00:30,650 --> 00:00:32,509
+But the specific method that
+we're going to want to access
+
+12
+00:00:32,509 --> 00:00:35,250
+right now is, text field
+should return.
+
+13
+00:00:35,250 --> 00:00:37,740
+And this is going to run
+whenever the Return key is
+
+14
+00:00:37,740 --> 00:00:40,940
+tapped on the on screen
+keyboard.
+
+15
+00:00:40,940 --> 00:00:44,450
+So we have a problem, we have
+a method called text field
+
+16
+00:00:44,450 --> 00:00:48,670
+should return that's in the UI
+text field delegate class, but
+
+17
+00:00:48,670 --> 00:00:51,200
+we're not in the UI text field
+delegate class right now.
+
+18
+00:00:51,200 --> 00:00:53,210
+We're in the City View
+Controller Class.
+
+19
+00:00:53,210 --> 00:00:56,340
+So we need a way to get the
+methods from UI text field
+
+20
+00:00:56,340 --> 00:00:59,280
+delegate into the city
+view controller.
+
+21
+00:00:59,280 --> 00:01:02,240
+And the way that Apple let's us
+do this is with a procedure
+
+22
+00:01:02,240 --> 00:01:04,480
+called Protocols.
+
+23
+00:01:04,480 --> 00:01:08,000
+Protocols are just a way to take
+methods from one class
+
+24
+00:01:08,000 --> 00:01:11,850
+and get them inserted
+into another class.
+
+25
+00:01:11,850 --> 00:01:14,180
+So the way that we declare
+a protocol is in the
+
+26
+00:01:14,180 --> 00:01:19,070
+cityviewcontroller.h file, in
+Angular brackets after the
+
+27
+00:01:19,070 --> 00:01:22,360
+subclass, which in this case
+is UI View Controller.
+
+28
+00:01:22,360 --> 00:01:26,640
+We put the protocol that we
+want to implement,
+
+29
+00:01:26,640 --> 00:01:28,580
+UITextFieldDelegate
+
+30
+00:01:28,580 --> 00:01:31,940
+Then in CityViewController.m,
+we also need to access a
+
+31
+00:01:31,940 --> 00:01:34,740
+property called delegate
+of the text field.
+
+32
+00:01:34,740 --> 00:01:35,990
+We need to set
+self.notesfield.delegate = self.
+
+33
+00:01:39,900 --> 00:01:41,940
+So remember that self
+here is the
+
+34
+00:01:41,940 --> 00:01:43,700
+CityViewController object.
+
+35
+00:01:43,700 --> 00:01:45,990
+So what we're saying is that
+we want the CityView
+
+36
+00:01:45,990 --> 00:01:51,110
+Controller object to respond on
+behalf of the notes field.
+
+37
+00:01:51,110 --> 00:01:54,290
+We want to delegate that
+response to the
+
+38
+00:01:54,290 --> 00:01:55,470
+CityViewController.
+
+39
+00:01:55,470 --> 00:01:58,050
+And since the CityViewController
+adopted UITextFieldDelegate
+
+40
+00:01:58,050 --> 00:02:02,020
+protocol, it's
+going to understand what to do
+
+41
+00:02:02,020 --> 00:02:06,520
+when some message is received on
+behalf of the text field.
+
+42
+00:02:06,520 --> 00:02:09,860
+If the message that gets sent
+to the notes field is
+
+43
+00:02:09,860 --> 00:02:12,720
+TextFieldShouldReturn, then the
+CityViewController is going
+
+44
+00:02:12,720 --> 00:02:14,880
+to look for tha
+TextFieldShouldReturn method.
+
+45
+00:02:14,880 --> 00:02:17,320
+So we better implement it.
+
+46
+00:02:17,320 --> 00:02:19,530
+This text field should return
+method is really going to do
+
+47
+00:02:19,530 --> 00:02:21,000
+two things.
+
+48
+00:02:21,000 --> 00:02:24,100
+First it's going to update the
+city model object with the
+
+49
+00:02:24,100 --> 00:02:27,720
+text that has been entered
+so far in notes field.
+
+50
+00:02:27,720 --> 00:02:31,390
+And it should make the keyboard
+go away after that.
+
+51
+00:02:31,390 --> 00:02:34,390
+So to update the city model
+all we need to do is set,
+
+52
+00:02:34,390 --> 00:02:40,900
+self.city.notes equal to the
+text in self.notesfield.
+
+53
+00:02:40,900 --> 00:02:43,550
+And then to make the key word
+go away, we need to pass in
+
+54
+00:02:43,550 --> 00:02:46,200
+that instance of the text
+field a message called
+
+55
+00:02:46,200 --> 00:02:48,730
+resignFirstResponder.
+
+56
+00:02:48,730 --> 00:02:51,860
+The first responder means that
+an object is going to be the
+
+57
+00:02:51,860 --> 00:02:56,270
+first one to respond to any
+interactions with the view.
+
+58
+00:02:56,270 --> 00:02:59,210
+To become a first responder, the
+element just needs to be
+
+59
+00:02:59,210 --> 00:03:00,480
+interacted with.
+
+60
+00:03:00,480 --> 00:03:03,400
+The keyboard appears on screen
+whenever a UI text field
+
+61
+00:03:03,400 --> 00:03:05,090
+becomes the first responder.
+
+62
+00:03:05,090 --> 00:03:07,660
+And whenever it loses its first
+responder status, the
+
+63
+00:03:07,660 --> 00:03:09,470
+keyboard disappears.
+
+64
+00:03:09,470 --> 00:03:13,100
+So when we resign first
+responder status of the UI
+
+65
+00:03:13,100 --> 00:03:17,230
+text field that's what's making
+the keyword go away.
+
+66
+00:03:17,230 --> 00:03:19,010
+It's time again to try your
+hand at some challenges.

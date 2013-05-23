@@ -1,0 +1,626 @@
+﻿1
+00:00:00,640 --> 00:00:02,770
+There's several enhancements
+that we can make to the way
+
+2
+00:00:02,770 --> 00:00:05,630
+that makeThisPlace
+Interesting works.
+
+3
+00:00:05,630 --> 00:00:08,910
+The first one is that the button
+still stays on screen
+
+4
+00:00:08,910 --> 00:00:12,160
+even after we've tapped it,
+which could lead to adding the
+
+5
+00:00:12,160 --> 00:00:14,890
+same place into the
+interestingPlaces array
+
+6
+00:00:14,890 --> 00:00:16,880
+multiple times.
+
+7
+00:00:16,880 --> 00:00:18,660
+So the first thing we should
+do is we should remove the
+
+8
+00:00:18,660 --> 00:00:21,540
+button after it's been tapped.
+
+9
+00:00:21,540 --> 00:00:23,260
+And doing this is really easy.
+
+10
+00:00:23,260 --> 00:00:26,390
+All we need to do is pass the
+removeFromSuperView method to
+
+11
+00:00:26,390 --> 00:00:28,150
+the Sender Object.
+
+12
+00:00:28,150 --> 00:00:31,770
+Remember that Sender in any
+method that's called by a UI
+
+13
+00:00:31,770 --> 00:00:35,690
+button contains that
+UI button.
+
+14
+00:00:35,690 --> 00:00:38,140
+So then by calling Sender
+removeFromSuperView, we're
+
+15
+00:00:38,140 --> 00:00:42,180
+really saying remove the button
+from the super view.
+
+16
+00:00:42,180 --> 00:00:45,650
+Next, just making the button
+disappear might not be enough
+
+17
+00:00:45,650 --> 00:00:48,110
+to clue Higgie in that he's
+added a place to the
+
+18
+00:00:48,110 --> 00:00:51,320
+interestingPlaces array, so why
+not pop up an Alert View
+
+19
+00:00:51,320 --> 00:00:52,660
+on the screen?
+
+20
+00:00:52,660 --> 00:00:56,350
+We can do this by creating a
+UIAlertView object and then
+
+21
+00:00:56,350 --> 00:01:00,220
+passing it the initializer,
+initWithTitle, message,
+
+22
+00:01:00,220 --> 00:01:04,349
+delegate, cancelButtonTitle,
+otherButtonTitles.
+
+23
+00:01:04,349 --> 00:01:07,680
+And then we pass the Show
+message to that alert object
+
+24
+00:01:07,680 --> 00:01:09,520
+and the Alert view will
+pop up on the screen.
+
+25
+00:01:12,430 --> 00:01:14,190
+And you can see what the
+different arguments in the
+
+26
+00:01:14,190 --> 00:01:16,010
+Convenience Initializer do.
+
+27
+00:01:16,010 --> 00:01:19,870
+The initWithTitle passes in
+the title of the UIAlertView,
+
+28
+00:01:19,870 --> 00:01:24,000
+the message is the detail
+text in the Alert View,
+
+29
+00:01:24,000 --> 00:01:26,150
+the cancelButtonTitle
+is the single button
+
+30
+00:01:26,150 --> 00:01:27,980
+that appears on screen.
+
+31
+00:01:27,980 --> 00:01:30,310
+I renamed mine to OK.
+
+32
+00:01:30,310 --> 00:01:32,950
+And I'm not setting any of the
+values for the delegate or the
+
+33
+00:01:32,950 --> 00:01:35,130
+otherButtonTitles because
+they're not
+
+34
+00:01:35,130 --> 00:01:37,400
+needed in this example.
+
+35
+00:01:37,400 --> 00:01:40,850
+Now the button disappears when
+it's tapped, and we get a
+
+36
+00:01:40,850 --> 00:01:43,600
+UIAlertView pop up to confirm
+that the place has been added
+
+37
+00:01:43,600 --> 00:01:46,650
+to the interestingPlaces array,
+but look what happens
+
+38
+00:01:46,650 --> 00:01:49,620
+when we visit PlaceView
+Controller again.
+
+39
+00:01:49,620 --> 00:01:51,430
+The button still shows up.
+
+40
+00:01:51,430 --> 00:01:53,180
+That's not what we want.
+
+41
+00:01:53,180 --> 00:01:55,760
+To fix this, in PlaceView
+Controller, we're going to
+
+42
+00:01:55,760 --> 00:01:59,540
+need to write a conditional that
+checks if the place is
+
+43
+00:01:59,540 --> 00:02:02,090
+currently in the
+interestingPlaces array.
+
+44
+00:02:02,090 --> 00:02:04,820
+If it is, we don't want
+to show the button.
+
+45
+00:02:04,820 --> 00:02:07,630
+If it's not, it means we want
+to add it, therefore the
+
+46
+00:02:07,630 --> 00:02:09,220
+button should appear.
+
+47
+00:02:09,220 --> 00:02:11,580
+You might think we can write
+code that looks like this,
+
+48
+00:02:11,580 --> 00:02:14,630
+where you can pass the
+containsObject message to the
+
+49
+00:02:14,630 --> 00:02:18,950
+interestingPlaces array and see
+if it contains self.place,
+
+50
+00:02:18,950 --> 00:02:22,250
+but unfortunately, this
+is not going to work.
+
+51
+00:02:22,250 --> 00:02:25,380
+That's a bummer, man.
+
+52
+00:02:25,380 --> 00:02:27,440
+Yeah, Mr. Higgie, that
+is a bummer.
+
+53
+00:02:27,440 --> 00:02:29,870
+The reason why this won't work
+is that every object in
+
+54
+00:02:29,870 --> 00:02:34,210
+Objective C under the hood is
+given a unique identifier.
+
+55
+00:02:34,210 --> 00:02:38,130
+When we run the containsObject
+method, we're actually
+
+56
+00:02:38,130 --> 00:02:40,560
+comparing the unique identifiers
+between two
+
+57
+00:02:40,560 --> 00:02:44,070
+objects and not the contents
+of the objects themselves.
+
+58
+00:02:44,070 --> 00:02:48,470
+So even if data from self.place
+exists in a place
+
+59
+00:02:48,470 --> 00:02:51,850
+object in
+self.city.interestingPlaces,
+
+60
+00:02:51,850 --> 00:02:55,150
+the two objects will not be
+equivalent according to the
+
+61
+00:02:55,150 --> 00:02:57,520
+containsObject method.
+
+62
+00:02:57,520 --> 00:02:59,740
+Instead, we can come up with
+a workaround that uses
+
+63
+00:02:59,740 --> 00:03:03,650
+enumeration to compare
+individual properties of two
+
+64
+00:03:03,650 --> 00:03:06,920
+objects as opposed to the
+objects themselves.
+
+65
+00:03:06,920 --> 00:03:09,300
+Let's start by declaring a
+Boolean variable called
+
+66
+00:03:09,300 --> 00:03:12,190
+placeAlreadyInteresting, and
+let's set its default value
+
+67
+00:03:12,190 --> 00:03:14,060
+equal to No.
+
+68
+00:03:14,060 --> 00:03:17,460
+Then we'll enumerate through
+all of the places inside of
+
+69
+00:03:17,460 --> 00:03:21,670
+self.city.interestingPlaces, and
+we'll check if the name of
+
+70
+00:03:21,670 --> 00:03:25,100
+the place in our interesting
+Places array is equal to the
+
+71
+00:03:25,100 --> 00:03:28,870
+name of the place that's in
+our PlaceViewController.
+
+72
+00:03:28,870 --> 00:03:31,680
+If they're equal, we'll set
+placeAlreadyInteresting to
+
+73
+00:03:31,680 --> 00:03:35,630
+Yes, and if not, we'll do
+nothing, leave it at No.
+
+74
+00:03:35,630 --> 00:03:38,410
+Then we check if the place is
+not already interesting, and
+
+75
+00:03:38,410 --> 00:03:41,050
+if it's not interesting, we
+want to show the button so
+
+76
+00:03:41,050 --> 00:03:43,890
+Higgie has a chance to
+make it interesting.
+
+77
+00:03:43,890 --> 00:03:45,820
+If it is already interesting,
+we don't
+
+78
+00:03:45,820 --> 00:03:49,200
+want to show any buttons.
+
+79
+00:03:49,200 --> 00:03:52,100
+Wouldn't it be great if we had
+a way to see how many items
+
+80
+00:03:52,100 --> 00:03:55,020
+were in the InterestingPlace
+sTableViewController without
+
+81
+00:03:55,020 --> 00:03:58,310
+having to tap and load the
+controller itself?
+
+82
+00:03:58,310 --> 00:04:01,190
+One way we can do that is by
+accessing the Badge property
+
+83
+00:04:01,190 --> 00:04:03,070
+of the tabBarController.
+
+84
+00:04:03,070 --> 00:04:05,430
+Remember that every
+tabBarController contains a
+
+85
+00:04:05,430 --> 00:04:08,590
+tab bar with multiple
+tab bar items.
+
+86
+00:04:08,590 --> 00:04:11,050
+We can access different
+items in the tab bar
+
+87
+00:04:11,050 --> 00:04:12,650
+just like an array.
+
+88
+00:04:12,650 --> 00:04:15,110
+So if we want to access
+the second tab in the
+
+89
+00:04:15,110 --> 00:04:17,959
+tabBarController, we can access
+it by referencing
+
+90
+00:04:17,959 --> 00:04:18,194
+self.TabBarController.
+
+91
+00:04:18,194 --> 00:04:23,290
+TabBar.items at position one.
+
+92
+00:04:28,300 --> 00:04:31,740
+If you were to look up the
+UITabBarItem documentation,
+
+93
+00:04:31,740 --> 00:04:34,090
+you'd see that there's a
+property called badgeValue,
+
+94
+00:04:34,090 --> 00:04:36,380
+and that's the property that
+we're going to want to set.
+
+95
+00:04:36,380 --> 00:04:38,900
+So we'll pass the setBadgeValue
+message to the
+
+96
+00:04:38,900 --> 00:04:42,320
+UITabBarItem at position one,
+and the argument that we'll
+
+97
+00:04:42,320 --> 00:04:45,730
+give it is an NSString version
+of the integer in
+
+98
+00:04:45,730 --> 00:04:52,420
+interestingPlaces.count
+
+99
+00:04:52,420 --> 00:04:54,250
+So let's look now at where
+we want to actually
+
+100
+00:04:54,250 --> 00:04:55,650
+set the badge value.
+
+101
+00:04:55,650 --> 00:04:58,132
+The first place that we want
+to set it is in
+
+102
+00:04:58,132 --> 00:04:59,162
+makeThisPlaceInteresting.
+
+103
+00:04:59,700 --> 00:05:02,520
+Whenever a new place is made
+interesting, we'll update the
+
+104
+00:05:02,520 --> 00:05:04,090
+badge value.
+
+105
+00:05:04,090 --> 00:05:07,800
+And next, we're going to also
+want to set the badge value in
+
+106
+00:05:07,800 --> 00:05:10,880
+AppDelegate because we want to
+make sure that whenever the
+
+107
+00:05:10,880 --> 00:05:14,200
+app loads, it gets a fresh
+number in that badge.
+
+108
+00:05:14,200 --> 00:05:16,920
+We don't have a city model
+currently in the AppDelegate,
+
+109
+00:05:16,920 --> 00:05:20,410
+though, so in AppDelegate.h,
+we'll first want to import
+
+110
+00:05:20,410 --> 00:05:22,417
+city.h, and then in the
+applicationDidFinish
+
+111
+00:05:22,417 --> 00:05:26,330
+LaunchingWithOptions method,
+we'll set city equal
+
+112
+00:05:26,330 --> 00:05:31,330
+to City getCity to pull that
+model out of the archive.
+
+113
+00:05:31,330 --> 00:05:32,370
+But wait.
+
+114
+00:05:32,370 --> 00:05:35,850
+What if this is the first time
+we've ever loaded the app?
+
+115
+00:05:35,850 --> 00:05:39,800
+If it is, we won't have a
+city model archive yet.
+
+116
+00:05:39,800 --> 00:05:43,950
+So what we'll need to do is
+we'll need to say, if city,
+
+117
+00:05:43,950 --> 00:05:49,550
+then update the badge value,
+because if a city exists after
+
+118
+00:05:49,550 --> 00:05:52,460
+we call the City getCity
+method, then we
+
+119
+00:05:52,460 --> 00:05:54,310
+know we had an archive.
+
+120
+00:05:54,310 --> 00:05:56,890
+If it doesn't, we don't want to
+update the badge value with
+
+121
+00:05:56,890 --> 00:05:58,140
+any bad data.
+
+122
+00:06:00,140 --> 00:06:02,800
+So here's our finished Planet
+Hig in all its glory.
+
+123
+00:06:02,800 --> 00:06:07,400
+We can get a list of places, get
+information about a city,
+
+124
+00:06:07,400 --> 00:06:10,960
+edit the information about
+notes in that city.
+
+125
+00:06:10,960 --> 00:06:14,100
+We can add a place to an array
+called interestingPlaces, and
+
+126
+00:06:14,100 --> 00:06:17,060
+then we can get a new
+InterestingPlacesTableView
+
+127
+00:06:17,060 --> 00:06:19,010
+that contains information
+about all of this.
+
+128
+00:06:19,010 --> 00:06:21,620
+This thing just keeps
+getting better.
+
+129
+00:06:21,620 --> 00:06:24,180
+Just you wait until the next
+course, Mr. Higgie.
+
+130
+00:06:24,180 --> 00:06:26,130
+Now there's just a few more
+challenges and we'll see you
+
+131
+00:06:26,130 --> 00:06:27,380
+at the wrap up.

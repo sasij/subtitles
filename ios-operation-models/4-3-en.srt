@@ -1,0 +1,273 @@
+﻿1
+00:00:00,720 --> 00:00:02,840
+Our UITextField is working
+pretty well now,
+
+2
+00:00:02,840 --> 00:00:04,510
+but we have a problem.
+
+3
+00:00:04,510 --> 00:00:06,980
+It's in CityViewController
+right now, but we really
+
+4
+00:00:06,980 --> 00:00:10,580
+should modify it to where it's
+in a separate view controller.
+
+5
+00:00:10,580 --> 00:00:13,400
+We'll call that
+EditNoteViewController.
+
+6
+00:00:13,400 --> 00:00:15,200
+And this is the structure that
+we want to end up with.
+
+7
+00:00:15,200 --> 00:00:17,500
+We want to have
+CityViewController that has a
+
+8
+00:00:17,500 --> 00:00:21,620
+view holding a UI label that
+will hold the notes data.
+
+9
+00:00:21,620 --> 00:00:23,580
+And we want a way
+to transition to
+
+10
+00:00:23,580 --> 00:00:26,570
+EditNoteViewController, which
+has its own view, that has
+
+11
+00:00:26,570 --> 00:00:30,800
+nothing but the UI text field
+notesField inside of it.
+
+12
+00:00:30,800 --> 00:00:33,560
+The simplest way to do this
+is to create a UIButton in
+
+13
+00:00:33,560 --> 00:00:37,420
+CityViewController and have the
+action of that UIButton
+
+14
+00:00:37,420 --> 00:00:40,540
+call a method called
+editPressed.
+
+15
+00:00:40,540 --> 00:00:44,090
+And inside of the editPressed
+method, we will create a new
+
+16
+00:00:44,090 --> 00:00:47,920
+EditNoteViewController, set
+the City property of the
+
+17
+00:00:47,920 --> 00:00:51,270
+EditNoteViewController to the
+City object that's currently
+
+18
+00:00:51,270 --> 00:00:55,510
+in CityViewController, and
+do a standard navigation
+
+19
+00:00:55,510 --> 00:00:57,320
+controller push where we push
+
+20
+00:00:57,320 --> 00:00:59,200
+EditNoteViewController onto the stack.
+
+21
+00:01:02,441 --> 00:01:05,420
+In EditNoteViewController, we're
+going to need to import
+
+22
+00:01:05,420 --> 00:01:08,700
+City.h so that we can access
+the City model.
+
+23
+00:01:08,700 --> 00:01:11,750
+We're also going to need to
+create a City property.
+
+24
+00:01:11,750 --> 00:01:13,870
+And finally, we're thinking
+ahead a little bit, and we're
+
+25
+00:01:13,870 --> 00:01:15,990
+going to need a UIButton
+that takes us out of
+
+26
+00:01:15,990 --> 00:01:19,260
+EditNoteViewController and back
+into CityViewController.
+
+27
+00:01:19,260 --> 00:01:22,210
+So it's probably a good idea
+to declare a savePressed
+
+28
+00:01:22,210 --> 00:01:23,575
+method now also.
+
+29
+00:01:23,575 --> 00:01:26,070
+You know the drill by now.
+
+30
+00:01:26,070 --> 00:01:28,390
+That's right, we've done this
+a couple times now.
+
+31
+00:01:28,390 --> 00:01:30,410
+Inside of
+EditNoteViewController's
+
+32
+00:01:30,410 --> 00:01:32,700
+viewDidLoad method, we're going
+to want to instantiate a
+
+33
+00:01:32,700 --> 00:01:34,530
+copy of a City object.
+
+34
+00:01:34,530 --> 00:01:37,610
+Then we're going to want to
+instantiate a notesField and
+
+35
+00:01:37,610 --> 00:01:39,900
+set the frame of the notesField
+appear on the
+
+36
+00:01:39,900 --> 00:01:43,070
+screen and set the Delegate
+property of that notesField so
+
+37
+00:01:43,070 --> 00:01:46,940
+that it can use those UITextField
+delegate methods.
+
+38
+00:01:46,940 --> 00:01:49,230
+And then in viewWillAppear,
+we're going to want to set the
+
+39
+00:01:49,230 --> 00:01:52,070
+text property of the notesField
+equal to whatever
+
+40
+00:01:52,070 --> 00:01:55,140
+is currently in self.city.notes.
+
+41
+00:01:55,140 --> 00:01:57,370
+And that's so Higgie can
+have a copy of what's already
+
+42
+00:01:57,370 --> 00:02:00,310
+in the Notes property available
+in the UITextField
+
+43
+00:02:00,310 --> 00:02:02,640
+before he begins editing.
+
+44
+00:02:02,640 --> 00:02:05,330
+In the CityViewController, we
+had an Edit button to take us
+
+45
+00:02:05,330 --> 00:02:08,680
+from CityView to EditNoteView.
+
+46
+00:02:08,680 --> 00:02:11,220
+And in EditNoteViewController,
+we're going to need to Save
+
+47
+00:02:11,220 --> 00:02:14,460
+button to take us from
+EditNoteView back into
+
+48
+00:02:14,460 --> 00:02:17,060
+CityView with our newly
+saved data.
+
+49
+00:02:17,060 --> 00:02:19,810
+So we create a button, and we
+set the action to a method
+
+50
+00:02:19,810 --> 00:02:22,020
+called savePressed.
+
+51
+00:02:22,020 --> 00:02:24,460
+In savePressed, we'll
+do two things.
+
+52
+00:02:24,460 --> 00:02:27,630
+First, we'll set the
+self.city.notes property equal
+
+53
+00:02:27,630 --> 00:02:31,360
+to whatever text is currently
+in the notesField.
+
+54
+00:02:31,360 --> 00:02:33,480
+And then we'll call the
+popViewControllerAnimated
+
+55
+00:02:33,480 --> 00:02:37,930
+method to pop us off the stack
+back into CityViewController.
+
+56
+00:02:37,930 --> 00:02:40,270
+Let's see what that looks like
+in action, and then you're off
+
+57
+00:02:40,270 --> 00:02:41,520
+to more challenges.

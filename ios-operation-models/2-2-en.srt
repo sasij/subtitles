@@ -1,0 +1,73 @@
+﻿1
+00:00:00,550 --> 00:00:02,490
+Here's the user model that
+you just created in the
+
+2
+00:00:02,490 --> 00:00:03,400
+Challenges.
+
+3
+00:00:03,400 --> 00:00:05,990
+We can make this model
+even more efficient.
+
+4
+00:00:05,990 --> 00:00:09,300
+Notice that we're storing
+NSStrings for profilePhoto and
+
+5
+00:00:09,300 --> 00:00:11,610
+profilePhotoThumbnail.
+
+6
+00:00:11,610 --> 00:00:13,550
+We really should be
+storing these as a
+
+7
+00:00:13,550 --> 00:00:15,740
+single photo object.
+
+8
+00:00:15,740 --> 00:00:19,450
+So in user.h, I'm importing
+the photo.h class so I can
+
+9
+00:00:19,450 --> 00:00:21,640
+access the photo model.
+
+10
+00:00:21,640 --> 00:00:24,460
+And I'm refactoring the
+profilePhoto and
+
+11
+00:00:24,460 --> 00:00:28,000
+profilePhotoThumbnail to instead
+just be one photo
+
+12
+00:00:28,000 --> 00:00:29,285
+object called ProfilePhoto.
+
+13
+00:00:31,920 --> 00:00:34,590
+Now in the Challenges, you're
+going to need to refactor
+
+14
+00:00:34,590 --> 00:00:38,100
+initWithJSON to use a single photo
+object instead of those
+
+15
+00:00:38,100 --> 00:00:39,590
+two profilePhoto and
+
+16
+00:00:39,590 --> 00:00:41,300
+profilePhotoThumbnail
+NSStrings.

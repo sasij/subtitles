@@ -1,0 +1,236 @@
+﻿1
+00:00:00,640 --> 00:00:02,920
+Our EditNoteViewController's
+working great, but we can
+
+2
+00:00:02,920 --> 00:00:04,170
+improve on it even more.
+
+3
+00:00:06,660 --> 00:00:09,555
+Only use a navigation controller
+stack if you need
+
+4
+00:00:09,555 --> 00:00:12,160
+to move through a hierarchy
+of views.
+
+5
+00:00:12,160 --> 00:00:14,910
+As usual, Mr. Higgie's right.
+
+6
+00:00:14,910 --> 00:00:17,880
+Navigation controllers are
+great for expressing
+
+7
+00:00:17,880 --> 00:00:21,090
+hierarchies of different views
+linked together, but whenever
+
+8
+00:00:21,090 --> 00:00:23,690
+we want to display one view
+controller and go back
+
+9
+00:00:23,690 --> 00:00:26,090
+immediately to the original view
+controller where we came
+
+10
+00:00:26,090 --> 00:00:27,830
+from, there's a better way.
+
+11
+00:00:27,830 --> 00:00:30,410
+And that way is called a
+modal view controller.
+
+12
+00:00:30,410 --> 00:00:32,750
+So to use a modal view
+controller instead of our
+
+13
+00:00:32,750 --> 00:00:35,520
+navigation controller stack,
+all we need to do is change
+
+14
+00:00:35,520 --> 00:00:37,090
+the line where we were
+pushing a new view
+
+15
+00:00:37,090 --> 00:00:38,660
+controller onto the stack.
+
+16
+00:00:38,660 --> 00:00:41,580
+And instead, we need to call
+self presentViewController
+
+17
+00:00:41,580 --> 00:00:44,810
+animated completion, and pass
+in an instance of our edit
+
+18
+00:00:44,810 --> 00:00:46,550
+note view controller.
+
+19
+00:00:46,550 --> 00:00:48,670
+And finally, in savePressed,
+instead of using
+
+20
+00:00:48,670 --> 00:00:52,090
+popviewcontroller animated to
+pop a view off the navigation
+
+21
+00:00:52,090 --> 00:00:54,920
+stack, we call the
+dismissViewControllerAnimated
+
+22
+00:00:54,920 --> 00:00:57,640
+completion method and pass that
+to the self object to
+
+23
+00:00:57,640 --> 00:00:59,890
+make the modal view go away.
+
+24
+00:00:59,890 --> 00:01:02,430
+Finally, it's another convention
+to use UI bar
+
+25
+00:01:02,430 --> 00:01:05,220
+button items instead of standard
+UI buttons whenever
+
+26
+00:01:05,220 --> 00:01:07,330
+you're presenting a modal
+view controller.
+
+27
+00:01:07,330 --> 00:01:10,870
+We'll refactor our UI button
+code into a UI bar button
+
+28
+00:01:10,870 --> 00:01:12,790
+item, and we'll pass
+the message
+
+29
+00:01:12,790 --> 00:01:16,540
+initwithBarButtonSystemItem,
+target, action.
+
+30
+00:01:16,540 --> 00:01:19,450
+Target and action work the same
+here as they do in UI
+
+31
+00:01:19,450 --> 00:01:22,330
+button, but the
+initwithBarButtonSystemItem
+
+32
+00:01:22,330 --> 00:01:26,120
+takes a constant that is equal
+to whichever button item you
+
+33
+00:01:26,120 --> 00:01:27,540
+want to display.
+
+34
+00:01:27,540 --> 00:01:30,000
+We're using
+UIBarButtonSystemItemEdit
+
+35
+00:01:30,000 --> 00:01:33,330
+here, but there's a list of 20
+or 30 different options that
+
+36
+00:01:33,330 --> 00:01:36,510
+you have that you can check the
+Apple documentation for.
+
+37
+00:01:36,510 --> 00:01:39,890
+Now that we have a UI bar but
+item, we can put it in the top
+
+38
+00:01:39,890 --> 00:01:42,370
+right of our navigation bar by
+setting self.navigation
+
+39
+00:01:42,370 --> 00:01:49,120
+Item.rightBarButtonItem equal
+to our Editbutton object.
+
+40
+00:01:49,120 --> 00:01:50,760
+So here's Planet Hig working
+with all these
+
+41
+00:01:50,760 --> 00:01:52,350
+enhancements we just made.
+
+42
+00:01:52,350 --> 00:01:54,710
+When we tap the Edit button in
+the navigation bar, you can
+
+43
+00:01:54,710 --> 00:01:59,120
+see the EditNoteViewController
+pop up, edit the text inside,
+
+44
+00:01:59,120 --> 00:02:01,780
+and then when we tap the Save
+Note button, we get sent back
+
+45
+00:02:01,780 --> 00:02:04,520
+to the CityViewController and
+the notes field is updated.
+
+46
+00:02:08,840 --> 00:02:10,820
+The structure of our application
+has changed as
+
+47
+00:02:10,820 --> 00:02:13,350
+well, and you can see that
+EditNoteViewController is now
+
+48
+00:02:13,350 --> 00:02:16,915
+represented as a path off
+of CityViewController.
+
+49
+00:02:20,030 --> 00:02:22,170
+And now it's your turn to
+complete some challenges.

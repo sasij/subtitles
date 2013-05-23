@@ -1,0 +1,834 @@
+1
+00:00:00,170 --> 00:00:00,370
+[SINGING]
+
+2
+00:00:00,370 --> 00:00:03,460
+He's got your data in his pocket
+and a gun in his hand.
+
+3
+00:00:03,460 --> 00:00:06,555
+He's got his finger on the
+trigger and a secret plan.
+
+4
+00:00:06,555 --> 00:00:10,340
+He'll take mutable arrays and
+put them in formation using
+
+5
+00:00:10,340 --> 00:00:12,756
+your view controllers for
+his world domination.
+
+6
+00:00:12,756 --> 00:00:15,020
+He'll take your data into models.
+
+7
+00:00:15,020 --> 00:00:17,980
+before it explodes, the
+only secret agent
+
+8
+00:00:17,980 --> 00:00:20,920
+who encodes and decodes.
+
+9
+00:00:20,920 --> 00:00:22,170
+He's Mr. Higgie.
+
+10
+00:00:28,250 --> 00:00:31,100
+Welcome to Level 2 of iOS
+Operation Models.
+
+11
+00:00:31,100 --> 00:00:33,220
+In this level, we're going to
+look at how we can efficiently
+
+12
+00:00:33,220 --> 00:00:36,510
+get data into our
+model objects.
+
+13
+00:00:36,510 --> 00:00:39,190
+As I mentioned in the last
+level, Planet Hig has a
+
+14
+00:00:39,190 --> 00:00:41,630
+controller called
+CityViewController.
+
+15
+00:00:41,630 --> 00:00:45,170
+CityViewController contains a
+view that has three subviews,
+
+16
+00:00:45,170 --> 00:00:48,500
+one for the name of the city,
+one for the state that the
+
+17
+00:00:48,500 --> 00:00:51,620
+city is in, and one for the
+population of that city, and
+
+18
+00:00:51,620 --> 00:00:53,990
+those are all stored
+in UI labels.
+
+19
+00:00:53,990 --> 00:00:58,300
+So let's see where that
+city data comes from.
+
+20
+00:00:58,300 --> 00:01:02,410
+There's a JSON file called
+cityData.json that contains
+
+21
+00:01:02,410 --> 00:01:06,960
+one NSDictionary, and that
+NSDictionary has keys for two
+
+22
+00:01:06,960 --> 00:01:10,005
+NSStrings and one NSNumber.
+
+23
+00:01:10,005 --> 00:01:13,200
+Now the old way that we would
+get this data inside of a view
+
+24
+00:01:13,200 --> 00:01:16,830
+controller is we would declare
+a property of type
+
+25
+00:01:16,830 --> 00:01:21,170
+NSDictionary, and then we would
+make an AFJSONRequest
+
+26
+00:01:21,170 --> 00:01:25,990
+Operation to get that JSON file,
+and then store that JSON
+
+27
+00:01:25,990 --> 00:01:30,050
+response inside of
+self.cityData.
+
+28
+00:01:30,050 --> 00:01:33,380
+Once we had the JSON response
+stored, we'd call a method
+
+29
+00:01:33,380 --> 00:01:37,710
+like dataRetrieved so that we
+could then draw our UI labels
+
+30
+00:01:37,710 --> 00:01:41,360
+and other subviews
+on to the canvas.
+
+31
+00:01:41,360 --> 00:01:44,140
+Here in dataRetrieved, all we're
+doing is logging out the
+
+32
+00:01:44,140 --> 00:01:47,100
+JSON response to make sure
+that the AFJSONRequest
+
+33
+00:01:47,100 --> 00:01:49,700
+operation worked properly.
+
+34
+00:01:49,700 --> 00:01:53,080
+This seems like a good
+place for a model.
+
+35
+00:01:53,080 --> 00:01:54,110
+That's right Mr. Higgie.
+
+36
+00:01:54,110 --> 00:01:56,200
+We can take all this
+data and store it
+
+37
+00:01:56,200 --> 00:01:58,610
+inside of a city model.
+
+38
+00:01:58,610 --> 00:02:00,740
+To create that city model,
+just like we did with the
+
+39
+00:02:00,740 --> 00:02:05,640
+place model, we need a city.h
+and a city.m file.
+
+40
+00:02:05,640 --> 00:02:08,460
+Just like with the place model,
+our city model needs to
+
+41
+00:02:08,460 --> 00:02:11,550
+be a subclass of NSObject.
+
+42
+00:02:11,550 --> 00:02:15,910
+And in the city.h file, we
+want to declare our three
+
+43
+00:02:15,910 --> 00:02:18,240
+properties as part
+of the model--
+
+44
+00:02:18,240 --> 00:02:20,810
+name, state, and population--
+
+45
+00:02:20,810 --> 00:02:24,250
+and in the city.m file, want
+to create our initializer.
+
+46
+00:02:27,280 --> 00:02:30,930
+Back in CityViewController,
+we'll want to import City.h so
+
+47
+00:02:30,930 --> 00:02:33,300
+that we can access the
+city model inside of
+
+48
+00:02:33,300 --> 00:02:35,870
+CityViewController, and we'll
+want to change that
+
+49
+00:02:35,870 --> 00:02:39,830
+NSDictionary property
+to a city property.
+
+50
+00:02:39,830 --> 00:02:43,730
+Then in CityViewController.m,
+instead of storing the JSON
+
+51
+00:02:43,730 --> 00:02:47,160
+response in an NSDictionary,
+we'll want to set each one of
+
+52
+00:02:47,160 --> 00:02:50,550
+the city model properties equal
+to the values in the
+
+53
+00:02:50,550 --> 00:02:53,230
+JSON object.
+
+54
+00:02:53,230 --> 00:02:57,020
+Down in dataRetrieved, we can
+then log out the model
+
+55
+00:02:57,020 --> 00:03:01,920
+properties instead of
+the dictionary keys.
+
+56
+00:03:01,920 --> 00:03:04,020
+The problem here is that
+the controller is still
+
+57
+00:03:04,020 --> 00:03:06,930
+responsible for fetching the
+data, not the model.
+
+58
+00:03:06,930 --> 00:03:10,350
+We have a CityViewController
+that's requesting a city model
+
+59
+00:03:10,350 --> 00:03:13,160
+template, and then it's
+returning that template into
+
+60
+00:03:13,160 --> 00:03:15,680
+the view controller and setting
+all the data from
+
+61
+00:03:15,680 --> 00:03:20,480
+inside the controller before
+it displays on the view.
+
+62
+00:03:20,480 --> 00:03:22,310
+What we really want to
+happen is we want the
+
+63
+00:03:22,310 --> 00:03:25,600
+CityViewController to still
+request a model object, but we
+
+64
+00:03:25,600 --> 00:03:29,090
+want that model object to
+initialize itself with data
+
+65
+00:03:29,090 --> 00:03:33,470
+and return a fully data-filled
+copy back to the controller.
+
+66
+00:03:36,230 --> 00:03:38,830
+I love convenient solutions.
+
+67
+00:03:38,830 --> 00:03:42,170
+To implement an initWithJSON
+convenience initializer, we
+
+68
+00:03:42,170 --> 00:03:45,950
+first need to declare that
+initializer in the city.h
+
+69
+00:03:45,950 --> 00:03:51,175
+file, and then we need to
+implement it in city.m.
+
+70
+00:03:51,175 --> 00:03:53,760
+the implementation of
+initWithJSON is going to be a
+
+71
+00:03:53,760 --> 00:03:57,400
+pretty standard initializer,
+except after we create a copy
+
+72
+00:03:57,400 --> 00:04:00,450
+of the self object and check if
+it exists, we're going to
+
+73
+00:04:00,450 --> 00:04:04,170
+want to move all of our
+AFJSONRequestOperation code
+
+74
+00:04:04,170 --> 00:04:07,755
+from CityViewController into the
+initWithJSON initializer
+
+75
+00:04:07,755 --> 00:04:10,100
+in the city model.
+
+76
+00:04:10,100 --> 00:04:13,370
+Then, inside of the
+AFJSONRequestOperation, we're
+
+77
+00:04:13,370 --> 00:04:16,800
+going to be setting the model
+properties equal to the values
+
+78
+00:04:16,800 --> 00:04:19,350
+that are returned by the JSON.
+
+79
+00:04:19,350 --> 00:04:22,500
+Since we're inside of the city
+class itself, we can reference
+
+80
+00:04:22,500 --> 00:04:26,290
+those model properties with
+self.name, self.state, and
+
+81
+00:04:26,290 --> 00:04:29,530
+self.population instead of
+first trying to create an
+
+82
+00:04:29,530 --> 00:04:34,810
+intermediary object to
+access them through.
+
+83
+00:04:34,810 --> 00:04:38,300
+All we should have to do is
+create a new city object using
+
+84
+00:04:38,300 --> 00:04:41,490
+the initWithJSON initializer,
+and then we should be able to
+
+85
+00:04:41,490 --> 00:04:45,110
+NSLog the properties inside
+of the object.
+
+86
+00:04:45,110 --> 00:04:47,910
+But when we try to do that
+here, we get nil.
+
+87
+00:04:47,910 --> 00:04:50,660
+What the nil is going on?
+
+88
+00:04:50,660 --> 00:04:54,100
+To understand why these values
+are coming up as nil, let's
+
+89
+00:04:54,100 --> 00:04:56,090
+look at what's happening
+whenever we call the
+
+90
+00:04:56,090 --> 00:04:58,400
+initWithJSON method.
+
+91
+00:04:58,400 --> 00:05:02,110
+First, CityViewController
+requests a copy of the city
+
+92
+00:05:02,110 --> 00:05:06,140
+object using the initWithJSON
+method, which then fires
+
+93
+00:05:06,140 --> 00:05:09,080
+initWithJSON method
+inside the model.
+
+94
+00:05:09,080 --> 00:05:10,230
+At the same time,
+
+95
+00:05:10,230 --> 00:05:11,830
+CityViewController doesn't stop.
+
+96
+00:05:11,830 --> 00:05:14,280
+It continues executing.
+
+97
+00:05:14,280 --> 00:05:17,630
+At some point in the future,
+the model object returns an
+
+98
+00:05:17,630 --> 00:05:22,760
+instantiated copy of the city
+object, and the view in
+
+99
+00:05:22,760 --> 00:05:25,600
+CityViewController tries
+to display data.
+
+100
+00:05:25,600 --> 00:05:28,800
+The problem is that there's
+no guarantee that the
+
+101
+00:05:28,800 --> 00:05:33,330
+initWithJSON method returns a
+filled model before the views
+
+102
+00:05:33,330 --> 00:05:36,910
+in CityViewController
+try to be displayed.
+
+103
+00:05:36,910 --> 00:05:39,640
+Some people refer to the way
+this code is working as
+
+104
+00:05:39,640 --> 00:05:42,550
+non-blocking because the
+CityViewController doesn't
+
+105
+00:05:42,550 --> 00:05:45,290
+stop and wait for the
+model to come back.
+
+106
+00:05:45,290 --> 00:05:47,180
+It just keeps running.
+
+107
+00:05:47,180 --> 00:05:49,880
+The way that we can solve this
+problem is using a tool called
+
+108
+00:05:49,880 --> 00:05:52,810
+Notifications, and the way this
+is going to work is that
+
+109
+00:05:52,810 --> 00:05:56,560
+the controller is still going to
+ask for a model, the model
+
+110
+00:05:56,560 --> 00:06:00,260
+is still going to call the
+initWithJSON method, and then
+
+111
+00:06:00,260 --> 00:06:03,400
+when the initWithJSON method is
+finished and data is fully
+
+112
+00:06:03,400 --> 00:06:07,060
+loaded, it's going to
+post a notification.
+
+113
+00:06:07,060 --> 00:06:09,520
+Back in CityViewController,
+there's going to be some code
+
+114
+00:06:09,520 --> 00:06:12,490
+that is listening for
+notification to occur, and
+
+115
+00:06:12,490 --> 00:06:15,660
+when that notification occurs,
+the views are going to be
+
+116
+00:06:15,660 --> 00:06:17,010
+filled with data.
+
+117
+00:06:17,010 --> 00:06:21,570
+
+
+118
+00:00:00,000 --> 00:00:00,000
+00:06:21,570 --> 00:06:24,420
+NS NotificationCenter is a
+messaging center that can be
+
+119
+00:06:24,420 --> 00:06:27,380
+used by different parts of the
+application to listen for
+
+120
+00:06:27,380 --> 00:06:31,750
+different events, or
+notifications, happening.
+
+121
+00:06:31,750 --> 00:06:35,040
+In addition to listening, the
+NSNotificationCenter can be
+
+122
+00:06:35,040 --> 00:06:37,860
+used to broadcast events,
+which is called posting
+
+123
+00:06:37,860 --> 00:06:39,930
+notifications.
+
+124
+00:06:39,930 --> 00:06:42,180
+To post a notification,
+you can send the
+
+125
+00:06:42,180 --> 00:06:45,960
+postNotificationName object
+method to the
+
+126
+00:06:45,960 --> 00:06:50,310
+NSNotificationCenter
+defaultCenter object, and to
+
+127
+00:06:50,310 --> 00:06:53,330
+listen for a notification, you
+can send the addObserver
+
+128
+00:06:53,330 --> 00:06:57,730
+selector name object method to
+the NSNotificationCenter
+
+129
+00:06:57,730 --> 00:06:59,840
+defaultCenter object.
+
+130
+00:06:59,840 --> 00:07:02,250
+The value for post-notification
+name can be
+
+131
+00:07:02,250 --> 00:07:05,130
+any string that you want, but I
+suggest naming it something
+
+132
+00:07:05,130 --> 00:07:06,390
+that makes sense.
+
+133
+00:07:06,390 --> 00:07:09,820
+So I've named this string
+initWithJSONFinishedLoading,
+
+134
+00:07:09,820 --> 00:07:12,580
+because this is going to be a
+message that we post whenever
+
+135
+00:07:12,580 --> 00:07:15,740
+initWithJSON finishes loading
+all if its data.
+
+136
+00:07:15,740 --> 00:07:18,640
+Listening for a notification
+has a few more arguments.
+
+137
+00:07:18,640 --> 00:07:21,440
+The first argument, observer,
+is going to be whatever
+
+138
+00:07:21,440 --> 00:07:24,890
+instance will be listening
+for the notification.
+
+139
+00:07:24,890 --> 00:07:26,890
+In our case, that's going
+to be self, the
+
+140
+00:07:26,890 --> 00:07:29,190
+CityViewController.
+
+141
+00:07:29,190 --> 00:07:32,210
+The selector is going to be
+a method that gets called
+
+142
+00:07:32,210 --> 00:07:35,370
+whenever the notification
+is heard.
+
+143
+00:07:35,370 --> 00:07:37,550
+In this case, we're going to
+call our dataRetrieved
+
+144
+00:07:37,550 --> 00:07:41,530
+selector, which then fills all
+of our views with data.
+
+145
+00:07:41,530 --> 00:07:45,240
+The name argument is the name
+of the notification, which
+
+146
+00:07:45,240 --> 00:07:48,710
+from our posting, was called
+initWithJSONFinishedLoading,
+
+147
+00:07:48,710 --> 00:07:51,460
+and the object argument is an
+optional argument that lets
+
+148
+00:07:51,460 --> 00:07:53,940
+you listen for notifications
+that only come
+
+149
+00:07:53,940 --> 00:07:55,760
+from a specific object.
+
+150
+00:07:55,760 --> 00:07:58,350
+In this case, we want to listen
+for that notification
+
+151
+00:07:58,350 --> 00:08:02,050
+coming from anywhere, so we'll
+set that value to nil.
+
+152
+00:08:02,050 --> 00:08:04,670
+So back in initWithJSON, we're
+going to want to post the
+
+153
+00:08:04,670 --> 00:08:08,490
+notification that initWithJSON
+method has finished loading
+
+154
+00:08:08,490 --> 00:08:12,300
+after all of the data is set
+inside each of the model
+
+155
+00:08:12,300 --> 00:08:13,550
+properties.
+
+156
+00:08:16,290 --> 00:08:19,200
+Then, in viewDidLoad in
+CityViewController, we're
+
+157
+00:08:19,200 --> 00:08:21,510
+going to want to listen for
+a notification with the
+
+158
+00:08:21,510 --> 00:08:24,950
+addObserver selector
+name object method.
+
+159
+00:08:24,950 --> 00:08:27,480
+Once the notification is heard,
+we're going to call the
+
+160
+00:08:27,480 --> 00:08:31,240
+dataRetrieved method that logs
+out the state and population
+
+161
+00:08:31,240 --> 00:08:32,860
+values from the city object.
+
+162
+00:08:32,860 --> 00:08:38,010
+And we can see that those values
+log properly now.
+
+163
+00:08:38,010 --> 00:08:40,750
+While we're optimizing things,
+why not go ahead and make
+
+164
+00:08:40,750 --> 00:08:44,360
+initWithJSON the designated
+initializer in the city model?
+
+165
+00:08:44,360 --> 00:08:48,340
+To do that, in city.m, we'll
+just make sure to set self
+
+166
+00:08:48,340 --> 00:08:51,940
+equal to self initWithJSON
+inside of the standard init
+
+167
+00:08:51,940 --> 00:08:56,250
+method, and then
+CityViewController's
+
+168
+00:08:56,250 --> 00:09:00,470
+viewDidLoad, will call self.city
+equals City alloc
+
+169
+00:09:00,470 --> 00:09:03,870
+init, instead initWithJSON, and
+the initWithJSON method
+
+170
+00:09:03,870 --> 00:09:05,970
+will still run.
+
+171
+00:09:05,970 --> 00:09:09,200
+Notification name, OHYEAAAAAA!
+
+172
+00:09:09,200 --> 00:09:10,400
+Oh yeah is right, Mr. Higgie.
+
+173
+00:09:10,400 --> 00:09:12,700
+And now it's time for you to
+try some more challenges.
+
