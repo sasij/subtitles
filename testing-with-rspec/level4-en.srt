@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:26,460
 [MUSIC PLAYING]
 
@@ -299,143 +299,120 @@ block argument we can use
 just like we did before.
 
 64
-00:03:14,420 --> 00:03:16,930
-
-
-65
 00:03:16,930 --> 00:03:20,540
 Another great feature of RSpec
 is that we can tag or describe
 
-66
+65
 00:03:20,540 --> 00:03:24,110
 context in it blocks so we can
 run only specific part of our
 
-67
+66
 00:03:24,110 --> 00:03:25,910
 specs from the command line.
 
-68
-00:03:25,910 --> 00:03:29,050
-
-
-69
+67
 00:03:29,050 --> 00:03:32,650
 Here you can see two tags,
 focus: true on the
 
-70
+68
 00:03:32,650 --> 00:03:37,940
 context and vegan: true
 on the second example.
 
-71
+69
 00:03:37,940 --> 00:03:42,150
 When we run our specs, we can
 decide to only run the context
 
-72
+70
 00:03:42,150 --> 00:03:44,980
 that has the tags focus.
 
-73
+71
 00:03:44,980 --> 00:03:47,360
 If you don't want to put these
 options in the command line
 
-74
+72
 00:03:47,360 --> 00:03:49,870
 every time you run a test, what
 you can do is put them in
 
-75
+73
 00:03:49,870 --> 00:03:54,900
 the spec_helpers configure
 block like this.
 
-76
+74
 00:03:54,900 --> 00:03:57,840
 So if you run the RSpec command
 once again, you'll see
 
-77
+75
 00:03:57,840 --> 00:04:00,135
 that it still only runs
 the focus examples.
 
-78
-00:04:00,135 --> 00:04:04,130
-
-
-79
+76
 00:04:04,130 --> 00:04:06,610
 Another great use case for this
 is if you have a bunch of
 
-80
+77
 00:04:06,610 --> 00:04:08,980
 examples that are really
 slow, you can tag them
 
-81
+78
 00:04:08,980 --> 00:04:10,300
 with the slow tag.
 
-82
+79
 00:04:10,300 --> 00:04:12,670
 Then when you run the RSpec
 command, you'll be able to
 
-83
+80
 00:04:12,670 --> 00:04:15,990
 filter out those specific
 examples from the test suite
 
-84
+81
 00:04:15,990 --> 00:04:18,500
 using the tilde.
 
-85
+82
 00:04:18,500 --> 00:04:21,350
 If by default you want to skip
 those slow examples, you can
 
-86
+83
 00:04:21,350 --> 00:04:23,460
 also set that in the
 configuration
 
-87
+84
 00:04:23,460 --> 00:04:24,710
 for your spec help.
 
-88
-00:04:24,710 --> 00:04:28,610
-
-
-89
+85
 00:04:28,610 --> 00:04:31,100
 Later, you can go back
 and run just the slow
 
-90
+86
 00:04:31,100 --> 00:04:32,350
 examples if you want.
 
-91
-00:04:32,350 --> 00:04:36,480
-
-
-92
+87
 00:04:36,480 --> 00:04:39,200
 That was a lot of new concept,
 so have fun trying them out in
 
-93
+88
 00:04:39,200 --> 00:04:41,340
 the challenges and I'll see
 you a little later.
-
-94
-00:04:41,340 --> 00:04:42,645

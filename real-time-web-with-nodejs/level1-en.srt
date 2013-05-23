@@ -1,1285 +1,1267 @@
-1
-00:00:00,000 --> 00:00:00,840
-
-2
+﻿1
 00:00:00,840 --> 00:00:01,260
 [SINGING]
 
-3
+2
 00:00:01,260 --> 00:00:03,785
 Your online application's
 starting to fail.
 
-4
+3
 00:00:03,785 --> 00:00:07,550
 It's crawling on the network
 just as fast as a snail.
 
-5
+4
 00:00:07,550 --> 00:00:10,950
 We need evented programming
-starting from the top, 
+starting from the top,
 
-6
+5
 00:00:10,950 --> 00:00:13,155
 better write some code so the
 world doesn't stop.
 
-7
-00:00:13,155 --> 00:00:15,915
-
-8
+6
 00:00:15,915 --> 00:00:19,350
 With the non-blocking model,
 we will be just fine.
 
-9
+7
 00:00:19,350 --> 00:00:22,380
 Built on Google Chrome's
 V8 Runtime.
 
-10
+8
 00:00:22,380 --> 00:00:25,970
 And all you need to do is write
 some JavaScript code and
 
-11
+9
 00:00:25,970 --> 00:00:28,115
 use the Real Time
 Web with Node.
 
-12
+10
 00:00:28,115 --> 00:00:34,115
 [END SINGING]
 
-13
+11
 00:00:34,115 --> 00:00:35,160
 Hello, I'm Greg Pollack.
 
-14
+12
 00:00:35,160 --> 00:00:38,220
 And you're watching Real
 Time Web with Node.js.
 
-15
+13
 00:00:38,220 --> 00:00:40,190
 In this level, we're going to
 give you a quick introduction
 
-16
+14
 00:00:40,190 --> 00:00:42,960
 to Node, talk about what it is,
 what it isn't, blocking,
 
-17
+15
 00:00:42,960 --> 00:00:46,050
 non-blocking, what evented
 programming is, and then,
 
-18
+16
 00:00:46,050 --> 00:00:48,210
 finally, what that event
 loop is that you've
 
-19
+17
 00:00:48,210 --> 00:00:49,760
 heard about with Node.
 
-20
+18
 00:00:49,760 --> 00:00:52,270
 So let's jump into it.
 
-21
+19
 00:00:52,270 --> 00:00:55,270
 Node.js allows you to build
 scalable network applications
 
-22
+20
 00:00:55,270 --> 00:00:58,210
 using JavaScript
 on server-side.
 
-23
+21
 00:00:58,210 --> 00:01:00,750
 Underneath the covers of Node,
 you're going to find the V8
 
-24
+22
 00:01:00,750 --> 00:01:02,390
 JavaScript Runtime.
 
-25
+23
 00:01:02,390 --> 00:01:06,150
 This is the same runtime that is
 used in your Chrome browser
 
-26
+24
 00:01:06,150 --> 00:01:07,770
 on your client-side.
 
-27
+25
 00:01:07,770 --> 00:01:11,820
 What Node does is provides a
 wrapper around this engine
 
-28
+26
 00:01:11,820 --> 00:01:14,120
 providing additional
 functionality for building
 
-29
+27
 00:01:14,120 --> 00:01:15,710
 network applications.
 
-30
+28
 00:01:15,710 --> 00:01:16,720
 It's really fast.
 
-31
+29
 00:01:16,720 --> 00:01:17,470
 Why is it fast?
 
-32
+30
 00:01:17,470 --> 00:01:19,470
 Well, if you looked under the
 covers of Node and this
 
-33
+31
 00:01:19,470 --> 00:01:22,790
 runtime, you'd find it's all
 written in C, which,
 
-34
+32
 00:01:22,790 --> 00:01:25,340
 obviously, is very fast.
 
-35
+33
 00:01:25,340 --> 00:01:26,890
 So what can you build
 with Node?
 
-36
+34
 00:01:26,890 --> 00:01:28,530
 Well, here's a couple
 examples.
 
-37
+35
 00:01:28,530 --> 00:01:31,010
 You could build a Websocket
 Server.
 
-38
+36
 00:01:31,010 --> 00:01:33,960
 So a good example of this is
 maybe a chat server where you
 
-39
+37
 00:01:33,960 --> 00:01:35,450
 have your browsers,
 lots of browsers,
 
-40
+38
 00:01:35,450 --> 00:01:36,900
 connecting to the server.
 
-41
+39
 00:01:36,900 --> 00:01:38,070
 And there's chat going on.
 
-42
+40
 00:01:38,070 --> 00:01:41,100
 You're sending messages back and
 forth between the client
 
-43
+41
 00:01:41,100 --> 00:01:41,510
 and the server.
 
-44
+42
 00:01:41,510 --> 00:01:44,010
 And the socket stays open.
 
-45
+43
 00:01:44,010 --> 00:01:46,760
 You could also do a File
 Upload Client.
 
-46
+44
 00:01:46,760 --> 00:01:50,270
 So when you think about
 uploading big, large files,
 
-47
+45
 00:01:50,270 --> 00:01:52,940
 you want to be able to do it in
 a way that's not blocking.
 
-48
+46
 00:01:52,940 --> 00:01:55,810
 So you can do more than one file
 at a time and maybe even
 
-49
+47
 00:01:55,810 --> 00:01:58,450
 start processing the file
 as you get the first
 
-50
+48
 00:01:58,450 --> 00:02:00,050
 few pieces of it.
 
-51
+49
 00:02:00,050 --> 00:02:02,170
 Also you could create
 an Ad Server.
 
-52
+50
 00:02:02,170 --> 00:02:04,810
 When you think about ads that
 get served on web pages all
 
-53
+51
 00:02:04,810 --> 00:02:06,860
 over the net, they need
 to be really fast.
 
-54
+52
 00:02:06,860 --> 00:02:09,130
 These are maybe images that
 are appearing on other
 
-55
+53
 00:02:09,130 --> 00:02:10,380
 people's websites.
 
-56
+54
 00:02:10,380 --> 00:02:12,520
 And they need to be able
 to be rapid and
 
-57
+55
 00:02:12,520 --> 00:02:14,810
 quick across the network.
 
-58
+56
 00:02:14,810 --> 00:02:19,500
 Also any Real-Time Data Apps,
 so not just from the
 
-59
+57
 00:02:19,500 --> 00:02:22,680
 internet, not just from your
 browser to your server, but
 
-60
+58
 00:02:22,680 --> 00:02:26,720
 any sort of network servers,
 maybe even local network
 
-61
+59
 00:02:26,720 --> 00:02:28,765
 servers would be a good
 fit for Node.js.
 
-62
-00:02:28,765 --> 00:02:31,360
-
-63
+60
 00:02:31,360 --> 00:02:33,220
 Node.js is not a
 web framework.
 
-64
+61
 00:02:33,220 --> 00:02:34,550
 It's not going to
 replace Rails.
 
-65
+62
 00:02:34,550 --> 00:02:36,810
 It's not going to
 replace Django.
 
-66
+63
 00:02:36,810 --> 00:02:39,920
 It's very low level network
 communication we're talking
 
-67
+64
 00:02:39,920 --> 00:02:40,510
 about here.
 
-68
+65
 00:02:40,510 --> 00:02:42,400
 There are libraries that people
 have written that sit
 
-69
+66
 00:02:42,400 --> 00:02:45,190
 on top of Node to be
 a web framework.
 
-70
+67
 00:02:45,190 --> 00:02:47,980
 But Node at its most basic
 level is not that.
 
-71
+68
 00:02:47,980 --> 00:02:49,360
 Node is also not
 for beginners.
 
-72
+69
 00:02:49,360 --> 00:02:52,460
 Because we are talking about
 network communication.
 
-73
+70
 00:02:52,460 --> 00:02:55,110
 Node is also not a
 multi-threaded application.
 
-74
+71
 00:02:55,110 --> 00:02:57,540
 When we write our applications
 with Node, we write them as if
 
-75
+72
 00:02:57,540 --> 00:03:01,920
 we're dealing with a
 single-threaded server.
 
-76
+73
 00:03:01,920 --> 00:03:04,270
 Before we get into some actual
 Node code, we need to make
 
-77
+74
 00:03:04,270 --> 00:03:06,620
 sure everybody knows the
 difference between blocking
 
-78
+75
 00:03:06,620 --> 00:03:09,690
 code and non-blocking code.
 
-79
+76
 00:03:09,690 --> 00:03:11,970
 So here's some pseudo code to
 print some file content.
 
-80
+77
 00:03:11,970 --> 00:03:15,420
 First, we want to read the file
 from the file system, set
 
-81
+78
 00:03:15,420 --> 00:03:19,060
 it equal to the contents
 variable, print the contents
 
-82
+79
 00:03:19,060 --> 00:03:21,440
 variable, and then do
 something else.
 
-83
+80
 00:03:21,440 --> 00:03:24,890
 So when we think about how this
 code executes, first, we
 
-84
+81
 00:03:24,890 --> 00:03:26,360
 read from the file system.
 
-85
+82
 00:03:26,360 --> 00:03:29,700
 We can't actually print out the
 contents until we've read
 
-86
+83
 00:03:29,700 --> 00:03:32,130
 out all the contents
 from the file.
 
-87
+84
 00:03:32,130 --> 00:03:34,060
 So it's kind of blocking here.
 
-88
+85
 00:03:34,060 --> 00:03:36,930
 And then, obviously, we
 can do something else.
 
-89
+86
 00:03:36,930 --> 00:03:39,020
 What would a non-blocking
 version of
 
-90
+87
 00:03:39,020 --> 00:03:40,680
 this code look like?
 
-91
+88
 00:03:40,680 --> 00:03:44,680
 Well, we might read the file
 from the file system, whenever
 
-92
+89
 00:03:44,680 --> 00:03:47,540
 we're complete with that, print
 out the contents from
 
-93
+90
 00:03:47,540 --> 00:03:50,750
 the file, and then, finally,
 do something else.
 
-94
+91
 00:03:50,750 --> 00:03:54,500
 That technique there saying,
 when you're complete, do this,
 
-95
+92
 00:03:54,500 --> 00:03:57,080
 we call a callback.
 
-96
+93
 00:03:57,080 --> 00:03:59,780
 We're going to call back
 that function once the
 
-97
+94
 00:03:59,780 --> 00:04:01,540
 file is done reading.
 
-98
+95
 00:04:01,540 --> 00:04:04,460
 Executing the pseudo code might
 go like this where we
 
-99
+96
 00:04:04,460 --> 00:04:06,570
 read the file from
 the file system.
 
-100
+97
 00:04:06,570 --> 00:04:08,180
 We might do something else.
 
-101
+98
 00:04:08,180 --> 00:04:10,440
 So it's simply going
 to continue on.
 
-102
+99
 00:04:10,440 --> 00:04:13,080
 And then at any point and time
 in the future, when it's done
 
-103
+100
 00:04:13,080 --> 00:04:15,370
 reading the file, it's going
 to print the contents.
 
-104
-00:04:15,370 --> 00:04:18,490
-
-105
+101
 00:04:18,490 --> 00:04:20,370
 So here's some actual
 Node code.
 
-106
+102
 00:04:20,370 --> 00:04:22,510
 First of all, the blocking
 version of reading out the
 
-107
+103
 00:04:22,510 --> 00:04:25,180
 file might look like this where
 we're getting all the
 
-108
+104
 00:04:25,180 --> 00:04:26,310
 contents of the file.
 
-109
+105
 00:04:26,310 --> 00:04:29,780
 We're then logging that out and
 then doing something else.
 
-110
+106
 00:04:29,780 --> 00:04:32,590
 So obviously, when this
 gets executed, it just
 
-111
+107
 00:04:32,590 --> 00:04:35,170
 runs one at a time.
 
-112
+108
 00:04:35,170 --> 00:04:37,570
 The non-blocking version
 of this in Node is
 
-113
+109
 00:04:37,570 --> 00:04:39,340
 going to call readFile.
 
-114
+110
 00:04:39,340 --> 00:04:40,410
 And look at this.
 
-115
+111
 00:04:40,410 --> 00:04:42,810
 We're actually sending in
 a function as the second
 
-116
+112
 00:04:42,810 --> 00:04:45,450
 parameter to readFile.
 
-117
+113
 00:04:45,450 --> 00:04:46,760
 That's our call back.
 
-118
+114
 00:04:46,760 --> 00:04:50,190
 And when we get the contents,
 log the contents.
 
-119
+115
 00:04:50,190 --> 00:04:52,460
 And then we can say doing
 something else.
 
-120
+116
 00:04:52,460 --> 00:04:56,000
 So when we execute this, as we
 mentioned, it's going to start
 
-121
+117
 00:04:56,000 --> 00:04:57,080
 reading the file.
 
-122
+118
 00:04:57,080 --> 00:04:59,040
 It's then going to continue
 execution.
 
-123
+119
 00:04:59,040 --> 00:05:02,030
 And when it's done reading the
 file, it's going to print out
 
-124
+120
 00:05:02,030 --> 00:05:04,720
 the contents at some point
 in the future.
 
-125
+121
 00:05:04,720 --> 00:05:07,100
 Hopefully, this JavaScript
 syntax looks familiar.
 
-126
+122
 00:05:07,100 --> 00:05:08,980
 And there's another way we could
 write this which would
 
-127
+123
 00:05:08,980 --> 00:05:10,380
 be just fine.
 
-128
+124
 00:05:10,380 --> 00:05:11,890
 We could declare the
 function and set
 
-129
+125
 00:05:11,890 --> 00:05:13,490
 that equal to a variable.
 
-130
+126
 00:05:13,490 --> 00:05:16,370
 And then, when we call readFile,
 we could send that
 
-131
+127
 00:05:16,370 --> 00:05:19,040
 function into readFile.
 
-132
+128
 00:05:19,040 --> 00:05:20,670
 Either syntax would
 work just fine.
 
-133
+129
 00:05:20,670 --> 00:05:22,010
 They do the same thing.
 
-134
+130
 00:05:22,010 --> 00:05:23,730
 Let's take a closer
 look at this code.
 
-135
+131
 00:05:23,730 --> 00:05:26,330
 And let's see what happens when
 we're reading two files
 
-136
+132
 00:05:26,330 --> 00:05:27,580
 at the same time.
 
-137
+133
 00:05:27,580 --> 00:05:30,500
 First of all, if we had to do
 this in a blocking way and we
 
-138
+134
 00:05:30,500 --> 00:05:33,410
 look at the time line, if this
 was blocking, it would read
 
-139
+135
 00:05:33,410 --> 00:05:36,380
 one file and then
 the next file.
 
-140
+136
 00:05:36,380 --> 00:05:39,110
 However, since our code is
 non-blocking, if we read two
 
-141
+137
 00:05:39,110 --> 00:05:41,270
 files at the same time, they're
 going to read in
 
-142
+138
 00:05:41,270 --> 00:05:44,670
 parallel and happen
 much quicker.
 
-143
+139
 00:05:44,670 --> 00:05:48,780
 Now it's time for our Node.js
 hello world or, in our case,
 
-144
+140
 00:05:48,780 --> 00:05:50,860
 let's do a hello dog.
 
-145
+141
 00:05:50,860 --> 00:05:53,090
 So our first line in this
 file we need to
 
-146
+142
 00:05:53,090 --> 00:05:55,310
 require the HTTP module.
 
-147
+143
 00:05:55,310 --> 00:05:57,030
 So we're including
 another library.
 
-148
+144
 00:05:57,030 --> 00:05:59,480
 This is how we include libraries
 typically in Node.
 
-149
+145
 00:05:59,480 --> 00:06:02,180
 We're going to call the
 createServer function.
 
-150
+146
 00:06:02,180 --> 00:06:06,590
 That function takes as its
 single parameter a call back
 
-151
+147
 00:06:06,590 --> 00:06:08,690
 with request and response.
 
-152
+148
 00:06:08,690 --> 00:06:11,840
 We're then going to write a 200
 status code in the header
 
-153
+149
 00:06:11,840 --> 00:06:13,510
 for the response.
 
-154
+150
 00:06:13,510 --> 00:06:16,870
 We're going to write out
 the response body.
 
-155
+151
 00:06:16,870 --> 00:06:19,220
 And then, finally, we're going
 to end the response
 
-156
+152
 00:06:19,220 --> 00:06:20,130
 connection.
 
-157
+153
 00:06:20,130 --> 00:06:23,830
 We want our server to listen
 on port 8080.
 
-158
+154
 00:06:23,830 --> 00:06:26,410
 And then to ensure our server is
 running, we're simply going
 
-159
+155
 00:06:26,410 --> 00:06:29,040
 to log out listening
 on port 8080.
 
-160
+156
 00:06:29,040 --> 00:06:31,030
 We run the server on
 our command line.
 
-161
+157
 00:06:31,030 --> 00:06:32,850
 We're going to see that
 it prints out
 
-162
+158
 00:06:32,850 --> 00:06:34,310
 listening on port 8080.
 
-163
+159
 00:06:34,310 --> 00:06:36,760
 And then, if we use the curl
 command line tool to hit the
 
-164
+160
 00:06:36,760 --> 00:06:40,460
 server, it's going to return
 to us "Hello, this is dog."
 
-165
+161
 00:06:40,460 --> 00:06:42,770
 We could also just call up our
 browser and go to that port.
 
-166
+162
 00:06:42,770 --> 00:06:44,590
 And we would get the
 same result.
 
-167
+163
 00:06:44,590 --> 00:06:46,310
 Now let's talk a little
 bit about how Node
 
-168
+164
 00:06:46,310 --> 00:06:47,830
 executes this code.
 
-169
+165
 00:06:47,830 --> 00:06:51,150
 The first time we go through
 this code and execute it, Node
 
-170
+166
 00:06:51,150 --> 00:06:53,340
 is going to register events.
 
-171
+167
 00:06:53,340 --> 00:06:55,760
 In this case, we're registering
 the request event
 
-172
+168
 00:06:55,760 --> 00:06:57,600
 for whenever a request
 comes in.
 
-173
+169
 00:06:57,600 --> 00:07:00,500
 Once it gets done executing
 the script, Node goes into
 
-174
+170
 00:07:00,500 --> 00:07:03,660
 something called
 an event loop.
 
-175
+171
 00:07:03,660 --> 00:07:06,210
 It's checking for events
 continuously.
 
-176
+172
 00:07:06,210 --> 00:07:07,380
 Did a request come in?
 
-177
+173
 00:07:07,380 --> 00:07:08,580
 Did a request come in?
 
-178
+174
 00:07:08,580 --> 00:07:10,160
 Did a request come in?
 
-179
+175
 00:07:10,160 --> 00:07:12,510
 As soon as a request comes
 in, it's going to
 
-180
+176
 00:07:12,510 --> 00:07:13,680
 trigger that event.
 
-181
+177
 00:07:13,680 --> 00:07:16,820
 And it's going to run the call
 back that we wrote and print
 
-182
+178
 00:07:16,820 --> 00:07:19,560
 our "Hello, this is dog."
 
-183
+179
 00:07:19,560 --> 00:07:21,840
 Now you might be wondering, why
 are we writing JavaScript?
 
-184
+180
 00:07:21,840 --> 00:07:24,410
 Well, the creator of Node, Ryan
 Dahl, wrote this really
 
-185
+181
 00:07:24,410 --> 00:07:26,220
 good quote, which kind
 of explains why.
 
-186
+182
 00:07:26,220 --> 00:07:27,470
 I'll let you read it.
 
-187
-00:07:27,470 --> 00:07:32,520
-
-188
+183
 00:07:32,520 --> 00:07:36,490
 So JavaScript makes it really
 easy for us to program in an
 
-189
+184
 00:07:36,490 --> 00:07:40,960
 evented way, to do evented
 programming using that event
 
-190
+185
 00:07:40,960 --> 00:07:46,550
 loop and write code that is
 potentially non-blocking.
 
-191
+186
 00:07:46,550 --> 00:07:49,490
 When we run a Node application,
 like we said, it
 
-192
+187
 00:07:49,490 --> 00:07:52,130
 registers a bunch of events,
 like request,
 
-193
+188
 00:07:52,130 --> 00:07:54,240
 connection, or close.
 
-194
+189
 00:07:54,240 --> 00:07:58,440
 And those events sometimes even
 trigger even more events.
 
-195
+190
 00:07:58,440 --> 00:08:01,020
 And then we have this event
 loop, which is constantly
 
-196
+191
 00:08:01,020 --> 00:08:02,460
 looking for events.
 
-197
+192
 00:08:02,460 --> 00:08:05,470
 And once our application gets
 into that event loop, it can
 
-198
+193
 00:08:05,470 --> 00:08:10,090
 start triggering and emitting
 events into what we might call
 
-199
+194
 00:08:10,090 --> 00:08:11,260
 our event queue.
 
-200
+195
 00:08:11,260 --> 00:08:14,690
 So if a request event comes in
 at the same time as a close
 
-201
+196
 00:08:14,690 --> 00:08:18,110
 event, well, events are going to
 be processed one at a time
 
-202
+197
 00:08:18,110 --> 00:08:21,020
 on our event loop.
 
-203
+198
 00:08:21,020 --> 00:08:23,760
 Let's make our hello world code
 a little bit more complex
 
-204
+199
 00:08:23,760 --> 00:08:26,520
 and simulate a long-running
 process.
 
-205
+200
 00:08:26,520 --> 00:08:28,690
 So here we're creating
 our server.
 
-206
+201
 00:08:28,690 --> 00:08:30,800
 We write the status code
 back to the response.
 
-207
+202
 00:08:30,800 --> 00:08:32,980
 We write dog is running.
 
-208
+203
 00:08:32,980 --> 00:08:35,179
 Now we're going to
 do a timeout.
 
-209
+204
 00:08:35,179 --> 00:08:37,630
 We're going to pause for about
 five seconds to simulate a
 
-210
+205
 00:08:37,630 --> 00:08:39,700
 long-running process.
 
-211
+206
 00:08:39,700 --> 00:08:42,100
 Once that timeout is done, we're
 going to write out dog
 
-212
+207
 00:08:42,100 --> 00:08:45,130
 is done to the response
 and end the response.
 
-213
+208
 00:08:45,130 --> 00:08:47,940
 We're going to pause for 500
 milliseconds, which is
 
-214
+209
 00:08:47,940 --> 00:08:51,480
 basically five seconds, and
 listen on port 8080.
 
-215
+210
 00:08:51,480 --> 00:08:53,570
 You might notice here there
 are two different
 
-216
+211
 00:08:53,570 --> 00:08:55,100
 events in our code.
 
-217
+212
 00:08:55,100 --> 00:08:57,900
 We have the request event, which
 we should be familiar
 
-218
+213
 00:08:57,900 --> 00:08:59,230
 with from earlier.
 
-219
+214
 00:08:59,230 --> 00:09:02,510
 And we also have a
 timeout event.
 
-220
+215
 00:09:02,510 --> 00:09:06,230
 So every time a request comes
 in, it's going to create a new
 
-221
+216
 00:09:06,230 --> 00:09:10,000
 event, a timeout event, which
 will then be called back in
 
-222
+217
 00:09:10,000 --> 00:09:12,560
 five seconds.
 
-223
+218
 00:09:12,560 --> 00:09:14,960
 We're going to send in two
 requests to our hello world
 
-224
+219
 00:09:14,960 --> 00:09:17,750
 server with the timeout
 and see what happens.
 
-225
+220
 00:09:17,750 --> 00:09:20,130
 So our first request
 comes in, triggers
 
-226
+221
 00:09:20,130 --> 00:09:21,740
 that request event.
 
-227
+222
 00:09:21,740 --> 00:09:24,710
 The request callback executes.
 
-228
+223
 00:09:24,710 --> 00:09:26,650
 That setTimeout code
 registers.
 
-229
+224
 00:09:26,650 --> 00:09:28,120
 And it's going to wait
 five seconds.
 
-230
+225
 00:09:28,120 --> 00:09:30,700
 Meanwhile, another request
 comes in, triggers that
 
-231
+226
 00:09:30,700 --> 00:09:32,140
 request event again.
 
-232
+227
 00:09:32,140 --> 00:09:33,830
 The call back executes.
 
-233
+228
 00:09:33,830 --> 00:09:35,550
 The setTimeout registers.
 
-234
+229
 00:09:35,550 --> 00:09:37,310
 And now this has to
 wait five seconds.
 
-235
+230
 00:09:37,310 --> 00:09:39,460
 And when our first timeout is
 done, it's going to trigger
 
-236
+231
 00:09:39,460 --> 00:09:42,010
 that setTimeout event, which
 will trigger the
 
-237
+232
 00:09:42,010 --> 00:09:43,820
 setTimeout call back.
 
-238
+233
 00:09:43,820 --> 00:09:45,490
 And it returns that response.
 
-239
+234
 00:09:45,490 --> 00:09:48,580
 Then our second request is going
 to trigger the event and
 
-240
+235
 00:09:48,580 --> 00:09:51,400
 do the call back and
 so on and so forth.
 
-241
+236
 00:09:51,400 --> 00:09:53,450
 So as you can see, two requests
 can happen at the
 
-242
+237
 00:09:53,450 --> 00:09:56,300
 same time and nothing
 is blocking.
 
-243
+238
 00:09:56,300 --> 00:09:58,560
 What would this look like,
 though, if that
 
-244
+239
 00:09:58,560 --> 00:10:00,220
 setTimeout was blocking?
 
-245
+240
 00:10:00,220 --> 00:10:01,990
 Well, let's try it.
 
-246
+241
 00:10:01,990 --> 00:10:03,280
 So a request comes in.
 
-247
+242
 00:10:03,280 --> 00:10:05,020
 The request callback executes.
 
-248
+243
 00:10:05,020 --> 00:10:08,690
 And the setTimeout
 locks the world.
 
-249
+244
 00:10:08,690 --> 00:10:10,240
 It stops the world.
 
-250
+245
 00:10:10,240 --> 00:10:13,880
 And nothing else can execute on
 this process while we are
 
-251
+246
 00:10:13,880 --> 00:10:15,000
 on a timeout.
 
-252
+247
 00:10:15,000 --> 00:10:17,040
 It is officially blocked.
 
-253
+248
 00:10:17,040 --> 00:10:20,730
 So if a request tries to come
 in, well, it just has to wait
 
-254
+249
 00:10:20,730 --> 00:10:23,020
 for the server to
 get unlocked.
 
-255
+250
 00:10:23,020 --> 00:10:25,910
 Once it is unblocked, it'll
 trigger the setTimeout event
 
-256
+251
 00:10:25,910 --> 00:10:28,430
 and so on and so forth.
 
-257
+252
 00:10:28,430 --> 00:10:31,436
 And the second request gets
 to lock the server again.
 
-258
+253
 00:10:31,436 --> 00:10:33,380
 Now, obviously, blocking
 is bad.
 
-259
+254
 00:10:33,380 --> 00:10:36,130
 And you might be wondering,
 why would anybody write a
 
-260
+255
 00:10:36,130 --> 00:10:39,440
 programming language or a
 framework that blocks and
 
-261
+256
 00:10:39,440 --> 00:10:41,040
 stops the world?
 
-262
+257
 00:10:41,040 --> 00:10:43,860
 Well, you find this in a lot
 of programming languages.
 
-263
+258
 00:10:43,860 --> 00:10:47,570
 Often, when you do a call out to
 web services, it'll block.
 
-264
+259
 00:10:47,570 --> 00:10:49,030
 When you're doing a read
 or a write to the
 
-265
+260
 00:10:49,030 --> 00:10:50,510
 database, it'll block.
 
-266
+261
 00:10:50,510 --> 00:10:54,640
 Or when you're calling out to
 C extension, it will block.
 
-267
+262
 00:10:54,640 --> 00:10:58,270
 And this is one of the reasons
 why people love Node.js.
 
-268
+263
 00:10:58,270 --> 00:11:01,300
 Because from the very start with
 Node, its purpose was to
 
-269
+264
 00:11:01,300 --> 00:11:03,830
 be completely non-blocking.
 
-270
+265
 00:11:03,830 --> 00:11:06,860
 And all of the libraries that
 you'll find for Node are all
 
-271
+266
 00:11:06,860 --> 00:11:08,710
 non-blocking.
 
-272
+267
 00:11:08,710 --> 00:11:09,940
 That's pretty cool.
 
-273
+268
 00:11:09,940 --> 00:11:11,670
 Well, we've reached the
 end of level one.
 
-274
+269
 00:11:11,670 --> 00:11:13,280
 It's time to get your hands
 dirty in the challenges.
 
-275
+270
 00:11:13,280 --> 00:11:14,830
 So we'll see you at level two.
-
-276
-00:11:14,830 --> 00:11:16,224

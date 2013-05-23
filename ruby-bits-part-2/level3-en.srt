@@ -1,832 +1,795 @@
-1
-00:00:00,000 --> 00:00:32,600
-
-
-2
+﻿1
 00:00:32,600 --> 00:00:33,640
 Hi I'm Mark Kendall.
 
-3
+2
 00:00:33,640 --> 00:00:35,060
-And you're watching
+And you're watching
 Ruby Bits, Part
 
-4
+3
 00:00:35,060 --> 00:00:35,600
 Two.
 
-5
+4
 00:00:35,600 --> 00:00:37,440
-This is level three,
+This is level three,
 "Understanding and Using
 
-6
+5
 00:00:37,440 --> 00:00:42,320
-Self." So first let's take a
+Self." So first let's take a
 look at how Ruby sets the
 
-7
+6
 00:00:42,320 --> 00:00:44,710
-value of Self as our
+value of Self as our
 program executes.
 
-8
+7
 00:00:44,710 --> 00:00:47,000
-We can do this just by printing
+We can do this just by printing
 out Self at a few
 
-9
+8
 00:00:47,000 --> 00:00:48,190
-different points
+different points
 in our program.
 
-10
+9
 00:00:48,190 --> 00:00:51,940
-We'll start by printing it out
+We'll start by printing it out
 before our class definition
 
-11
+10
 00:00:51,940 --> 00:00:54,330
-and then after we open
+and then after we open
 our class definition.
 
-12
+11
 00:00:54,330 --> 00:00:58,300
-And we can see that outside of
+And we can see that outside of
 the class, Self is a special
 
-13
+12
 00:00:58,300 --> 00:01:00,190
-object that Ruby creates
+object that Ruby creates
 called Main.
 
-14
+13
 00:01:00,190 --> 00:01:03,330
-So even when you're not in a
+So even when you're not in a
 class, Ruby still has an
 
-15
+14
 00:01:03,330 --> 00:01:05,640
-object that it's created
+object that it's created
 for you.
 
-16
+15
 00:01:05,640 --> 00:01:08,460
-Inside of our class definition,
+Inside of our class definition,
 Self refers to the
 
-17
+16
 00:01:08,460 --> 00:01:09,710
 Tweet class object.
 
-18
-00:01:09,710 --> 00:01:12,450
-
-
-19
+17
 00:01:12,450 --> 00:01:15,490
-So if we go one step further and
+So if we go one step further and
 we create a Class method
 
-20
+18
 00:01:15,490 --> 00:01:16,670
 on our Tweet class--
 
-21
+19
 00:01:16,670 --> 00:01:18,650
 in this case self.find--
 
-22
+20
 00:01:18,650 --> 00:01:21,150
-and we print out the value of
+and we print out the value of
 Self inside of there, we'll
 
-23
+21
 00:01:21,150 --> 00:01:25,440
-see that, again, Self refers
+see that, again, Self refers
 to the Tweet class object.
 
-24
+22
 00:01:25,440 --> 00:01:27,740
-So this gives us some insight
+So this gives us some insight
 into how we define class
 
-25
+23
 00:01:27,740 --> 00:01:29,600
-methods in Ruby and
+methods in Ruby and
 how that works.
 
-26
+24
 00:01:29,600 --> 00:01:33,390
-Inside of our Tweet class, when
+Inside of our Tweet class, when
 we say def self.find,
 
-27
+25
 00:01:33,390 --> 00:01:35,770
-Self is referring to that
+Self is referring to that
 Tweet class object.
 
-28
+26
 00:01:35,770 --> 00:01:39,000
-So that's really equivalent
+So that's really equivalent
 to saying def tweet.find.
 
-29
+27
 00:01:39,000 --> 00:01:42,310
-And our new method gets defined
+And our new method gets defined
 on the Tweet class.
 
-30
+28
 00:01:42,310 --> 00:01:44,602
-Now using the class name to
+Now using the class name to
 define a class method, while
 
-31
+29
 00:01:44,602 --> 00:01:47,100
-it works, isn't used
+it works, isn't used
 very often in Ruby.
 
-32
+30
 00:01:47,100 --> 00:01:49,830
-So you'll see the self dot
+So you'll see the self dot
 syntax used a lot more
 
-33
+31
 00:01:49,830 --> 00:01:51,940
 frequently.
 
-34
+32
 00:01:51,940 --> 00:01:54,440
-So moving on, here we're
+So moving on, here we're
 printing out the value of Self
 
-35
+33
 00:01:54,440 --> 00:01:57,190
-inside of an Instance method,
+inside of an Instance method,
 the Initialize method for our
 
-36
+34
 00:01:57,190 --> 00:01:58,160
 Tweet object.
 
-37
+35
 00:01:58,160 --> 00:02:00,530
-Now when create a new Tweet,
+Now when create a new Tweet,
 we'll see printed out the
 
-38
+36
 00:02:00,530 --> 00:02:02,370
-value of Self, which is
+value of Self, which is
 the Tweet instance
 
-39
+37
 00:02:02,370 --> 00:02:03,620
 that we just created.
 
-40
-00:02:03,620 --> 00:02:07,300
-
-
-41
+38
 00:02:07,300 --> 00:02:09,800
-So why is it important to keep
+So why is it important to keep
 track of the value of Self as
 
-42
+39
 00:02:09,800 --> 00:02:10,940
 our code executes?
 
-43
+40
 00:02:10,940 --> 00:02:14,010
-Well Ruby uses the value of Self
+Well Ruby uses the value of Self
 to figure out where to
 
-44
+41
 00:02:14,010 --> 00:02:15,070
 call methods.
 
-45
+42
 00:02:15,070 --> 00:02:18,110
-So if you try to call a method
+So if you try to call a method
 without an explicit receiver,
 
-46
+43
 00:02:18,110 --> 00:02:21,220
-without an object and a dot in
+without an object and a dot in
 front of the method name, Ruby
 
-47
+44
 00:02:21,220 --> 00:02:23,590
-tries to find that
+tries to find that
 method in Self.
 
-48
+45
 00:02:23,590 --> 00:02:26,490
-So let's look at the code that
+So let's look at the code that
 explains what this means.
 
-49
+46
 00:02:26,490 --> 00:02:28,800
-Inside of our Tweet class,
+Inside of our Tweet class,
 the first line is an
 
-50
+47
 00:02:28,800 --> 00:02:30,040
 attr_accessor.
 
-51
+48
 00:02:30,040 --> 00:02:31,265
 That's actually just a method.
 
-52
+49
 00:02:31,265 --> 00:02:34,430
-And Ruby's calling that method
+And Ruby's calling that method
 on Self, which is the Tweet
 
-53
+50
 00:02:34,430 --> 00:02:35,820
 class object.
 
-54
+51
 00:02:35,820 --> 00:02:38,490
-Then, in Initialize method,
+Then, in Initialize method,
 we're setting an Instance
 
-55
+52
 00:02:38,490 --> 00:02:40,140
 variable, status.
 
-56
+53
 00:02:40,140 --> 00:02:43,860
-And that Instance variable gets
+And that Instance variable gets
 set on Self, which is the
 
-57
+54
 00:02:43,860 --> 00:02:46,170
-new instance of our
+new instance of our
 Tweet class.
 
-58
+55
 00:02:46,170 --> 00:02:49,460
-And likewise, when we call a
+And likewise, when we call a
 method set_up_some_things,
 
-59
+56
 00:02:49,460 --> 00:02:56,350
-that's being called on the
+that's being called on the
 instance of our Tweet
 
-60
+57
 00:02:56,350 --> 00:02:59,290
-So now that we understand a
+So now that we understand a
 little bit more about how Self
 
-61
+58
 00:02:59,290 --> 00:03:02,390
-works in Ruby, let's look at
+works in Ruby, let's look at
 ways that we can change that
 
-62
+59
 00:03:02,390 --> 00:03:04,320
 while our program executes.
 
-63
+60
 00:03:04,320 --> 00:03:07,000
-The first of these is
+The first of these is
 class_eval, which is a method
 
-64
+61
 00:03:07,000 --> 00:03:08,830
-that you can call
+that you can call
 on any class.
 
-65
+62
 00:03:08,830 --> 00:03:11,600
-And it takes a block and it sets
+And it takes a block and it sets
 the value of Self for the
 
-66
+63
 00:03:11,600 --> 00:03:14,240
-duration of that block, to the
+duration of that block, to the
 class you called it on.
 
-67
+64
 00:03:14,240 --> 00:03:15,900
 Let's see how that works.
 
-68
+65
 00:03:15,900 --> 00:03:18,600
-Here we have a Tweet class
+Here we have a Tweet class
 that has two attributes--
 
-69
+66
 00:03:18,600 --> 00:03:20,310
 status and created at.
 
-70
+67
 00:03:20,310 --> 00:03:22,700
-And we'd like to add a
+And we'd like to add a
 third, for the user.
 
-71
+68
 00:03:22,700 --> 00:03:25,970
-Instead of reopening the class
+Instead of reopening the class
 to add that new attr_accessor,
 
-72
+69
 00:03:25,970 --> 00:03:28,570
-what we've done here is to call
+what we've done here is to call
 class_eval on the Tweet
 
-73
+70
 00:03:28,570 --> 00:03:31,930
-class, which sets the value of
+class, which sets the value of
 Self to the Tweet class and
 
-74
+71
 00:03:31,930 --> 00:03:34,230
-runs that block,
+runs that block,
 thus adding the
 
-75
+72
 00:03:34,230 --> 00:03:35,960
 attr_accessor to the Tweet.
 
-76
+73
 00:03:35,960 --> 00:03:38,880
-Now we can create a Tweet, and
+Now we can create a Tweet, and
 we'll see that we have a user
 
-77
+74
 00:03:38,880 --> 00:03:40,460
-attribute on that tweet
+attribute on that tweet
 that we can set.
 
-78
-00:03:40,460 --> 00:03:44,430
-
-
-79
+75
 00:03:44,430 --> 00:03:47,530
-So let's look at a more
+So let's look at a more
 complicated example.
 
-80
+76
 00:03:47,530 --> 00:03:50,100
-Here we'd like to create
+Here we'd like to create
 a Method Logger class.
 
-81
+77
 00:03:50,100 --> 00:03:52,100
-And here's how we'd
+And here's how we'd
 like to use it:
 
-82
+78
 00:03:52,100 --> 00:03:54,260
-We'd like to be able to create
+We'd like to be able to create
 a Method Logger.
 
-83
+79
 00:03:54,260 --> 00:03:57,520
-And then tell it to log a
+And then tell it to log a
 method, given a class name and
 
-84
+80
 00:03:57,520 --> 00:03:58,700
 a method name.
 
-85
+81
 00:03:58,700 --> 00:04:01,540
-We'd like it to attach to that
+We'd like it to attach to that
 method, and then print out some
 
-86
+82
 00:04:01,540 --> 00:04:02,930
 logging information.
 
-87
+83
 00:04:02,930 --> 00:04:04,990
 How might we implement that?
 
-88
+84
 00:04:04,990 --> 00:04:07,530
-Before we write any code, let's
+Before we write any code, let's
 think about what this
 
-89
+85
 00:04:07,530 --> 00:04:09,610
-Method Logger's going
+Method Logger's going
 to need to do.
 
-90
+86
 00:04:09,610 --> 00:04:12,650
-We know that we need to write a
+We know that we need to write a
 log_method method that takes
 
-91
+87
 00:04:12,650 --> 00:04:15,080
-the class and the method name
+the class and the method name
 that we're logging.
 
-92
+88
 00:04:15,080 --> 00:04:18,279
-Inside of that, we're going to
+Inside of that, we're going to
 use class_eval to execute some
 
-93
+89
 00:04:18,279 --> 00:04:21,380
-code in the context
+code in the context
 of the class.
 
-94
+90
 00:04:21,380 --> 00:04:24,290
-We'll then use alias_method to
+We'll then use alias_method to
 save off the old version of
 
-95
+91
 00:04:24,290 --> 00:04:26,420
-the method that we're logging,
+the method that we're logging,
 because we're about to
 
-96
+92
 00:04:26,420 --> 00:04:27,550
 override it.
 
-97
+93
 00:04:27,550 --> 00:04:28,880
-And then we'll use define_method
+And then we'll use define_method
 method to
 
-98
+94
 00:04:28,880 --> 00:04:31,830
-override that method, and
+override that method, and
 log our method call.
 
-99
+95
 00:04:31,830 --> 00:04:34,230
-And then use send to call the
+And then use send to call the
 original version of the method
 
-100
+96
 00:04:34,230 --> 00:04:36,330
 that we had saved off.
 
-101
+97
 00:04:36,330 --> 00:04:38,260
-So how might that
+So how might that
 look in code?
 
-102
+98
 00:04:38,260 --> 00:04:40,340
-So here in our Method Logger
+So here in our Method Logger
 class, we'll implement
 
-103
+99
 00:04:40,340 --> 00:04:41,390
 log_method.
 
-104
+100
 00:04:41,390 --> 00:04:43,920
-You'll notice it takes a class
+You'll notice it takes a class
 and a method name.
 
-105
+101
 00:04:43,920 --> 00:04:46,340
-You'll notice here that we've
+You'll notice here that we've
 spelled class with a "k."
 
-106
+102
 00:04:46,340 --> 00:04:47,760
-That's because class
+That's because class
 with a "c" is a
 
-107
+103
 00:04:47,760 --> 00:04:49,400
 reserved keyword in Ruby.
 
-108
+104
 00:04:49,400 --> 00:04:52,170
-And so the convention is
+And so the convention is
 to use a "k" instead.
 
-109
+105
 00:04:52,170 --> 00:04:53,940
 So first we use class_eval.
 
-110
+106
 00:04:53,940 --> 00:04:56,890
-So now, inside of this block,
+So now, inside of this block,
 Self will be that class that
 
-111
+107
 00:04:56,890 --> 00:04:58,940
 we're passing in.
 
-112
+108
 00:04:58,940 --> 00:05:02,270
-And then we can modify that
+And then we can modify that
 class by using alias_method to
 
-113
+109
 00:05:02,270 --> 00:05:05,610
-first save off the
+first save off the
 original method.
 
-114
+110
 00:05:05,610 --> 00:05:08,020
-And then use define_method
+And then use define_method
 to redefine our
 
-115
+111
 00:05:08,020 --> 00:05:11,190
 method that we're logging.
 
-116
+112
 00:05:11,190 --> 00:05:13,670
-Inside of that, we're just
+Inside of that, we're just
 printing out the current time
 
-117
+113
 00:05:13,670 --> 00:05:14,870
 and the method name.
 
-118
+114
 00:05:14,870 --> 00:05:17,330
-And then we're using send to
+And then we're using send to
 call the original method that
 
-119
+115
 00:05:17,330 --> 00:05:18,580
 we'd saved off earlier.
 
-120
-00:05:18,580 --> 00:05:23,300
-
-
-121
+116
 00:05:23,300 --> 00:05:25,880
-Now if we run the code that we
+Now if we run the code that we
 looked at earlier, we define
 
-122
+117
 00:05:25,880 --> 00:05:28,570
-our Method Logger, we tell it
+our Method Logger, we tell it
 to log the say_hi method on
 
-123
+118
 00:05:28,570 --> 00:05:29,790
 our Tweet class.
 
-124
+119
 00:05:29,790 --> 00:05:32,540
-And then we create a new Tweet
+And then we create a new Tweet
 instance and call say_hi.
 
-125
+120
 00:05:32,540 --> 00:05:33,870
 We see our logging.
 
-126
+121
 00:05:33,870 --> 00:05:36,420
-And then we see "hi" printed
+And then we see "hi" printed
 out, because the original
 
-127
+122
 00:05:36,420 --> 00:05:38,210
-version of the method is
+version of the method is
 also being called.
 
-128
-00:05:38,210 --> 00:05:41,940
-
-
-129
+123
 00:05:41,940 --> 00:05:44,480
-You may have noticed that our
+You may have noticed that our
 Method Logger has one problem.
 
-130
+124
 00:05:44,480 --> 00:05:47,240
-It only works for methods that
+It only works for methods that
 don't take any parameters and
 
-131
+125
 00:05:47,240 --> 00:05:48,380
 don't take blocks.
 
-132
+126
 00:05:48,380 --> 00:05:50,460
-Let's see if we can solve
+Let's see if we can solve
 that problem.
 
-133
+127
 00:05:50,460 --> 00:05:52,070
-What we need to do is
+What we need to do is
 capture the methods
 
-134
+128
 00:05:52,070 --> 00:05:53,540
 arguments and its block.
 
-135
+129
 00:05:53,540 --> 00:05:55,830
-Here we're using the Splat
+Here we're using the Splat
 operator to capture the
 
-136
+130
 00:05:55,830 --> 00:05:58,640
-arguments in an array and the
+arguments in an array and the
 ampersand to turn the block
 
-137
+131
 00:05:58,640 --> 00:05:59,620
 into a proc.
 
-138
+132
 00:05:59,620 --> 00:06:01,470
-That way we have a handle
+That way we have a handle
 to both of them.
 
-139
+133
 00:06:01,470 --> 00:06:04,130
-And we can pass them on to send
+And we can pass them on to send
 when we call the original
 
-140
+134
 00:06:04,130 --> 00:06:05,380
 version of the method.
 
-141
-00:06:05,380 --> 00:06:08,900
-
-
-142
+135
 00:06:08,900 --> 00:06:10,220
 So that's class_eval.
 
-143
+136
 00:06:10,220 --> 00:06:12,590
-Ruby gives us another method
+Ruby gives us another method
 called instance_eval.
 
-144
+137
 00:06:12,590 --> 00:06:16,050
-And it works much the same way,
+And it works much the same way,
 except that it sets Self
 
-145
+138
 00:06:16,050 --> 00:06:19,340
-to an instance of an object,
+to an instance of an object,
 and then execute to block.
 
-146
+139
 00:06:19,340 --> 00:06:21,240
-Here we have a simple Tweet
+Here we have a simple Tweet
 class that just has
 
-147
+140
 00:06:21,240 --> 00:06:23,590
-attr_accessors for
+attr_accessors for
 user and status.
 
-148
+141
 00:06:23,590 --> 00:06:26,290
-Let's create a new instance of
+Let's create a new instance of
 our Tweet, and then we'll call
 
-149
+142
 00:06:26,290 --> 00:06:29,380
-instance_eval, which sets the
+instance_eval, which sets the
 value of Self to that Tweet
 
-150
+143
 00:06:29,380 --> 00:06:31,820
-object for the duration
+object for the duration
 of our block.
 
-151
+144
 00:06:31,820 --> 00:06:33,950
-Then we can call status_equals
+Then we can call status_equals
 directly.
 
-152
+145
 00:06:33,950 --> 00:06:35,370
-And it will call the
+And it will call the
 status_equals
 
-153
+146
 00:06:35,370 --> 00:06:36,620
 method on our Tweet.
 
-154
-00:06:36,620 --> 00:06:40,280
-
-
-155
+147
 00:06:40,280 --> 00:06:42,940
-Remember back in level one we
+Remember back in level one we
 used this code to initialize a
 
-156
+148
 00:06:42,940 --> 00:06:44,110
 Tweet object?
 
-157
+149
 00:06:44,110 --> 00:06:45,880
-Well there's some duplication
+Well there's some duplication
 going on here.
 
-158
+150
 00:06:45,880 --> 00:06:48,500
-We have to pass the Tweet
+We have to pass the Tweet
 into our block.
 
-159
+151
 00:06:48,500 --> 00:06:51,170
-And then we have to do
+And then we have to do
 tweet.status and tweet.user
 
-160
+152
 00:06:51,170 --> 00:06:54,080
-inside the block to
+inside the block to
 set its values.
 
-161
+153
 00:06:54,080 --> 00:06:57,070
-Let's see if we can clean that
+Let's see if we can clean that
 up with instance_eval.
 
-162
+154
 00:06:57,070 --> 00:06:59,655
-To do that, we'll capture the
+To do that, we'll capture the
 block that's being passed into
 
-163
+155
 00:06:59,655 --> 00:07:01,900
-Initialize using
+Initialize using
 the ampersand.
 
-164
+156
 00:07:01,900 --> 00:07:04,250
-And then instead of calling
+And then instead of calling
 yield, we'll call
 
-165
+157
 00:07:04,250 --> 00:07:05,045
 instance_eval.
 
-166
+158
 00:07:05,045 --> 00:07:07,130
-And we'll pass that
+And we'll pass that
 block through.
 
-167
+159
 00:07:07,130 --> 00:07:09,820
-So this executes our block with
+So this executes our block with
 Self being set to our new
 
-168
+160
 00:07:09,820 --> 00:07:10,970
 Tweet object.
 
-169
+161
 00:07:10,970 --> 00:07:13,550
-And this allows us to not have
+And this allows us to not have
 to pass the Tweet object into
 
-170
+162
 00:07:13,550 --> 00:07:16,140
-the block and explicitly put
+the block and explicitly put
 it in front of each of our
 
-171
+163
 00:07:16,140 --> 00:07:17,390
 method calls.
 
-172
-00:07:17,390 --> 00:07:22,290
-
-
-173
+164
 00:07:22,290 --> 00:07:23,490
-We've reached the end
+We've reached the end
 of level three.
 
-174
+165
 00:07:23,490 --> 00:07:26,120
-So now it's time for you to
+So now it's time for you to
 discover yourself with these
 
-175
+166
 00:07:26,120 --> 00:07:27,020
 challenges.
 
-176
+167
 00:07:27,020 --> 00:07:28,630
-I'll see you back
+I'll see you back
 at Level four.
 
-177
+168
 00:00:00,000 --> 00:00:00,000
 00:07:28,630 --> 00:07:29,880
-

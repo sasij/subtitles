@@ -1,359 +1,347 @@
 ﻿1
-00:00:00,000 --> 00:00:02,440
-
-
-2
 00:00:02,440 --> 00:00:05,430
 Our code has worked great so
 far, but what if we add
 
-3
+2
 00:00:05,430 --> 00:00:07,370
 multiple vacations?
 
-4
+3
 00:00:07,370 --> 00:00:10,670
 If we then click the Get Price
 button, we can see that all of
 
-5
+4
 00:00:10,670 --> 00:00:12,040
 the buttons disappear.
 
-6
+5
 00:00:12,040 --> 00:00:14,010
 And we see all of the prices.
 
-7
+6
 00:00:14,010 --> 00:00:15,440
 Well, that's not so good.
 
-8
+7
 00:00:15,440 --> 00:00:18,540
 So how might we fix this?
 
-9
+8
 00:00:18,540 --> 00:00:21,750
 Here's our DOM, this time
 with multiple vacations.
 
-10
+9
 00:00:21,750 --> 00:00:23,240
 And here's our code.
 
-11
+10
 00:00:23,240 --> 00:00:26,620
 When we go to append the price,
 it's going to find all
 
-12
+11
 00:00:26,620 --> 00:00:29,420
 of the li's with the
 classification and append the
 
-13
+12
 00:00:29,420 --> 00:00:32,369
 price, the same price,
 to all of them.
 
-14
+13
 00:00:32,369 --> 00:00:34,850
 It's also going to return all
 the buttons, when it searches
 
-15
+14
 00:00:34,850 --> 00:00:38,710
 for a button, and then call
 .remove, effectively removing
 
-16
+15
 00:00:38,710 --> 00:00:41,140
 all of them.
 
-17
+16
 00:00:41,140 --> 00:00:43,270
 One way around this problem
 is by using a
 
-18
+17
 00:00:43,270 --> 00:00:45,540
 keyword called This.
 
-19
+18
 00:00:45,540 --> 00:00:49,990
 You see, inside of our Event
 Handler, when we use This,
 
-20
+19
 00:00:49,990 --> 00:00:53,550
 we're referring to the item
 that triggered the event--
 
-21
+20
 00:00:53,550 --> 00:00:57,150
 in this case, the button
 that was pressed.
 
-22
+21
 00:00:57,150 --> 00:00:59,780
 So inside our Event Handler, you
 might think we could call
 
-23
+22
 00:00:59,780 --> 00:01:01,970
 this.remove to remove
 the button.
 
-24
+23
 00:01:01,970 --> 00:01:05,319
 But that wouldn't quite work,
 because when we call This,
 
-25
+24
 00:01:05,319 --> 00:01:07,410
 it's not a jQuery object.
 
-26
+25
 00:01:07,410 --> 00:01:09,090
 We need to convert it first.
 
-27
+26
 00:01:09,090 --> 00:01:13,190
 So we'll wrap that in a dollar
 sign and parentheses and call
 
-28
+27
 00:01:13,190 --> 00:01:16,940
 this .remove, and that's going
 to remove only the button that
 
-29
+28
 00:01:16,940 --> 00:01:18,190
 was clicked.
 
-30
-00:01:18,190 --> 00:01:20,100
-
-
-31
+29
 00:01:20,100 --> 00:01:21,480
 So let's write that code
 in our function.
 
-32
+30
 00:01:21,480 --> 00:01:26,070
 And now we're only removing the
 button that was clicked.
 
-33
+31
 00:01:26,070 --> 00:01:28,610
 So if we go back to our code
 and click Get Price, we can
 
-34
+32
 00:01:28,610 --> 00:01:31,870
 see that each button is removed
 when it should be.
 
-35
+33
 00:01:31,870 --> 00:01:36,620
 However, it's still adding the
 price on every list item.
 
-36
+34
 00:01:36,620 --> 00:01:40,440
 So how might we fix that?
 
-37
+35
 00:01:40,440 --> 00:01:45,240
 We can use this again and call
 $(this).after(price) to put the
 
-38
+36
 00:01:45,240 --> 00:01:48,920
 price after this
 current button.
 
-39
+37
 00:01:48,920 --> 00:01:51,670
 So let's go ahead and move
 that into our code.
 
-40
+38
 00:01:51,670 --> 00:01:53,830
 And now it's going to
 add the price as a
 
-41
+39
 00:01:53,830 --> 00:01:55,550
 sibling, after the button.
 
-42
-00:01:55,550 --> 00:01:58,540
-
-
-43
+40
 00:01:58,540 --> 00:02:02,220
 Notice here in the DOM, we've
 moved the button into a div.
 
-44
+41
 00:02:02,220 --> 00:02:04,100
 So the DOM has changed
 slightly.
 
-45
+42
 00:02:04,100 --> 00:02:08,520
 And now when we run this code,
 well, the price is going to be
 
-46
+43
 00:02:08,520 --> 00:02:12,320
 inside of that div, which
 we may not want.
 
-47
+44
 00:02:12,320 --> 00:02:15,460
 So how would we write this code
 so that if the DOM gets
 
-48
+45
 00:02:15,460 --> 00:02:18,150
 changed to like this, it's still
 going to print out the
 
-49
+46
 00:02:18,150 --> 00:02:20,340
 price where it should be?
 
-50
+47
 00:02:20,340 --> 00:02:23,150
 So we want to keep the price
 as a child of the li.
 
-51
+48
 00:02:23,150 --> 00:02:25,150
 So we can't use after price.
 
-52
+49
 00:02:25,150 --> 00:02:28,290
 Well, one way we could solve
 this, using traversing, we
 
-53
+50
 00:02:28,290 --> 00:02:32,250
 could call parent.parent.append,
 which
 
-54
+51
 00:02:32,250 --> 00:02:34,060
 would seem to put it
 in the right place.
 
-55
+52
 00:02:34,060 --> 00:02:36,200
 But again, it would break
 if we changed the DOM.
 
-56
+53
 00:02:36,200 --> 00:02:40,580
 We could also find parents to
 find the vacation class above
 
-57
+54
 00:02:40,580 --> 00:02:44,580
 the current button and then
 append price onto it.
 
-58
+55
 00:02:44,580 --> 00:02:45,950
 But this doesn't work,
 because it could
 
-59
+56
 00:02:45,950 --> 00:02:48,350
 return multiple vacations.
 
-60
+57
 00:02:48,350 --> 00:02:51,360
 The best way to solve this
 problem is to use .closest and
 
-61
+58
 00:02:51,360 --> 00:02:53,660
 then send in .vacation.
 
-62
+59
 00:02:53,660 --> 00:02:58,060
 What this is going to do is walk
 up the DOM to find the
 
-63
+60
 00:02:58,060 --> 00:03:03,220
 ancestor with the class of
 vacation and then append onto
 
-64
+61
 00:03:03,220 --> 00:03:06,810
 that the price node.
 
-65
+62
 00:03:06,810 --> 00:03:09,940
 It's also worth mentioning that
 closest is going to find
 
-66
+63
 00:03:09,940 --> 00:03:14,420
 zero or one node when it
 searches for ancestors with
 
-67
+64
 00:03:14,420 --> 00:03:19,290
 the proper class, whereas
 parents is going to search for
 
-68
+65
 00:03:19,290 --> 00:03:23,040
 all of the ancestors with
 the proper class.
 
-69
+66
 00:03:23,040 --> 00:03:26,520
 So let's go ahead and put this
 line of code back up into our
 
-70
+67
 00:03:26,520 --> 00:03:27,830
 Event Handler.
 
-71
+68
 00:03:27,830 --> 00:03:30,500
 And now it's going to add the
 paragraph at the bottom of the
 
-72
+69
 00:03:30,500 --> 00:03:31,670
 vacation class.
 
-73
+70
 00:03:31,670 --> 00:03:33,710
 Let's take a look.
 
-74
+71
 00:03:33,710 --> 00:03:36,250
 So now when we click each
 button, each of them will show
 
-75
+72
 00:03:36,250 --> 00:03:39,340
 us the price properly.
 
-76
+73
 00:03:39,340 --> 00:03:41,570
 And now it's time for you to
 get into the challenges.
 
-77
+74
 00:03:41,570 --> 00:03:44,100
 And I'll see you in the last
 section of level three.

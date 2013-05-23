@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:27,600
 [MUSIC]
 
@@ -363,402 +363,399 @@ function to fulfill the
 expectation.
 
 78
-00:03:47,110 --> 00:03:49,740
-
-79
 00:03:49,740 --> 00:03:52,090
 Now that geolocate function
 that you see up there, I'm
 
-80
+79
 00:03:52,090 --> 00:03:53,360
 tweaking it a little bit.
 
-81
+80
 00:03:53,360 --> 00:03:55,960
 This time I'm assuming that it's
 returning a hash from our
 
-82
+81
 00:03:55,960 --> 00:03:57,040
 web service.
 
-83
+82
 00:03:57,040 --> 00:03:59,640
 And we're going to use that
 hash to create a string.
 
-84
+83
 00:03:59,640 --> 00:04:02,000
 To make sure our test doesn't
 error out, we need to make
 
-85
+84
 00:04:02,000 --> 00:04:04,860
 sure that our mock has
 a return value.
 
-86
+85
 00:04:04,860 --> 00:04:09,030
 So to do that we do and return
 and we specify the hash we
 
-87
+86
 00:04:09,030 --> 00:04:10,000
 want it to return.
 
-88
+87
 00:04:10,000 --> 00:04:12,500
 Then we call the geolocate
 function.
 
-89
+88
 00:04:12,500 --> 00:04:15,100
 So we're already testing that
 our geolocate function calls
 
-90
+89
 00:04:15,100 --> 00:04:18,279
 our graveyard locator, but now
 that our method is two
 
-91
+90
 00:04:18,279 --> 00:04:22,170
 different lines, we also need to
 test that the right string
 
-92
+91
 00:04:22,170 --> 00:04:24,110
 is constructed and returned.
 
-93
+92
 00:04:24,110 --> 00:04:27,200
 So here you can see instead of
 doing a mock, we're going to
 
-94
+93
 00:04:27,200 --> 00:04:30,220
 stub out our graveyard
 locator, specify the
 
-95
+94
 00:04:30,220 --> 00:04:34,120
 parameters we're sending in,
 what is getting returned.
 
-96
+95
 00:04:34,120 --> 00:04:36,610
 And then we can test to make
 sure that what gets returned
 
-97
+96
 00:04:36,610 --> 00:04:40,780
 from the geolocate function
 is a string of 2 comma 3.
 
-98
+97
 00:04:40,780 --> 00:04:42,550
 One more time I'm going to
 make that that geolocate
 
-99
+98
 00:04:42,550 --> 00:04:44,100
 function more complex.
 
-100
+99
 00:04:44,100 --> 00:04:47,330
 This time graveyard locator
 is returning an object.
 
-101
+100
 00:04:47,330 --> 00:04:50,950
 The object has a latitude and
 longitude, as you see here.
 
-102
+101
 00:04:50,950 --> 00:04:53,115
 So how would we test this?
 
-103
+102
 00:04:53,115 --> 00:04:56,330
 We've made it a little
 bit more complex.
 
-104
+103
 00:04:56,330 --> 00:04:58,840
 In this case, we want
 to create a stub.
 
-105
+104
 00:04:58,840 --> 00:05:00,910
 Some people call
 these a double.
 
-106
+105
 00:05:00,910 --> 00:05:03,520
 To create the stub, we're
 going to send in a hash.
 
-107
+106
 00:05:03,520 --> 00:05:06,610
 Those hash's keys are going to
 become methods that we can
 
-108
+107
 00:05:06,610 --> 00:05:08,290
 call on that stub.
 
-109
+108
 00:05:08,290 --> 00:05:11,630
 So we can cal loc.latitude
 and it will return 2.
 
-110
+109
 00:05:11,630 --> 00:05:14,830
 And loc.longitude and
 it will return 3.
 
-111
+110
 00:05:14,830 --> 00:05:18,060
 We're then going to stub out the
 graveyard locator and make
 
-112
+111
 00:05:18,060 --> 00:05:22,590
 it return that stub object
 that we just created.
 
-113
+112
 00:05:22,590 --> 00:05:24,870
 And then we can check to make
 sure that when we call
 
-114
+113
 00:05:24,870 --> 00:05:29,890
 geolocate with object, it
 returns the string 2 comma 3.
 
-115
+114
 00:05:29,890 --> 00:05:31,940
 Now we're going to jump into
 some new material, testing
 
-116
+115
 00:05:31,940 --> 00:05:34,250
 some Rails with Action Mailer.
 
-117
+116
 00:05:34,250 --> 00:05:35,910
 So here we have a
 zombie mailer.
 
-118
+117
 00:05:35,910 --> 00:05:37,480
 You can see this is our
 welcome email when our
 
-119
+118
 00:05:37,480 --> 00:05:38,790
 zombie signs up.
 
-120
+119
 00:05:38,790 --> 00:05:41,920
 We're going to set our from
 address, our to address, and
 
-121
+120
 00:05:41,920 --> 00:05:43,200
 our subject.
 
-122
+121
 00:05:43,200 --> 00:05:46,580
 To test this, we're going to
 create a zombie mailer spec
 
-123
+122
 00:05:46,580 --> 00:05:48,960
 inside of our mailers folder.
 
-124
+123
 00:05:48,960 --> 00:05:50,760
 We're going to describe
 the zombie mailer.
 
-125
+124
 00:05:50,760 --> 00:05:53,910
 The context is going to be
 that welcome function.
 
-126
+125
 00:05:53,910 --> 00:05:55,970
 We're going to create a zombie
 for each of our examples.
 
-127
+126
 00:05:55,970 --> 00:05:57,990
 In this case, our subject,
 though, is going to be a
 
-128
+127
 00:05:57,990 --> 00:05:58,930
 little different.
 
-129
+128
 00:05:58,930 --> 00:06:01,900
 What we're going to be testing
 in each of our examples is
 
-130
+129
 00:06:01,900 --> 00:06:05,440
 what gets returned when we
 call the welcome method.
 
-131
+130
 00:06:05,440 --> 00:06:07,560
 So that is what we're going
 to call in our subject.
 
-132
+131
 00:06:07,560 --> 00:06:09,400
 Now we can check different
 methods on the mailer that
 
-133
+132
 00:06:09,400 --> 00:06:13,610
 gets returned from the welcome
 method to make sure that it's
 
-134
+133
 00:06:13,610 --> 00:06:17,260
 from method should include
 admin@codeschool.
 
-135
+134
 00:06:17,260 --> 00:06:20,380
 It's to method should include
 zombie.email.
 
-136
+135
 00:06:20,380 --> 00:06:24,000
 And its subject should
 equal "Welcome Zombie."
 
-137
+136
 00:06:24,000 --> 00:06:25,540
 There's one thing that's
 not very good about the
 
-138
+137
 00:06:25,540 --> 00:06:26,810
 specification.
 
-139
+138
 00:06:26,810 --> 00:06:29,630
 And that is, well, we're
 creating an active record
 
-140
+139
 00:06:29,630 --> 00:06:30,990
 object every time.
 
-141
+140
 00:06:30,990 --> 00:06:32,930
 And there's really
 no need for it.
 
-142
+141
 00:06:32,930 --> 00:06:34,920
 Instead of instantiating a
 zombie, we want to create a
 
-143
+142
 00:06:34,920 --> 00:06:36,420
 fake object instead.
 
-144
+143
 00:06:36,420 --> 00:06:38,610
 So here we can create a stub.
 
-145
+144
 00:06:38,610 --> 00:06:40,790
 On that stub all we need
 to do is be able to
 
-146
+145
 00:06:40,790 --> 00:06:42,180
 call the email method.
 
-147
+146
 00:06:42,180 --> 00:06:45,990
 So we send in like this and
 get back an email address.
 
-148
+147
 00:06:45,990 --> 00:06:48,870
 Now we put that stub into our
 code and it's going to run a
 
-149
+148
 00:06:48,870 --> 00:06:51,380
 little faster because we're
 not creating active record
 
-150
+149
 00:06:51,380 --> 00:06:53,290
 object every time.
 
-151
+150
 00:06:53,290 --> 00:06:55,820
 Here are a few more examples
 of options that you can use
 
-152
+151
 00:06:55,820 --> 00:06:59,240
 when you're mocking to determine
 different behavior.
 
-153
+152
 00:06:59,240 --> 00:07:03,530
 For example, that a function
 only gets called once or twice
 
-154
+153
 00:07:03,530 --> 00:07:07,040
 or exactly a certain number of
 times or at least or at most a
 
-155
+154
 00:07:07,040 --> 00:07:09,540
 certain number of times or
 any number of times.
 
-156
+155
 00:07:09,540 --> 00:07:13,010
 We can also specify multiple
 parameters for a method or say
 
-157
+156
 00:07:13,010 --> 00:07:16,370
 that it can take anything
 or any arguments or no
 
-158
+157
 00:07:16,370 --> 00:07:18,400
 arguments at all.
 
-159
+158
 00:07:18,400 --> 00:07:20,780
 Time to get mocking and stubbing
 in the level five
 
-160
+159
 00:07:20,780 --> 00:07:21,080
 challenges.
 
-161
+160
 00:07:21,080 --> 00:07:21,380
 Good luck.
 
-162
+161
 00:07:21,380 --> 00:07:23,008
 [MUSIC]

@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:27,570
 [MUSIC PLAYING]
 
@@ -8,22 +8,22 @@ Welcome back.
 
 3
 00:00:28,890 --> 00:00:30,420
-This is Ruby Bits part
+This is Ruby Bits part
 two, level four.
 
 4
 00:00:30,420 --> 00:00:34,120
-And we're going to be talking
+And we're going to be talking
 about missing methods.
 
 5
 00:00:34,120 --> 00:00:37,280
-Back in Ruby Bits part one,
+Back in Ruby Bits part one,
 we talked about hooks.
 
 6
 00:00:37,280 --> 00:00:39,850
-These are methods that Ruby
+These are methods that Ruby
 calls when certain events
 
 7
@@ -32,12 +32,12 @@ happen in your program.
 
 8
 00:00:41,250 --> 00:00:43,945
-And the most important one of
+And the most important one of
 these is method missing.
 
 9
 00:00:43,945 --> 00:00:46,560
-Ruby calls method missing any
+Ruby calls method missing any
 time that you try to call a
 
 10
@@ -46,7 +46,7 @@ method and it can't find it.
 
 11
 00:00:47,950 --> 00:00:50,510
-That gives us the opportunity
+That gives us the opportunity
 to respond to methods that
 
 12
@@ -55,7 +55,7 @@ don't really exist.
 
 13
 00:00:51,610 --> 00:00:53,550
-Let's see how we
+Let's see how we
 might do that.
 
 14
@@ -64,22 +64,22 @@ Here we have a tweet class.
 
 15
 00:00:55,110 --> 00:00:58,130
-And we've just defined a simple
+And we've just defined a simple
 method missing method.
 
 16
 00:00:58,130 --> 00:01:01,180
-It takes the method name
+It takes the method name
 and the arguments.
 
 17
 00:01:01,180 --> 00:01:03,000
-And all we're doing here is
+And all we're doing here is
 we're printing out some text
 
 18
 00:01:03,000 --> 00:01:05,430
-to the console to let us know
+to the console to let us know
 that we tried to call a method
 
 19
@@ -88,12 +88,12 @@ that didn't exist.
 
 20
 00:01:07,200 --> 00:01:09,890
-So if we create a new tweet and
+So if we create a new tweet and
 then we try to call the
 
 21
 00:01:09,890 --> 00:01:11,910
-Submit method on it,
+Submit method on it,
 that doesn't exist.
 
 22
@@ -101,607 +101,566 @@ that doesn't exist.
 And we'll see this output.
 
 23
-00:01:13,160 --> 00:01:16,060
-
-
-24
 00:01:16,060 --> 00:01:18,200
-One way we might want to use
+One way we might want to use
 method missing is to print a
 
-25
+24
 00:01:18,200 --> 00:01:21,240
-log message every time that
+log message every time that
 someone tries to call a method
 
-26
+25
 00:01:21,240 --> 00:01:22,870
-in our class that
+in our class that
 doesn't exist.
 
-27
+26
 00:01:22,870 --> 00:01:24,230
-Here we're using a logger
+Here we're using a logger
 to print out a
 
-28
+27
 00:01:24,230 --> 00:01:25,600
 warning to a log file.
 
-29
+28
 00:01:25,600 --> 00:01:28,100
-And then we're calling super,
+And then we're calling super,
 which invokes Ruby's default
 
-30
+29
 00:01:28,100 --> 00:01:29,420
 method missing handling.
 
-31
+30
 00:01:29,420 --> 00:01:30,870
-And that'll raise a
+And that'll raise a
 no method error.
 
-32
-00:01:30,870 --> 00:01:35,560
-
-
-33
+31
 00:01:35,560 --> 00:01:38,880
-Another useful method missing
+Another useful method missing
 technique is to use it to
 
-34
+32
 00:01:38,880 --> 00:01:41,050
-delegate methods to
+delegate methods to
 another class.
 
-35
+33
 00:01:41,050 --> 00:01:43,020
-Here we have a tweet
+Here we have a tweet
 object with a user.
 
-36
+34
 00:01:43,020 --> 00:01:45,760
-And we have defined methods
+And we have defined methods
 called username and avatar
 
-37
+35
 00:01:45,760 --> 00:01:48,185
-that simply delegate to the
+that simply delegate to the
 corresponding method names in
 
-38
+36
 00:01:48,185 --> 00:01:49,220
 the user class.
 
-39
+37
 00:01:49,220 --> 00:01:51,170
-Once we have more than a few of
+Once we have more than a few of
 these methods, it would be
 
-40
+38
 00:01:51,170 --> 00:01:52,790
 nice to clean that up somehow.
 
-41
+39
 00:01:52,790 --> 00:01:55,050
-We can do that with
+We can do that with
 method missing.
 
-42
+40
 00:01:55,050 --> 00:01:57,416
-So what we've done here is to
+So what we've done here is to
 define method missing in our
 
-43
+41
 00:01:57,416 --> 00:02:00,690
-tweet class and then inside of
+tweet class and then inside of
 method missing, just use Send
 
-44
+42
 00:02:00,690 --> 00:02:02,400
-to pass that same method
+to pass that same method
 with the same
 
-45
+43
 00:02:02,400 --> 00:02:04,660
 arguments on to our user.
 
-46
+44
 00:02:04,660 --> 00:02:07,100
-Notice that this code will
+Notice that this code will
 delegate all missing methods
 
-47
+45
 00:02:07,100 --> 00:02:08,370
 over to the user class.
 
-48
+46
 00:02:08,370 --> 00:02:10,750
-So if the user class gets one
+So if the user class gets one
 of those methods and doesn't
 
-49
+47
 00:02:10,750 --> 00:02:13,550
-respond to it, its default
+respond to it, its default
 method missing handling will
 
-50
+48
 00:02:13,550 --> 00:02:15,350
 raise a no method error.
 
-51
+49
 00:02:15,350 --> 00:02:17,030
-Now you may be using this
+Now you may be using this
 technique, but you really
 
-52
+50
 00:02:17,030 --> 00:02:20,160
-prefer to delegate just a few
+prefer to delegate just a few
 methods to the user and not
 
-53
+51
 00:02:20,160 --> 00:02:21,750
-just blindly delegate
+just blindly delegate
 them all.
 
-54
+52
 00:02:21,750 --> 00:02:23,910
-We can do that by adding a
+We can do that by adding a
 constant up at the top of our
 
-55
+53
 00:02:23,910 --> 00:02:26,710
-class that lists our
+class that lists our
 delegated methods.
 
-56
+54
 00:02:26,710 --> 00:02:29,100
-And then in our method missing,
+And then in our method missing,
 we'll check to see if
 
-57
+55
 00:02:29,100 --> 00:02:30,880
-the method name is
+the method name is
 in that list.
 
-58
+56
 00:02:30,880 --> 00:02:33,980
-If so, we'll do the delegation
+If so, we'll do the delegation
 that we were doing before.
 
-59
+57
 00:02:33,980 --> 00:02:35,610
 And if not, we'll call super.
 
-60
+58
 00:02:35,610 --> 00:02:38,510
-And that'll invoke the default
+And that'll invoke the default
 method missing handling, which
 
-61
+59
 00:02:38,510 --> 00:02:40,120
-in most cases will raise
+in most cases will raise
 a no method error.
 
-62
-00:02:40,120 --> 00:02:45,820
-
-
-63
+60
 00:02:45,820 --> 00:02:46,780
 Just a side note-- this type of
 
-64
+61
 00:02:46,780 --> 00:02:48,620
 delegation is pretty useful.
 
-65
+62
 00:02:48,620 --> 00:02:51,240
-And so Ruby provides a Simple
+And so Ruby provides a Simple
 Delegator class
 
-66
+63
 00:02:51,240 --> 00:02:52,190
 that you can use.
 
-67
+64
 00:02:52,190 --> 00:02:55,490
-Simply inherit from it, and it
+Simply inherit from it, and it
 will delegate all method calls
 
-68
+65
 00:02:55,490 --> 00:02:57,940
-to some other object, unless
+to some other object, unless
 they're defined locally.
 
-69
-00:02:57,940 --> 00:03:02,260
-
-
-70
+66
 00:03:02,260 --> 00:03:04,400
-Let's take a look back at our
+Let's take a look back at our
 tweet class and see how we
 
-71
+67
 00:03:04,400 --> 00:03:07,010
-might implement this code
+might implement this code
 using method missing.
 
-72
+68
 00:03:07,010 --> 00:03:08,670
-What we have here
+What we have here
 is a new tweet .
 
-73
+69
 00:03:08,670 --> 00:03:10,900
-We'd like to be able to do as
+We'd like to be able to do as
 with any method that starts
 
-74
+70
 00:03:10,900 --> 00:03:12,240
 with hash underscore.
 
-75
+71
 00:03:12,240 --> 00:03:15,980
-Let's see how we might
+Let's see how we might
 implement that.
 
-76
+72
 00:03:15,980 --> 00:03:17,070
 Here's our tweet class.
 
-77
+73
 00:03:17,070 --> 00:03:19,480
-And this time in our method
+And this time in our method
 missing method, we're going to
 
-78
+74
 00:03:19,480 --> 00:03:22,200
-match the method name against
+match the method name against
 a regular expression.
 
-79
+75
 00:03:22,200 --> 00:03:24,720
-This one checks to make sure
+This one checks to make sure
 that the method name starts
 
-80
+76
 00:03:24,720 --> 00:03:28,190
 with hash and then underscore.
 
-81
+77
 00:03:28,190 --> 00:03:31,210
-If it does, then we respond to
+If it does, then we respond to
 that method by adding the
 
-82
+78
 00:03:31,210 --> 00:03:33,250
-appropriate hashtag
+appropriate hashtag
 to our tweet.
 
-83
+79
 00:03:33,250 --> 00:03:35,920
-If not, again, we call super
+If not, again, we call super
 to get the default method
 
-84
+80
 00:03:35,920 --> 00:03:37,170
 missing handling.
 
-85
-00:03:37,170 --> 00:03:40,610
-
-
-86
+81
 00:03:40,610 --> 00:03:42,810
-Another method that you'll
+Another method that you'll
 see used quite often in
 
-87
+82
 00:03:42,810 --> 00:03:45,550
-conjunction with method
+conjunction with method
 missing is respond_to.
 
-88
+83
 00:03:45,550 --> 00:03:47,470
-This is a method that you can
+This is a method that you can
 call that returns true or
 
-89
+84
 00:03:47,470 --> 00:03:50,040
-false and that tells you whether
+false and that tells you whether
 or not a specific
 
-90
+85
 00:03:50,040 --> 00:03:52,660
-object responds to
+object responds to
 a given method.
 
-91
+86
 00:03:52,660 --> 00:03:54,910
-In the case of our tweet
+In the case of our tweet
 class, we can ask if it
 
-92
+87
 00:03:54,910 --> 00:03:56,760
-responds to a method
+responds to a method
 called to_s.
 
-93
+88
 00:03:56,760 --> 00:04:01,050
-And we defined that earlier,
+And we defined that earlier,
 so Ruby returns true.
 
-94
+89
 00:04:01,050 --> 00:04:04,050
-We could also call our new hash
+We could also call our new hash
 Ruby method on the tweet.
 
-95
+90
 00:04:04,050 --> 00:04:05,630
-We know that works, because
+We know that works, because
 we implemented
 
-96
+91
 00:04:05,630 --> 00:04:06,930
 it with method missing.
 
-97
+92
 00:04:06,930 --> 00:04:10,900
-But if we ask the tweet if it
+But if we ask the tweet if it
 responds_to hash_ruby, Ruby
 
-98
+93
 00:04:10,900 --> 00:04:12,270
 says false.
 
-99
+94
 00:04:12,270 --> 00:04:13,310
 And this is a lie.
 
-100
+95
 00:04:13,310 --> 00:04:15,050
-So let's see if we can figure
+So let's see if we can figure
 out how to fix it.
 
-101
-00:04:15,050 --> 00:04:18,670
-
-
-102
+96
 00:04:18,670 --> 00:04:20,510
-The way to do that is
+The way to do that is
 to provide a custom
 
-103
+97
 00:04:20,510 --> 00:04:23,740
-implementation of respond_to
+implementation of respond_to
 that matches what we've done
 
-104
+98
 00:04:23,740 --> 00:04:25,090
 in method missing.
 
-105
+99
 00:04:25,090 --> 00:04:28,080
-So in this case, we're taking
+So in this case, we're taking
 the method name.
 
-106
+100
 00:04:28,080 --> 00:04:30,450
-We're checking against that same
+We're checking against that same
 regular expression to see
 
-107
+101
 00:04:30,450 --> 00:04:33,160
-if the method name starts with
+if the method name starts with
 hash and then underscore.
 
-108
+102
 00:04:33,160 --> 00:04:35,210
 If so, it will return true.
 
-109
+103
 00:04:35,210 --> 00:04:38,270
-Otherwise, we call super, which
+Otherwise, we call super, which
 will return false in
 
-110
+104
 00:04:38,270 --> 00:04:39,800
-cases where the method
+cases where the method
 doesn't exist.
 
-111
-00:04:39,800 --> 00:04:42,340
-
-
-112
+105
 00:04:42,340 --> 00:04:44,840
-So now we can ask our tweet if
+So now we can ask our tweet if
 it responds to hash Ruby.
 
-113
+106
 00:04:44,840 --> 00:04:49,110
-And we get back true,
+And we get back true,
 which is correct.
 
-114
+107
 00:04:49,110 --> 00:04:51,710
-But there's still a problem,
+But there's still a problem,
 because if we use the method
 
-115
+108
 00:04:51,710 --> 00:04:54,070
-method that we learned about
+method that we learned about
 earlier to try to get back a
 
-116
+109
 00:04:54,070 --> 00:04:56,940
-method object for hash Ruby,
+method object for hash Ruby,
 we get an exception.
 
-117
-00:04:56,940 --> 00:04:59,870
-
-
-118
+110
 00:04:59,870 --> 00:05:02,470
-Ruby 1.9.3 introduced a way
+Ruby 1.9.3 introduced a way
 for us to get around this
 
-119
+111
 00:05:02,470 --> 00:05:03,380
 problem as well.
 
-120
+112
 00:05:03,380 --> 00:05:07,020
-If we implement respond_to_missing 
+If we implement respond_to_missing
 instead of respond_to,
 
-121
+113
 00:05:07,020 --> 00:05:07,540
 you'll see that the
 
-122
+114
 00:05:07,540 --> 00:05:09,290
 implementation here is the same.
 
-123
+115
 00:05:09,290 --> 00:05:11,600
-Then Ruby will return the proper
+Then Ruby will return the proper
 method object when we
 
-124
+116
 00:05:11,600 --> 00:05:13,390
-try to look up the
+try to look up the
 dynamic method.
 
-125
-00:05:13,390 --> 00:05:16,800
-
-
-126
+117
 00:05:16,800 --> 00:05:19,040
-Let's take a look at one more
+Let's take a look at one more
 way that we can optimize the
 
-127
+118
 00:05:19,040 --> 00:05:20,440
 code that we just wrote.
 
-128
+119
 00:05:20,440 --> 00:05:23,160
-Here we're calling the method
+Here we're calling the method
 hash_codeschool twice on the
 
-129
+120
 00:05:23,160 --> 00:05:24,940
 same tweet object.
 
-130
+121
 00:05:24,940 --> 00:05:27,630
-Every time we call 
+Every time we call
 hash_codeschool it's going through the
 
-131
+122
 00:05:27,630 --> 00:05:29,550
-method missing logic,
+method missing logic,
 doing the match,
 
-132
+123
 00:05:29,550 --> 00:05:30,770
 and some other things.
 
-133
+124
 00:05:30,770 --> 00:05:33,460
-If it was really important for
+If it was really important for
 us to optimize this and we
 
-134
+125
 00:05:33,460 --> 00:05:35,530
-knew that hash_codeschool was
+knew that hash_codeschool was
 going to be called a lot of
 
-135
+126
 00:05:35,530 --> 00:05:38,580
-times, we might want to actually
+times, we might want to actually
 define that method
 
-136
+127
 00:05:38,580 --> 00:05:40,265
-the first time that
+the first time that
 we need it.
 
-137
+128
 00:05:40,265 --> 00:05:41,830
 So let's do that.
 
-138
+129
 00:05:41,830 --> 00:05:44,690
-In our method missing instead
+In our method missing instead
 of simply adding the hashtag
 
-139
+130
 00:05:44,690 --> 00:05:48,170
 to the tweet, let's use define_method
 to create a method name
 
-140
+131
 00:05:48,170 --> 00:05:50,460
-hash_codeschool the first
+hash_codeschool the first
 time we need it.
 
-141
+132
 00:05:50,460 --> 00:05:53,290
-You'll see that after we do that
+You'll see that after we do that
 we're also calling Send
 
-142
+133
 00:05:53,290 --> 00:05:55,340
-to invoke the method
+to invoke the method
 the first time.
 
-143
+134
 00:05:55,340 --> 00:05:58,340
-Once we've done that one time,
+Once we've done that one time,
 the hash_codeschool method
 
-144
+135
 00:05:58,340 --> 00:06:00,370
 exists on our tweet class.
 
-145
+136
 00:06:00,370 --> 00:06:02,890
-And any additional times we call
+And any additional times we call
 it, Ruby will simply find
 
-146
+137
 00:06:02,890 --> 00:06:04,620
-that method and invoke
+that method and invoke
 it directly
 
-147
+138
 00:06:04,620 --> 00:06:05,870
 instead of method missing.
 
-148
-00:06:05,870 --> 00:06:11,786
-
-
-149
+139
 00:06:11,786 --> 00:06:13,965
-It's time for you to go find
+It's time for you to go find
 some missing methods with
 
-150
+140
 00:06:13,965 --> 00:06:16,210
-these challenges, and we'll see
+these challenges, and we'll see
 you back for level five.
 
-151
+141
 00:00:00,000 --> 00:00:00,000
 00:06:16,210 --> 00:06:18,007
-

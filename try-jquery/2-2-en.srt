@@ -1,352 +1,328 @@
 ﻿1
-00:00:00,000 --> 00:00:00,180
-
-
-2
 00:00:00,180 --> 00:00:03,570
 [SINGING]jQuery will help
 you build your dot com.
 
-3
+2
 00:00:03,570 --> 00:00:07,550
 Find an element inside
 of the DOM.
 
-4
+3
 00:00:07,550 --> 00:00:11,910
 AJAX traversal manipulation,
 event
 
-5
+4
 00:00:11,910 --> 00:00:14,750
 handling and animation.
 
-6
+5
 00:00:14,750 --> 00:00:20,190
 Providing you with versatility,
 an API with
 
-7
+6
 00:00:20,190 --> 00:00:21,365
 extensibility.
 
-8
+7
 00:00:21,365 --> 00:00:25,130
 JQuery is something
 you can't ignore.
 
-9
+8
 00:00:25,130 --> 00:00:27,926
 Write less, do more.
 
-10
-00:00:27,926 --> 00:00:31,160
-
-
-11
+9
 00:00:31,160 --> 00:00:33,760
 I'm Greg Pollack, and you're
 watching Try jQuery, And this
 
-12
+10
 00:00:33,760 --> 00:00:35,640
 is level two, where we're going
 to be searching through
 
-13
+11
 00:00:35,640 --> 00:00:39,170
 the DOM using more
 CSS selectors.
 
-14
+12
 00:00:39,170 --> 00:00:41,960
 So here's the HTML we used
 in our previous level.
 
-15
+13
 00:00:41,960 --> 00:00:45,580
 And remember, we were able to
 select the unordered list with
 
-16
+14
 00:00:45,580 --> 00:00:47,780
 the ID of destinations.
 
-17
+15
 00:00:47,780 --> 00:00:51,960
 But how might we select the
 list items inside of that
 
-18
+16
 00:00:51,960 --> 00:00:54,170
 specific unordered list?
 
-19
+17
 00:00:54,170 --> 00:00:57,790
 We can do that using the
 descendant selector.
 
-20
+18
 00:00:57,790 --> 00:01:00,970
 So here is our DOM again.
 
-21
+19
 00:01:00,970 --> 00:01:05,069
 And we can simply write
 "#destinations li" to
 
-22
+20
 00:01:05,069 --> 00:01:07,940
 select all the list items
 underneath the element with
 
-23
+21
 00:01:07,940 --> 00:01:09,640
 the destinations ID.
 
-24
+22
 00:01:09,640 --> 00:01:12,850
 So here the parent is
 destinations, and the
 
-25
+23
 00:01:12,850 --> 00:01:14,680
 descendant is the LI.
 
-26
-00:01:14,680 --> 00:01:17,400
-
-
-27
+24
 00:01:17,400 --> 00:01:19,830
 Let's make our HTML a little
 bit more complex.
 
-28
+25
 00:01:19,830 --> 00:01:23,110
 As you can see here, now we have
 an unordered list inside
 
-29
+26
 00:01:23,110 --> 00:01:24,860
 of our unordered list.
 
-30
+27
 00:01:24,860 --> 00:01:29,400
 And we want to find only the LI
 elements that are children
 
-31
+28
 00:01:29,400 --> 00:01:32,500
 of the destinations UL.
 
-32
+29
 00:01:32,500 --> 00:01:37,100
 Just the children, not the
 children's children.
 
-33
+30
 00:01:37,100 --> 00:01:39,520
 To solve this, would we use
 the descendant selector?
 
-34
+31
 00:01:39,520 --> 00:01:43,340
 Well, let's see what
 happens if we do.
 
-35
+32
 00:01:43,340 --> 00:01:47,030
 If you use #destination li
 like before, it
 
-36
+33
 00:01:47,030 --> 00:01:51,280
 selects all of the list items
 underneath that UL, which is
 
-37
+34
 00:01:51,280 --> 00:01:53,610
 not what we want.
 
-38
+35
 00:01:53,610 --> 00:01:57,040
 In order to find only the direct
 children, we need to
 
-39
+36
 00:01:57,040 --> 00:01:59,440
 use the child selector.
 
-40
+37
 00:01:59,440 --> 00:02:02,070
 Let's see what that
 looks like.
 
-41
+38
 00:02:02,070 --> 00:02:04,850
 To select the direct
 descendants, we specify
 
-42
+39
 00:02:04,850 --> 00:02:07,590
 #destinations, then we
 use the greater than
 
-43
+40
 00:02:07,590 --> 00:02:10,130
 sign, and then LI.
 
-44
+41
 00:02:10,130 --> 00:02:13,070
 You'll see in the DOM that that
 Paris list item does not
 
-45
+42
 00:02:13,070 --> 00:02:15,610
 get selected, because we're only
 going after the direct
 
-46
+43
 00:02:15,610 --> 00:02:17,100
 descendants.
 
-47
+44
 00:02:17,100 --> 00:02:19,070
 #destinations is
 the parent here.
 
-48
+45
 00:02:19,070 --> 00:02:23,250
 The child here is LI, and that
 greater than sign is what
 
-49
+46
 00:02:23,250 --> 00:02:25,330
 tells jQuery that we're
 looking for the direct
 
-50
+47
 00:02:25,330 --> 00:02:26,580
 descendant.
 
-51
-00:02:26,580 --> 00:02:29,420
-
-
-52
+48
 00:02:29,420 --> 00:02:31,800
 Now, what if we want to select
 multiple elements?
 
-53
+49
 00:02:31,800 --> 00:02:35,380
 Let's say we want to select
 elements with either a promo
 
-54
+50
 00:02:35,380 --> 00:02:38,480
 class or a France ID.
 
-55
+51
 00:02:38,480 --> 00:02:44,640
 To do that, we can simply list
 ".promo, #france"
 
-56
+52
 00:02:44,640 --> 00:02:46,560
 Using a common like
 this allows us to
 
-57
+53
 00:02:46,560 --> 00:02:47,895
 select multiple items.
 
-58
-00:02:47,895 --> 00:02:50,580
-
-
-59
+54
 00:02:50,580 --> 00:02:54,960
 Now, what if we only wanted to
 select the first item in that
 
-60
+55
 00:02:54,960 --> 00:02:56,520
 unordered list?
 
-61
+56
 00:02:56,520 --> 00:02:58,530
 We can do that using the
 pseudo selector.
 
-62
+57
 00:02:58,530 --> 00:03:02,700
 In this case
 #destinations li:first
 
-63
+58
 00:03:02,700 --> 00:03:05,390
 This will select the first
 item in the list.
 
-64
+59
 00:03:05,390 --> 00:03:07,940
 As you might imagine, to select
 the last item in the list
 
-65
+60
 00:03:07,940 --> 00:03:10,720
-we simply use 
+we simply use
 li:last.
 
-66
-00:03:10,720 --> 00:03:14,160
-
-
-67
+61
 00:03:14,160 --> 00:03:17,130
 If we wanted to select every
 other list item, we might want
 
-68
+62
 00:03:17,130 --> 00:03:19,700
 to use the odd pseudo class.
 
-69
+63
 00:03:19,700 --> 00:03:23,615
 So in this case, it would only
 select the middle list item.
 
-70
+64
 00:03:23,615 --> 00:03:26,410
 This might not seem intuitive
 at first, but you have to
 
-71
+65
 00:03:26,410 --> 00:03:30,000
 understand that the index for
 these list items starts at
 
-72
+66
 00:03:30,000 --> 00:03:32,520
 zero, like so.
 
-73
+67
 00:03:32,520 --> 00:03:35,640
 So that's why the odd only
 selects the middle item.
 
-74
+68
 00:03:35,640 --> 00:03:43,170
 If we used even, it would select
 0, 2, 4, 6, and so on.
 
-75
+69
 00:03:43,170 --> 00:03:45,150
 Time for you to use some of
 these selectors in the
 
-76
+70
 00:03:45,150 --> 00:03:46,400
 challenges.

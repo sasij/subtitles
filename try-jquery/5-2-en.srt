@@ -1,436 +1,407 @@
-1
-00:00:00,000 --> 00:00:00,180
-
-
-2
+﻿1
 00:00:00,180 --> 00:00:00,220
 [SINGING]
 
-3
+2
 00:00:00,220 --> 00:00:04,580
-jQuery will help you build your
+jQuery will help you build your
 dot-com, find an element
 
-4
+3
 00:00:04,580 --> 00:00:11,430
-inside of the DOM, AJAX
+inside of the DOM, AJAX
 traversal manipulation, event
 
-5
+4
 00:00:11,430 --> 00:00:15,970
-handling, and animation,
+handling, and animation,
 providing you with
 
-6
+5
 00:00:15,970 --> 00:00:21,650
-versatility, an API with
+versatility, an API with
 extensibility.
 
-7
+6
 00:00:21,650 --> 00:00:25,130
-jQuery is something
+jQuery is something
 you can't ignore.
 
-8
+7
 00:00:25,130 --> 00:00:26,540
 Write less.
 
-9
+8
 00:00:26,540 --> 00:00:27,790
 Do more.
 
-10
-00:00:27,790 --> 00:00:31,130
-
-
-11
+9
 00:00:31,130 --> 00:00:33,530
-You're watching Try jQuery, and
+You're watching Try jQuery, and
 this is level five, where
 
-12
+10
 00:00:33,530 --> 00:00:35,580
-we're going to start by talking
+we're going to start by talking
 a little bit about
 
-13
+11
 00:00:35,580 --> 00:00:37,340
 taming CSS.
 
-14
+12
 00:00:37,340 --> 00:00:40,840
-So we've got HTML, we've got
+So we've got HTML, we've got
 CSS, and we've got
 
-15
+13
 00:00:40,840 --> 00:00:42,060
 JavaScript.
 
-16
+14
 00:00:42,060 --> 00:00:46,030
-And if we want to change the
+And if we want to change the
 style of something, what
 
-17
+15
 00:00:46,030 --> 00:00:47,110
 should we use?
 
-18
+16
 00:00:47,110 --> 00:00:50,470
-We can use both CSS
+We can use both CSS
 and JavaScript.
 
-19
+17
 00:00:50,470 --> 00:00:52,570
-Let's try using some
+Let's try using some
 JavaScript.
 
-20
+18
 00:00:52,570 --> 00:00:54,610
-So here we've got a page
+So here we've got a page
 where we've got
 
-21
+19
 00:00:54,610 --> 00:00:56,420
 different vacation packages.
 
-22
+20
 00:00:56,420 --> 00:00:59,290
-Let's make it so when people
+Let's make it so when people
 click on the li element, that
 
-23
+21
 00:00:59,290 --> 00:01:00,540
 it changes the style.
 
-24
-00:01:00,540 --> 00:01:05,050
-
-
-25
+22
 00:01:05,050 --> 00:01:07,990
-So here we are inside of our
+So here we are inside of our
 application.js, and we're
 
-26
+23
 00:01:07,990 --> 00:01:12,180
-listening for click events
+listening for click events
 on the vacation class.
 
-27
+24
 00:01:12,180 --> 00:01:14,380
-There's a few different methods
+There's a few different methods
 we can use to get and
 
-28
+25
 00:01:14,380 --> 00:01:16,110
 set the CSS.
 
-29
+26
 00:01:16,110 --> 00:01:19,460
-We can set it by specifying
+We can set it by specifying
 the attribute and a value.
 
-30
+27
 00:01:19,460 --> 00:01:23,250
-We can get its current value by
+We can get its current value by
 specifying the attribute,
 
-31
+28
 00:01:23,250 --> 00:01:25,510
-and we can also send
+and we can also send
 in an object.
 
-32
+29
 00:01:25,510 --> 00:01:28,660
-Let me show you what
+Let me show you what
 that looks like.
 
-33
+30
 00:01:28,660 --> 00:01:31,540
-In our example, we could set the
+In our example, we could set the
 background color for this
 
-34
+31
 00:01:31,540 --> 00:01:34,910
 current li to this hex code.
 
-35
+32
 00:01:34,910 --> 00:01:38,680
-We could also set the border
+We could also set the border
 color to one pixel solid with
 
-36
+33
 00:01:38,680 --> 00:01:39,810
 this color.
 
-37
+34
 00:01:39,810 --> 00:01:42,710
-We could also do this in one
+We could also do this in one
 line by method chaining these
 
-38
+35
 00:01:42,710 --> 00:01:44,680
 both together like so.
 
-39
+36
 00:01:44,680 --> 00:01:47,890
-However, the cleanest way to do
+However, the cleanest way to do
 it would be to simply send
 
-40
+37
 00:01:47,890 --> 00:01:52,200
-in a JavaScript object, in this
+in a JavaScript object, in this
 case, having a series of
 
-41
+38
 00:01:52,200 --> 00:01:55,480
-keys and values with just
+keys and values with just
 one argument, which
 
-42
+39
 00:01:55,480 --> 00:01:56,730
 is that JavaScript object.
 
-43
-00:01:56,730 --> 00:02:00,150
-
-
-44
+40
 00:02:00,150 --> 00:02:02,160
-Now when our vacations are
+Now when our vacations are
 clicked, we want to show the
 
-45
+41
 00:02:02,160 --> 00:02:03,890
 price for that vacation.
 
-46
+42
 00:02:03,890 --> 00:02:07,100
-So we're going to take this,
+So we're going to take this,
 which is the current li that
 
-47
+43
 00:02:07,100 --> 00:02:08,080
 was clicked.
 
-48
+44
 00:02:08,080 --> 00:02:12,350
-And we're going to find inside
+And we're going to find inside
 of it the price class.
 
-49
+45
 00:02:12,350 --> 00:02:14,390
-And then we want
+And then we want
 to display it.
 
-50
+46
 00:02:14,390 --> 00:02:17,570
-One way we can get it to display
+One way we can get it to display
 is changing it from
 
-51
+47
 00:02:17,570 --> 00:02:21,060
 display none to display block.
 
-52
+48
 00:02:21,060 --> 00:02:23,020
-However there's a better
+However there's a better
 way to do that.
 
-53
+49
 00:02:23,020 --> 00:02:26,230
-jQuery gives you two methods,
+jQuery gives you two methods,
 one called show
 
-54
+50
 00:02:26,230 --> 00:02:27,640
 and one called hide.
 
-55
+51
 00:02:27,640 --> 00:02:30,810
-And they basically do the same
+And they basically do the same
 thing-- they change it between
 
-56
+52
 00:02:30,810 --> 00:02:34,540
-display none and
+display none and
 display block.
 
-57
+53
 00:02:34,540 --> 00:02:36,130
-But they're a little
+But they're a little
 bit easier to use.
 
-58
+54
 00:02:36,130 --> 00:02:37,970
-So here we call the show method,
+So here we call the show method,
 and it's going to
 
-59
+55
 00:02:37,970 --> 00:02:39,320
 display the price for us.
 
-60
-00:02:39,320 --> 00:02:43,620
-
-
-61
+56
 00:02:43,620 --> 00:02:44,230
 And there we go.
 
-62
+57
 00:02:44,230 --> 00:02:46,460
-Now when we click on the li,
+Now when we click on the li,
 it highlights a vacation
 
-63
+58
 00:02:46,460 --> 00:02:49,960
-package and shows the price,
+package and shows the price,
 as we can see here.
 
-64
-00:02:49,960 --> 00:02:53,910
-
-
-65
+59
 00:02:53,910 --> 00:02:57,130
-This might feel a little
+This might feel a little
 bit dirty to you.
 
-66
+60
 00:02:57,130 --> 00:02:58,940
 That might be a good feeling.
 
-67
+61
 00:02:58,940 --> 00:03:02,270
-Because you might want to keep
+Because you might want to keep
 all of your styles inside of
 
-68
+62
 00:03:02,270 --> 00:03:05,840
-your style sheet and not
+your style sheet and not
 in your JavaScript.
 
-69
+63
 00:03:05,840 --> 00:03:07,730
 So how might we do that here?
 
-70
+64
 00:03:07,730 --> 00:03:10,280
-Let's refactor this
+Let's refactor this
 code to do that.
 
-71
+65
 00:03:10,280 --> 00:03:12,520
-So let's create two
+So let's create two
 new classes.
 
-72
+66
 00:03:12,520 --> 00:03:15,550
-We have a style on the
+We have a style on the
 highlighted class and a style
 
-73
+67
 00:03:15,550 --> 00:03:19,290
-on the price inside the
+on the price inside the
 highlighted class.
 
-74
+68
 00:03:19,290 --> 00:03:21,920
-Now in order to make these style
+Now in order to make these style
 changes, all we have to
 
-75
+69
 00:03:21,920 --> 00:03:26,340
-do is add this class
+do is add this class
 to our li.
 
-76
+70
 00:03:26,340 --> 00:03:27,670
-So let's go ahead and
+So let's go ahead and
 do that, and now our
 
-77
+71
 00:03:27,670 --> 00:03:28,770
 code is a lot cleaner.
 
-78
+72
 00:03:28,770 --> 00:03:31,830
-Plus, it's much easier to
+Plus, it's much easier to
 manipulate the style, because
 
-79
+73
 00:03:31,830 --> 00:03:34,860
 all of our styles are in CSS.
 
-80
+74
 00:03:34,860 --> 00:03:37,820
-One more feature we want to add
+One more feature we want to add
 here is when we click on
 
-81
+75
 00:03:37,820 --> 00:03:41,530
-the li for the second time, we
+the li for the second time, we
 want the price to go away.
 
-82
+76
 00:03:41,530 --> 00:03:44,480
-So how do we remove the
+So how do we remove the
 highlighted class?
 
-83
+77
 00:03:44,480 --> 00:03:47,690
-Well remember, not only do we
+Well remember, not only do we
 have .addClass() or
 
-84
+78
 00:03:47,690 --> 00:03:51,150
-.removeClass(), but we can
+.removeClass(), but we can
 also do .toggleClass().
 
-85
+79
 00:03:51,150 --> 00:03:52,750
 So let's go ahead and do that.
 
-86
+80
 00:03:52,750 --> 00:03:55,540
-We'll add .toggleClass()
+We'll add .toggleClass()
 highlighted.
 
-87
+81
 00:03:55,540 --> 00:03:57,830
-And then it will add the class
+And then it will add the class
 if it doesn't have it.
 
-88
+82
 00:03:57,830 --> 00:04:00,710
-And if it does, it will
+And if it does, it will
 properly take it away.
 
-89
+83
 00:04:00,710 --> 00:04:03,230
-And here we are back in
+And here we are back in
 our web page, and as
 
-90
+84
 00:04:03,230 --> 00:04:05,315
 you can see, it works.
 
-91
-00:04:05,315 --> 00:04:10,430
-
-
-92
+85
 00:04:10,430 --> 00:04:11,883
-Time to get in the challenges,
+Time to get in the challenges,
 and I'll see
 
-93
+86
 00:04:11,883 --> 00:04:13,133
 you in the next section.
 
-94
+87
 00:00:00,000 --> 00:00:00,000
 00:04:13,133 --> 00:04:16,599
-

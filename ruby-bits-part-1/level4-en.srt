@@ -1,526 +1,495 @@
-1
-00:00:00,000 --> 00:00:00,400
-
-
-2
+﻿1
 00:00:00,400 --> 00:00:02,700
 You're watching Ruby Bits and
 this is Level 4, where we're
 
-3
+2
 00:00:02,700 --> 00:00:05,400
 going to be going over Active
 Support and some of the
 
-4
+3
 00:00:05,400 --> 00:00:07,070
 additional helpers
 that gives you on
 
-5
+4
 00:00:07,070 --> 00:00:08,320
 top of the Ruby language.
 
-6
-00:00:08,320 --> 00:00:34,780
-
-
-7
+5
 00:00:34,780 --> 00:00:36,300
 To install Active Support,
 you're going to want to
 
-8
+6
 00:00:36,300 --> 00:00:37,290
 install it as a gem.
 
-9
+7
 00:00:37,290 --> 00:00:40,310
 You might also want to install
 the internationalization gem,
 
-10
+8
 00:00:40,310 --> 00:00:42,095
 because there's a lot of
 libraries inside Active
 
-11
+9
 00:00:42,095 --> 00:00:44,000
 Support that depend on it.
 
-12
+10
 00:00:44,000 --> 00:00:46,420
 To load it inside of your
 classes, you're going to want
 
-13
+11
 00:00:46,420 --> 00:00:49,400
 to just run require
 active_support/all, if you
 
-14
+12
 00:00:49,400 --> 00:00:51,000
 want to include all
 the classes.
 
-15
+13
 00:00:51,000 --> 00:00:52,100
 But you might not want
 all of them.
 
-16
+14
 00:00:52,100 --> 00:00:54,550
 In which case, it's very easy
 to just include a specific
 
-17
+15
 00:00:54,550 --> 00:00:56,710
 library that you might
 want to use.
 
-18
+16
 00:00:56,710 --> 00:00:59,250
 As I mentioned, Active Support
 adds a bunch of helper methods
 
-19
+17
 00:00:59,250 --> 00:01:02,450
 to existing Ruby classes,
 such as array.
 
-20
+18
 00:01:02,450 --> 00:01:05,224
 If we have a plain old array
 with some numbers in it, we
 
-21
+19
 00:01:05,224 --> 00:01:07,732
 can call array.from(4).
 
-22
+20
 00:01:07,732 --> 00:01:11,060
 The from helper method allows us
 to get a new array starting
 
-23
+21
 00:01:11,060 --> 00:01:14,980
 from the item in the fourth
 position in the array.
 
-24
+22
 00:01:14,980 --> 00:01:17,250
 The to method is going to give
 us a new array that starts
 
-25
+23
 00:01:17,250 --> 00:01:20,120
 from the beginning until the
 index, which we passed in as
 
-26
+24
 00:01:20,120 --> 00:01:21,390
 an argument.
 
-27
+25
 00:01:21,390 --> 00:01:24,670
 The in_groups_of method will
 split up the array into groups
 
-28
+26
 00:01:24,670 --> 00:01:28,000
 of three, padding with nil,
 if there's extra spaces.
 
-29
+27
 00:01:28,000 --> 00:01:30,690
 And the split method will
 split the array into two
 
-30
+28
 00:01:30,690 --> 00:01:33,930
 different arrays at the index,
 which was passed in.
 
-31
+29
 00:01:33,930 --> 00:01:37,260
 Also notice that it removes the
 element that it split on.
 
-32
+30
 00:01:37,260 --> 00:01:39,680
 Some of the most useful methods
 from Active Support
 
-33
+31
 00:01:39,680 --> 00:01:41,260
 are added to the date class.
 
-34
+32
 00:01:41,260 --> 00:01:44,410
 So here, let's get a DateTime
 that we can call
 
-35
+33
 00:01:44,410 --> 00:01:50,340
 at_beginning_of_day, or
 at_beginning_of_month, or
 
-36
+34
 00:01:50,340 --> 00:01:51,500
 at_beginning_of_year--
 
-37
+35
 00:01:51,500 --> 00:01:53,260
 all helper methods that
 Active Support adds.
 
-38
-00:01:53,260 --> 00:01:56,190
-
-
-39
+36
 00:01:56,190 --> 00:01:59,770
 We could also call advance if we
 want to advance four years,
 
-40
+37
 00:01:59,770 --> 00:02:02,130
 three months, two
 weeks, one day.
 
-41
+38
 00:02:02,130 --> 00:02:04,940
 And, of course, you could pass
 in just one of these hash
 
-42
+39
 00:02:04,940 --> 00:02:06,600
 options if you wanted to.
 
-43
+40
 00:02:06,600 --> 00:02:10,740
 You can also advance using
 tomorrow, or go back a day
 
-44
+41
 00:02:10,740 --> 00:02:11,990
 using yesterday.
 
-45
-00:02:11,990 --> 00:02:14,420
-
-
-46
+42
 00:02:14,420 --> 00:02:16,170
 Next, let's take a look
 at a couple of Active
 
-47
+43
 00:02:16,170 --> 00:02:17,800
 Support hash methods.
 
-48
+44
 00:02:17,800 --> 00:02:19,760
 So here we have two
 different hashes.
 
-49
+45
 00:02:19,760 --> 00:02:22,010
 And if we wanted to know the
 difference between the two, we
 
-50
+46
 00:02:22,010 --> 00:02:23,760
 could call diff.
 
-51
+47
 00:02:23,760 --> 00:02:25,110
 As you can see, this returns
 the difference
 
-52
+48
 00:02:25,110 --> 00:02:26,600
 between the two hashes.
 
-53
+49
 00:02:26,600 --> 00:02:28,510
 Also, there's the stringify_keys
 helper method
 
-54
+50
 00:02:28,510 --> 00:02:34,310
 which is going to turn all
 of our key into strings.
 
-55
+51
 00:02:34,310 --> 00:02:37,260
 Remember back in Level 2 when
 we used an options hash as a
 
-56
+52
 00:02:37,260 --> 00:02:39,070
 parameter into a method?
 
-57
+53
 00:02:39,070 --> 00:02:41,200
 Well, when you look through
 other people's code, sometimes
 
-58
+54
 00:02:41,200 --> 00:02:43,670
 you're going to see them using
 this Active Support method
 
-59
+55
 00:02:43,670 --> 00:02:47,480
 called reverse merge, which
 will allow them to specify
 
-60
+56
 00:02:47,480 --> 00:02:50,580
 defaults into that
 option hash.
 
-61
+57
 00:02:50,580 --> 00:02:52,650
 So here you see the options,
 which we're passing into the
 
-62
+58
 00:02:52,650 --> 00:02:55,550
 method, and the defaults that
 we're setting once we get into
 
-63
+59
 00:02:55,550 --> 00:02:56,460
 the method.
 
-64
+60
 00:02:56,460 --> 00:02:58,045
 So in this case, we might
 run options.reverse_
 
-65
+61
 00:02:58,045 --> 00:03:00,500
 merge(defaults).
 
-66
+62
 00:03:00,500 --> 00:03:03,180
 What this is going to do is
 construct a new array,
 
-67
+63
 00:03:03,180 --> 00:03:05,170
 starting with the
 options hash.
 
-68
+64
 00:03:05,170 --> 00:03:08,050
 And if any of those defaults
 aren't included inside that
 
-69
+65
 00:03:08,050 --> 00:03:09,530
 new hash, it's going
 to add them.
 
-70
-00:03:09,530 --> 00:03:13,380
-
-
-71
+66
 00:03:13,380 --> 00:03:15,060
 A couple more extensions
 on hash.
 
-72
+67
 00:03:15,060 --> 00:03:17,570
 You have the except method,
 which is going
 
-73
+68
 00:03:17,570 --> 00:03:21,020
 to remove that key.
 
-74
+69
 00:03:21,020 --> 00:03:23,760
 And, lastly, there's the
 assert_valid_keys method,
 
-75
+70
 00:03:23,760 --> 00:03:26,380
 which is going to throw an
 exception if the hash contain
 
-76
+71
 00:03:26,380 --> 00:03:29,300
 any keys besides the ones that
 are listed inside of it.
 
-77
-00:03:29,300 --> 00:03:32,200
-
-
-78
+72
 00:03:32,200 --> 00:03:33,965
 If you've built web apps before,
 you might have run
 
-79
+73
 00:03:33,965 --> 00:03:36,940
 into the situation where you
 have tabular data and you want
 
-80
+74
 00:03:36,940 --> 00:03:39,890
 the data to alternate color
 between different rows to make
 
-81
+75
 00:03:39,890 --> 00:03:42,320
 it more readable.
 
-82
+76
 00:03:42,320 --> 00:03:45,670
 One way to implement this is by
 creating a background class
 
-83
+77
 00:03:45,670 --> 00:03:49,690
 helper, which if the index that
 we're on is odd, returns
 
-84
+78
 00:03:49,690 --> 00:03:52,220
 white, and if it's even,
 returns grey.
 
-85
+79
 00:03:52,220 --> 00:03:55,460
 So odd and even are the Active
 Support helper methods.
 
-86
+80
 00:03:55,460 --> 00:03:58,370
 Then we can iterate through each
 of the tweets, calling
 
-87
+81
 00:03:58,370 --> 00:04:01,030
 the background_class method.
 
-88
+82
 00:04:01,030 --> 00:04:02,630
 This will then alternate
 between grey and
 
-89
+83
 00:04:02,630 --> 00:04:03,880
 white as the div class.
 
-90
-00:04:03,880 --> 00:04:07,850
-
-
-91
+84
 00:04:07,850 --> 00:04:10,460
 Another useful Active Support
 feature is inflection.
 
-92
+85
 00:04:10,460 --> 00:04:13,810
 So as you can see here, we're
 calling 1.ordanilize, which is
 
-93
+86
 00:04:13,810 --> 00:04:18,160
 giving us 1st place, then 2nd
 place, and then 23rd place.
 
-94
+87
 00:04:18,160 --> 00:04:19,339
 So as you can see here,
 it knows when to
 
-95
+88
 00:04:19,339 --> 00:04:22,079
 use st, nd, and rd.
 
-96
+89
 00:04:22,079 --> 00:04:25,350
 The Inflector also allows you
 to pluralize strings, to
 
-97
+90
 00:04:25,350 --> 00:04:28,270
 singularize strings, and it even
 knows how to deal with
 
-98
+91
 00:04:28,270 --> 00:04:30,410
 some irregular rules.
 
-99
+92
 00:04:30,410 --> 00:04:32,220
 And if you need to customize it,
 because it's not going to
 
-100
+93
 00:04:32,220 --> 00:04:34,610
 get everything right, it's
 pretty easy to add your own
 
-101
+94
 00:04:34,610 --> 00:04:37,310
 rules for pluralization
 and singularization.
 
-102
+95
 00:04:37,310 --> 00:04:39,730
 There's also the titleize
 string helper.
 
-103
+96
 00:04:39,730 --> 00:04:43,110
 You've also got humanize, which
 is going to add spaces
 
-104
+97
 00:04:43,110 --> 00:04:45,310
 and capitalize the first word.
 
-105
+98
 00:04:45,310 --> 00:04:48,130
 And there's a bunch of other
 little string helper methods,
 
-106
+99
 00:04:48,130 --> 00:04:51,230
 which you can learn more about
 either in the documentation or
 
-107
+100
 00:04:51,230 --> 00:04:53,670
 by going to read the Rails
 Guide on Active Support.
 
-108
+101
 00:04:53,670 --> 00:04:55,450
 It's very useful.
 
-109
+102
 00:04:55,450 --> 00:04:57,550
 And now we're done
 with Level 4.
 
-110
+103
 00:04:57,550 --> 00:05:00,200
 So it's time for you to practice
 your Active Support,
 
-111
+104
 00:05:00,200 --> 00:05:01,450
 and we'll see you in Level 5.
-
-112
-00:05:01,450 --> 00:05:02,636

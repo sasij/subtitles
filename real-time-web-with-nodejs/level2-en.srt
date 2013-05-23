@@ -1,444 +1,435 @@
-1
-00:00:00,000 --> 00:00:01,230
-
-2
+﻿1
 00:00:01,230 --> 00:00:03,775
 Your online application's
 starting to fail.
 
-3
+2
 00:00:03,775 --> 00:00:07,320
 It's crawling on the network
 just as fast as a snail.
 
-4
+3
 00:00:07,320 --> 00:00:10,760
 We need evented programming
 starting from the top.
 
-5
+4
 00:00:10,760 --> 00:00:15,580
 Better write some code so
 the world doesn't stop.
 
-6
+5
 00:00:15,580 --> 00:00:19,940
 With a non-blocking model, we
 will be just fine, built on
 
-7
+6
 00:00:19,940 --> 00:00:22,370
 Google Chrome's V8 runtime.
 
-8
+7
 00:00:22,370 --> 00:00:25,970
 And all you need to do is write
 some JavaScript code and
 
-9
+8
 00:00:25,970 --> 00:00:27,850
 use the Real-Time
 Web with Node.
 
-10
-00:00:27,850 --> 00:00:33,630
-
-11
+9
 00:00:33,630 --> 00:00:36,180
 You're watching Real-Time Web
 with Node.js, and this is
 
-12
+10
 00:00:36,180 --> 00:00:38,780
 level two, where we're going
 to be going over events in
 
-13
+11
 00:00:38,780 --> 00:00:41,070
 more detail.
 
-14
+12
 00:00:41,070 --> 00:00:44,030
 When we talk about events, you
 might think about the Document
 
-15
+13
 00:00:44,030 --> 00:00:47,580
 Object Model in your browser
 because the DOM triggers
 
-16
+14
 00:00:47,580 --> 00:00:49,800
 events, and you can listen
 for those events.
 
-17
+15
 00:00:49,800 --> 00:00:53,770
 Events like click,
 submit, or hover.
 
-18
+16
 00:00:53,770 --> 00:00:56,200
 If you want to run some code
 when those events get
 
-19
+17
 00:00:56,200 --> 00:00:59,770
 triggered, you might run some
 jQuery for instance listening
 
-20
+18
 00:00:59,770 --> 00:01:02,960
 for a click event, and when
 click event is triggered, you
 
-21
+19
 00:01:02,960 --> 00:01:04,989
 want to run some sort
 of function.
 
-22
+20
 00:01:04,989 --> 00:01:08,570
 This code effectively attaches
 that function to the DOM
 
-23
+21
 00:01:08,570 --> 00:01:11,620
 listening for that
 click event.
 
-24
+22
 00:01:11,620 --> 00:01:14,470
 Just like in the DOM,
 many objects in
 
-25
+23
 00:01:14,470 --> 00:01:17,330
 Node also emit events.
 
-26
+24
 00:01:17,330 --> 00:01:20,870
 And odds are, if they emit
 events, they inherit from the
 
-27
+25
 00:01:20,870 --> 00:01:23,680
 EventEmitter constructor.
 
-28
+26
 00:01:23,680 --> 00:01:27,900
 The net.Server class inherits
 from EventEmitter, and it
 
-29
+27
 00:01:27,900 --> 00:01:31,410
 emits the request event,
 as we saw in level one.
 
-30
+28
 00:01:31,410 --> 00:01:35,120
 If we're reading a file and we
 call fs.readStream, it returns
 
-31
+29
 00:01:35,120 --> 00:01:39,550
 a stream which inherits from
 EventEmitter, which will emit
 
-32
+30
 00:01:39,550 --> 00:01:44,820
 the data event as we're reading
 data out of the file.
 
-33
+31
 00:01:44,820 --> 00:01:47,490
 Let's take a closer look at the
 EventEmitter constructor
 
-34
+32
 00:01:47,490 --> 00:01:50,040
 by creating our own custom
 EventEmitter.
 
-35
+33
 00:01:50,040 --> 00:01:53,380
 So we're going to require
 that class.
 
-36
+34
 00:01:53,380 --> 00:01:54,830
 For our customer EventEmitter,
 we're
 
-37
+35
 00:01:54,830 --> 00:01:56,300
 going to create a logger.
 
-38
+36
 00:01:56,300 --> 00:02:00,460
 So we want our logger to
 sometimes emit error events,
 
-39
+37
 00:02:00,460 --> 00:02:03,180
 warn events, and info events.
 
-40
+38
 00:02:03,180 --> 00:02:05,790
 And we want to be able to write
 listeners so we can
 
-41
+39
 00:02:05,790 --> 00:02:08,160
 listen for when those
 events occur.
 
-42
+40
 00:02:08,160 --> 00:02:11,290
 If we wanted to listen for the
 error event, we could write
 
-43
+41
 00:02:11,290 --> 00:02:12,300
 some code like this.
 
-44
+42
 00:02:12,300 --> 00:02:15,030
 So here we're saying,
 on the error
 
-45
+43
 00:02:15,030 --> 00:02:18,340
 event, run this callback.
 
-46
+44
 00:02:18,340 --> 00:02:22,810
 To trigger, or emit, the event,
 we call logger.emit, we
 
-47
+45
 00:02:22,810 --> 00:02:25,680
 specify the name of the event
 we want to trigger, and any
 
-48
+46
 00:02:25,680 --> 00:02:27,310
 additional parameters
 here will get
 
-49
+47
 00:02:27,310 --> 00:02:28,560
 passed to the listeners.
 
-50
+48
 00:02:28,560 --> 00:02:30,835
 And here's just another example
 where we log another
 
-51
+49
 00:02:30,835 --> 00:02:32,050
 error message.
 
-52
+50
 00:02:32,050 --> 00:02:34,610
 And we can call this emitter
 is many times as we want to
 
-53
+51
 00:02:34,610 --> 00:02:38,370
 emit the error event.
 
-54
+52
 00:02:38,370 --> 00:02:41,400
 So back in level one, you'll
 remember we had a function
 
-55
+53
 00:02:41,400 --> 00:02:45,010
 with a request and a response,
 and we wanted that callback to
 
-56
+54
 00:02:45,010 --> 00:02:47,180
 be called every time our server
 
-57
+55
 00:02:47,180 --> 00:02:50,210
 emitted a request event.
 
-58
+56
 00:02:50,210 --> 00:02:52,760
 Here's the code that we wrote,
 but you might be wondering
 
-59
+57
 00:02:52,760 --> 00:02:54,010
 what is going on here.
 
-60
+58
 00:02:54,010 --> 00:02:56,370
 How is that event getting
 attached?
 
-61
+59
 00:02:56,370 --> 00:02:58,420
 Well, we're going to go
 ahead and look at
 
-62
+60
 00:02:58,420 --> 00:02:59,180
 that a little deeper.
 
-63
+61
 00:02:59,180 --> 00:03:01,580
 We're going to dive into the
 documentation now and see
 
-64
+62
 00:03:01,580 --> 00:03:04,840
 what's going on under
 the hood.
 
-65
+63
 00:03:04,840 --> 00:03:07,260
 So if we look up the
 createServer function, we can
 
-66
+64
 00:03:07,260 --> 00:03:10,380
 see that it returns a new
 web server object.
 
-67
+65
 00:03:10,380 --> 00:03:13,970
 We pass as a parameter a
 requestListener which listens
 
-68
+66
 00:03:13,970 --> 00:03:16,270
 on the request event.
 
-69
+67
 00:03:16,270 --> 00:03:18,350
 If we look up the server
 documentation, we're going to
 
-70
+68
 00:03:18,350 --> 00:03:19,815
 see that it's an EventEmitter.
 
-71
+69
 00:03:19,815 --> 00:03:24,360
 It emits several events, one of
 which is the request event.
 
-72
+70
 00:03:24,360 --> 00:03:26,580
 And you can see here the request
 event passes two
 
-73
+71
 00:03:26,580 --> 00:03:29,020
 parameters to the callback,
 which is what we're using as
 
-74
+72
 00:03:29,020 --> 00:03:32,910
 our only parameter to
 createServer function.
 
-75
+73
 00:03:32,910 --> 00:03:34,350
 If we wanted to, we could
 write this code
 
-76
+74
 00:03:34,350 --> 00:03:35,510
 in a different way.
 
-77
+75
 00:03:35,510 --> 00:03:38,650
 Instead of sending the callback
 into createServer, we
 
-78
+76
 00:03:38,650 --> 00:03:42,060
 could instead just create the
 server with no parameters, and
 
-79
+77
 00:03:42,060 --> 00:03:44,330
 then tell the server
 that on the request
 
-80
+78
 00:03:44,330 --> 00:03:47,130
 event, call this function.
 
-81
+79
 00:03:47,130 --> 00:03:49,130
 This syntax is typically
 how you add event
 
-82
+80
 00:03:49,130 --> 00:03:50,640
 listeners in Node.
 
-83
+81
 00:03:50,640 --> 00:03:53,710
 You can listen to multiple
 events on an object, or you
 
-84
+82
 00:03:53,710 --> 00:03:56,180
 can have multiple functions that
 listen to the same event.
 
-85
+83
 00:03:56,180 --> 00:03:57,250
 Doesn't matter.
 
-86
+84
 00:03:57,250 --> 00:03:59,543
 For instance, if we want to
 listen to the close event on
 
-87
+85
 00:03:59,543 --> 00:04:01,610
 our server and call a function,
 we could simply
 
-88
+86
 00:04:01,610 --> 00:04:06,576
 write server on close, and
 then send in a function.
 
-89
+87
 00:04:06,576 --> 00:04:08,090
 Well that's it for this level.
 
-90
+88
 00:04:08,090 --> 00:04:11,640
 Admittedly, this is one of the
 shorter levels in this course.
 
-91
+89
 00:04:11,640 --> 00:04:12,440
 Don't worry.
 
-92
+90
 00:04:12,440 --> 00:04:14,810
 But it's really important at
 this point that you understand
 
-93
+91
 00:04:14,810 --> 00:04:16,640
 how to work with
 events in Node.
 
-94
+92
 00:04:16,640 --> 00:04:18,290
 So, time to get to it.
-
-95
-00:04:18,290 --> 00:04:19,540

@@ -1,312 +1,300 @@
 ﻿1
-00:00:00,000 --> 00:00:02,560
-
-
-2
 00:00:02,560 --> 00:00:02,980
 Good job.
 
-3
+2
 00:00:02,980 --> 00:00:05,680
 So you've written some
 of your first jQuery.
 
-4
+3
 00:00:05,680 --> 00:00:07,000
 And you might be wondering,
 how do I get
 
-5
+4
 00:00:07,000 --> 00:00:09,280
 jQuery onto my web pages?
 
-6
+5
 00:00:09,280 --> 00:00:13,270
 Well, first step is to go to
 the jQuery.com webpage,
 
-7
+6
 00:00:13,270 --> 00:00:14,760
 download jQuery.
 
-8
+7
 00:00:14,760 --> 00:00:18,370
 You can load it into your HTML
 page, using this script tag
 
-9
+8
 00:00:18,370 --> 00:00:20,050
 you see here.
 
-10
+9
 00:00:20,050 --> 00:00:22,460
 But in order to start using it,
 you're probably going to
 
-11
+10
 00:00:22,460 --> 00:00:26,420
 want to create another file,
 maybe called application.js.
 
-12
+11
 00:00:26,420 --> 00:00:28,690
 Include that inside your HTML.
 
-13
+12
 00:00:28,690 --> 00:00:32,049
 And then inside your
 application.js, meaning
 
-14
+13
 00:00:32,049 --> 00:00:33,960
 JavaScript, you can
 start writing your
 
-15
+14
 00:00:33,960 --> 00:00:35,210
 jQuery right there.
 
-16
-00:00:35,210 --> 00:00:37,970
-
-
-17
+15
 00:00:37,970 --> 00:00:40,460
 In this section, let's look at
 a few more ways we can find
 
-18
+16
 00:00:40,460 --> 00:00:42,420
 elements in the DOM.
 
-19
+17
 00:00:42,420 --> 00:00:44,280
 So here's some new HTML.
 
-20
+18
 00:00:44,280 --> 00:00:47,460
 You can see, it has a UL, or
 unordered list, of different
 
-21
+19
 00:00:47,460 --> 00:00:49,160
 travel destinations.
 
-22
+20
 00:00:49,160 --> 00:00:54,600
 How might we change the text of
 every li on this web page?
 
-23
+21
 00:00:54,600 --> 00:00:56,740
 Well, first we need to
 find all of them.
 
-24
+22
 00:00:56,740 --> 00:00:59,220
 And then we need to
 modify their text.
 
-25
+23
 00:00:59,220 --> 00:01:01,290
 Let's take a look at the
 DOM on this webpage.
 
-26
+24
 00:01:01,290 --> 00:01:04,500
 First, let's figure out what
 the DOM looks like.
 
-27
+25
 00:01:04,500 --> 00:01:06,190
 So there's our tree.
 
-28
+26
 00:01:06,190 --> 00:01:08,350
 To select all these li's,
 we don't need
 
-29
+27
 00:01:08,350 --> 00:01:09,350
 three lines of code.
 
-30
+28
 00:01:09,350 --> 00:01:11,060
 We just need one.
 
-31
+29
 00:01:11,060 --> 00:01:14,500
 We just specify li,
 just like that.
 
-32
+30
 00:01:14,500 --> 00:01:18,740
 And it returns a jQuery object
 of all of the li's.
 
-33
+31
 00:01:18,740 --> 00:01:22,030
 If you want to change their text
 nodes all to Orlando, we
 
-34
+32
 00:01:22,030 --> 00:01:24,550
 simply send in the
 string Orlando.
 
-35
+33
 00:01:24,550 --> 00:01:27,160
 There we go.
 
-36
+34
 00:01:27,160 --> 00:01:29,350
 If we're building a big webpage,
 it's not unheard of
 
-37
+35
 00:01:29,350 --> 00:01:32,850
 to have many different li's
 inside many different lists
 
-38
+36
 00:01:32,850 --> 00:01:34,840
 and many different paragraphs.
 
-39
+37
 00:01:34,840 --> 00:01:37,000
 But we might not want
 to select all of
 
-40
+38
 00:01:37,000 --> 00:01:38,240
 them all of the time.
 
-41
+39
 00:01:38,240 --> 00:01:40,480
 So how do we fix that?
 
-42
+40
 00:01:40,480 --> 00:01:44,440
 Well, we can use many different
 CSS selectors to
 
-43
+41
 00:01:44,440 --> 00:01:46,790
 select particular parts
 of the DOM.
 
-44
+42
 00:01:46,790 --> 00:01:49,960
 So just like we were able to
 select p, to select all of the
 
-45
+43
 00:01:49,960 --> 00:01:53,340
 paragraphs, in CSS, if we wanted
 to style an element
 
-46
+44
 00:01:53,340 --> 00:01:57,270
 with the ID of container, in
 jQuery we just specify
 
-47
+45
 00:01:57,270 --> 00:01:59,320
 #container.
 
-48
+46
 00:01:59,320 --> 00:02:02,680
 In CSS, to style an element with
 the class of articles, we
 
-49
+47
 00:02:02,680 --> 00:02:04,120
 just use .articles.
 
-50
+48
 00:02:04,120 --> 00:02:07,760
 And in the same way in jQuery,
 to fetch all of the elements
 
-51
+49
 00:02:07,760 --> 00:02:10,630
 with the class of articles,
 we simply put .articles.
 
-52
-00:02:10,630 --> 00:02:13,750
-
-
-53
+50
 00:02:13,750 --> 00:02:16,830
 So let's jump back into our
 HTML and figure out how we
 
-54
+51
 00:02:16,830 --> 00:02:20,620
 might select that unordered
 list with the ID of
 
-55
+52
 00:02:20,620 --> 00:02:21,810
 destinations.
 
-56
+53
 00:02:21,810 --> 00:02:23,640
 Let's find it using the ID.
 
-57
+54
 00:02:23,640 --> 00:02:25,990
 All we have to do, in this
 case, is specify
 
-58
+55
 00:02:25,990 --> 00:02:27,620
 #destinations.
 
-59
+56
 00:02:27,620 --> 00:02:30,390
 And that will select the element
 that has that ID.
 
-60
+57
 00:02:30,390 --> 00:02:34,230
 Notice here, one of our li's
 now has a promo class.
 
-61
+58
 00:02:34,230 --> 00:02:36,660
 How might we select
 just that class,
 
-62
+59
 00:02:36,660 --> 00:02:40,070
 using the proper selector?
 
-63
+60
 00:02:40,070 --> 00:02:43,430
 In this case, we would
 just specify .promo.
 
-64
+61
 00:02:43,430 --> 00:02:45,910
 And that would select all the
 list elements that have the
 
-65
+62
 00:02:45,910 --> 00:02:47,070
 class of promo.
 
-66
+63
 00:02:47,070 --> 00:02:50,080
 In this case, there's
 just one.
 
-67
+64
 00:02:50,080 --> 00:02:52,920
 Why don't you try your hand at
 using some specific selectors.
 
-68
+65
 00:02:52,920 --> 00:02:54,170
 And I'll see you in level two.

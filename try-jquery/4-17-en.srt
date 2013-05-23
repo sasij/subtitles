@@ -1,433 +1,413 @@
 ﻿1
-00:00:00,000 --> 00:00:02,950
-
-
-2
 00:00:02,950 --> 00:00:04,880
 Here's the page we're going to
 be working with for our last
 
-3
+2
 00:00:04,880 --> 00:00:06,030
 section here.
 
-4
+3
 00:00:06,030 --> 00:00:08,940
 As you can see, we have multiple
 vacations, and when
 
-5
+4
 00:00:08,940 --> 00:00:12,160
 we click Show Comments, we want
 to show the comments for
 
-6
+5
 00:00:12,160 --> 00:00:12,990
 that vacation.
 
-7
+6
 00:00:12,990 --> 00:00:15,930
 Specifically, we want
 them to fade in.
 
-8
+7
 00:00:15,930 --> 00:00:18,740
 So how might we do that?
 
-9
+8
 00:00:18,740 --> 00:00:21,210
 Here's our DOM, and the first
 thing we want to do is to make
 
-10
+9
 00:00:21,210 --> 00:00:25,710
 sure that the comments UL is
 hidden when we load the page.
 
-11
+10
 00:00:25,710 --> 00:00:28,970
 So we make it display none
 inside of our CSS.
 
-12
+11
 00:00:28,970 --> 00:00:31,700
 Then we want to add behavior
 so that when we click this
 
-13
+12
 00:00:31,700 --> 00:00:35,470
 link, show comments, that it
 shows the proper comments
 
-14
+13
 00:00:35,470 --> 00:00:37,390
 underneath that link.
 
-15
+14
 00:00:37,390 --> 00:00:39,560
 Inside of our application.js
 we have
 
-16
+15
 00:00:39,560 --> 00:00:40,800
 our document ready.
 
-17
+16
 00:00:40,800 --> 00:00:43,370
 Inside that, we're going to
 fetch a vacation class, listen
 
-18
+17
 00:00:43,370 --> 00:00:46,670
 for our click event on the link,
 which has the expand
 
-19
+18
 00:00:46,670 --> 00:00:49,700
 class on it, and then run
 our event handler.
 
-20
+19
 00:00:49,700 --> 00:00:51,040
 There's two things we
 need to do inside
 
-21
+20
 00:00:51,040 --> 00:00:52,240
 of our event handler.
 
-22
+21
 00:00:52,240 --> 00:00:55,580
 First, we need to find the
 comments UL, which is below
 
-23
+22
 00:00:55,580 --> 00:00:58,980
 our link, and then, we need
 to show it, in this
 
-24
+23
 00:00:58,980 --> 00:01:01,180
 case, fade it in.
 
-25
+24
 00:01:01,180 --> 00:01:04,280
 To find the appropriate comments
 list, we need to do
 
-26
+25
 00:01:04,280 --> 00:01:07,710
 some traversal, like we did
 on previous sections.
 
-27
+26
 00:01:07,710 --> 00:01:10,860
 So the link that was clicked,
 we're going to start with
 
-28
+27
 00:01:10,860 --> 00:01:13,810
 that, or in this case,
 this, because it
 
-29
+28
 00:01:13,810 --> 00:01:15,850
 was what was clicked.
 
-30
+29
 00:01:15,850 --> 00:01:19,080
 And then call closest to
 search up through its
 
-31
+30
 00:01:19,080 --> 00:01:24,120
 ancestors to find the vacation
 class, and then call find to
 
-32
+31
 00:01:24,120 --> 00:01:26,760
 search down through the
 DOM to find the
 
-33
+32
 00:01:26,760 --> 00:01:29,770
 appropriate comments list.
 
-34
+33
 00:01:29,770 --> 00:01:32,170
 So we found the comments list,
 now we just need to fade it
 
-35
+34
 00:01:32,170 --> 00:01:33,460
 in, and there's a couple
 different fade
 
-36
+35
 00:01:33,460 --> 00:01:35,000
 methods that we can use.
 
-37
+36
 00:01:35,000 --> 00:01:39,110
 We have fadeIn, fadeOut, and
 fadeToggle, which will toggle
 
-38
+37
 00:01:39,110 --> 00:01:40,220
 between the two.
 
-39
+38
 00:01:40,220 --> 00:01:42,750
 In this case, we want to use
 fadeToggle so that when we
 
-40
+39
 00:01:42,750 --> 00:01:45,380
 click on the link, it'll
 either fade them in
 
-41
+40
 00:01:45,380 --> 00:01:48,280
 or fade them out.
 
-42
+41
 00:01:48,280 --> 00:01:50,190
 So let's see this in action.
 
-43
+42
 00:01:50,190 --> 00:01:52,450
 As you can see, we can click on
 one of the links, and then
 
-44
+43
 00:01:52,450 --> 00:01:54,180
 it fades in the comments.
 
-45
+44
 00:01:54,180 --> 00:01:55,770
 And we can click on it
 again, and it will
 
-46
+45
 00:01:55,770 --> 00:01:58,050
 fade out the comments.
 
-47
+46
 00:01:58,050 --> 00:02:01,730
 However, if we click on a link
 near the bottom of the page--
 
-48
+47
 00:02:01,730 --> 00:02:03,070
 did you see that?
 
-49
+48
 00:02:03,070 --> 00:02:06,400
 The page jumped back up to
 the top of the page.
 
-50
+49
 00:02:06,400 --> 00:02:11,150
 That's kind of annoying,
 and how do we fix that?
 
-51
+50
 00:02:11,150 --> 00:02:13,710
 In order to understand how we
 fix that, we need to grasp
 
-52
+51
 00:02:13,710 --> 00:02:16,020
 what's happening when
 the event occurs
 
-53
+52
 00:02:16,020 --> 00:02:17,440
 inside of the DOM.
 
-54
+53
 00:02:17,440 --> 00:02:20,990
 So here's our link, and when an
 event occurs, we get this
 
-55
+54
 00:02:20,990 --> 00:02:22,445
 little event bubble.
 
-56
+55
 00:02:22,445 --> 00:02:23,910
 We'll call it a bubble.
 
-57
+56
 00:02:23,910 --> 00:02:26,980
 And it's going to start right
 there on our link, and then
 
-58
+57
 00:02:26,980 --> 00:02:30,940
 it's going to go up to each
 parent node to let it know,
 
-59
+58
 00:02:30,940 --> 00:02:32,640
 hey, a click event happened.
 
-60
+59
 00:02:32,640 --> 00:02:36,210
 Eventually, it's going to get
 to the top, and then, well,
 
-61
+60
 00:02:36,210 --> 00:02:39,950
 because we have an href here
 with a hash, it's going to
 
-62
+61
 00:02:39,950 --> 00:02:43,380
 follow that link when it gets
 up to the browser, which is
 
-63
+62
 00:02:43,380 --> 00:02:46,220
 going to do the default
 behavior, which is pop it back
 
-64
+63
 00:02:46,220 --> 00:02:48,320
 up to the top of the page.
 
-65
+64
 00:02:48,320 --> 00:02:51,170
 So we need to figure out a way
 from preventing that default
 
-66
+65
 00:02:51,170 --> 00:02:52,420
 browser behavior.
 
-67
-00:02:52,420 --> 00:02:56,000
-
-
-68
+66
 00:02:56,000 --> 00:02:58,900
 The first step down the road to
 fixing this is to add the
 
-69
+67
 00:02:58,900 --> 00:03:01,330
 event parameter inside
 of our event
 
-70
+68
 00:03:01,330 --> 00:03:03,560
 handler, as you see here.
 
-71
+69
 00:03:03,560 --> 00:03:05,210
 We're going to need
 that in a minute.
 
-72
+70
 00:03:05,210 --> 00:03:08,860
 One way we can try to fix this
 is by using stopPropagation.
 
-73
+71
 00:03:08,860 --> 00:03:12,030
 What that's going to do is when
 the event happens and it
 
-74
+72
 00:03:12,030 --> 00:03:15,100
 tries to bubble up,
 it's not going to.
 
-75
+73
 00:03:15,100 --> 00:03:19,970
 It's not going to bubble
 up to other ancestors.
 
-76
+74
 00:03:19,970 --> 00:03:23,140
 However, stopPropagation does
 not prevent the default
 
-77
+75
 00:03:23,140 --> 00:03:25,850
 behavior from the browser, and
 we're still going to pop up to
 
-78
+76
 00:03:25,850 --> 00:03:26,900
 the top of the page.
 
-79
+77
 00:03:26,900 --> 00:03:28,430
 So this is not our solution.
 
-80
-00:03:28,430 --> 00:03:31,160
-
-
-81
+78
 00:03:31,160 --> 00:03:34,850
 Instead, we're going to call
 event.preventDefault to
 
-82
+79
 00:03:34,850 --> 00:03:37,340
 prevent the default
 behavior of
 
-83
+80
 00:03:37,340 --> 00:03:41,380
 the browser- in this case, when
 the event happens, it's going
 
-84
+81
 00:03:41,380 --> 00:03:44,590
 to bubble up and when it reaches
 our browser, it's not
 
-85
+82
 00:03:44,590 --> 00:03:47,850
 going to follow the default
 behavior, which is popping up
 
-86
+83
 00:03:47,850 --> 00:03:50,500
 to the top of the page because
 our href was a hash.
 
-87
-00:03:50,500 --> 00:03:54,310
-
-
-88
+84
 00:03:54,310 --> 00:03:56,960
 So now, when we go back to our
 web page, we can see that we
 
-89
+85
 00:03:56,960 --> 00:04:00,970
 can fade in comments and fade
 out comments, and we're no
 
-90
+86
 00:04:00,970 --> 00:04:03,610
 longer popping up to the
 top of the web page.
 
-91
-00:04:03,610 --> 00:04:06,360
-
-
-92
+87
 00:04:06,360 --> 00:04:09,070
 So now, it's time for you to get
 into the challenges, and
 
-93
+88
 00:04:09,070 --> 00:04:10,320
 I'll see you in level five.

@@ -1,224 +1,212 @@
 ﻿1
-00:00:00,000 --> 00:00:02,250
-
-
-2
 00:00:02,250 --> 00:00:04,910
 Now that you know how to remove
 and add DOM nodes to
 
-3
+2
 00:00:04,910 --> 00:00:09,460
 the page, let's take a look
 at how we do interaction.
 
-4
+3
 00:00:09,460 --> 00:00:11,670
 Here's the code that we
 use to listen for when
 
-5
+4
 00:00:11,670 --> 00:00:13,950
 the document is ready.
 
-6
+5
 00:00:13,950 --> 00:00:18,590
 Inside there we pass in
 an Event Handler.
 
-7
+6
 00:00:18,590 --> 00:00:20,510
 That Event Handler
 is a function,
 
-8
+7
 00:00:20,510 --> 00:00:21,700
 which looks like this.
 
-9
+8
 00:00:21,700 --> 00:00:25,460
 And we send in all of the code
 that we want executed inside
 
-10
+9
 00:00:25,460 --> 00:00:26,920
 of that function.
 
-11
+10
 00:00:26,920 --> 00:00:29,050
 Put them both together, and you
 get the code that we're
 
-12
+11
 00:00:29,050 --> 00:00:30,245
 now familiar with.
 
-13
+12
 00:00:30,245 --> 00:00:33,670
 The ready method takes one
 argument, which is that Event
 
-14
+13
 00:00:33,670 --> 00:00:36,770
 Handler function.
 
-15
+14
 00:00:36,770 --> 00:00:38,800
 Now it's time to figure out how
 to make that button work
 
-16
+15
 00:00:38,800 --> 00:00:42,080
 so that when we click Get Price,
 it shows us the price
 
-17
+16
 00:00:42,080 --> 00:00:43,330
 of that vacation.
 
-18
-00:00:43,330 --> 00:00:45,390
-
-
-19
+17
 00:00:45,390 --> 00:00:47,100
 Here's the DOM for our page.
 
-20
+18
 00:00:47,100 --> 00:00:50,180
 To listen for an event on the
 button, we first need to get
 
-21
+19
 00:00:50,180 --> 00:00:52,260
 the button out of the DOM.
 
-22
+20
 00:00:52,260 --> 00:00:56,180
 We're going to want to use the
 On jQuery Object method.
 
-23
+21
 00:00:56,180 --> 00:00:59,490
 It takes an event and
 an Event Handler.
 
-24
+22
 00:00:59,490 --> 00:01:03,250
 So here we're going
 to say On, Click.
 
-25
+23
 00:01:03,250 --> 00:01:08,090
 And then our second parameter
 is an Event Handler.
 
-26
+24
 00:01:08,090 --> 00:01:09,770
 So this code is going
 to return all the
 
-27
+25
 00:01:09,770 --> 00:01:11,300
 buttons from the DOM.
 
-28
+26
 00:01:11,300 --> 00:01:14,630
 We call the On method sending
 in the Click as the first
 
-29
+27
 00:01:14,630 --> 00:01:17,440
 argument, which we'll watch for
 any clicks that happen to
 
-30
+28
 00:01:17,440 --> 00:01:18,780
 any of those buttons.
 
-31
+29
 00:01:18,780 --> 00:01:21,420
 And then when they're clicked,
 it's going to run the code
 
-32
+30
 00:01:21,420 --> 00:01:22,670
 inside of our function.
 
-33
-00:01:22,670 --> 00:01:25,220
-
-
-34
+31
 00:01:25,220 --> 00:01:26,965
 Let's take that code and
 move it inside of
 
-35
+32
 00:01:26,965 --> 00:01:28,160
 our Document Ready.
 
-36
+33
 00:01:28,160 --> 00:01:31,810
 So our function inside of our
 Document Ready runs when the
 
-37
+34
 00:01:31,810 --> 00:01:33,060
 DOM is ready.
 
-38
+35
 00:01:33,060 --> 00:01:36,690
 And then our code inside of our
 Click Handler runs when a
 
-39
+36
 00:01:36,690 --> 00:01:39,860
 button is clicked.
 
-40
+37
 00:01:39,860 --> 00:01:41,740
 Now all we need to do is
 add in the code from
 
-41
+38
 00:01:41,740 --> 00:01:42,910
 our previous section.
 
-42
+39
 00:01:42,910 --> 00:01:45,830
 And now every time the button is
 clicked, it's going to add
 
-43
+40
 00:01:45,830 --> 00:01:51,200
 the paragraph and then remove
 the button, as it should.
 
-44
+41
 00:01:51,200 --> 00:01:52,740
 So let's go ahead and
 see that in action.
 
-45
+42
 00:01:52,740 --> 00:01:56,040
 When we click the Get Price
 button, it first adds the
 
-46
+43
 00:01:56,040 --> 00:01:58,420
 paragraph with the price
 and then removes
 
-47
+44
 00:01:58,420 --> 00:02:02,290
 the Get Price button.
 
-48
+45
 00:02:02,290 --> 00:02:04,080
 Why don't you try making some
 buttons work in the
 
-49
+46
 00:02:04,080 --> 00:02:05,330
 challenges.

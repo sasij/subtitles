@@ -1,467 +1,435 @@
 ﻿1
-00:00:00,000 --> 00:00:02,350
-
-
-2
 00:00:02,350 --> 00:00:04,940
 So we've taken a look at styles,
 but jQuery also gives
 
-3
+2
 00:00:04,940 --> 00:00:07,600
 us the ability to do
 some animations.
 
-4
+3
 00:00:07,600 --> 00:00:10,270
 How might we use an animations
 on this page?
 
-5
+4
 00:00:10,270 --> 00:00:13,940
 Well, maybe what we should
 do is make each of those
 
-6
+5
 00:00:13,940 --> 00:00:18,380
 vacations jump up a little
 bit when we select them.
 
-7
+6
 00:00:18,380 --> 00:00:21,960
 Let's figure out
 how to do that.
 
-8
+7
 00:00:21,960 --> 00:00:24,700
 So here we are back in our code,
 and maybe what we should
 
-9
+8
 00:00:24,700 --> 00:00:30,030
 do is have the LI that was
 clicked move up 10 pixels,
 
-10
+9
 00:00:30,030 --> 00:00:31,760
 negative 10 just like that.
 
-11
+10
 00:00:31,760 --> 00:00:34,770
 jQuery actually has a method
 called animate that we can
 
-12
+11
 00:00:34,770 --> 00:00:39,420
 send in CSS styles, and it will
 slowly animate from its
 
-13
+12
 00:00:39,420 --> 00:00:43,260
 current state to the style
 that we give it.
 
-14
+13
 00:00:43,260 --> 00:00:47,520
 So in this case, we would write
 animate top negative 10
 
-15
+14
 00:00:47,520 --> 00:00:53,470
 pixels, and it will animate from
 0 pixels to negative 10.
 
-16
+15
 00:00:53,470 --> 00:00:54,720
 Let's put that in our code.
 
-17
-00:00:54,720 --> 00:00:59,110
-
-
-18
+16
 00:00:59,110 --> 00:01:00,710
 Now, let's see what
 that looks like.
 
-19
+17
 00:01:00,710 --> 00:01:04,390
 So we click on it, and each
 of these items goes up.
 
-20
+18
 00:01:04,390 --> 00:01:06,820
 And well, it doesn't
 go back down.
 
-21
+19
 00:01:06,820 --> 00:01:07,540
 They just go up.
 
-22
+20
 00:01:07,540 --> 00:01:08,890
 So obviously, we're going
 to have to deal
 
-23
+21
 00:01:08,890 --> 00:01:10,350
 with that in a minute.
 
-24
-00:01:10,350 --> 00:01:13,300
-
-
-25
+22
 00:01:13,300 --> 00:01:16,790
 When this event handler is
 called, we only want to make
 
-26
+23
 00:01:16,790 --> 00:01:21,790
 it animate up if we just added
 the highlighted class.
 
-27
+24
 00:01:21,790 --> 00:01:24,890
 However, if we just remove the
 highlighted class when we
 
-28
+25
 00:01:24,890 --> 00:01:29,370
 toggled, we want it to animate
 back down to zero.
 
-29
+26
 00:01:29,370 --> 00:01:32,530
 So we have an if statement
 here, if vacation class
 
-30
+27
 00:01:32,530 --> 00:01:35,230
 highlighted, then animate
 up, else animate the
 
-31
+28
 00:01:35,230 --> 00:01:37,400
 vacation back down.
 
-32
+29
 00:01:37,400 --> 00:01:41,800
 So let's go ahead and move
 that up into our code.
 
-33
+30
 00:01:41,800 --> 00:01:44,730
 And have the second animate
 line there, where we're
 
-34
+31
 00:01:44,730 --> 00:01:47,740
 animating it back down to zero,
 but we still need to
 
-35
+32
 00:01:47,740 --> 00:01:50,520
 figure out what goes inside
 of our if statement.
 
-36
+33
 00:01:50,520 --> 00:01:52,630
 We've got just some
 pseudo code there.
 
-37
+34
 00:01:52,630 --> 00:01:56,380
 Well, jQuery gives us a method
 called hasClass.
 
-38
+35
 00:01:56,380 --> 00:02:00,460
 We can check to see if a node
 has a specific class.
 
-39
+36
 00:02:00,460 --> 00:02:03,140
 So in this case, we'll call
 this dot has class
 
-40
+37
 00:02:03,140 --> 00:02:05,860
 highlighted, and if it
 returns true, we know
 
-41
+38
 00:02:05,860 --> 00:02:07,400
 that it has the class.
 
-42
+39
 00:02:07,400 --> 00:02:10,539
 So let's move that back up
 into the if statement.
 
-43
+40
 00:02:10,539 --> 00:02:13,900
 And now, if it has the class,
 it's going to animate that up,
 
-44
+41
 00:02:13,900 --> 00:02:16,720
 and if it doesn't, it's going
 to animate LI back down.
 
-45
-00:02:16,720 --> 00:02:19,960
-
-
-46
+42
 00:02:19,960 --> 00:02:21,890
 So here we go in our browser.
 
-47
+43
 00:02:21,890 --> 00:02:23,670
 We click it once,
 it goes back up.
 
-48
+44
 00:02:23,670 --> 00:02:26,450
 We click it again, and
 it goes back down.
 
-49
+45
 00:02:26,450 --> 00:02:28,170
 Now, this is a little
 bit slow.
 
-50
+46
 00:02:28,170 --> 00:02:31,370
 We might want to speed up or
 slow down the animation in
 
-51
+47
 00:02:31,370 --> 00:02:33,220
 certain circumstance.
 
-52
+48
 00:02:33,220 --> 00:02:36,070
 How might we do that?
 
-53
+49
 00:02:36,070 --> 00:02:40,760
 Well, we can specify the speed
 by adding a second argument.
 
-54
+50
 00:02:40,760 --> 00:02:43,860
 In this case, if we did comma
 400, that means it's going to
 
-55
+51
 00:02:43,860 --> 00:02:46,140
 animate in 400 milliseconds,
 and this is
 
-56
+52
 00:02:46,140 --> 00:02:47,910
 actually the default.
 
-57
+53
 00:02:47,910 --> 00:02:50,220
 So if we don't specify a
 speed, by default, the
 
-58
+54
 00:02:50,220 --> 00:02:53,260
 animation is going to take
 400 milliseconds.
 
-59
+55
 00:02:53,260 --> 00:02:56,550
 We could send in the argument
 of fast, which would be the
 
-60
+56
 00:02:56,550 --> 00:03:00,040
 same thing as specifying
 200 milliseconds.
 
-61
+57
 00:03:00,040 --> 00:03:02,870
 We can also specify the argument
 slow, which, in this
 
-62
+58
 00:03:02,870 --> 00:03:05,620
 case, would be 600
 milliseconds.
 
-63
+59
 00:03:05,620 --> 00:03:10,280
 And we can also use that speed
 argument in other methods,
 
-64
+60
 00:03:10,280 --> 00:03:14,920
 like slideToggle, fadeToggle,
 slideDown, slideUp.
 
-65
+61
 00:03:14,920 --> 00:03:16,170
 They all work.
 
-66
-00:03:16,170 --> 00:03:18,160
-
-
-67
+62
 00:03:18,160 --> 00:03:19,410
 So let's speed up
 our animation.
 
-68
+63
 00:03:19,410 --> 00:03:22,900
 This time making it fast,
 just like you see here.
 
-69
-00:03:22,900 --> 00:03:26,930
-
-
-70
+64
 00:03:26,930 --> 00:03:28,900
 Now, when we go back into our
 browser, we can see the
 
-71
+65
 00:03:28,900 --> 00:03:31,660
 animation is definitely
 a little more snappy.
 
-72
-00:03:31,660 --> 00:03:35,340
-
-
-73
+66
 00:03:35,340 --> 00:03:41,860
 Now, once again, we have CSS
 inside of our JavaScript, and
 
-74
+67
 00:03:41,860 --> 00:03:45,670
 again, it might give you that
 not so fresh feeling.
 
-75
+68
 00:03:45,670 --> 00:03:51,380
 So how might we get this
 out of the JavaScript?
 
-76
+69
 00:03:51,380 --> 00:03:55,970
 It turns out we can do this
 animation in CSS by specifying
 
-77
+70
 00:03:55,970 --> 00:03:57,750
 a transition like
 you see here.
 
-78
+71
 00:03:57,750 --> 00:04:01,020
 So we're specifying here that if
 the top element is changed,
 
-79
+72
 00:04:01,020 --> 00:04:04,860
 it should transition
 in 0.2 seconds.
 
-80
+73
 00:04:04,860 --> 00:04:07,590
 Then, when we add the
 highlighted class, we're
 
-81
+74
 00:04:07,590 --> 00:04:11,250
 specifying the top is negative
 10 pixels, which will cause
 
-82
+75
 00:04:11,250 --> 00:04:13,250
 the animation to happen.
 
-83
+76
 00:04:13,250 --> 00:04:15,410
 You've got to be careful when
 using this however, because
 
-84
+77
 00:04:15,410 --> 00:04:18,160
 it's only going to work with
 browsers that support CSS
 
-85
+78
 00:04:18,160 --> 00:04:19,750
 transitions.
 
-86
+79
 00:04:19,750 --> 00:04:22,340
 One way we can support
 additional browsers is by
 
-87
+80
 00:04:22,340 --> 00:04:27,550
 specifying the browser prefixes
 as you see here.
 
-88
+81
 00:04:27,550 --> 00:04:29,810
 So this is something you have to
 be aware of if you want to
 
-89
+82
 00:04:29,810 --> 00:04:33,090
 use these types of CSS
 animations, and there's lots
 
-90
+83
 00:04:33,090 --> 00:04:34,970
 of information out there on the
 internet that will tell
 
-91
+84
 00:04:34,970 --> 00:04:38,670
 you which ones you can use,
 which ones are dangerous, and
 
-92
+85
 00:04:38,670 --> 00:04:40,915
 there might be a code school
 course or two on the subject.
 
-93
-00:04:40,915 --> 00:04:43,910
-
-
-94
+86
 00:04:43,910 --> 00:04:46,070
 So here we are, back in our
 browser, and as you can see,
 
-95
+87
 00:04:46,070 --> 00:04:48,290
 we can click, and we
 still get that same
 
-96
+88
 00:04:48,290 --> 00:04:52,240
 nice animation effect.
 
-97
+89
 00:04:52,240 --> 00:04:54,970
 All right, you've reached the
 end of the videos, and now
 
-98
+90
 00:04:54,970 --> 00:04:56,880
 it's time for you to get
 into the challenges.

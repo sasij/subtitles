@@ -1,592 +1,576 @@
-1
-00:00:00,000 --> 00:00:00,180
-
-
-2
+﻿1
 00:00:00,180 --> 00:00:26,180
 [MUSIC]
 
-3
+2
 00:00:26,180 --> 00:00:28,590
 You're watching Testing with
 RSpec, and this Level Two
 
-4
+3
 00:00:28,590 --> 00:00:30,945
 where we're gonna go over
 configuration and more
 
-5
+4
 00:00:30,945 --> 00:00:32,600
 advanced matchers.
 
-6
+5
 00:00:32,600 --> 00:00:35,200
 As we saw quickly in level one,
 we can install RSpec with
 
-7
+6
 00:00:35,200 --> 00:00:36,690
 gem install rspec
 and rspec init.
 
-8
-00:00:36,690 --> 00:00:41,600
-
-
-9
+7
 00:00:41,600 --> 00:00:42,870
 Within a Rails project,
 you have
 
-10
+8
 00:00:42,870 --> 00:00:44,080
 three steps to go through.
 
-11
+9
 00:00:44,080 --> 00:00:46,870
 First you have to put the RSpec
 rails gem within your
 
-12
+10
 00:00:46,870 --> 00:00:48,270
 Gemfile, then bundle.
 
-13
-00:00:48,270 --> 00:00:52,180
-
-
-14
+11
 00:00:52,180 --> 00:00:55,390
 And finally you have to run
 rails generate rspec install,
 
-15
+12
 00:00:55,390 --> 00:00:57,760
 which would create the specific
 configuration
 
-16
+13
 00:00:57,760 --> 00:00:58,870
 required for Rails.
 
-17
+14
 00:00:58,870 --> 00:01:01,140
 The spec helper it creates is
 a little different from the
 
-18
+15
 00:01:01,140 --> 00:01:03,980
 one that we had in a standalone
 Ruby application.
 
-19
+16
 00:01:03,980 --> 00:01:06,120
 As you can see in the spec
 helper, there's a line that
 
-20
+17
 00:01:06,120 --> 00:01:08,440
 requires all files within
 spec/support.
 
-21
+18
 00:01:08,440 --> 00:01:10,700
 That's going to get really
 useful when we do custom
 
-22
+19
 00:01:10,700 --> 00:01:12,910
 matchers and helpers later
 on in the course.
 
-23
+20
 00:01:12,910 --> 00:01:15,390
 You can change the default RSpec
 configuration with the
 
-24
+21
 00:01:15,390 --> 00:01:16,380
 configure block.
 
-25
+22
 00:01:16,380 --> 00:01:18,670
 For instance, you could replace
 the mocking and
 
-26
+23
 00:01:18,670 --> 00:01:21,000
 stubbing that RSpec comes with
 with Mocha that we used in
 
-27
+24
 00:01:21,000 --> 00:01:24,610
 Rails Testing for Zombies.
 
-28
+25
 00:01:24,610 --> 00:01:26,640
 When running your specs in a
 command line, you can pass a
 
-29
+26
 00:01:26,640 --> 00:01:29,100
 bunch of different options like
 --color, which
 
-30
+27
 00:01:29,100 --> 00:01:31,170
 will give you more
 colorful output,
 
-31
+28
 00:01:31,170 --> 00:01:33,490
 --format documentation,
 
-32
+29
 00:01:33,490 --> 00:01:36,390
 which will give you a more
 verbose output and nested
 
-33
+30
 00:01:36,390 --> 00:01:38,900
 examples so you see clearly
 what's going on.
 
-34
+31
 00:01:38,900 --> 00:01:41,030
 Now if you don't want to run
 these long commands every
 
-35
+32
 00:01:41,030 --> 00:01:43,620
 single time, you can put these
 options within your .rspec
 
-36
+33
 00:01:43,620 --> 00:01:46,080
 file that was generated
 originally.
 
-37
+34
 00:01:46,080 --> 00:01:48,520
 But let's take a look at a
 few command line options to
 
-38
+35
 00:01:48,520 --> 00:01:49,790
 run your tests.
 
-39
+36
 00:01:49,790 --> 00:01:52,260
 If you want to run every
 single test in the spec
 
-40
+37
 00:01:52,260 --> 00:01:54,280
 directory, you can run
 the rspec command.
 
-41
+38
 00:01:54,280 --> 00:01:57,420
 If you want to run a specific
 directory, you can just rspec
 
-42
+39
 00:01:57,420 --> 00:01:59,000
 in that directory.
 
-43
+40
 00:01:59,000 --> 00:02:02,170
 If you want to run a specific
 file as we saw before, you can
 
-44
+41
 00:02:02,170 --> 00:02:04,020
 simply name that full path.
 
-45
+42
 00:02:04,020 --> 00:02:07,140
 Finally, by specifying a line
 number, RSpec will try to find
 
-46
+43
 00:02:07,140 --> 00:02:09,350
 the closest example
 and run it.
 
-47
+44
 00:02:09,350 --> 00:02:12,240
 So let's jump in and try
 to test a rails model.
 
-48
+45
 00:02:12,240 --> 00:02:14,690
 First we're going to require
 the spec helper.
 
-49
+46
 00:02:14,690 --> 00:02:17,620
 Then we're going to create a
 describe block with the class
 
-50
+47
 00:02:17,620 --> 00:02:19,270
 for zombie.
 
-51
+48
 00:02:19,270 --> 00:02:22,150
 Then we're going to create an
 example to make sure that the
 
-52
+49
 00:02:22,150 --> 00:02:25,150
 zombie is invalid
 without a name.
 
-53
+50
 00:02:25,150 --> 00:02:28,650
 Once we instantiate a zombie,
 we can write zombie
 
-54
+51
 00:02:28,650 --> 00:02:30,260
 should not be valid.
 
-55
+52
 00:02:30,260 --> 00:02:32,250
 Now be valid is a predicate
 matcher, as we
 
-56
+53
 00:02:32,250 --> 00:02:33,600
 saw in level one.
 
-57
+54
 00:02:33,600 --> 00:02:36,300
 It's going to call the Active
 Record valid?
 
-58
+55
 00:02:36,300 --> 00:02:39,350
 method to make sure that
 the zombie is valid.
 
-59
+56
 00:02:39,350 --> 00:02:41,610
 If we ran the code, this would
 fail because we haven't
 
-60
+57
 00:02:41,610 --> 00:02:43,190
 written a validation
 for this yet.
 
-61
+58
 00:02:43,190 --> 00:02:46,870
 So we'll write one, validates,
 name, presence, true.
 
-62
+59
 00:02:46,870 --> 00:02:51,270
 Then if we run the code,
 it passes as expected.
 
-63
+60
 00:02:51,270 --> 00:02:54,520
 Let's take a look at some more
 events matchers you could use.
 
-64
+61
 00:02:54,520 --> 00:02:57,130
 If we wanted to check that our
 zombie's name match a specific
 
-65
+62
 00:02:57,130 --> 00:02:59,780
 pattern, we could use the match
 method and pass it a
 
-66
+63
 00:02:59,780 --> 00:03:04,100
 regular expression like so.
 
-67
+64
 00:03:04,100 --> 00:03:06,360
 Now let's say we had tweets,
 as we did in Rails for
 
-68
+65
 00:03:06,360 --> 00:03:08,300
 Zombies, on the zombie.
 
-69
+66
 00:03:08,300 --> 00:03:10,090
 We're going to create
 two tweets.
 
-70
+67
 00:03:10,090 --> 00:03:12,380
 Make sure that they're included
 on that zombie.
 
-71
+68
 00:03:12,380 --> 00:03:15,020
 And then test that they are
 with the include method.
 
-72
+69
 00:03:15,020 --> 00:03:18,970
 For instance, zombie.tweets
 should include tweet one.
 
-73
+70
 00:03:18,970 --> 00:03:21,190
 And zombie tweets should
 include tweet two.
 
-74
+71
 00:03:21,190 --> 00:03:23,580
 Include can be used anywhere
 where you need to make sure
 
-75
+72
 00:03:23,580 --> 00:03:27,570
 that an item is part
 of an array.
 
-76
+73
 00:03:27,570 --> 00:03:30,200
 So now let's say we want to
 check that our zombie is born
 
-77
+74
 00:03:30,200 --> 00:03:33,420
 with two weapons... that
 makes sense.
 
-78
+75
 00:03:33,420 --> 00:03:38,610
 We could run
 zombie.weapons.count.should
 
-79
+76
 00:03:38,610 --> 00:03:40,530
 == 2.
 
-80
+77
 00:03:40,530 --> 00:03:44,580
 But we could also use that
 have matcher to say
 
-81
+78
 00:03:44,580 --> 00:03:45,830
 zombie.should have().weapons.
 
-82
-00:03:45,830 --> 00:03:48,630
-
-
-83
+79
 00:03:48,630 --> 00:03:52,500
 You can also use this with have
 at least number or have
 
-84
+80
 00:03:52,500 --> 00:03:55,670
 at most number.
 
-85
+81
 00:03:55,670 --> 00:03:58,110
 If you want to get more specific
 as to what you expect
 
-86
+82
 00:03:58,110 --> 00:04:00,520
 from your application's
 behavior, you could use the
 
-87
+83
 00:04:00,520 --> 00:04:03,990
 expect block and the
 change method.
 
-88
+84
 00:04:03,990 --> 00:04:07,620
 First, you would, for instance,
 create a zombie,
 
-89
+85
 00:04:07,620 --> 00:04:11,650
 save it, and expect that zombie
 to increase the zombie
 
-90
+86
 00:04:11,650 --> 00:04:12,770
 count by one.
 
-91
+87
 00:04:12,770 --> 00:04:14,300
 This would be written
 like this.
 
-92
+88
 00:04:14,300 --> 00:04:16,600
 You can also check that
 something changed from
 
-93
+89
 00:04:16,600 --> 00:04:19,000
 something to something
 and chain those
 
-94
+90
 00:04:19,000 --> 00:04:21,490
 methods as you wish.
 
-95
+91
 00:04:21,490 --> 00:04:24,130
 Another great use of expect
 would be to check whether a
 
-96
+92
 00:04:24,130 --> 00:04:26,970
 method raises a specific
 exception.
 
-97
+93
 00:04:26,970 --> 00:04:30,040
 For instance, if we try to
 save a new zombie without
 
-98
+94
 00:04:30,040 --> 00:04:33,360
 doing anything to it and knowing
 it should have a name,
 
-99
+95
 00:04:33,360 --> 00:04:37,510
-it should raise an 
+it should raise an
 ActiveRecord::RecordInvalid exception.
 
-100
+96
 00:04:37,510 --> 00:04:40,670
 So we would write expect
 zombie.save bang.
 
-101
+97
 00:04:40,670 --> 00:04:43,380
 We use the save bang method
 because we want an exception
 
-102
+98
 00:04:43,380 --> 00:04:44,690
 to be raised.
 
-103
+99
 00:04:44,690 --> 00:04:46,210
 to raise_error.
 
-104
+100
 00:04:46,210 --> 00:04:50,140
 And then to find the specific
 error we should be returning.
 
-105
+101
 00:04:50,140 --> 00:04:53,930
 You can modify this by using
 to, not to, or to not,
 
-106
+102
 00:04:53,930 --> 00:04:56,840
 depending on how you want to
 write your syntax for the
 
-107
+103
 00:04:56,840 --> 00:04:58,950
 expectation.
 
-108
+104
 00:04:58,950 --> 00:05:01,450
 Now there are many more matchers
 to be used depending
 
-109
+105
 00:05:01,450 --> 00:05:03,930
 on what you specifically
 need to test.
 
-110
+106
 00:05:03,930 --> 00:05:09,800
 The respond_to, be_ within.of,
 exist, satisfy, be_kind_of,
 
-111
+107
 00:05:09,800 --> 00:05:11,480
 be_an_instance_of.
 
-112
+108
 00:05:11,480 --> 00:05:14,100
 Let's look at these
 in context.
 
-113
+109
 00:05:14,100 --> 00:05:16,880
 If we had a zombie, we could
 check that it responds to
 
-114
+110
 00:05:16,880 --> 00:05:18,950
 hungry with the respond_to
 matcher.
 
-115
+111
 00:05:18,950 --> 00:05:23,630
 We could check that a width is
 within 0.1 units of 33.3.
 
-116
+112
 00:05:23,630 --> 00:05:25,800
 We can check that
 a zombie exists.
 
-117
+113
 00:05:25,800 --> 00:05:28,520
 The satisfy method allows
 you to pass a block.
 
-118
+114
 00:05:28,520 --> 00:05:32,130
 And if this block returns true,
 your expectation passes.
 
-119
+115
 00:05:32,130 --> 00:05:35,520
 If we have hungry zombie class
 that inherited from zombie, we
 
-120
+116
 00:05:35,520 --> 00:05:38,415
 can check that it is a kind of
 zombie or we could check that
 
-121
+117
 00:05:38,415 --> 00:05:42,940
 a tweet's status as an
 instance of string.
 
-122
+118
 00:05:42,940 --> 00:05:44,090
 Thanks for watching level two.
 
-123
+119
 00:05:44,090 --> 00:05:46,010
 Now it's time for you to play
 with matchers in the
 
-124
+120
 00:05:46,010 --> 00:05:46,310
 challenges.
 
-125
+121
 00:05:46,310 --> 00:05:47,860
 [MUSIC]

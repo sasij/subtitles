@@ -1,544 +1,526 @@
-1
-00:00:00,000 --> 00:00:22,510
-
-2
+﻿1
 00:00:22,510 --> 00:00:25,500
 Hi, my name is Caike Souza, and
 you're watching Ruby Bits
 
-3
+2
 00:00:25,500 --> 00:00:28,840
 part two, dynamic classes
 and methods.
 
-4
+3
 00:00:28,840 --> 00:00:31,630
 Let's start by looking at the
 Struct class, which is another
 
-5
+4
 00:00:31,630 --> 00:00:34,560
 way in Ruby that we can
 create custom classes.
 
-6
+5
 00:00:34,560 --> 00:00:36,610
 Here, we have a Tweet
 class that takes
 
-7
+6
 00:00:36,610 --> 00:00:38,300
 a user and a status.
 
-8
+7
 00:00:38,300 --> 00:00:41,390
 In order to use that class, we
 instantiate it and then we can
 
-9
+8
 00:00:41,390 --> 00:00:44,000
 call the user method or
 the status method.
 
-10
+9
 00:00:44,000 --> 00:00:47,370
 If we ask that object class
 it belongs to, it knows it
 
-11
+10
 00:00:47,370 --> 00:00:49,400
 belongs to the tweet class.
 
-12
+11
 00:00:49,400 --> 00:00:52,550
 Another way we can write that
 using a Struct is by using
 
-13
+12
 00:00:52,550 --> 00:00:56,590
 Struct.new, passing in the
 attribute accessor that we
 
-14
+13
 00:00:56,590 --> 00:00:58,340
 want the class to have.
 
-15
+14
 00:00:58,340 --> 00:01:01,290
 These two are doing the exact
 same thing, so they produce
 
-16
+15
 00:01:01,290 --> 00:01:02,760
 the same end result.
 
-17
+16
 00:01:02,760 --> 00:01:05,420
 So the code that you're seeing
 down here is going to run
 
-18
+17
 00:01:05,420 --> 00:01:08,890
 exactly the same way.
 
-19
+18
 00:01:08,890 --> 00:01:11,550
 Here, we can see that the tweet
 class now has an extra
 
-20
+19
 00:01:11,550 --> 00:01:12,520
 to_s method.
 
-21
+20
 00:01:12,520 --> 00:01:15,770
 If we wanted to add that via the
 Struct class, all we have
 
-22
+21
 00:01:15,770 --> 00:01:19,280
 to do is pass in a block to
 the Struct constructor.
 
-23
+22
 00:01:19,280 --> 00:01:22,380
 I personally like to use Struct
 for data structures
 
-24
+23
 00:01:22,380 --> 00:01:25,410
 that deal more with data
 than with behavior.
 
-25
+24
 00:01:25,410 --> 00:01:28,920
 So if you find yourself adding
 too many methods to a Struct,
 
-26
+25
 00:01:28,920 --> 00:01:32,260
 you're better off
 using a class.
 
-27
+26
 00:01:32,260 --> 00:01:34,610
 If we take a look at the
 following code, we will see
 
-28
+27
 00:01:34,610 --> 00:01:37,250
 that we have two methods that
 are basically doing the same
 
-29
+28
 00:01:37,250 --> 00:01:40,990
 thing, although they have
 different names.
 
-30
+29
 00:01:40,990 --> 00:01:44,540
 We can refactor this code in
 order to avoid duplication by
 
-31
+30
 00:01:44,540 --> 00:01:47,390
 using the alias_method,
 which creates a copy
 
-32
+31
 00:01:47,390 --> 00:01:48,870
 of the tweets method.
 
-33
+32
 00:01:48,870 --> 00:01:50,980
 Also, you might have noticed
 that in this contrived
 
-34
+33
 00:01:50,980 --> 00:01:53,900
 example, we could just replace
 the tweets method with an
 
-35
+34
 00:01:53,900 --> 00:01:58,240
 attribute reader and the
 code would still work.
 
-36
+35
 00:01:58,240 --> 00:02:00,870
 Now let's say that in our
 Timeline class, we have our
 
-37
+36
 00:02:00,870 --> 00:02:03,820
 print method that we want to
 add authentication to.
 
-38
+37
 00:02:03,820 --> 00:02:06,660
 For some reason, we don't want
 to change the existing code.
 
-39
+38
 00:02:06,660 --> 00:02:10,009
 So we're going to go ahead and
 reopen the Timeline class, and
 
-40
+39
 00:02:10,009 --> 00:02:13,840
 use alias_method to create a
 reference to the old method
 
-41
+40
 00:02:13,840 --> 00:02:16,770
 and create a new print method
 that's going to override the
 
-42
+41
 00:02:16,770 --> 00:02:18,220
 existing one.
 
-43
+42
 00:02:18,220 --> 00:02:21,340
 Notice here that alias_method
 creates a reference to the old
 
-44
+43
 00:02:21,340 --> 00:02:24,840
 method via old_print that we can
 call it from the new print
 
-45
+44
 00:02:24,840 --> 00:02:27,510
 method, after we authenticate.
 
-46
+45
 00:02:27,510 --> 00:02:30,840
 Now remember, back in part one,
 we said that reopening
 
-47
+46
 00:02:30,840 --> 00:02:32,940
 classes can be dangerous.
 
-48
+47
 00:02:32,940 --> 00:02:36,440
 So another way we can do this
 would be using inheritance.
 
-49
+48
 00:02:36,440 --> 00:02:39,880
 So here, we create a new
 authenticated Timeline class
 
-50
+49
 00:02:39,880 --> 00:02:41,840
 that inherits from Timeline.
 
-51
+50
 00:02:41,840 --> 00:02:45,330
 Then, we override the print
 method and refer to the old
 
-52
+51
 00:02:45,330 --> 00:02:46,820
 method via super.
 
-53
+52
 00:02:46,820 --> 00:02:48,760
 This is definitely a cleaner
 way to do it.
 
-54
-00:02:48,760 --> 00:02:51,700
-
-55
+53
 00:02:51,700 --> 00:02:54,570
 Next, in our Tweet class we have
 three different methods
 
-56
+54
 00:02:54,570 --> 00:02:57,570
 that update the status
 of the tweet.
 
-57
+55
 00:02:57,570 --> 00:03:00,030
 There's a little bit of
 repetition going on here, so
 
-58
+56
 00:03:00,030 --> 00:03:03,840
 let's see how define_method
 can help us reduce that.
 
-59
+57
 00:03:03,840 --> 00:03:06,500
 First, we create the states
 constant that will hold all
 
-60
+58
 00:03:06,500 --> 00:03:09,490
 the different states that our
 tweet object can have.
 
-61
+59
 00:03:09,490 --> 00:03:12,350
 Then, we iterate through those
 different states and
 
-62
+60
 00:03:12,350 --> 00:03:16,010
 dynamically create methods that
 assign those states to
 
-63
+61
 00:03:16,010 --> 00:03:18,720
 the status instance variable.
 
-64
+62
 00:03:18,720 --> 00:03:21,420
 So once the tree class on the
 right is loaded, it's going to
 
-65
+63
 00:03:21,420 --> 00:03:24,490
 automatically define all the
 methods that are listed on the
 
-66
+64
 00:03:24,490 --> 00:03:27,280
 Tweet class on the left.
 
-67
+65
 00:03:27,280 --> 00:03:30,030
 Now, the next time we have to
 add a new state to our Tweet
 
-68
+66
 00:03:30,030 --> 00:03:34,980
 class, all we have to do is add
 it to the states array.
 
-69
+67
 00:03:34,980 --> 00:03:38,060
 You can see now that our
 Timeline class has a contents
 
-70
+68
 00:03:38,060 --> 00:03:40,970
 method and a private method
 called direct_messages.
 
-71
+69
 00:03:40,970 --> 00:03:43,820
 If we instantiate the Timeline
 class passing in a couple of
 
-72
+70
 00:03:43,820 --> 00:03:46,090
 tweets, we can then call
 the contents method
 
-73
+71
 00:03:46,090 --> 00:03:48,460
 like we would normally.
 
-74
+72
 00:03:48,460 --> 00:03:51,320
 We can also call it by using
 the send method.
 
-75
+73
 00:03:51,320 --> 00:03:54,300
 The send method takes an
 argument, which can either be
 
-76
+74
 00:03:54,300 --> 00:03:57,470
 a symbol or a string, which will
 automatically call the
 
-77
+75
 00:03:57,470 --> 00:03:59,490
 method with that name.
 
-78
+76
 00:03:59,490 --> 00:04:04,920
 Send will also be able to call
 protected or private methods.
 
-79
+77
 00:04:04,920 --> 00:04:08,430
 If you want to avoid that, then
 you can use public_send
 
-80
+78
 00:04:08,430 --> 00:04:12,330
 instead, which is available
 starting in Ruby 1.9.2.
 
-81
+79
 00:04:12,330 --> 00:04:15,710
 Using public_send, if you try
 calling it a protected or a
 
-82
+80
 00:04:15,710 --> 00:04:17,829
 private method, it will
 raise an error.
 
-83
-00:04:17,829 --> 00:04:21,370
-
-84
+81
 00:04:21,370 --> 00:04:23,550
 Now, going back to our Timeline
 class, we've added a
 
-85
+82
 00:04:23,550 --> 00:04:27,030
 show_tweet public method which
 takes an index and prints the
 
-86
+83
 00:04:27,030 --> 00:04:29,410
 corresponding tweet.
 
-87
+84
 00:04:29,410 --> 00:04:32,320
 We can still instantiate the
 Timeline object normally, but
 
-88
+85
 00:04:32,320 --> 00:04:35,390
 instead of invoking the contents
 method explicitly,
 
-89
+86
 00:04:35,390 --> 00:04:38,220
 we'll capture it using
 the method method.
 
-90
+87
 00:04:38,220 --> 00:04:39,882
 Remember how we talked
 about everything in
 
-91
+88
 00:04:39,882 --> 00:04:41,180
 Ruby being an object?
 
-92
+89
 00:04:41,180 --> 00:04:44,720
 Well, a method is also an
 object, and this is how you
 
-93
+90
 00:04:44,720 --> 00:04:46,750
 capture it.
 
-94
+91
 00:04:46,750 --> 00:04:49,660
 Now to invoke it, you simply
 have to call the call method,
 
-95
+92
 00:04:49,660 --> 00:04:52,040
 just like you would in a Proc.
 
-96
+93
 00:04:52,040 --> 00:04:54,250
 Now let's use the method
 method once again, with
 
-97
+94
 00:04:54,250 --> 00:04:55,930
 show_tweet this time.
 
-98
+95
 00:04:55,930 --> 00:04:59,130
 Show_tweet has a parameter, so
 when we call this method we
 
-99
+96
 00:04:59,130 --> 00:05:01,070
 need to pass in an argument,
 like so.
 
-100
-00:05:01,070 --> 00:05:04,030
-
-101
+97
 00:05:04,030 --> 00:05:06,650
 One last thing, and this
 might blow your mind.
 
-102
+98
 00:05:06,650 --> 00:05:09,030
 Remember how we talked about the
 ampersand and being able
 
-103
+99
 00:05:09,030 --> 00:05:11,380
 to convert between
 Procs and blocks?
 
-104
+100
 00:05:11,380 --> 00:05:15,110
 Well, it's also able to convert
 between method objects
 
-105
+101
 00:05:15,110 --> 00:05:18,530
 and blocks, as we can
 see in this example.
 
-106
+102
 00:05:18,530 --> 00:05:21,230
 Here we're passing the
 show_method as an argument to
 
-107
+103
 00:05:21,230 --> 00:05:24,570
 each, but we have to use the
 ampersand to make sure that
 
-108
+104
 00:05:24,570 --> 00:05:26,150
 it's converted to a block.
 
-109
+105
 00:05:26,150 --> 00:05:29,290
 Then, inside the each method,
 it's going to be called with
 
-110
+106
 00:05:29,290 --> 00:05:31,520
 each index as an argument.
 
-111
+107
 00:05:31,520 --> 00:05:33,570
 It's basically doing the same
 thing as calling the
 
-112
+108
 00:05:33,570 --> 00:05:35,790
 show_method explicitly
 with an argument.
 
-113
-00:05:35,790 --> 00:05:40,240
-
-114
+109
 00:05:40,240 --> 00:05:43,240
 So we've reached the end of
 level two, so get ready to do
 
-115
+110
 00:05:43,240 --> 00:05:46,350
 some mind-bending exercises
 and I'll see next time.
-
-116
-00:05:46,350 --> 00:05:48,055
