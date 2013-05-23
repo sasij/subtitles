@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:00,410
 [SINGING]
 
@@ -320,1312 +320,1291 @@ And we're going to be creating
 one later for our tool tips.
 
 69
-00:02:54,110 --> 00:02:56,770
-
-70
 00:02:56,770 --> 00:02:59,200
 Here's our hello world utility
 function, so you can get used
 
-71
+70
 00:02:59,200 --> 00:03:00,560
 to the syntax.
 
-72
+71
 00:03:00,560 --> 00:03:03,700
 So here we have hello,
 function, alert.
 
-73
+72
 00:03:03,700 --> 00:03:05,820
 Utility functions can be
 wrapped a little bit
 
-74
+73
 00:03:05,820 --> 00:03:07,780
 differently than our
 normal code.
 
-75
+74
 00:03:07,780 --> 00:03:10,880
 We can use what they call
 in jQuery a closure.
 
-76
+75
 00:03:10,880 --> 00:03:13,120
 It looks something like this.
 
-77
+76
 00:03:13,120 --> 00:03:16,180
 So the cool part about this is
 that it's taking that dollar
 
-78
+77
 00:03:16,180 --> 00:03:20,440
 sign, we're adding a function
 basically into jQuery.
 
-79
+78
 00:03:20,440 --> 00:03:24,510
 And then using the closure like
 this makes it so that we
 
-80
+79
 00:03:24,510 --> 00:03:27,950
 can use that function elsewhere
 in our code.
 
-81
+80
 00:03:27,950 --> 00:03:30,050
 So it's going to make sure that
 that method we attach,
 
-82
+81
 00:03:30,050 --> 00:03:32,940
 the dollar sign, can get used
 in code that we might have
 
-83
+82
 00:03:32,940 --> 00:03:35,510
 elsewhere in other libraries
 on the same page.
 
-84
+83
 00:03:35,510 --> 00:03:38,470
 To run this function, we just
 call .hello and it gets us
 
-85
+84
 00:03:38,470 --> 00:03:42,260
 back this alert you see here.
 
-86
+85
 00:03:42,260 --> 00:03:44,370
 Now, let's take a look back in
 our application, see if we can
 
-87
+86
 00:03:44,370 --> 00:03:45,920
 find some place where
 we might want to
 
-88
+87
 00:03:45,920 --> 00:03:48,100
 use a utility function.
 
-89
+88
 00:03:48,100 --> 00:03:51,230
 So here you can see I've added
 a little box up top that
 
-90
+89
 00:03:51,230 --> 00:03:54,040
 allows us to filter by
 number of stops.
 
-91
+90
 00:03:54,040 --> 00:03:57,250
 So if we're only looking for a
 nonstop flight, we can just
 
-92
+91
 00:03:57,250 --> 00:04:00,450
 click this filter and only
 look at nonstop flights.
 
-93
+92
 00:04:00,450 --> 00:04:04,590
 So how to implement this, here
 is the HTML for this box.
 
-94
+93
 00:04:04,590 --> 00:04:06,740
 So it's just a bunch
 of radio buttons.
 
-95
+94
 00:04:06,740 --> 00:04:09,720
 And we're going to want to
 trigger an event when one of
 
-96
+95
 00:04:09,720 --> 00:04:12,360
 these radio buttons is
 pressed and call the
 
-97
+96
 00:04:12,360 --> 00:04:16,480
 filter by flights method.
 
-98
+97
 00:04:16,480 --> 00:04:18,899
 Let's define that method.
 
-99
+98
 00:04:18,899 --> 00:04:23,000
 So inside filter by flight we're
 going to grab the value,
 
-100
+99
 00:04:23,000 --> 00:04:25,080
 grab the number of stops.
 
-101
+100
 00:04:25,080 --> 00:04:28,130
 We're going to have an empty
 array called filter flights.
 
-102
+101
 00:04:28,130 --> 00:04:30,190
 Then we're going to go through
 each of our current flights.
 
-103
+102
 00:04:30,190 --> 00:04:33,800
 Now behind the scenes, I've
 basically created a global
 
-104
+103
 00:04:33,800 --> 00:04:36,690
 variable that has the
 current flights
 
-105
+104
 00:04:36,690 --> 00:04:37,650
 that are getting displayed.
 
-106
+105
 00:04:37,650 --> 00:04:40,490
 So it has the JSON array of the
 current flights that are
 
-107
+106
 00:04:40,490 --> 00:04:41,620
 up on the page.
 
-108
+107
 00:04:41,620 --> 00:04:42,990
 So here, I'm referencing that.
 
-109
+108
 00:04:42,990 --> 00:04:44,530
 We're going through
 each of them.
 
-110
+109
 00:04:44,530 --> 00:04:47,330
 If the user selects two or more
 flights, that means we
 
-111
+110
 00:04:47,330 --> 00:04:50,680
 can push on this existing
 flight no matter what.
 
-112
+111
 00:04:50,680 --> 00:04:52,890
 And then I'm not going to show
 you the rest of the code, but
 
-113
+112
 00:04:52,890 --> 00:04:55,640
 it goes through all the other
 conditionals to build up that
 
-114
+113
 00:04:55,640 --> 00:04:57,000
 filtered flights array.
 
-115
+114
 00:04:57,000 --> 00:04:59,280
 And then it's going to print
 out the filtered flights.
 
-116
+115
 00:04:59,280 --> 00:05:01,570
 So let's take a look
 at this in action.
 
-117
+116
 00:05:01,570 --> 00:05:03,735
 Here you can see we can filter
 the different flights.
 
-118
+117
 00:05:03,735 --> 00:05:06,020
 It displays them
 on the screen.
 
-119
+118
 00:05:06,020 --> 00:05:09,560
 But when we click over to
 another tab, you'll notice it
 
-120
+119
 00:05:09,560 --> 00:05:11,020
 doesn't save our preferences.
 
-121
+120
 00:05:11,020 --> 00:05:12,860
 It doesn't stay filtered.
 
-122
+121
 00:05:12,860 --> 00:05:15,940
 So we can filter from here, but
 as soon as we click onto
 
-123
+122
 00:05:15,940 --> 00:05:18,780
 another tab, it would reset.
 
-124
+123
 00:05:18,780 --> 00:05:22,240
 So how do we figure out how to
 make it so that even when we
 
-125
+124
 00:05:22,240 --> 00:05:24,790
 switch tabs it stays filtered?
 
-126
+125
 00:05:24,790 --> 00:05:26,770
 Since there are multiple places
 we need to filter
 
-127
+126
 00:05:26,770 --> 00:05:30,160
 results, we're going to create
 a utility method for it.
 
-128
+127
 00:05:30,160 --> 00:05:32,510
 So we're going to call
 it filter flights.
 
-129
+128
 00:05:32,510 --> 00:05:35,910
 We're going to send in current
 flights and stops.
 
-130
+129
 00:05:35,910 --> 00:05:38,360
 Then we're going to go through
 each of the current flights
 
-131
+130
 00:05:38,360 --> 00:05:41,130
 and then just return the
 filtered flights.
 
-132
+131
 00:05:41,130 --> 00:05:42,420
 Pretty simple.
 
-133
+132
 00:05:42,420 --> 00:05:44,250
 Then in the code where we
 display new flights, when we
 
-134
+133
 00:05:44,250 --> 00:05:47,630
 click a tab, we're going to get
 the checked radio button,
 
-135
+134
 00:05:47,630 --> 00:05:51,720
 get the value of that, and then
 call filter flights, send
 
-136
+135
 00:05:51,720 --> 00:05:54,510
 in the current flights
 and stops.
 
-137
+136
 00:05:54,510 --> 00:05:57,180
 Let's take a look at that
 in the browser.
 
-138
+137
 00:05:57,180 --> 00:06:02,110
 So we change the number of
 stops, and now we click and we
 
-139
+138
 00:06:02,110 --> 00:06:06,090
 get back nonstop,
 just nonstop.
 
-140
+139
 00:06:06,090 --> 00:06:08,550
 We can change it to 0-1,
 and everything
 
-141
+140
 00:06:08,550 --> 00:06:09,800
 remains properly filtered.
 
-142
-00:06:09,800 --> 00:06:12,820
-
-143
+141
 00:06:12,820 --> 00:06:15,060
 Next up, let's create some
 jQuery plugins.
 
-144
+142
 00:06:15,060 --> 00:06:17,260
 So here's a very basic
 jQuery plugin.
 
-145
+143
 00:06:17,260 --> 00:06:20,630
 Let's say I wanted to create a
 callout, which is less than a
 
-146
+144
 00:06:20,630 --> 00:06:25,470
 highlight, just that maybe
 opacity from 0.5 to 1.
 
-147
+145
 00:06:25,470 --> 00:06:27,080
 So there's the CSS.
 
-148
+146
 00:06:27,080 --> 00:06:29,020
 We're going to animate
 it fast.
 
-149
+147
 00:06:29,020 --> 00:06:30,650
 And that's our plugin.
 
-150
+148
 00:06:30,650 --> 00:06:34,140
 You'll notice it has that .fn.
 
-151
+149
 00:06:34,140 --> 00:06:37,880
 This we also want to wrap in one
 of these closures, so we
 
-152
+150
 00:06:37,880 --> 00:06:41,080
 reuse it in many different
 places in our code.
 
-153
+151
 00:06:41,080 --> 00:06:44,110
 Now as I mentioned before,
 plugins have to be called on
 
-154
+152
 00:06:44,110 --> 00:06:45,710
 a jQuery object.
 
-155
+153
 00:06:45,710 --> 00:06:48,860
 Here we have activeDiv.callOut.
 
-156
+154
 00:06:48,860 --> 00:06:51,870
 One other programming pattern
 that you see with plugins
 
-157
+155
 00:06:51,870 --> 00:06:53,530
 deals with defaults.
 
-158
+156
 00:06:53,530 --> 00:06:55,080
 Specifying defaults,
 but with the
 
-159
+157
 00:06:55,080 --> 00:06:56,510
 ability to override defaults.
 
-160
+158
 00:06:56,510 --> 00:06:59,870
 For instance here, let's say
 one of my defaults is the
 
-161
+159
 00:06:59,870 --> 00:07:01,840
 duration of the callout.
 
-162
+160
 00:07:01,840 --> 00:07:05,790
 So I have a little default
 object here.
 
-163
+161
 00:07:05,790 --> 00:07:08,600
 I can say extend defaults
 options.
 
-164
+162
 00:07:08,600 --> 00:07:12,100
 So what this says is use the
 default setting unless it's
 
-165
+163
 00:07:12,100 --> 00:07:16,190
 overridden by something that
 I send in using options.
 
-166
+164
 00:07:16,190 --> 00:07:18,770
 So then I've got options
 duration with the animate.
 
-167
+165
 00:07:18,770 --> 00:07:21,500
 And now down below I can call
 callOut without any
 
-168
+166
 00:07:21,500 --> 00:07:25,190
 configuration options, or I
 can send in a customized
 
-169
+167
 00:07:25,190 --> 00:07:28,690
 duration if I want to override
 the default.
 
-170
+168
 00:07:28,690 --> 00:07:30,590
 So where in our application
 might we
 
-171
+169
 00:07:30,590 --> 00:07:32,260
 want to use a plugin?
 
-172
+170
 00:07:32,260 --> 00:07:34,820
 Well, remember those
 tool tips?
 
-173
+171
 00:07:34,820 --> 00:07:36,460
 Those tool tips were
 pretty nice.
 
-174
+172
 00:07:36,460 --> 00:07:38,410
 We might want to use those
 someplace else in our
 
-175
+173
 00:07:38,410 --> 00:07:39,280
 application.
 
-176
+174
 00:07:39,280 --> 00:07:41,730
 So let's extract those
 into a plugin.
 
-177
-00:07:41,730 --> 00:07:44,880
-
-178
+175
 00:07:44,880 --> 00:07:48,980
 Here's our bind command, which
 you should be familiar with.
 
-179
+176
 00:07:48,980 --> 00:07:50,585
 Here's our show a number
 of flights function.
 
-180
-00:07:50,585 --> 00:07:54,020
-
-181
+177
 00:07:54,020 --> 00:07:57,200
 And here's our hide number
 of flights function.
 
-182
+178
 00:07:57,200 --> 00:08:00,160
 So let's extract this
 into a plugin.
 
-183
+179
 00:08:00,160 --> 00:08:01,920
 So our plugin in this
 case is going to be
 
-184
+180
 00:08:01,920 --> 00:08:04,030
 called addToolTip.
 
-185
+181
 00:08:04,030 --> 00:08:08,190
 It's going to return a
 bind on mouseenter.
 
-186
+182
 00:08:08,190 --> 00:08:09,910
 It's going to grab
 the tool tip.
 
-187
+183
 00:08:09,910 --> 00:08:13,130
 I've changed the data naming
 here so that all we have to do
 
-188
+184
 00:08:13,130 --> 00:08:15,130
 is have data tool tip and
 that'll pick it up.
 
-189
+185
 00:08:15,130 --> 00:08:17,460
 It's a little bit
 more generic.
 
-190
+186
 00:08:17,460 --> 00:08:20,320
 Then we're going to create
 a span and append that.
 
-191
+187
 00:08:20,320 --> 00:08:22,345
 And on mouseleave we're going
 to find that tool
 
-192
+188
 00:08:22,345 --> 00:08:24,520
 tip and remove it.
 
-193
+189
 00:08:24,520 --> 00:08:26,990
 All we need to do to add this
 function is simply to get an
 
-194
+190
 00:08:26,990 --> 00:08:30,890
 element and call .addToolTip.
 
-195
+191
 00:08:30,890 --> 00:08:33,620
 Now, if we look back
 in our browser, it
 
-196
+192
 00:08:33,620 --> 00:08:34,919
 shouldn't look any different.
 
-197
+193
 00:08:34,919 --> 00:08:36,220
 It's pretty much the same.
 
-198
+194
 00:08:36,220 --> 00:08:39,380
 Except now, we can take that
 plugin and use it elsewhere
 
-199
+195
 00:08:39,380 --> 00:08:42,679
 in our code.
 
-200
+196
 00:08:42,679 --> 00:08:42,980
 All right.
 
-201
+197
 00:08:42,980 --> 00:08:45,220
 We're about halfway down
 with level four.
 
-202
+198
 00:08:45,220 --> 00:08:46,730
 Next up, we're going to be
 talking about how to
 
-203
+199
 00:08:46,730 --> 00:08:49,830
 encapsulate and organize
 your JavaScript code.
 
-204
+200
 00:08:49,830 --> 00:08:52,240
 So here you can see what we've
 written so far in our
 
-205
+201
 00:08:52,240 --> 00:08:53,160
 application.
 
-206
+202
 00:08:53,160 --> 00:08:55,690
 We've got a couple variables and
 a bunch of functions and a
 
-207
+203
 00:08:55,690 --> 00:08:57,570
 bunch of stuff we
 load and unload.
 
-208
+204
 00:08:57,570 --> 00:08:59,650
 And it's a bit messy.
 
-209
+205
 00:08:59,650 --> 00:09:02,750
 So how might we refactor
 this to encapsulate it?
 
-210
+206
 00:09:02,750 --> 00:09:05,640
 Well, what we're going to do is
 we're going to encapsulate
 
-211
+207
 00:09:05,640 --> 00:09:08,770
 it in two different objects.
 
-212
+208
 00:09:08,770 --> 00:09:11,440
 Up here at the top, we have
 the select flights object.
 
-213
+209
 00:09:11,440 --> 00:09:14,180
 Inside there we have two
 attributes, fetchingFlights
 
-214
+210
 00:09:14,180 --> 00:09:15,390
 and currentFlights.
 
-215
+211
 00:09:15,390 --> 00:09:17,290
 Then we're going to have
 an init function.
 
-216
+212
 00:09:17,290 --> 00:09:19,780
 We're writing the functions a
 little bit differently now.
 
-217
+213
 00:09:19,780 --> 00:09:22,610
 We're wrapping them
 all like so.
 
-218
+214
 00:09:22,610 --> 00:09:24,440
 Then we have a more object
 called confirm flight at the
 
-219
+215
 00:09:24,440 --> 00:09:26,260
 bottom, where we're separating
 functions that
 
-220
+216
 00:09:26,260 --> 00:09:27,630
 have different concerns.
 
-221
+217
 00:09:27,630 --> 00:09:30,160
 To run the functions that we
 need to run when the page
 
-222
+218
 00:09:30,160 --> 00:09:34,390
 loads, we're simply going to
 run selectFlights.init.
 
-223
+219
 00:09:34,390 --> 00:09:36,360
 One other thing we need to
 change in here to make it
 
-224
+220
 00:09:36,360 --> 00:09:40,350
 work, we need to reference
 the methods like so.
 
-225
+221
 00:09:40,350 --> 00:09:43,300
 If we're talking about methods
 inside our current object, we
 
-226
+222
 00:09:43,300 --> 00:09:45,825
 can also use the
 this variable.
 
-227
-00:09:45,825 --> 00:09:48,390
-
-228
+223
 00:09:48,390 --> 00:09:50,200
 Next up, we're going to talk
 about custom events.
 
-229
+224
 00:09:50,200 --> 00:09:53,190
 And what we're going to try to
 implement on our little flight
 
-230
+225
 00:09:53,190 --> 00:09:56,570
 selecter is the ability to use
 the keys one, two, three,
 
-231
+226
 00:09:56,570 --> 00:10:00,710
 four, five to select the
 five different tabs.
 
-232
+227
 00:10:00,710 --> 00:10:02,800
 So what might that
 code look like?
 
-233
+228
 00:10:02,800 --> 00:10:03,900
 We're going to write
 a function that
 
-234
+229
 00:10:03,900 --> 00:10:06,330
 gets called on keydown.
 
-235
+230
 00:10:06,330 --> 00:10:09,080
 And if the key code is between
 these two key codes, which is
 
-236
+231
 00:10:09,080 --> 00:10:11,700
 basically one and five,
 we're going to
 
-237
+232
 00:10:11,700 --> 00:10:13,900
 set the number selected.
 
-238
+233
 00:10:13,900 --> 00:10:16,110
 I should mention that if they
 press the number one, it's
 
-239
+234
 00:10:16,110 --> 00:10:18,990
 actually going to set
 numSelected to zero.
 
-240
+235
 00:10:18,990 --> 00:10:21,510
 So we're making it from
 zero to four, really.
 
-241
+236
 00:10:21,510 --> 00:10:24,370
 Then we're going to set
 tabSelected and get the tab
 
-242
+237
 00:10:24,370 --> 00:10:26,490
 that was selected using that EQ
 
-243
+238
 00:10:26,490 --> 00:10:28,140
 function that we saw earlier.
 
-244
+239
 00:10:28,140 --> 00:10:31,440
 So if it's EQ0, it's going
 to select the first tab.
 
-245
+240
 00:10:31,440 --> 00:10:34,930
 Then we want to select the
 proper tab, switch the
 
-246
+241
 00:10:34,930 --> 00:10:37,860
 classes, call the AJAX.
 
-247
+242
 00:10:37,860 --> 00:10:40,740
 Now, there's one other place in
 our code, though, that does
 
-248
+243
 00:10:40,740 --> 00:10:43,260
 the same thing, our
 old tab code.
 
-249
+244
 00:10:43,260 --> 00:10:46,880
 So when a tab is clicked, it
 does the same exact thing.
 
-250
+245
 00:10:46,880 --> 00:10:48,660
 And we don't like to
 repeat ourselves.
 
-251
+246
 00:10:48,660 --> 00:10:50,960
 So let's make it dry.
 
-252
+247
 00:10:50,960 --> 00:10:54,520
 So where we have this repeated
 code we're going to move this
 
-253
+248
 00:10:54,520 --> 00:10:57,490
 up into a custom event.
 
-254
+249
 00:10:57,490 --> 00:11:01,790
 We're going to call the custom
 event selectTab, just
 
-255
+250
 00:11:01,790 --> 00:11:03,740
 like you see here.
 
-256
+251
 00:11:03,740 --> 00:11:06,110
 Then it to trigger the
 event, we simply
 
-257
+252
 00:11:06,110 --> 00:11:07,510
 call the trigger method.
 
-258
+253
 00:11:07,510 --> 00:11:11,770
 So down here we say, trigger
 selectTab, and then down in
 
-259
+254
 00:11:11,770 --> 00:11:15,350
 our click event, we call
 trigger selectTab.
 
-260
+255
 00:11:15,350 --> 00:11:17,350
 So selectTab's our custom
 event, and we
 
-261
+256
 00:11:17,350 --> 00:11:20,360
 call it by using trigger.
 
-262
+257
 00:11:20,360 --> 00:11:23,070
 Here it is in action.
 
-263
+258
 00:11:23,070 --> 00:11:23,790
 Here we go.
 
-264
+259
 00:11:23,790 --> 00:11:27,650
 One, two, three, four,
 and then five.
 
-265
+260
 00:11:27,650 --> 00:11:32,190
 So it works using both keys
 and clicking on the tabs.
 
-266
+261
 00:11:32,190 --> 00:11:34,660
 Remember this code from earlier,
 where we're getting
 
-267
+262
 00:11:34,660 --> 00:11:38,320
 back a JSON array and mapping
 that into a new array and
 
-268
+263
 00:11:38,320 --> 00:11:39,960
 printing out to the screen,
 and then having
 
-269
+264
 00:11:39,960 --> 00:11:40,920
 some HTML in there?
 
-270
+265
 00:11:40,920 --> 00:11:44,620
 Well, I was kind of hiding the
 ugly stuff from you, because
 
-271
+266
 00:11:44,620 --> 00:11:47,780
 really it looks a little bit
 something like this.
 
-272
+267
 00:11:47,780 --> 00:11:50,200
 We have all this HTML
 in the middle of
 
-273
+268
 00:11:50,200 --> 00:11:52,620
 our beautiful jQuery.
 
-274
+269
 00:11:52,620 --> 00:11:53,360
 Not so good.
 
-275
+270
 00:11:53,360 --> 00:11:54,780
 How might we get around this?
 
-276
+271
 00:11:54,780 --> 00:11:56,160
 Well, one way we might
 get around this
 
-277
+272
 00:11:56,160 --> 00:11:57,870
 is by using a template.
 
-278
+273
 00:11:57,870 --> 00:12:02,320
 Once we use jQuery Templates,
 the code looks a lot cleaner.
 
-279
+274
 00:12:02,320 --> 00:12:04,720
 Looks something like this,
 where we, say, take this
 
-280
+275
 00:12:04,720 --> 00:12:09,660
 template called flight template,
 send in the flights
 
-281
+276
 00:12:09,660 --> 00:12:11,890
 arrays-- remember that's
 a JSON array--
 
-282
+277
 00:12:11,890 --> 00:12:14,010
 and then append that
 to this div.
 
-283
+278
 00:12:14,010 --> 00:12:18,410
 And that's all there is to it.
 
-284
+279
 00:12:18,410 --> 00:12:20,650
 Well, we have to specify
 the template.
 
-285
+280
 00:12:20,650 --> 00:12:22,240
 Let me show you what
 that looks like.
 
-286
+281
 00:12:22,240 --> 00:12:24,190
 To basically in our HTML, we
 might have something that
 
-287
+282
 00:12:24,190 --> 00:12:26,520
 looks like this.
 
-288
+283
 00:12:26,520 --> 00:12:29,600
 So the ID is the name of the
 template, the flight template.
 
-289
+284
 00:12:29,600 --> 00:12:32,440
 And here you can see all of
 the different values that
 
-290
+285
 00:12:32,440 --> 00:12:34,460
 we're pulling out of
 our JSON array.
 
-291
+286
 00:12:34,460 --> 00:12:38,290
 You might notice that there's
 no each in here.
 
-292
+287
 00:12:38,290 --> 00:12:40,580
 That's because jQuery Templates
 is smart enough to
 
-293
+288
 00:12:40,580 --> 00:12:43,630
 know that this is a JSON array
 that it's getting.
 
-294
+289
 00:12:43,630 --> 00:12:45,440
 And it's going to iterate
 through this
 
-295
+290
 00:12:45,440 --> 00:12:48,400
 template for every row.
 
-296
+291
 00:12:48,400 --> 00:12:53,290
 jQuery Templates isn't baked
 into Quora jQuery library, at
 
-297
+292
 00:12:53,290 --> 00:12:54,270
 least it isn't yet.
 
-298
+293
 00:12:54,270 --> 00:12:56,370
 It may be in the future,
 but it isn't yet.
 
-299
+294
 00:12:56,370 --> 00:13:01,100
 Which means you're going to need
 to go and grab the source
 
-300
+295
 00:13:01,100 --> 00:13:02,800
 and include that in
 your application.
 
-301
+296
 00:13:02,800 --> 00:13:04,040
 Something like this.
 
-302
+297
 00:13:04,040 --> 00:13:05,840
 I also really recommend
 looking through the
 
-303
+298
 00:13:05,840 --> 00:13:06,570
 documentation.
 
-304
+299
 00:13:06,570 --> 00:13:09,260
 There's some really great
 examples of how to use it.
 
-305
+300
 00:13:09,260 --> 00:13:11,580
 And you may have noticed, when
 we switched over to using a
 
-306
+301
 00:13:11,580 --> 00:13:15,860
 jQuery template, we lost that
 nice formatting of our routes.
 
-307
+302
 00:13:15,860 --> 00:13:19,400
 It used to say nonstop,
 one stop, two stops.
 
-308
+303
 00:13:19,400 --> 00:13:21,410
 But it's not doing
 that anymore.
 
-309
+304
 00:13:21,410 --> 00:13:24,640
 Well, how might we implement
 that on the client side?
 
-310
+305
 00:13:24,640 --> 00:13:26,500
 Using jQuery Templates,
 we can have some
 
-311
+306
 00:13:26,500 --> 00:13:27,580
 conditionals in there.
 
-312
+307
 00:13:27,580 --> 00:13:30,520
 So if routing is equal
 to zero, put nonstop.
 
-313
+308
 00:13:30,520 --> 00:13:33,520
 Otherwise, if it's equal
 to one, put one stop.
 
-314
+309
 00:13:33,520 --> 00:13:35,930
 Otherwise, just print
 out whatever stops.
 
-315
+310
 00:13:35,930 --> 00:13:38,440
 Just like that, we can use
 conditionals in our code.
 
-316
+311
 00:13:38,440 --> 00:13:41,220
 And then when we go back into
 our browser, you can see that
 
-317
+312
 00:13:41,220 --> 00:13:46,540
 we have nicely printed routes.
 
-318
+313
 00:13:46,540 --> 00:13:48,120
 There's a couple other template
 commands that I want
 
-319
+314
 00:13:48,120 --> 00:13:49,110
 you to know about.
 
-320
+315
 00:13:49,110 --> 00:13:53,190
 So you saw that we used dollar
 sign curly brackets for
 
-321
+316
 00:13:53,190 --> 00:13:54,160
 printing data.
 
-322
+317
 00:13:54,160 --> 00:13:58,120
 But we can also say HTML and
 then have the field name if we
 
-323
+318
 00:13:58,120 --> 00:14:00,310
 want to print out markup.
 
-324
+319
 00:14:00,310 --> 00:14:04,180
 We can use each if our
 JSON has an array
 
-325
+320
 00:14:04,180 --> 00:14:05,260
 embedded inside of it.
 
-326
+321
 00:14:05,260 --> 00:14:09,260
 We can iterate through each of
 the items from that JSON.
 
-327
+322
 00:14:09,260 --> 00:14:12,370
 We can also use the template
 command, which you'll need to
 
-328
+323
 00:14:12,370 --> 00:14:14,550
 look up some examples to figure
 out how to use it, but
 
-329
+324
 00:14:14,550 --> 00:14:17,610
 basically allows you to include
 templates inside of
 
-330
+325
 00:14:17,610 --> 00:14:18,860
 other templates.
 
-331
-00:14:18,860 --> 00:14:24,800
-
-332
+326
 00:14:24,800 --> 00:14:27,150
 Well, that's the end
 of jQuery Air.
 
-333
+327
 00:14:27,150 --> 00:14:27,630
 Wait.
 
-334
+328
 00:14:27,630 --> 00:14:28,870
 That's the end of
 all the videos.
 
-335
+329
 00:14:28,870 --> 00:14:31,090
 And that stuff got
 pretty hairy over
 
-336
+330
 00:14:31,090 --> 00:14:32,530
 the past level here.
 
-337
+331
 00:14:32,530 --> 00:14:35,430
 So I hope you're ready to get
 into the challenges and
 
-338
+332
 00:14:35,430 --> 00:14:37,270
 actually learn by doing.
 
-339
+333
 00:14:37,270 --> 00:14:40,300
 And hopefully, they'll be a
 next course after this.
 
-340
+334
 00:14:40,300 --> 00:14:44,370
 Hey, if you get this far, you
 might keep a look out for the
 
-341
+335
 00:14:44,370 --> 00:14:46,980
 CoffeeScript course that we
 might be doing, where you'll
 
-342
+336
 00:14:46,980 --> 00:14:50,850
 be doing a lot of the same
 stuff, but programming it in
 
-343
+337
 00:14:50,850 --> 00:14:54,210
 nicer code, in nicer
 CoffeeScript code.
 
-344
+338
 00:14:54,210 --> 00:14:58,050
 So as they say when you leave
 the flight after you're done,
 
-345
+339
 00:14:58,050 --> 00:14:59,410
 bye bye, now.
 
-346
+340
 00:14:59,410 --> 00:15:00,450
 Bye bye.
 
-347
+341
 00:15:00,450 --> 00:15:02,250
 Bye bye, now See you.
-
-348
-00:15:02,250 --> 00:15:07,114

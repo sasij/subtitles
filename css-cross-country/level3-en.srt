@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:24,600
 [MUSIC PLAYING]
 
@@ -573,137 +573,130 @@ specific container
 on the page.
 
 122
-00:06:09,695 --> 00:06:13,710
-
-
-123
 00:06:13,710 --> 00:06:16,160
 When dealing with multiple
 position items it's
 
-124
+123
 00:06:16,160 --> 00:06:19,030
 commonplace that these items
 might begin to overlap one
 
-125
+124
 00:06:19,030 --> 00:06:22,130
 another, so it's important to
 take into consideration in
 
-126
+125
 00:06:22,130 --> 00:06:24,190
 what order they'll overlap.
 
-127
+126
 00:06:24,190 --> 00:06:26,910
 In this case, I have two images
 that are overlapping
 
-128
+127
 00:06:26,910 --> 00:06:29,300
 one another because they
 are positioned.
 
-129
+128
 00:06:29,300 --> 00:06:33,380
 If they have the same z-index
 set, or if they have no
 
-130
+129
 00:06:33,380 --> 00:06:37,070
 z-index set, the image that
 appears second in the HTML
 
-131
+130
 00:06:37,070 --> 00:06:39,750
 will appear to be
 above the first.
 
-132
+131
 00:06:39,750 --> 00:06:43,550
 So, in this case, our sled image
 will appear above the
 
-133
+132
 00:06:43,550 --> 00:06:47,550
 ski image since they both have
 the same z-index value.
 
-134
+133
 00:06:47,550 --> 00:06:51,240
 If I change the z-index value
 to only apply to our ski
 
-135
+134
 00:06:51,240 --> 00:06:55,290
 image, it will overcome the
 default cascade order and
 
-136
+135
 00:06:55,290 --> 00:06:57,810
 appear above the slide image.
 
-137
+136
 00:06:57,810 --> 00:07:00,900
 Z-index will only apply to
 elements that have a position
 
-138
+137
 00:07:00,900 --> 00:07:04,440
 value other than static, meaning
 they're positioned.
 
-139
+138
 00:07:04,440 --> 00:07:07,940
 Remember that if you don't want
 the item to move, but
 
-140
+139
 00:07:07,940 --> 00:07:09,770
 simply need to give it
 positioning, you can use
 
-141
+140
 00:07:09,770 --> 00:07:11,940
 position relative.
 
-142
+141
 00:07:11,940 --> 00:07:14,410
 There are a whole lot of other
 considerations with stacking
 
-143
+142
 00:07:14,410 --> 00:07:17,550
 order as they apply to things
 like floats, normally
 
-144
+143
 00:07:17,550 --> 00:07:20,880
 positioned elements and position
 elements, so take a
 
-145
+144
 00:07:20,880 --> 00:07:24,800
 look at link two if you'd like
 to learn more about this.
 
-146
+145
 00:07:24,800 --> 00:07:26,690
 So that does it for Level 3.
 
-147
+146
 00:07:26,690 --> 00:07:28,720
 While you're off doing the
 challenges, I'm going to get a
 
-148
+147
 00:07:28,720 --> 00:07:29,680
 cup of cocoa.
 
-149
+148
 00:07:29,680 --> 00:07:30,930
 Good luck.
-
-150
-00:07:30,930 --> 00:07:32,586

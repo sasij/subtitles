@@ -1,82 +1,78 @@
 ﻿1
-00:00:00,000 --> 00:00:03,370
-
-
-2
 00:00:03,370 --> 00:00:05,130
 You're watching Discover
 DevTools.
 
-3
+2
 00:00:05,130 --> 00:00:07,230
 I'm Greg Pollack, and this is
 Level Four, where we're going
 
-4
+3
 00:00:07,230 --> 00:00:10,980
 to be taking a closer look at
 debugging our applications.
 
-5
+4
 00:00:10,980 --> 00:00:13,790
 As we saw in the last chapter,
 the Chrome console will log
 
-6
+5
 00:00:13,790 --> 00:00:16,239
 out any errors that our
 application throws.
 
-7
+6
 00:00:16,239 --> 00:00:18,790
 However, Chrome also comes
 with some great debugging
 
-8
+7
 00:00:18,790 --> 00:00:22,350
 tools so you can dive deeper
 into these errors.
 
-9
+8
 00:00:22,350 --> 00:00:24,600
 In the last chapter, you may
 remember that we were getting
 
-10
+9
 00:00:24,600 --> 00:00:26,220
 an error page when
 we loaded it.
 
-11
+10
 00:00:26,220 --> 00:00:28,690
 The events method was
 returning null.
 
-12
+11
 00:00:28,690 --> 00:00:31,680
 Let's try to fix that directly
 in our code by checking to see
 
-13
+12
 00:00:31,680 --> 00:00:36,680
 if events is equal to null, and
 if it is, we'll set it to
 
-14
+13
 00:00:36,680 --> 00:00:38,930
 an empty array.
 
-15
+14
 00:00:38,930 --> 00:00:41,530
 With that done, if we go back
 and refresh the page, we'll
 
-16
+15
 00:00:41,530 --> 00:00:45,080
 see that our page loads
 without errors.
 
-17
+16
 00:00:45,080 --> 00:00:47,000
 Why don't you try this over
 on the Challenges?

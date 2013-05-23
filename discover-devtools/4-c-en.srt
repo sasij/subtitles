@@ -1,133 +1,125 @@
 ﻿1
-00:00:00,000 --> 00:00:02,850
-
-
-2
 00:00:02,850 --> 00:00:05,350
 Now let's take a look at an
 error that might pop up when
 
-3
+2
 00:00:05,350 --> 00:00:07,920
 we read data from
 local storage.
 
-4
+3
 00:00:07,920 --> 00:00:10,010
 So here you can see I refreshed
 the page, an
 
-5
+4
 00:00:10,010 --> 00:00:12,160
 error popped up.
 
-6
+5
 00:00:12,160 --> 00:00:13,890
 It looks like our application's
 trying to call
 
-7
+6
 00:00:13,890 --> 00:00:18,340
 the two lowercase method on
 a value that's undefined.
 
-8
+7
 00:00:18,340 --> 00:00:21,300
 If we refresh the page again,
 you can see that it's paused
 
-9
+8
 00:00:21,300 --> 00:00:22,420
 on our exception.
 
-10
+9
 00:00:22,420 --> 00:00:25,240
 And if we hover over the name
 for our event, we can see that
 
-11
+10
 00:00:25,240 --> 00:00:27,600
 it is, in fact, undefined.
 
-12
+11
 00:00:27,600 --> 00:00:29,430
 So what's going on here?
 
-13
+12
 00:00:29,430 --> 00:00:32,670
 Well, let's take a look at our
 events in local storage.
 
-14
+13
 00:00:32,670 --> 00:00:34,170
 To do that, we'll first
 have to click on
 
-15
+14
 00:00:34,170 --> 00:00:35,600
 the Resources panel.
 
-16
+15
 00:00:35,600 --> 00:00:37,750
 Then we can bring up storage for
 the app on our development
 
-17
+16
 00:00:37,750 --> 00:00:40,740
 machine by clicking
 in the list here.
 
-18
+17
 00:00:40,740 --> 00:00:43,970
 On the right, we can see our
 stored items sorted by Key.
 
-19
+18
 00:00:43,970 --> 00:00:45,900
 And there's our event, JSON.
 
-20
+19
 00:00:45,900 --> 00:00:50,090
 It looks like our first event
 has both a name and a date
 
-21
+20
 00:00:50,090 --> 00:00:54,210
 attribute, but our second
 only has a date.
 
-22
+21
 00:00:54,210 --> 00:00:57,380
 So let's try adding
 a name to it.
 
-23
+22
 00:00:57,380 --> 00:01:00,490
 Now when we refresh the page, it
 loads successfully because
 
-24
+23
 00:01:00,490 --> 00:01:02,430
 our name is no longer null.
 
-25
-00:01:02,430 --> 00:01:05,010
-
-
-26
+24
 00:01:05,010 --> 00:01:05,660
 All right.
 
-27
+25
 00:01:05,660 --> 00:01:07,850
 Now that we've shown you some
 of the capabilities of the
 
-28
+26
 00:01:07,850 --> 00:01:10,950
 DevTools debugger, it's time for
 you to try it yourself in
 
-29
+27
 00:01:10,950 --> 00:01:12,200
 the Challenges.

@@ -1,951 +1,936 @@
-1
-00:00:00,000 --> 00:00:03,255
-
-
-2
+﻿1
 00:00:03,255 --> 00:00:06,970
 Git, a distributed source
 control repository.
 
-3
+2
 00:00:06,970 --> 00:00:09,400
 I tried to picture clusters of
 information as they move
 
-4
+3
 00:00:09,400 --> 00:00:11,210
 through the file system.
 
-5
+4
 00:00:11,210 --> 00:00:13,820
 Were the commit messages
 like history books?
 
-6
+5
 00:00:13,820 --> 00:00:16,172
 I kept dreaming of
 a repository I
 
-7
+6
 00:00:16,172 --> 00:00:18,210
 thought I'd never see.
 
-8
+7
 00:00:18,210 --> 00:00:22,205
 And then, one day: Git Real.
 
-9
+8
 00:00:22,205 --> 00:00:27,750
 [MUSIC PLAYING]
 
-10
+9
 00:00:27,750 --> 00:00:28,940
 You're watching Level
 One of Git Real.
 
-11
+10
 00:00:28,940 --> 00:00:31,550
 I'm Gregg Pollack, and in this
 level, we're going to go over
 
-12
+11
 00:00:31,550 --> 00:00:34,200
 some of the real basics
 of using Git.
 
-13
+12
 00:00:34,200 --> 00:00:36,500
 So if you're already familiar
 with these basics, maybe you
 
-14
+13
 00:00:36,500 --> 00:00:39,350
 did tryGit, feel free to skip
 over the video and go straight
 
-15
+14
 00:00:39,350 --> 00:00:40,690
 to the challenges.
 
-16
+15
 00:00:40,690 --> 00:00:43,340
 The first time I got a gig
 working with the web it was
 
-17
+16
 00:00:43,340 --> 00:00:44,400
 pretty typical.
 
-18
+17
 00:00:44,400 --> 00:00:46,030
 So there I was, first
 day on the job and I
 
-19
+18
 00:00:46,030 --> 00:00:47,880
 needed to edit a website.
 
-20
+19
 00:00:47,880 --> 00:00:51,830
 I was told to FTP the file down,
 make changes locally,
 
-21
+20
 00:00:51,830 --> 00:00:55,860
 and FTP them back up which works
 fine until you find out
 
-22
+21
 00:00:55,860 --> 00:00:58,670
 there is somebody else who is
 also working on a project.
 
-23
+22
 00:00:58,670 --> 00:01:01,060
 And at times they may pull
 down the same file, make
 
-24
+23
 00:01:01,060 --> 00:01:04,290
 changes, and you both may try
 to upload and override each
 
-25
+24
 00:01:04,290 --> 00:01:05,510
 other's changes.
 
-26
+25
 00:01:05,510 --> 00:01:07,540
 And it's a big mess.
 
-27
+26
 00:01:07,540 --> 00:01:10,620
 This is where you might need
 a version control system.
 
-28
+27
 00:01:10,620 --> 00:01:12,530
 So what is a source control
 repository and what
 
-29
+28
 00:01:12,530 --> 00:01:13,450
 does it do for you?
 
-30
+29
 00:01:13,450 --> 00:01:15,670
 Well the first thing it does is
 it deals with these sort of
 
-31
+30
 00:01:15,670 --> 00:01:18,170
 situations where you have two
 different people working on
 
-32
+31
 00:01:18,170 --> 00:01:21,650
 the same file, and you both
 check in that same file, it
 
-33
+32
 00:01:21,650 --> 00:01:24,080
 will try to merge that
 file for you.
 
-34
+33
 00:01:24,080 --> 00:01:26,350
 The second and more important
 thing is that it works as a
 
-35
+34
 00:01:26,350 --> 00:01:27,480
 time capsule.
 
-36
+35
 00:01:27,480 --> 00:01:31,010
 So over time as you make changes
 to files and you check
 
-37
+36
 00:01:31,010 --> 00:01:35,330
 them into your source control,
 it keeps a time log so that
 
-38
+37
 00:01:35,330 --> 00:01:37,450
 you've got a complete history
 of all the files that have
 
-39
+38
 00:01:37,450 --> 00:01:39,970
 changed and even why
 they changed.
 
-40
+39
 00:01:39,970 --> 00:01:41,270
 You can see these are
 all the different
 
-41
+40
 00:01:41,270 --> 00:01:44,610
 versions in version control.
 
-42
+41
 00:01:44,610 --> 00:01:47,040
 Up until recently, most version
 control systems used a
 
-43
+42
 00:01:47,040 --> 00:01:48,700
 centralized repository.
 
-44
+43
 00:01:48,700 --> 00:01:51,320
 What this means is that you have
 multiple people and when
 
-45
+44
 00:01:51,320 --> 00:01:54,230
 they make changes and they make
 commits and store that
 
-46
+45
 00:01:54,230 --> 00:01:56,660
 history, it's all
 going to central
 
-47
+46
 00:01:56,660 --> 00:01:58,790
 repository, one server.
 
-48
+47
 00:01:58,790 --> 00:02:02,230
 Some version control systems
 like Git are distributed.
 
-49
+48
 00:02:02,230 --> 00:02:06,020
 This means that everybody has
 a complete copy of the repo.
 
-50
+49
 00:02:06,020 --> 00:02:08,430
 The nice thing about this is
 that you can make commits
 
-51
+50
 00:02:08,430 --> 00:02:09,900
 really quickly.
 
-52
+51
 00:02:09,900 --> 00:02:13,000
 You can work on it offline,
 and everybody
 
-53
+52
 00:02:13,000 --> 00:02:14,190
 has a complete copy.
 
-54
+53
 00:02:14,190 --> 00:02:16,630
 That way if one gets destroyed,
 everybody has a
 
-55
+54
 00:02:16,630 --> 00:02:17,810
 copy of the repo.
 
-56
+55
 00:02:17,810 --> 00:02:21,300
 Unlike working with a
 centralized repository, if you
 
-57
+56
 00:02:21,300 --> 00:02:23,590
 lose all your backups and
 your server goes down,
 
-58
+57
 00:02:23,590 --> 00:02:26,610
 you are out of luck.
 
-59
+58
 00:02:26,610 --> 00:02:29,560
 So now what it means when we
 called Git a distributed
 
-60
+59
 00:02:29,560 --> 00:02:31,650
 version control system,
 or DVCS.
 
-61
-00:02:31,650 --> 00:02:34,950
-
-
-62
+60
 00:02:34,950 --> 00:02:37,780
 Git was created by Linus
 Torvalds, when he was working
 
-63
+61
 00:02:37,780 --> 00:02:41,130
 on the Linux operating system
 and he lost access to the
 
-64
+62
 00:02:41,130 --> 00:02:43,770
 proprietary version control
 system he was using.
 
-65
+63
 00:02:43,770 --> 00:02:46,710
 He wanted to create something
 new, something that was fast,
 
-66
+64
 00:02:46,710 --> 00:02:49,230
 that's distributed, and was good
 with working with large
 
-67
+65
 00:02:49,230 --> 00:02:53,480
 code bases, like Linux.
 
-68
+66
 00:02:53,480 --> 00:02:55,020
 Most people work with Git
 on the command line.
 
-69
+67
 00:02:55,020 --> 00:02:57,140
 So in this course we're going
 to be teaching all of the
 
-70
+68
 00:02:57,140 --> 00:02:58,540
 command line tools.
 
-71
+69
 00:02:58,540 --> 00:03:00,770
 That being said, there's still
 a lot of graphical user
 
-72
+70
 00:03:00,770 --> 00:03:02,520
 interfaces that you
 can check out.
 
-73
+71
 00:03:02,520 --> 00:03:05,360
 And if you want to install Git
 or download some of those
 
-74
+72
 00:03:05,360 --> 00:03:07,150
 GUIs, you can go over
 to git-scm.com.
 
-75
-00:03:07,150 --> 00:03:11,030
-
-
-76
+73
 00:03:11,030 --> 00:03:13,630
 Like most command line tools,
 Git comes with a help system.
 
-77
+74
 00:03:13,630 --> 00:03:16,120
 So if you ever get stuck,
 you can run git help.
 
-78
+75
 00:03:16,120 --> 00:03:18,390
 It'll give you a list
 of the commands.
 
-79
+76
 00:03:18,390 --> 00:03:21,010
 And then if you want to get more
 specific, you can type
 
-80
+77
 00:03:21,010 --> 00:03:23,270
 git help and then the command
 you need more information
 
-81
+78
 00:03:23,270 --> 00:03:27,360
 about and it'll have pretty
 good documentation.
 
-82
+79
 00:03:27,360 --> 00:03:29,230
 Your first step when you install
 Git is to set some
 
-83
+80
 00:03:29,230 --> 00:03:30,640
 basic configuration.
 
-84
+81
 00:03:30,640 --> 00:03:33,760
 You're going to want to set your
 username, your user email
 
-85
+82
 00:03:33,760 --> 00:03:37,130
 because what good is filling a
 commit with awesome code if
 
-86
+83
 00:03:37,130 --> 00:03:39,520
 you can't take some credit
 for it, right?
 
-87
+84
 00:03:39,520 --> 00:03:41,380
 And we're going to run one
 last command to get some
 
-88
+85
 00:03:41,380 --> 00:03:44,730
 pretty colors on the output
 of our command line.
 
-89
+86
 00:03:44,730 --> 00:03:46,530
 So you've installed Git and
 you're ready to work on your
 
-90
+87
 00:03:46,530 --> 00:03:48,500
 first repository.
 
-91
+88
 00:03:48,500 --> 00:03:50,090
 We're going to need a directory,
 so let's create a
 
-92
+89
 00:03:50,090 --> 00:03:51,080
 directory if we haven't.
 
-93
+90
 00:03:51,080 --> 00:03:52,820
 We're going to go into
 that directory.
 
-94
+91
 00:03:52,820 --> 00:03:55,000
 We can work on some files at
 this point, and we're ready to
 
-95
+92
 00:03:55,000 --> 00:03:58,980
 start the repository, we
 simply type git init.
 
-96
+93
 00:03:58,980 --> 00:04:02,490
 This is going to create a
 local Git repo for us.
 
-97
+94
 00:04:02,490 --> 00:04:04,990
 It's not up on any server,
 it's local.
 
-98
+95
 00:04:04,990 --> 00:04:08,800
 It's actually stored in that
 .git hidden directory.
 
-99
+96
 00:04:08,800 --> 00:04:11,140
 You're never going to need to go
 in to that directory, just
 
-100
+97
 00:04:11,140 --> 00:04:13,770
 know that's where
 it's all stored.
 
-101
+98
 00:04:13,770 --> 00:04:15,050
 Let's start working with Git.
 
-102
+99
 00:04:15,050 --> 00:04:17,149
 And we're going to talk about
 our workflow before we get
 
-103
+100
 00:04:17,149 --> 00:04:18,180
 into commands.
 
-104
+101
 00:04:18,180 --> 00:04:21,820
 So Jane, our user here, is going
 to create a readme file.
 
-105
+102
 00:04:21,820 --> 00:04:24,300
 That readme starts
 out as untracked.
 
-106
+103
 00:04:24,300 --> 00:04:26,630
 When we're ready to start
 tracking that file we're first
 
-107
+104
 00:04:26,630 --> 00:04:28,600
 going to add it to
 a staging area.
 
-108
+105
 00:04:28,600 --> 00:04:31,450
 We're getting ready to
 take a snapshot.
 
-109
+106
 00:04:31,450 --> 00:04:34,360
 Then, we're going to create
 our first commit.
 
-110
+107
 00:04:34,360 --> 00:04:38,000
 And a commit is like taking a
 snapshot of those files that
 
-111
+108
 00:04:38,000 --> 00:04:40,260
 we put on the stage.
 
-112
+109
 00:04:40,260 --> 00:04:42,510
 We then might work in our
 project more, maybe we modify
 
-113
+110
 00:04:42,510 --> 00:04:44,500
 the readme and add a license.
 
-114
+111
 00:04:44,500 --> 00:04:46,670
 We're going to add those files
 to the staging area and make
 
-115
+112
 00:04:46,670 --> 00:04:47,810
 another commit.
 
-116
+113
 00:04:47,810 --> 00:04:49,610
 So this is the workflow
 for Git.
 
-117
+114
 00:04:49,610 --> 00:04:51,540
 You do a little bit
 of work, you stage
 
-118
+115
 00:04:51,540 --> 00:04:52,960
 it, you make a commit.
 
-119
+116
 00:04:52,960 --> 00:04:54,920
 Let's jump into the commands.
 
-120
+117
 00:04:54,920 --> 00:04:57,220
 One of the most important
 commands with Git is the git
 
-121
+118
 00:04:57,220 --> 00:04:58,680
 status command.
 
-122
+119
 00:04:58,680 --> 00:05:00,690
 This is going to tell
 you what has changed
 
-123
+120
 00:05:00,690 --> 00:05:02,340
 since your last commit.
 
-124
+121
 00:05:02,340 --> 00:05:05,020
 So we've run git status, we
 don't have any commits yet.
 
-125
+122
 00:05:05,020 --> 00:05:08,300
 It's going to tell us that we
 have one newly created file
 
-126
+123
 00:05:08,300 --> 00:05:10,300
 that's not being tracked.
 
-127
+124
 00:05:10,300 --> 00:05:12,240
 To start tracking it we
 first need to add it
 
-128
+125
 00:05:12,240 --> 00:05:13,340
 to the staging area.
 
-129
+126
 00:05:13,340 --> 00:05:17,520
 We do that using the git add
 command doing git add README.
 
-130
+127
 00:05:17,520 --> 00:05:19,730
 And if we do another git status
 at this point, we're
 
-131
+128
 00:05:19,730 --> 00:05:22,850
 going to see that this file is
 now ready to be committed,
 
-132
+129
 00:05:22,850 --> 00:05:25,430
 it's currently staged.
 
-133
+130
 00:05:25,430 --> 00:05:27,300
 Now we're ready to make
 our first commit.
 
-134
+131
 00:05:27,300 --> 00:05:31,580
 We do this by running git
 commit -m, and then we
 
-135
+132
 00:05:31,580 --> 00:05:34,210
 describe what these
 changes do.
 
-136
+133
 00:05:34,210 --> 00:05:36,580
 So in this case, create
 a readme.
 
-137
+134
 00:05:36,580 --> 00:05:39,980
 When we run that command this
 creates our first commit which
 
-138
+135
 00:05:39,980 --> 00:05:42,280
 takes a snapshot of the stage.
 
-139
+136
 00:05:42,280 --> 00:05:44,490
 And that gets added
 to our timeline.
 
-140
+137
 00:05:44,490 --> 00:05:46,970
 If we run git status at this
 point we can see that there's
 
-141
+138
 00:05:46,970 --> 00:05:50,170
 nothing else to commit, there's
 no other changes or
 
-142
+139
 00:05:50,170 --> 00:05:53,420
 files that we've modified that
 we haven't committed yet.
 
-143
+140
 00:05:53,420 --> 00:05:57,060
 Git status also tells us that
 we are on branch master.
 
-144
+141
 00:05:57,060 --> 00:05:59,530
 All you have to understand here
 is that we've got one
 
-145
+142
 00:05:59,530 --> 00:06:01,410
 main timeline at this
 point and we're
 
-146
+143
 00:06:01,410 --> 00:06:02,610
 going to call it master.
 
-147
+144
 00:06:02,610 --> 00:06:05,490
 We'll get more into branches
 on Level Three.
 
-148
+145
 00:06:05,490 --> 00:06:07,550
 Now we're going to do some
 work on some files.
 
-149
+146
 00:06:07,550 --> 00:06:11,370
 We're going to modify the readme
 and add a license.
 
-150
+147
 00:06:11,370 --> 00:06:13,230
 Now if we run git status, we're
 going to see that our
 
-151
+148
 00:06:13,230 --> 00:06:16,340
 tracked file, readme,
 has been modified.
 
-152
+149
 00:06:16,340 --> 00:06:18,070
 It's keeping an eye
 on that file so it
 
-153
+150
 00:06:18,070 --> 00:06:19,570
 knows it has been modified.
 
-154
+151
 00:06:19,570 --> 00:06:22,860
 And we have a new file we need
 to add that's not tracked
 
-155
+152
 00:06:22,860 --> 00:06:24,800
 called license.
 
-156
+153
 00:06:24,800 --> 00:06:27,060
 We want to commit both these
 file so we need to add them
 
-157
+154
 00:06:27,060 --> 00:06:28,600
 both to the staging area.
 
-158
+155
 00:06:28,600 --> 00:06:30,930
 We can do this by simply
 doing git add, and
 
-159
+156
 00:06:30,930 --> 00:06:32,370
 listing both of the files.
 
-160
+157
 00:06:32,370 --> 00:06:36,150
 Or we can do git add --all,
 which will add up all new,
 
-161
+158
 00:06:36,150 --> 00:06:39,190
 modified, or deleted
 files to our stage.
 
-162
+159
 00:06:39,190 --> 00:06:41,150
 Now if we run git status again,
 we're going to see we
 
-163
+160
 00:06:41,150 --> 00:06:43,780
 have two files that are
 ready to be committed.
 
-164
+161
 00:06:43,780 --> 00:06:47,280
 So from here, we need to go back
 and do another commit.
 
-165
+162
 00:06:47,280 --> 00:06:50,230
 So here you can see we
 do git commit -m.
 
-166
+163
 00:06:50,230 --> 00:06:53,810
 Now we can commit our changes
 off of the stage and specify
 
-167
+164
 00:06:53,810 --> 00:06:55,640
 what the commit does,
 in this case, add
 
-168
+165
 00:06:55,640 --> 00:06:57,570
 license and finish readme.
 
-169
+166
 00:06:57,570 --> 00:07:00,450
 This is going to create a
 snapshot and add a commit to
 
-170
+167
 00:07:00,450 --> 00:07:03,600
 the top of our timeline.
 
-171
+168
 00:07:03,600 --> 00:07:05,540
 Now we have two commits, but
 how do we list from the
 
-172
+169
 00:07:05,540 --> 00:07:07,340
 command line what those are?
 
-173
+170
 00:07:07,340 --> 00:07:08,960
 How do we look at the history?
 
-174
+171
 00:07:08,960 --> 00:07:10,970
 That's where the git log
 command comes in.
 
-175
+172
 00:07:10,970 --> 00:07:13,400
 So if we run it here we can see
 we have our two commits
 
-176
+173
 00:07:13,400 --> 00:07:16,840
 listing the author, the date,
 and our commit message.
 
-177
+174
 00:07:16,840 --> 00:07:19,090
 As you can imagine when you're
 working on a larger project,
 
-178
+175
 00:07:19,090 --> 00:07:22,480
 commit messages are very,
 very important.
 
-179
+176
 00:07:22,480 --> 00:07:25,240
 And so you want to try to be as
 descriptive as possible as
 
-180
+177
 00:07:25,240 --> 00:07:26,790
 to what they do.
 
-181
+178
 00:07:26,790 --> 00:07:29,080
 Plus it's good to keep
 in the present tense,
 
-182
+179
 00:07:29,080 --> 00:07:30,090
 not the past tense.
 
-183
+180
 00:07:30,090 --> 00:07:32,950
 I could've said created
 a readme file.
 
-184
+181
 00:07:32,950 --> 00:07:35,820
 It might be tempting to do that,
 but what you want to do
 
-185
+182
 00:07:35,820 --> 00:07:38,280
 is think about what
 the commit does.
 
-186
+183
 00:07:38,280 --> 00:07:41,460
 In this case, create a readme.
 
-187
+184
 00:07:41,460 --> 00:07:43,540
 Now we're going to go over some
 different ways to use the
 
-188
+185
 00:07:43,540 --> 00:07:44,710
 add command.
 
-189
+186
 00:07:44,710 --> 00:07:47,390
 As you saw you can simply
 list out files.
 
-190
+187
 00:07:47,390 --> 00:07:50,270
 You can use git add --all.
 
-191
+188
 00:07:50,270 --> 00:07:52,890
 git add *.txt will add
 all the text files
 
-192
+189
 00:07:52,890 --> 00:07:54,160
 in the current directory.
 
-193
+190
 00:07:54,160 --> 00:07:56,550
 If we want, we can specify
 a directory
 
-194
+191
 00:07:56,550 --> 00:07:58,990
 like docs/*.txt.
 
-195
+192
 00:07:58,990 --> 00:08:01,840
 We can also add all the files
 in a specific directory and
 
-196
+193
 00:08:01,840 --> 00:08:05,410
 all of its sub-directories
 by doing git add docs.
 
-197
+194
 00:08:05,410 --> 00:08:08,940
 And lastly, if you put quotes
 around *.txt, it's going to
 
-198
+195
 00:08:08,940 --> 00:08:13,270
 go add all the txt files
 in the entire project.
 
-199
+196
 00:08:13,270 --> 00:08:15,180
 You've reached the
 end of Level One.
 
-200
+197
 00:08:15,180 --> 00:08:16,330
 It's time to start
 running your own
 
-201
+198
 00:08:16,330 --> 00:08:17,580
 commands and Git Real.
-
-202
-00:08:17,580 --> 00:08:19,308

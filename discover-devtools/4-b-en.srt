@@ -1,511 +1,499 @@
 ﻿1
-00:00:00,000 --> 00:00:04,257
-
-
-2
 00:00:04,257 --> 00:00:08,460
 But now, if we try to create
 another event, it's still not
 
-3
+2
 00:00:08,460 --> 00:00:11,310
 working, and it looks like
 we created another error.
 
-4
+3
 00:00:11,310 --> 00:00:13,770
 Let's dig deeper and click on
 the file name on the right to
 
-5
+4
 00:00:13,770 --> 00:00:15,540
 see what's going on.
 
-6
+5
 00:00:15,540 --> 00:00:19,810
 Oh, it looks like Save Event is
 calling that same calendar
 
-7
+6
 00:00:19,810 --> 00:00:23,950
 events methods, which, as we
 know, will return null.
 
-8
+7
 00:00:23,950 --> 00:00:26,350
 And as the error reads,
 we can't call the
 
-9
+8
 00:00:26,350 --> 00:00:29,740
 push method on null.
 
-10
+9
 00:00:29,740 --> 00:00:32,000
 How might we confirm that
 this is actually
 
-11
+10
 00:00:32,000 --> 00:00:33,645
 what's going on though?
 
-12
+11
 00:00:33,645 --> 00:00:37,680
 Well, we're going to have to
 jump into the code and pause
 
-13
+12
 00:00:37,680 --> 00:00:40,770
 the code as it's executing, so
 we can examine the state of
 
-14
+13
 00:00:40,770 --> 00:00:42,020
 the variables.
 
-15
+14
 00:00:42,020 --> 00:00:45,440
 One way we can do this is by
 clicking on the Pause On
 
-16
+15
 00:00:45,440 --> 00:00:48,310
 Exceptions icon in
 the bottom left.
 
-17
+16
 00:00:48,310 --> 00:00:49,620
 You see it down there?
 
-18
+17
 00:00:49,620 --> 00:00:52,570
 Once we have the Pause icon
 pressed, the next time an
 
-19
+18
 00:00:52,570 --> 00:00:55,280
 error occurs, the code is
 going to be paused.
 
-20
+19
 00:00:55,280 --> 00:00:57,930
 While it's paused, we can just
 hover over each variable, and
 
-21
+20
 00:00:57,930 --> 00:00:59,670
 it will show us the value.
 
-22
+21
 00:00:59,670 --> 00:01:02,030
 Here's the event object we're
 trying to add, which has a
 
-23
+22
 00:01:02,030 --> 00:01:04,500
 name of 5k run.
 
-24
+23
 00:01:04,500 --> 00:01:06,470
 The events variable is supposed
 to hold our events
 
-25
+24
 00:01:06,470 --> 00:01:08,650
 list, but as you can see, it's
 
-26
+25
 00:01:08,650 --> 00:01:11,980
 currently null as we suspected.
 
-27
+26
 00:01:11,980 --> 00:01:14,600
 Now, if we refresh the browser
 again with Pause On Exception
 
-28
+27
 00:01:14,600 --> 00:01:18,050
 selected, something unexpected
 is going to happen.
 
-29
+28
 00:01:18,050 --> 00:01:20,750
 It looks like we paused
 somewhere inside of our Jquery
 
-30
+29
 00:01:20,750 --> 00:01:24,140
 library, and it looks like it's
 the minified version of
 
-31
+30
 00:01:24,140 --> 00:01:27,690
 Jquery, meaning that all white
 space and unneeded characters
 
-32
+31
 00:01:27,690 --> 00:01:30,490
 have been removed.
 
-33
+32
 00:01:30,490 --> 00:01:32,630
 Minifying your JavaScript
 libraries like this, is going
 
-34
+33
 00:01:32,630 --> 00:01:34,730
 to make it load quicker
 in any browser.
 
-35
+34
 00:01:34,730 --> 00:01:37,030
 But it's also going to make it
 more difficult to debug.
 
-36
+35
 00:01:37,030 --> 00:01:39,930
 Fortunately, Dev Tools has a
 pretty print mode, which you
 
-37
+36
 00:01:39,930 --> 00:01:41,130
 make it readable again.
 
-38
+37
 00:01:41,130 --> 00:01:43,170
 You see those brackets down
 there at the bottom?
 
-39
+38
 00:01:43,170 --> 00:01:45,940
 If we click that, our code
 becomes a lot more readable,
 
-40
+39
 00:01:45,940 --> 00:01:48,590
 and we can see that the code
 that's causing the exception
 
-41
+40
 00:01:48,590 --> 00:01:51,490
 is inside a tricatch block.
 
-42
+41
 00:01:51,490 --> 00:01:54,500
 This means it's a caught
 exception, which we're not
 
-43
+42
 00:01:54,500 --> 00:01:56,700
 going to want to pause on.
 
-44
+43
 00:01:56,700 --> 00:02:00,230
 This is why Dev Tools has a
 second mode for your debugger
 
-45
+44
 00:02:00,230 --> 00:02:03,660
 that will pause only uncaught
 exceptions.
 
-46
+45
 00:02:03,660 --> 00:02:06,360
 All we have to do to activate
 it is click that button a
 
-47
+46
 00:02:06,360 --> 00:02:09,550
 second time.
 
-48
+47
 00:02:09,550 --> 00:02:13,760
 Now, if we reload the page again
 and try to create an
 
-49
+48
 00:02:13,760 --> 00:02:16,600
 event again, you'll see it
 skips directly to our own
 
-50
+49
 00:02:16,600 --> 00:02:17,690
 caught exception.
 
-51
+50
 00:02:17,690 --> 00:02:19,210
 This is what we wanted.
 
-52
+51
 00:02:19,210 --> 00:02:21,050
 That's twice now that
 we've had problems
 
-53
+52
 00:02:21,050 --> 00:02:22,290
 with the event function.
 
-54
+53
 00:02:22,290 --> 00:02:24,270
 So let's take a look inside that
 code, and see if we can
 
-55
+54
 00:02:24,270 --> 00:02:27,020
 figure out what's going on.
 
-56
+55
 00:02:27,020 --> 00:02:29,270
 I'm going to scroll down to the
 function in the code and
 
-57
+56
 00:02:29,270 --> 00:02:32,940
 set a debugger break point by
 clicking on the left margin on
 
-58
+57
 00:02:32,940 --> 00:02:35,420
 the first line of
 that function.
 
-59
+58
 00:02:35,420 --> 00:02:38,700
 Then, if I try to create an
 event and again, the execution
 
-60
+59
 00:02:38,700 --> 00:02:43,480
 will pause as soon as it hits
 that break point, like so.
 
-61
+60
 00:02:43,480 --> 00:02:45,320
 The line you see highlighted
 here hasn't
 
-62
+61
 00:02:45,320 --> 00:02:46,670
 actually been run yet.
 
-63
+62
 00:02:46,670 --> 00:02:48,160
 We can confirm this by hovering
 
-64
+63
 00:02:48,160 --> 00:02:50,060
 over the events variable.
 
-65
+64
 00:02:50,060 --> 00:02:53,790
 So we need to execute that
 code to see what happens.
 
-66
+65
 00:02:53,790 --> 00:02:56,110
 To do this, we'll need to use
 the execution controls, you
 
-67
+66
 00:02:56,110 --> 00:02:58,370
 can see over on the right
 hand side of the page.
 
-68
+67
 00:02:58,370 --> 00:03:01,320
 The first button you see here
 is Resume, which will resume
 
-69
+68
 00:03:01,320 --> 00:03:04,460
 the execution of the entire
 page until the next break
 
-70
+69
 00:03:04,460 --> 00:03:06,090
 point, if there is one.
 
-71
+70
 00:03:06,090 --> 00:03:08,250
 The next button is Step Over.
 
-72
+71
 00:03:08,250 --> 00:03:10,900
 This will run the current line
 highlighted and step over to
 
-73
+72
 00:03:10,900 --> 00:03:12,870
 the next line of code.
 
-74
+73
 00:03:12,870 --> 00:03:15,890
 Then there's Step Into, which
 will go down into whatever
 
-75
+74
 00:03:15,890 --> 00:03:18,510
 function is being called on that
 line, in this case, it
 
-76
+75
 00:03:18,510 --> 00:03:20,260
 would be the Get Item Method.
 
-77
+76
 00:03:20,260 --> 00:03:22,010
 Step Out will return
 from the current
 
-78
+77
 00:03:22,010 --> 00:03:24,130
 function into its caller.
 
-79
+78
 00:03:24,130 --> 00:03:25,890
 The last button will deactivate
 all break
 
-80
+79
 00:03:25,890 --> 00:03:27,570
 points in our code.
 
-81
+80
 00:03:27,570 --> 00:03:29,570
 What we want to do here is
 execute the current line of
 
-82
+81
 00:03:29,570 --> 00:03:32,670
 code and step over to the next
 one, so I'm going to press the
 
-83
+82
 00:03:32,670 --> 00:03:34,490
 Step Over button.
 
-84
+83
 00:03:34,490 --> 00:03:37,540
 And now, if we hover over the
 events variable, we can see
 
-85
+84
 00:03:37,540 --> 00:03:41,360
 that it's been defined, and
 it is, in fact, null.
 
-86
+85
 00:03:41,360 --> 00:03:44,120
 Remember earlier how we were
 checking to see if events that
 
-87
+86
 00:03:44,120 --> 00:03:45,530
 got returned is null?
 
-88
+87
 00:03:45,530 --> 00:03:48,600
 Well, this is probably a better
 place to check for it.
 
-89
+88
 00:03:48,600 --> 00:03:52,020
 So we'll check to see if events
 is null, and if it is,
 
-90
+89
 00:03:52,020 --> 00:03:53,710
 we'll parse the JSON.
 
-91
+90
 00:03:53,710 --> 00:03:55,930
 Otherwise, we'll just return
 an empty array.
 
-92
-00:03:55,930 --> 00:04:00,400
-
-
-93
+91
 00:04:00,400 --> 00:04:02,970
 We can test our new code by
 simply refreshing the page,
 
-94
+92
 00:04:02,970 --> 00:04:05,750
 and once again, it will stop
 on our break point.
 
-95
+93
 00:04:05,750 --> 00:04:08,100
 Now, if we step through a few
 lines, we can see that our
 
-96
+94
 00:04:08,100 --> 00:04:10,500
 events was equal to null
 so we're going to
 
-97
+95
 00:04:10,500 --> 00:04:14,090
 return an empty array.
 
-98
+96
 00:04:14,090 --> 00:04:16,610
 Now, if we click Create New
 Event, it's going to pause on
 
-99
+97
 00:04:16,610 --> 00:04:18,000
 our break point again.
 
-100
+98
 00:04:18,000 --> 00:04:20,990
 Then if we execute this line and
 hover over our events, we
 
-101
+99
 00:04:20,990 --> 00:04:23,620
 can see that it's still null,
 so it's going to return an
 
-102
+100
 00:04:23,620 --> 00:04:24,810
 empty array again.
 
-103
+101
 00:04:24,810 --> 00:04:27,680
 And we're going to add a new
 event to this array.
 
-104
+102
 00:04:27,680 --> 00:04:30,560
 And now, for the first time
 ever, we've actually added a
 
-105
+103
 00:04:30,560 --> 00:04:32,430
 new event successfully.
 
-106
+104
 00:04:32,430 --> 00:04:35,310
 And now that the event method
 is fixed, we can go back and
 
-107
+105
 00:04:35,310 --> 00:04:38,790
 remove that null check that we
 did in the last level from the
 
-108
+106
 00:04:38,790 --> 00:04:40,040
 Get Events for Date function.
 
-109
-00:04:40,040 --> 00:04:43,760
-
-
-110
+107
 00:04:43,760 --> 00:04:45,140
 Why don't you give this a
 try in the challenges.

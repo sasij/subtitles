@@ -1,812 +1,793 @@
-1
-00:00:00,000 --> 00:00:00,490
-
-
-2
+﻿1
 00:00:00,490 --> 00:00:24,050
 [MUSIC PLAYING]
 
-3
+2
 00:00:24,050 --> 00:00:26,520
 You're watching CSS Cross
 Country and this is Level
 
-4
+3
 00:00:26,520 --> 00:00:27,650
 Four, Grooming Your Code.
 
-5
+4
 00:00:27,650 --> 00:00:30,710
 In this section, we're going to
 talk about different ways
 
-6
+5
 00:00:30,710 --> 00:00:33,950
 that you can clean up your CSS,
 including Staying DRY,
 
-7
+6
 00:00:33,950 --> 00:00:36,120
 knowing and understanding
 display types, and a little
 
-8
+7
 00:00:36,120 --> 00:00:39,160
 bit about horizontal
 centering.
 
-9
+8
 00:00:39,160 --> 00:00:41,830
 One of the fundamental ways that
 you can clean up your CSS
 
-10
+9
 00:00:41,830 --> 00:00:43,240
 is to be DRY.
 
-11
+10
 00:00:43,240 --> 00:00:45,440
 In programming , the DRY acronym
 stands for don't
 
-12
+11
 00:00:45,440 --> 00:00:47,780
 repeat yourself, as it's a
 practice that will save you
 
-13
+12
 00:00:47,780 --> 00:00:50,750
 tons of time in declaring and
 maintaining your styles.
 
-14
+13
 00:00:50,750 --> 00:00:52,320
 Let's look at an example.
 
-15
+14
 00:00:52,320 --> 00:00:55,160
 Suppose you want to include a
 font property in a number of
 
-16
+15
 00:00:55,160 --> 00:00:57,910
 text related elements.
 
-17
+16
 00:00:57,910 --> 00:00:59,950
 One way you can do this is
 to define each of them
 
-18
+17
 00:00:59,950 --> 00:01:03,060
 individually, but this isn't
 very DRY, because as you can
 
-19
+18
 00:01:03,060 --> 00:01:06,160
 see we're having to repeat
 ourself three times.
 
-20
+19
 00:01:06,160 --> 00:01:08,250
 A better approach is to pull
 this definition up
 
-21
+20
 00:01:08,250 --> 00:01:09,790
 into the body tag.
 
-22
+21
 00:01:09,790 --> 00:01:12,610
 This effectively makes your
 font family your base font
 
-23
+22
 00:01:12,610 --> 00:01:15,200
 family and every element within
 your application will
 
-24
+23
 00:01:15,200 --> 00:01:17,440
 inherit the style from
 the body tag.
 
-25
+24
 00:01:17,440 --> 00:01:19,680
 Obviously, if you don't want
 your entire application to
 
-26
+25
 00:01:19,680 --> 00:01:22,790
 inherit that style, you can just
 target a specific parent
 
-27
+26
 00:01:22,790 --> 00:01:25,120
 container instead.
 
-28
+27
 00:01:25,120 --> 00:01:27,780
 If you have a number of text
 related elements that don't
 
-29
+28
 00:01:27,780 --> 00:01:30,090
 all fall within the same parent
 container, you can
 
-30
+29
 00:01:30,090 --> 00:01:32,160
 still declare these
 in a DRY way.
 
-31
+30
 00:01:32,160 --> 00:01:34,590
 All you need to do is just
 pull them into a comma
 
-32
+31
 00:01:34,590 --> 00:01:37,700
 delimited list and a declare
 them once there.
 
-33
+32
 00:01:37,700 --> 00:01:40,710
 This will allow you to declare
 them all at one time and make
 
-34
+33
 00:01:40,710 --> 00:01:42,010
 it easier for you to change
 them all at the
 
-35
+34
 00:01:42,010 --> 00:01:44,020
 same time later on.
 
-36
+35
 00:01:44,020 --> 00:01:46,720
 Another method but you can use
 to DRY up your CSS is called
 
-37
+36
 00:01:46,720 --> 00:01:48,270
 selector abstraction.
 
-38
+37
 00:01:48,270 --> 00:01:51,900
 To define what that means,
 let's look at an example.
 
-39
+38
 00:01:51,900 --> 00:01:54,830
 Here we have two classes that
 are using exactly the same
 
-40
+39
 00:01:54,830 --> 00:01:56,250
 declarations.
 
-41
+40
 00:01:56,250 --> 00:01:58,680
 Now maybe we define these at
 different points throughout
 
-42
+41
 00:01:58,680 --> 00:02:00,875
 our application development
 and we never went back and
 
-43
+42
 00:02:00,875 --> 00:02:03,860
 refactored them, so obviously
 what we need to do here is
 
-44
+43
 00:02:03,860 --> 00:02:06,190
 just pull them into
 one single class.
 
-45
+44
 00:02:06,190 --> 00:02:08,120
 So we're going to pull these
 into a single class called
 
-46
+45
 00:02:08,120 --> 00:02:10,720
 button and then we're just going
 to apply that button
 
-47
+46
 00:02:10,720 --> 00:02:12,475
 class to both of our
 button elements.
 
-48
-00:02:12,475 --> 00:02:15,260
-
-
-49
+47
 00:02:15,260 --> 00:02:16,720
 But what happens if
 our buttons are
 
-50
+48
 00:02:16,720 --> 00:02:17,860
 only mostly the same?
 
-51
+49
 00:02:17,860 --> 00:02:21,680
 So I have my two buttons here
 and maybe I want the input
 
-52
+50
 00:02:21,680 --> 00:02:24,920
 button or submit button to use
 a gray background color.
 
-53
+51
 00:02:24,920 --> 00:02:27,770
 Well, what I can do is keep
 our shared elements in the
 
-54
+52
 00:02:27,770 --> 00:02:30,870
 button class and then add a
 subclass called submit and
 
-55
+53
 00:02:30,870 --> 00:02:33,320
 then we're just going to apply
 that submit class to the
 
-56
+54
 00:02:33,320 --> 00:02:35,790
 element in addition to
 the button class.
 
-57
+55
 00:02:35,790 --> 00:02:38,160
 Now the Submit button will be
 pulling its styles from both
 
-58
+56
 00:02:38,160 --> 00:02:41,070
 the button class the
 submit subclass.
 
-59
+57
 00:02:41,070 --> 00:02:43,700
 It's important to note that
 order matters here, so if you
 
-60
+58
 00:02:43,700 --> 00:02:47,030
 remember back to level one we
 talked about cascade order.
 
-61
+59
 00:02:47,030 --> 00:02:49,830
 And the reason that the submit
 subclass is able to write the
 
-62
+60
 00:02:49,830 --> 00:02:51,980
 background color from the button
 class is because it
 
-63
+61
 00:02:51,980 --> 00:02:54,920
 comes second in the
 style sheet.
 
-64
+62
 00:02:54,920 --> 00:02:57,800
 Another easy way to DRY up
 your CSS is using property
 
-65
+63
 00:02:57,800 --> 00:02:59,140
 shorthands.
 
-66
+64
 00:02:59,140 --> 00:03:01,050
 So let's look at an example.
 
-67
+65
 00:03:01,050 --> 00:03:03,690
 Here we have our ski_poles
 class, which uses a number of
 
-68
+66
 00:03:03,690 --> 00:03:05,440
 margin declarations.
 
-69
+67
 00:03:05,440 --> 00:03:07,990
 Well, a quick way to DRY this
 up is to just use the
 
-70
+68
 00:03:07,990 --> 00:03:10,420
 shorthand syntax for margins,
 which would look
 
-71
+69
 00:03:10,420 --> 00:03:11,670
 something like this.
 
-72
-00:03:11,670 --> 00:03:13,970
-
-
-73
+70
 00:03:13,970 --> 00:03:16,060
 If you're not familiar with
 the shorthand syntax for
 
-74
+71
 00:03:16,060 --> 00:03:18,600
 properties like margin and
 padding, it can just take a
 
-75
+72
 00:03:18,600 --> 00:03:20,300
 bit of memorization.
 
-76
+73
 00:03:20,300 --> 00:03:23,630
 The order goes top, right,
 bottom, left.
 
-77
+74
 00:03:23,630 --> 00:03:26,040
 Now let's just all say it
 together one time--
 
-78
+75
 00:03:26,040 --> 00:03:30,750
 top, right, bottom, left,
 starting at the top of a clock
 
-79
+76
 00:03:30,750 --> 00:03:32,470
 and going clockwise.
 
-80
+77
 00:03:32,470 --> 00:03:34,820
 Notice when we're declaring our
 zero bottom margin here,
 
-81
+78
 00:03:34,820 --> 00:03:36,580
 we're not writing zero pixels.
 
-82
+79
 00:03:36,580 --> 00:03:39,290
 We can just write zero
 because zero units in
 
-83
+80
 00:03:39,290 --> 00:03:41,770
 CSS do not need units.
 
-84
+81
 00:03:41,770 --> 00:03:44,980
 Here's a list of some common CSS
 shorthand properties, and
 
-85
+82
 00:03:44,980 --> 00:03:47,240
 feel free to refer back to this
 list at any point during
 
-86
+83
 00:03:47,240 --> 00:03:48,320
 the course.
 
-87
+84
 00:03:48,320 --> 00:03:49,730
 Notice that the syntax
 for each of
 
-88
+85
 00:03:49,730 --> 00:03:50,980
 these is slightly different.
 
-89
-00:03:50,980 --> 00:03:53,940
-
-
-90
+86
 00:03:53,940 --> 00:03:56,070
 Moving on, we're going to talk
 about display types.
 
-91
+87
 00:03:56,070 --> 00:03:58,980
 The display property in CSS
 affects how elements behave
 
-92
+88
 00:03:58,980 --> 00:04:00,670
 together on a page.
 
-93
+89
 00:04:00,670 --> 00:04:05,750
 Just to review, the display
 values are none, block, inline
 
-94
+90
 00:04:05,750 --> 00:04:08,190
 inline-block, and a bunch of
 others that we're not going to
 
-95
+91
 00:04:08,190 --> 00:04:10,600
 cover in this course.
 
-96
+92
 00:04:10,600 --> 00:04:14,100
 Let's go to Sven's Snowshoe
 Superstore for an example.
 
-97
+93
 00:04:14,100 --> 00:04:16,250
 Here in our code we have an
 anchor tag that I want to
 
-98
+94
 00:04:16,250 --> 00:04:17,959
 convert into a button.
 
-99
+95
 00:04:17,959 --> 00:04:20,640
 Here's an example of what I want
 the button to look like.
 
-100
+96
 00:04:20,640 --> 00:04:22,875
 Now, if I don't know much about
 display types, there are
 
-101
+97
 00:04:22,875 --> 00:04:25,840
 a few things that I might
 do to create our button.
 
-102
+98
 00:04:25,840 --> 00:04:28,060
 I'm probably going to float the
 button left so that it'll
 
-103
+99
 00:04:28,060 --> 00:04:30,700
 pick up the top and bottom
 margin and padding.
 
-104
+100
 00:04:30,700 --> 00:04:33,460
 Then I'm going to apply a width
 of 100% to it so that it
 
-105
+101
 00:04:33,460 --> 00:04:35,650
 clears to a new line and
 fills the full width
 
-106
+102
 00:04:35,650 --> 00:04:37,140
 of its parent container.
 
-107
+103
 00:04:37,140 --> 00:04:39,960
 Because our button is now
 floating, I'm also going to go
 
-108
+104
 00:04:39,960 --> 00:04:43,300
 back to that our clear fix class
 to the parent container.
 
-109
+105
 00:04:43,300 --> 00:04:46,270
 As you can see, this is a lot
 of extra CSS and markup just
 
-110
+106
 00:04:46,270 --> 00:04:47,750
 to create a button.
 
-111
+107
 00:04:47,750 --> 00:04:49,610
 To do this better, let's
 talk a bit more
 
-112
+108
 00:04:49,610 --> 00:04:51,590
 about display types.
 
-113
+109
 00:04:51,590 --> 00:04:53,050
 The first display type
 that we're going to
 
-114
+110
 00:04:53,050 --> 00:04:54,660
 talk about is block.
 
-115
+111
 00:04:54,660 --> 00:04:56,960
 Block elements will stretch the
 full width of their parent
 
-116
+112
 00:04:56,960 --> 00:04:59,750
 container, behave as though
 there's a line break before
 
-117
+113
 00:04:59,750 --> 00:05:03,030
 and after the content, and allow
 you to manipulate the
 
-118
+114
 00:05:03,030 --> 00:05:04,540
 full box model.
 
-119
+115
 00:05:04,540 --> 00:05:07,280
 In contrast, inline elements
 are typically found within
 
-120
+116
 00:05:07,280 --> 00:05:09,030
 block level elements.
 
-121
+117
 00:05:09,030 --> 00:05:11,620
 They do not take up the full
 width of their container, only
 
-122
+118
 00:05:11,620 --> 00:05:14,200
 spanning the width of the
 content inside of them, and
 
-123
+119
 00:05:14,200 --> 00:05:15,960
 they do not generate
 a line break before
 
-124
+120
 00:05:15,960 --> 00:05:18,600
 and after their content.
 
-125
+121
 00:05:18,600 --> 00:05:20,850
 Another option that you have is
 inline-block, which is not
 
-126
+122
 00:05:20,850 --> 00:05:22,610
 a default display type but
 is something that can
 
-127
+123
 00:05:22,610 --> 00:05:24,990
 be applied via CSS.
 
-128
+124
 00:05:24,990 --> 00:05:28,010
 Inline-block elements behave the
 same as inline elements in
 
-129
+125
 00:05:28,010 --> 00:05:30,480
 that they only stretch the width
 of their content but
 
-130
+126
 00:05:30,480 --> 00:05:33,060
 they also behave the same as
 block level elements in that
 
-131
+127
 00:05:33,060 --> 00:05:36,060
 you can manipulate the full
 box model on them.
 
-132
+128
 00:05:36,060 --> 00:05:38,700
 So knowing what we know now
 about display types, let's go
 
-133
+129
 00:05:38,700 --> 00:05:41,950
 back to our button inside of
 Sven's Snowshoe Superstore.
 
-134
+130
 00:05:41,950 --> 00:05:45,920
 We can remove the float left and
 the width of 100% from our
 
-135
+131
 00:05:45,920 --> 00:05:49,160
 declaration and just add display
 block, which will
 
-136
+132
 00:05:49,160 --> 00:05:50,750
 achieve the same effect.
 
-137
+133
 00:05:50,750 --> 00:05:53,040
 Because our button is no longer
 floating, we can now
 
-138
+134
 00:05:53,040 --> 00:05:55,460
 remove the group clear fix
 class from our parent
 
-139
+135
 00:05:55,460 --> 00:05:57,220
 container also.
 
-140
+136
 00:05:57,220 --> 00:05:59,820
 As you can see, this leaves
 us with a much cleaner and
 
-141
+137
 00:05:59,820 --> 00:06:04,050
 concise markup in CSS
 for our button.
 
-142
+138
 00:06:04,050 --> 00:06:05,650
 The last thing that we're going
 to talk about in this
 
-143
+139
 00:06:05,650 --> 00:06:08,320
 section is a bit about
 horizontal centering.
 
-144
+140
 00:06:08,320 --> 00:06:11,130
 This is going to be brief, but
 horizontal centering is a
 
-145
+141
 00:06:11,130 --> 00:06:13,250
 common problem that trips
 people up, so it's just
 
-146
+142
 00:06:13,250 --> 00:06:15,150
 important to talk about it.
 
-147
+143
 00:06:15,150 --> 00:06:17,350
 Depending on the display type
 of the element, there are
 
-148
+144
 00:06:17,350 --> 00:06:20,310
 different ways to horizontally
 center it.
 
-149
+145
 00:06:20,310 --> 00:06:22,960
 Let's look at an example first
 of horizontally centering a
 
-150
+146
 00:06:22,960 --> 00:06:24,890
 block level element.
 
-151
+147
 00:06:24,890 --> 00:06:28,390
 One way that we could do this
 badly is to apply a set left
 
-152
+148
 00:06:28,390 --> 00:06:30,130
 margin to it.
 
-153
+149
 00:06:30,130 --> 00:06:32,650
 In this manner, we're sort of
 eyeballing the center of the
 
-154
+150
 00:06:32,650 --> 00:06:36,160
 page and it looks fine, so we
 could just leave it like this.
 
-155
+151
 00:06:36,160 --> 00:06:40,720
 But what happens if the width
 of that container changes or
 
-156
+152
 00:06:40,720 --> 00:06:43,790
 if our user is using a different
 size monitor?
 
-157
+153
 00:06:43,790 --> 00:06:46,920
 Our element is no longer going
 to be horizontally centered.
 
-158
+154
 00:06:46,920 --> 00:06:48,980
 The correct way to horizontally
 center a block
 
-159
+155
 00:06:48,980 --> 00:06:52,630
 level element is to declare a
 width on it and then apply a
 
-160
+156
 00:06:52,630 --> 00:06:54,590
 left and right margin of auto.
 
-161
+157
 00:06:54,590 --> 00:06:57,560
 This will horizontally center
 our block level element
 
-162
+158
 00:06:57,560 --> 00:06:59,480
 regardless of its width
 and regardless of
 
-163
+159
 00:06:59,480 --> 00:07:02,110
 the size of the monitor.
 
-164
+160
 00:07:02,110 --> 00:07:04,630
 To horizontally center an
 inline or inline-block
 
-165
+161
 00:07:04,630 --> 00:07:05,870
 element, it's very simple.
 
-166
+162
 00:07:05,870 --> 00:07:08,440
 You just need to apply
 text-align center and it will
 
-167
+163
 00:07:08,440 --> 00:07:12,710
 center it inside of its
 block level parent.
 
-168
+164
 00:07:12,710 --> 00:07:13,250
 Great job.
 
-169
+165
 00:07:13,250 --> 00:07:14,920
 You've reached the end
 of level four.
 
-170
+166
 00:07:14,920 --> 00:07:16,610
 It's time to go play through
 the challenges.
 
-171
+167
 00:07:16,610 --> 00:07:18,120
 I'm off to go warm myself
 by the fire.
-
-172
-00:07:18,120 --> 00:07:22,496

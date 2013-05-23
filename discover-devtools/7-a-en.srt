@@ -1,173 +1,165 @@
 ﻿1
-00:00:00,000 --> 00:00:02,600
-
-
-2
 00:00:02,600 --> 00:00:04,710
 You're watching Discovering Dev
 Tools and this is level
 
-3
+2
 00:00:04,710 --> 00:00:08,230
 seven, where we're going to be
 learning about memory leaks.
 
-4
+3
 00:00:08,230 --> 00:00:11,210
 You may have heard the term
 memory leak before.
 
-5
+4
 00:00:11,210 --> 00:00:13,810
 It usually happens when an
 application takes up more and
 
-6
+5
 00:00:13,810 --> 00:00:17,170
 more memory on your computer to
 the point where it starts
 
-7
+6
 00:00:17,170 --> 00:00:20,630
 to slow everything down and
 maybe even crashes.
 
-8
+7
 00:00:20,630 --> 00:00:24,730
 Well, you can even write
 JavaScript code that can cause
 
-9
+8
 00:00:24,730 --> 00:00:27,810
 memory leaks and without even
 knowing about it, so that when
 
-10
+9
 00:00:27,810 --> 00:00:30,200
 somebody's running your
 application in a browser,
 
-11
+10
 00:00:30,200 --> 00:00:33,270
 things might tend to slow down
 as your application takes more
 
-12
+11
 00:00:33,270 --> 00:00:34,590
 and more memory.
 
-13
+12
 00:00:34,590 --> 00:00:38,540
 Well, let's take a look at the
 memory section of the timeline
 
-14
+13
 00:00:38,540 --> 00:00:44,250
 to see how we can identify and
 diagnose some memory leaks.
 
-15
+14
 00:00:44,250 --> 00:00:47,400
 I've added the ability for our
 users to hide the add event
 
-16
+15
 00:00:47,400 --> 00:00:49,990
 entry form by just hitting
 the Escape key.
 
-17
+16
 00:00:49,990 --> 00:00:52,850
 However, now we're getting
 complaints from our customers
 
-18
+17
 00:00:52,850 --> 00:00:55,790
 that after they use our page
 for a long time, that it
 
-19
+18
 00:00:55,790 --> 00:00:58,160
 starts to slow down.
 
-20
+19
 00:00:58,160 --> 00:01:00,090
 This might be a memory leak.
 
-21
+20
 00:01:00,090 --> 00:01:02,340
 Let's see if we can
 diagnose it.
 
-22
+21
 00:01:02,340 --> 00:01:04,769
 First, we'll go to the Timeline
 panel and click on
 
-23
+22
 00:01:04,769 --> 00:01:06,710
 the Memory section
 on the right.
 
-24
+23
 00:01:06,710 --> 00:01:08,660
 Just like in the previous
 chapter, we need to hit the
 
-25
+24
 00:01:08,660 --> 00:01:10,850
 Record button and then interact
 with our application
 
-26
+25
 00:01:10,850 --> 00:01:12,130
 a little bit.
 
-27
+26
 00:01:12,130 --> 00:01:14,310
 I'll open and close the
 form a few times,
 
-28
+27
 00:01:14,310 --> 00:01:15,560
 then stop the recording.
 
-29
-00:01:15,560 --> 00:01:18,520
-
-
-30
+28
 00:01:18,520 --> 00:01:21,120
 The graph you see shows the
 amount of memory allocated to
 
-31
+29
 00:01:21,120 --> 00:01:22,560
 our application.
 
-32
+30
 00:01:22,560 --> 00:01:24,730
 It looks like our application
 is consuming more and more
 
-33
+31
 00:01:24,730 --> 00:01:27,450
 memory the longer we use it,
 which is a good sign for a
 
-34
+32
 00:01:27,450 --> 00:01:28,810
 memory leak.
 
-35
+33
 00:01:28,810 --> 00:01:30,830
 Healthy applications don't just
 
-36
+34
 00:01:30,830 --> 00:01:32,540
 continuously grow in memory.
 
-37
+35
 00:01:32,540 --> 00:01:34,260
 Why don't you give this a
 try in the challenges?

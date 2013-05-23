@@ -1,1106 +1,1098 @@
-1
-00:00:00,000 --> 00:00:03,255
-
-
-2
+﻿1
 00:00:03,255 --> 00:00:06,970
 Git, a distributed source
 control repository.
 
-3
+2
 00:00:06,970 --> 00:00:09,400
 I tried to picture clusters of
 information as they move
 
-4
+3
 00:00:09,400 --> 00:00:12,700
 through the file system where
 the commit message like
 
-5
+4
 00:00:12,700 --> 00:00:13,820
 history books.
 
-6
+5
 00:00:13,820 --> 00:00:16,535
 I kept dreaming of
 a repository I
 
-7
+6
 00:00:16,535 --> 00:00:18,900
 thought I'd never see.
 
-8
+7
 00:00:18,900 --> 00:00:21,530
 And then, one day: Git Real.
 
-9
+8
 00:00:21,530 --> 00:00:27,380
 [MUSIC PLAYING]
 
-10
+9
 00:00:27,380 --> 00:00:29,850
 You're watching Git Real and
 this is Level Two where we're
 
-11
+10
 00:00:29,850 --> 00:00:32,450
 going to be talking about
 staging and remotes.
 
-12
+11
 00:00:32,450 --> 00:00:34,980
 So let's say you're in your
 local repo and you made a
 
-13
+12
 00:00:34,980 --> 00:00:37,620
 change to a file, but you
 don't remember what that
 
-14
+13
 00:00:37,620 --> 00:00:41,550
 change was, like for example
 the license file here.
 
-15
+14
 00:00:41,550 --> 00:00:43,400
 To figure out what that
 change was you can run
 
-16
+15
 00:00:43,400 --> 00:00:45,160
 the git diff command.
 
-17
+16
 00:00:45,160 --> 00:00:47,310
 You're going to see here that
 it's going to show you
 
-18
+17
 00:00:47,310 --> 00:00:49,820
 unstaged differences since
 the last commit.
 
-19
+18
 00:00:49,820 --> 00:00:52,200
 In the red you can see the line
 that was removed and in
 
-20
+19
 00:00:52,200 --> 00:00:54,420
 the green, the line
 that was added.
 
-21
+20
 00:00:54,420 --> 00:00:56,980
 The diffs here in the command
 line aren't that
 
-22
+21
 00:00:56,980 --> 00:00:57,610
 understandable.
 
-23
+22
 00:00:57,610 --> 00:01:00,430
 Luckily there are tools to make
 it easier to read, which
 
-24
+23
 00:01:00,430 --> 00:01:03,260
 we'll go over in the outro
 in the very end.
 
-25
+24
 00:01:03,260 --> 00:01:04,890
 But let's go ahead and add that
 
-26
+25
 00:01:04,890 --> 00:01:06,800
 license file to our stage.
 
-27
+26
 00:01:06,800 --> 00:01:09,460
 Once we've added it to our
 stage, if we run git diff
 
-28
+27
 00:01:09,460 --> 00:01:12,690
 again, well nothing's going to
 print out because there's no
 
-29
+28
 00:01:12,690 --> 00:01:16,240
 differences since all the
 changes have been staged.
 
-30
+29
 00:01:16,240 --> 00:01:18,950
 If we do want to get a diff on
 all of our stage changes, we
 
-31
+30
 00:01:18,950 --> 00:01:22,640
-can run git diff --staged, 
+can run git diff --staged,
 and we'll get the same
 
-32
+31
 00:01:22,640 --> 00:01:25,400
 output that we did before.
 
-33
+32
 00:01:25,400 --> 00:01:27,450
 So if we do get status right now
 we're going to see that we
 
-34
+33
 00:01:27,450 --> 00:01:29,560
 have that one license file
 that's staged and
 
-35
+34
 00:01:29,560 --> 00:01:30,920
 ready to get committed.
 
-36
+35
 00:01:30,920 --> 00:01:33,620
 But what if we staged
 stuff that we
 
-37
+36
 00:01:33,620 --> 00:01:35,210
 didn't mean to get staged?
 
-38
+37
 00:01:35,210 --> 00:01:37,900
 Because keep in mind, you might
 have a lot of modified
 
-39
+38
 00:01:37,900 --> 00:01:41,100
 files and you might want to take
 two of them and do then
 
-40
+39
 00:01:41,100 --> 00:01:43,080
 on one commit and take two more
 files and do it on the
 
-41
+40
 00:01:43,080 --> 00:01:44,130
 next commit.
 
-42
+41
 00:01:44,130 --> 00:01:46,900
 So how do we get things
 off the stage?
 
-43
+42
 00:01:46,900 --> 00:01:50,350
 Well you'll notice in this git
 status output, it says use
 
-44
+43
 00:01:50,350 --> 00:01:54,460
 git, reset, HEAD, and then
 the file name to unstage.
 
-45
+44
 00:01:54,460 --> 00:01:57,070
 Then when we run the command
 you can see it says that we
 
-46
+45
 00:01:57,070 --> 00:01:59,360
 unstaged license.
 
-47
+46
 00:01:59,360 --> 00:02:02,900
 You might be wondering what that
 HEAD command is there.
 
-48
+47
 00:02:02,900 --> 00:02:07,860
 Well HEAD refers to our last
 commit on the current branch,
 
-49
+48
 00:02:07,860 --> 00:02:10,199
 or timeline that we're on.
 
-50
+49
 00:02:10,199 --> 00:02:13,000
 Now if we run git status we're
 going to see that the license
 
-51
+50
 00:02:13,000 --> 00:02:15,810
 file is not on the stage,
 but it still has its
 
-52
+51
 00:02:15,810 --> 00:02:17,130
 modifications.
 
-53
+52
 00:02:17,130 --> 00:02:19,660
 But what if we change our mind
 and we don't want those
 
-54
+53
 00:02:19,660 --> 00:02:20,700
 modifications?
 
-55
+54
 00:02:20,700 --> 00:02:24,770
 What if we want to reset it to
 the state that that file was
 
-56
+55
 00:02:24,770 --> 00:02:28,440
 in at the last commit, or the
 last time it was changed?
 
-57
+56
 00:02:28,440 --> 00:02:32,780
 Well we can do that by doing git
 checkout, -- ,
 
-58
+57
 00:02:32,780 --> 00:02:33,720
 then the file name.
 
-59
+58
 00:02:33,720 --> 00:02:35,730
 So if we do that and we run git
 status again, we're going
 
-60
+59
 00:02:35,730 --> 00:02:37,610
 to see that the file has
 been restored to
 
-61
+60
 00:02:37,610 --> 00:02:40,320
 its previous state.
 
-62
+61
 00:02:40,320 --> 00:02:42,470
 Now let's go ahead and make a
 change to the readme talking
 
-63
+62
 00:02:42,470 --> 00:02:44,440
 about how the cake is a lie.
 
-64
+63
 00:02:44,440 --> 00:02:47,710
 If we wanted to commit this
 change, we'd have to add it
 
-65
+64
 00:02:47,710 --> 00:02:49,510
 and then commit it.
 
-66
+65
 00:02:49,510 --> 00:02:51,140
 Well there's a shortcut.
 
-67
+66
 00:02:51,140 --> 00:02:54,250
 We can run git commit,
 -a, -m,
 
-68
+67
 00:02:54,250 --> 00:02:55,520
 on the commit message.
 
-69
+68
 00:02:55,520 --> 00:02:57,840
 What this is going to do is it's
 going to add any of our
 
-70
+69
 00:02:57,840 --> 00:03:02,110
 tracked files to the stage
 and then commit them.
 
-71
+70
 00:03:02,110 --> 00:03:05,250
 Now the caveat here is that
 it's not going to add any
 
-72
+71
 00:03:05,250 --> 00:03:06,870
 files that we're not tracking.
 
-73
+72
 00:03:06,870 --> 00:03:09,440
 So if I've created a new file
 and ran this command, well
 
-74
+73
 00:03:09,440 --> 00:03:13,650
 it's not going to be included
 in the commit.
 
-75
+74
 00:03:13,650 --> 00:03:16,040
 There's going to be a time when
 you're running Git where
 
-76
+75
 00:03:16,040 --> 00:03:18,060
 you're going to make you commit
 and then you're going
 
-77
+76
 00:03:18,060 --> 00:03:21,740
 to instantly regret it because
 you probably forgot to add a
 
-78
+77
 00:03:21,740 --> 00:03:23,990
 file or make some sort of
 modification that you wanted
 
-79
+78
 00:03:23,990 --> 00:03:25,270
 to be included.
 
-80
+79
 00:03:25,270 --> 00:03:26,550
 How do you deal with that?
 
-81
+80
 00:03:26,550 --> 00:03:29,470
 Luckily we have this git reset
 command you see here which
 
-82
+81
 00:03:29,470 --> 00:03:32,660
 will undo the last commit and
 move everything from that
 
-83
+82
 00:03:32,660 --> 00:03:35,540
 commit back into staging.
 
-84
+83
 00:03:35,540 --> 00:03:38,710
 So that HEAD command you see
 there with the little carrot,
 
-85
+84
 00:03:38,710 --> 00:03:42,520
 what that's saying is move to
 the commit one before the
 
-86
+85
 00:03:42,520 --> 00:03:44,290
 current HEAD.
 
-87
+86
 00:03:44,290 --> 00:03:46,600
 So now if you run git status you
 can see that our changes
 
-88
+87
 00:03:46,600 --> 00:03:48,860
 from that commit
 are now staged.
 
-89
+88
 00:03:48,860 --> 00:03:53,200
 I can make changes, add files
 if I want to and recommit.
 
-90
+89
 00:03:53,200 --> 00:03:57,150
 Another way to modify commit
 is to use the amend option.
 
-91
+90
 00:03:57,150 --> 00:04:00,910
 So if we wanted to add that
 todo.txt file to our last
 
-92
+91
 00:04:00,910 --> 00:04:04,450
 commit, we could simply add it
 to the stage and then do git
 
-93
+92
 00:04:04,450 --> 00:04:07,760
 commit --amend, which
 is going to add it to
 
-94
+93
 00:04:07,760 --> 00:04:09,180
 last commit.
 
-95
+94
 00:04:09,180 --> 00:04:11,970
 And then if we want, we can
 even specify a new commit
 
-96
+95
 00:04:11,970 --> 00:04:13,770
 message which is going
 to override our
 
-97
+96
 00:04:13,770 --> 00:04:15,250
 previous commit message.
 
-98
-00:04:15,250 --> 00:04:20,790
-
-
-99
+97
 00:04:20,790 --> 00:04:22,810
 Here are the two commands
 we just went over.
 
-100
+98
 00:04:22,810 --> 00:04:25,540
 You've got git reset
 which will roll
 
-101
+99
 00:04:25,540 --> 00:04:27,030
 back the last commit.
 
-102
+100
 00:04:27,030 --> 00:04:29,970
 And then you have git commit
 amend which will add things to
 
-103
+101
 00:04:29,970 --> 00:04:31,100
 the last commit.
 
-104
+102
 00:04:31,100 --> 00:04:33,110
 There's two more that you
 should know about.
 
-105
+103
 00:04:33,110 --> 00:04:36,650
 If you want to do git reset,
 hard HEAD, that's going to
 
-106
+104
 00:04:36,650 --> 00:04:38,230
 blow away the last commit.
 
-107
+105
 00:04:38,230 --> 00:04:42,160
 So if you went horribly wrong
 and you want to blow it away,
 
-108
+106
 00:04:42,160 --> 00:04:43,890
 you run hard HEAD.
 
-109
+107
 00:04:43,890 --> 00:04:46,810
 And then if you want to
 undo the last commits?
 
-110
+108
 00:04:46,810 --> 00:04:50,380
 Well, you add another carrot
 on to the end.
 
-111
+109
 00:04:50,380 --> 00:04:53,140
 So that's saying blow away the
 last two commits before the
 
-112
+110
 00:04:53,140 --> 00:04:54,990
 current HEAD.
 
-113
+111
 00:04:54,990 --> 00:04:57,680
 So up until now, we've been
 working with our own local
 
-114
+112
 00:04:57,680 --> 00:05:01,880
 repository on our computer,
 but how do we push that
 
-115
+113
 00:05:01,880 --> 00:05:05,840
 repository up to other people so
 they can contribute to it?
 
-116
+114
 00:05:05,840 --> 00:05:08,470
 Well that's where the push and
 pull command comes in.
 
-117
+115
 00:05:08,470 --> 00:05:12,140
 So here I am in my local master,
 I can push that to a
 
-118
+116
 00:05:12,140 --> 00:05:15,540
 remote repository and then other
 people can pull that
 
-119
+117
 00:05:15,540 --> 00:05:17,730
 repository down and start
 making changes.
 
-120
+118
 00:05:17,730 --> 00:05:19,490
 And then when they're
 done, they can push
 
-121
+119
 00:05:19,490 --> 00:05:21,550
 back up their changes.
 
-122
+120
 00:05:21,550 --> 00:05:23,790
 When we're dealing with remote
 repositories it's all about
 
-123
+121
 00:05:23,790 --> 00:05:25,350
 the git remote command
 which we'll be
 
-124
+122
 00:05:25,350 --> 00:05:27,110
 going into in a minute.
 
-125
+123
 00:05:27,110 --> 00:05:29,230
 The other thing worth mentioning
 is that Git doesn't
 
-126
+124
 00:05:29,230 --> 00:05:31,810
 take care of access
 control for you.
 
-127
+125
 00:05:31,810 --> 00:05:35,120
 It doesn't allow you to say,
 just these people have access
 
-128
+126
 00:05:35,120 --> 00:05:37,310
 to this repository, and just
 this group of people have
 
-129
+127
 00:05:37,310 --> 00:05:38,940
 access to this one.
 
-130
+128
 00:05:38,940 --> 00:05:40,635
 That's where you are going to
 need some additional software.
 
-131
+129
 00:05:40,635 --> 00:05:44,260
 You are either might want to
 use a hosted solution like
 
-132
+130
 00:05:44,260 --> 00:05:46,350
 GitHub or BitBucket so
 they take care of
 
-133
+131
 00:05:46,350 --> 00:05:47,590
 access control for you.
 
-134
+132
 00:05:47,590 --> 00:05:50,050
 Or if you want to roll your
 own, you can use something
 
-135
+133
 00:05:50,050 --> 00:05:53,400
 like Gitosis or Gitorious and
 they take care of access
 
-136
+134
 00:05:53,400 --> 00:05:55,910
 control and all that
 configuration.
 
-137
+135
 00:05:55,910 --> 00:05:58,870
 If we wanted to store our
 repository on GitHub, we would
 
-138
+136
 00:05:58,870 --> 00:06:01,510
 create a GitHub account and
 then we'd create a new
 
-139
+137
 00:06:01,510 --> 00:06:02,820
 repository on GitHub.
 
-140
+138
 00:06:02,820 --> 00:06:05,030
 It would give us a form
 that looks like this.
 
-141
+139
 00:06:05,030 --> 00:06:08,570
 We would specify a name of that
 repository and specify a
 
-142
+140
 00:06:08,570 --> 00:06:09,730
 couple options.
 
-143
+141
 00:06:09,730 --> 00:06:12,920
 Then once we create it, GitHub
 is going to give us a URL.
 
-144
+142
 00:06:12,920 --> 00:06:15,570
 To push to GitHub we're first
 going to have to run Git,
 
-145
+143
 00:06:15,570 --> 00:06:18,240
 remote, add, origin.
 
-146
+144
 00:06:18,240 --> 00:06:19,960
 Origin is the name
 of the remote.
 
-147
+145
 00:06:19,960 --> 00:06:23,190
 We could give it any name, but
 usually we refer to our
 
-148
+146
 00:06:23,190 --> 00:06:27,170
 canonical repository, our
 official repository that most
 
-149
+147
 00:06:27,170 --> 00:06:30,570
 of our people are using for
 our project, as origin.
 
-150
+148
 00:06:30,570 --> 00:06:32,280
 So origin is what we're
 going to call it.
 
-151
+149
 00:06:32,280 --> 00:06:36,290
 And then we specify the URL
 that GitHub gave us.
 
-152
+150
 00:06:36,290 --> 00:06:38,320
 To get a list of all the remotes
 that our local the
 
-153
+151
 00:06:38,320 --> 00:06:42,400
 repository knows about, we can
 simply run git remote -v.
 
-154
+152
 00:06:42,400 --> 00:06:47,590
 Now we haven't actually
 pushed our repository.
 
-155
+153
 00:06:47,590 --> 00:06:51,110
 These remotes are
 like bookmarks.
 
-156
+154
 00:06:51,110 --> 00:06:55,840
 We are bookmarking that this
 origin refers to this URL, we
 
-157
+155
 00:06:55,840 --> 00:06:57,850
 might have multiple repos.
 
-158
+156
 00:06:57,850 --> 00:07:01,670
 Now if we want to push our
 repository we simply run git
 
-159
+157
 00:07:01,670 --> 00:07:05,650
 push, specify the remote
 repository name which of
 
-160
+158
 00:07:05,650 --> 00:07:09,340
 course the origin, and the local
 branch we want to push
 
-161
+159
 00:07:09,340 --> 00:07:11,670
 there, which is master.
 
-162
+160
 00:07:11,670 --> 00:07:13,285
 Since we're are using GitHub,
 it's going to ask for our
 
-163
+161
 00:07:13,285 --> 00:07:18,310
 GitHub username and password to
 authorize us to push to the
 
-164
+162
 00:07:18,310 --> 00:07:19,660
 GitHub remote.
 
-165
+163
 00:07:19,660 --> 00:07:22,250
 Now if you don't want to enter
 in your username and password
 
-166
+164
 00:07:22,250 --> 00:07:24,800
 every time you push, you're
 going to want to follow this
 
-167
+165
 00:07:24,800 --> 00:07:27,620
 link down here at the bottom
 which talks about password
 
-168
+166
 00:07:27,620 --> 00:07:31,020
 caching so you only
 have to do once.
 
-169
+167
 00:07:31,020 --> 00:07:33,800
 So we've pushed our local
 repository up to GitHub and
 
-170
+168
 00:07:33,800 --> 00:07:37,010
 now if we go back into our
 browser and refresh, we're
 
-171
+169
 00:07:37,010 --> 00:07:39,910
 going to see that GitHub now
 knows about our repository and
 
-172
+170
 00:07:39,910 --> 00:07:40,980
 all the data in it.
 
-173
+171
 00:07:40,980 --> 00:07:43,130
 On this page you'll notice
 there's a commit button, also
 
-174
+172
 00:07:43,130 --> 00:07:44,310
 a history button.
 
-175
+173
 00:07:44,310 --> 00:07:47,320
 If we put those, we actually get
 the same information that
 
-176
+174
 00:07:47,320 --> 00:07:49,070
 we got previously
 from git log.
 
-177
+175
 00:07:49,070 --> 00:07:53,350
 We can view all the different
 commits inside our repo.
 
-178
+176
 00:07:53,350 --> 00:07:56,800
 So we've pushed our repo
 up to GitHub, but how
 
-179
+177
 00:07:56,800 --> 00:07:58,400
 do we pull it down?
 
-180
+178
 00:07:58,400 --> 00:08:00,380
 How do we pull down
 from a remote?
 
-181
+179
 00:08:00,380 --> 00:08:03,130
 Well that's where they git
 pull command comes in.
 
-182
+180
 00:08:03,130 --> 00:08:04,950
 That's what you're going to want
 to run when you know that
 
-183
+181
 00:08:04,950 --> 00:08:06,760
 other people have made changes,
 you're not the only
 
-184
+182
 00:08:06,760 --> 00:08:08,950
 person working on the project,
 and you want
 
-185
+183
 00:08:08,950 --> 00:08:09,850
 to get their changes.
 
-186
+184
 00:08:09,850 --> 00:08:11,070
 You run git pull.
 
-187
+185
 00:08:11,070 --> 00:08:15,230
 It will go up to GitHub, it'll
 pull down your changes and
 
-188
+186
 00:08:15,230 --> 00:08:17,970
 sync up your local repository.
 
-189
+187
 00:08:17,970 --> 00:08:22,590
 So we GitHub as our canonical
 remote called origin, but it's
 
-190
+188
 00:08:22,590 --> 00:08:25,340
 not uncommon to have multiple
 remotes with a project.
 
-191
+189
 00:08:25,340 --> 00:08:28,850
 We might have a test server that
 runs our test for us that
 
-192
+190
 00:08:28,850 --> 00:08:31,960
 we occasionally want to push
 our repo over there.
 
-193
+191
 00:08:31,960 --> 00:08:35,600
 We might have a hosting
 provider that has our
 
-194
+192
 00:08:35,600 --> 00:08:39,039
 production code it and we might
 want to push our repo
 
-195
+193
 00:08:39,039 --> 00:08:42,890
 onto our production server
 so it can host the code.
 
-196
+194
 00:08:42,890 --> 00:08:45,960
 As we saw before, to add a new
 remote you use this syntax,
 
-197
+195
 00:08:45,960 --> 00:08:49,370
 git remote, add, specify a name,
 it can be any name, and
 
-198
+196
 00:08:49,370 --> 00:08:50,600
 then the address.
 
-199
+197
 00:08:50,600 --> 00:08:54,670
 To remove remotes we simply
 do git, remote, rm,
 
-200
+198
 00:08:54,670 --> 00:08:55,570
 and then the name.
 
-201
+199
 00:08:55,570 --> 00:08:58,470
 And lastly, to push our
 repository to remotes, we run
 
-202
+200
 00:08:58,470 --> 00:09:00,870
 git, push, -u,
 and specify the
 
-203
+201
 00:09:00,870 --> 00:09:02,780
 name and the branch.
 
-204
+202
 00:09:02,780 --> 00:09:05,600
 You might be wondering what
 this -u option does?
 
-205
+203
 00:09:05,600 --> 00:09:08,760
 Basically it makes it so the
 next time run git push, you
 
-206
+204
 00:09:08,760 --> 00:09:10,560
 don't have to specify the
 name and the branch.
 
-207
+205
 00:09:10,560 --> 00:09:14,220
 You can run git push.
 
-208
+206
 00:09:14,220 --> 00:09:16,760
 Lastly, I want to talk about
 Heroku, a hosting platform and
 
-209
+207
 00:09:16,760 --> 00:09:18,300
 the way they use remotes.
 
-210
+208
 00:09:18,300 --> 00:09:20,630
 So if you have a Heroku account
 and you install the
 
-211
+209
 00:09:20,630 --> 00:09:23,940
 Heroku gem, and you're working
 on your code and you type
 
-212
+210
 00:09:23,940 --> 00:09:27,250
 heroku create, you can see it
 does a couple things for you.
 
-213
+211
 00:09:27,250 --> 00:09:30,640
 One of which it gives you
 a git repo ssh address.
 
-214
+212
 00:09:30,640 --> 00:09:35,090
 Now before, we were using a
 URL, GitHub gave us a URL.
 
-215
+213
 00:09:35,090 --> 00:09:37,480
 Well a lot of times when you're
 working with git repos,
 
-216
+214
 00:09:37,480 --> 00:09:40,640
 you might instead have
 a ssh address.
 
-217
+215
 00:09:40,640 --> 00:09:44,690
 As you can see here, Heroku
 already added a remote for us.
 
-218
+216
 00:09:44,690 --> 00:09:47,090
 It called the remote heroku.
 
-219
+217
 00:09:47,090 --> 00:09:50,650
 And now if we want to push our
 code for Heroku, we simply
 
-220
+218
 00:09:50,650 --> 00:09:53,900
 write git, push,
 heroku master.
 
-221
+219
 00:09:53,900 --> 00:09:56,820
 That's going to push our local
 repository to Heroku.
 
-222
+220
 00:09:56,820 --> 00:10:02,320
 And when Heroku gets the code,
 it's going to deploy it.
 
-223
+221
 00:10:02,320 --> 00:10:05,180
 One last thing before we finish
 Level Two, remember
 
-224
+222
 00:10:05,180 --> 00:10:07,490
 these commands where
 you can roll back
 
-225
+223
 00:10:07,490 --> 00:10:09,130
 commits, blow away commits?
 
-226
+224
 00:10:09,130 --> 00:10:13,000
 Well you only want to run them
 before you've pushed those
 
-227
+225
 00:10:13,000 --> 00:10:14,150
 commits, right?
 
-228
+226
 00:10:14,150 --> 00:10:17,590
 Because if you have some commits
 and you push, and then
 
-229
+227
 00:10:17,590 --> 00:10:21,380
 you change them locally, it's
 like you're changing history
 
-230
+228
 00:10:21,380 --> 00:10:24,130
 and as we all know, that's
 a very dangerous
 
-231
+229
 00:10:24,130 --> 00:10:26,000
 thing, so don't do it.
 
-232
+230
 00:10:26,000 --> 00:10:29,070
 It's time for you to get into
 the challenges and Git Real
 
-233
+231
 00:10:29,070 --> 00:10:29,670
 once again.
 
-234
+232
 00:10:29,670 --> 00:10:32,791
 [MUSIC PLAYING]

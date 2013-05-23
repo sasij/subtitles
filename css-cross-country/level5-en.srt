@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:24,260
 [MUSIC PLAYING]
 
@@ -188,237 +188,230 @@ pixels, because that is
 the larger of the two.
 
 41
-00:01:56,330 --> 00:01:59,360
-
-
-42
 00:01:59,360 --> 00:02:01,920
 Collapsing margins will not
 occur when one or more of your
 
-43
+42
 00:02:01,920 --> 00:02:05,650
 elements has padding or border,
 relative or absolute
 
-44
+43
 00:02:05,650 --> 00:02:08,150
 positioning, or a float
 left or right.
 
-45
+44
 00:02:08,150 --> 00:02:10,930
 For more information on
 collapsing margins, see link
 
-46
+45
 00:02:10,930 --> 00:02:13,690
 number one below.
 
-47
+46
 00:02:13,690 --> 00:02:16,340
 Now we're going to expand on
 some of the specificity issues
 
-48
+47
 00:02:16,340 --> 00:02:18,360
 that we talked about earlier
 in the course.
 
-49
+48
 00:02:18,360 --> 00:02:21,000
 When dealing with user generated
 content, specificity
 
-50
+49
 00:02:21,000 --> 00:02:22,710
 issues can come up often.
 
-51
+50
 00:02:22,710 --> 00:02:24,540
 Let's look at an example.
 
-52
+51
 00:02:24,540 --> 00:02:26,980
 Here we have some list items
 that were defined according to
 
-53
+52
 00:02:26,980 --> 00:02:28,670
 the specs of a mock-up.
 
-54
+53
 00:02:28,670 --> 00:02:31,530
 This works fine, as long as this
 list stays only within
 
-55
+54
 00:02:31,530 --> 00:02:32,820
 the sidebar section.
 
-56
+55
 00:02:32,820 --> 00:02:35,750
 But what happens if we want to
 recreate this list item style
 
-57
+56
 00:02:35,750 --> 00:02:37,370
 within a different section?
 
-58
+57
 00:02:37,370 --> 00:02:39,840
 The only way that we can reuse
 these styles is by copying and
 
-59
+58
 00:02:39,840 --> 00:02:42,010
 pasting them, but that
 isn't very DRY.
 
-60
+59
 00:02:42,010 --> 00:02:45,260
 Instead, what we can do is
 remove the specificity from
 
-61
+60
 00:02:45,260 --> 00:02:46,290
 our declaration.
 
-62
+61
 00:02:46,290 --> 00:02:49,690
 So instead of declaring sidebar
 ul li, we can just
 
-63
+62
 00:02:49,690 --> 00:02:51,900
 declare ul li.
 
-64
+63
 00:02:51,900 --> 00:02:54,930
 This will allow us to apply this
 style to any list item
 
-65
+64
 00:02:54,930 --> 00:02:56,490
 throughout our document.
 
-66
+65
 00:02:56,490 --> 00:02:59,050
 However, if we don't want it to
 apply to every list item in
 
-67
+66
 00:02:59,050 --> 00:03:02,660
 our document, what we can do is
 declare a class that we can
 
-68
+67
 00:03:02,660 --> 00:03:04,670
 apply to any unordered
 list that we want
 
-69
+68
 00:03:04,670 --> 00:03:06,570
 to inherit the style.
 
-70
+69
 00:03:06,570 --> 00:03:08,500
 But wait, what about our
 other list items?
 
-71
+70
 00:03:08,500 --> 00:03:10,710
 Now that we have a class that we
 need in order for our list
 
-72
+71
 00:03:10,710 --> 00:03:13,750
 items to inherit the style,
 what happens if unordered
 
-73
+72
 00:03:13,750 --> 00:03:16,810
 lists are inserted by another
 user, or another developer,
 
-74
+73
 00:03:16,810 --> 00:03:19,090
 throughout the course
 of the application?
 
-75
+74
 00:03:19,090 --> 00:03:21,500
 After doing this, we still need
 to go back and declare an
 
-76
+75
 00:03:21,500 --> 00:03:23,420
 unspecific list item style.
 
-77
+76
 00:03:23,420 --> 00:03:26,710
 This will allow us to have a
 default style in place for any
 
-78
+77
 00:03:26,710 --> 00:03:28,850
 list items that are added later
 throughout the course of
 
-79
+78
 00:03:28,850 --> 00:03:31,820
 the application.
 
-80
+79
 00:03:31,820 --> 00:03:33,640
 This is a good time to
 talk about resets and
 
-81
+80
 00:03:33,640 --> 00:03:34,800
 normalization.
 
-82
+81
 00:03:34,800 --> 00:03:37,160
 It's a good idea to have default
 styles in place for
 
-83
+82
 00:03:37,160 --> 00:03:41,130
 most of your HTML elements and
 account for inconsistencies
 
-84
+83
 00:03:41,130 --> 00:03:42,760
 across browsers.
 
-85
+84
 00:03:42,760 --> 00:03:45,160
 Some good resources can be found
 at links number two and
 
-86
+85
 00:03:45,160 --> 00:03:48,310
 three below.
 
-87
+86
 00:03:48,310 --> 00:03:50,170
 You have reached the
 end of level five.
 
-88
+87
 00:03:50,170 --> 00:03:52,180
 It's time to ski down to the
 level five challenges.
 
-89
+88
 00:03:52,180 --> 00:03:54,940
 I'll meet you on the slopes,
 but first I have to go look
 
-90
+89
 00:03:54,940 --> 00:03:56,190
 for my prescription goggles.
-
-91
-00:03:56,190 --> 00:04:00,597

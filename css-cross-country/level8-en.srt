@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:25,700
 [MUSIC PLAYING]
 
@@ -519,26 +519,19 @@ do with pseudo elements,
 visit link three below.
 
 111
-00:05:44,390 --> 00:05:47,570
-
-
-112
 00:05:47,570 --> 00:05:49,520
 You've reached the end of the
 videos and now you're ready
 
-113
+112
 00:05:49,520 --> 00:05:51,200
 for some black diamond runs.
 
-114
+113
 00:05:51,200 --> 00:05:52,700
 I'll be waiting for
 you at the end.
 
-115
+114
 00:05:52,700 --> 00:05:53,950
 Good luck.
-
-116
-00:05:53,950 --> 00:05:55,392

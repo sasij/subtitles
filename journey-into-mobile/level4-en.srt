@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:17,060
 [MUSIC PLAYING]
 
@@ -692,233 +692,226 @@ also going to optimize
 for those device sizes.
 
 145
-00:06:32,880 --> 00:06:35,600
-
-
-146
 00:06:35,600 --> 00:06:37,000
 All right, so we're going
 to start at our
 
-147
+146
 00:06:37,000 --> 00:06:38,470
 desktop view port size.
 
-148
+147
 00:06:38,470 --> 00:06:40,830
 And what I'm going to do is
 scale the browser down.
 
-149
+148
 00:06:40,830 --> 00:06:44,100
 And as you can see, at those
 break points that we defined,
 
-150
+149
 00:06:44,100 --> 00:06:46,030
 the site design changes.
 
-151
+150
 00:06:46,030 --> 00:06:49,290
 So instead of our site breaking,
 we actually have our
 
-152
+151
 00:06:49,290 --> 00:06:52,420
 site being optimized for these
 break point sizes.
 
-153
+152
 00:06:52,420 --> 00:06:55,190
 And we can get all the way down
 to a mobile environment.
 
-154
+153
 00:06:55,190 --> 00:06:57,840
 So from a mobile environment
 all the way up to a desktop
 
-155
+154
 00:06:57,840 --> 00:07:01,660
 environment, our site design
 it's optimized for the user.
 
-156
+155
 00:07:01,660 --> 00:07:04,360
 Now, nobody's going to sit here
 and scale their browser
 
-157
+156
 00:07:04,360 --> 00:07:07,290
 up and down, except if you're
 a designer or a developer.
 
-158
+157
 00:07:07,290 --> 00:07:10,790
 So our goal here is not
 necessarily to create a design
 
-159
+158
 00:07:10,790 --> 00:07:14,150
 that works when you scale your
 browser size up and down, the
 
-160
+159
 00:07:14,150 --> 00:07:18,550
 point is that at each of those
 sizes the site design works.
 
-161
+160
 00:07:18,550 --> 00:07:21,800
 So if a user is accessing a
 site on a mobile device, on
 
-162
+161
 00:07:21,800 --> 00:07:25,010
 a tablet device, on a small
 laptop, on a large laptop, on
 
-163
+162
 00:07:25,010 --> 00:07:27,900
 a large monitor, the site design
 is going to look great
 
-164
+163
 00:07:27,900 --> 00:07:31,070
 and it's going to be optimized
 for the user experience.
 
-165
+164
 00:07:31,070 --> 00:07:33,150
 Finally, we're going to take
 a quick look at some of the
 
-166
+165
 00:07:33,150 --> 00:07:36,340
 other options that we can
 include in our media queries.
 
-167
+166
 00:07:36,340 --> 00:07:38,950
 So here are a few charts from
 Ethan Marcotte's book on
 
-168
+167
 00:07:38,950 --> 00:07:41,960
 responsive web design, and
 it shows you a number of
 
-169
+168
 00:07:41,960 --> 00:07:44,440
 different options that you can
 incorporate into your media
 
-170
+169
 00:07:44,440 --> 00:07:47,480
 queries besides just min
 width and max width.
 
-171
+170
 00:07:47,480 --> 00:07:50,220
 So let's look at one of
 these as an example.
 
-172
+171
 00:07:50,220 --> 00:07:52,770
 So if we go back to our demo
 site, here are some
 
-173
+172
 00:07:52,770 --> 00:07:55,640
 screenshots of the site both
 in portrait mode and in
 
-174
+173
 00:07:55,640 --> 00:07:56,480
 landscape mode.
 
-175
+174
 00:07:56,480 --> 00:07:59,520
 Now, we've already optimized
 the design with our media
 
-176
+175
 00:07:59,520 --> 00:08:02,280
 queries, but what if we actually
 wanted to call
 
-177
+176
 00:08:02,280 --> 00:08:04,690
 specific device orientation.
 
-178
+177
 00:08:04,690 --> 00:08:07,510
 So what if we wanted to have
 specific styles, if the site
 
-179
+178
 00:08:07,510 --> 00:08:10,900
 was in portrait mode, or the
 site was in landscape mode?
 
-180
+179
 00:08:10,900 --> 00:08:13,990
 Well, we can actually do that by
 incorporating those values
 
-181
+180
 00:08:13,990 --> 00:08:16,450
 into our media queries like
 you can see here.
 
-182
+181
 00:08:16,450 --> 00:08:19,760
 So instead of min width or max
 width, what it becomes is
 
-183
+182
 00:08:19,760 --> 00:08:22,720
 orientation portrait or
 orientation landscape,
 
-184
+183
 00:08:22,720 --> 00:08:24,890
 depending on what you
 want to target.
 
-185
+184
 00:08:24,890 --> 00:08:28,240
 The bottom line is, by using
 media queries it gives us a
 
-186
+185
 00:08:28,240 --> 00:08:31,650
 ton of flexibility in how we
 design our sites, and how our
 
-187
+186
 00:08:31,650 --> 00:08:34,340
 sites are optimized for a number
 of different contexts,
 
-188
+187
 00:08:34,340 --> 00:08:36,520
 and a number of different
 devices.
 
-189
+188
 00:08:36,520 --> 00:08:38,770
 Now it's time for you to work
 on some challenges.
 
-190
+189
 00:08:38,770 --> 00:08:39,809
 Good luck with those.
 
-191
+190
 00:08:39,809 --> 00:08:41,290
 And we'll jump into
 the next level.
-
-192
-00:08:41,290 --> 00:08:42,540

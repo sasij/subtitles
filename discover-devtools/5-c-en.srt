@@ -1,223 +1,211 @@
 ﻿1
-00:00:00,000 --> 00:00:01,530
-
-
-2
 00:00:01,530 --> 00:00:03,860
 After making this optimization,
 if we look back
 
-3
+2
 00:00:03,860 --> 00:00:07,070
 in our Page Speed extension,
 we'll see that our score has
 
-4
+3
 00:00:07,070 --> 00:00:08,680
 improved to 81.
 
-5
+4
 00:00:08,680 --> 00:00:11,260
 Not bad, but we still have a
 bunch of recommendations to
 
-6
+5
 00:00:11,260 --> 00:00:14,730
 address, one of which is
 to avoid bad requests.
 
-7
+6
 00:00:14,730 --> 00:00:16,850
 As you've probably noticed by
 now, we've been trying to load
 
-8
+7
 00:00:16,850 --> 00:00:18,990
 an image that doesn't exist.
 
-9
+8
 00:00:18,990 --> 00:00:22,720
 It has that 404 not found status
 code, and it's colored
 
-10
+9
 00:00:22,720 --> 00:00:24,790
 red here in our timeline.
 
-11
+10
 00:00:24,790 --> 00:00:27,730
 If we check our source for
 clock.png, we can see that
 
-12
+11
 00:00:27,730 --> 00:00:30,670
 it's actually hidden in
 the class of someday.
 
-13
+12
 00:00:30,670 --> 00:00:33,650
 And if we check our CSS file,
 we'll see that this class
 
-14
+13
 00:00:33,650 --> 00:00:36,740
 isn't even set to display
 on the page.
 
-15
+14
 00:00:36,740 --> 00:00:38,600
 So it seems pretty
 safe to remove.
 
-16
+15
 00:00:38,600 --> 00:00:41,530
 Let's do that and delete
 it from our HTML file.
 
-17
+16
 00:00:41,530 --> 00:00:43,960
 And now if we refresh the page,
 you can see that our
 
-18
+17
 00:00:43,960 --> 00:00:45,210
 warning is gone.
 
-19
-00:00:45,210 --> 00:00:47,460
-
-
-20
+18
 00:00:47,460 --> 00:00:49,070
 Next up on the list
 is to optimize
 
-21
+19
 00:00:49,070 --> 00:00:50,660
 our style sheet order.
 
-22
+20
 00:00:50,660 --> 00:00:53,330
 If we take a look at our HTML,
 you'll see that we're loading
 
-23
+21
 00:00:53,330 --> 00:00:56,710
 the JavaScript before the CSS.
 
-24
+22
 00:00:56,710 --> 00:00:59,270
 And if you take a moment to
 think about what a web page
 
-25
+23
 00:00:59,270 --> 00:01:02,140
 needs to render on the page,
 well, it's not going to be
 
-26
+24
 00:01:02,140 --> 00:01:05,850
 able to render properly until
 it's downloaded all the CSS.
 
-27
+25
 00:01:05,850 --> 00:01:09,470
 Whereas JavaScript, in some
 cases, might be a lot less
 
-28
+26
 00:01:09,470 --> 00:01:11,860
 important because it might
 just be dealing with user
 
-29
+27
 00:01:11,860 --> 00:01:15,010
 interaction, not how it
 displays the page.
 
-30
+28
 00:01:15,010 --> 00:01:18,020
 So it's best that we have our
 CSS file listed before our
 
-31
+29
 00:01:18,020 --> 00:01:20,400
 JavaScript file, unlike
 we see here.
 
-32
+30
 00:01:20,400 --> 00:01:23,630
 So let's update our
 HTML to fix that.
 
-33
+31
 00:01:23,630 --> 00:01:26,530
 So now if we refresh our page,
 we'll see that our CSS is
 
-34
+32
 00:01:26,530 --> 00:01:30,320
 being loaded before our
 JavaScript as it should be.
 
-35
+33
 00:01:30,320 --> 00:01:33,740
 But that doesn't seem to affect
 our page load time.
 
-36
+34
 00:01:33,740 --> 00:01:35,940
 And if we look at the waterfall,
 it seems like it's
 
-37
+35
 00:01:35,940 --> 00:01:40,060
 still waiting to download the
 JavaScript before it's loading
 
-38
+36
 00:01:40,060 --> 00:01:41,510
 our web page.
 
-39
+37
 00:01:41,510 --> 00:01:43,970
 But in our case, our JavaScript
 is just dealing
 
-40
+38
 00:01:43,970 --> 00:01:47,190
 with user interaction, so we
 don't really care that much if
 
-41
+39
 00:01:47,190 --> 00:01:50,150
 it loads after the page
 gets rendered.
 
-42
+40
 00:01:50,150 --> 00:01:52,430
 To put off parsing of the
 JavaScript so the web page can
 
-43
+41
 00:01:52,430 --> 00:01:56,210
 be rendered sooner, we can add
 the async attribute to our
 
-44
+42
 00:01:56,210 --> 00:01:57,940
 script tag like so.
 
-45
-00:01:57,940 --> 00:02:01,260
-
-
-46
+43
 00:02:01,260 --> 00:02:03,310
 Now it's time for you to jump
 into some challenges and see
 
-47
+44
 00:02:03,310 --> 00:02:04,970
 if you can find a
 missing asset.

@@ -1,1557 +1,1533 @@
-1
-00:00:00,000 --> 00:00:00,760
-
-2
+﻿1
 00:00:00,760 --> 00:00:02,253
 You're watching 3 For 5.
 
-3
+2
 00:00:02,253 --> 00:00:03,670
 I'm Jason VanLue.
 
-4
+3
 00:00:03,670 --> 00:00:05,020
 And this Level 2.
 
-5
-00:00:05,020 --> 00:00:10,388
-
-6
+4
 00:00:10,388 --> 00:00:31,998
 [MUSIC PLAYING]
 
-7
+5
 00:00:31,998 --> 00:00:35,110
 So it doesn't matter if you're
 a designer or a developer.
 
-8
+6
 00:00:35,110 --> 00:00:37,840
 At the end of the day, our jobs
 are basically the same.
 
-9
+7
 00:00:37,840 --> 00:00:41,680
 We want to craft rich, usable
 websites and web applications
 
-10
+8
 00:00:41,680 --> 00:00:43,830
 with an awesome user
 experience.
 
-11
+9
 00:00:43,830 --> 00:00:46,900
 So we're going to look at
 some styles in CSS3.
 
-12
+10
 00:00:46,900 --> 00:00:50,610
 Now, just like HTML5, this
 isn't an exhaustive list.
 
-13
+11
 00:00:50,610 --> 00:00:53,360
 But it's rather a list of some
 the more commonly used
 
-14
+12
 00:00:53,360 --> 00:00:55,840
 properties.
 
-15
+13
 00:00:55,840 --> 00:00:57,730
 So we're going to start
 with border-radius.
 
-16
+14
 00:00:57,730 --> 00:01:00,640
 Now, border-radius rounds the
 cornders of an element with a
 
-17
+15
 00:01:00,640 --> 00:01:02,450
 defined radius value.
 
-18
+16
 00:01:02,450 --> 00:01:03,960
 Now, this is an awesome
 property.
 
-19
+17
 00:01:03,960 --> 00:01:06,450
 Because if you remember before,
 in order to get
 
-20
+18
 00:01:06,450 --> 00:01:09,650
 rounded corners on an image or
 a button, you would have had
 
-21
+19
 00:01:09,650 --> 00:01:13,650
 to do a variety of hacks or
 save out transparent PNGs.
 
-22
+20
 00:01:13,650 --> 00:01:16,610
 Now, we can let CSS do
 the work for us.
 
-23
+21
 00:01:16,610 --> 00:01:19,840
 So if we had a rectangular
 button, now we can add rounded
 
-24
+22
 00:01:19,840 --> 00:01:22,870
 corners, simply by using the
 border-radius property.
 
-25
+23
 00:01:22,870 --> 00:01:26,220
 So in this case, we have a
 border-radius of 10 pixels.
 
-26
+24
 00:01:26,220 --> 00:01:28,530
 The higher the value, the
 more rounded corners
 
-27
+25
 00:01:28,530 --> 00:01:29,210
 are going to be.
 
-28
+26
 00:01:29,210 --> 00:01:31,730
 The lower the value, the less
 rounded the corners
 
-29
+27
 00:01:31,730 --> 00:01:32,840
 are going to be.
 
-30
+28
 00:01:32,840 --> 00:01:36,190
 Now, a quick note here, some of
 these CSS properties don't
 
-31
+29
 00:01:36,190 --> 00:01:39,360
 show up the same in every
 browser, surprise, surprise.
 
-32
+30
 00:01:39,360 --> 00:01:42,240
 So in this case, for the
 border-radius property, we
 
-33
+31
 00:01:42,240 --> 00:01:46,560
 need to add vendor prefixes
 for WebKit and Mozilla.
 
-34
+32
 00:01:46,560 --> 00:01:49,370
 So we want to put our vendor
 prefixes before
 
-35
+33
 00:01:49,370 --> 00:01:51,370
 the main CSS property.
 
-36
+34
 00:01:51,370 --> 00:01:54,180
 So in this case, we have WebKit
 border-radius and
 
-37
+35
 00:01:54,180 --> 00:01:56,690
 Mozilla border-radius,
 before our standard
 
-38
+36
 00:01:56,690 --> 00:01:57,940
 border-radius property.
 
-39
-00:01:57,940 --> 00:02:00,670
-
-40
+37
 00:02:00,670 --> 00:02:02,970
 Next, let's look
 at text-shadow.
 
-41
+38
 00:02:02,970 --> 00:02:05,160
 Text-shadow adds a vertical
 and horizontal
 
-42
+39
 00:02:05,160 --> 00:02:06,660
 offset shadow to text.
 
-43
+40
 00:02:06,660 --> 00:02:10,100
 And we have the ability to
 control direction, blur, and
 
-44
+41
 00:02:10,100 --> 00:02:11,550
 the color of the shadow.
 
-45
+42
 00:02:11,550 --> 00:02:14,690
 Now, just like border radius,
 before, in order to get this
 
-46
+43
 00:02:14,690 --> 00:02:16,980
 effect, we would have
 to save out images.
 
-47
+44
 00:02:16,980 --> 00:02:21,570
 Now, we can create shadows on
 text, by using this property.
 
-48
+45
 00:02:21,570 --> 00:02:24,370
 So if we look at an example
 here, we have an image from
 
-49
+46
 00:02:24,370 --> 00:02:25,740
 designswap.com.
 
-50
+47
 00:02:25,740 --> 00:02:28,620
 And if you notice that the name,
 Phil Coffman, that's
 
-51
+48
 00:02:28,620 --> 00:02:31,120
 actually text with
 a text shadow.
 
-52
+49
 00:02:31,120 --> 00:02:33,450
 So the way that we render
 this property is
 
-53
+50
 00:02:33,450 --> 00:02:35,030
 with a couple of values.
 
-54
+51
 00:02:35,030 --> 00:02:37,570
 First, we have the
 x-offset value.
 
-55
+52
 00:02:37,570 --> 00:02:40,750
 Then, we have the
 y-offset value.
 
-56
+53
 00:02:40,750 --> 00:02:43,210
 Then, we have the blur value.
 
-57
+54
 00:02:43,210 --> 00:02:46,420
 So by setting these values,
 we can create a variety of
 
-58
+55
 00:02:46,420 --> 00:02:48,510
 different shadows
 for our text.
 
-59
+56
 00:02:48,510 --> 00:02:51,310
 And then, finally, we can
 also set the color.
 
-60
+57
 00:02:51,310 --> 00:02:53,100
 So one quick design
 note here--
 
-61
+58
 00:02:53,100 --> 00:02:55,660
 we all probably know how to
 create a drop shadow.
 
-62
+59
 00:02:55,660 --> 00:02:58,450
 But what if we wanted to create
 a letter-press effect?
 
-63
+60
 00:02:58,450 --> 00:03:01,400
 That is the text being stamped
 into the page.
 
-64
+61
 00:03:01,400 --> 00:03:04,490
 Well, if we wanted to do that,
 something to remember is-- if
 
-65
+62
 00:03:04,490 --> 00:03:07,870
 you have a light background
 and dark text, you want to
 
-66
+63
 00:03:07,870 --> 00:03:10,980
 create a shadow that's
 offset bottom-right,
 
-67
+64
 00:03:10,980 --> 00:03:12,180
 with a light color.
 
-68
+65
 00:03:12,180 --> 00:03:15,100
 Or as in this case, with this
 image, we have a darker
 
-69
+66
 00:03:15,100 --> 00:03:17,030
 background and light text.
 
-70
+67
 00:03:17,030 --> 00:03:20,550
 So we want our shadow to be
 offset to the top-left and in
 
-71
+68
 00:03:20,550 --> 00:03:21,790
 a darker color.
 
-72
+69
 00:03:21,790 --> 00:03:24,120
 By playing around with a variety
 of different values
 
-73
+70
 00:03:24,120 --> 00:03:26,650
 with the text-shadow property,
 you can create some pretty
 
-74
+71
 00:03:26,650 --> 00:03:27,900
 awesome effects in CSS.
 
-75
-00:03:27,900 --> 00:03:30,210
-
-76
+72
 00:03:30,210 --> 00:03:32,390
 Let's move on now
 to box-shadow.
 
-77
+73
 00:03:32,390 --> 00:03:35,370
 Box-shadow adds a shadow
 to a non-text element.
 
-78
+74
 00:03:35,370 --> 00:03:39,050
 And it basically follows the
 same syntax as text-shadow.
 
-79
+75
 00:03:39,050 --> 00:03:42,270
 So as we see in our example
 here, we have an image with a
 
-80
+76
 00:03:42,270 --> 00:03:45,710
 shadow that we can create in
 CSS, as opposed to just saving
 
-81
+77
 00:03:45,710 --> 00:03:46,800
 out an image.
 
-82
+78
 00:03:46,800 --> 00:03:50,310
 So in this case, we have our
 x-offset value, our y-offset
 
-83
+79
 00:03:50,310 --> 00:03:52,050
 value, and our blur.
 
-84
+80
 00:03:52,050 --> 00:03:55,020
 Now, one neat thing about
 box-shadow is we can also add
 
-85
+81
 00:03:55,020 --> 00:03:56,390
 an inset property.
 
-86
+82
 00:03:56,390 --> 00:03:59,050
 If we wanted the shadow to be
 inside of the image, as
 
-87
+83
 00:03:59,050 --> 00:04:02,460
 opposed to outside the image,
 we can use inset, with the
 
-88
+84
 00:04:02,460 --> 00:04:03,710
 same syntax.
 
-89
-00:04:03,710 --> 00:04:07,450
-
-90
+85
 00:04:07,450 --> 00:04:09,190
 So next, let's look at RGBa.
 
-91
+86
 00:04:09,190 --> 00:04:12,150
 Now, RGBa isn't a
 new CS property.
 
-92
+87
 00:04:12,150 --> 00:04:14,770
 But rather, it's a new model
 for defining color in our
 
-93
+88
 00:04:14,770 --> 00:04:15,800
 style sheet.
 
-94
+89
 00:04:15,800 --> 00:04:18,690
 Now, previously, we would use
 hex-colors to define our
 
-95
+90
 00:04:18,690 --> 00:04:20,240
 colors in our style sheet.
 
-96
+91
 00:04:20,240 --> 00:04:21,950
 But hex-colors didn't
 give us the
 
-97
+92
 00:04:21,950 --> 00:04:23,910
 option of defining opacity.
 
-98
+93
 00:04:23,910 --> 00:04:28,270
 Now, with RGBa, we can add an
 opacity value to our colors,
 
-99
+94
 00:04:28,270 --> 00:04:30,600
 to allow them to be
 more transparent.
 
-100
+95
 00:04:30,600 --> 00:04:33,410
 So as we see here, with this
 property, we have our RGBa
 
-101
+96
 00:04:33,410 --> 00:04:35,650
 values, Red, Green, and Blue.
 
-102
+97
 00:04:35,650 --> 00:04:39,690
 And then, the last value here,
 0.5, is our Opacity Value.
 
-103
+98
 00:04:39,690 --> 00:04:43,220
 So in this case, we can allow
 colors or background imagery
 
-104
+99
 00:04:43,220 --> 00:04:45,680
 to actually bleed through
 our text, to create
 
-105
+100
 00:04:45,680 --> 00:04:46,930
 a pretty neat effect.
 
-106
-00:04:46,930 --> 00:04:48,950
-
-107
+101
 00:04:48,950 --> 00:04:52,550
 Let's also look at HSLa, which
 is an alternative model for
 
-108
+102
 00:04:52,550 --> 00:04:54,380
 defining colors in
 our style sheet.
 
-109
+103
 00:04:54,380 --> 00:04:56,810
 Now, HSLa is preferred
 by some.
 
-110
+104
 00:04:56,810 --> 00:04:59,360
 Because it's a little bit
 easier to change out the
 
-111
+105
 00:04:59,360 --> 00:05:02,560
 values of the colors, if you
 don't have RGB Values.
 
-112
+106
 00:05:02,560 --> 00:05:05,140
 And if you're wanting to make
 changes to your colors on the
 
-113
+107
 00:05:05,140 --> 00:05:08,960
 fly, then this might be a good
 property for you to use.
 
-114
+108
 00:05:08,960 --> 00:05:12,250
 So it follows a similar
 syntax to RGBa.
 
-115
+109
 00:05:12,250 --> 00:05:13,930
 Let's look and see
 how that works.
 
-116
+110
 00:05:13,930 --> 00:05:17,990
 We have our HSLa values, which
 translate to Hue, Saturation,
 
-117
+111
 00:05:17,990 --> 00:05:19,720
 and Light, respectively.
 
-118
+112
 00:05:19,720 --> 00:05:21,340
 And then, just like a
 opacity, we have an
 
-119
+113
 00:05:21,340 --> 00:05:23,330
 Alpha-Transparency Value.
 
-120
+114
 00:05:23,330 --> 00:05:26,610
 So we can set that to be as
 opaque as we want it.
 
-121
+115
 00:05:26,610 --> 00:05:28,530
 Now, some of you may not
 know how to find
 
-122
+116
 00:05:28,530 --> 00:05:30,300
 the HSLa color values.
 
-123
+117
 00:05:30,300 --> 00:05:32,220
 Well, we can actually
 use Photoshop.
 
-124
+118
 00:05:32,220 --> 00:05:34,930
 In Photoshop, we can pull
 the HSB Values.
 
-125
+119
 00:05:34,930 --> 00:05:37,410
 But sometimes, these aren't
 always reliable.
 
-126
+120
 00:05:37,410 --> 00:05:40,640
 I actually like to use Matt
 Patenaude's Colors app, which
 
-127
+121
 00:05:40,640 --> 00:05:43,950
 you can pull the HSL values
 directly and import them into
 
-128
+122
 00:05:43,950 --> 00:05:45,760
 your style sheet.
 
-129
+123
 00:05:45,760 --> 00:05:48,985
 Or Chris Coyier has a pretty
 slick interface called the
 
-130
+124
 00:05:48,985 --> 00:05:51,140
 HSLa Explorer, which
 allows you to
 
-131
+125
 00:05:51,140 --> 00:05:53,810
 pull HSLa values directly.
 
-132
+126
 00:05:53,810 --> 00:05:56,230
 Next, let's move on to
 the Opacity property.
 
-133
+127
 00:05:56,230 --> 00:05:59,940
 The Opacity property defines
 how opaque an image or an
 
-134
+128
 00:05:59,940 --> 00:06:01,280
 object could be.
 
-135
+129
 00:06:01,280 --> 00:06:04,900
 So we've talked about RGBa
 and HSLa for text.
 
-136
+130
 00:06:04,900 --> 00:06:07,310
 Now, let's talk about
 opacity for images.
 
-137
+131
 00:06:07,310 --> 00:06:10,520
 So in this case, we can set the
 opacity of an image, by
 
-138
+132
 00:06:10,520 --> 00:06:11,930
 using this property.
 
-139
+133
 00:06:11,930 --> 00:06:14,480
 This is nice because now, we
 don't have to save out
 
-140
+134
 00:06:14,480 --> 00:06:16,080
 transparent images.
 
-141
+135
 00:06:16,080 --> 00:06:18,860
 Instead, we could save out full
 images and then adjust
 
-142
+136
 00:06:18,860 --> 00:06:20,940
 the opacity, using CSS.
 
-143
+137
 00:06:20,940 --> 00:06:23,500
 This gives us a lot more variety
 and makes it easier
 
-144
+138
 00:06:23,500 --> 00:06:26,890
 for us to change values.
 
-145
+139
 00:06:26,890 --> 00:06:29,940
 Next, let's look at the CSS
 Transform property.
 
-146
+140
 00:06:29,940 --> 00:06:33,170
 The CSS transform property
 allows elements rendered by
 
-147
+141
 00:06:33,170 --> 00:06:37,150
 CSS to be transformed in
 two-dimensional space.
 
-148
+142
 00:06:37,150 --> 00:06:40,650
 So this is commonly used maybe
 on a hover state for an image,
 
-149
+143
 00:06:40,650 --> 00:06:44,130
 if we wanted that image to
 break out of its space,
 
-150
+144
 00:06:44,130 --> 00:06:46,390
 without affecting the
 surrounding elements.
 
-151
+145
 00:06:46,390 --> 00:06:49,500
 Dan Cederholm does this on the
 Popular site, Dribbble.
 
-152
+146
 00:06:49,500 --> 00:06:51,820
 And we can see here, with
 his color tags.
 
-153
+147
 00:06:51,820 --> 00:06:55,230
 So the blue on the hover state
 actually pops out of the
 
-154
+148
 00:06:55,230 --> 00:06:56,820
 surrounding elements
 but doesn't
 
-155
+149
 00:06:56,820 --> 00:06:59,250
 negatively affect them.
 
-156
+150
 00:06:59,250 --> 00:07:01,130
 So here's what the code
 might look like.
 
-157
+151
 00:07:01,130 --> 00:07:02,600
 We have an Unordered List.
 
-158
+152
 00:07:02,600 --> 00:07:05,710
 And then, on hover, we set our
 CSS transform property.
 
-159
+153
 00:07:05,710 --> 00:07:07,490
 Now notice, we have
 vendor prefixes in
 
-160
+154
 00:07:07,490 --> 00:07:08,820
 this property as well.
 
-161
+155
 00:07:08,820 --> 00:07:11,680
 We've also added a vendor
 prefix for Opera.
 
-162
+156
 00:07:11,680 --> 00:07:14,595
 Now, we don't always have to add
 a vendor prefix for Opera.
 
-163
+157
 00:07:14,595 --> 00:07:16,810
 But in this case, we do.
 
-164
+158
 00:07:16,810 --> 00:07:19,290
 So we've chosen to use
 the scale property
 
-165
+159
 00:07:19,290 --> 00:07:20,700
 for this CSS transform.
 
-166
+160
 00:07:20,700 --> 00:07:23,270
 And basically, what that means
 is we're going to be scaling
 
-167
+161
 00:07:23,270 --> 00:07:24,800
 the image by 50%.
 
-168
+162
 00:07:24,800 --> 00:07:27,120
 We could also use one of the
 other three properties
 
-169
+163
 00:07:27,120 --> 00:07:30,880
 available, rotate, skew, or
 translate, which moves the
 
-170
+164
 00:07:30,880 --> 00:07:34,210
 image along the x and y-axes.
 
-171
+165
 00:07:34,210 --> 00:07:36,890
 Next, let's look at
 CSS transitions.
 
-172
+166
 00:07:36,890 --> 00:07:41,330
 CSS transitions allow property
 changes in CSS values to occur
 
-173
+167
 00:07:41,330 --> 00:07:43,750
 smoothly over a specified
 duration.
 
-174
+168
 00:07:43,750 --> 00:07:46,350
 Basically, what this means is we
 can create some pretty cool
 
-175
+169
 00:07:46,350 --> 00:07:49,440
 transition or roll-over
 effects, without using
 
-176
+170
 00:07:49,440 --> 00:07:50,760
 JavaScript.
 
-177
+171
 00:07:50,760 --> 00:07:54,290
 So if we had a button that we
 wanted to add a transformation
 
-178
+172
 00:07:54,290 --> 00:07:57,050
 to and not just a hover state,
 we could do that.
 
-179
+173
 00:07:57,050 --> 00:07:59,550
 Now, we're going to get into the
 CSS transition property a
 
-180
+174
 00:07:59,550 --> 00:08:02,500
 little bit more in depth,
 later on in the course.
 
-181
+175
 00:08:02,500 --> 00:08:04,220
 So bear with me there.
 
-182
+176
 00:08:04,220 --> 00:08:06,420
 Next, let's look at
 CSS gradients.
 
-183
+177
 00:08:06,420 --> 00:08:09,530
 CSS gradients create a
 transition from one color to
 
-184
+178
 00:08:09,530 --> 00:08:12,140
 another, without the
 use of images.
 
-185
+179
 00:08:12,140 --> 00:08:14,580
 So we all should be familiar
 with how to create a gradient
 
-186
+180
 00:08:14,580 --> 00:08:16,610
 for a button, say
 in Photoshop.
 
-187
+181
 00:08:16,610 --> 00:08:20,220
 But this makes it super easy
 to create gradients in CSS,
 
-188
+182
 00:08:20,220 --> 00:08:23,270
 once again, gives you a ton of
 variety, and allows you to
 
-189
+183
 00:08:23,270 --> 00:08:25,750
 change elements on the fly.
 
-190
+184
 00:08:25,750 --> 00:08:28,710
 So we have our sample image
 here, "THAT'S NO MOON." Now,
 
-191
+185
 00:08:28,710 --> 00:08:31,470
 the syntax for this property
 is a little unintuitive.
 
-192
+186
 00:08:31,470 --> 00:08:34,350
 And it actually renders
 differently in each browser.
 
-193
+187
 00:08:34,350 --> 00:08:37,700
 So I've found that the easiest
 way to generate CSS gradients
 
-194
+188
 00:08:37,700 --> 00:08:41,000
 is to use a pretty cool little
 tool from John Allsopp.
 
-195
+189
 00:08:41,000 --> 00:08:43,090
 He's created an editor
 in which you can
 
-196
+190
 00:08:43,090 --> 00:08:44,300
 just input your colors.
 
-197
+191
 00:08:44,300 --> 00:08:47,080
 And it automatically spits out
 the CSS code that you need to
 
-198
+192
 00:08:47,080 --> 00:08:48,270
 put in your style sheet.
 
-199
+193
 00:08:48,270 --> 00:08:51,080
 So in this case, for our "THAT'S
 NO MOON" button,
 
-200
+194
 00:08:51,080 --> 00:08:53,540
 here's how we would
 generate the CSS.
 
-201
+195
 00:08:53,540 --> 00:08:55,770
 We have our background
 image property.
 
-202
+196
 00:08:55,770 --> 00:08:58,990
 And instead of including an
 image URL, we've actually set
 
-203
+197
 00:08:58,990 --> 00:08:59,660
 a gradient.
 
-204
+198
 00:08:59,660 --> 00:09:02,270
 So you'll notice we have a
 WebKit vendor prefix here, as
 
-205
+199
 00:09:02,270 --> 00:09:04,530
 well as a Mozilla
 vendor prefix.
 
-206
+200
 00:09:04,530 --> 00:09:06,170
 And you can see how
 they're different.
 
-207
+201
 00:09:06,170 --> 00:09:09,470
 But basically, we've created a
 gradient with a button, with
 
-208
+202
 00:09:09,470 --> 00:09:15,130
 rounded corners, simply using
 CSS, pretty cool.
 
-209
+203
 00:09:15,130 --> 00:09:18,020
 The multiple backgrounds
 property allows us to add
 
-210
+204
 00:09:18,020 --> 00:09:21,550
 multiple background images to
 our page or within our page.
 
-211
+205
 00:09:21,550 --> 00:09:24,610
 In this example, from Naz
 Hamid's Lost World's Fairs
 
-212
+206
 00:09:24,610 --> 00:09:27,530
 site, he's actually added a
 couple of background images.
 
-213
+207
 00:09:27,530 --> 00:09:30,610
 So that as you're scrolling down
 the page, the different
 
-214
+208
 00:09:30,610 --> 00:09:32,370
 images move at a
 different rate.
 
-215
+209
 00:09:32,370 --> 00:09:35,230
 So it almost gives a
 parallax effect.
 
-216
+210
 00:09:35,230 --> 00:09:37,960
 So here's what the code might
 look like from Naz's site.
 
-217
+211
 00:09:37,960 --> 00:09:39,610
 He's actually got two
 images in this
 
-218
+212
 00:09:39,610 --> 00:09:43,690
 case, bg.jpg and tile.jpg.
 
-219
+213
 00:09:43,690 --> 00:09:46,740
 Now, what you want to remember
 is the image closest to the
 
-220
+214
 00:09:46,740 --> 00:09:49,270
 user on the screen needs
 to be listed first
 
-221
+215
 00:09:49,270 --> 00:09:50,290
 in your image stack.
 
-222
+216
 00:09:50,290 --> 00:09:52,300
 So in this case that would
 be background.jpg.
 
-223
-00:09:52,300 --> 00:09:55,900
-
-224
+217
 00:09:55,900 --> 00:09:58,270
 My friend Dan Higby has recently
 done this in one of
 
-225
+218
 00:09:58,270 --> 00:09:59,530
 his blog posts.
 
-226
+219
 00:09:59,530 --> 00:10:01,320
 He's added multiple
 background images.
 
-227
+220
 00:10:01,320 --> 00:10:04,640
 So as you scroll down the page
 and read more of his posts,
 
-228
+221
 00:10:04,640 --> 00:10:06,160
 the background image changes.
 
-229
+222
 00:10:06,160 --> 00:10:09,040
 And it also moves because he's
 got a variety of background
 
-230
+223
 00:10:09,040 --> 00:10:11,150
 images, within each section.
 
-231
+224
 00:10:11,150 --> 00:10:12,940
 You really can create
 a lot of neat
 
-232
+225
 00:10:12,940 --> 00:10:16,470
 effects, using this property.
 
-233
+226
 00:10:16,470 --> 00:10:18,960
 Now, we're going to look at
 a real fonts on the web.
 
-234
+227
 00:10:18,960 --> 00:10:21,660
 Now, if you remember the old
 days, we were limited to just
 
-235
+228
 00:10:21,660 --> 00:10:23,460
 a few safe fonts.
 
-236
+229
 00:10:23,460 --> 00:10:27,020
 Arial, Helvetica, Georgia,
 or Times New Roman.
 
-237
+230
 00:10:27,020 --> 00:10:30,140
 Well, now, the age of rich
 internet typography is here.
 
-238
+231
 00:10:30,140 --> 00:10:33,080
 And we have a ton of options,
 when it comes to embedding
 
-239
+232
 00:10:33,080 --> 00:10:35,840
 fonts on our website.
 
-240
+233
 00:10:35,840 --> 00:10:38,270
 Now, there are several different
 varieties of fonts
 
-241
+234
 00:10:38,270 --> 00:10:40,385
 that we can use on
 our websites.
 
-242
+235
 00:10:40,385 --> 00:10:42,760
 Andy Clark has created a pretty
 helpful table in his
 
-243
+236
 00:10:42,760 --> 00:10:44,550
 Hardboiled Web Design book.
 
-244
+237
 00:10:44,550 --> 00:10:48,160
 Some of the more common fonts
 are OpenType or TrueType.
 
-245
+238
 00:10:48,160 --> 00:10:51,640
 We also have the Web Open Font
 format, which is kind of like
 
-246
+239
 00:10:51,640 --> 00:10:54,750
 a compressed file of OpenType
 and TrueType fonts.
 
-247
+240
 00:10:54,750 --> 00:10:57,140
 So with the compressed file
 size, as well as additional
 
-248
+241
 00:10:57,140 --> 00:11:00,020
 security features, I think we'll
 start seeing this become
 
-249
+242
 00:11:00,020 --> 00:11:04,040
 more of the norm in browser
 supported fonts.
 
-250
+243
 00:11:04,040 --> 00:11:08,320
 Now, CSS3 gives us a property
 for using real fonts in our
 
-251
+244
 00:11:08,320 --> 00:11:08,930
 style sheets.
 
-252
+245
 00:11:08,930 --> 00:11:10,830
 It's called @font-face.
 
-253
+246
 00:11:10,830 --> 00:11:13,405
 In font-face, we have three
 values that we need to declare
 
-254
+247
 00:11:13,405 --> 00:11:14,750
 in our style sheet.
 
-255
+248
 00:11:14,750 --> 00:11:16,480
 The first is a font file.
 
-256
+249
 00:11:16,480 --> 00:11:19,500
 The second is an @font-face
 declaration, where we'll list
 
-257
+250
 00:11:19,500 --> 00:11:23,040
 the font family, the source, and
 the format of that font.
 
-258
+251
 00:11:23,040 --> 00:11:24,980
 And then finally, we
 can include that
 
-259
+252
 00:11:24,980 --> 00:11:27,840
 font in our font stack.
 
-260
+253
 00:11:27,840 --> 00:11:30,920
 Now, an easy way of doing this
 is go to a website called Font
 
-261
+254
 00:11:30,920 --> 00:11:33,650
 Squirrel, which has a variety
 of free-to-use fonts.
 
-262
+255
 00:11:33,650 --> 00:11:37,660
 And they also generate the
 @font-face properties for you.
 
-263
+256
 00:11:37,660 --> 00:11:40,410
 So all you need to do is copy
 and paste, put those at the
 
-264
+257
 00:11:40,410 --> 00:11:43,500
 top of your style sheet,
 and you're good to go.
 
-265
+258
 00:11:43,500 --> 00:11:46,620
 Now the @font-face property is
 still the most reliable way,
 
-266
+259
 00:11:46,620 --> 00:11:49,540
 in my opinion, of embedding
 fonts into your website.
 
-267
+260
 00:11:49,540 --> 00:11:52,120
 But in the past year, we've seen
 a number of new startups
 
-268
+261
 00:11:52,120 --> 00:11:55,770
 really advancing the technology
 and web typography.
 
-269
+262
 00:11:55,770 --> 00:11:57,230
 We have Typekit.
 
-270
+263
 00:11:57,230 --> 00:11:59,630
 We have webfonts.fonts.com.
 
-271
+264
 00:11:59,630 --> 00:12:02,200
 And then, we also have Google
 getting into the mix with
 
-272
+265
 00:12:02,200 --> 00:12:02,790
 Google Fonts.
 
-273
+266
 00:12:02,790 --> 00:12:05,990
 So now, you have a variety of
 options, when it comes to rich
 
-274
+267
 00:12:05,990 --> 00:12:07,050
 web typography.
 
-275
+268
 00:12:07,050 --> 00:12:09,760
 The bottom line is we're no
 longer limited to the old,
 
-276
+269
 00:12:09,760 --> 00:12:10,860
 safe fonts.
 
-277
+270
 00:12:10,860 --> 00:12:12,980
 We have a number of different
 options, when it comes to
 
-278
+271
 00:12:12,980 --> 00:12:15,410
 embedding real fonts
 into our website.
 
-279
+272
 00:12:15,410 --> 00:12:18,330
 It takes a little bit of extra
 work and preparation.
 
-280
+273
 00:12:18,330 --> 00:12:20,940
 But the results and the overall
 user experience is
 
-281
+274
 00:12:20,940 --> 00:12:24,325
 much more positive.
 
-282
+275
 00:12:24,325 --> 00:12:27,040
 Now, as designers and
 developers, we know that our
 
-283
+276
 00:12:27,040 --> 00:12:29,750
 sites might not look the
 same in every browser.
 
-284
+277
 00:12:29,750 --> 00:12:31,000
 But that's OK.
 
-285
+278
 00:12:31,000 --> 00:12:34,410
 Now, notice I didn't it was OK
 for our sites to look broken.
 
-286
+279
 00:12:34,410 --> 00:12:37,430
 But we understand that there
 might be small variances, from
 
-287
+280
 00:12:37,430 --> 00:12:40,110
 browser to browser.
 
-288
+281
 00:12:40,110 --> 00:12:42,550
 And as long as we're creating
 adequate fall backs in our
 
-289
+282
 00:12:42,550 --> 00:12:45,070
 style sheets and in our markup,
 we can use some of
 
-290
+283
 00:12:45,070 --> 00:12:47,190
 these new features
 to create rich
 
-291
+284
 00:12:47,190 --> 00:12:49,260
 experiences for our users.
 
-292
+285
 00:12:49,260 --> 00:12:51,760
 Now, when it comes to browser
 compatibility, Dan Cederholm
 
-293
+286
 00:12:51,760 --> 00:12:54,570
 has put together a helpful
 table in his
 
-294
+287
 00:12:54,570 --> 00:12:55,700
 CSS3 for Web Designers.
 
-295
+288
 00:12:55,700 --> 00:12:58,560
 He lists out the main CSS3
 properties and how they're
 
-296
+289
 00:12:58,560 --> 00:13:01,180
 supported in today's
 contemporary browsers.
 
-297
+290
 00:13:01,180 --> 00:13:03,790
 Now, you'll notice that Internet
 Explorer 9 is the
 
-298
+291
 00:13:03,790 --> 00:13:06,530
 only version of IE that
 currently supports a lot of
 
-299
+292
 00:13:06,530 --> 00:13:10,210
 these CSS3 properties, with the
 exception of text-shadow.
 
-300
+293
 00:13:10,210 --> 00:13:12,440
 So you want to make sure, in
 particular, if you're looking
 
-301
+294
 00:13:12,440 --> 00:13:16,000
 to support IE 8 or below, that
 you're providing fallback
 
-302
+295
 00:13:16,000 --> 00:13:19,300
 properties in your
 CSS style sheets.
 
-303
+296
 00:13:19,300 --> 00:13:24,520
 But let me also say this, as
 great as CSS3 and HTML5 are,
 
-304
+297
 00:13:24,520 --> 00:13:25,860
 we haven't arrived.
 
-305
+298
 00:13:25,860 --> 00:13:28,640
 And it's our job, as designers
 and developers, to make sure
 
-306
+299
 00:13:28,640 --> 00:13:31,640
 that we're putting the user
 first and creating experiences
 
-307
+300
 00:13:31,640 --> 00:13:34,140
 that are going to be positive
 for our users.
 
-308
+301
 00:13:34,140 --> 00:13:37,180
 So just because we have elements
 that we can use
 
-309
+302
 00:13:37,180 --> 00:13:38,650
 doesn't mean that we should.
 
-310
+303
 00:13:38,650 --> 00:13:41,540
 Remember, the most valuable tool
 in your creative arsenal
 
-311
+304
 00:13:41,540 --> 00:13:42,760
 is your mind.
 
-312
+305
 00:13:42,760 --> 00:13:45,330
 So think through how you want to
 design and how you want to
 
-313
+306
 00:13:45,330 --> 00:13:48,290
 develop sites and use some of
 these properties where you
 
-314
+307
 00:13:48,290 --> 00:13:50,890
 think they're necessary.
 
-315
+308
 00:13:50,890 --> 00:13:54,080
 As craftsmen of the web, our job
 is to use the tools at our
 
-316
+309
 00:13:54,080 --> 00:13:56,570
 disposal to create the
 best experience
 
-317
+310
 00:13:56,570 --> 00:13:58,360
 possible for our users.
 
-318
+311
 00:13:58,360 --> 00:14:01,660
 Now, users probably won't know
 that you've used some of these
 
-319
+312
 00:14:01,660 --> 00:14:03,950
 specific elements in CSS3.
 
-320
+313
 00:14:03,950 --> 00:14:04,780
 But that's OK.
 
-321
+314
 00:14:04,780 --> 00:14:07,190
 As long as they're functioning
 properly, they're going to
 
-322
+315
 00:14:07,190 --> 00:14:08,840
 have a great experience.
 
-323
+316
 00:14:08,840 --> 00:14:11,210
 But if they have a negative
 experience, they're not going
 
-324
+317
 00:14:11,210 --> 00:14:14,290
 to care if you use text-shadow
 or RGBa values.
 
-325
+318
 00:14:14,290 --> 00:14:16,510
 All they're going to care about
 is the experience that
 
-326
+319
 00:14:16,510 --> 00:14:18,620
 they have, when visiting
 your website.
 
-327
+320
 00:14:18,620 --> 00:14:21,490
 So make sure that you design
 responsibly, that you're
 
-328
+321
 00:14:21,490 --> 00:14:23,960
 taking everything into
 consideration and always
 
-329
+322
 00:14:23,960 --> 00:14:27,370
 putting your user first.
 
-330
+323
 00:14:27,370 --> 00:14:29,980
 So now it's time to apply what
 you've learned in this level.
 
-331
+324
 00:14:29,980 --> 00:14:31,230
 Let's get to coding.
-
-332
-00:14:31,230 --> 00:14:34,674

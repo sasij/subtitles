@@ -1,946 +1,935 @@
-1
-00:00:00,000 --> 00:00:00,490
-
-
-2
+﻿1
 00:00:00,490 --> 00:00:13,696
 [MUSIC PLAYING]
 
-3
-00:00:13,696 --> 00:00:16,950
-
-
-4
+2
 00:00:16,950 --> 00:00:19,580
 You're watching Journey into
 Mobile, and this is Level
 
-5
+3
 00:00:19,580 --> 00:00:21,840
 Five, Responsive Media.
 
-6
+4
 00:00:21,840 --> 00:00:24,530
 In this level, we're going to
 look at responsive images and
 
-7
+5
 00:00:24,530 --> 00:00:25,970
 retina images.
 
-8
+6
 00:00:25,970 --> 00:00:29,010
 Let's first get started with
 responsive images.
 
-9
+7
 00:00:29,010 --> 00:00:31,880
 Now up until this point, the
 images in our layouts have
 
-10
+8
 00:00:31,880 --> 00:00:33,690
 been fixed width.
 
-11
+9
 00:00:33,690 --> 00:00:37,160
 And this is an OK solution, but
 it's not great if we want
 
-12
+10
 00:00:37,160 --> 00:00:40,060
 to create responsive,
 scalable sites.
 
-13
+11
 00:00:40,060 --> 00:00:42,540
 What we want to do is actually
 have our images be able to
 
-14
+12
 00:00:42,540 --> 00:00:45,980
 scale with the viewport size,
 just like all of the rest of
 
-15
+13
 00:00:45,980 --> 00:00:47,000
 our content.
 
-16
+14
 00:00:47,000 --> 00:00:48,360
 So how do we do that?
 
-17
+15
 00:00:48,360 --> 00:00:50,660
 Well, there's really a two
 step process here.
 
-18
+16
 00:00:50,660 --> 00:00:53,730
 The first is we want to actually
 save out an image
 
-19
+17
 00:00:53,730 --> 00:00:56,520
 that is larger than
 we actually need.
 
-20
+18
 00:00:56,520 --> 00:01:00,670
 For instance in our Nautilus
 Restaurant site, we have this
 
-21
+19
 00:01:00,670 --> 00:01:05,480
 image, which is actually 640
 pixels by 490 pixels.
 
-22
+20
 00:01:05,480 --> 00:01:08,880
 Now, chances are we won't ever
 actually need that image at
 
-23
+21
 00:01:08,880 --> 00:01:12,240
 that size in our site, but what
 we can do is if we save
 
-24
+22
 00:01:12,240 --> 00:01:15,750
 it out larger, we can scale
 it down as necessary.
 
-25
+23
 00:01:15,750 --> 00:01:18,200
 And the way that we do that is
 we're actually going to add a
 
-26
+24
 00:01:18,200 --> 00:01:22,300
 max-width property to our image
 element in our CSS.
 
-27
+25
 00:01:22,300 --> 00:01:25,530
 And basically what this says is
 if we have a set width for
 
-28
+26
 00:01:25,530 --> 00:01:28,790
 our image, it tells the browser
 to fill that set width
 
-29
+27
 00:01:28,790 --> 00:01:31,370
 with 100% of the image.
 
-30
+28
 00:01:31,370 --> 00:01:35,490
 So even if the image container
 is smaller than the total size
 
-31
+29
 00:01:35,490 --> 00:01:37,800
 of the image, we still get
 the full resolution
 
-32
+30
 00:01:37,800 --> 00:01:39,780
 image in that container.
 
-33
+31
 00:01:39,780 --> 00:01:42,040
 I've already added the max-width
 property up at the
 
-34
+32
 00:01:42,040 --> 00:01:45,380
 top of my CSS styles to my image
 element, but now what I
 
-35
+33
 00:01:45,380 --> 00:01:47,780
 want to do is I want to call
 the specific image in the
 
-36
+34
 00:01:47,780 --> 00:01:48,970
 about section.
 
-37
+35
 00:01:48,970 --> 00:01:54,670
 As you can see, this specific
 image has a width of 29.6875%.
 
-38
+36
 00:01:54,670 --> 00:01:57,160
 So that means that the
 containing element is going to
 
-39
+37
 00:01:57,160 --> 00:02:00,290
 scale, and as a result the image
 is going to scale because
 
-40
+38
 00:02:00,290 --> 00:02:03,090
 of the max-width property.
 
-41
+39
 00:02:03,090 --> 00:02:04,880
 So let me go into the browser
 and actually show
 
-42
+40
 00:02:04,880 --> 00:02:06,850
 you how this works.
 
-43
+41
 00:02:06,850 --> 00:02:09,240
 Alright, so if we look at our
 Nautilus Restaurant site, I
 
-44
+42
 00:02:09,240 --> 00:02:12,400
 want you to pay attention to the
 image in the lower left.
 
-45
+43
 00:02:12,400 --> 00:02:16,030
 Now notice as I expand and
 contract the browser window,
 
-46
+44
 00:02:16,030 --> 00:02:18,350
 the image also scales.
 
-47
+45
 00:02:18,350 --> 00:02:20,820
 This is because we've
 incorporated our max-width
 
-48
+46
 00:02:20,820 --> 00:02:24,280
 property into our CSS and saved
 out a larger image than
 
-49
+47
 00:02:24,280 --> 00:02:25,690
 we actually need.
 
-50
+48
 00:02:25,690 --> 00:02:28,430
 So as we get smaller and to a
 mobile environment, we can
 
-51
+49
 00:02:28,430 --> 00:02:31,730
 optimize the image for that
 context, but then also we can
 
-52
+50
 00:02:31,730 --> 00:02:33,880
 optimize the image as
 we get into larger
 
-53
+51
 00:02:33,880 --> 00:02:35,930
 environments, as well.
 
-54
+52
 00:02:35,930 --> 00:02:38,290
 So not only can you do this with
 images, you can actually
 
-55
+53
 00:02:38,290 --> 00:02:41,070
 do this with any types of media,
 and that can include
 
-56
+54
 00:02:41,070 --> 00:02:42,270
 video, for instance.
 
-57
+55
 00:02:42,270 --> 00:02:46,820
 So if you have a video embed in
 your HTML, you can actually
 
-58
+56
 00:02:46,820 --> 00:02:50,430
 cause that to be responsive so
 that as your site scales, the
 
-59
+57
 00:02:50,430 --> 00:02:52,560
 video element can
 scale as well.
 
-60
+58
 00:02:52,560 --> 00:02:55,090
 Now just like practically
 everything else, there really
 
-61
+59
 00:02:55,090 --> 00:02:56,890
 is no IE6 support for this.
 
-62
+60
 00:02:56,890 --> 00:03:00,580
 So if you absolutely have to
 support IE6 in your designs,
 
-63
+61
 00:03:00,580 --> 00:03:02,900
 check out this link and it gives
 you a good idea of how
 
-64
+62
 00:03:02,900 --> 00:03:04,250
 to achieve that.
 
-65
+63
 00:03:04,250 --> 00:03:06,830
 Now prior to Windows 7, there
 was poor support for the
 
-66
+64
 00:03:06,830 --> 00:03:10,390
 max-width property, so if you
 need to support browsers-- in
 
-67
+65
 00:03:10,390 --> 00:03:15,940
 particular, Firefox 2 and IE7 on
 devices that are lower than
 
-68
+66
 00:03:15,940 --> 00:03:17,060
 Windows 7--
 
-69
+67
 00:03:17,060 --> 00:03:19,570
 take a look at this link where
 it teaches you how to use
 
-70
+68
 00:03:19,570 --> 00:03:22,680
 AlphaImageLoader, which is
 another solution to be able to
 
-71
+69
 00:03:22,680 --> 00:03:25,525
 achieve this max-width property
 on these devices and
 
-72
+70
 00:03:25,525 --> 00:03:26,950
 in these browsers.
 
-73
+71
 00:03:26,950 --> 00:03:29,350
 So that's how you scale images
 and other types of media
 
-74
+72
 00:03:29,350 --> 00:03:30,580
 responsively.
 
-75
+73
 00:03:30,580 --> 00:03:33,770
 But if you're looking for more
 robust options to do that,
 
-76
+74
 00:03:33,770 --> 00:03:35,670
 here are a few alternatives
 to look at.
 
-77
+75
 00:03:35,670 --> 00:03:38,090
 Now, these are JavaScript
 libraries that you can
 
-78
+76
 00:03:38,090 --> 00:03:41,210
 incorporate into your sites
 which give you more options as
 
-79
+77
 00:03:41,210 --> 00:03:43,470
 it comes to making things
 responsive.
 
-80
+78
 00:03:43,470 --> 00:03:45,740
 Alright, so let's talk
 about retina images.
 
-81
+79
 00:03:45,740 --> 00:03:48,640
 Now with the new iPad that
 recently came out and with
 
-82
+80
 00:03:48,640 --> 00:03:52,780
 iPhone 4 and iPhone 4S, retina
 images have become more of an
 
-83
+81
 00:03:52,780 --> 00:03:57,160
 issue, because as you know,
 retina screens have 1.5 to two
 
-84
+82
 00:03:57,160 --> 00:04:00,500
 times the pixel density, which
 means that if you save out a
 
-85
+83
 00:04:00,500 --> 00:04:03,220
 normal image on a retina screen
 it might look kind of
 
-86
+84
 00:04:03,220 --> 00:04:05,260
 blurry or even pixelated.
 
-87
+85
 00:04:05,260 --> 00:04:07,220
 And that's not good if you're
 trying to optimize your
 
-88
+86
 00:04:07,220 --> 00:04:11,290
 designs for a variety of devices
 on the universal web.
 
-89
+87
 00:04:11,290 --> 00:04:12,170
 So what do we do?
 
-90
+88
 00:04:12,170 --> 00:04:13,540
 Do we double the image size?
 
-91
+89
 00:04:13,540 --> 00:04:16,430
 Well, we could but that's not
 a great solution, because
 
-92
+90
 00:04:16,430 --> 00:04:18,890
 obviously you're talking about
 larger images, larger
 
-93
+91
 00:04:18,890 --> 00:04:21,120
 downloads, slower site speed.
 
-94
+92
 00:04:21,120 --> 00:04:23,690
 We can actually use media
 queries to target those
 
-95
+93
 00:04:23,690 --> 00:04:27,380
 specific devices and optimizer
 images for retina displays,
 
-96
+94
 00:04:27,380 --> 00:04:28,930
 and here's how we
 would do that.
 
-97
+95
 00:04:28,930 --> 00:04:31,440
 In this media query, we're
 targeting devices that have a
 
-98
+96
 00:04:31,440 --> 00:04:33,930
 pixel density of at least 1.5.
 
-99
+97
 00:04:33,930 --> 00:04:37,580
 Now the iPhone 4S, the 4, and
 the new iPad had have pixel
 
-100
+98
 00:04:37,580 --> 00:04:42,170
 densities of two, but some
 Android devices have 1.5.
 
-101
+99
 00:04:42,170 --> 00:04:45,520
 So what this is doing is saying
 at least 1.5 and up, so
 
-102
+100
 00:04:45,520 --> 00:04:47,460
 we can cover all of our bases.
 
-103
+101
 00:04:47,460 --> 00:04:50,050
 And what we do is we would put
 our styles within that media
 
-104
+102
 00:04:50,050 --> 00:04:52,700
 query, including our retina
 images, and here's how we
 
-105
+103
 00:04:52,700 --> 00:04:53,870
 would do that.
 
-106
+104
 00:04:53,870 --> 00:04:57,230
 Let's hypothetically say we have
 a logo file, logo.png,
 
-107
+105
 00:04:57,230 --> 00:04:59,330
 that has a size of 200 pixels.
 
-108
+106
 00:04:59,330 --> 00:05:02,290
 So the idea here is that we
 would want to actually double
 
-109
+107
 00:05:02,290 --> 00:05:06,020
 this image size, so we would
 save out a new logo file at
 
-110
+108
 00:05:06,020 --> 00:05:07,400
 400 pixels.
 
-111
+109
 00:05:07,400 --> 00:05:09,810
 And you can call it whatever you
 want but a good practice
 
-112
+110
 00:05:09,810 --> 00:05:13,620
 is to follow the iOS convention
 for retina images
 
-113
+111
 00:05:13,620 --> 00:05:17,330
 and that is the same name of
 the file with an @2x before
 
-114
+112
 00:05:17,330 --> 00:05:18,950
 the file extension.
 
-115
+113
 00:05:18,950 --> 00:05:21,230
 So let's go back to our demo
 site, the Nautilus Bar and
 
-116
+114
 00:05:21,230 --> 00:05:23,640
 Restaurant, and let's look at
 an example of how we can
 
-117
+115
 00:05:23,640 --> 00:05:25,060
 actually apply this.
 
-118
+116
 00:05:25,060 --> 00:05:27,040
 So as you can see in our
 Map It button, we
 
-119
+117
 00:05:27,040 --> 00:05:28,880
 have this map icon.
 
-120
+118
 00:05:28,880 --> 00:05:32,600
 The original size of it is 12
 pixels by 16 pixels, so what
 
-121
+119
 00:05:32,600 --> 00:05:36,420
 we want to do is save out a new
 image that is 24 pixels by
 
-122
+120
 00:05:36,420 --> 00:05:38,990
 32 pixels-- it's double
 the size--
 
-123
+121
 00:05:38,990 --> 00:05:42,220
 and then we would actually put
 that into our media query.
 
-124
+122
 00:05:42,220 --> 00:05:45,070
 First, let's recall our
 original CSS for this
 
-125
+123
 00:05:45,070 --> 00:05:46,800
 particular file.
 
-126
+124
 00:05:46,800 --> 00:05:50,350
 As you can see, we have a
 logo.png, and we have it set
 
-127
+125
 00:05:50,350 --> 00:05:51,920
 as a background image.
 
-128
+126
 00:05:51,920 --> 00:05:54,830
 So if we plug this into our
 media query, here's what it
 
-129
+127
 00:05:54,830 --> 00:05:55,750
 would look like.
 
-130
+128
 00:05:55,750 --> 00:06:00,550
 As you can see, we have our own
 new file, the logo@2x.png,
 
-131
+129
 00:06:00,550 --> 00:06:04,800
 but we've also included CSS3
 background size property.
 
-132
+130
 00:06:04,800 --> 00:06:05,920
 Now, why have we done this?
 
-133
+131
 00:06:05,920 --> 00:06:09,640
 Well, if we don't do this, then
 the browser is going to
 
-134
+132
 00:06:09,640 --> 00:06:12,480
 serve up this new image
 at its original size.
 
-135
+133
 00:06:12,480 --> 00:06:15,500
 Basically, what we wanted
 to do is keep the same
 
-136
+134
 00:06:15,500 --> 00:06:19,190
 constraints as the original
 image, the same size, just
 
-137
+135
 00:06:19,190 --> 00:06:21,190
 double the pixel density
 so that it looks
 
-138
+136
 00:06:21,190 --> 00:06:22,940
 better on retina screens.
 
-139
+137
 00:06:22,940 --> 00:06:25,820
 So by using the background size
 property, we can tell the
 
-140
+138
 00:06:25,820 --> 00:06:29,070
 browser what the original size
 of the image was, but just
 
-141
+139
 00:06:29,070 --> 00:06:32,060
 fill it with the better
 optimized image.
 
-142
+140
 00:06:32,060 --> 00:06:34,840
 And then as you can see in this
 screen shot, our image
 
-143
+141
 00:06:34,840 --> 00:06:35,900
 looks much better.
 
-144
+142
 00:06:35,900 --> 00:06:40,370
 It's much clearer and crisper
 than our original image was.
 
-145
+143
 00:06:40,370 --> 00:06:43,590
 So this point, we've seen two
 examples of how to make images
 
-146
+144
 00:06:43,590 --> 00:06:44,720
 responsive.
 
-147
+145
 00:06:44,720 --> 00:06:47,150
 We've talked about content
 images and how to actually
 
-148
+146
 00:06:47,150 --> 00:06:50,290
 scale those, and we've talked
 about background images,
 
-149
+147
 00:06:50,290 --> 00:06:53,730
 things like logos or like the
 map icon that you saw.
 
-150
+148
 00:06:53,730 --> 00:06:56,140
 But for both of those examples,
 we still have to
 
-151
+149
 00:06:56,140 --> 00:06:59,430
 worry about file size because
 we can save out a bunch of
 
-152
+150
 00:06:59,430 --> 00:07:02,950
 these very high resolution
 photos that would look great
 
-153
+151
 00:07:02,950 --> 00:07:05,680
 on, say, a retina screen, but
 if you didn't have a retina
 
-154
+152
 00:07:05,680 --> 00:07:08,950
 screen you'd have to download
 these huge files and it would
 
-155
+153
 00:07:08,950 --> 00:07:11,570
 look good, but it would just
 work really slowly and
 
-156
+154
 00:07:11,570 --> 00:07:12,900
 wouldn't be optimal.
 
-157
+155
 00:07:12,900 --> 00:07:14,160
 So what do we do?
 
-158
+156
 00:07:14,160 --> 00:07:17,340
 Well, Scott Jehl has created a
 pretty novel concept called
 
-159
+157
 00:07:17,340 --> 00:07:20,920
 PictureFill that really solves
 this problem that we have.
 
-160
+158
 00:07:20,920 --> 00:07:23,730
 And in this case, what we do is
 we create a picture element
 
-161
+159
 00:07:23,730 --> 00:07:27,790
 that's similar to the video
 element in HTML5.
 
-162
+160
 00:07:27,790 --> 00:07:30,260
 And what it does is it specifies
 different image
 
-163
+161
 00:07:30,260 --> 00:07:33,450
 sizes to be served by different
 devices, depending
 
-164
+162
 00:07:33,450 --> 00:07:36,360
 on if they're a retina device
 or a nonretina device.
 
-165
+163
 00:07:36,360 --> 00:07:38,470
 Let me show you how
 this works.
 
-166
+164
 00:07:38,470 --> 00:07:42,050
 So in this case, as you can see,
 we have our picture tag,
 
-167
+165
 00:07:42,050 --> 00:07:45,510
 and within that we have first
 our regular image,
 
-168
+166
 00:07:45,510 --> 00:07:50,170
 content-image.jpeg, that's going
 to be used for generic
 
-169
+167
 00:07:50,170 --> 00:07:52,510
 devices, nonretina devices.
 
-170
+168
 00:07:52,510 --> 00:07:55,660
 Then we're also including a
 larger image, one that can be
 
-171
+169
 00:07:55,660 --> 00:07:59,640
 served up on retina devices that
 has more pixel density.
 
-172
+170
 00:07:59,640 --> 00:08:02,270
 But in this case, we're only
 going to be serving that up
 
-173
+171
 00:08:02,270 --> 00:08:05,190
 for devices that have a minimum
 width of 800 pixels.
 
-174
+172
 00:08:05,190 --> 00:08:08,570
 So once again, we're using that
 media query concept where
 
-175
+173
 00:08:08,570 --> 00:08:12,130
 we're only going to be serving
 up that image if that device
 
-176
+174
 00:08:12,130 --> 00:08:13,980
 has a min width of 800 pixels.
 
-177
+175
 00:08:13,980 --> 00:08:17,490
 Now, the picture element
 doesn't actually exist.
 
-178
+176
 00:08:17,490 --> 00:08:20,180
 It's not part of
 the HTML5 spec.
 
-179
+177
 00:08:20,180 --> 00:08:23,950
 So what we have to do is include
 picturefill.js in the
 
-180
+178
 00:08:23,950 --> 00:08:26,240
 head of our HTML document.
 
-181
+179
 00:08:26,240 --> 00:08:28,920
 And who knows, maybe someday
 they'll actually adopt this to
 
-182
+180
 00:08:28,920 --> 00:08:32,230
 be a part of the HTML5 spec
 and we can use it
 
-183
+181
 00:08:32,230 --> 00:08:34,010
 as much as we want.
 
-184
+182
 00:08:34,010 --> 00:08:36,539
 Now what happens to those
 users that don't have
 
-185
+183
 00:08:36,539 --> 00:08:38,200
 JavaScript enabled?
 
-186
+184
 00:08:38,200 --> 00:08:41,600
 Well, we can create a fallback
 for those users.
 
-187
+185
 00:08:41,600 --> 00:08:44,010
 We can include the same code
 that we talked about before in
 
-188
+186
 00:08:44,010 --> 00:08:47,770
 our picture element, but at the
 bottom we can include our
 
-189
+187
 00:08:47,770 --> 00:08:50,370
 regular image in
 no script tags.
 
-190
+188
 00:08:50,370 --> 00:08:53,030
 And basically what that means is
 if the user has JavaScript
 
-191
+189
 00:08:53,030 --> 00:08:55,830
 disabled, then we're just going
 to serve up the regular
 
-192
+190
 00:08:55,830 --> 00:08:58,080
 image to that device.
 
-193
+191
 00:08:58,080 --> 00:09:00,670
 Congratulations, you've made
 it through all the videos.
 
-194
+192
 00:09:00,670 --> 00:09:03,010
 You still have some challenges
 to complete, and after that be
 
-195
+193
 00:09:03,010 --> 00:09:05,530
 sure to stay tuned for a wrap-up
 video where I'll give
 
-196
+194
 00:09:05,530 --> 00:09:08,090
 you some further resources to
 help you learn more about
 
-197
+195
 00:09:08,090 --> 00:09:09,800
 designing for the mobile web.
 
-198
+196
 00:09:09,800 --> 00:09:10,800
 Thanks for taking the time.
 
-199
+197
 00:09:10,800 --> 00:09:13,080
 I really appreciate it, and
 we'll talk to you later.
-
-200
-00:09:13,080 --> 00:09:14,645

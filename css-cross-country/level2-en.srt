@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:24,180
 [MUSIC PLAYING]
 
@@ -739,6 +739,3 @@ Good luck on the challenges.
 00:07:27,780 --> 00:07:29,280
 I'll be out carving
 up the slopes.
-
-157
-00:07:29,280 --> 00:07:33,824

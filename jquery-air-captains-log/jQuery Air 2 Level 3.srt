@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:00,410
 [SINGING]
 
@@ -445,590 +445,584 @@ one more time.
 Very cool.
 
 96
-00:03:54,890 --> 00:03:56,890
-
-97
 00:03:56,890 --> 00:03:58,650
 Next up, we're going to
 talk a little bit
 
-98
+97
 00:03:58,650 --> 00:04:00,570
 about effect easing.
 
-99
+98
 00:04:00,570 --> 00:04:03,560
 So what easing is talking about
 is the rate at which the
 
-100
+99
 00:04:03,560 --> 00:04:07,880
 effect goes from its starting
 point to its ending point, and
 
-101
+100
 00:04:07,880 --> 00:04:10,740
 to jQuery library by default
 comes with two different
 
-102
+101
 00:04:10,740 --> 00:04:11,980
 easing methods.
 
-103
+102
 00:04:11,980 --> 00:04:14,100
 We have linear and swing.
 
-104
+103
 00:04:14,100 --> 00:04:17,140
 And by default, swing is going
 to be used in our effects.
 
-105
+104
 00:04:17,140 --> 00:04:18,920
 Take a look at what
 these mean.
 
-106
+105
 00:04:18,920 --> 00:04:23,200
 So here, you can see each of
 these sort of sliding up and
 
-107
+106
 00:04:23,200 --> 00:04:26,790
 sliding down using different
 types of easing.
 
-108
+107
 00:04:26,790 --> 00:04:31,220
 Linear is sort of all at the
 same pace, and swing starts
 
-109
+108
 00:04:31,220 --> 00:04:34,640
 out fast and then slows down.
 
-110
+109
 00:04:34,640 --> 00:04:37,900
 The jQuery UI library comes with
 a bunch more easing
 
-111
+110
 00:04:37,900 --> 00:04:40,430
 methods, as you can see
 in this window.
 
-112
+111
 00:04:40,430 --> 00:04:42,890
 You don't need to worry about
 these for now, but if you want
 
-113
+112
 00:04:42,890 --> 00:04:46,000
 more information, at the end of
 this course, I'll give you
 
-114
+113
 00:04:46,000 --> 00:04:47,880
 a link to this page where you
 can try out all the different
 
-115
+114
 00:04:47,880 --> 00:04:50,190
 easing methods.
 
-116
+115
 00:04:50,190 --> 00:04:51,570
 Let's jump back into
 our jQuery and
 
-117
+116
 00:04:51,570 --> 00:04:53,050
 change some of the easing.
 
-118
+117
 00:04:53,050 --> 00:04:55,960
 So here, we're going to change
 the confirm purchase to a
 
-119
+118
 00:04:55,960 --> 00:04:57,600
 linear easing.
 
-120
+119
 00:04:57,600 --> 00:05:00,180
 Also, we're going to go into our
 animate function there and
 
-121
+120
 00:05:00,180 --> 00:05:02,000
 change that also to linear.
 
-122
+121
 00:05:02,000 --> 00:05:04,410
 And let's see what that looks
 like in our browser.
 
-123
+122
 00:05:04,410 --> 00:05:07,080
 It's going to be really hard
 to see the difference.
 
-124
+123
 00:05:07,080 --> 00:05:09,400
 That's just the way it goes
 when you have your effects
 
-125
+124
 00:05:09,400 --> 00:05:10,690
 going this quickly.
 
-126
+125
 00:05:10,690 --> 00:05:14,815
 But if I slowed it down, it
 would be more obvious.
 
-127
+126
 00:05:14,815 --> 00:05:16,610
 So we're about halfway
 done with Level 3.
 
-128
+127
 00:05:16,610 --> 00:05:19,150
 Next up, we're going to be
 talking about queuing.
 
-129
+128
 00:05:19,150 --> 00:05:22,550
 So, if you look back here at
 this login code-- let's take
 
-130
+129
 00:05:22,550 --> 00:05:23,750
 one more look at it.
 
-131
+130
 00:05:23,750 --> 00:05:27,060
 With successful login, it
 basically returns, it fades
 
-132
+131
 00:05:27,060 --> 00:05:31,170
 out, it loads in the new HTML,
 and then fades back in.
 
-133
+132
 00:05:31,170 --> 00:05:33,510
 Now, looking at this code, it
 made me wonder, wait a second.
 
-134
+133
 00:05:33,510 --> 00:05:36,790
 Why are we fading out after
 the AJAX comes back?
 
-135
+134
 00:05:36,790 --> 00:05:40,070
 Shouldn't we be fading out,
 making the AJAX call, and then
 
-136
+135
 00:05:40,070 --> 00:05:42,950
 fading back in when
 it comes back?
 
-137
+136
 00:05:42,950 --> 00:05:44,870
 So let's refactor that.
 
-138
+137
 00:05:44,870 --> 00:05:47,420
 So let's bring the fade
 out up into right
 
-139
+138
 00:05:47,420 --> 00:05:48,720
 above the AJAX call.
 
-140
+139
 00:05:48,720 --> 00:05:53,280
 And if we wanted to, we could
 put that in the before send in
 
-141
+140
 00:05:53,280 --> 00:05:56,900
 the AJAX callback, but above
 it's probably fine, too.
 
-142
+141
 00:05:56,900 --> 00:06:00,840
 So let's go ahead and see what
 that does in the page.
 
-143
+142
 00:06:00,840 --> 00:06:03,480
 So we log in.
 
-144
+143
 00:06:03,480 --> 00:06:05,210
 Uh oh.
 
-145
+144
 00:06:05,210 --> 00:06:06,250
 We're running into
 that issue again.
 
-146
+145
 00:06:06,250 --> 00:06:07,310
 You see it?
 
-147
+146
 00:06:07,310 --> 00:06:11,520
 Where it's actually updating
 that div, and then fading out
 
-148
+147
 00:06:11,520 --> 00:06:14,020
 and fading back in.
 
-149
+148
 00:06:14,020 --> 00:06:17,960
 We can't use the callback like
 we did before because it's in
 
-150
+149
 00:06:17,960 --> 00:06:19,000
 two different places.
 
-151
+150
 00:06:19,000 --> 00:06:22,010
 One's coming back from the
 server, and one's getting
 
-152
+151
 00:06:22,010 --> 00:06:23,860
 called before we call AJAX.
 
-153
+152
 00:06:23,860 --> 00:06:26,560
 So this is where we might
 want to use a queue.
 
-154
+153
 00:06:26,560 --> 00:06:27,320
 See up here at the top?
 
-155
+154
 00:06:27,320 --> 00:06:30,720
 We're going to attach this queue
 to the login element,
 
-156
+155
 00:06:30,720 --> 00:06:33,290
 and inside there is where we're
 going to load in the
 
-157
+156
 00:06:33,290 --> 00:06:36,590
 HTML, and then fade it in.
 
-158
+157
 00:06:36,590 --> 00:06:38,570
 Using the queue syntax,
 you have to be aware
 
-159
+158
 00:06:38,570 --> 00:06:40,280
 of this next parameter.
 
-160
+159
 00:06:40,280 --> 00:06:43,990
 So we send the next in, and then
 we call next at the end
 
-161
+160
 00:06:43,990 --> 00:06:46,960
 of that code block so
 that it'll call the
 
-162
+161
 00:06:46,960 --> 00:06:48,670
 next item in the queue.
 
-163
+162
 00:06:48,670 --> 00:06:51,340
 One more thing we might want to
 do here before we see what
 
-164
+163
 00:06:51,340 --> 00:06:54,200
 happens in our browser, we
 might want to make that
 
-165
+164
 00:06:54,200 --> 00:06:56,060
 confirm box happen afterward.
 
-166
+165
 00:06:56,060 --> 00:06:58,120
 So first, we're going to
 have the login box fade
 
-167
+166
 00:06:58,120 --> 00:06:59,340
 out, fade back in.
 
-168
+167
 00:06:59,340 --> 00:07:02,600
 Only once it's complete do we
 want to draw the user's
 
-169
+168
 00:07:02,600 --> 00:07:05,870
 attention to the total box
 and the submit button.
 
-170
+169
 00:07:05,870 --> 00:07:07,870
 So to do that, we're
 going to jump back.
 
-171
+170
 00:07:07,870 --> 00:07:08,900
 We're not going to use
 the queue again.
 
-172
+171
 00:07:08,900 --> 00:07:10,950
 We're going to do that
 callback function.
 
-173
+172
 00:07:10,950 --> 00:07:12,830
 So we're going to take this
 code, put it as a
 
-174
+173
 00:07:12,830 --> 00:07:15,130
 callback to fade in.
 
-175
+174
 00:07:15,130 --> 00:07:19,510
 So after its done fading
 in, call these methods.
 
-176
+175
 00:07:19,510 --> 00:07:21,560
 Here we are back
 in our browser.
 
-177
+176
 00:07:21,560 --> 00:07:23,850
 So we click login, it fades
 out, fades back
 
-178
+177
 00:07:23,850 --> 00:07:25,900
 in, and shows us--
 
-179
+178
 00:07:25,900 --> 00:07:27,540
 let's look at that
 one more time.
 
-180
+179
 00:07:27,540 --> 00:07:31,910
 Fades out, fades back in,
 and shows us the button.
 
-181
+180
 00:07:31,910 --> 00:07:34,630
 Next up, remember our tool
 tips up there at the top?
 
-182
+181
 00:07:34,630 --> 00:07:36,350
 They hover and they pop up.
 
-183
+182
 00:07:36,350 --> 00:07:39,320
 Well, let's make them a little
 more user friendly.
 
-184
+183
 00:07:39,320 --> 00:07:43,220
 This time let's make them sort
 of fade in and then fade out,
 
-185
+184
 00:07:43,220 --> 00:07:44,440
 and maybe add a delay.
 
-186
+185
 00:07:44,440 --> 00:07:46,560
 So like, when you hover
 over it, it doesn't
 
-187
+186
 00:07:46,560 --> 00:07:48,330
 appear right away?
 
-188
+187
 00:07:48,330 --> 00:07:50,560
 Like a real tool tip.
 
-189
+188
 00:07:50,560 --> 00:07:53,000
 So here we are, back in our
 showNumberOfFlights
 
-190
+189
 00:07:53,000 --> 00:07:57,410
 function, and then we also
 have our hideNumberofFlights
 
-191
+190
 00:07:57,410 --> 00:07:59,280
 function.
 
-192
+191
 00:07:59,280 --> 00:08:01,760
 And all we need to do there to
 add fade in, fade out, and
 
-193
+192
 00:08:01,760 --> 00:08:05,050
 delay is write
 delay(300).fadeIn, just like
 
-194
+193
 00:08:05,050 --> 00:08:08,480
 so, and then down below, we're
 going to fade out, and we're
 
-195
+194
 00:08:08,480 --> 00:08:12,000
 going to only remove
 the element once
 
-196
+195
 00:08:12,000 --> 00:08:13,450
 the fade out is complete.
 
-197
+196
 00:08:13,450 --> 00:08:16,750
 Otherwise, it would just
 make it disappear.
 
-198
+197
 00:08:16,750 --> 00:08:17,070
 All right.
 
-199
+198
 00:08:17,070 --> 00:08:18,800
 Back in our browser,
 let's check it out.
 
-200
+199
 00:08:18,800 --> 00:08:20,890
 Hey, that looks nice.
 
-201
+200
 00:08:20,890 --> 00:08:23,110
 We hover, and it feeds
 in and fades out.
 
-202
+201
 00:08:23,110 --> 00:08:26,950
 Pretty cool, but
 there's a bug.
 
-203
+202
 00:08:26,950 --> 00:08:29,090
 See what happens when
 we scroll our mouse
 
-204
+203
 00:08:29,090 --> 00:08:31,010
 over all of the tabs?
 
-205
+204
 00:08:31,010 --> 00:08:33,580
 It's not so nice.
 
-206
+205
 00:08:33,580 --> 00:08:35,990
 So let's try to fix that, so
 that when we move the mouse
 
-207
+206
 00:08:35,990 --> 00:08:39,408
 across the page, we don't have
 cascading tool tips.
 
-208
+207
 00:08:39,408 --> 00:08:40,740
 So here we are, back
 in our code.
 
-209
+208
 00:08:40,740 --> 00:08:44,920
 All we need to fix this is
 add the stop variable.
 
-210
+209
 00:08:44,920 --> 00:08:48,140
 So, stop is going to stop the
 effect wherever it is.
 
-211
+210
 00:08:48,140 --> 00:08:49,900
 And in this case, it's
 going to stop, and
 
-212
+211
 00:08:49,900 --> 00:08:51,780
 then just fade out.
 
-213
+212
 00:08:51,780 --> 00:08:54,090
 So, let's take a look.
 
-214
+213
 00:08:54,090 --> 00:08:55,080
 Now we could scroll
 over all of them.
 
-215
+214
 00:08:55,080 --> 00:08:59,625
 Nothing appears until we hover
 over it for a little while,
 
-216
+215
 00:08:59,625 --> 00:09:02,475
 and it's much nicer.
 
-217
+216
 00:09:02,475 --> 00:09:03,425
 Pretty cool.
 
-218
+217
 00:09:03,425 --> 00:09:05,325
 [MUSIC PLAYING]
 
-219
+218
 00:09:05,325 --> 00:09:07,430
 Looks like you made it all the
 way to level Three 3, so it's
 
-220
+219
 00:09:07,430 --> 00:09:08,780
 time to get your hands dirty.
 
-221
+220
 00:09:08,780 --> 00:09:10,910
 Go through those challenges
 and practice your effects.
-
-222
-00:09:10,910 --> 00:09:12,618

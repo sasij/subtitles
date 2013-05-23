@@ -1,748 +1,744 @@
-1
-00:00:00,000 --> 00:00:03,630
-
-
-2
+﻿1
 00:00:03,630 --> 00:00:06,970
 Git, a distributed source
 control repository.
 
-3
+2
 00:00:06,970 --> 00:00:09,390
 I tried to picture clusters of
 information as they move
 
-4
+3
 00:00:09,390 --> 00:00:11,370
 through the file system.
 
-5
+4
 00:00:11,370 --> 00:00:13,820
 Were the commit messages
 like history books?
 
-6
+5
 00:00:13,820 --> 00:00:16,370
 I kept dreaming of
 a repository I
 
-7
+6
 00:00:16,370 --> 00:00:17,476
 thought I'd never see.
 
-8
+7
 00:00:17,476 --> 00:00:22,356
 And then, one day: Git Real.
 
-9
+8
 00:00:22,356 --> 00:00:27,655
 [MUSIC PLAYING]
 
-10
+9
 00:00:27,655 --> 00:00:29,750
 You're watching Git Real and
 this is Level Five where we're
 
-11
+10
 00:00:29,750 --> 00:00:34,540
 going to be talking about remote
 branches and tags.
 
-12
+11
 00:00:34,540 --> 00:00:36,360
 So in level three,
 Olivier taught
 
-13
+12
 00:00:36,360 --> 00:00:38,490
 you about local branches.
 
-14
+13
 00:00:38,490 --> 00:00:40,800
 But what about remote
 branches?
 
-15
+14
 00:00:40,800 --> 00:00:42,650
 There's going to be times where
 you have a branch, let's
 
-16
+15
 00:00:42,650 --> 00:00:45,290
 say an admin branch, and you
 want other people to be able
 
-17
+16
 00:00:45,290 --> 00:00:46,240
 to work on it.
 
-18
+17
 00:00:46,240 --> 00:00:49,070
 You're going to need to be
 able to push that branch
 
-19
+18
 00:00:49,070 --> 00:00:52,070
 remotely so other people can
 pull it down and work on it,
 
-20
+19
 00:00:52,070 --> 00:00:54,280
 and continue working on
 until it's ready to
 
-21
+20
 00:00:54,280 --> 00:00:56,600
 merge back into master.
 
-22
+21
 00:00:56,600 --> 00:00:59,500
 Also, it's good practice, if
 you're working on a branch
 
-23
+22
 00:00:59,500 --> 00:01:02,870
 that's going to last longer than
 the day you might want to
 
-24
+23
 00:01:02,870 --> 00:01:03,470
 back it up.
 
-25
+24
 00:01:03,470 --> 00:01:05,550
 And you can back it up of course
 by making it a remote
 
-26
+25
 00:01:05,550 --> 00:01:06,750
 branch and pushing
 it to GitHub.
 
-27
+26
 00:01:06,750 --> 00:01:09,850
 In our case, we want to start
 working on a shopping cart.
 
-28
+27
 00:01:09,850 --> 00:01:12,560
 So we create a
 shopping_cart branch.
 
-29
+28
 00:01:12,560 --> 00:01:16,770
 And then to push it to GitHub,
 we run git push origin
 
-30
+29
 00:01:16,770 --> 00:01:18,110
 shopping_cart.
 
-31
+30
 00:01:18,110 --> 00:01:21,270
 So that is going to link the
 local branch to the remote
 
-32
+31
 00:01:21,270 --> 00:01:24,870
 branch and start tracking it.
 
-33
+32
 00:01:24,870 --> 00:01:26,480
 Then maybe we'll get some
 work done on the branch.
 
-34
+33
 00:01:26,480 --> 00:01:30,690
 We'll add the cart, we'll do
 commit, and then when we do
 
-35
+34
 00:01:30,690 --> 00:01:34,150
 push because it is a tracking
 branch, it knows to push the
 
-36
+35
 00:01:34,150 --> 00:01:36,490
 local shopping_cart branch
 to the remote
 
-37
+36
 00:01:36,490 --> 00:01:39,130
 shopping_cart branch.
 
-38
+37
 00:01:39,130 --> 00:01:41,620
 If we jump back over to GitHub
 now and click that button
 
-39
+38
 00:01:41,620 --> 00:01:44,740
 right there we're going to see
 a list of all the branches,
 
-40
+39
 00:01:44,740 --> 00:01:47,090
 all the remote branches,
 right here.
 
-41
+40
 00:01:47,090 --> 00:01:50,410
 We can click on shopping_cart
 and we can see the last commit
 
-42
+41
 00:01:50,410 --> 00:01:54,320
 of the shopping_cart branch
 and all the files.
 
-43
+42
 00:01:54,320 --> 00:01:56,940
 So we created a branch, we
 push it up to GitHub.
 
-44
+43
 00:01:56,940 --> 00:01:59,820
 And then maybe I tell my
 co-worker, hey Jane, I started
 
-45
+44
 00:01:59,820 --> 00:02:01,680
 the remote branch for
 shopping cart stuff.
 
-46
+45
 00:02:01,680 --> 00:02:04,060
 If you want to work on it,
 go ahead and grab it.
 
-47
+46
 00:02:04,060 --> 00:02:06,620
 So do things look like from
 Jane's perspective?
 
-48
+47
 00:02:06,620 --> 00:02:09,139
 Well the next time she does a
 pull, it's going to show her
 
-49
+48
 00:02:09,139 --> 00:02:12,060
 on the output that we have a
 new remote branch called
 
-50
+49
 00:02:12,060 --> 00:02:13,852
 shopping_cart.
 
-51
+50
 00:02:13,852 --> 00:02:16,920
 If she does git branch, she's
 not going to see it as a local
 
-52
+51
 00:02:16,920 --> 00:02:20,230
 branch yet, but if she does git
 branch -r, she's going to
 
-53
+52
 00:02:20,230 --> 00:02:22,140
 be able to see all the
 remote branches.
 
-54
+53
 00:02:22,140 --> 00:02:24,380
 She's going to run git checkout
 shopping_cart, to
 
-55
+54
 00:02:24,380 --> 00:02:25,870
 start working on the branch.
 
-56
+55
 00:02:25,870 --> 00:02:29,570
 And it's automatically set up
 as a tracking remote branch.
 
-57
+56
 00:02:29,570 --> 00:02:32,870
 So from here she can her changes
 and when she's done,
 
-58
+57
 00:02:32,870 --> 00:02:36,570
 she can git push to that
 remote branch.
 
-59
+58
 00:02:36,570 --> 00:02:38,410
 One of the most useful commands
 for working with
 
-60
+59
 00:02:38,410 --> 00:02:41,960
 remote branches is the git
 remote show command.
 
-61
+60
 00:02:41,960 --> 00:02:45,670
 And so then origin, of course,
 is our remote name.
 
-62
+61
 00:02:45,670 --> 00:02:48,790
 So this is going to show us all
 of our remote branches and
 
-63
+62
 00:02:48,790 --> 00:02:50,230
 whether they're tracked
 or not.
 
-64
+63
 00:02:50,230 --> 00:02:52,460
 It'll show us all the local
 branches and which remote
 
-65
+64
 00:02:52,460 --> 00:02:54,140
 branches they merge with.
 
-66
+65
 00:02:54,140 --> 00:02:56,440
 And lastly, it will show us
 all the local branches
 
-67
+66
 00:02:56,440 --> 00:02:58,370
 configured for when
 we do a git push.
 
-68
+67
 00:02:58,370 --> 00:03:01,200
 The cool part about this is it
 even goes out to the server
 
-69
+68
 00:03:01,200 --> 00:03:02,450
 and checks to see if
 any of our local
 
-70
+69
 00:03:02,450 --> 00:03:03,740
 branches are out of date.
 
-71
+70
 00:03:03,740 --> 00:03:05,600
 In which case here, we can
 see that our shopping
 
-72
+71
 00:03:05,600 --> 00:03:07,880
 cart is out of date.
 
-73
+72
 00:03:07,880 --> 00:03:11,060
 Remote branches, like local
 branches, don't last forever.
 
-74
+73
 00:03:11,060 --> 00:03:12,660
 You might get done
 with a feature.
 
-75
+74
 00:03:12,660 --> 00:03:15,120
 To delete the remote branch
 you're going to run git push
 
-76
+75
 00:03:15,120 --> 00:03:18,890
 origin colon, and then
 the branch name.
 
-77
+76
 00:03:18,890 --> 00:03:21,570
 This is only going to delete
 the remote branch though.
 
-78
+77
 00:03:21,570 --> 00:03:23,760
 You're still going to
 have a local branch
 
-79
+78
 00:03:23,760 --> 00:03:24,950
 for shopping_cart.
 
-80
+79
 00:03:24,950 --> 00:03:27,550
 So we're also going to want to
 delete that so we run git
 
-81
+80
 00:03:27,550 --> 00:03:29,480
 branch -d shopping_cart.
 
-82
+81
 00:03:29,480 --> 00:03:32,600
 Uh, oh, it's not letting
 us delete that branch.
 
-83
+82
 00:03:32,600 --> 00:03:34,330
 It says that there's some
 commits that we
 
-84
+83
 00:03:34,330 --> 00:03:35,970
 haven't merged anywhere.
 
-85
+84
 00:03:35,970 --> 00:03:37,760
 It's a cool feature of Git.
 
-86
+85
 00:03:37,760 --> 00:03:40,000
 If you try to delete a branch
 and there's commits that
 
-87
+86
 00:03:40,000 --> 00:03:42,910
 haven't been merged anywhere,
 it's going to say hey, you're
 
-88
+87
 00:03:42,910 --> 00:03:45,210
 deleting changes that
 you might want.
 
-89
+88
 00:03:45,210 --> 00:03:46,650
 So it gives you a warning.
 
-90
+89
 00:03:46,650 --> 00:03:49,180
 But if you really do want to
 delete the branch you can do
 
-91
+90
 00:03:49,180 --> 00:03:52,260
 capital D, and it
 will delete it.
 
-92
+91
 00:03:52,260 --> 00:03:55,540
 So Jane is the one who deleted
 the remote commit, but Gregg
 
-93
+92
 00:03:55,540 --> 00:03:57,730
 is the one that created
 it in the first place.
 
-94
+93
 00:03:57,730 --> 00:04:01,370
 So what happens when he tries
 to push to that remote that
 
-95
+94
 00:04:01,370 --> 00:04:03,260
 doesn't exist anymore.
 
-96
+95
 00:04:03,260 --> 00:04:04,730
 Let's take a look.
 
-97
+96
 00:04:04,730 --> 00:04:06,700
 So Gregg is working
 on that branch.
 
-98
+97
 00:04:06,700 --> 00:04:10,790
 He commits something, then
 he tries to do a push.
 
-99
+98
 00:04:10,790 --> 00:04:14,040
 Nothing happens because the
 remote doesn't exist.
 
-100
+99
 00:04:14,040 --> 00:04:16,700
 Locally, it's just
 a remote branch.
 
-101
+100
 00:04:16,700 --> 00:04:19,720
 To figure out what's going on
 Gregg might run git remote
 
-102
+101
 00:04:19,720 --> 00:04:21,040
 show origin.
 
-103
+102
 00:04:21,040 --> 00:04:23,910
 Here he's going to see that
 look, that shopping_cart
 
-104
+103
 00:04:23,910 --> 00:04:25,380
 branch is stale.
 
-105
+104
 00:04:25,380 --> 00:04:27,670
 Somebody deleted it, OK.
 
-106
+105
 00:04:27,670 --> 00:04:31,160
 To remove that reference, he's
 going to want to run git
 
-107
+106
 00:04:31,160 --> 00:04:35,200
 remote prune origin just as it
 says and it'll clean up all
 
-108
+107
 00:04:35,200 --> 00:04:36,860
 the old, stale branches.
 
-109
+108
 00:04:36,860 --> 00:04:39,000
 This command is something you
 probably want to run every
 
-110
+109
 00:04:39,000 --> 00:04:41,980
 once in awhile if you're on a
 large project that a lot of
 
-111
+110
 00:04:41,980 --> 00:04:44,490
 remote branches that get
 deleted at some point.
 
-112
+111
 00:04:44,490 --> 00:04:48,100
 It's going to remove all of
 those stale references.
 
-113
+112
 00:04:48,100 --> 00:04:50,590
 Let's say one of our remote
 branches is a
 
-114
+113
 00:04:50,590 --> 00:04:52,880
 Heroku staging server.
 
-115
+114
 00:04:52,880 --> 00:04:55,420
 We called it Heroku staging.
 
-116
+115
 00:04:55,420 --> 00:05:00,430
 The thing about Heroku is that
 it only deploys the branch,
 
-117
+116
 00:05:00,430 --> 00:05:03,300
 which is named master.
 
-118
+117
 00:05:03,300 --> 00:05:07,260
 So if we have, let's say a
 staging branch, and we do a
 
-119
+118
 00:05:07,260 --> 00:05:11,880
 git push Heroku staging staging,
 it's going to try to
 
-120
+119
 00:05:11,880 --> 00:05:15,900
 push a remote branch called
 staging and nothing's going to
 
-121
+120
 00:05:15,900 --> 00:05:19,340
 get deployed because as I
 mentioned a minute ago, Heroku
 
-122
+121
 00:05:19,340 --> 00:05:21,120
 only looks for the
 master branch.
 
-123
+122
 00:05:21,120 --> 00:05:23,070
 It only deploys from
 the master branch.
 
-124
+123
 00:05:23,070 --> 00:05:25,850
 In this case we would
 run git push Heroku
 
-125
+124
 00:05:25,850 --> 00:05:28,230
 staging staging master.
 
-126
+125
 00:05:28,230 --> 00:05:31,520
 What that's going to do is
 link up our local staging
 
-127
+126
 00:05:31,520 --> 00:05:35,500
 branch to the remote Heroku
 master branch.
 
-128
+127
 00:05:35,500 --> 00:05:38,610
 So when we push to it, it's
 going to push from staging to
 
-129
+128
 00:05:38,610 --> 00:05:40,770
 master and deploy.
 
-130
+129
 00:05:40,770 --> 00:05:42,640
 So now that we've talked about
 remote branches we're going to
 
-131
+130
 00:05:42,640 --> 00:05:44,840
 talk a little bit about tags
 before we go on to the
 
-132
+131
 00:05:44,840 --> 00:05:46,150
 challenges.
 
-133
+132
 00:05:46,150 --> 00:05:49,980
 Tags are basically a reference
 to a specific commit.
 
-134
+133
 00:05:49,980 --> 00:05:54,240
 It's a good way to jump back to
 that state of what the code
 
-135
+134
 00:05:54,240 --> 00:05:55,680
 was in any given time.
 
-136
+135
 00:05:55,680 --> 00:05:58,480
 A lot of people use it for
 release versioning.
 
-137
+136
 00:05:58,480 --> 00:06:02,300
 So when we have our code in a
 good state, we might tag it
 
-138
+137
 00:06:02,300 --> 00:06:04,660
 version 0.1.
 
-139
+138
 00:06:04,660 --> 00:06:09,280
 So to list out all the tags,
 we can do git tags.
 
-140
+139
 00:06:09,280 --> 00:06:11,610
 To check out that tag and go
 back to what the code looked
 
-141
+140
 00:06:11,610 --> 00:06:14,510
 like when we tagged it we
 do git checkout, and
 
-142
+141
 00:06:14,510 --> 00:06:15,850
 then the tag name.
 
-143
+142
 00:06:15,850 --> 00:06:19,940
 To add a new tag, we can simply
 do git tag -a, add the
 
-144
+143
 00:06:19,940 --> 00:06:22,480
 tag name and then give
 a tag description.
 
-145
+144
 00:06:22,480 --> 00:06:25,590
 And lastly, to push our tags
 we actually have to specify
 
-146
+145
 00:06:25,590 --> 00:06:29,690
 push --tags, and that will
 push it to a remote.
 
-147
+146
 00:06:29,690 --> 00:06:33,790
 Otherwise, the tags
 will remain local.
 
-148
+147
 00:06:33,790 --> 00:06:35,630
 Now if we go back over to GitHub
 and click the branch
 
-149
+148
 00:06:35,630 --> 00:06:38,710
 button you're going to see
 that there is a tags tab.
 
-150
+149
 00:06:38,710 --> 00:06:41,470
 If we click that we're going to
 see a list of the tags for
 
-151
+150
 00:06:41,470 --> 00:06:42,730
 our current repository.
 
-152
+151
 00:06:42,730 --> 00:06:45,840
 We can click one and then we're
 brought to a page where
 
-153
+152
 00:06:45,840 --> 00:06:48,130
 we can see the state that
 our code was and
 
-154
+153
 00:06:48,130 --> 00:06:50,690
 when we tagged it.
 
-155
+154
 00:06:50,690 --> 00:06:52,230
 All right, we've reach the
 end of Level Five.
 
-156
+155
 00:06:52,230 --> 00:06:54,680
 It's time for you to push
 some remote branches
 
-157
+156
 00:06:54,680 --> 00:06:55,670
 and make some tags.
 
-158
+157
 00:06:55,670 --> 00:06:58,348
 [MUSIC PLAYING]

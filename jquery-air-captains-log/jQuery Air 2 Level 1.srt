@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:00,410
 [SINGING]
 
@@ -367,749 +367,734 @@ and the third tab, which
 we want, is eq(2).
 
 79
-00:03:14,575 --> 00:03:17,130
-
-80
 00:03:17,130 --> 00:03:19,950
 So here, you can see in the
 browser, September 29 is
 
-81
+80
 00:03:19,950 --> 00:03:21,240
 selected by default.
 
-82
+81
 00:03:21,240 --> 00:03:24,990
 We can click off of that, and
 whenever we refresh the page,
 
-83
+82
 00:03:24,990 --> 00:03:29,080
 it's going to select
 September 29 again.
 
-84
+83
 00:03:29,080 --> 00:03:32,530
 Next up, we're going to use that
 data flights attribute so
 
-85
+84
 00:03:32,530 --> 00:03:35,370
 that we can create a tool tip,
 so when we hover over each of
 
-86
+85
 00:03:35,370 --> 00:03:37,380
 the tabs, it'll show us
 how many flights are
 
-87
+86
 00:03:37,380 --> 00:03:38,690
 available for that date.
 
-88
+87
 00:03:38,690 --> 00:03:40,800
 We want the tool tip look a
 little bit something like
 
-89
+88
 00:03:40,800 --> 00:03:43,540
 that, so let's take a look
 inside of our code.
 
-90
+89
 00:03:43,540 --> 00:03:45,660
 You can see here we have
 our normal click event.
 
-91
+90
 00:03:45,660 --> 00:03:47,030
 We already went over that.
 
-92
+91
 00:03:47,030 --> 00:03:49,090
 We're also going to add a mouse
 enter event, which will
 
-93
+92
 00:03:49,090 --> 00:03:53,350
 call the showNumberOfFlights
 function, and a mouseleave
 
-94
+93
 00:03:53,350 --> 00:03:57,020
 event, which calls the
 hideNumberOfflights function.
 
-95
+94
 00:03:57,020 --> 00:03:59,840
 So first of all, in the
 snowNumberOfFlights function,
 
-96
+95
 00:03:59,840 --> 00:04:02,600
 we're going to grab the number
 of flights out of the data
 
-97
+96
 00:04:02,600 --> 00:04:07,350
 attribute, and we're going to
 append a span with the number
 
-98
+97
 00:04:07,350 --> 00:04:08,900
 of flights in it.
 
-99
+98
 00:04:08,900 --> 00:04:10,920
 For the hideNumberOfFlights
 function, all we're going to
 
-100
+99
 00:04:10,920 --> 00:04:13,320
 do is call remove
 on the tool tip.
 
-101
+100
 00:04:13,320 --> 00:04:15,520
 So just remove that element.
 
-102
+101
 00:04:15,520 --> 00:04:17,130
 We can refactor this
 code a little by
 
-103
+102
 00:04:17,130 --> 00:04:18,700
 using the bind command.
 
-104
+103
 00:04:18,700 --> 00:04:22,100
 Since all of these events are
 happening on the same element,
 
-105
+104
 00:04:22,100 --> 00:04:24,920
 we can write it like this.
 
-106
+105
 00:04:24,920 --> 00:04:26,980
 So we just say bind,
 and then we have a
 
-107
+106
 00:04:26,980 --> 00:04:29,890
 list of all the events.
 
-108
+107
 00:04:29,890 --> 00:04:31,635
 In the browser, here's
 what our tool tip's
 
-109
+108
 00:04:31,635 --> 00:04:33,990
 going to look like.
 
-110
+109
 00:04:33,990 --> 00:04:36,890
 So you can see here, we hover
 over each of the tabs, and it
 
-111
+110
 00:04:36,890 --> 00:04:41,140
 tells us how many flights
 are available.
 
-112
+111
 00:04:41,140 --> 00:04:44,460
 So we have tabs, but we need to
 add some divs where we put
 
-113
+112
 00:04:44,460 --> 00:04:45,670
 the flight data.
 
-114
+113
 00:04:45,670 --> 00:04:49,040
 So let's go ahead and write them
 out, as you can see here.
 
-115
+114
 00:04:49,040 --> 00:04:51,240
 Right now, we're just going
 to put the loading
 
-116
+115
 00:04:51,240 --> 00:04:52,480
 text in each of them.
 
-117
+116
 00:04:52,480 --> 00:04:57,830
 You'll notice that the href
 matches the ID of the divs
 
-118
+117
 00:04:57,830 --> 00:04:58,450
 down below.
 
-119
+118
 00:04:58,450 --> 00:04:59,450
 This is no coincidence.
 
-120
+119
 00:04:59,450 --> 00:05:01,510
 We're going to be using
 that in just a minute.
 
-121
+120
 00:05:01,510 --> 00:05:04,600
 Let's shrink down our HTML and
 make some room for our jQuery.
 
-122
+121
 00:05:04,600 --> 00:05:06,770
 Here's our changeTab function.
 
-123
+122
 00:05:06,770 --> 00:05:08,720
 We've already walked through
 this code, but now we're going
 
-124
+123
 00:05:08,720 --> 00:05:13,330
 to add a hide call to hide all
 the divs, and then we're going
 
-125
+124
 00:05:13,330 --> 00:05:16,440
 to find the active div by
 looking up the attribute on
 
-126
+125
 00:05:16,440 --> 00:05:18,650
 the link that was just clicked,
 and we're going to
 
-127
+126
 00:05:18,650 --> 00:05:22,340
 use that to find which div
 we should be showing.
 
-128
+127
 00:05:22,340 --> 00:05:24,270
 We're going to refactor this
 code a little bit by creating
 
-129
+128
 00:05:24,270 --> 00:05:26,220
 a showFlights function.
 
-130
+129
 00:05:26,220 --> 00:05:28,290
 We'll just send in the active
 div to the showFlights
 
-131
+130
 00:05:28,290 --> 00:05:30,900
 function, and that'll hide all
 the divs and show the one
 
-132
+131
 00:05:30,900 --> 00:05:32,310
 that's active.
 
-133
+132
 00:05:32,310 --> 00:05:35,330
 So if we jump into our browser
 at this point, we can see that
 
-134
+133
 00:05:35,330 --> 00:05:39,220
 as we click the tabs, it
 properly shows the div that
 
-135
+134
 00:05:39,220 --> 00:05:41,090
 we're looking at.
 
-136
+135
 00:05:41,090 --> 00:05:42,445
 Pretty cool.
 
-137
+136
 00:05:42,445 --> 00:05:45,480
 So we're selecting the proper
 divs, but we don't have the
 
-138
+137
 00:05:45,480 --> 00:05:47,240
 flight data in there yet.
 
-139
+138
 00:05:47,240 --> 00:05:49,310
 We want to be able to load that
 in, and we want to load
 
-140
+139
 00:05:49,310 --> 00:05:52,570
 it using AJAX, but we're not
 going to cover AJAX until the
 
-141
+140
 00:05:52,570 --> 00:05:53,320
 next level.
 
-142
+141
 00:05:53,320 --> 00:05:55,800
 So for now, we're just going
 to call the showFlights
 
-143
+142
 00:05:55,800 --> 00:06:00,230
 method, and that's going to load
 in the proper flights.
 
-144
+143
 00:06:00,230 --> 00:06:02,600
 So let's jump back
 into the browser.
 
-145
+144
 00:06:02,600 --> 00:06:04,630
 So now, we have flights, and
 we can click on each of the
 
-146
+145
 00:06:04,630 --> 00:06:06,360
 tabs to select the flights.
 
-147
-00:06:06,360 --> 00:06:09,540
-
-148
+146
 00:06:09,540 --> 00:06:10,700
 Pretty cool.
 
-149
+147
 00:06:10,700 --> 00:06:14,460
 You'll notice, though, that if
 I click a tab, every time I
 
-150
+148
 00:06:14,460 --> 00:06:17,720
 click the tab, even if it's the
 active tab, it's going to
 
-151
+149
 00:06:17,720 --> 00:06:21,640
 do another call back to the
 server, another AJAX call,
 
-152
+150
 00:06:21,640 --> 00:06:23,710
 which isn't so good.
 
-153
+151
 00:06:23,710 --> 00:06:25,880
 To stop the event from
 happening, we're going to
 
-154
+152
 00:06:25,880 --> 00:06:28,640
 learn how to use the
 unbind function.
 
-155
+153
 00:06:28,640 --> 00:06:30,870
 So here, you can see I'm getting
 the active link, and
 
-156
+154
 00:06:30,870 --> 00:06:34,020
 I'm unbinding the click
 event on it.
 
-157
+155
 00:06:34,020 --> 00:06:37,520
 Since I'm unbinding the event,
 when I click off of that tab,
 
-158
+156
 00:06:37,520 --> 00:06:39,560
 I'm going to want
 to rebind it.
 
-159
+157
 00:06:39,560 --> 00:06:43,250
 So I'm simply going to
 add click(changeTab).
 
-160
+158
 00:06:43,250 --> 00:06:45,740
 It should be said that this
 the same thing as saying
 
-161
+159
 00:06:45,740 --> 00:06:48,210
 bind(click", changeTab).
 
-162
+160
 00:06:48,210 --> 00:06:51,290
 It does the same thing,
 just different syntax.
 
-163
+161
 00:06:51,290 --> 00:06:54,020
 So if we go back into our
 browser now, we can see that
 
-164
+162
 00:06:54,020 --> 00:06:57,580
 when we click a tab and keep
 on clicking on that tab, it
 
-165
+163
 00:06:57,580 --> 00:07:01,090
 doesn't cause an AJAX request
 to happen every time.
 
-166
+164
 00:07:01,090 --> 00:07:04,020
 Pretty cool.
 
-167
+165
 00:07:04,020 --> 00:07:06,100
 When you're binding events, you
 should know that you can
 
-168
+166
 00:07:06,100 --> 00:07:08,640
 namespace each of
 these events.
 
-169
+167
 00:07:08,640 --> 00:07:11,130
 Here you can see I'm
 namespacing click.
 
-170
+168
 00:07:11,130 --> 00:07:15,280
 So I'm just giving it an extra
 .flightSchedule name.
 
-171
+169
 00:07:15,280 --> 00:07:16,670
 Then when I want to unbind
 it, I have to
 
-172
+170
 00:07:16,670 --> 00:07:18,120
 reference that same name.
 
-173
+171
 00:07:18,120 --> 00:07:21,600
 Alternatively, I could add that
 namespace to all of the
 
-174
+172
 00:07:21,600 --> 00:07:23,040
 different events.
 
-175
+173
 00:07:23,040 --> 00:07:26,510
 If I did this and I wanted to
 unbind all those events all at
 
-176
+174
 00:07:26,510 --> 00:07:28,920
 once, I could simply call
 unbind(".flightSchedule").
 
-177
-00:07:28,920 --> 00:07:32,860
-
-178
+175
 00:07:32,860 --> 00:07:35,010
 The next piece of functionality
 we want to add
 
-179
+176
 00:07:35,010 --> 00:07:39,020
 is the ability to select an
 individual price, to basically
 
-180
+177
 00:07:39,020 --> 00:07:41,620
 pick out the flight and pick
 out if we want to do first
 
-181
+178
 00:07:41,620 --> 00:07:43,090
 class or coach.
 
-182
+179
 00:07:43,090 --> 00:07:44,690
 And as we click on a
 different one, that
 
-183
+180
 00:07:44,690 --> 00:07:46,960
 one should get selected.
 
-184
+181
 00:07:46,960 --> 00:07:49,840
 Here's what the HTML looks like
 on our flights table.
 
-185
+182
 00:07:49,840 --> 00:07:53,460
 You can notice that one of these
 has class selected, and
 
-186
+183
 00:07:53,460 --> 00:07:55,320
 that's what's going
 to highlight
 
-187
+184
 00:07:55,320 --> 00:07:57,450
 that particular flight.
 
-188
+185
 00:07:57,450 --> 00:07:59,780
 Let's jump into the jQuery
 to make this work.
 
-189
+186
 00:07:59,780 --> 00:08:02,100
 So here we're going to bind
 on the click action.
 
-190
+187
 00:08:02,100 --> 00:08:05,190
 It's going to call the
 selectFlight function.
 
-191
+188
 00:08:05,190 --> 00:08:07,240
 Inside of the selectFlight
 function, we're going to
 
-192
+189
 00:08:07,240 --> 00:08:09,360
 preventDefault.
 
-193
+190
 00:08:09,360 --> 00:08:12,670
 We're then going to remove the
 selected class from the one
 
-194
+191
 00:08:12,670 --> 00:08:15,920
 that's currently selected, then
 we're going to add the
 
-195
+192
 00:08:15,920 --> 00:08:18,910
 selected class to the one
 that we just clicked on.
 
-196
+193
 00:08:18,910 --> 00:08:22,090
 If we jump into our browser and
 try this out, notice that
 
-197
+194
 00:08:22,090 --> 00:08:23,010
 it doesn't seem to work.
 
-198
+195
 00:08:23,010 --> 00:08:26,560
 We're clicking on stuff and
 nothing's getting highlighted.
 
-199
+196
 00:08:26,560 --> 00:08:28,660
 That's because we shouldn't be
 using the bind function.
 
-200
+197
 00:08:28,660 --> 00:08:32,700
 What we should be using
 is the live function.
 
-201
+198
 00:08:32,700 --> 00:08:36,320
 Because we're loading in that
 flight data dynamically using
 
-202
+199
 00:08:36,320 --> 00:08:40,710
 AJAX, we need to have it look
 for that event no matter
 
-203
+200
 00:08:40,710 --> 00:08:41,870
 what's on the page.
 
-204
+201
 00:08:41,870 --> 00:08:44,660
 What bind does is it goes
 through, it only hooks onto
 
-205
+202
 00:08:44,660 --> 00:08:46,220
 that event one time.
 
-206
+203
 00:08:46,220 --> 00:08:50,590
 What live does is it looks for
 that selector, and whenever it
 
-207
+204
 00:08:50,590 --> 00:08:53,700
 finds that, whether it's now or
 in the future, it's going
 
-208
+205
 00:08:53,700 --> 00:08:56,930
 to properly catch that event and
 call the right function.
 
-209
+206
 00:08:56,930 --> 00:09:00,000
 So if we jump back in our
 browser, we can now click on
 
-210
+207
 00:09:00,000 --> 00:09:03,300
 the different prices and
 select our flights.
 
-211
-00:09:03,300 --> 00:09:07,210
-
-212
+208
 00:09:07,210 --> 00:09:10,950
 Using live, like we showed you
 there, turns out to be not
 
-213
+209
 00:09:10,950 --> 00:09:12,360
 such a good practice.
 
-214
+210
 00:09:12,360 --> 00:09:16,410
 There's a better way
 to bind events.
 
-215
+211
 00:09:16,410 --> 00:09:20,295
 Live, this line up here,
 is the same as saying
 
-216
+212
 00:09:20,295 --> 00:09:22,670
 (document).delegate.
 
-217
+213
 00:09:22,670 --> 00:09:25,440
 So what that (document).delegate
 thing is
 
-218
+214
 00:09:25,440 --> 00:09:29,710
 saying is on the document, the
 highest level document, look
 
-219
+215
 00:09:29,710 --> 00:09:34,630
 for the click event that matches
 this selector, and so
 
-220
+216
 00:09:34,630 --> 00:09:37,130
 every time the click happens,
 it's going to be trying to
 
-221
+217
 00:09:37,130 --> 00:09:40,120
 match at the top event level.
 
-222
+218
 00:09:40,120 --> 00:09:41,690
 Which isn't so good.
 
-223
+219
 00:09:41,690 --> 00:09:44,700
 We can fine tune this command by
 giving it the selector that
 
-224
+220
 00:09:44,700 --> 00:09:48,450
 we want to be checking inside
 for the click event on the
 
-225
+221
 00:09:48,450 --> 00:09:50,040
 flight link.
 
-226
+222
 00:09:50,040 --> 00:09:52,070
 There are two benefits
 to using delegate.
 
-227
+223
 00:09:52,070 --> 00:09:53,900
 First of all, it can
 be method chained,
 
-228
+224
 00:09:53,900 --> 00:09:56,110
 so you can have a bunch
 of methods all up
 
-229
+225
 00:09:56,110 --> 00:09:57,160
 against each other.
 
-230
+226
 00:09:57,160 --> 00:09:59,990
 And secondly, as I mentioned
 before, it also performs
 
-231
+227
 00:09:59,990 --> 00:10:04,310
 faster because it only has to
 be checking for that event,
 
-232
+228
 00:10:04,310 --> 00:10:07,330
 for that element, in this part
 of the code instead of the
 
-233
+229
 00:10:07,330 --> 00:10:12,710
 entire document, as
 using live does.
 
-234
+230
 00:10:12,710 --> 00:10:14,930
 That about does it for Level
 1 of jQuery Air 2.
 
-235
+231
 00:10:14,930 --> 00:10:17,170
 I hope you're ready to get your
 hands dirty with some of
 
-236
+232
 00:10:17,170 --> 00:10:18,295
 the code challenges.
 
-237
+233
 00:10:18,295 --> 00:10:19,545
 Good luck.
-
-238
-00:10:19,545 --> 00:10:23,189

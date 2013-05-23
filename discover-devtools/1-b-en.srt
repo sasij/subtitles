@@ -1,423 +1,415 @@
 ﻿1
-00:00:00,000 --> 00:00:02,720
-
-
-2
 00:00:02,720 --> 00:00:05,210
 So we've learned about making
 real time updates to the DOM,
 
-3
+2
 00:00:05,210 --> 00:00:06,890
 but what if we want to
 make changes to our
 
-4
+3
 00:00:06,890 --> 00:00:09,620
 style sheets or CSS?
 
-5
+4
 00:00:09,620 --> 00:00:10,980
 Well, that's where
 the right side of
 
-6
+5
 00:00:10,980 --> 00:00:12,660
 Elements panel comes in.
 
-7
+6
 00:00:12,660 --> 00:00:14,240
 The styles view does
 a lot for us.
 
-8
+7
 00:00:14,240 --> 00:00:17,340
 First off, it displays the
 computed CSS styles for any
 
-9
+8
 00:00:17,340 --> 00:00:18,780
 given element.
 
-10
+9
 00:00:18,780 --> 00:00:22,020
 See, on any element, you might
 have multiple styles coming
 
-11
+10
 00:00:22,020 --> 00:00:26,370
 from multiple files, multiple
 style sheets, and they get
 
-12
+11
 00:00:26,370 --> 00:00:30,080
 computed into a listing
 that you see here.
 
-13
+12
 00:00:30,080 --> 00:00:32,600
 The styles view also allows
 you to enable and disable
 
-14
+13
 00:00:32,600 --> 00:00:36,050
 style properties, add new
 ones, edit rules on
 
-15
+14
 00:00:36,050 --> 00:00:38,490
 pseudo-classes, like your
 active and hover state.
 
-16
+15
 00:00:38,490 --> 00:00:40,680
 And finally, it provides a bread
 crumb trail so you can
 
-17
+16
 00:00:40,680 --> 00:00:43,720
 figure out what file
 a style came from.
 
-18
+17
 00:00:43,720 --> 00:00:46,630
 Here you can see, I have the Add
 Event button selected on
 
-19
+18
 00:00:46,630 --> 00:00:47,440
 the left side.
 
-20
+19
 00:00:47,440 --> 00:00:50,060
 And on the right side, I can
 see all the CSS rules being
 
-21
+20
 00:00:50,060 --> 00:00:52,390
 applied to this button,
 starting with the most
 
-22
+21
 00:00:52,390 --> 00:00:54,470
 specific rules first.
 
-23
+22
 00:00:54,470 --> 00:00:57,490
 So if I had any inline styles,
 they would be displayed here.
 
-24
+23
 00:00:57,490 --> 00:00:59,430
 And then, there's a label that's
 showing us the first
 
-25
+24
 00:00:59,430 --> 00:01:03,490
 set of CSS rules coming from the
 new class since our link
 
-26
+25
 00:01:03,490 --> 00:01:05,340
 belongs to that class.
 
-27
+26
 00:01:05,340 --> 00:01:07,620
 You see all those check boxes
 next to those styles?
 
-28
+27
 00:01:07,620 --> 00:01:09,890
 Well, they do what you would
 expect them to do.
 
-29
+28
 00:01:09,890 --> 00:01:11,990
 If you unclick a style,
 it stops getting
 
-30
+29
 00:01:11,990 --> 00:01:13,330
 applied to that element.
 
-31
+30
 00:01:13,330 --> 00:01:15,060
 This is really useful
 in debugging.
 
-32
+31
 00:01:15,060 --> 00:01:18,050
 If you're wondering what style
 is messing up your page, you
 
-33
+32
 00:01:18,050 --> 00:01:20,610
 can just start disabling the
 styles until you figure out
 
-34
+33
 00:01:20,610 --> 00:01:21,940
 who the culprit is.
 
-35
+34
 00:01:21,940 --> 00:01:23,900
 We can also change the
 style values by
 
-36
+35
 00:01:23,900 --> 00:01:25,180
 double clicking on them.
 
-37
+36
 00:01:25,180 --> 00:01:28,000
 So now, our button text is
 aligned to the right, as you
 
-38
+37
 00:01:28,000 --> 00:01:28,790
 can see above.
 
-39
+38
 00:01:28,790 --> 00:01:31,890
 Or we can remove a property
 entirely by just deleting the
 
-40
+39
 00:01:31,890 --> 00:01:33,870
 value, and now our text
 is over on the
 
-41
+40
 00:01:33,870 --> 00:01:36,110
 left side of the button.
 
-42
+41
 00:01:36,110 --> 00:01:38,170
 If you want to add a style to an
 element, just make sure it's
 
-43
+42
 00:01:38,170 --> 00:01:41,080
 selected and just hit the
 Plus button here.
 
-44
+43
 00:01:41,080 --> 00:01:44,880
 We then, will want to specify
 the CSS selector, which, as
 
-45
+44
 00:01:44,880 --> 00:01:47,860
 you can see, is defaulted to the
 dot new class since that's
 
-46
+45
 00:01:47,860 --> 00:01:48,860
 what we have selected.
 
-47
+46
 00:01:48,860 --> 00:01:52,050
 We can then start typing a new
 style, and look at that.
 
-48
+47
 00:01:52,050 --> 00:01:53,910
 It actually allows us to auto
 complete each of the
 
-49
+48
 00:01:53,910 --> 00:01:57,330
 properties and values
 using the Tab key.
 
-50
+49
 00:01:57,330 --> 00:02:00,140
 Now, what if we wanted to change
 our Add Event button so
 
-51
+50
 00:02:00,140 --> 00:02:01,760
 that it changes to a different
 color when our
 
-52
+51
 00:02:01,760 --> 00:02:03,720
 mouse hovers over it?
 
-53
+52
 00:02:03,720 --> 00:02:06,900
 It might be kind of hard to
 hover the mouse over it while
 
-54
+53
 00:02:06,900 --> 00:02:08,910
 we're trying to use Dev Tools.
 
-55
+54
 00:02:08,910 --> 00:02:10,970
 But, there's a solution
 for this.
 
-56
+55
 00:02:10,970 --> 00:02:13,640
 If we click on this icon, on
 the right side here, we can
 
-57
+56
 00:02:13,640 --> 00:02:16,510
 force the element we have
 selected, the button in this
 
-58
+57
 00:02:16,510 --> 00:02:18,650
 case, to be in the
 active, hover,
 
-59
+58
 00:02:18,650 --> 00:02:20,410
 focused, or visited state.
 
-60
+59
 00:02:20,410 --> 00:02:22,200
 In this case, we want
 the hover state so
 
-61
+60
 00:02:22,200 --> 00:02:22,845
 we'll check that off.
 
-62
+61
 00:02:22,845 --> 00:02:25,270
 And as you can see here, the
 button text up above is
 
-63
+62
 00:02:25,270 --> 00:02:26,310
 underlined.
 
-64
+63
 00:02:26,310 --> 00:02:29,380
 We can also see the style for
 the hover state, which makes
 
-65
+64
 00:02:29,380 --> 00:02:33,920
 underlined right here in the
 bottom right of the screen.
 
-66
+65
 00:02:33,920 --> 00:02:36,230
 If you want to change the
 background color on hover, we
 
-67
+66
 00:02:36,230 --> 00:02:39,270
 can just add the style here,
 and immediately see that it
 
-68
+67
 00:02:39,270 --> 00:02:40,760
 turns black in the web page.
 
-69
+68
 00:02:40,760 --> 00:02:43,650
 When we're ready to actually
 watch it work, we can uncheck
 
-70
+69
 00:02:43,650 --> 00:02:46,300
 the hover state and
 play with it.
 
-71
+70
 00:02:46,300 --> 00:02:48,080
 Yep, looks like it works.
 
-72
+71
 00:02:48,080 --> 00:02:50,910
 Black is obviously not a great
 color for this hover state, so
 
-73
+72
 00:02:50,910 --> 00:02:51,770
 let's change it.
 
-74
+73
 00:02:51,770 --> 00:02:55,030
 But this time, instead of typing
 a value, let's click on
 
-75
+74
 00:02:55,030 --> 00:02:56,970
 that color swatch right there.
 
-76
+75
 00:02:56,970 --> 00:02:59,570
 When we see that, we can get
 this nice color picker so we
 
-77
+76
 00:02:59,570 --> 00:03:01,660
 can choose our color this
 way, and come up
 
-78
+77
 00:03:01,660 --> 00:03:02,910
 with a better match.
 
-79
-00:03:02,910 --> 00:03:06,750
-
-
-80
+78
 00:03:06,750 --> 00:03:09,650
 Lastly, our style view allows us
 to know where a particular
 
-81
+79
 00:03:09,650 --> 00:03:10,830
 style came from.
 
-82
+80
 00:03:10,830 --> 00:03:14,960
 You might notice that in our CSS
 panel, each CSS rule has a
 
-83
+81
 00:03:14,960 --> 00:03:18,310
 file name listed on the right
 side with a line number.
 
-84
+82
 00:03:18,310 --> 00:03:21,430
 When you click on this file,
 that opens up the CSS source
 
-85
+83
 00:03:21,430 --> 00:03:24,080
 in something that resembles
 an editor.
 
-86
+84
 00:03:24,080 --> 00:03:26,150
 This is actually the source
 view panel, which we'll be
 
-87
+85
 00:03:26,150 --> 00:03:27,480
 going over in the
 next chapter.
 
-88
+86
 00:03:27,480 --> 00:03:29,570
 So let's not get ahead
 of ourselves.
 
-89
+87
 00:03:29,570 --> 00:03:31,550
 First, it's time for you to play
 with the style view in
 
-90
+88
 00:03:31,550 --> 00:03:32,800
 the challenges.

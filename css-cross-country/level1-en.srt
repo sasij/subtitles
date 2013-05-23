@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:25,280
 [MUSIC PLAYING]
 
@@ -523,49 +523,42 @@ will be the one that's found
 on the far right.
 
 111
-00:05:31,380 --> 00:05:34,030
-
-
-112
 00:05:34,030 --> 00:05:35,690
 So that does it for level one.
 
-113
+112
 00:05:35,690 --> 00:05:37,930
 If you haven't already, please
 go ahead and download the
 
-114
+113
 00:05:37,930 --> 00:05:39,420
 slides on the sidebar.
 
-115
+114
 00:05:39,420 --> 00:05:41,840
 They're going to prove to be an
 invaluable resource to help
 
-116
+115
 00:05:41,840 --> 00:05:43,570
 you move through
 the challenges.
 
-117
+116
 00:05:43,570 --> 00:05:46,250
 Also, please use the hints
 if you get stuck.
 
-118
+117
 00:05:46,250 --> 00:05:47,960
 We don't want you to get
 stuck on any one
 
-119
+118
 00:05:47,960 --> 00:05:49,610
 problem for too long.
 
-120
+119
 00:05:49,610 --> 00:05:50,860
 Good luck.
-
-121
-00:05:50,860 --> 00:05:52,661

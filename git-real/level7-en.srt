@@ -1,818 +1,806 @@
-1
-00:00:00,000 --> 00:00:03,255
-
-
-2
+﻿1
 00:00:03,255 --> 00:00:06,970
 Git, a distributed source
 control repository.
 
-3
+2
 00:00:06,970 --> 00:00:09,400
 I tried to picture clusters of
 information as they move
 
-4
+3
 00:00:09,400 --> 00:00:12,700
 through the file system. Were
 the commit messages like
 
-5
+4
 00:00:12,700 --> 00:00:13,440
 history books?
 
-6
+5
 00:00:13,440 --> 00:00:16,370
 I kept dreaming of
 a repository I
 
-7
+6
 00:00:16,370 --> 00:00:17,842
 thought I'd never see.
 
-8
+7
 00:00:17,842 --> 00:00:22,205
 And then, one day: Git Real.
 
-9
+8
 00:00:22,205 --> 00:00:27,530
 [MUSIC PLAYING]
 
-10
+9
 00:00:27,530 --> 00:00:28,730
 This is Git Real.
 
-11
+10
 00:00:28,730 --> 00:00:29,760
 You made it to the
 final level.
 
-12
+11
 00:00:29,760 --> 00:00:34,240
 We're going to talk about
 history and configuration.
 
-13
+12
 00:00:34,240 --> 00:00:37,780
 In the previous levels we've
 used git log repeatedly to see
 
-14
+13
 00:00:37,780 --> 00:00:39,620
 a list of our recent commits.
 
-15
+14
 00:00:39,620 --> 00:00:43,570
 Those commits usually include
 the SHA hash, and then the
 
-16
+15
 00:00:43,570 --> 00:00:46,510
 author, the date, and
 the commit message.
 
-17
+16
 00:00:46,510 --> 00:00:49,690
 The output from log is not
 usually the most easy thing to
 
-18
+17
 00:00:49,690 --> 00:00:51,890
 read, so we're going to go
 over a couple of ways to
 
-19
+18
 00:00:51,890 --> 00:00:54,390
 improve the output.
 
-20
+19
 00:00:54,390 --> 00:00:56,680
 The first thing you should do if
 you haven't already done it
 
-21
+20
 00:00:56,680 --> 00:00:58,750
 is to turn UI colors to true.
 
-22
+21
 00:00:58,750 --> 00:01:02,260
 It will emphasize your commit
 hash every single time.
 
-23
+22
 00:01:02,260 --> 00:01:05,910
 You can also format the output
 for the log differently.
 
-24
+23
 00:01:05,910 --> 00:01:09,470
 So if you pass in git log
 --pretty=oneline, it will
 
-25
+24
 00:01:09,470 --> 00:01:12,480
 display one commit per line with
 the SHA at the beginning
 
-26
+25
 00:01:12,480 --> 00:01:15,350
 and the commit message
 right after.
 
-27
+26
 00:01:15,350 --> 00:01:18,470
 Even better, you can format the
 output of the log exactly
 
-28
+27
 00:01:18,470 --> 00:01:21,190
 how you want it by
 using format.
 
-29
+28
 00:01:21,190 --> 00:01:24,030
 You can use a bunch of place
 holders to organize the output
 
-30
+29
 00:01:24,030 --> 00:01:26,380
 at each commit in your log.
 
-31
+30
 00:01:26,380 --> 00:01:29,570
 If you want look at what each
 commit changed in the log
 
-32
+31
 00:01:29,570 --> 00:01:31,510
 output, you can use the git log
 
-33
+32
 00:01:31,510 --> 00:01:34,950
 --oneline -p for patch output.
 
-34
+33
 00:01:34,950 --> 00:01:37,620
 And that will show you what
 lines were removed and what
 
-35
+34
 00:01:37,620 --> 00:01:39,690
 lines were added for
 the files that were
 
-36
+35
 00:01:39,690 --> 00:01:42,790
 modified during each commit.
 
-37
+36
 00:01:42,790 --> 00:01:46,430
 git log --oneline --stat will
 show you how many insertions
 
-38
+37
 00:01:46,430 --> 00:01:48,720
 and deletions were made
 for each file
 
-39
+38
 00:01:48,720 --> 00:01:52,550
 included in each commit.
 
-40
+39
 00:01:52,550 --> 00:01:54,960
 If we use the graph option,
 we'll get a visual
 
-41
+40
 00:01:54,960 --> 00:01:58,130
 representation of the branches
 and the commits on so that
 
-42
+41
 00:01:58,130 --> 00:02:02,010
 maybe you can see your
 merge bubbles.
 
-43
+42
 00:02:02,010 --> 00:02:05,000
 It's not always useful to
 have the entire log
 
-44
+43
 00:02:05,000 --> 00:02:05,940
 history right there.
 
-45
+44
 00:02:05,940 --> 00:02:09,789
 So what you can do is specify a
 range between a certain date
 
-46
+45
 00:02:09,789 --> 00:02:13,070
 and another date where you
 want to see the log.
 
-47
+46
 00:02:13,070 --> 00:02:16,380
 You can also limit the log
 output based on time using
 
-48
+47
 00:02:16,380 --> 00:02:20,460
 flags like until 1 minute ago,
 since 1 day ago, since 2 weeks
 
-49
+48
 00:02:20,460 --> 00:02:24,910
 ago, or between a month ago
 and until 2 weeks ago.
 
-50
+49
 00:02:24,910 --> 00:02:27,530
 As you saw previously, git diff
 can be really useful to
 
-51
+50
 00:02:27,530 --> 00:02:30,180
 see what has changed since
 our last commit.
 
-52
+51
 00:02:30,180 --> 00:02:33,350
 You can see the remove lines
 and the added lines in the
 
-53
+52
 00:02:33,350 --> 00:02:34,600
 files that were included.
 
-54
-00:02:34,600 --> 00:02:36,680
-
-
-55
+53
 00:02:36,680 --> 00:02:42,030
 git diff HEAD does exactly the
 same thing as git diff.
 
-56
+54
 00:02:42,030 --> 00:02:43,990
 If you want to see the
 difference between the files
 
-57
+55
 00:02:43,990 --> 00:02:47,770
 now and 2 or 3 or 5 commits
 ago, diff gives you the
 
-58
+56
 00:02:47,770 --> 00:02:51,540
 following commands to do that.
 
-59
+57
 00:02:51,540 --> 00:02:55,000
 You can also compare two
 different commits such as the
 
-60
+58
 00:02:55,000 --> 00:02:59,380
 second most recent against
 the most recent.
 
-61
+59
 00:02:59,380 --> 00:03:02,380
 If you remember those commit
 SHAs that we saw in the log
 
-62
+60
 00:03:02,380 --> 00:03:05,380
 you can use those as well to
 compare between 2 commits
 
-63
+61
 00:03:05,380 --> 00:03:08,620
 specifically by naming
 the SHAs.
 
-64
+62
 00:03:08,620 --> 00:03:11,780
 Sometimes you'll see these SHA
 hashes abbreviated on places
 
-65
+63
 00:03:11,780 --> 00:03:12,400
 like GitHub.
 
-66
+64
 00:03:12,400 --> 00:03:16,160
 You can also use these
 abbreviated SHAs to run diffs,
 
-67
+65
 00:03:16,160 --> 00:03:18,990
 and you can also use branches
 to run diffs.
 
-68
+66
 00:03:18,990 --> 00:03:22,110
 So for instance, you could say
 git diff master bird if you
 
-69
+67
 00:03:22,110 --> 00:03:24,480
 had a bird branch you wanted
 to compare against.
 
-70
+68
 00:03:24,480 --> 00:03:27,260
 Finally, like git log, you
 can use time-based
 
-71
+69
 00:03:27,260 --> 00:03:30,220
 ranges for git diffs.
 
-72
+70
 00:03:30,220 --> 00:03:32,720
 When projects go on for a
 while sometimes you come
 
-73
+71
 00:03:32,720 --> 00:03:35,120
 across a change that has been
 made in the file that you
 
-74
+72
 00:03:35,120 --> 00:03:36,710
 really can't understand.
 
-75
+73
 00:03:36,710 --> 00:03:39,070
 And a good tool for
 that is git blame.
 
-76
+74
 00:03:39,070 --> 00:03:42,970
 You can run git blame and file
 name to see all of the changes
 
-77
+75
 00:03:42,970 --> 00:03:47,680
 on each line and who made them
 when, and which commit created
 
-78
+76
 00:03:47,680 --> 00:03:49,230
 that change.
 
-79
+77
 00:03:49,230 --> 00:03:52,680
 So let's move on to some more
 advanced configurations.
 
-80
+78
 00:03:52,680 --> 00:03:55,050
 There may come a time in a
 project when you need to work
 
-81
+79
 00:03:55,050 --> 00:03:57,960
 on a specific folder, but you
 don't want to include this
 
-82
+80
 00:03:57,960 --> 00:04:00,510
 folder inside your repository
 and share it
 
-83
+81
 00:04:00,510 --> 00:04:01,920
 with your other coworkers.
 
-84
+82
 00:04:01,920 --> 00:04:04,220
 In this case we have an
 experiments folder that we
 
-85
+83
 00:04:04,220 --> 00:04:06,900
 want to exclude from our
 local repo, but not
 
-86
+84
 00:04:06,900 --> 00:04:08,260
 exclude from elsewhere.
 
-87
+85
 00:04:08,260 --> 00:04:11,800
 What we can do is put that
 experiments folder inside of
 
-88
+86
 00:04:11,800 --> 00:04:15,190
 the git info exclude file.
 
-89
+87
 00:04:15,190 --> 00:04:17,839
 Put the name of that folder in
 there and when you run git
 
-90
+88
 00:04:17,839 --> 00:04:21,890
 status, you won't see
 that folder anymore.
 
-91
+89
 00:04:21,890 --> 00:04:24,550
 You can also use exclusion
 patterns in that file.
 
-92
+90
 00:04:24,550 --> 00:04:28,970
 You can specifically exclude the
 tutorial.mp4 file or all
 
-93
+91
 00:04:28,970 --> 00:04:31,370
 files that have the
 mp4 extension.
 
-94
+92
 00:04:31,370 --> 00:04:33,700
 You can exclude a whole
 folder like we saw.
 
-95
+93
 00:04:33,700 --> 00:04:36,600
 You can also exclude
 every log file
 
-96
+94
 00:04:36,600 --> 00:04:39,250
 inside of the log directory.
 
-97
+95
 00:04:39,250 --> 00:04:43,170
 Speaking of logs, nobody should
 ever include log files
 
-98
+96
 00:04:43,170 --> 00:04:44,480
 inside of a repository.
 
-99
+97
 00:04:44,480 --> 00:04:44,920
 Why?
 
-100
+98
 00:04:44,920 --> 00:04:47,810
 Because they always change
 differently depending on who's
 
-101
+99
 00:04:47,810 --> 00:04:49,460
 using the application.
 
-102
+100
 00:04:49,460 --> 00:04:53,265
 So what you want to do is use
 instead of an exclude, a git
 
-103
+101
 00:04:53,265 --> 00:04:56,500
 ignore file which will ignore
 all log files not in your
 
-104
+102
 00:04:56,500 --> 00:05:00,240
 local repository, but also
 for everybody else.
 
-105
+103
 00:05:00,240 --> 00:05:03,730
 So here we have a server log
 file that we want to not have
 
-106
+104
 00:05:03,730 --> 00:05:04,770
 in our repository.
 
-107
+105
 00:05:04,770 --> 00:05:09,240
 We're going to put log slash
 star.log so that any log file
 
-108
+106
 00:05:09,240 --> 00:05:12,290
 in that logs folder will
 never get included.
 
-109
+107
 00:05:12,290 --> 00:05:13,840
 And then we'll run git status.
 
-110
+108
 00:05:13,840 --> 00:05:16,730
 As you can see, there's no log
 files showing anymore.
 
-111
+109
 00:05:16,730 --> 00:05:19,980
 And then commit that.
 
-112
+110
 00:05:19,980 --> 00:05:23,280
 One thing we haven't covered up
 until now is how to remove
 
-113
+111
 00:05:23,280 --> 00:05:25,030
 a file from your repository.
 
-114
+112
 00:05:25,030 --> 00:05:27,520
 So you can use the git rm
 command and then pass it a
 
-115
+113
 00:05:27,520 --> 00:05:28,840
 file or folder.
 
-116
+114
 00:05:28,840 --> 00:05:32,390
 If you do git rm readme, it will
 remove your readme and
 
-117
+115
 00:05:32,390 --> 00:05:34,610
 then add that change
 to the stage.
 
-118
+116
 00:05:34,610 --> 00:05:37,575
 And you simply can commit,
 remove readme and that file
 
-119
+117
 00:05:37,575 --> 00:05:40,030
 will now disappear.
 
-120
+118
 00:05:40,030 --> 00:05:43,210
 But in the case of log files,
 if you were already tracking
 
-121
+119
 00:05:43,210 --> 00:05:45,080
 the file, you don't
 want to delete it
 
-122
+120
 00:05:45,080 --> 00:05:46,055
 from your file system.
 
-123
+121
 00:05:46,055 --> 00:05:49,070
 All you want to do is tell Git
 stop caring about the file,
 
-124
+122
 00:05:49,070 --> 00:05:50,650
 stop tracking it.
 
-125
+123
 00:05:50,650 --> 00:05:55,290
 To do that you can use a git
 rm --cached which will stop
 
-126
+124
 00:05:55,290 --> 00:05:58,440
 watching for changes, stop
 tracking a file.
 
-127
+125
 00:05:58,440 --> 00:06:01,000
 After that, if you do git
 status, you'll see that it's
 
-128
+126
 00:06:01,000 --> 00:06:03,970
 deleted the same way, but it
 won't be deleted from your
 
-129
+127
 00:06:03,970 --> 00:06:06,020
 file system.
 
-130
+128
 00:06:06,020 --> 00:06:08,990
 And after you've un-tracked that
 log file, you can do the
 
-131
+129
 00:06:08,990 --> 00:06:11,950
 same git ignore and commit
 and no more log
 
-132
+130
 00:06:11,950 --> 00:06:13,200
 files will be tracked.
 
-133
-00:06:13,200 --> 00:06:19,650
-
-
-134
+131
 00:06:19,650 --> 00:06:22,150
 In Level One we saw some basic
 configuration for the
 
-135
+132
 00:06:22,150 --> 00:06:24,430
 user and the email.
 
-136
+133
 00:06:24,430 --> 00:06:26,790
 Let's look at more configuration
 details
 
-137
+134
 00:06:26,790 --> 00:06:27,945
 that you can have.
 
-138
+135
 00:06:27,945 --> 00:06:31,140
 You can configure a specific
 merge tool if you want to see
 
-139
+136
 00:06:31,140 --> 00:06:32,950
 merge conflicts in
 a better way.
 
-140
+137
 00:06:32,950 --> 00:06:35,410
 There's also a very useful
 feature if you're working with
 
-141
+138
 00:06:35,410 --> 00:06:38,300
 Windows or Unix systems that
 will convert files to the
 
-142
+139
 00:06:38,300 --> 00:06:41,240
 Windows or Unix formats once
 they're committed.
 
-143
+140
 00:06:41,240 --> 00:06:44,380
 Then when you run config --list,
 you'll see your global
 
-144
+141
 00:06:44,380 --> 00:06:47,730
 email first and then the email
 specifier for this repository
 
-145
+142
 00:06:47,730 --> 00:06:50,160
 second, which overrides
 the previous one.
 
-146
+143
 00:06:50,160 --> 00:06:53,740
 You can verify this by running
 git config user.email inside
 
-147
+144
 00:06:53,740 --> 00:06:56,900
 of your repository and it will
 show you which email is set
 
-148
+145
 00:06:56,900 --> 00:06:58,020
 for this repository.
 
-149
+146
 00:06:58,020 --> 00:07:02,280
 Then it will show you which
 email it's currently using.
 
-150
+147
 00:07:02,280 --> 00:07:04,560
 If you remember the log formats
 we went over in the
 
-151
+148
 00:07:04,560 --> 00:07:07,510
 beginning of this level, there's
 a bunch of really
 
-152
+149
 00:07:07,510 --> 00:07:09,290
 tricky options you
 can pass to them.
 
-153
+150
 00:07:09,290 --> 00:07:11,300
 And it's really hard to remember
 that all the time.
 
-154
+151
 00:07:11,300 --> 00:07:15,230
 What you can do though is create
 an alias to these log
 
-155
+152
 00:07:15,230 --> 00:07:16,190
 output formats.
 
-156
+153
 00:07:16,190 --> 00:07:19,990
 So for instance, you would use
 a special my log format that
 
-157
+154
 00:07:19,990 --> 00:07:23,090
 triggers log pretty format
 and has a custom format.
 
-158
+155
 00:07:23,090 --> 00:07:27,120
 Another popular output format
 for git log is the lol format
 
-159
+156
 00:07:27,120 --> 00:07:29,450
 which will show you a graphical
 
-160
+157
 00:07:29,450 --> 00:07:31,750
 output, like we saw before.
 
-161
+158
 00:07:31,750 --> 00:07:34,640
 Here we have a my log format
 that gives us a nice output
 
-162
+159
 00:07:34,640 --> 00:07:38,090
 without having to pass
 any options.
 
-163
+160
 00:07:38,090 --> 00:07:40,570
 You'll notice as you use Git
 every day that the same
 
-164
+161
 00:07:40,570 --> 00:07:43,370
 commands keep coming up
 over and over again.
 
-165
+162
 00:07:43,370 --> 00:07:45,980
 You use git status, you use
 git checkout, you use git
 
-166
+163
 00:07:45,980 --> 00:07:47,000
 branch and commit.
 
-167
+164
 00:07:47,000 --> 00:07:50,420
 But you can alias those commands
 to shorter ones by
 
-168
+165
 00:07:50,420 --> 00:07:51,830
 doing the following.
 
-169
+166
 00:07:51,830 --> 00:07:54,340
 So now if we simply type
 git st, we can see
 
-170
+167
 00:07:54,340 --> 00:07:56,560
 the git status output.
 
-171
+168
 00:07:56,560 --> 00:07:59,140
 So that's it for level seven,
 you have the last stretch of
 
-172
+169
 00:07:59,140 --> 00:08:01,130
 challenges ahead of you
 and we'll see you guys
 
-173
+170
 00:08:01,130 --> 00:08:02,630
 in the wrap up video.
 
-174
+171
 00:08:02,630 --> 00:08:05,186
 [MUSIC PLAYING]

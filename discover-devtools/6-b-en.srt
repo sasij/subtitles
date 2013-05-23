@@ -1,381 +1,369 @@
 ﻿1
-00:00:00,000 --> 00:00:01,790
-
-
-2
 00:00:01,790 --> 00:00:04,210
 So our app seems to slow down
 when we switch between
 
-3
+2
 00:00:04,210 --> 00:00:05,740
 calendar days.
 
-4
+3
 00:00:05,740 --> 00:00:08,870
 This is where the CPU Profiler
 comes in, which can show us
 
-5
+4
 00:00:08,870 --> 00:00:12,840
 which parts of our JavaScript
 are slowing the page down.
 
-6
+5
 00:00:12,840 --> 00:00:15,070
 Let's create a profile by
 clicking on the Profiles
 
-7
+6
 00:00:15,070 --> 00:00:19,300
 panel, selecting Collect
 JavaScript CPU Profile, and
 
-8
+7
 00:00:19,300 --> 00:00:21,080
 click the Start button
 at the bottom.
 
-9
+8
 00:00:21,080 --> 00:00:22,680
 Now we're recording, so
 we'll switch to the
 
-10
+9
 00:00:22,680 --> 00:00:23,940
 next calendar date.
 
-11
+10
 00:00:23,940 --> 00:00:26,610
 When it's finished, we'll hit
 the Stop button here.
 
-12
+11
 00:00:26,610 --> 00:00:28,470
 What we're then presented with
 is a bunch of different
 
-13
+12
 00:00:28,470 --> 00:00:30,540
 functions that were called
 and how much CPU
 
-14
+13
 00:00:30,540 --> 00:00:31,900
 time they each took.
 
-15
+14
 00:00:31,900 --> 00:00:34,570
 Up at the top of this list, we
 see a function called window
 
-16
+15
 00:00:34,570 --> 00:00:37,430
 Calendar get events for
 date, and this took
 
-17
+16
 00:00:37,430 --> 00:00:40,400
 up 13% of the time.
 
-18
+17
 00:00:40,400 --> 00:00:42,740
 We can dive into this function's
 code by easily
 
-19
+18
 00:00:42,740 --> 00:00:46,970
 clicking on the file name and
 line number on the right.
 
-20
+19
 00:00:46,970 --> 00:00:49,190
 It appears we're looping
 through every single
 
-21
+20
 00:00:49,190 --> 00:00:52,460
 millisecond of the day to see
 if our event is happening on
 
-22
+21
 00:00:52,460 --> 00:00:54,130
 that particular millisecond.
 
-23
+22
 00:00:54,130 --> 00:00:56,400
 This is a pretty expensive
 operation, and
 
-24
+23
 00:00:56,400 --> 00:00:58,140
 it's probably overkill.
 
-25
+24
 00:00:58,140 --> 00:01:00,660
 So let's refactor this code to
 take a look at the first
 
-26
+25
 00:01:00,660 --> 00:01:03,950
 millisecond of every day instead
 of every millisecond
 
-27
+26
 00:01:03,950 --> 00:01:05,200
 of every day.
 
-28
-00:01:05,200 --> 00:01:07,650
-
-
-29
+27
 00:01:07,650 --> 00:01:08,490
 All right.
 
-30
+28
 00:01:08,490 --> 00:01:10,670
 Now that we fixed the code,
 let's redo our profile by
 
-31
+29
 00:01:10,670 --> 00:01:13,530
 going back to the Profile
 panel, select Collect
 
-32
+30
 00:01:13,530 --> 00:01:16,710
 JavaScript CPU Profile,
 and click Start.
 
-33
+31
 00:01:16,710 --> 00:01:21,840
 Then we switch dates, stop
 when the operation is
 
-34
+32
 00:01:21,840 --> 00:01:25,410
 complete, and click on the new
 profile in the Profile list to
 
-35
+33
 00:01:25,410 --> 00:01:27,000
 view the results.
 
-36
+34
 00:01:27,000 --> 00:01:29,340
 I think, previously, get events
 for date was right at
 
-37
+35
 00:01:29,340 --> 00:01:30,540
 the top of the list.
 
-38
+36
 00:01:30,540 --> 00:01:33,040
 And we can click back and forth
 between the two profiles
 
-39
+37
 00:01:33,040 --> 00:01:35,310
 to compare them.
 
-40
+38
 00:01:35,310 --> 00:01:37,100
 Now it's not even
 on the top 10.
 
-41
+39
 00:01:37,100 --> 00:01:38,590
 Looks like we fixed it.
 
-42
+40
 00:01:38,590 --> 00:01:40,890
 Let's go back into the CPU
 Profiler and see if we can
 
-43
+41
 00:01:40,890 --> 00:01:42,880
 make any more optimizations.
 
-44
+42
 00:01:42,880 --> 00:01:44,500
 We'll start on the recording
 and start
 
-45
+43
 00:01:44,500 --> 00:01:46,160
 switching days again.
 
-46
+44
 00:01:46,160 --> 00:01:48,980
 There are no second-long stalls
 this time, but it seems
 
-47
+45
 00:01:48,980 --> 00:01:51,740
 like the animation intended
 for adding a new event is
 
-48
+46
 00:01:51,740 --> 00:01:56,330
 being run for every event on the
 page, and well, it's just
 
-49
+47
 00:01:56,330 --> 00:01:58,040
 not very smooth.
 
-50
+48
 00:01:58,040 --> 00:02:00,190
 On our timeline here, we can
 find a few instances where the
 
-51
+49
 00:02:00,190 --> 00:02:03,190
 JavaScript and the rendering are
 much longer than 30 frames
 
-52
+50
 00:02:03,190 --> 00:02:05,330
 per second.
 
-53
+51
 00:02:05,330 --> 00:02:07,313
 We use our Display Event
 function to add our
 
-54
+52
 00:02:07,313 --> 00:02:08,759
 events to the page.
 
-55
+53
 00:02:08,759 --> 00:02:11,240
 Here you can see we added a
 conditional to determine if we
 
-56
+54
 00:02:11,240 --> 00:02:12,880
 should add an animation
 effect when we
 
-57
+55
 00:02:12,880 --> 00:02:14,720
 display out the events.
 
-58
+56
 00:02:14,720 --> 00:02:17,860
 In our Create Event function,
 we called the display event
 
-59
+57
 00:02:17,860 --> 00:02:20,790
 with the animated parameter
 set to true.
 
-60
+58
 00:02:20,790 --> 00:02:23,800
 We also call it in the display
 date for each event
 
-61
+59
 00:02:23,800 --> 00:02:25,140
 we add to the page.
 
-62
+60
 00:02:25,140 --> 00:02:28,040
 Here you can see the animation
 is set to true, but it really
 
-63
+61
 00:02:28,040 --> 00:02:31,620
 should be set to false so it
 doesn't call that animation
 
-64
+62
 00:02:31,620 --> 00:02:34,170
 every time it renders an
 event on the page.
 
-65
+63
 00:02:34,170 --> 00:02:37,070
 It was likely this event that
 was slowing the page down.
 
-66
+64
 00:02:37,070 --> 00:02:39,950
 Let's correct this and switch
 it to false so we don't
 
-67
+65
 00:02:39,950 --> 00:02:41,380
 animate old dates.
 
-68
-00:02:41,380 --> 00:02:45,060
-
-
-69
+66
 00:02:45,060 --> 00:02:46,950
 Now let's switch back to
 the Frames view and
 
-70
+67
 00:02:46,950 --> 00:02:48,300
 make another recording.
 
-71
+68
 00:02:48,300 --> 00:02:51,240
 We'll try switching dates
 again, a couple
 
-72
+69
 00:02:51,240 --> 00:02:53,200
 times for good measure.
 
-73
+70
 00:02:53,200 --> 00:02:55,765
 Once we stop the recording, you
 can see on our timeline
 
-74
+71
 00:02:55,765 --> 00:02:59,380
 that scripting, rendering, and
 painting for each frame is now
 
-75
+72
 00:02:59,380 --> 00:03:01,240
 completing faster than
 60 frames per
 
-76
+73
 00:03:01,240 --> 00:03:03,500
 second most of the time.
 
-77
+74
 00:03:03,500 --> 00:03:04,935
 The Frames view can
 quickly alert you
 
-78
+75
 00:03:04,935 --> 00:03:06,220
 to performance problems.
 
-79
+76
 00:03:06,220 --> 00:03:09,190
 And then the CPU Profiler can
 help you track down where your
 
-80
+77
 00:03:09,190 --> 00:03:11,450
 slow JavaScript code
 is happening.
 
-81
+78
 00:03:11,450 --> 00:03:13,510
 And it's time for you to get
 your hands dirty in the
 
-82
+79
 00:03:13,510 --> 00:03:14,760
 Challenges.

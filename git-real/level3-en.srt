@@ -1,689 +1,670 @@
-1
-00:00:00,000 --> 00:00:02,790
-
-
-2
+﻿1
 00:00:02,790 --> 00:00:06,970
 Git, a distributed source
 control repository.
 
-3
+2
 00:00:06,970 --> 00:00:09,400
 I tried to picture clusters of
 information as they move
 
-4
+3
 00:00:09,400 --> 00:00:12,700
 through the file system. Were
 they commit messages like
 
-5
+4
 00:00:12,700 --> 00:00:13,820
 history books?
 
-6
+5
 00:00:13,820 --> 00:00:16,535
 I kept dreaming of
 a repository I
 
-7
+6
 00:00:16,535 --> 00:00:17,476
 thought I'd never see.
 
-8
+7
 00:00:17,476 --> 00:00:22,205
 And then, one day: Git Real.
 
-9
+8
 00:00:22,205 --> 00:00:26,680
 [MUSIC PLAYING]
 
-10
+9
 00:00:26,680 --> 00:00:28,230
 You're watching Git Real.
 
-11
+10
 00:00:28,230 --> 00:00:29,190
 I'm Olivier Lacan.
 
-12
+11
 00:00:29,190 --> 00:00:30,360
 This is Level 3.
 
-13
+12
 00:00:30,360 --> 00:00:33,610
 We're going to talk about
 Cloning and Branching.
 
-14
+13
 00:00:33,610 --> 00:00:35,810
 So in Level 2, we saw that
 Gregg pushed the
 
-15
+14
 00:00:35,810 --> 00:00:37,110
 repository to GitHub.
 
-16
+15
 00:00:37,110 --> 00:00:39,910
 And now a new coworker called
 Jane needs to get those files.
 
-17
+16
 00:00:39,910 --> 00:00:42,970
 She will ask something like,
 where do I get those files?
 
-18
+17
 00:00:42,970 --> 00:00:45,760
 And Gregg is going to simply
 say to her, just clone the
 
-19
+18
 00:00:45,760 --> 00:00:46,540
 repository.
 
-20
+19
 00:00:46,540 --> 00:00:48,270
 How do you do that?
 
-21
+20
 00:00:48,270 --> 00:00:50,620
 If you're using something like
 GitHub, you would go to the
 
-22
+21
 00:00:50,620 --> 00:00:54,750
 repository, get the URL that
 you saw for the repo.
 
-23
+22
 00:00:54,750 --> 00:00:57,930
 So you go back to your command
 line, type in git clone, that
 
-24
+23
 00:00:57,930 --> 00:01:01,710
 URL, and it will create a local
 directory with that
 
-25
+24
 00:01:01,710 --> 00:01:02,840
 repository.
 
-26
+25
 00:01:02,840 --> 00:01:04,739
 It will be called the
 name that the
 
-27
+26
 00:01:04,739 --> 00:01:05,990
 repository was called.
 
-28
+27
 00:01:05,990 --> 00:01:08,050
 If you want to change that name
 to something else, you
 
-29
+28
 00:01:08,050 --> 00:01:11,110
 can say the same thing, git
 clone, URL, and pass in a name
 
-30
+29
 00:01:11,110 --> 00:01:12,360
 like git demo.
 
-31
-00:01:12,360 --> 00:01:15,330
-
-
-32
+30
 00:01:15,330 --> 00:01:17,320
 The first thing that git clone
 does is download the
 
-33
+31
 00:01:17,320 --> 00:01:18,090
 repository.
 
-34
+32
 00:01:18,090 --> 00:01:21,950
 The second thing it does is
 create a remote called origin
 
-35
+33
 00:01:21,950 --> 00:01:23,990
 and point it to the URL
 we passed it to.
 
-36
+34
 00:01:23,990 --> 00:01:27,630
 We can check that by simply
 running git remote -v. And it
 
-37
+35
 00:01:27,630 --> 00:01:30,490
 would list all the remotes, so
 you will see origin and any
 
-38
+36
 00:01:30,490 --> 00:01:31,930
 URL that we passed it to.
 
-39
+37
 00:01:31,930 --> 00:01:34,600
 And finally, it will check out
 the initial branch, likely
 
-40
+38
 00:01:34,600 --> 00:01:40,070
 master, and set the branch right
 there and set the HEAD.
 
-41
+39
 00:01:40,070 --> 00:01:42,160
 So Jane is all set up, but
 she wants to start
 
-42
+40
 00:01:42,160 --> 00:01:42,990
 working on a feature.
 
-43
+41
 00:01:42,990 --> 00:01:45,650
 To do that it's best
 to create a branch.
 
-44
+42
 00:01:45,650 --> 00:01:47,570
 So we're going to create
 a branch called cat.
 
-45
+43
 00:01:47,570 --> 00:01:50,030
 git branch cat, will
 create that branch.
 
-46
-00:01:50,030 --> 00:01:55,440
-
-
-47
+44
 00:01:55,440 --> 00:01:57,930
 But if we check with git branch,
 we can see we're still
 
-48
+45
 00:01:57,930 --> 00:01:59,180
 on the master branch.
 
-49
-00:01:59,180 --> 00:02:01,710
-
-
-50
+46
 00:02:01,710 --> 00:02:04,250
 To move to the cat branch, we're
 going to need to git
 
-51
+47
 00:02:04,250 --> 00:02:05,860
 checkout cat.
 
-52
+48
 00:02:05,860 --> 00:02:08,430
 When we're doing that, what
 we're actually doing is
 
-53
+49
 00:02:08,430 --> 00:02:10,009
 switching timelines.
 
-54
+50
 00:02:10,009 --> 00:02:12,900
 We're not in the master
 timeline anymore.
 
-55
+51
 00:02:12,900 --> 00:02:14,080
 We're in a different timeline.
 
-56
+52
 00:02:14,080 --> 00:02:17,110
 We can do whatever we want and
 then move back onto master
 
-57
+53
 00:02:17,110 --> 00:02:19,690
 whatever we need to.
 
-58
+54
 00:02:19,690 --> 00:02:21,900
 We're going to run this command
 right here and what it
 
-59
+55
 00:02:21,900 --> 00:02:25,150
 does is create a cat.txt file,
 and inside of it, put the word
 
-60
+56
 00:02:25,150 --> 00:02:26,190
 Schrodinger.
 
-61
+57
 00:02:26,190 --> 00:02:29,430
 Then we're going to add it to
 the stage, commit it, and put
 
-62
+58
 00:02:29,430 --> 00:02:32,150
 a commit message like "Create
 quantum cat." And this commit
 
-63
+59
 00:02:32,150 --> 00:02:35,150
 will be added to our cat
 timeline, not to our master
 
-64
+60
 00:02:35,150 --> 00:02:38,940
 branch, but to our cat branch.
 
-65
+61
 00:02:38,940 --> 00:02:42,110
 If we run ls command to list all
 the files in the current
 
-66
+62
 00:02:42,110 --> 00:02:44,560
 directory, you will see that
 we have the readme.txt file
 
-67
+63
 00:02:44,560 --> 00:02:47,205
 that Gregg created, and
 this cat.txt file
 
-68
+64
 00:02:47,205 --> 00:02:48,490
 that we just created.
 
-69
+65
 00:02:48,490 --> 00:02:52,170
 Now if we move back to master
 using git checkout master and
 
-70
+66
 00:02:52,170 --> 00:02:56,080
 do the same command, we can't
 see any cat.txt file.
 
-71
+67
 00:02:56,080 --> 00:02:59,190
 It's not there, it does not
 exist in this timeline.
 
-72
+68
 00:02:59,190 --> 00:03:01,960
 Now if we run git log, same
 thing, no commit.
 
-73
+69
 00:03:01,960 --> 00:03:06,300
 That "Create quantum cat"
 commit is not there.
 
-74
+70
 00:03:06,300 --> 00:03:08,710
 Just to make sure we're not
 crazy, if we move back to the
 
-75
+71
 00:03:08,710 --> 00:03:11,980
 cat branch and do the ls command
 again, the cat.txt
 
-76
+72
 00:03:11,980 --> 00:03:15,230
 file is still there,
 we're not crazy.
 
-77
+73
 00:03:15,230 --> 00:03:17,340
 So let's assume we're done with
-that feature branch 
+that feature branch
 
-78
+74
 00:03:17,340 --> 00:03:18,340
 now, the cat branch.
 
-79
+75
 00:03:18,340 --> 00:03:21,300
 We're going to go back to
 master, git checkout master.
 
-80
+76
 00:03:21,300 --> 00:03:24,330
 And now it's time to merge
 those two timelines.
 
-81
+77
 00:03:24,330 --> 00:03:26,930
 It sounds really fancy, but
 it's actually quite easy.
 
-82
+78
 00:03:26,930 --> 00:03:28,770
 git merge cat.
 
-83
+79
 00:03:28,770 --> 00:03:32,730
 Now that we're on master, git
 will merge the cat branch into
 
-84
+80
 00:03:32,730 --> 00:03:36,300
 it and it will tell us that
 it fast forwarded.
 
-85
+81
 00:03:36,300 --> 00:03:37,720
 It will say fast forward.
 
-86
+82
 00:03:37,720 --> 00:03:39,650
 What does that mean?
 
-87
+83
 00:03:39,650 --> 00:03:43,410
 So when we create a branch and
 make one commit, or several,
 
-88
+84
 00:03:43,410 --> 00:03:46,890
 and we do nothing on the other
 branch, it's very easy for Git
 
-89
+85
 00:03:46,890 --> 00:03:50,390
 to merge the cat branch back
 into master because nothing
 
-90
+86
 00:03:50,390 --> 00:03:53,140
 was modified on master
 in the meantime.
 
-91
+87
 00:03:53,140 --> 00:03:55,370
 And now that we're done, we
 can safely delete the cat
 
-92
+88
 00:03:55,370 --> 00:03:58,950
 branch by running git
 branch, -d cat.
 
-93
+89
 00:03:58,950 --> 00:04:02,140
 And Git will show it that
 it actually did that.
 
-94
+90
 00:04:02,140 --> 00:04:05,110
 Our next assignment is to work
 on the admin features for our
 
-95
+91
 00:04:05,110 --> 00:04:06,160
 application.
 
-96
+92
 00:04:06,160 --> 00:04:08,510
 So we need to create another
 branch to work on those.
 
-97
+93
 00:04:08,510 --> 00:04:12,000
 To do that we're going to use a
 shortcut by simply doing git
 
-98
+94
 00:04:12,000 --> 00:04:14,210
 checkout -b admin.
 
-99
+95
 00:04:14,210 --> 00:04:18,180
 The -b over there creates a
 branch and then checks it out.
 
-100
+96
 00:04:18,180 --> 00:04:20,620
 Now we'll do a bunch of
 changes, like create a
 
-101
+97
 00:04:20,620 --> 00:04:25,630
 dashboard.html file, add it to
 the stage and commit it.
 
-102
+98
 00:04:25,630 --> 00:04:28,500
 Add a users.html file
 and commit it also.
 
-103
+99
 00:04:28,500 --> 00:04:31,340
 And as you can see on this
 graphic over here, every time
 
-104
+100
 00:04:31,340 --> 00:04:33,680
 we do a commit, our HEAD
 moves with it.
 
-105
+101
 00:04:33,680 --> 00:04:36,330
 So there we are working on the
 admin branch and we get a late
 
-106
+102
 00:04:36,330 --> 00:04:39,080
 night text message from our boss
 saying oh, there are bugs
 
-107
+103
 00:04:39,080 --> 00:04:40,910
 on master, you need
 to fix them.
 
-108
+104
 00:04:40,910 --> 00:04:44,220
 So we have to stop what we're
 doing, git checkout master.
 
-109
+105
 00:04:44,220 --> 00:04:45,910
 We can run git branch
 to make sure that we
 
-110
+106
 00:04:45,910 --> 00:04:47,470
 are actually on master.
 
-111
+107
 00:04:47,470 --> 00:04:50,350
 And then we're going to pull
 from the remote repository to
 
-112
+108
 00:04:50,350 --> 00:04:52,740
 make sure that we have
 the latest changes.
 
-113
+109
 00:04:52,740 --> 00:04:56,800
 Then we're going to do our fixes
 by fixing the store.rb
 
-114
+110
 00:04:56,800 --> 00:04:59,130
 and product.rb files.
 
-115
+111
 00:04:59,130 --> 00:05:01,690
 And finally, we're going to push
 those changes back up to
 
-116
+112
 00:05:01,690 --> 00:05:04,490
 the master remote.
 
-117
+113
 00:05:04,490 --> 00:05:06,850
 Now that the emergency has been
 taken care of, it's time
 
-118
+114
 00:05:06,850 --> 00:05:08,110
 to move back to our
 feature branch.
 
-119
+115
 00:05:08,110 --> 00:05:12,230
 So we go git checkout admin.
 
-120
+116
 00:05:12,230 --> 00:05:14,070
 So we finish off our changes.
 
-121
+117
 00:05:14,070 --> 00:05:16,700
 git checkout master when we're
 ready to merge things back
 
-122
+118
 00:05:16,700 --> 00:05:19,600
 into master, and get
 merge admin.
 
-123
+119
 00:05:19,600 --> 00:05:21,980
 And suddenly, you're
 in a weird editor.
 
-124
+120
 00:05:21,980 --> 00:05:23,890
 Don't panic, this is Vi.
 
-125
+121
 00:05:23,890 --> 00:05:27,040
 You may have seen this before,
 but just in case here are
 
-126
+122
 00:05:27,040 --> 00:05:29,720
 commands at the bottom of the
 screen to navigate around Vi.
 
-127
+123
 00:05:29,720 --> 00:05:33,960
 It's simply Git asking you OK, I
 made this commit message for
 
-128
+124
 00:05:33,960 --> 00:05:35,990
 you because I've seen what
 you're trying to do, you're
 
-129
+125
 00:05:35,990 --> 00:05:37,640
 trying to merge those
 two branches.
 
-130
+126
 00:05:37,640 --> 00:05:40,260
 But if you need to be more
 explicit, please add to this
 
-131
+127
 00:05:40,260 --> 00:05:41,200
 message at the top.
 
-132
+128
 00:05:41,200 --> 00:05:44,300
 As you can see it wrote
 merge branch admin.
 
-133
+129
 00:05:44,300 --> 00:05:46,390
 You can modify this message
 if you want to.
 
-134
+130
 00:05:46,390 --> 00:05:50,790
 And then when you're done, type
 colon w for write, and q
 
-135
+131
 00:05:50,790 --> 00:05:55,890
 for quit to go back to
 your command line.
 
-136
+132
 00:05:55,890 --> 00:05:59,100
 Since we merged two branches
 with two sets of changes, Git
 
-137
+133
 00:05:59,100 --> 00:06:01,290
 had to do a recursive merge.
 
-138
+134
 00:06:01,290 --> 00:06:05,440
 When that happens Git creates a
 commit right there when the
 
-139
+135
 00:06:05,440 --> 00:06:08,500
 branches are melded
 back together.
 
-140
+136
 00:06:08,500 --> 00:06:11,370
 If you look at your log, you
 will see that that merge
 
-141
+137
 00:06:11,370 --> 00:06:13,950
 commit was actually created
 in the log.
 
-142
+138
 00:06:13,950 --> 00:06:17,780
 It doesn't contain any files,
 but it simply says at this
 
-143
+139
 00:06:17,780 --> 00:06:22,720
 point, master and admin
 became one branch.
 
-144
+140
 00:06:22,720 --> 00:06:24,160
 Thanks for watching
 Level Three.
 
-145
+141
 00:06:24,160 --> 00:06:26,630
 Now it's time for you to go play
 with branches and merging
 
-146
+142
 00:06:26,630 --> 00:06:27,880
 in the challenges.
-
-147
-00:06:27,880 --> 00:06:29,847
