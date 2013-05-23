@@ -1,726 +1,686 @@
 ﻿1
-00:00:00,000 --> 00:00:01,904
-
-
-2
 00:00:01,904 --> 00:00:02,380
 [SINGING]
 
-3
+2
 00:00:02,380 --> 00:00:05,397
 Wanted and captured without
 bail, locked and forgotten in
 
-4
+3
 00:00:05,397 --> 00:00:06,540
 a rusty jail.
 
-5
+4
 00:00:06,540 --> 00:00:09,005
 Zombies attacked, the
 townsfolk fled.
 
-6
+5
 00:00:09,005 --> 00:00:09,991
 Those who were left
 became the undead.
 
-7
+6
 00:00:09,991 --> 00:00:11,963
 He's a zombie outlaw.
 
-8
+7
 00:00:11,963 --> 00:00:14,428
 He's a zombie outlaw.
 
-9
+8
 00:00:14,428 --> 00:00:18,372
 And he's hunting the law
 that left him for dead,
 
-10
+9
 00:00:18,372 --> 00:00:20,837
 for dead, for dead.
 
-11
-00:00:20,837 --> 00:00:27,260
-
-
-12
+10
 00:00:27,260 --> 00:00:28,680
 I'm Greg Pollack, and
 you're watching
 
-13
+11
 00:00:28,680 --> 00:00:30,490
 Rails 4: Zombie Outlaws.
 
-14
+12
 00:00:30,490 --> 00:00:32,890
 In this level we're going to
 be going over some new Ruby
 
-15
+13
 00:00:32,890 --> 00:00:36,370
 features that affect rails,
 thread safety, and routes.
 
-16
-00:00:36,370 --> 00:00:38,880
-
-
-17
+14
 00:00:38,880 --> 00:00:43,240
 Rails 3 introduced the match
 keyword to map custom routes.
 
-18
+15
 00:00:43,240 --> 00:00:47,280
 So here, as you can see we're
 mapping a route to a specific
 
-19
+16
 00:00:47,280 --> 00:00:49,720
 controller, in this case the
 items controller, and the
 
-20
+17
 00:00:49,720 --> 00:00:51,160
 purchase action.
 
-21
+18
 00:00:51,160 --> 00:00:54,030
 However, when we use that match
 keyword, it's matching
 
-22
+19
 00:00:54,030 --> 00:00:56,660
 on every HTTP method.
 
-23
+20
 00:00:56,660 --> 00:00:59,780
 So get, post, put, and delete.
 
-24
+21
 00:00:59,780 --> 00:01:02,080
 This leaves us vulnerable
 sometimes to cross site
 
-25
+22
 00:01:02,080 --> 00:01:03,990
 scripting attacks.
 
-26
+23
 00:01:03,990 --> 00:01:06,720
 So here we can see, we have a
 cross site scripting attack
 
-27
+24
 00:01:06,720 --> 00:01:09,420
 where a hacker might have
 embedded this link in a
 
-28
+25
 00:01:09,420 --> 00:01:10,370
 different web page.
 
-29
+26
 00:01:10,370 --> 00:01:13,280
 People click on it and it
 purchases an item, which
 
-30
+27
 00:01:13,280 --> 00:01:14,800
 obviously isn't good.
 
-31
+28
 00:01:14,800 --> 00:01:16,265
 The link is routed through
 a get request.
 
-32
+29
 00:01:16,265 --> 00:01:21,040
 And in our case we want them
 to make this only post.
 
-33
+30
 00:01:21,040 --> 00:01:23,340
 If you had a route like this
 in Rails 4 and you tried to
 
-34
+31
 00:01:23,340 --> 00:01:25,690
 start up your application,
 you're going to get an error
 
-35
+32
 00:01:25,690 --> 00:01:29,040
 that looks like this, Saying
 that you need to specify your
 
-36
+33
 00:01:29,040 --> 00:01:30,740
 HTTP method.
 
-37
+34
 00:01:30,740 --> 00:01:32,520
 So let's go ahead and
 rewrite this.
 
-38
+35
 00:01:32,520 --> 00:01:34,900
 We can specify that this
 is a post request in
 
-39
+36
 00:01:34,900 --> 00:01:36,150
 two different ways.
 
-40
+37
 00:01:36,150 --> 00:01:40,860
 First, by replacing match with
 post or secondly, by using the
 
-41
+38
 00:01:40,860 --> 00:01:45,730
 via keyword and specifying
 via: :post as an option.
 
-42
+39
 00:01:45,730 --> 00:01:48,310
 Additionally, if you did want
 to route to accept all the
 
-43
+40
 00:01:48,310 --> 00:01:52,385
 methods, you could specify via:
 :all for all of the methods.
 
-44
-00:01:52,385 --> 00:01:57,060
-
-
-45
+41
 00:01:57,060 --> 00:01:59,620
 Let's say we have a Rails
 application with resources
 
-46
+42
 00:01:59,620 --> 00:02:01,610
 items in our routes file.
 
-47
+43
 00:02:01,610 --> 00:02:03,970
 Now if we print our routes from
 the command line, they'll
 
-48
+44
 00:02:03,970 --> 00:02:06,431
 look something like this.
 
-49
+45
 00:02:06,431 --> 00:02:09,759
 You'll notice we have that
 put method down there.
 
-50
+46
 00:02:09,759 --> 00:02:13,240
 Well it turns out if we look
 inside the rest specification,
 
-51
+47
 00:02:13,240 --> 00:02:16,660
 the put method requests that
 the entire entity be stored
 
-52
+48
 00:02:16,660 --> 00:02:18,760
 under the supplied URL.
 
-53
+49
 00:02:18,760 --> 00:02:21,250
 That typically means
 the entire request.
 
-54
+50
 00:02:21,250 --> 00:02:23,580
 But in a Rails app, we only
 might be interested in
 
-55
+51
 00:02:23,580 --> 00:02:27,400
 updating parts of
 our resource.
 
-56
+52
 00:02:27,400 --> 00:02:30,530
 That's why in Rails 4, if we
 print our routes, we'll see a
 
-57
+53
 00:02:30,530 --> 00:02:33,020
 new method patch.
 
-58
+54
 00:02:33,020 --> 00:02:36,230
 Patch is for updating
 parts of a resource.
 
-59
+55
 00:02:36,230 --> 00:02:37,530
 This is nothing new.
 
-60
+56
 00:02:37,530 --> 00:02:40,680
 This is something that's existed
 inside the HTTP 1.1
 
-61
+57
 00:02:40,680 --> 00:02:43,585
 specification, we're just
 now using it in Rails.
 
-62
-00:02:43,585 --> 00:02:47,640
-
-
-63
+58
 00:02:47,640 --> 00:02:50,440
 So now when we go to generate
 an update form, we of course
 
-64
+59
 00:02:50,440 --> 00:02:54,100
 use the form_for helper,
 as you see here.
 
-65
+60
 00:02:54,100 --> 00:02:59,020
 An HTML that it generates is
 going to use the patch method.
 
-66
+61
 00:02:59,020 --> 00:03:02,650
 Now, not all browsers support
 the patch method, which is why
 
-67
+62
 00:03:02,650 --> 00:03:06,570
 you can see here that our form
 uses the post method.
 
-68
+63
 00:03:06,570 --> 00:03:11,000
 And then Rails writes out this
 hidden method field, which
 
-69
+64
 00:03:11,000 --> 00:03:13,560
 specifies the value of patch.
 
-70
+65
 00:03:13,560 --> 00:03:16,860
 And of course, when Rails
 receives that request, it sees
 
-71
+66
 00:03:16,860 --> 00:03:20,800
 that hidden method parameter
 and will use patch as the
 
-72
+67
 00:03:20,800 --> 00:03:23,830
 method of our requests.
 
-73
+68
 00:03:23,830 --> 00:03:26,985
 We can also use patch in all
 our controller test.
 
-74
-00:03:26,985 --> 00:03:33,910
-
-
-75
+69
 00:03:33,910 --> 00:03:36,560
 Sometimes a routes files can
 have lots of duplications.
 
-76
+70
 00:03:36,560 --> 00:03:39,640
 As you can see here we have
 messages, posts, and items and
 
-77
+71
 00:03:39,640 --> 00:03:41,980
 they all have comments,
 categories, and
 
-78
+72
 00:03:41,980 --> 00:03:44,570
 tags as nested resources.
 
-79
+73
 00:03:44,570 --> 00:03:46,910
 How might we dry this up?
 
-80
+74
 00:03:46,910 --> 00:03:49,950
 In Rails 4 we can dry this up
 using the concern method.
 
-81
+75
 00:03:49,950 --> 00:03:53,000
 So at the top of a routes file
 we might specify a concern
 
-82
+76
 00:03:53,000 --> 00:03:55,510
 called sociable which contain
 three different resources,
 
-83
+77
 00:03:55,510 --> 00:03:57,620
 comments, categories,
 and tags.
 
-84
+78
 00:03:57,620 --> 00:04:00,730
 To use this concern in our
 resources all we need to do is
 
-85
+79
 00:04:00,730 --> 00:04:03,650
 specify concerns, sociable.
 
-86
+80
 00:04:03,650 --> 00:04:07,290
 The will add our three resources
 under each of them.
 
-87
+81
 00:04:07,290 --> 00:04:10,620
 This of course reads better and
 it's easier to maintain.
 
-88
+82
 00:04:10,620 --> 00:04:14,390
 Sometimes we also might want
 to pass options into our
 
-89
+83
 00:04:14,390 --> 00:04:16,850
 concern block.
 
-90
+84
 00:04:16,850 --> 00:04:19,060
 To do this we add an options
 argument to the
 
-91
+85
 00:04:19,060 --> 00:04:20,560
 block as you see here.
 
-92
+86
 00:04:20,560 --> 00:04:23,900
 Then we need to call our
 concerns inside of a block.
 
-93
+87
 00:04:23,900 --> 00:04:25,550
 And then we can pass
 any arguments in to
 
-94
+88
 00:04:25,550 --> 00:04:27,270
 that options block.
 
-95
+89
 00:04:27,270 --> 00:04:30,710
 In this case, we only want the
 resources under items like
 
-96
+90
 00:04:30,710 --> 00:04:34,620
 comments, categories, and
 tags to be created.
 
-97
+91
 00:04:34,620 --> 00:04:37,430
 To keep our code organized, we
 might want to extract our
 
-98
+92
 00:04:37,430 --> 00:04:40,320
 concerns definition
 into an object.
 
-99
+93
 00:04:40,320 --> 00:04:43,540
 That object will need
 to respond to call.
 
-100
+94
 00:04:43,540 --> 00:04:45,870
 And we can even put it
 in a separate file.
 
-101
+95
 00:04:45,870 --> 00:04:48,640
 So in this case we created
 a class called sociable.
 
-102
+96
 00:04:48,640 --> 00:04:51,840
 This responds to the call method
 and inside of that we
 
-103
+97
 00:04:51,840 --> 00:04:53,090
 map our resources.
 
-104
-00:04:53,090 --> 00:04:56,410
-
-
-105
+98
 00:04:56,410 --> 00:05:00,420
 Back in Ruby 1.8.7, if we called
 ID on nil, it would
 
-106
+99
 00:05:00,420 --> 00:05:02,790
 return the number 4.
 
-107
+100
 00:05:02,790 --> 00:05:06,670
 This is because objects in Ruby
 all have an internal ID.
 
-108
+101
 00:05:06,670 --> 00:05:10,510
 So if you called ID on zero or
 true or false, you'd get back
 
-109
+102
 00:05:10,510 --> 00:05:13,510
 an ID and also a warning.
 
-110
+103
 00:05:13,510 --> 00:05:16,300
 You would get back a warning
 that object ID will be
 
-111
+104
 00:05:16,300 --> 00:05:17,210
 deprecating.
 
-112
+105
 00:05:17,210 --> 00:05:20,070
 Instead you'll want to use
 object ID if you want to get
 
-113
+106
 00:05:20,070 --> 00:05:21,980
 access to this internal ID.
 
-114
+107
 00:05:21,980 --> 00:05:24,610
 So in Ruby 1.9.2 or higher
 versions, we can use this
 
-115
+108
 00:05:24,610 --> 00:05:27,940
 object idea if for some reason
 we want to get access to this
 
-116
+109
 00:05:27,940 --> 00:05:32,210
 internal I.D. However, if we
 call nil.id, it's going to
 
-117
+110
 00:05:32,210 --> 00:05:33,805
 return a no method error.
 
-118
-00:05:33,805 --> 00:05:37,750
-
-
-119
+111
 00:05:37,750 --> 00:05:39,970
 But what does this have
 to do with Rails?
 
-120
+112
 00:05:39,970 --> 00:05:43,750
 Well let's say we're looking
 up a post with a specific
 
-121
+113
 00:05:43,750 --> 00:05:48,300
 title and we return.first
 to get the first post.
 
-122
+114
 00:05:48,300 --> 00:05:50,690
 And it returns nil as
 you can see here.
 
-123
+115
 00:05:50,690 --> 00:05:55,040
 If we call ID on that post, well
 on the previous side we
 
-124
+116
 00:05:55,040 --> 00:06:00,010
 saw that nil did have an ID, but
 in Rails 3 it would return
 
-125
+117
 00:06:00,010 --> 00:06:03,470
 a runtime error, saying that
 you called ID for nil which
 
-126
+118
 00:06:03,470 --> 00:06:05,860
 would mistakenly be 4,
 if you really wanted
 
-127
+119
 00:06:05,860 --> 00:06:07,770
 that use object_id.
 
-128
+120
 00:06:07,770 --> 00:06:11,460
 This error came from the whiny
 nil feature in Rails 3.
 
-129
+121
 00:06:11,460 --> 00:06:15,640
 However, in Rails 4 we have to
 use at least Ruby 1.9.3.
 
-130
+122
 00:06:15,640 --> 00:06:19,520
 So now when we mistakenly call
 ID on nil, it's going to
 
-131
+123
 00:06:19,520 --> 00:06:21,260
 return that same no
 method error.
 
-132
-00:06:21,260 --> 00:06:24,410
-
-
-133
+124
 00:06:24,410 --> 00:06:28,530
 Back in Rails 3, thread safety
 was disabled on production.
 
-134
+125
 00:06:28,530 --> 00:06:31,510
 If you wanted to go into your
 production.rb, you could
 
-135
+126
 00:06:31,510 --> 00:06:35,080
 simply un-comment
 config.threadsafe to make it
 
-136
+127
 00:06:35,080 --> 00:06:35,760
 thread safe.
 
-137
+128
 00:06:35,760 --> 00:06:38,640
 However, in Rails 4 this
 configuration option is
 
-138
+129
 00:06:38,640 --> 00:06:39,630
 deprecated.
 
-139
+130
 00:06:39,630 --> 00:06:42,550
 So if you created a new Rails
 4 app and you looked inside
 
-140
+131
 00:06:42,550 --> 00:06:45,440
 your production.rb, you would
 see two new options which
 
-141
+132
 00:06:45,440 --> 00:06:48,710
 enable thread safety by
 default on production.
 
-142
+133
 00:06:48,710 --> 00:06:52,230
 The first is cache classes
 equals true.
 
-143
+134
 00:06:52,230 --> 00:06:55,200
 This prevents class reloading
 between requests and ensures
 
-144
+135
 00:06:55,200 --> 00:06:57,950
 rack lock is not included
 in the middleware stack.
 
-145
+136
 00:06:57,950 --> 00:06:59,880
 So that your threads
 don't get locked.
 
-146
+137
 00:06:59,880 --> 00:07:02,560
 And our second option is
 eager load equals true.
 
-147
+138
 00:07:02,560 --> 00:07:06,020
 This insures that all of our
 code is loaded before we
 
-148
+139
 00:07:06,020 --> 00:07:08,850
 create new threads
 as we need them.
 
-149
+140
 00:07:08,850 --> 00:07:11,160
 To get the most out of thread
 safety, make sure you're using
 
-150
+141
 00:07:11,160 --> 00:07:13,626
 a multi-threaded server
 like puma.
 
-151
-00:07:13,626 --> 00:07:16,440
-
-
-152
+142
 00:07:16,440 --> 00:07:17,530
 You've reached the
 end of level one.
 
-153
+143
 00:07:17,530 --> 00:07:19,940
 It's time for you to start
 coding up some Rails 4 in the
 
-154
+144
 00:07:19,940 --> 00:07:21,553
 challenges.
 
-155
+145
 00:07:21,553 --> 00:07:29,844
 [GUN SHOT]

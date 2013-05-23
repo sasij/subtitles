@@ -1,1277 +1,1226 @@
-1
-00:00:00,000 --> 00:00:00,690
-
-2
+﻿1
 00:00:00,690 --> 00:00:02,930
 You're watching Rails Best
 Practices, Super Deluxe
 
-3
+2
 00:00:02,930 --> 00:00:04,670
 Championship Edition.
 
-4
+3
 00:00:04,670 --> 00:00:06,810
 I'm Gregg Pollack, and
 this is lab three.
 
-5
-00:00:06,810 --> 00:00:28,570
-
-6
+4
 00:00:28,570 --> 00:00:31,010
 When we talk about model best
 practices, the most common
 
-7
+5
 00:00:31,010 --> 00:00:33,810
 thing you hear over and over
 is that us Rails developers
 
-8
+6
 00:00:33,810 --> 00:00:38,470
 need to get better at indexing
 our foreign keys in our
 
-9
+7
 00:00:38,470 --> 00:00:39,580
 database, right?
 
-10
+8
 00:00:39,580 --> 00:00:43,410
 So obviously, if we're going
 to do current_user.tweets,
 
-11
+9
 00:00:43,410 --> 00:00:45,120
 we're going to want to
 have a migration
 
-12
+10
 00:00:45,120 --> 00:00:46,680
 that adds that index.
 
-13
+11
 00:00:46,680 --> 00:00:49,010
 Hopefully we added it when we
 created the table in the first
 
-14
+12
 00:00:49,010 --> 00:00:51,620
 place, but you can add it after
 the fact if you have to.
 
-15
-00:00:51,620 --> 00:00:54,550
-
-16
+13
 00:00:54,550 --> 00:00:56,970
 But let's take a look at
 a more complex example.
 
-17
+14
 00:00:56,970 --> 00:00:58,900
 Let's say we have a series
 of queries here in our
 
-18
+15
 00:00:58,900 --> 00:01:01,100
 application that
 get run a lot.
 
-19
+16
 00:01:01,100 --> 00:01:03,860
 So we need to make sure that we
 have the proper indexes in
 
-20
+17
 00:01:03,860 --> 00:01:04,900
 our database.
 
-21
+18
 00:01:04,900 --> 00:01:07,460
 What might those indexes
 look like?
 
-22
+19
 00:01:07,460 --> 00:01:10,240
 Well, for the first query, you
 might want to add an index
 
-23
+20
 00:01:10,240 --> 00:01:11,070
 that looks like this.
 
-24
+21
 00:01:11,070 --> 00:01:15,050
 It's a compound index of the
 user_id and created_at field.
 
-25
+22
 00:01:15,050 --> 00:01:18,510
 So you even need to index stuff
 that you're ordering by.
 
-26
+23
 00:01:18,510 --> 00:01:19,980
 That's important.
 
-27
+24
 00:01:19,980 --> 00:01:23,010
 So the second query, where we're
 doing a topic, you might
 
-28
+25
 00:01:23,010 --> 00:01:25,000
 want to add the compound
 index with started_training
 
-29
+26
 00:01:25,000 --> 00:01:26,000
 and mentions.
 
-30
+27
 00:01:26,000 --> 00:01:28,320
 So again, something from
 the where clause
 
-31
+28
 00:01:28,320 --> 00:01:29,570
 and the order clause.
 
-32
-00:01:29,570 --> 00:01:31,890
-
-33
+29
 00:01:31,890 --> 00:01:33,650
 There's two things you really
 want to keep in mind when it
 
-34
+30
 00:01:33,650 --> 00:01:35,030
 comes to indexes.
 
-35
+31
 00:01:35,030 --> 00:01:37,600
 First of all, the more indexes
 you have, the longer it takes
 
-36
+32
 00:01:37,600 --> 00:01:39,210
 to re-index the table.
 
-37
+33
 00:01:39,210 --> 00:01:42,630
 So every time you create a
 record or update a record, the
 
-38
+34
 00:01:42,630 --> 00:01:45,790
 more indexes you have, the
 slower it's going to happen.
 
-39
+35
 00:01:45,790 --> 00:01:48,080
 The second thing you need to
 keep in mind is that if you
 
-40
+36
 00:01:48,080 --> 00:01:51,840
 have a query, a long running
 query, that only runs a few
 
-41
+37
 00:01:51,840 --> 00:01:54,980
 times a week, who really
 cares, right?
 
-42
+38
 00:01:54,980 --> 00:01:57,300
 When it comes to your database,
 you should only be
 
-43
+39
 00:01:57,300 --> 00:02:00,660
 really caring about the queries
 that take a long time,
 
-44
+40
 00:02:00,660 --> 00:02:03,190
 and are getting run
 very often.
 
-45
+41
 00:02:03,190 --> 00:02:05,120
 How do you figure out what
 those queries are?
 
-46
+42
 00:02:05,120 --> 00:02:07,110
 Well, you might want to use
 a tool like New Relic.
 
-47
+43
 00:02:07,110 --> 00:02:09,050
 Here's some screens
 from New Relic.
 
-48
+44
 00:02:09,050 --> 00:02:12,970
 So New Relic RPM gives you, over
 here, the queries that
 
-49
+45
 00:02:12,970 --> 00:02:14,950
 are the most time-consuming.
 
-50
+46
 00:02:14,950 --> 00:02:16,380
 This is one table they have.
 
-51
+47
 00:02:16,380 --> 00:02:19,020
 They also have a database
 report.
 
-52
+48
 00:02:19,020 --> 00:02:21,840
 If you look closely here, you
 can see-- now this is the most
 
-53
+49
 00:02:21,840 --> 00:02:26,290
 popular query, total time it
 takes, and the average time.
 
-54
+50
 00:02:26,290 --> 00:02:29,070
 So in this case, even though
 it's a popular query, it only
 
-55
+51
 00:02:29,070 --> 00:02:32,100
 takes 6.4 milliseconds
 to run, so we don't
 
-56
+52
 00:02:32,100 --> 00:02:33,380
 really need to refactor.
 
-57
+53
 00:02:33,380 --> 00:02:37,080
 If, on the other hand, it was
 taking, say, 300, 400
 
-58
+54
 00:02:37,080 --> 00:02:39,510
 milliseconds, you might want to
 look and see if maybe we're
 
-59
+55
 00:02:39,510 --> 00:02:40,760
 missing an index.
 
-60
-00:02:40,760 --> 00:02:43,620
-
-61
+56
 00:02:43,620 --> 00:02:45,320
 A few years ago, the
 guys from Less
 
-62
+57
 00:02:45,320 --> 00:02:47,400
 Everything wrote this article.
 
-63
+58
 00:02:47,400 --> 00:02:50,710
 The title is "Use Attribute
 Protected or We Will Hack
 
-64
+59
 00:02:50,710 --> 00:02:54,010
 You." And they basically showed
 some of the code they
 
-65
+60
 00:02:54,010 --> 00:02:57,040
 used to hack a friend
 of theirs' website.
 
-66
+61
 00:02:57,040 --> 00:03:00,200
 The most important bit here is
 right here, where you can see
 
-67
+62
 00:03:00,200 --> 00:03:04,560
 that they're writing an is_admin
 column to true on the
 
-68
+63
 00:03:04,560 --> 00:03:06,410
 new users that they're
 creating.
 
-69
+64
 00:03:06,410 --> 00:03:09,280
 So obviously, to protect
 yourself, you need to make
 
-70
+65
 00:03:09,280 --> 00:03:13,280
 sure that you're doing
 one of two things.
 
-71
+66
 00:03:13,280 --> 00:03:17,840
 In their article, they used
 attribute protected is admin
 
-72
+67
 00:03:17,840 --> 00:03:22,430
 to protect that column
 from batch updates.
 
-73
+68
 00:03:22,430 --> 00:03:24,490
 However, there's another way you
 can write that, and it's
 
-74
+69
 00:03:24,490 --> 00:03:26,610
 more of a best practice.
 
-75
+70
 00:03:26,610 --> 00:03:30,010
 Really, you should be using
 attribute accessible rather
 
-76
+71
 00:03:30,010 --> 00:03:33,150
 than protected, because when
 it comes to security, white
 
-77
+72
 00:03:33,150 --> 00:03:35,170
 lists are better, right?
 
-78
+73
 00:03:35,170 --> 00:03:37,280
 This is so you don't shoot
 yourself in the foot later.
 
-79
+74
 00:03:37,280 --> 00:03:41,130
 You might add columns later, and
 you want to force yourself
 
-80
+75
 00:03:41,130 --> 00:03:44,600
 to have to add that column to
 attribute accessible if you
 
-81
+76
 00:03:44,600 --> 00:03:46,470
 want it to be able
 to batch update.
 
-82
+77
 00:03:46,470 --> 00:03:48,035
 Otherwise, it'll stay safe.
 
-83
-00:03:48,035 --> 00:03:51,760
-
-84
+78
 00:03:51,760 --> 00:03:53,830
 I'm going to show you some model
 code, and I want you to
 
-85
+79
 00:03:53,830 --> 00:03:56,570
 try to figure out what's
 wrong with it.
 
-86
+80
 00:03:56,570 --> 00:03:59,750
 So before we create, we're
 setting a time zone.
 
-87
+81
 00:03:59,750 --> 00:04:02,150
 What's wrong with this?
 
-88
+82
 00:04:02,150 --> 00:04:05,630
 Well, if we're always setting a
 column to a static default,
 
-89
+83
 00:04:05,630 --> 00:04:07,550
 we shouldn't be doing
 that in the model.
 
-90
+84
 00:04:07,550 --> 00:04:10,330
 We should be doing that
 in our database.
 
-91
+85
 00:04:10,330 --> 00:04:12,980
 Our database has that ability.
 
-92
+86
 00:04:12,980 --> 00:04:15,590
 So here, you can see a migration
 where we're changing
 
-93
+87
 00:04:15,590 --> 00:04:22,650
 the column to give it
 the default of EST.
 
-94
+88
 00:04:22,650 --> 00:04:25,120
 Now let's take a look at an
 example where we couldn't set
 
-95
+89
 00:04:25,120 --> 00:04:27,440
 the default in the database.
 
-96
+90
 00:04:27,440 --> 00:04:29,760
 So here you can see,
 we have before
 
-97
+91
 00:04:29,760 --> 00:04:31,860
 create, set trend, ending.
 
-98
+92
 00:04:31,860 --> 00:04:34,450
 So whenever we create this
 topic, we're going to set the
 
-99
+93
 00:04:34,450 --> 00:04:36,230
 time when it should
 finish trending.
 
-100
+94
 00:04:36,230 --> 00:04:38,470
 And if you do the math here,
 you'll see that basically
 
-101
+95
 00:04:38,470 --> 00:04:41,530
 we're saying, finish trending
 one week from now.
 
-102
+96
 00:04:41,530 --> 00:04:44,500
 Rails comes with a set of date
 helpers, which can help us
 
-103
+97
 00:04:44,500 --> 00:04:46,580
 simplify code that
 looks like this.
 
-104
+98
 00:04:46,580 --> 00:04:49,680
 So instead of having that math
 there, we can say time now
 
-105
+99
 00:04:49,680 --> 00:04:52,250
 plus 1.week.
 
-106
+100
 00:04:52,250 --> 00:04:55,880
 We can even take it a step
 further, and make it so that
 
-107
+101
 00:04:55,880 --> 00:04:58,100
 finish trending is
 
-108
+102
 00:04:58,100 --> 00:04:58,910
 1.week.from_now
 
-109
-00:04:58,910 --> 00:05:00,970
-
-110
+103
 00:05:00,970 --> 00:05:02,530
 Pretty nice.
 
-111
+104
 00:05:02,530 --> 00:05:04,490
 If our application had a lot
 of topics, and we want to
 
-112
+105
 00:05:04,490 --> 00:05:06,580
 optimize this code, there's
 something we can do to make it
 
-113
+106
 00:05:06,580 --> 00:05:07,880
 even better.
 
-114
+107
 00:05:07,880 --> 00:05:09,550
 You see that 1.week?
 
-115
-00:05:09,550 --> 00:05:10,720
-
-116
+108
 00:05:10,720 --> 00:05:13,760
 Every time this method gets
 called, every time a topic is
 
-117
+109
 00:05:13,760 --> 00:05:15,860
 created, we're calling 1.week?
 
-118
-00:05:15,860 --> 00:05:17,100
-
-119
+110
 00:05:17,100 --> 00:05:20,410
 So to make it even better, what
 we can do is take the 1.week,
 
-120
+111
 00:05:20,410 --> 00:05:24,630
 move it up into a global
 variable we're going to call
 
-121
+112
 00:05:24,630 --> 00:05:28,020
 TRENDING_PERIOD, and then we
 write TRENDING_PERIOD.from_now
 
-122
+113
 00:05:28,020 --> 00:05:31,890
 in our method, and that
 means 1.week is only going to
 
-123
+114
 00:05:31,890 --> 00:05:35,350
 be run once.
 
-124
+115
 00:05:35,350 --> 00:05:37,290
 I thought it'd be useful at this
 point to take a look at
 
-125
+116
 00:05:37,290 --> 00:05:38,990
 all the different call
 backs we can use on
 
-126
+117
 00:05:38,990 --> 00:05:40,830
 Active Record models.
 
-127
+118
 00:05:40,830 --> 00:05:42,780
 So you can see here, these are
 all the call backs when we
 
-128
+119
 00:05:42,780 --> 00:05:45,980
 create an object, updating
 an object,
 
-129
+120
 00:05:45,980 --> 00:05:47,230
 and deleting an object.
 
-130
-00:05:47,230 --> 00:05:50,550
-
-131
+121
 00:05:50,550 --> 00:05:52,420
 Also, I want to make sure you
 know about all the different
 
-132
+122
 00:05:52,420 --> 00:05:54,120
 Rails date helpers.
 
-133
+123
 00:05:54,120 --> 00:05:58,280
 So you've got the ability to
 do 1.minute, 2.hours,
 
-134
+124
 00:05:58,280 --> 00:05:58,750
 3.days.
 
-135
+125
 00:05:58,750 --> 00:06:01,600
 You can use the singular
 or the plural form.
 
-136
+126
 00:06:01,600 --> 00:06:04,110
 You can also do things like
 beginning_of_day, beginning_of_week,
 
-137
+127
 00:06:04,110 --> 00:06:08,350
 or end_of_month, end_of_quarter
 next_week, previous_week,
 
-138
+128
 00:06:08,350 --> 00:06:10,430
 and then you can
 add modifiers onto
 
-139
+129
 00:06:10,430 --> 00:06:11,960
 the end, like 2.weeks.ago
 
-140
+130
 00:06:11,960 --> 00:06:15,190
 or 3.weeks.from_now.
 
-141
-00:06:15,190 --> 00:06:19,270
-
-142
+131
 00:06:19,270 --> 00:06:21,200
 So you know how when somebody
 follows you on Twitter, you
 
-143
+132
 00:06:21,200 --> 00:06:23,910
 get an email that looks
 something like this.
 
-144
+133
 00:06:23,910 --> 00:06:25,790
 So let's think about a moment.
 
-145
+134
 00:06:25,790 --> 00:06:26,850
 What happens there?
 
-146
+135
 00:06:26,850 --> 00:06:29,780
 So somebody follows you, it
 probably puts something onto a
 
-147
+136
 00:06:29,780 --> 00:06:32,970
 background queue, and
 then sends an email.
 
-148
+137
 00:06:32,970 --> 00:06:35,000
 What might that code
 look like?
 
-149
-00:06:35,000 --> 00:06:37,650
-
-150
+138
 00:06:37,650 --> 00:06:39,680
 So here's our Following model.
 
-151
+139
 00:06:39,680 --> 00:06:43,900
 And after_create, we want to
 send_follower_notification.
 
-152
+140
 00:06:43,900 --> 00:06:46,360
 We want to check to see the user
 wants to receive emails,
 
-153
+141
 00:06:46,360 --> 00:06:50,050
 and if they do, queue up
 a new_follower_email.
 
-154
+142
 00:06:50,050 --> 00:06:51,330
 The first way we could refactor
 
-155
+143
 00:06:51,330 --> 00:06:54,990
 this code is by moving the
 method to queue up the email
 
-156
+144
 00:06:54,990 --> 00:06:58,800
 into the after create, and then
 specify a method that's
 
-157
+145
 00:06:58,800 --> 00:07:01,800
 going to call to check
 to see if it's true.
 
-158
+146
 00:07:01,800 --> 00:07:04,610
 So it's only going to queue up
 an email if that if method
 
-159
+147
 00:07:04,610 --> 00:07:07,290
 returns true.
 
-160
+148
 00:07:07,290 --> 00:07:10,330
 The next way we can simplify
 this even further is by
 
-161
+149
 00:07:10,330 --> 00:07:14,200
 wrapping the whole thing
 inside of a proc.
 
-162
+150
 00:07:14,200 --> 00:07:16,240
 So it's going to run this proc
 to see if it's true.
 
-163
+151
 00:07:16,240 --> 00:07:18,960
 If it is true, then it will
 queue up a new follower email.
 
-164
-00:07:18,960 --> 00:07:21,860
-
-165
+152
 00:07:21,860 --> 00:07:24,700
 Next up, let's take a look at
 a custom validation, and
 
-166
+153
 00:07:24,700 --> 00:07:26,900
 figure out how we can
 improve on it.
 
-167
+154
 00:07:26,900 --> 00:07:30,690
 So here, you can see that we're
 validating to see if the
 
-168
+155
 00:07:30,690 --> 00:07:35,160
 name is suitable, basically
 checking for swear words, and
 
-169
+156
 00:07:35,160 --> 00:07:37,180
 if it's not suitable, if it's
 inappropriate, then we're
 
-170
+157
 00:07:37,180 --> 00:07:40,030
 going to go ahead and add an
 error to this model for the
 
-171
+158
 00:07:40,030 --> 00:07:42,850
 name, which is now
 inappropriate.
 
-172
+159
 00:07:42,850 --> 00:07:44,900
 So how can we improve
 this code?
 
-173
+160
 00:07:44,900 --> 00:07:47,220
 The first thing we can do is
 wrap validation itself in a
 
-174
+161
 00:07:47,220 --> 00:07:50,170
 method we're going to call
 appropriate content.
 
-175
+162
 00:07:50,170 --> 00:07:53,370
 We're then going to say validate
 appropriate content,
 
-176
+163
 00:07:53,370 --> 00:07:56,760
 and it will get run when we
 attempt to save the model.
 
-177
+164
 00:07:56,760 --> 00:07:59,380
 However, there may be multiple
 fields in our application--
 
-178
+165
 00:07:59,380 --> 00:08:01,720
 not just in this model, but in
 other models that we want to
 
-179
+166
 00:08:01,720 --> 00:08:05,200
 check to see if it has
 any bad words in it.
 
-180
+167
 00:08:05,200 --> 00:08:08,120
 How might we do that and
 reuse this code?
 
-181
+168
 00:08:08,120 --> 00:08:10,860
 Well, it might look something
 like this.
 
-182
+169
 00:08:10,860 --> 00:08:13,970
 So first of all, in our topic,
 we're going to do validates
 
-183
+170
 00:08:13,970 --> 00:08:15,170
 name appropriate true.
 
-184
+171
 00:08:15,170 --> 00:08:17,580
 So just basically going to
 follow the same convention for
 
-185
+172
 00:08:17,580 --> 00:08:19,260
 doing validations.
 
-186
+173
 00:08:19,260 --> 00:08:20,900
 Then we're going to create
 a new file called
 
-187
+174
 00:08:20,900 --> 00:08:22,860
 appropriate_validator.rb.
 
-188
+175
 00:08:22,860 --> 00:08:25,340
 We're going to put it in
 our lib directory.
 
-189
+176
 00:08:25,340 --> 00:08:27,340
 This class is, of course,
 going to be called
 
-190
+177
 00:08:27,340 --> 00:08:30,170
 AppropriateValidator, and it's
 going to extend from
 
-191
+178
 00:08:30,170 --> 00:08:31,420
 ActiveRecord::EachValidator.
 
-192
-00:08:31,420 --> 00:08:33,490
-
-193
+179
 00:08:33,490 --> 00:08:36,250
 It has to define a method called
 validate_each, which
 
-194
+180
 00:08:36,250 --> 00:08:39,669
 sends in record, attribute,
 and value-- all the values
 
-195
+181
 00:08:39,669 --> 00:08:42,080
 that we're pretty much
 interested in.
 
-196
+182
 00:08:42,080 --> 00:08:44,110
 So ContentModerator
 is suitable.
 
-197
+183
 00:08:44,110 --> 00:08:47,710
 We want to check, just make sure
 the value is suitable,
 
-198
+184
 00:08:47,710 --> 00:08:52,290
 and if it's not, we're going to
 add an error to the record,
 
-199
+185
 00:08:52,290 --> 00:08:56,410
 and say that attribute
 is inappropriate.
 
-200
+186
 00:08:56,410 --> 00:08:58,860
 One thing that's worth
 mentioning before we move on
 
-201
+187
 00:08:58,860 --> 00:09:01,030
 is that you shouldn't forget
 to require this.
 
-202
+188
 00:09:01,030 --> 00:09:05,480
 Depending on where you put this
 EachValidator file, you
 
-203
+189
 00:09:05,480 --> 00:09:09,850
 may need to require it at
 the top of your model.
 
-204
+190
 00:09:09,850 --> 00:09:13,930
 In this case, I put it in the
 lib directory, and lib isn't
 
-205
+191
 00:09:13,930 --> 00:09:18,020
 autoloaded by default anymore
 with Rails 3.
 
-206
+192
 00:09:18,020 --> 00:09:20,140
 What that means is that to make
 this work, I would have
 
-207
+193
 00:09:20,140 --> 00:09:23,820
 to add that require line
 at the top of my model.
 
-208
+194
 00:09:23,820 --> 00:09:26,040
 If I made it so that everything
 in the lib
 
-209
+195
 00:09:26,040 --> 00:09:28,120
 directory was autoloaded,
 then I wouldn't have
 
-210
+196
 00:09:28,120 --> 00:09:29,370
 to worry about it.
 
-211
-00:09:29,370 --> 00:09:32,600
-
-212
+197
 00:09:32,600 --> 00:09:35,520
 If you've been creating Rails
 applications for a long time,
 
-213
+198
 00:09:35,520 --> 00:09:39,040
 you definitely did something
 ugly, which look like this at
 
-214
+199
 00:09:39,040 --> 00:09:42,870
 some point, where inside of your
 migration, you created
 
-215
+200
 00:09:42,870 --> 00:09:46,545
 models in the database, what
 you might call seeds.
 
-216
+201
 00:09:46,545 --> 00:09:48,650
 Well, back in Rails 2, we
 were given a better way
 
-217
+202
 00:09:48,650 --> 00:09:49,720
 to deal with this.
 
-218
+203
 00:09:49,720 --> 00:09:54,430
 We have a seeds.rb file in our
 DB directory, and we can put
 
-219
+204
 00:09:54,430 --> 00:09:57,560
 all of these model create
 methods in there.
 
-220
+205
 00:09:57,560 --> 00:10:00,920
 To run these models, you
 just run rake db:seed.
 
-221
+206
 00:10:00,920 --> 00:10:06,672
 However, in this case, I ran
 this, and it wasn't working.
 
-222
+207
 00:10:06,672 --> 00:10:08,410
 Do you know why that was?
 
-223
+208
 00:10:08,410 --> 00:10:11,740
 Well, I looked inside the topic
 model, and it turns out
 
-224
+209
 00:10:11,740 --> 00:10:15,250
 I had attribute protected in
 there, so mentions wasn't
 
-225
+210
 00:10:15,250 --> 00:10:17,850
 getting set when I tried
 to set it this way.
 
-226
+211
 00:10:17,850 --> 00:10:20,590
 To fix that, I refactored it.
 
-227
+212
 00:10:20,590 --> 00:10:24,510
 I put all the topics I wanted
 to store inside of a hash,
 
-228
+213
 00:10:24,510 --> 00:10:27,690
 iterated through each of the
 topics, and then created each
 
-229
+214
 00:10:27,690 --> 00:10:31,400
 of them by setting the
 variables explicitly.
 
-230
+215
 00:10:31,400 --> 00:10:33,510
 You'll notice here, I'm
 using the block syntax
 
-231
+216
 00:10:33,510 --> 00:10:36,460
 of the create method.
 
-232
+217
 00:10:36,460 --> 00:10:39,400
 It kind of makes it a little
 bit more readable.
 
-233
+218
 00:10:39,400 --> 00:10:42,120
 But what if we wanted to be
 able to update the seed?
 
-234
+219
 00:10:42,120 --> 00:10:44,870
 So maybe I've got another couple
 topics I want to add,
 
-235
+220
 00:10:44,870 --> 00:10:46,800
 but I've already populated
 my database.
 
-236
+221
 00:10:46,800 --> 00:10:48,960
 I want to be able
 to update it.
 
-237
+222
 00:10:48,960 --> 00:10:50,095
 What code would I add to this?
 
-238
+223
 00:10:50,095 --> 00:10:53,400
 Well, one way I could solve
 this problem is by adding
 
-239
+224
 00:10:53,400 --> 00:10:56,600
 topic . destroy all, so that
 every time I ran this file, it
 
-240
+225
 00:10:56,600 --> 00:10:59,420
 would destroy all the topics
 and recreate them.
 
-241
+226
 00:10:59,420 --> 00:11:03,740
 However, this is a little bit
 dangerous, for a few reasons--
 
-242
+227
 00:11:03,740 --> 00:11:06,590
 one of which is that if a lot of
 relationships, you've got a
 
-243
+228
 00:11:06,590 --> 00:11:09,610
 lot of models, lot of seeds that
 relate to each other, it
 
-244
+229
 00:11:09,610 --> 00:11:12,180
 might be dangerous to just go
 around deleting stuff, because
 
-245
+230
 00:11:12,180 --> 00:11:16,720
 you might be left with stray
 models in your database.
 
-246
+231
 00:11:16,720 --> 00:11:18,060
 So how do we fix that?
 
-247
+232
 00:11:18,060 --> 00:11:22,270
 Well, one way we could do
-that is by using 
+that is by using
 
-248
+233
 00:11:22,270 --> 00:11:24,390
 find_or_initialize_by_name.
 
-249
+234
 00:11:24,390 --> 00:11:26,400
 So what this is going to do is
 it's going to go into the
 
-250
+235
 00:11:26,400 --> 00:11:31,730
 database, search for a topic
 by the attribute name.
 
-251
+236
 00:11:31,730 --> 00:11:33,990
 If it doesn't find it,
 then it's going to
 
-252
+237
 00:11:33,990 --> 00:11:34,730
 create a new one.
 
-253
+238
 00:11:34,730 --> 00:11:37,260
 But if it does find it, it's
 just going to return that.
 
-254
+239
 00:11:37,260 --> 00:11:39,900
 So either we're going to find
 it or create a new one.
 
-255
+240
 00:11:39,900 --> 00:11:42,520
 Then I'm calling
 the tap method.
 
-256
+241
 00:11:42,520 --> 00:11:46,690
 The tap method just sends in the
 object that got returned
 
-257
+242
 00:11:46,690 --> 00:11:49,870
 by the finder initialize by, and
 then I'm going to set the
 
-258
+243
 00:11:49,870 --> 00:11:55,110
 mentions, and then I'm
 going to save it.
 
-259
+244
 00:11:55,110 --> 00:11:57,010
 Sorry if you've never seen
 those two methods before.
 
-260
+245
 00:11:57,010 --> 00:11:58,680
 It may seem a little
 overwhelming.
 
-261
+246
 00:11:58,680 --> 00:12:01,420
 So find_or_initialize_by tries
 to find the object.
 
-262
+247
 00:12:01,420 --> 00:12:03,190
 If it does find it,
 it returns it.
 
-263
+248
 00:12:03,190 --> 00:12:06,470
 Otherwise, it initializes
 it and returns it.
 
-264
+249
 00:12:06,470 --> 00:12:08,640
 And tap is just going
 to send whatever it
 
-265
+250
 00:12:08,640 --> 00:12:10,470
 returns into the block.
 
-266
+251
 00:12:10,470 --> 00:12:12,900
 So it's basically going to set
 t equal to whatever it
 
-267
+252
 00:12:12,900 --> 00:12:15,800
 returns, and then we can
 basically set mentions, and
 
-268
+253
 00:12:15,800 --> 00:12:17,280
 then call t.save.
 
-269
-00:12:17,280 --> 00:12:20,450
-
-270
+254
 00:12:20,450 --> 00:12:21,320
 Congratulations.
 
-271
+255
 00:12:21,320 --> 00:12:23,610
 You're over halfway done now,
 and it's time to get your
 
-272
+256
 00:12:23,610 --> 00:12:26,820
 hands dirty with the level
 three challenges.
 
-273
+257
 00:12:26,820 --> 00:12:28,070
 Good luck.
-
-274
-00:12:28,070 --> 00:12:28,648

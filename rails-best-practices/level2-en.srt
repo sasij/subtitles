@@ -1,1377 +1,1356 @@
-1
-00:00:00,000 --> 00:00:00,346
-
-2
+﻿1
 00:00:00,346 --> 00:00:01,040
 Hello.
 
-3
+2
 00:00:01,040 --> 00:00:03,650
 I'm Gregg Pollack, and you're
 watching Rails Best Practices
 
-4
+3
 00:00:03,650 --> 00:00:08,690
 Super Deluxe Championship
 Edition, Level Two.
 
-5
+4
 00:00:08,690 --> 00:00:38,570
 [VIDEO GAME SOUNDS]
 
-6
+5
 00:00:38,570 --> 00:00:41,300
 Welcome to Level Two, Controller
 Command, where
 
-7
+6
 00:00:41,300 --> 00:00:43,700
 we're going to be taking a look
 at a few more controller
 
-8
+7
 00:00:43,700 --> 00:00:45,460
 best practices.
 
-9
+8
 00:00:45,460 --> 00:00:47,900
 The first thing we're going to
 take a look at is a poor
 
-10
+9
 00:00:47,900 --> 00:00:51,080
 implementation of Twitter's
 Settings pages here.
 
-11
+10
 00:00:51,080 --> 00:00:54,000
 So you can see here, we've got
 the username and a couple
 
-12
+11
 00:00:54,000 --> 00:00:55,200
 check boxes.
 
-13
+12
 00:00:55,200 --> 00:00:58,760
 So what might look like if it
 was a poor implementation?
 
-14
+13
 00:00:58,760 --> 00:01:02,850
 Well inside of our user model,
 you can see we have a has_one
 
-15
+14
 00:01:02,850 --> 00:01:04,560
 account setting.
 
-16
+15
 00:01:04,560 --> 00:01:06,720
 And our edit view might look
 something like this, where
 
-17
+16
 00:01:06,720 --> 00:01:09,530
 we're entering in our
 name, our email.
 
-18
+17
 00:01:09,530 --> 00:01:12,190
 And we're going to have some
-nested fields for 
+nested fields for
 
-19
+18
 00:01:12,190 --> 00:01:13,930
 account_setting here.
 
-20
+19
 00:01:13,930 --> 00:01:15,590
 Those nested fields are
 just going to be a
 
-21
+20
 00:01:15,590 --> 00:01:18,710
 bunch of check boxes.
 
-22
+21
 00:01:18,710 --> 00:01:22,360
 Here comes the sloppy code
 inside of our controller.
 
-23
+22
 00:01:22,360 --> 00:01:25,390
 So our create action might
 look something like this.
 
-24
+23
 00:01:25,390 --> 00:01:27,890
 We're getting the User values.
 
-25
+24
 00:01:27,890 --> 00:01:30,750
 We're getting the AccountSetting
 values from the form.
 
-26
+25
 00:01:30,750 --> 00:01:33,010
 We're trying to save the User,
 and only if the User is
 
-27
+26
 00:01:33,010 --> 00:01:36,960
 successful, do we then save
 the AccountSettings.
 
-28
+27
 00:01:36,960 --> 00:01:39,550
 Then, we're going to redirect
 or simply render
 
-29
+28
 00:01:39,550 --> 00:01:41,096
 out the form again.
 
-30
+29
 00:01:41,096 --> 00:01:43,050
 To improve this code, we're
 going to implement some nested
 
-31
+30
 00:01:43,050 --> 00:01:43,950
 attributes.
 
-32
+31
 00:01:43,950 --> 00:01:46,220
 Once we do so, this controller
 code is going
 
-33
+32
 00:01:46,220 --> 00:01:48,740
 to become much simpler.
 
-34
+33
 00:01:48,740 --> 00:01:50,740
 It's going to look a lot more
 like the default Rails
 
-35
+34
 00:01:50,740 --> 00:01:53,290
 scaffolding where we're
 only worrying about
 
-36
+35
 00:01:53,290 --> 00:01:56,810
 creating a user object.
 
-37
+36
 00:01:56,810 --> 00:01:59,350
 To implement nested attributes,
 first of all,
 
-38
+37
 00:01:59,350 --> 00:02:02,190
 we're going to flip back over
 to our model which has our
 
-39
+38
 00:02:02,190 --> 00:02:04,420
 has_one relationship, and
 we're going to add
 
-40
+39
 00:02:04,420 --> 00:02:08,800
 accepts_nested_attributes_for
 :account_setting.
 
-41
+40
 00:02:08,800 --> 00:02:12,010
 The cool part about doing this
 is that when we try to save a
 
-42
+41
 00:02:12,010 --> 00:02:15,420
 user, it's going to validate,
 not only against the user, but
 
-43
+42
 00:02:15,420 --> 00:02:17,610
 against account_setting.
 
-44
+43
 00:02:17,610 --> 00:02:20,610
 So if account_setting has any
 validations that fail, it
 
-45
+44
 00:02:20,610 --> 00:02:22,320
 won't save.
 
-46
+45
 00:02:22,320 --> 00:02:24,180
 The next thing we have
 to do is modify
 
-47
+46
 00:02:24,180 --> 00:02:26,200
 our edit view slightly.
 
-48
+47
 00:02:26,200 --> 00:02:28,170
 We have to make sure we
 have f.fields_for.
 
-49
-00:02:28,170 --> 00:02:31,290
-
-50
+48
 00:02:31,290 --> 00:02:34,260
 And lastly, in our
 users_controller, new action,
 
-51
+49
 00:02:34,260 --> 00:02:38,000
 we're going to want to create
 an account_setting for a new
 
-52
+50
 00:02:38,000 --> 00:02:40,066
 user object.
 
-53
+51
 00:02:40,066 --> 00:02:43,190
 We have to do this, because if
 we view the new user form
 
-54
+52
 00:02:43,190 --> 00:02:46,410
 without it, it's not going to
 show the account setting
 
-55
+53
 00:02:46,410 --> 00:02:47,660
 fields otherwise.
 
-56
-00:02:47,660 --> 00:02:50,130
-
-57
+54
 00:02:50,130 --> 00:02:53,000
 The next best practice we're
 going to talk about is using
 
-58
+55
 00:02:53,000 --> 00:02:56,130
 models that aren't Active
 Record models.
 
-59
+56
 00:02:56,130 --> 00:02:58,990
 And the example we're going
 to use is a contact form.
 
-60
+57
 00:02:58,990 --> 00:03:01,140
 So on our site, we want people
 to be able to fill out a
 
-61
+58
 00:03:01,140 --> 00:03:04,170
 contact form that doesn't get
 stored in the database, but
 
-62
+59
 00:03:04,170 --> 00:03:06,010
 basically, sends an email.
 
-63
+60
 00:03:06,010 --> 00:03:10,030
 So what might this
 code look like?
 
-64
+61
 00:03:10,030 --> 00:03:12,670
 First, let's take a look
 at our Contact Us form.
 
-65
+62
 00:03:12,670 --> 00:03:15,320
 You can see here, we have a
 couple text fields and a
 
-66
+63
 00:03:15,320 --> 00:03:16,110
 Submit button.
 
-67
+64
 00:03:16,110 --> 00:03:18,600
 Pretty simple.
 
-68
+65
 00:03:18,600 --> 00:03:21,740
 Next, if we flip over to the
 ContactUsController, we have a
 
-69
+66
 00:03:21,740 --> 00:03:23,940
 new action and a send_email
 action.
 
-70
+67
 00:03:23,940 --> 00:03:27,990
 This is going to take in the
 parameters from the form.
 
-71
+68
 00:03:27,990 --> 00:03:29,630
 It's going to check to see if
 any of the parameters are
 
-72
+69
 00:03:29,630 --> 00:03:32,150
 blank, and if it is, it's going
 to set a notice and
 
-73
+70
 00:03:32,150 --> 00:03:33,810
 render the action.
 
-74
+71
 00:03:33,810 --> 00:03:37,070
 Otherwise, let's go ahead and
 send that email, tell the user
 
-75
+72
 00:03:37,070 --> 00:03:38,800
 the email has been sent, and
 
-76
+73
 00:03:38,800 --> 00:03:41,270
 redirect back to the root_path.
 
-77
+74
 00:03:41,270 --> 00:03:43,740
 So obviously, this is the sad
 code, and now we're going to
 
-78
+75
 00:03:43,740 --> 00:03:47,060
 figure out how to implement a
 non-Active Record model to
 
-79
+76
 00:03:47,060 --> 00:03:49,010
 make it much cleaner.
 
-80
+77
 00:03:49,010 --> 00:03:52,560
 So the first thing we'll do is
 declare a ContactForm object,
 
-81
+78
 00:03:52,560 --> 00:03:55,620
 create a new object there,
 send in the parameters.
 
-82
+79
 00:03:55,620 --> 00:03:57,660
 We're then going to treat it
 just like an Active Record
 
-83
+80
 00:03:57,660 --> 00:04:00,230
 model with its validations,
 so we can say
 
-84
+81
 00:04:00,230 --> 00:04:01,480
 contact_form.valid?
 
-85
-00:04:01,480 --> 00:04:03,310
-
-86
+82
 00:04:03,310 --> 00:04:06,560
 And we'll then send in the form
 to deliver the email.
 
-87
+83
 00:04:06,560 --> 00:04:09,130
 Also, in our new action, we're
 going to want to create a
 
-88
+84
 00:04:09,130 --> 00:04:10,305
 contact_form.
 
-89
+85
 00:04:10,305 --> 00:04:13,390
 Now, there's three things that
 we can clean up with this
 
-90
+86
 00:04:13,390 --> 00:04:16,060
 before we take a look at
 how to declare the
 
-91
+87
 00:04:16,060 --> 00:04:19,110
 contact form class.
 
-92
+88
 00:04:19,110 --> 00:04:21,350
 First of all, we can switch the
 code to use the positive
 
-93
+89
 00:04:21,350 --> 00:04:22,510
 inflection.
 
-94
+90
 00:04:22,510 --> 00:04:24,950
 So here, we're saying if not.
 
-95
+91
 00:04:24,950 --> 00:04:26,440
 So let's switch that around.
 
-96
+92
 00:04:26,440 --> 00:04:29,950
 Instead of saying if not, we can
 say if contact_form.valid?,
 
-97
+93
 00:04:29,950 --> 00:04:30,910
 then do this.
 
-98
+94
 00:04:30,910 --> 00:04:32,220
 Otherwise, do that.
 
-99
+95
 00:04:32,220 --> 00:04:34,500
 The second thing we can improve
 with this code is we
 
-100
+96
 00:04:34,500 --> 00:04:37,340
 can use the new redirect
 notice syntax.
 
-101
+97
 00:04:37,340 --> 00:04:40,300
 So instead of having flashing
 redirect on two lines, we can
 
-102
+98
 00:04:40,300 --> 00:04:42,480
 have it on a single line.
 
-103
+99
 00:04:42,480 --> 00:04:45,280
 Lastly with Rails 3, we were
 given a way to shorten
 
-104
+100
 00:04:45,280 --> 00:04:46,540
 our render syntax.
 
-105
+101
 00:04:46,540 --> 00:04:49,760
 So instead of render :action
 'new', we can simply say
 
-106
+102
 00:04:49,760 --> 00:04:53,490
 render :new.
 
-107
+103
 00:04:53,490 --> 00:04:55,510
 Now, let's slip over to the
 contact form and see what we
 
-108
+104
 00:04:55,510 --> 00:04:58,270
 needed to change there to
 properly use our new model.
 
-109
+105
 00:04:58,270 --> 00:05:01,610
 So before, we were just
 specifying symbol contact.
 
-110
+106
 00:05:01,610 --> 00:05:02,890
 Now, we just put in the contact
 
-111
+107
 00:05:02,890 --> 00:05:04,140
 form instance variable.
 
-112
-00:05:04,140 --> 00:05:06,990
-
-113
+108
 00:05:06,990 --> 00:05:09,610
 Finally, let's go over and
 figure out how to implement
 
-114
+109
 00:05:09,610 --> 00:05:11,620
 the contact form class.
 
-115
+110
 00:05:11,620 --> 00:05:13,210
 So here's our ContactForm.
 
-116
+111
 00:05:13,210 --> 00:05:15,295
 It's just a plain
 old Ruby model.
 
-117
+112
 00:05:15,295 --> 00:05:17,535
 It has a couple attribute
 accessors.
 
-118
+113
 00:05:17,535 --> 00:05:20,140
 There's some getters
 and setters.
 
-119
+114
 00:05:20,140 --> 00:05:22,800
 And we're going to specify it
 validates_presence_of :name,
 
-120
+115
 00:05:22,800 --> 00:05:25,420
 :email, :body, just like we
 would in a normal active
 
-121
+116
 00:05:25,420 --> 00:05:26,790
 record model.
 
-122
+117
 00:05:26,790 --> 00:05:29,460
 To get the validations, we need
-to include 
+to include
 
-123
+118
 00:05:29,460 --> 00:05:30,780
 ActiveModel::Validations.
 
-124
+119
 00:05:30,780 --> 00:05:34,060
 Now remember, in our view, we
 changed it to use form_for
 
-125
+120
 00:05:34,060 --> 00:05:35,220
 @contact_form.
 
-126
+121
 00:05:35,220 --> 00:05:37,850
 Because we're using the syntax,
 we also need to
 
-127
+122
 00:05:37,850 --> 00:05:39,860
 include ActiveModel::Conversion
 
-128
+123
 00:05:39,860 --> 00:05:40,870
 and include this persisted?
 
-129
+124
 00:05:40,870 --> 00:05:42,420
 method at the bottom.
 
-130
+125
 00:05:42,420 --> 00:05:45,710
 This is because the form_for
 helper needs to know if we're
 
-131
+126
 00:05:45,710 --> 00:05:50,090
 doing a post method and creating
 something, versus
 
-132
+127
 00:05:50,090 --> 00:05:54,580
 doing a put method and
 updating something.
 
-133
+128
 00:05:54,580 --> 00:05:57,020
 You may remember from our
 controller, we're doing a
 
-134
+129
 00:05:57,020 --> 00:05:59,910
 batch update to instantiate
 the contact form.
 
-135
+130
 00:05:59,910 --> 00:06:02,360
 In order to make that work, we
 need to declare an initialize
 
-136
+131
 00:06:02,360 --> 00:06:06,170
 method where we can send in a
 hash of attributes which will
 
-137
+132
 00:06:06,170 --> 00:06:09,640
 then set each of
 our variables.
 
-138
+133
 00:06:09,640 --> 00:06:11,430
 Once we have all this
 code in place, we
 
-139
+134
 00:06:11,430 --> 00:06:13,230
 can now use our form.
 
-140
+135
 00:06:13,230 --> 00:06:15,800
 And when we miss out on fields,
 it's going to give us
 
-141
+136
 00:06:15,800 --> 00:06:20,510
 validations just like it would
 any other active record model.
 
-142
+137
 00:06:20,510 --> 00:06:22,580
 The next best practice we're
 going to be talking about is
 
-143
+138
 00:06:22,580 --> 00:06:24,750
 properly using REST.
 
-144
+139
 00:06:24,750 --> 00:06:27,470
 So here, you see we have a
 UsersController, and we've got
 
-145
+140
 00:06:27,470 --> 00:06:28,410
 two actions--
 
-146
+141
 00:06:28,410 --> 00:06:31,440
 one which subscribes to a
 mailing list, and one which
 
-147
+142
 00:06:31,440 --> 00:06:33,500
 unsubscribes to a
 mailing list.
 
-148
+143
 00:06:33,500 --> 00:06:36,300
 These two methods are in
 our UsersController.
 
-149
+144
 00:06:36,300 --> 00:06:38,580
 And when you think about what
 they're doing, they're
 
-150
+145
 00:06:38,580 --> 00:06:42,320
 actually creating a subscription
 and destroying a
 
-151
+146
 00:06:42,320 --> 00:06:43,540
 subscription.
 
-152
+147
 00:06:43,540 --> 00:06:46,110
 So they kind of belong in
 their own controller.
 
-153
+148
 00:06:46,110 --> 00:06:48,070
 So let's go ahead and
 refactor this.
 
-154
+149
 00:06:48,070 --> 00:06:52,920
 So these should both go into the
 Subscriptions controller.
 
-155
+150
 00:06:52,920 --> 00:06:55,690
 And the first method would
 probably be called create, and
 
-156
+151
 00:06:55,690 --> 00:06:58,410
 the second method, we're going
 to be calling destroy.
 
-157
+152
 00:06:58,410 --> 00:07:00,090
 Ah, much better.
 
-158
+153
 00:07:00,090 --> 00:07:02,770
 Much more RESTful.
 
-159
+154
 00:07:02,770 --> 00:07:05,320
 When it comes to using REST
 effectively, you really need
 
-160
+155
 00:07:05,320 --> 00:07:06,710
 to use your best judgment.
 
-161
+156
 00:07:06,710 --> 00:07:09,260
 You don't want to go too
 far off the deep end.
 
-162
+157
 00:07:09,260 --> 00:07:12,570
 There's such a thing as too
 much REST, most certainly.
 
-163
+158
 00:07:12,570 --> 00:07:14,710
 One example of that would
 be using more than
 
-164
+159
 00:07:14,710 --> 00:07:17,010
 two levels of nesting.
 
-165
+160
 00:07:17,010 --> 00:07:19,710
 So in this case, users
 post comments.
 
-166
+161
 00:07:19,710 --> 00:07:21,720
 You don't need that
 much nesting.
 
-167
+162
 00:07:21,720 --> 00:07:24,300
 Also, not using REST is OK.
 
-168
+163
 00:07:24,300 --> 00:07:25,820
 You should keep that
 in mind as well.
 
-169
+164
 00:07:25,820 --> 00:07:29,210
 In our previous example, where
 we had a contact form, our
 
-170
+165
 00:07:29,210 --> 00:07:31,800
 routes file looks something
 like this.
 
-171
+166
 00:07:31,800 --> 00:07:34,600
 We just create a get action
 and post action.
 
-172
+167
 00:07:34,600 --> 00:07:38,940
 Since in this case, the URL is
 Contact Us, in my opinion, it
 
-173
+168
 00:07:38,940 --> 00:07:43,120
 didn't make sense to create or
 update a Contact Us or destroy
 
-174
+169
 00:07:43,120 --> 00:07:44,170
 a Contact Us.
 
-175
+170
 00:07:44,170 --> 00:07:45,260
 I didn't make too much sense.
 
-176
+171
 00:07:45,260 --> 00:07:48,030
 It made more sense to me to
 simply have a Contact Us
 
-177
+172
 00:07:48,030 --> 00:07:50,520
 controller and ignore REST
 for the time being.
 
-178
-00:07:50,520 --> 00:07:54,780
-
-179
+173
 00:07:54,780 --> 00:07:57,350
 The next best practice we're
 going to take a look at is
 
-180
+174
 00:07:57,350 --> 00:07:59,780
 properly using a Presenter.
 
-181
+175
 00:07:59,780 --> 00:08:02,390
 And the example we're going to
 be using is this front page of
 
-182
+176
 00:08:02,390 --> 00:08:04,480
 Twitter on the right side bar.
 
-183
+177
 00:08:04,480 --> 00:08:07,630
 On the right sidebar, you see
 there's a lot of information
 
-184
+178
 00:08:07,630 --> 00:08:09,960
 pulled from a lot different
 data sources.
 
-185
+179
 00:08:09,960 --> 00:08:13,860
 So if we were to implement this
 and implement this badly,
 
-186
+180
 00:08:13,860 --> 00:08:16,480
 it might look something
 like this.
 
-187
+181
 00:08:16,480 --> 00:08:18,600
 We have an index controller
 with a
 
-188
+182
 00:08:18,600 --> 00:08:21,060
 ton of instance variables.
 
-189
+183
 00:08:21,060 --> 00:08:23,040
 There's a couple reasons
 why this is bad.
 
-190
+184
 00:08:23,040 --> 00:08:26,510
 Not only is it hard to maintain
 and sort of sloppy,
 
-191
+185
 00:08:26,510 --> 00:08:29,730
 but it's also really hard
 to test properly.
 
-192
+186
 00:08:29,730 --> 00:08:32,500
 So we're going to use a
 presenter in this case.
 
-193
+187
 00:08:32,500 --> 00:08:34,960
 And once we implement a
 presenter, our controller is
 
-194
+188
 00:08:34,960 --> 00:08:36,559
 going to become a
 much simpler.
 
-195
+189
 00:08:36,559 --> 00:08:41,390
 It's simply going to look
 just like that.
 
-196
+190
 00:08:41,390 --> 00:08:44,090
 To set up presenters in our
 application, in my case, I
 
-197
+191
 00:08:44,090 --> 00:08:46,180
 want to use a presenters
 directory.
 
-198
+192
 00:08:46,180 --> 00:08:49,510
 So I'm going to make sure, in my
 application.rb, I've got an
 
-199
+193
 00:08:49,510 --> 00:08:52,280
 autoload_path set for
 that directory.
 
-200
+194
 00:08:52,280 --> 00:08:54,270
 And my first presenter is going
 to be created in the
 
-201
+195
 00:08:54,270 --> 00:08:58,620
 Tweets folder, and I'm going
 to call it index_presenter.
 
-202
+196
 00:08:58,620 --> 00:09:01,640
 The first thing it will do is
 initialize the presenter, and
 
-203
+197
 00:09:01,640 --> 00:09:03,940
 I'll send in the current user.
 
-204
+198
 00:09:03,940 --> 00:09:05,550
 Let's go ahead and move this to
 the top of the page, so we
 
-205
+199
 00:09:05,550 --> 00:09:07,760
 have more room to build
 out our presenter.
 
-206
+200
 00:09:07,760 --> 00:09:10,270
 So here, you can see there's
 our old controller.
 
-207
+201
 00:09:10,270 --> 00:09:12,970
 And step by step, we're going to
 take one piece of that at a
 
-208
+202
 00:09:12,970 --> 00:09:17,990
 time and move that into our
 presenter, starting with the
 
-209
+203
 00:09:17,990 --> 00:09:18,880
 followers_tweets.
 
-210
+204
 00:09:18,880 --> 00:09:22,580
 So we create a followers_tweets
 method.
 
-211
+205
 00:09:22,580 --> 00:09:25,320
 Then we'll take two more parts
 of that and create the
 
-212
+206
 00:09:25,320 --> 00:09:29,290
 recent_tweet method and
 the trends method.
 
-213
+207
 00:09:29,290 --> 00:09:31,530
 As you saw a moment ago, to
 instantiate the presenter
 
-214
+208
 00:09:31,530 --> 00:09:35,060
 inside of our controller, we
 do something like this.
 
-215
+209
 00:09:35,060 --> 00:09:38,980
 And then in our view, to access
 the data, we simply do
 
-216
+210
 00:09:38,980 --> 00:09:41,380
 presenter. recent_tweet.body.
 
-217
+211
 00:09:41,380 --> 00:09:44,350
 It's going to call the method,
 return the recent tweet, and
 
-218
+212
 00:09:44,350 --> 00:09:46,900
 we can call .body on that.
 
-219
+213
 00:09:46,900 --> 00:09:48,980
 But what if we call
 this presenter
 
-220
+214
 00:09:48,980 --> 00:09:51,380
 method more than once?
 
-221
+215
 00:09:51,380 --> 00:09:53,380
 You might look at that and go,
 uh oh, it's actually going to
 
-222
+216
 00:09:53,380 --> 00:09:54,720
 do two different queries.
 
-223
+217
 00:09:54,720 --> 00:09:58,320
 Well, because Rails has a query
 cache, it's actually
 
-224
+218
 00:09:58,320 --> 00:09:59,960
 just still doing one query.
 
-225
+219
 00:09:59,960 --> 00:10:02,460
 But it is creating two
 different objects,
 
-226
+220
 00:10:02,460 --> 00:10:04,660
 which is also bad.
 
-227
+221
 00:10:04,660 --> 00:10:06,000
 How do we get around that?
 
-228
+222
 00:10:06,000 --> 00:10:09,000
 Well, we use something
 called memoization.
 
-229
+223
 00:10:09,000 --> 00:10:12,810
 To memoize the value, we declare
 an instance variable,
 
-230
+224
 00:10:12,810 --> 00:10:16,220
 and we use the or
 equals syntax.
 
-231
+225
 00:10:16,220 --> 00:10:18,560
 Now when the recent_tweet method
 is called, the first
 
-232
+226
 00:10:18,560 --> 00:10:20,120
 time, it's going to
 run the query.
 
-233
+227
 00:10:20,120 --> 00:10:22,530
 The second time it's called,
 it's actually going to return
 
-234
+228
 00:10:22,530 --> 00:10:24,770
 to the cached value.
 
-235
+229
 00:10:24,770 --> 00:10:27,310
 There's a second way to do
 memoization in Rails, and
 
-236
+230
 00:10:27,310 --> 00:10:31,320
 that's by including the
 ActiveSupport::Memoizable
 
-237
+231
 00:10:31,320 --> 00:10:36,100
 module and then specifying, at
 the bottom of our file, which
 
-238
+232
 00:10:36,100 --> 00:10:37,890
 methods we want to save.
 
-239
+233
 00:10:37,890 --> 00:10:41,230
 So in this case, we're doing
 memoize recent_tweet.
 
-240
+234
 00:10:41,230 --> 00:10:44,170
 We can also specify additional
 methods that we want to
 
-241
+235
 00:10:44,170 --> 00:10:47,910
 memoize down here
 at the bottom.
 
-242
+236
 00:10:47,910 --> 00:10:49,530
 One of these memoization
 methods is
 
-243
+237
 00:10:49,530 --> 00:10:50,940
 better than the other.
 
-244
+238
 00:10:50,940 --> 00:10:54,250
 You see, when you use or equals,
 the value is not going
 
-245
+239
 00:10:54,250 --> 00:10:56,980
 to be stored is false
 or nil is returned.
 
-246
+240
 00:10:56,980 --> 00:11:00,700
 So if you happen to have a
 method that returns false or
 
-247
+241
 00:11:00,700 --> 00:11:02,950
 equals in this case, it's
 not going to get stored.
 
-248
+242
 00:11:02,950 --> 00:11:05,510
 So every time you call that
 method you thought you
 
-249
+243
 00:11:05,510 --> 00:11:08,790
 memoized, it's going to call the
 query over and over again.
 
-250
+244
 00:11:08,790 --> 00:11:10,440
 So that's not so good.
 
-251
+245
 00:11:10,440 --> 00:11:14,270
 That's one reason to use
 this method instead.
 
-252
+246
 00:11:14,270 --> 00:11:17,720
 There's another reason to use
 the Active Support module, and
 
-253
+247
 00:11:17,720 --> 00:11:20,090
 that is, let's say we have a
 method that looks like this
 
-254
+248
 00:11:20,090 --> 00:11:22,030
 that actually has a
 parameter sent in.
 
-255
+249
 00:11:22,030 --> 00:11:24,440
 If we have code that looks like
 this and we're calling
 
-256
+250
 00:11:24,440 --> 00:11:26,920
 these two different methods with
 two different variables,
 
-257
+251
 00:11:26,920 --> 00:11:30,450
 well, these second two methods
 are going to be loaded from
 
-258
+252
 00:11:30,450 --> 00:11:31,780
 the caches.
 
-259
+253
 00:11:31,780 --> 00:11:35,300
 Memoize is actually going to
 be saving it based on the
 
-260
+254
 00:11:35,300 --> 00:11:38,320
 parameters you send into
 that particular method.
 
-261
+255
 00:11:38,320 --> 00:11:41,310
 It's pretty powerful.
 
-262
+256
 00:11:41,310 --> 00:11:44,030
 This next best practice may be
 really obvious to you, but
 
-263
+257
 00:11:44,030 --> 00:11:47,430
 it's worth mentioning, and that
 is to be careful about
 
-264
+258
 00:11:47,430 --> 00:11:48,710
 SQL injection.
 
-265
+259
 00:11:48,710 --> 00:11:51,400
 So a piece of code like this,
 where you're basically taking
 
-266
+260
 00:11:51,400 --> 00:11:53,400
 somebody's parameters and
 putting them right into the
 
-267
+261
 00:11:53,400 --> 00:11:55,710
 database, is not good, right?
 
-268
+262
 00:11:55,710 --> 00:11:57,720
 You should be doing something
 like this, where you're using
 
-269
+263
 00:11:57,720 --> 00:11:59,390
 the question mark syntax.
 
-270
+264
 00:11:59,390 --> 00:12:04,860
 You can also send in a hash,
 which is going to be safe.
 
-271
+265
 00:12:04,860 --> 00:12:07,790
 It's also worth mentioning that
 you can have this string
 
-272
+266
 00:12:07,790 --> 00:12:09,920
 with symbols inside of it and
 specify the names of the
 
-273
+267
 00:12:09,920 --> 00:12:11,790
 symbols as a hash.
 
-274
+268
 00:12:11,790 --> 00:12:14,500
 And in this particular example
 where we have two different
 
-275
+269
 00:12:14,500 --> 00:12:17,770
 dates, we can actually simplify
 it further and send
 
-276
+270
 00:12:17,770 --> 00:12:19,712
 in a range.
 
-277
+271
 00:12:19,712 --> 00:12:22,800
 Kind of neat.
 
-278
+272
 00:12:22,800 --> 00:12:26,550
 Lastly, I want to go over the
 Rails 3 responder syntax.
 
-279
+273
 00:12:26,550 --> 00:12:29,200
 So here, we have a default
 scaffold that you might get
 
-280
+274
 00:12:29,200 --> 00:12:31,220
 out of the box with Rails.
 
-281
+275
 00:12:31,220 --> 00:12:33,180
 And we can simplify this.
 
-282
+276
 00:12:33,180 --> 00:12:34,360
 First we're going to move the
 
-283
+277
 00:12:34,360 --> 00:12:36,850
 respond_tos up into the header.
 
-284
+278
 00:12:36,850 --> 00:12:39,620
 We're going to specify what this
 controller can respond
 
-285
+279
 00:12:39,620 --> 00:12:43,360
 to, in this case HTML,
 XML, and JSON.
 
-286
+280
 00:12:43,360 --> 00:12:45,320
 And then in each of our actions,
 we're going to
 
-287
+281
 00:12:45,320 --> 00:12:48,750
 specify the instance method
 that we want it
 
-288
+282
 00:12:48,750 --> 00:12:50,290
 to respond to with.
 
-289
+283
 00:12:50,290 --> 00:12:53,260
 So in this case with index, we
 want to respond with @users.
 
-290
+284
 00:12:53,260 --> 00:12:56,480
 In the case of show, we want
 to respond to @user.
 
-291
+285
 00:12:56,480 --> 00:12:59,520
 [MUSIC PLAYING]
 
-292
+286
 00:12:59,520 --> 00:13:01,550
 Congratulations, you've made
 it to the end of Lab Two,
 
-293
+287
 00:13:01,550 --> 00:13:02,890
 Controller Command.
 
-294
+288
 00:13:02,890 --> 00:13:05,320
 Now, it's time to see if you can
 get past those challenges
 
-295
+289
 00:13:05,320 --> 00:13:07,070
 and make it to Level Three.
-
-296
-00:13:07,070 --> 00:13:09,122

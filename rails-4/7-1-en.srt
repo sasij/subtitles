@@ -1,1095 +1,1051 @@
 ﻿1
-00:00:00,000 --> 00:00:01,908
-
-
-2
 00:00:01,908 --> 00:00:02,146
 [SINGING]
 
-3
+2
 00:00:02,146 --> 00:00:05,247
 Wanted and captured without
 bail, locked and forgotten in
 
-4
+3
 00:00:05,247 --> 00:00:06,210
 a rusty jail.
 
-5
+4
 00:00:06,210 --> 00:00:09,446
 Zombies attack, the townsfolk
 fled, those who were left
 
-6
+5
 00:00:09,446 --> 00:00:10,428
 became the undead.
 
-7
+6
 00:00:10,428 --> 00:00:11,901
 He's a zombie outlaw.
 
-8
+7
 00:00:11,901 --> 00:00:15,583
 He's a zombie outlaw, and
 he's hunting a law that
 
-9
+8
 00:00:15,583 --> 00:00:18,775
 left him for dead.
 
-10
+9
 00:00:18,775 --> 00:00:20,739
 For dead.
 
-11
+10
 00:00:20,739 --> 00:00:21,721
 For dead.
 
-12
+11
 00:00:21,721 --> 00:00:24,176
 [HORSE WHINNIES]
 
-13
+12
 00:00:24,176 --> 00:00:27,140
 [GUNSHOT]
 
-14
+13
 00:00:27,140 --> 00:00:28,290
 I'm Greg Pollock, and
 you're watching
 
-15
+14
 00:00:28,290 --> 00:00:30,270
 Rails 4, Zombie Outlaws.
 
-16
+15
 00:00:30,270 --> 00:00:32,080
 And in this level, we're going
 to be talking about
 
-17
+16
 00:00:32,080 --> 00:00:36,180
 ActionControllerLive
 and Turbolinks.
 
-18
+17
 00:00:36,180 --> 00:00:39,000
 Let's say we have an Items
 Controller, and we have a lot
 
-19
+18
 00:00:39,000 --> 00:00:41,960
 of people connecting to see
 the list of Items from our
 
-20
+19
 00:00:41,960 --> 00:00:43,380
 Items Controller.
 
-21
+20
 00:00:43,380 --> 00:00:46,370
 And when one person adds a new
 Item, we want that to be
 
-22
+21
 00:00:46,370 --> 00:00:49,000
 reflected on everyone's list.
 
-23
+22
 00:00:49,000 --> 00:00:51,190
 This is kind of similar
 to a chat room.
 
-24
+23
 00:00:51,190 --> 00:00:51,510
 Right?
 
-25
+24
 00:00:51,510 --> 00:00:54,240
 Where you have multiple people
 connected to a chat room, and
 
-26
+25
 00:00:54,240 --> 00:00:55,710
 when one person says something,
 you want to
 
-27
+26
 00:00:55,710 --> 00:00:58,220
 broadcast that message
 to everyone.
 
-28
+27
 00:00:58,220 --> 00:01:00,260
 How might we implement
 this in Rails?
 
-29
+28
 00:01:00,260 --> 00:01:03,110
 Well one way is to implement
 polling.
 
-30
+29
 00:01:03,110 --> 00:01:03,640
 Right?
 
-31
+30
 00:01:03,640 --> 00:01:06,080
 Each of these people could be
 checking the server to say,
 
-32
+31
 00:01:06,080 --> 00:01:07,990
 hey, anybody said anything?
 
-33
+32
 00:01:07,990 --> 00:01:09,470
 Any new Items?
 
-34
+33
 00:01:09,470 --> 00:01:11,940
 But obviously that's
 not very efficient.
 
-35
+34
 00:01:11,940 --> 00:01:14,580
 We could also keep a connection
 open and stream new
 
-36
+35
 00:01:14,580 --> 00:01:16,600
 requests as they come in.
 
-37
+36
 00:01:16,600 --> 00:01:20,030
 But controllers, and the way
 Rails is built, isn't
 
-38
+37
 00:01:20,030 --> 00:01:22,660
 necessarily good at that.
 
-39
+38
 00:01:22,660 --> 00:01:23,680
 However, this is where
 
-40
+39
 00:01:23,680 --> 00:01:26,030
 ActionController::Live comes in.
 
-41
+40
 00:01:26,030 --> 00:01:29,180
 If we add this one line to our
 controller, we get the ability
 
-42
+41
 00:01:29,180 --> 00:01:31,190
 to do streaming inside
 of our Actions.
 
-43
-00:01:31,190 --> 00:01:34,510
-
-
-44
+42
 00:01:34,510 --> 00:01:37,250
 WEBrick, the default server,
 buffers output, which would
 
-45
+43
 00:01:37,250 --> 00:01:38,400
 break streaming.
 
-46
+44
 00:01:38,400 --> 00:01:40,860
 So if we're going to play around
 with this feature, we
 
-47
+45
 00:01:40,860 --> 00:01:44,470
 need to use a different server
 like Puma, or Rainbows.
 
-48
+46
 00:01:44,470 --> 00:01:46,720
 And to do that, we just
 need to put it
 
-49
+47
 00:01:46,720 --> 00:01:49,490
 inside of our gem file.
 
-50
+48
 00:01:49,490 --> 00:01:52,320
 Now to do some streaming inside
 of our controller
 
-51
+49
 00:01:52,320 --> 00:01:55,430
 inside of an action, in this
 case our show action, we need
 
-52
+50
 00:01:55,430 --> 00:01:58,720
 to set a content type header,
 which will tell our browser
 
-53
+51
 00:01:58,720 --> 00:02:00,720
 that we're sending
 an event stream.
 
-54
+52
 00:02:00,720 --> 00:02:01,830
 And then, since we're
 including
 
-55
+53
 00:02:01,830 --> 00:02:04,400
 ActionController::Live in our
 controller, we get access to
 
-56
+54
 00:02:04,400 --> 00:02:06,520
 the stream object
 in our response.
 
-57
+55
 00:02:06,520 --> 00:02:08,199
 So in this case, we're going
 to create a loop.
 
-58
+56
 00:02:08,199 --> 00:02:11,420
 So three times we're going to
 Write the string, "Hello,
 
-59
+57
 00:02:11,420 --> 00:02:14,460
 browser!" and then sleep
 for one second.
 
-60
+58
 00:02:14,460 --> 00:02:16,060
 And then finally, at the
 end, we're going
 
-61
+59
 00:02:16,060 --> 00:02:17,670
 to close the stream.
 
-62
+60
 00:02:17,670 --> 00:02:21,730
 So if we navigated to this URL
 we would see, Hello, browser!
 
-63
+61
 00:02:21,730 --> 00:02:22,730
 Hello, browser!
 
-64
+62
 00:02:22,730 --> 00:02:25,650
 And again, Hello, browser!
 
-65
+63
 00:02:25,650 --> 00:02:27,740
 It's really important that we
 always remember to close the
 
-66
+64
 00:02:27,740 --> 00:02:29,970
 stream, otherwise, it's going
 to stay open forever.
 
-67
-00:02:29,970 --> 00:02:32,590
-
-
-68
+65
 00:02:32,590 --> 00:02:35,370
 Now let's jump back to our Items
 example, where we have a
 
-69
+66
 00:02:35,370 --> 00:02:38,200
 list of items, and we want them
 to get updated as they
 
-70
+67
 00:02:38,200 --> 00:02:39,870
 are created.
 
-71
+68
 00:02:39,870 --> 00:02:44,450
 Here is our ERB file with our
 unordered Items list.
 
-72
+69
 00:02:44,450 --> 00:02:47,050
 Now we need to write some
 JavaScript that will connect
 
-73
+70
 00:02:47,050 --> 00:02:50,560
 to the server, and whenever
 a new Item is created,
 
-74
+71
 00:02:50,560 --> 00:02:51,730
 add it to that list.
 
-75
+72
 00:02:51,730 --> 00:02:55,420
 Luckily, JavaScript has a
 library called EventSource,
 
-76
+73
 00:02:55,420 --> 00:02:59,300
 which will allow us to specify
 a path to connect to.
 
-77
+74
 00:02:59,300 --> 00:03:01,320
 Then we can add an
 eventListener.
 
-78
+75
 00:03:01,320 --> 00:03:04,190
 So whenever a new message comes
 from that EventSource,
 
-79
+76
 00:03:04,190 --> 00:03:07,590
 we can pass in a callback
 to be executed.
 
-80
+77
 00:03:07,590 --> 00:03:10,310
 The callback, itself, is pretty
 self-explanatory.
 
-81
+78
 00:03:10,310 --> 00:03:13,040
 It takes the event as an
 argument, and then we can just
 
-82
+79
 00:03:13,040 --> 00:03:16,200
 construct a new list item using
 the event data, and
 
-83
+80
 00:03:16,200 --> 00:03:18,680
 append that onto our list.
 
-84
+81
 00:03:18,680 --> 00:03:21,360
 It's really important that
 we set the content-type,
 
-85
+82
 00:03:21,360 --> 00:03:23,440
 otherwise streaming
 won't work.
 
-86
+83
 00:03:23,440 --> 00:03:25,830
 And, we also have to
 set this header
 
-87
+84
 00:03:25,830 --> 00:03:27,150
 before we start streaming.
 
-88
+85
 00:03:27,150 --> 00:03:29,390
 So if we did something like
 this, where we tried to set
 
-89
+86
 00:03:29,390 --> 00:03:32,520
 the header after we started
 streaming, well, it wouldn't
 
-90
+87
 00:03:32,520 --> 00:03:35,720
 work, because all the headers
 were already sent.
 
-91
+88
 00:03:35,720 --> 00:03:38,350
 To fix this code, we just need
 to set the header before we
 
-92
+89
 00:03:38,350 --> 00:03:39,600
 start writing to the stream.
 
-93
-00:03:39,600 --> 00:03:44,650
-
-
-94
+90
 00:03:44,650 --> 00:03:47,390
 Using streaming can be really
 useful when paired with a
 
-95
+91
 00:03:47,390 --> 00:03:50,700
 messaging system, like
 Redis, for example.
 
-96
+92
 00:03:50,700 --> 00:03:52,580
 Here's what using Redis
 might look like.
 
-97
+93
 00:03:52,580 --> 00:03:54,940
 First we set the header, then
 we'll connect to Redis and
 
-98
+94
 00:03:54,940 --> 00:03:57,440
 we'll subscribe to the "item
 create" channel.
 
-99
+95
 00:03:57,440 --> 00:04:01,070
 Then once a message arrives,
 we want to write out to the
 
-100
+96
 00:04:01,070 --> 00:04:03,350
 stream the data that
 we received.
 
-101
+97
 00:04:03,350 --> 00:04:06,890
 Lastly, we'll just
 close the stream.
 
-102
+98
 00:04:06,890 --> 00:04:09,440
 Next up, we're going to talk a
 little bit about Turbolinks.
 
-103
+99
 00:04:09,440 --> 00:04:12,550
 But first, let's take a look at
 two screen casts, one that
 
-104
+100
 00:04:12,550 --> 00:04:15,550
 doesn't use Turbolinks
 and one that does.
 
-105
+101
 00:04:15,550 --> 00:04:18,870
 Here's the one that doesn't.
 
-106
+102
 00:04:18,870 --> 00:04:20,850
 As you can see, every time we
 click a link, it does a
 
-107
+103
 00:04:20,850 --> 00:04:22,270
 complete page refresh.
 
-108
+104
 00:04:22,270 --> 00:04:23,850
 We can see that.
 
-109
+105
 00:04:23,850 --> 00:04:28,100
 We can see a little bit of
 visible lag between pages.
 
-110
+106
 00:04:28,100 --> 00:04:29,480
 And now let's do the same
 thing with Turbolinks.
 
-111
-00:04:29,480 --> 00:04:32,050
-
-
-112
+107
 00:04:32,050 --> 00:04:34,440
 As you can see, the lag seems
 to have gone away, and the
 
-113
+108
 00:04:34,440 --> 00:04:36,870
 pages load lightning fast.
 
-114
+109
 00:04:36,870 --> 00:04:38,120
 But how is this happening?
 
-115
-00:04:38,120 --> 00:04:40,390
-
-
-116
+110
 00:04:40,390 --> 00:04:43,440
 Without Turbolinks, when you
 click on the link it needs to
 
-117
+111
 00:04:43,440 --> 00:04:46,030
 reload the entire page.
 
-118
+112
 00:04:46,030 --> 00:04:48,440
 Even when you're using
 ETags, for example,
 
-119
+113
 00:04:48,440 --> 00:04:49,670
 which we learned about.
 
-120
+114
 00:04:49,670 --> 00:04:52,710
 And the server returns a 304
 Not Modified, and the
 
-121
+115
 00:04:52,710 --> 00:04:55,660
 page gets loaded from cache,
 it still has to redraw the
 
-122
+116
 00:04:55,660 --> 00:04:58,460
 entire page.
 
-123
+117
 00:04:58,460 --> 00:05:01,860
 Now with Turbolinks, which our
 Rails 4 applications will use
 
-124
+118
 00:05:01,860 --> 00:05:07,060
 by default, when we click on a
 link it uses AJAX to go and
 
-125
+119
 00:05:07,060 --> 00:05:12,060
 fetch the page, download it, and
 then it only updates the
 
-126
+120
 00:05:12,060 --> 00:05:16,830
 title and the body in the page
 which was previously rendered.
 
-127
+121
 00:05:16,830 --> 00:05:20,540
 So it doesn't redraw the
 entire page, it simply
 
-128
+122
 00:05:20,540 --> 00:05:23,190
 replaces the title, and replaces
 the body with the
 
-129
+123
 00:05:23,190 --> 00:05:25,670
 content that it fetched
 from the new page.
 
-130
+124
 00:05:25,670 --> 00:05:29,010
 None of the assets, or style
 sheets, or JavaScript files
 
-131
+125
 00:05:29,010 --> 00:05:31,570
 get reloaded.
 
-132
+126
 00:05:31,570 --> 00:05:33,460
 So you've lots of people on your
 website, and they're not
 
-133
+127
 00:05:33,460 --> 00:05:35,330
 re-downloading any
 of these assets.
 
-134
+128
 00:05:35,330 --> 00:05:38,900
 Well, how do we make sure the
 browsers know when you do go
 
-135
+129
 00:05:38,900 --> 00:05:42,560
 and update that JavaScript
 library or that CSS library?
 
-136
+130
 00:05:42,560 --> 00:05:45,650
 This is what the
 data-turbolinks-track option is
 
-137
+131
 00:05:45,650 --> 00:05:48,770
 for, which you'll see by
 default in your Rails 4
 
-138
+132
 00:05:48,770 --> 00:05:50,500
 applications.
 
-139
+133
 00:05:50,500 --> 00:05:52,060
 This tells your app
 to keep track of
 
-140
+134
 00:05:52,060 --> 00:05:53,480
 changes in these files.
 
-141
+135
 00:05:53,480 --> 00:05:56,280
 So if you do a deploy and one
 of these files changes,
 
-142
+136
 00:05:56,280 --> 00:05:59,100
 Turbolinks is going to tell the
 browser to do a full page
 
-143
+137
 00:05:59,100 --> 00:06:00,720
 reload, so you can get
 the new files.
 
-144
-00:06:00,720 --> 00:06:03,290
-
-
-145
+138
 00:06:03,290 --> 00:06:05,940
 All this functionality is
 encapsulated inside the
 
-146
+139
 00:06:05,940 --> 00:06:07,400
 Turbolinks gem,
 
-147
+140
 00:06:07,400 --> 00:06:10,370
 which you're going to see inside
 your gem file, and your
 
-148
+141
 00:06:10,370 --> 00:06:12,650
 application.js by default.
 
-149
+142
 00:06:12,650 --> 00:06:15,060
 So obviously, if you don't
 want Turbolinks and this
 
-150
+143
 00:06:15,060 --> 00:06:17,520
 additional functionality,
 just remove them.
 
-151
-00:06:17,520 --> 00:06:20,170
-
-
-152
+144
 00:06:20,170 --> 00:06:22,240
 So we're using Rails 4 in
 our new application with
 
-153
+145
 00:06:22,240 --> 00:06:24,970
 Turbolinks, and we have a little
 jQuery code, which
 
-154
+146
 00:06:24,970 --> 00:06:26,180
 looks like this.
 
-155
+147
 00:06:26,180 --> 00:06:28,970
 So when we click on an item
 we get an alert box.
 
-156
+148
 00:06:28,970 --> 00:06:30,320
 Let's see this in action.
 
-157
+149
 00:06:30,320 --> 00:06:33,880
 So, we go here, we click on the
 check box and it didn't
 
-158
+150
 00:06:33,880 --> 00:06:35,130
 work the first time.
 
-159
+151
 00:06:35,130 --> 00:06:37,120
 Not until we reloaded
 the page.
 
-160
+152
 00:06:37,120 --> 00:06:40,310
 And now it does.
 
-161
+153
 00:06:40,310 --> 00:06:43,790
 When we first loaded up the
 Index page, the page loaded,
 
-162
+154
 00:06:43,790 --> 00:06:46,440
 and the document ready
 event fired.
 
-163
+155
 00:06:46,440 --> 00:06:48,760
 It looked for anything
 with that ID to hook
 
-164
+156
 00:06:48,760 --> 00:06:49,810
 on the Click event.
 
-165
+157
 00:06:49,810 --> 00:06:51,230
 Didn't find anything.
 
-166
+158
 00:06:51,230 --> 00:06:54,110
 Then when we clicked on Edit, it
 used Turbolinks to load up
 
-167
+159
 00:06:54,110 --> 00:06:56,500
 the new page, put the new
 content in there with the
 
-168
+160
 00:06:56,500 --> 00:06:59,870
 check box, but the document
 ready event didn't fire again.
 
-169
+161
 00:06:59,870 --> 00:07:01,340
 It only runs once.
 
-170
+162
 00:07:01,340 --> 00:07:05,320
 When we refreshed the Edit page,
 the DOM event fired, and
 
-171
+163
 00:07:05,320 --> 00:07:07,540
 that time-- the second time
 we loaded the page--
 
-172
+164
 00:07:07,540 --> 00:07:09,210
 it did work.
 
-173
+165
 00:07:09,210 --> 00:07:11,760
 So how do we fix this
 with Turbolinks?
 
-174
+166
 00:07:11,760 --> 00:07:14,100
 Well Turbolinks has a series
 of events that
 
-175
+167
 00:07:14,100 --> 00:07:15,390
 we can listen for.
 
-176
+168
 00:07:15,390 --> 00:07:18,470
 One of them being, the page:load
 event, which fires
 
-177
+169
 00:07:18,470 --> 00:07:21,560
 every time we load a new
 page using Turbolinks.
 
-178
+170
 00:07:21,560 --> 00:07:24,400
 So if we wanted this to work, we
 could simply listen for the
 
-179
+171
 00:07:24,400 --> 00:07:27,560
 page:load event, and call the
 Initialize method, every time
 
-180
+172
 00:07:27,560 --> 00:07:28,810
 it's triggered.
 
-181
-00:07:28,810 --> 00:07:33,430
-
-
-182
+173
 00:07:33,430 --> 00:07:35,870
 Another work-around for this,
 aside from listening to these
 
-183
+174
 00:07:35,870 --> 00:07:39,720
 new events, is to include the
 jQuery Turbolinks gem, if
 
-184
+175
 00:07:39,720 --> 00:07:41,530
 you're using jQuery.
 
-185
+176
 00:07:41,530 --> 00:07:44,230
 This will bind the document
 ready event to
 
-186
+177
 00:07:44,230 --> 00:07:45,900
 the page:load event.
 
-187
+178
 00:07:45,900 --> 00:07:49,210
 So document ready will get run
 every time a new page is
 
-188
+179
 00:07:49,210 --> 00:07:50,960
 loaded via Turbolinks.
 
-189
+180
 00:07:50,960 --> 00:07:53,240
 You just want to make sure, if
 you use this library, that you
 
-190
+181
 00:07:53,240 --> 00:07:56,010
 require it immediately after
 your jQuery library inside
 
-191
+182
 00:07:56,010 --> 00:07:57,260
 your application js.
 
-192
-00:07:57,260 --> 00:08:00,310
-
-
-193
+183
 00:08:00,310 --> 00:08:03,240
 Another work-around for this
 is to simply bind events
 
-194
+184
 00:08:03,240 --> 00:08:06,420
 straight to the document,
 like you see here.
 
-195
+185
 00:08:06,420 --> 00:08:08,900
 This will work when the page is
 reloaded, or when you load
 
-196
+186
 00:08:08,900 --> 00:08:12,560
 new pages using Turbolinks.
 
-197
+187
 00:08:12,560 --> 00:08:15,080
 Just to recap, when we're on a
 page with Turbolinks and we
 
-198
+188
 00:08:15,080 --> 00:08:18,900
 click a link, the moment we
 click that link an Ajax event
 
-199
+189
 00:08:18,900 --> 00:08:20,660
 is fired to the server.
 
-200
+190
 00:08:20,660 --> 00:08:22,550
 However, this page
 stays the same.
 
-201
+191
 00:08:22,550 --> 00:08:24,530
 It still has the old content.
 
-202
+192
 00:08:24,530 --> 00:08:27,570
 Once we get a response back
 from the server, it's then
 
-203
+193
 00:08:27,570 --> 00:08:30,630
 going to swap out the old
 content with the new,
 
-204
+194
 00:08:30,630 --> 00:08:31,840
 instantaneously.
 
-205
+195
 00:08:31,840 --> 00:08:33,900
 That's why it's so quick.
 
-206
+196
 00:08:33,900 --> 00:08:37,179
 However, there still might be
 some latency involved there.
 
-207
+197
 00:08:37,179 --> 00:08:39,860
 The server might not be so
 quick, which might not be a
 
-208
+198
 00:08:39,860 --> 00:08:41,570
 good user experience.
 
-209
+199
 00:08:41,570 --> 00:08:43,820
 They click the link and
 nothing happens.
 
-210
+200
 00:08:43,820 --> 00:08:46,570
 So if we're worried about
 latency, we might want to add
 
-211
+201
 00:08:46,570 --> 00:08:50,520
 some loading indicator to our
 page, so that our users know
 
-212
+202
 00:08:50,520 --> 00:08:53,610
 that something's happening.
 
-213
+203
 00:08:53,610 --> 00:08:56,010
 Let's add a loading message
 to our page.
 
-214
+204
 00:08:56,010 --> 00:08:58,790
 So to do this, we're going
 to add a new div.
 
-215
+205
 00:08:58,790 --> 00:09:01,180
 And we're going to define a
 style, which, of course, by
 
-216
+206
 00:09:01,180 --> 00:09:04,310
 default is hidden.
 
-217
+207
 00:09:04,310 --> 00:09:06,560
 Then there's two Turbolinks
 events we're
 
-218
+208
 00:09:06,560 --> 00:09:07,910
 going to listen for.
 
-219
+209
 00:09:07,910 --> 00:09:10,580
 First we listen for fetch,
 that's when a new page is
 
-220
+210
 00:09:10,580 --> 00:09:11,500
 being retrieved.
 
-221
+211
 00:09:11,500 --> 00:09:14,580
 So if we go to fetch a new page,
 we're going to show the
 
-222
+212
 00:09:14,580 --> 00:09:15,630
 loading div.
 
-223
+213
 00:09:15,630 --> 00:09:17,520
 Then once that response has
 been received and the page
 
-224
+214
 00:09:17,520 --> 00:09:21,400
 gets updated, the page:change
 event fires, and we want to
 
-225
+215
 00:09:21,400 --> 00:09:22,852
 hide our loading div.
 
-226
-00:09:22,852 --> 00:09:26,550
-
-
-227
+216
 00:09:26,550 --> 00:09:29,890
 By default, Turbolinks is going
 to hook onto all of the
 
-228
+217
 00:09:29,890 --> 00:09:31,380
 links in our application.
 
-229
+218
 00:09:31,380 --> 00:09:33,440
 But we might not want that.
 
-230
+219
 00:09:33,440 --> 00:09:37,770
 If we have links that we want to
 force a full page refresh,
 
-231
+220
 00:09:37,770 --> 00:09:42,010
 we can specify the data-no-turbolink
 option in that link.
 
-232
+221
 00:09:42,010 --> 00:09:45,700
 We can also use this attribute
 on containers, and then all
 
-233
+222
 00:09:45,700 --> 00:09:48,620
 the children inside that
 container will be opted out of
 
-234
+223
 00:09:48,620 --> 00:09:49,610
 Turbolinks.
 
-235
+224
 00:09:49,610 --> 00:09:51,700
 So in this case, those
 links are going to
 
-236
+225
 00:09:51,700 --> 00:09:53,220
 force a full page refresh.

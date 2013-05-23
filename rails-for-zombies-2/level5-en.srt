@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:03,512
 (SINGING) Put down your brains
 and your entrails.
@@ -18,2091 +18,2073 @@ something new to grab--
 by Envy Labs.
 
 5
-00:00:12,674 --> 00:00:19,964
-
-6
 00:00:19,964 --> 00:00:23,180
 Hey, look, you made it all the
 way to Level 5: Rendering
 
-7
+6
 00:00:23,180 --> 00:00:24,550
 Extremities.
 
-8
+7
 00:00:24,550 --> 00:00:26,930
 In this level, we're going to be
 taking a look at controller
 
-9
+8
 00:00:26,930 --> 00:00:30,550
 rendering options, some custom
 RESTful routes, rendering
 
-10
+9
 00:00:30,550 --> 00:00:32,980
 custom JSON, which is really
 useful if you're creating an
 
-11
+10
 00:00:32,980 --> 00:00:35,120
 API, and then finally,
 we'll be diving
 
-12
+11
 00:00:35,120 --> 00:00:39,170
 into a bunch of AJAX.
 
-13
+12
 00:00:39,170 --> 00:00:41,210
 First, some review.
 
-14
+13
 00:00:41,210 --> 00:00:42,960
 Here is our ZombiesController.
 
-15
+14
 00:00:42,960 --> 00:00:45,040
 There's our show action.
 
-16
+15
 00:00:45,040 --> 00:00:46,990
 There's no there's no responds
 to in there.
 
-17
+16
 00:00:46,990 --> 00:00:51,040
 So by default, it's going to be
 looking for a file in the
 
-18
+17
 00:00:51,040 --> 00:00:54,670
 Zombies directory called
 show.html.erb.
 
-19
+18
 00:00:54,670 --> 00:00:57,540
 So we're looking
 to render that.
 
-20
+19
 00:00:57,540 --> 00:00:59,520
 If that's only thing that
 we're rendering,
 
-21
+20
 00:00:59,520 --> 00:01:00,650
 that's all we need.
 
-22
+21
 00:01:00,650 --> 00:01:04,769
 But what if we want to respond
 to both HTML and JSON?
 
-23
+22
 00:01:04,769 --> 00:01:06,410
 What do we need to
 change then?
 
-24
+23
 00:01:06,410 --> 00:01:10,150
 Well, that's where we do need
 that respond_to block.
 
-25
+24
 00:01:10,150 --> 00:01:11,830
 So let's write that here--
 
-26
+25
 00:01:11,830 --> 00:01:14,020
 respond_to
 
-27
+26
 00:01:14,020 --> 00:01:15,300
 format.html
 
-28
+27
 00:01:15,300 --> 00:01:17,900
 so that's saying, yes,
 this can respond to
 
-29
+28
 00:01:17,900 --> 00:01:20,050
 HTML if it's requested.
 
-30
+29
 00:01:20,050 --> 00:01:22,970
 That little comment there
 show.html.erb, that's not
 
-31
+30
 00:01:22,970 --> 00:01:24,250
 doing any configuration
 at all.
 
-32
+31
 00:01:24,250 --> 00:01:27,410
 That's just a reminder for us
 to let us know that that's
 
-33
+32
 00:01:27,410 --> 00:01:29,080
 what it's going to
 be looking for.
 
-34
+33
 00:01:29,080 --> 00:01:31,730
 And then maybe we also want to
 respond to JSON, so we say
 
-35
+34
 00:01:31,730 --> 00:01:34,970
 format.json, and then send in
 the @zombie, and it's going to
 
-36
+35
 00:01:34,970 --> 00:01:38,490
 properly do the JSON version
 of that zombie object.
 
-37
+36
 00:01:38,490 --> 00:01:43,300
 What if, though, the zombie
 is dead again--
 
-38
+37
 00:01:43,300 --> 00:01:45,730
 we want to render dead_again--
 
-39
+38
 00:01:45,730 --> 00:01:48,120
 that dead_again.html file?
 
-40
+39
 00:01:48,120 --> 00:01:49,590
 What do we do then?
 
-41
+40
 00:01:49,590 --> 00:01:52,730
 Well, what we can do is
 we can create a block.
 
-42
+41
 00:01:52,730 --> 00:01:55,370
 So let's do format.html, do.
 
-43
+42
 00:01:55,370 --> 00:01:57,700
 We're going to check the
 decomposition to see if it's
 
-44
+43
 00:01:57,700 --> 00:01:58,480
 dead again.
 
-45
+44
 00:01:58,480 --> 00:02:03,020
 If it's dead again, render
 out the dead_again view.
 
-46
+45
 00:02:03,020 --> 00:02:05,450
 And we don't need an else
 because if it doesn't hit that
 
-47
+46
 00:02:05,450 --> 00:02:08,919
 conditional, it's simply, by
 default, going to render out
 
-48
+47
 00:02:08,919 --> 00:02:11,750
 the show.html.erb--
 
-49
+48
 00:02:11,750 --> 00:02:13,200
 cool.
 
-50
+49
 00:02:13,200 --> 00:02:15,510
 What if we realize after we
 write this code that we don't
 
-51
+50
 00:02:15,510 --> 00:02:16,660
 need JSON at all.
 
-52
+51
 00:02:16,660 --> 00:02:17,820
 This is a web application.
 
-53
+52
 00:02:17,820 --> 00:02:20,430
 It's only ever going to
 respond to browsers.
 
-54
+53
 00:02:20,430 --> 00:02:22,840
 We don't need the JSON
 version of it.
 
-55
+54
 00:02:22,840 --> 00:02:24,040
 What do we do then?
 
-56
+55
 00:02:24,040 --> 00:02:26,240
 Well, at that point, we can
 get rid of that respond to
 
-57
+56
 00:02:26,240 --> 00:02:27,200
 block again.
 
-58
+57
 00:02:27,200 --> 00:02:28,950
 So we can get rid of the
 respond to block--
 
-59
+58
 00:02:28,950 --> 00:02:30,140
 just have this.
 
-60
+59
 00:02:30,140 --> 00:02:32,010
 OK.
 
-61
+60
 00:02:32,010 --> 00:02:34,790
 Well, what if we only need
 JSON, on the other hand?
 
-62
+61
 00:02:34,790 --> 00:02:36,130
 What if we don't need
 HTML at all.
 
-63
+62
 00:02:36,130 --> 00:02:37,840
 Now we just need JSON?
 
-64
+63
 00:02:37,840 --> 00:02:39,140
 How might it change?
 
-65
+64
 00:02:39,140 --> 00:02:41,320
 Well, we don't need to add
 the responds to block.
 
-66
+65
 00:02:41,320 --> 00:02:45,270
 We only need to add render
 json: zombie.
 
-67
+66
 00:02:45,270 --> 00:02:47,990
 The moral of the story is that
 if our action only needs to
 
-68
+67
 00:02:47,990 --> 00:02:50,760
 respond to one thing, we
 don't need to have
 
-69
+68
 00:02:50,760 --> 00:02:52,800
 that responds to block.
 
-70
+69
 00:02:52,800 --> 00:02:55,570
 And since we're talking about
 JSON, when we're returning
 
-71
+70
 00:02:55,570 --> 00:02:58,690
 JSON when using an API, we also
 need to make sure we're
 
-72
+71
 00:02:58,690 --> 00:03:01,200
 returning the correct
 status codes.
 
-73
+72
 00:03:01,200 --> 00:03:04,040
 Some common status codes include
 ok, which is the
 
-74
+73
 00:03:04,040 --> 00:03:07,500
 default, created,
 unprocessable_entity.
 
-75
+74
 00:03:07,500 --> 00:03:12,580
 There's also unauthorized,
 processing, and not_found.
 
-76
+75
 00:03:12,580 --> 00:03:14,440
 You may see these
 in the scaffold
 
-77
+76
 00:03:14,440 --> 00:03:15,730
 that's created by default.
 
-78
+77
 00:03:15,730 --> 00:03:18,300
 In there, you might see
 unprocessable_entity used when
 
-79
+78
 00:03:18,300 --> 00:03:22,230
 we're returning the errors
 for the zombie.
 
-80
+79
 00:03:22,230 --> 00:03:24,790
 You also might see status:
 :created returned when we're
 
-81
+80
 00:03:24,790 --> 00:03:26,230
 creating a new zombie.
 
-82
+81
 00:03:26,230 --> 00:03:29,460
 This is also returning another
 header called location:.
 
-83
+82
 00:03:29,460 --> 00:03:32,190
 It's just an API best practice
 that if you're creating a new
 
-84
+83
 00:03:32,190 --> 00:03:36,840
 resource, you return a location
 which has the URL of
 
-85
+84
 00:03:36,840 --> 00:03:39,310
 where to find that resource.
 
-86
+85
 00:03:39,310 --> 00:03:41,290
 Let's customize our
 API a little.
 
-87
+86
 00:03:41,290 --> 00:03:44,630
 Let's create a custom action
 in our Zombies controller
 
-88
+87
 00:03:44,630 --> 00:03:47,770
 that's going to return the
 decomposition status, and if
 
-89
+88
 00:03:47,770 --> 00:03:51,640
 it's dead again, then also
 return the status code
 
-90
+89
 00:03:51,640 --> 00:03:53,175
 unprocessable_entity.
 
-91
+90
 00:03:53,175 --> 00:03:54,990
 Well, how might we do that?
 
-92
+91
 00:03:54,990 --> 00:03:56,500
 Well, it's going to
 take two steps.
 
-93
+92
 00:03:56,500 --> 00:03:58,530
 First, we need to add
 a new member route--
 
-94
+93
 00:03:58,530 --> 00:04:00,010
 a custom route--
 
-95
+94
 00:04:00,010 --> 00:04:01,630
 and then we're going to create
 a new action in the
 
-96
+95
 00:04:01,630 --> 00:04:03,200
 ZombiesController.
 
-97
+96
 00:04:03,200 --> 00:04:05,480
 So let's jump into it.
 
-98
+97
 00:04:05,480 --> 00:04:07,540
 The customer route we want is
 going to look like this, so we
 
-99
+98
 00:04:07,540 --> 00:04:11,870
 can go to zombies/4/decomp, and
 get back the JSON of the
 
-100
+99
 00:04:11,870 --> 00:04:13,920
 decomposition status.
 
-101
+100
 00:04:13,920 --> 00:04:16,070
 One way we can create this
 custom route is by using the
 
-102
+101
 00:04:16,070 --> 00:04:18,450
 match command, which we saw
 in the previous "Rails for
 
-103
+102
 00:04:18,450 --> 00:04:20,589
 Zombies," so something
 like this.
 
-104
+103
 00:04:20,589 --> 00:04:22,790
 We can do that, but there's
 a better way to do it.
 
-105
+104
 00:04:22,790 --> 00:04:24,950
 We can go into the resources.
 
-106
+105
 00:04:24,950 --> 00:04:27,530
 You can see here, here's our
 nested resources, and we can
 
-107
+106
 00:04:27,530 --> 00:04:30,490
 specify get :decomp,
 on: :member.
 
-108
+107
 00:04:30,490 --> 00:04:32,790
 This is going to create a custom
 RESTful Route, and it
 
-109
+108
 00:04:32,790 --> 00:04:36,060
 does the same thing as that
 match line up there.
 
-110
+109
 00:04:36,060 --> 00:04:37,710
 Then we can run $ rake routes.
 
-111
+110
 00:04:37,710 --> 00:04:42,540
 It'll give us back the routes,
 the path, the method, the URL
 
-112
+111
 00:04:42,540 --> 00:04:45,340
 that gets generated, and the
 action that gets called, which
 
-113
+112
 00:04:45,340 --> 00:04:46,830
 might be good to reference.
 
-114
+113
 00:04:46,830 --> 00:04:49,082
 We can link to it using this
 route helper if we want, so we
 
-115
+114
 00:04:49,082 --> 00:04:52,540
 can just say,
 decomp_zombie_path.
 
-116
+115
 00:04:52,540 --> 00:04:55,270
 Before we move on, let's take
 a deeper look at these two
 
-117
+116
 00:04:55,270 --> 00:04:58,460
 types of custom routes that we
 can use with our resources.
 
-118
+117
 00:04:58,460 --> 00:05:01,800
 There's a member route, which
 acts on a single resource, and
 
-119
+118
 00:05:01,800 --> 00:05:03,800
 there's the collection route,
 which acts on a
 
-120
+119
 00:05:03,800 --> 00:05:05,790
 collection of resources.
 
-121
+120
 00:05:05,790 --> 00:05:07,780
 Let's take a look at
 a couple examples.
 
-122
+121
 00:05:07,780 --> 00:05:08,800
 So here's our example.
 
-123
+122
 00:05:08,800 --> 00:05:11,030
 We're getting the decomposition
 state.
 
-124
+123
 00:05:11,030 --> 00:05:14,580
 We have to send in the resource
 that we want the
 
-125
+124
 00:05:14,580 --> 00:05:17,330
 decomposition state from,
 and then that gives
 
-126
+125
 00:05:17,330 --> 00:05:18,540
 us this route helper.
 
-127
+126
 00:05:18,540 --> 00:05:22,000
 Well, if we wanted to update
 the decay on a specific
 
-128
+127
 00:05:22,000 --> 00:05:24,610
 zombie, update is to put,
 so we could say
 
-129
+128
 00:05:24,610 --> 00:05:27,630
 put decay, on :member.
 
-130
+129
 00:05:27,630 --> 00:05:29,140
 This is our URL.
 
-131
+130
 00:05:29,140 --> 00:05:32,000
 And there is our route helper.
 
-132
+131
 00:05:32,000 --> 00:05:34,850
 If we wanted to get a list of
 all the freshest zombies, we
 
-133
+132
 00:05:34,850 --> 00:05:38,860
 could create a collection route
 called get :fresh, on:
 
-134
+133
 00:05:38,860 --> 00:05:39,680
 :collection.
 
-135
+134
 00:05:39,680 --> 00:05:42,480
 It would create this
 URL, and here would
 
-136
+135
 00:05:42,480 --> 00:05:44,160
 be the route helper.
 
-137
+136
 00:05:44,160 --> 00:05:46,870
 If we wanted to create a search
 on the zombies, we
 
-138
+137
 00:05:46,870 --> 00:05:50,230
 could call post :search, on:
 :collection, so it's going to
 
-139
+138
 00:05:50,230 --> 00:05:53,110
 act on the collection
 of those resources.
 
-140
+139
 00:05:53,110 --> 00:05:56,240
 This is the URL, and here's
 the route helper.
 
-141
+140
 00:05:56,240 --> 00:05:58,380
 Some examples of using
 this in our views--
 
-142
+141
 00:05:58,380 --> 00:06:01,710
 we could have link_to 'fresh
 zombies', fresh_zombies_path.
 
-143
+142
 00:06:01,710 --> 00:06:04,550
 And if you we a search form,
 it could look like this.
 
-144
-00:06:04,550 --> 00:06:07,080
-
-145
+143
 00:06:07,080 --> 00:06:08,640
 Let's jump back to our
 challenge now.
 
-146
+144
 00:06:08,640 --> 00:06:11,020
 So we figured out how to
 add that member route.
 
-147
+145
 00:06:11,020 --> 00:06:13,790
 The next step is we need to
 create a new action inside
 
-148
+146
 00:06:13,790 --> 00:06:15,630
 ZombiesController.
 
-149
+147
 00:06:15,630 --> 00:06:18,390
 So here we are in our
 ZombiesController.
 
-150
+148
 00:06:18,390 --> 00:06:20,200
 We have a decomp action.
 
-151
+149
 00:06:20,200 --> 00:06:23,600
 It's going to fetch the current
 zombie, check to see
 
-152
+150
 00:06:23,600 --> 00:06:26,430
 if decomposition is equal
 to 'Dead again'.
 
-153
+151
 00:06:26,430 --> 00:06:28,470
 If it is, then we're going to
 render out the JSON with
 
-154
+152
 00:06:28,470 --> 00:06:30,740
 status: :unprocessable_entity.
 
-155
+153
 00:06:30,740 --> 00:06:35,600
 Otherwise, just render out the
 JSON with status: :ok.
 
-156
+154
 00:06:35,600 --> 00:06:38,030
 This is going to render out
 JSON that looks like this.
 
-157
+155
 00:06:38,030 --> 00:06:40,120
 And we don't want to render
 out everything.
 
-158
+156
 00:06:40,120 --> 00:06:44,220
 We only care about that decomp
 value right there, so we're
 
-159
+157
 00:06:44,220 --> 00:06:46,970
 going to have to modify this
 code a little bit.
 
-160
+158
 00:06:46,970 --> 00:06:49,610
 So let's take a deeper look
 at the to_json syntax.
 
-161
+159
 00:06:49,610 --> 00:06:52,850
 If we only care about the name
 of the zombie in our JSON, we
 
-162
+160
 00:06:52,850 --> 00:06:55,390
 can run to_json(only: :name).
 
-163
+161
 00:06:55,390 --> 00:06:58,170
 If we want the name and
 the age, we can
 
-164
+162
 00:06:58,170 --> 00:07:01,290
 just send it in array.
 
-165
+163
 00:07:01,290 --> 00:07:03,910
 If, instead of including things,
 we want to exclude
 
-166
+164
 00:07:03,910 --> 00:07:06,620
 things, we can say (except:
 [:created_at, :updated_at,
 
-167
+165
 00:07:06,620 --> 00:07:07,770
 :id, :email, :bio]).
 
-168
+166
 00:07:07,770 --> 00:07:10,560
 That would print this out.
 
-169
+167
 00:07:10,560 --> 00:07:13,580
 And we can also include
 relationships.
 
-170
+168
 00:07:13,580 --> 00:07:15,310
 Remember, zombie has a brain.
 
-171
+169
 00:07:15,310 --> 00:07:18,820
 We can tell it to include that
 in the JSON that it creates.
 
-172
+170
 00:07:18,820 --> 00:07:20,970
 So, in this case, it
 would include this.
 
-173
+171
 00:07:20,970 --> 00:07:23,790
 Check out that brain
 towards the bottom.
 
-174
+172
 00:07:23,790 --> 00:07:27,560
 I noticed here that it is also
 including zombie_id, which
 
-175
+173
 00:07:27,560 --> 00:07:29,490
 we also might want to hide.
 
-176
+174
 00:07:29,490 --> 00:07:30,350
 It might be a good idea.
 
-177
+175
 00:07:30,350 --> 00:07:33,120
 But let's just continue on.
 
-178
+176
 00:07:33,120 --> 00:07:36,240
 What if we want to make this
 last line the default JSON
 
-179
+177
 00:07:36,240 --> 00:07:39,880
 response when we call
 @zombie.to_json?
 
-180
+178
 00:07:39,880 --> 00:07:41,110
 How might we do this?
 
-181
+179
 00:07:41,110 --> 00:07:43,370
 Well, we're going to dive
 into the Zombie model.
 
-182
+180
 00:07:43,370 --> 00:07:47,510
 Inside there, we're going
 to define as_json, set a
 
-183
+181
 00:07:47,510 --> 00:07:49,870
 parameter called option
 that defaults to nil.
 
-184
+182
 00:07:49,870 --> 00:07:52,900
 We'll call super(options
 and then our hash.
 
-185
+183
 00:07:52,900 --> 00:07:56,630
 What this is doing is it's
 checking to see if we sent in
 
-186
+184
 00:07:56,630 --> 00:07:59,320
 specifically what we want back
 in from the JSON, and if we
 
-187
+185
 00:07:59,320 --> 00:08:02,060
 have specifics about what
 we want, use that.
 
-188
+186
 00:08:02,060 --> 00:08:06,950
 Otherwise, if we just call
 to_json, use this hash.
 
-189
+187
 00:08:06,950 --> 00:08:08,500
 So let's jump back into
 our challenge now
 
-190
+188
 00:08:08,500 --> 00:08:10,780
 with this new knowledge.
 
-191
+189
 00:08:10,780 --> 00:08:14,250
 Here's our decomposition
 action again.
 
-192
+190
 00:08:14,250 --> 00:08:17,020
 If zombie_decomp is 'Dead
 again', render out only:
 
-193
+191
 00:08:17,020 --> 00:08:19,700
 :decomp with status:
 :unprocessable_entity.
 
-194
+192
 00:08:19,700 --> 00:08:22,380
 Otherwise, just render
 out :decomp.
 
-195
+193
 00:08:22,380 --> 00:08:24,600
 By default, the status is going
 to be OK, so I don't
 
-196
+194
 00:08:24,600 --> 00:08:27,440
 need to mention it in
 this second render.
 
-197
+195
 00:08:27,440 --> 00:08:30,780
 Here's the JSON that it's
 going to print out.
 
-198
+196
 00:08:30,780 --> 00:08:33,230
 And now, we're about
 halfway through.
 
-199
+197
 00:08:33,230 --> 00:08:35,130
 We've gotten through rendering,
 custom render
 
-200
+198
 00:08:35,130 --> 00:08:39,289
 routes, custom JSON, and now,
 we're on to the fun part--
 
-201
+199
 00:08:39,289 --> 00:08:41,880
 writing some AJAX.
 
-202
+200
 00:08:41,880 --> 00:08:45,000
 When I talk about AJAX, I'm
 talking about making actions
 
-203
+201
 00:08:45,000 --> 00:08:47,690
 in the browser, so when we click
 a link or submit a form,
 
-204
+202
 00:08:47,690 --> 00:08:49,400
 the page doesn't refresh.
 
-205
+203
 00:08:49,400 --> 00:08:51,700
 Stuff happens, it contacts
 the server--
 
-206
+204
 00:08:51,700 --> 00:08:53,830
 doesn't refresh the browser.
 
-207
+205
 00:08:53,830 --> 00:08:55,490
 For example, the first challenge
 we're going to look
 
-208
+206
 00:08:55,490 --> 00:08:59,060
 through is when delete is
 pressed on this list, we want
 
-209
+207
 00:08:59,060 --> 00:09:01,910
 that item to fade out
 automatically,
 
-210
+208
 00:09:01,910 --> 00:09:03,600
 not refresh the browser.
 
-211
+209
 00:09:03,600 --> 00:09:04,535
 How do we do that?
 
-212
+210
 00:09:04,535 --> 00:09:07,170
 Well, a couple different steps--
 first, we need to make
 
-213
+211
 00:09:07,170 --> 00:09:09,860
 that delete link
 a remote call.
 
-214
+212
 00:09:09,860 --> 00:09:12,940
 Then we're going to allow the
 controller to accept that
 
-215
+213
 00:09:12,940 --> 00:09:14,670
 JavaScript request.
 
-216
+214
 00:09:14,670 --> 00:09:16,330
 Then we'll write the
 JavaScript to
 
-217
+215
 00:09:16,330 --> 00:09:18,090
 send back to the client.
 
-218
+216
 00:09:18,090 --> 00:09:19,880
 So let's jump into it.
 
-219
+217
 00:09:19,880 --> 00:09:22,100
 So here is the index view.
 
-220
+218
 00:09:22,100 --> 00:09:25,300
 We're going through each of
 the zombies, doing that
 
-221
+219
 00:09:25,300 --> 00:09:27,180
 div_for you saw earlier--
 
-222
+220
 00:09:27,180 --> 00:09:28,310
 link_to Zombie.
 
-223
+221
 00:09:28,310 --> 00:09:31,160
 We've got "actions" 'edit'
 and 'delete'.
 
-224
+222
 00:09:31,160 --> 00:09:33,690
 So in this case, it's :delete
 we want to look at.
 
-225
+223
 00:09:33,690 --> 00:09:36,980
 All we have to do to make
 it a remote call is add
 
-226
+224
 00:09:36,980 --> 00:09:39,160
 remote: true.
 
-227
+225
 00:09:39,160 --> 00:09:40,800
 That's all there is to it.
 
-228
+226
 00:09:40,800 --> 00:09:43,320
 If you take a look at what this
 generates in the client,
 
-229
+227
 00:09:43,320 --> 00:09:46,550
 you'll see that all it's doing
 is adding another one of those
 
-230
+228
 00:09:46,550 --> 00:09:50,100
 HTML5 elements, data-remote.
 
-231
+229
 00:09:50,100 --> 00:09:52,460
 Rails, of course, is using
 that unobtrusive JavaScript
 
-232
+230
 00:09:52,460 --> 00:09:55,300
 file we saw earlier to
 hook into that and
 
-233
+231
 00:09:55,300 --> 00:09:58,240
 make it an AJAX call.
 
-234
+232
 00:09:58,240 --> 00:09:59,910
 So we've made the link
 a remote call.
 
-235
+233
 00:09:59,910 --> 00:10:00,810
 That was our first step.
 
-236
+234
 00:10:00,810 --> 00:10:01,560
 We're done with that.
 
-237
+235
 00:10:01,560 --> 00:10:04,230
 Next step-- we need to allow the
 controller to accept the
 
-238
+236
 00:10:04,230 --> 00:10:06,420
 JavaScript call, which
 is a lot easier
 
-239
+237
 00:10:06,420 --> 00:10:07,900
 than you might think.
 
-240
+238
 00:10:07,900 --> 00:10:11,090
 So let's jump into the
 ZombiesController.
 
-241
+239
 00:10:11,090 --> 00:10:12,410
 Here is our destroy action.
 
-242
+240
 00:10:12,410 --> 00:10:15,260
 This is the default scaffolding
 destroy action--
 
-243
+241
 00:10:15,260 --> 00:10:16,990
 nothing fancy about it.
 
-244
+242
 00:10:16,990 --> 00:10:20,870
 All we have to do here is write
 format.js, and that
 
-245
+243
 00:10:20,870 --> 00:10:25,200
 tells our action that it can
 respond to JavaScript.
 
-246
+244
 00:10:25,200 --> 00:10:26,300
 That's all we have
 to do there.
 
-247
+245
 00:10:26,300 --> 00:10:28,210
 Next step-- the third step--
 we need to write the
 
-248
+246
 00:10:28,210 --> 00:10:31,210
 JavaScript to send back
 to the client.
 
-249
+247
 00:10:31,210 --> 00:10:32,670
 So let's jump into.
 
-250
+248
 00:10:32,670 --> 00:10:36,980
 That we would put in the
 destroy.js.erb in there.
 
-251
+249
 00:10:36,980 --> 00:10:41,180
 We just call dom_id on the
 zombie to get the div_id where
 
-252
+250
 00:10:41,180 --> 00:10:44,650
 that zombie lives, and
 call .fadeOut(); so
 
-253
+251
 00:10:44,650 --> 00:10:46,130
 we can fade it out.
 
-254
+252
 00:10:46,130 --> 00:10:48,730
 Let's go ahead and take a look
 at what this view looks like.
 
-255
+253
 00:10:48,730 --> 00:10:49,920
 So here's a little screencast.
 
-256
+254
 00:10:49,920 --> 00:10:52,180
 We hit delete, and
 it fades out.
 
-257
+255
 00:10:52,180 --> 00:10:53,460
 We can hit delete on Tony.
 
-258
+256
 00:10:53,460 --> 00:10:54,150
 It fades out.
 
-259
+257
 00:10:54,150 --> 00:10:56,260
 And let's do one more--
 
-260
+258
 00:10:56,260 --> 00:10:58,730
 delete and it fades out.
 
-261
+259
 00:10:58,730 --> 00:11:00,260
 Pretty cool.
 
-262
+260
 00:11:00,260 --> 00:11:02,350
 So we can destroy zombies
 using AJAX.
 
-263
+261
 00:11:02,350 --> 00:11:05,130
 Let's add a form so that when we
 type in a zombie name here,
 
-264
+262
 00:11:05,130 --> 00:11:07,340
 we can hit that create zombie
 button, and it'll
 
-265
+263
 00:11:07,340 --> 00:11:09,500
 automatically populate
 that list without
 
-266
+264
 00:11:09,500 --> 00:11:10,970
 refreshing the page.
 
-267
+265
 00:11:10,970 --> 00:11:12,510
 Couple steps involved here.
 
-268
+266
 00:11:12,510 --> 00:11:15,130
 We need to write format.js
 in the controller--
 
-269
+267
 00:11:15,130 --> 00:11:16,130
 simple as that.
 
-270
+268
 00:11:16,130 --> 00:11:17,940
 Refactor the view-- we're going
 to refactor the view a
 
-271
+269
 00:11:17,940 --> 00:11:20,110
 little bit, and then
 create the form.
 
-272
+270
 00:11:20,110 --> 00:11:22,250
 And then lastly, we're going
 to create the JavaScript.
 
-273
+271
 00:11:22,250 --> 00:11:24,530
 So let's dive into it.
 
-274
+272
 00:11:24,530 --> 00:11:26,580
 Here we are in our
 ZombiesController.
 
-275
+273
 00:11:26,580 --> 00:11:29,180
 This is the default create
 action you get with your
 
-276
+274
 00:11:29,180 --> 00:11:30,200
 scaffolding.
 
-277
+275
 00:11:30,200 --> 00:11:34,330
 All we need to do here, again,
 is add format.js.
 
-278
+276
 00:11:34,330 --> 00:11:35,150
 Next step--
 
-279
+277
 00:11:35,150 --> 00:11:37,500
 we need to refactor the view
 and create the form.
 
-280
+278
 00:11:37,500 --> 00:11:41,580
 So here is our is our
 zombie list again.
 
-281
+279
 00:11:41,580 --> 00:11:42,730
 We're going to refactor this.
 
-282
+280
 00:11:42,730 --> 00:11:44,200
 We're going to create
 a partial.
 
-283
+281
 00:11:44,200 --> 00:11:46,670
 It'll make it easier
 for our AJAX.
 
-284
+282
 00:11:46,670 --> 00:11:51,340
 So we're going to take out the
 div, put the div into a _zombie
 
-285
+283
 00:11:51,340 --> 00:11:55,240
 partial, then inside of our
 loop, all we have to do is
 
-286
+284
 00:11:55,240 --> 00:11:56,600
 render zombie.
 
-287
+285
 00:11:56,600 --> 00:11:59,150
 Hm, this is a little bit
 different than our form
 
-288
+286
 00:11:59,150 --> 00:12:00,450
 partial we saw earlier.
 
-289
+287
 00:12:00,450 --> 00:12:02,370
 There's no quotes
 around zombie.
 
-290
+288
 00:12:02,370 --> 00:12:04,690
 What's happening under the
 covers is that Rails is
 
-291
+289
 00:12:04,690 --> 00:12:08,090
 looking at that zombie Active
 Record model, looking at the
 
-292
+290
 00:12:08,090 --> 00:12:12,410
 class, and then looking for a
 partial for that class, which
 
-293
+291
 00:12:12,410 --> 00:12:15,730
 by default, is going to
 be the Zombies file
 
-294
+292
 00:12:15,730 --> 00:12:18,160
 in the Zombies directory.
 
-295
+293
 00:12:18,160 --> 00:12:20,860
 We can actually refactor
 this loop to
 
-296
+294
 00:12:20,860 --> 00:12:23,960
 do just render @zombies.
 
-297
+295
 00:12:23,960 --> 00:12:27,010
 So those two things there,
 they're the same thing.
 
-298
+296
 00:12:27,010 --> 00:12:28,880
 Rails is smart enough to know
 that we have a group of
 
-299
+297
 00:12:28,880 --> 00:12:31,480
 zombies who want to iterate over
 them and render out the
 
-300
+298
 00:12:31,480 --> 00:12:32,720
 zombies partial.
 
-301
+299
 00:12:32,720 --> 00:12:35,190
 Now, let's write the AJAX form
 for creating the zombie.
 
-302
+300
 00:12:35,190 --> 00:12:35,830
 So here, we have
 
-303
+301
 00:12:35,830 --> 00:12:37,080
 form_for(Zombie.new, remote: true).
 
-304
-00:12:37,080 --> 00:12:39,230
-
-305
+302
 00:12:39,230 --> 00:12:41,290
 That's how we make
 it an AJAX form.
 
-306
+303
 00:12:41,290 --> 00:12:44,990
 Inside there, we're going to
 have div class="field" and
 
-307
+304
 00:12:44,990 --> 00:12:47,820
 the submit button down
 there in the bottom.
 
-308
+305
 00:12:47,820 --> 00:12:49,370
 That's all there really
 is to it.
 
-309
+306
 00:12:49,370 --> 00:12:51,150
 Now, let's create
 the JavaScript.
 
-310
+307
 00:12:51,150 --> 00:12:55,470
 So inside the create.js.erb,
 we're going to go inside that
 
-311
+308
 00:12:55,470 --> 00:13:00,380
 zombies div, and we're going
 to append a new zombie.
 
-312
+309
 00:13:00,380 --> 00:13:01,010
 We're going to call it
 
-313
+310
 00:13:01,010 --> 00:13:03,590
 escape_javascript(render zombie).
 
-314
+311
 00:13:03,590 --> 00:13:06,730
 We have to escape it properly
 because we're putting all this
 
-315
+312
 00:13:06,730 --> 00:13:10,290
 HTML right into this
 JavaScript.
 
-316
+313
 00:13:10,290 --> 00:13:12,570
 Then we're going to specify the
 div for the zombie we just
 
-317
+314
 00:13:12,570 --> 00:13:15,240
 created and highlight
 it, so it's going to
 
-318
+315
 00:13:15,240 --> 00:13:16,780
 highlight in yellow.
 
-319
+316
 00:13:16,780 --> 00:13:20,940
 But what about when
 the name is blank?
 
-320
+317
 00:13:20,940 --> 00:13:25,340
 We do have a validation on name
 for our zombie, so we
 
-321
+318
 00:13:25,340 --> 00:13:27,950
 need to have some sort of
 feedback to let people know
 
-322
+319
 00:13:27,950 --> 00:13:29,990
 when they try and submit the
 form when it's blank that
 
-323
+320
 00:13:29,990 --> 00:13:32,230
 that's not working.
 
-324
+321
 00:13:32,230 --> 00:13:34,030
 So we're going to add
 to the JavaScript.
 
-325
+322
 00:13:34,030 --> 00:13:36,850
 We're going to check to see if
 the zombie is a new record.
 
-326
+323
 00:13:36,850 --> 00:13:39,220
 If it's a new record, that
 means it did not save
 
-327
+324
 00:13:39,220 --> 00:13:44,060
 successfully, in which case, we
 want to highlight the form.
 
-328
+325
 00:13:44,060 --> 00:13:46,070
 We're going to highlight
 it in red.
 
-329
+326
 00:13:46,070 --> 00:13:50,190
 Otherwise, go ahead and append
 the new zombie to the list.
 
-330
+327
 00:13:50,190 --> 00:13:53,030
 Since we're using the highlight
 effect here, we're
 
-331
+328
 00:13:53,030 --> 00:13:57,500
 going to have to add jquery-ui
 to our JavaScript libraries.
 
-332
+329
 00:13:57,500 --> 00:14:00,640
 To do that, we're going to jump
 into the application.js,
 
-333
+330
 00:14:00,640 --> 00:14:05,370
 and all we have to do is
 require jquery_ui.
 
-334
+331
 00:14:05,370 --> 00:14:07,230
 That's all there is to it.
 
-335
+332
 00:14:07,230 --> 00:14:09,100
 Now, here's a screen cast
 of it in action.
 
-336
+333
 00:14:09,100 --> 00:14:11,350
 So we click Create Zombie
 and it doesn't work.
 
-337
+334
 00:14:11,350 --> 00:14:12,590
 It gives us that red.
 
-338
+335
 00:14:12,590 --> 00:14:14,690
 We can then start adding
 zombies, and they get added
 
-339
+336
 00:14:14,690 --> 00:14:17,190
 right on to the list of the
 zombies and highlighted.
 
-340
-00:14:17,190 --> 00:14:24,230
-
-341
+337
 00:14:24,230 --> 00:14:25,610
 Two more challenges left.
 
-342
+338
 00:14:25,610 --> 00:14:27,900
 In this one, we want to create
 a form which allows us to set
 
-343
+339
 00:14:27,900 --> 00:14:32,340
 a custom decomposition phase
 on the zombie show page.
 
-344
+340
 00:14:32,340 --> 00:14:34,380
 To do this, we need to create
 a custom route for our
 
-345
+341
 00:14:34,380 --> 00:14:36,020
 action-- a new custom route.
 
-346
+342
 00:14:36,020 --> 00:14:39,010
 We need to define the form,
 create the action in the
 
-347
+343
 00:14:39,010 --> 00:14:41,360
 controller, and then write the
 JavaScript, which we're going
 
-348
+344
 00:14:41,360 --> 00:14:42,980
 to send back to the client.
 
-349
+345
 00:14:42,980 --> 00:14:47,510
 So first things first, let's
 jump back into our routes.
 
-350
+346
 00:14:47,510 --> 00:14:49,700
 Here we have our routes file.
 
-351
+347
 00:14:49,700 --> 00:14:52,660
 Inside there, we're going
 to update the
 
-352
+348
 00:14:52,660 --> 00:14:54,260
 decomposition status.
 
-353
+349
 00:14:54,260 --> 00:14:55,950
 So we're going to
 do a put action.
 
-354
+350
 00:14:55,950 --> 00:14:58,790
 Call it custom_decomp,
 on: :member, since
 
-355
+351
 00:14:58,790 --> 00:15:00,510
 it's a member route.
 
-356
+352
 00:15:00,510 --> 00:15:02,150
 Then let's define the form.
 
-357
+353
 00:15:02,150 --> 00:15:04,100
 Inside the show action is where
 we want to define the
 
-358
+354
 00:15:04,100 --> 00:15:07,050
 form, but I also want to show
 you that we have a span here
 
-359
+355
 00:15:07,050 --> 00:15:08,830
 called decomp, and this
 is where it shows the
 
-360
+356
 00:15:08,830 --> 00:15:10,310
 decomposition phase.
 
-361
+357
 00:15:10,310 --> 00:15:13,690
 This is the span we want
 to update with AJAX.
 
-362
+358
 00:15:13,690 --> 00:15:14,910
 Let's go and create the form.
 
-363
+359
 00:15:14,910 --> 00:15:18,030
 We're going to wrap the form in
 a dive called custom_phase.
 
-364
+360
 00:15:18,030 --> 00:15:19,480
 We call form_for.
 
-365
+361
 00:15:19,480 --> 00:15:21,160
 We need a custom URL here.
 
-366
+362
 00:15:21,160 --> 00:15:24,230
 We want to go to our
 custom_decomp_zombie_path.
 
-367
+363
 00:15:24,230 --> 00:15:27,700
 We need to add remote: true
 to make it an AJAX form.
 
-368
+364
 00:15:27,700 --> 00:15:30,490
 We're going to give it a
 Custom Phase title, a
 
-369
+365
 00:15:30,490 --> 00:15:33,940
 text_field, a submit
 button, and
 
-370
+366
 00:15:33,940 --> 00:15:36,660
 that's pretty much it.
 
-371
+367
 00:15:36,660 --> 00:15:38,400
 So we have the custom route.
 
-372
+368
 00:15:38,400 --> 00:15:39,450
 We've defined the form.
 
-373
+369
 00:15:39,450 --> 00:15:42,295
 Next up, we need to create the
 action in our controller.
 
-374
+370
 00:15:42,295 --> 00:15:44,230
 Let's jump into our
 controller.
 
-375
+371
 00:15:44,230 --> 00:15:46,440
 So here's the custom_decomp
 action.
 
-376
+372
 00:15:46,440 --> 00:15:49,500
 In here, we're going
 to find the zombie.
 
-377
+373
 00:15:49,500 --> 00:15:53,220
 We're going to set the
 decomposition status, and then
 
-378
+374
 00:15:53,220 --> 00:15:54,880
 we're going to save
 the zombie.
 
-379
+375
 00:15:54,880 --> 00:15:57,350
 And we don't need
 a respond_to.
 
-380
+376
 00:15:57,350 --> 00:16:00,520
 We're only responding
 to JavaScript.
 
-381
+377
 00:16:00,520 --> 00:16:00,980
 That's all.
 
-382
+378
 00:16:00,980 --> 00:16:02,950
 So we don't need a
 respond_to block.
 
-383
+379
 00:16:02,950 --> 00:16:03,970
 Now, let's write the
 JavaScript to
 
-384
+380
 00:16:03,970 --> 00:16:05,900
 send back to the client.
 
-385
+381
 00:16:05,900 --> 00:16:08,350
 First, we're going to set that
 decomposition span to the new
 
-386
+382
 00:16:08,350 --> 00:16:09,950
 value of our decomposition.
 
-387
+383
 00:16:09,950 --> 00:16:12,660
 Let's go ahead and highlight
 that, so it sticks out-- calls
 
-388
+384
 00:16:12,660 --> 00:16:13,950
 our attention.
 
-389
+385
 00:16:13,950 --> 00:16:17,970
 Then if the zombie decomposition
 is "Dead again",
 
-390
+386
 00:16:17,970 --> 00:16:21,380
 go ahead and fade out that
 form we just created.
 
-391
+387
 00:16:21,380 --> 00:16:23,150
 Let's check this
 out in action.
 
-392
+388
 00:16:23,150 --> 00:16:25,910
 So, here, we're going to
 set a Custom Phase.
 
-393
+389
 00:16:25,910 --> 00:16:28,100
 You can see when we add
 that, it highlights
 
-394
+390
 00:16:28,100 --> 00:16:29,350
 it and updates it.
 
-395
-00:16:29,350 --> 00:16:31,660
-
-396
+391
 00:16:31,660 --> 00:16:34,090
 And now when we put
 Dead again, it
 
-397
+392
 00:16:34,090 --> 00:16:36,890
 makes the form disappear.
 
-398
+393
 00:16:36,890 --> 00:16:39,120
 Now, it's time for our
 final challenge.
 
-399
+394
 00:16:39,120 --> 00:16:41,180
 And we're basically going to
 do the same thing we did in
 
-400
+395
 00:16:41,180 --> 00:16:43,830
 our previous challenge, except
 this time, we're only going to
 
-401
+396
 00:16:43,830 --> 00:16:47,020
 communicate with our server
 using JSON, and then we're
 
-402
+397
 00:16:47,020 --> 00:16:49,750
 going to write some client side
 JavaScript to communicate
 
-403
+398
 00:16:49,750 --> 00:16:51,310
 with our server using JSON.
 
-404
+399
 00:16:51,310 --> 00:16:54,020
 So it's kind of like we're
 creating an API on the server,
 
-405
+400
 00:16:54,020 --> 00:16:57,070
 and then writing JavaScript to
 communicate with that API.
 
-406
+401
 00:16:57,070 --> 00:16:59,125
 To make this happen, we're
 going to define the form.
 
-407
+402
 00:16:59,125 --> 00:17:00,750
 It's going to be a new form.
 
-408
+403
 00:17:00,750 --> 00:17:03,330
 We're going to modify the
 custom_decomp action so that
 
-409
+404
 00:17:03,330 --> 00:17:07,339
 it responds to JSON, and then
 we're going to write the
 
-410
+405
 00:17:07,339 --> 00:17:09,180
 client side JavaScript,
 and we're going to use
 
-411
+406
 00:17:09,180 --> 00:17:11,260
 CoffeeScript to do so.
 
-412
+407
 00:17:11,260 --> 00:17:13,420
 First up, let's define
 the new form.
 
-413
+408
 00:17:13,420 --> 00:17:15,400
 We specify form_for @zombie,
 
-414
+409
 00:17:15,400 --> 00:17:18,560
 custom URL just like before,
 except here, we're not putting
 
-415
+410
 00:17:18,560 --> 00:17:19,920
 in remote true.
 
-416
+411
 00:17:19,920 --> 00:17:22,589
 We give it a title,
 text_field, and
 
-417
+412
 00:17:22,589 --> 00:17:24,660
 the submit button.
 
-418
+413
 00:17:24,660 --> 00:17:27,470
 Now, let's modify the advanced
 decomp action.
 
-419
+414
 00:17:27,470 --> 00:17:30,640
 In here, we're going to have a
 respond_to block, and tell it
 
-420
+415
 00:17:30,640 --> 00:17:35,800
 that it responds to JavaScript
 and now JSON.
 
-421
+416
 00:17:35,800 --> 00:17:37,960
 If it wants JSON, we're
 going to render out
 
-422
+417
 00:17:37,960 --> 00:17:41,300
 just the :decomp field.
 
-423
+418
 00:17:41,300 --> 00:17:44,440
 Lastly, we're going to write
 some client side CoffeeScript.
 
-424
+419
 00:17:44,440 --> 00:17:47,850
 So here we are inside of
 our zombies.js.coffee.
 
-425
+420
 00:17:47,850 --> 00:17:50,270
 We've got (document).ready.
 
-426
+421
 00:17:50,270 --> 00:17:51,570
 Grab that form.
 
-427
+422
 00:17:51,570 --> 00:17:54,380
 When somebody submits the form,
 prevent the form from
 
-428
+423
 00:17:54,380 --> 00:17:55,580
 submitting.
 
-429
+424
 00:17:55,580 --> 00:17:57,750
 Grab the form URL because we're
 going to want to use
 
-430
+425
 00:17:57,750 --> 00:17:59,100
 that later.
 
-431
+426
 00:17:59,100 --> 00:18:03,530
 Grab the custom decomposition
 value from that input field.
 
-432
+427
 00:18:03,530 --> 00:18:05,340
 Then we're going to
 do an AJAX call.
 
-433
+428
 00:18:05,340 --> 00:18:06,630
 The type is going to be "put".
 
-434
+429
 00:18:06,630 --> 00:18:08,330
 Remember, it's a "put" action.
 
-435
+430
 00:18:08,330 --> 00:18:10,620
 We're going to call the
 URL from the form.
 
-436
+431
 00:18:10,620 --> 00:18:12,300
 We're going to send
 in some JSON.
 
-437
+432
 00:18:12,300 --> 00:18:14,610
 This is just plain old
 JSON right here.
 
-438
+433
 00:18:14,610 --> 00:18:18,160
 We specify the data type, and
 then if this request is
 
-439
+434
 00:18:18,160 --> 00:18:23,210
 successful, we're going to set
 the new decomposition, give it
 
-440
+435
 00:18:23,210 --> 00:18:27,780
 a highlight, then fadeOut
 the custom phase form if
 
-441
+436
 00:18:27,780 --> 00:18:31,720
 json_decomp equals
 "Dead again".
 
-442
+437
 00:18:31,720 --> 00:18:33,490
 Let's take a look at this
 form in action.
 
-443
+438
 00:18:33,490 --> 00:18:39,660
 So I can set the Custom Phase as
 Smelly, as Putrid, or even
 
-444
+439
 00:18:39,660 --> 00:18:40,460
 as Dead again.
 
-445
+440
 00:18:40,460 --> 00:18:43,130
 And if I set it as Dead again,
 and I hit Set, it makes the
 
-446
+441
 00:18:43,130 --> 00:18:45,240
 form disappear.
 
-447
+442
 00:18:45,240 --> 00:18:47,510
 So you've reached the end of the
 videos, but your adventure
 
-448
+443
 00:18:47,510 --> 00:18:49,030
 isn't over yet.
 
-449
+444
 00:18:49,030 --> 00:18:51,080
 You've got some pretty
 sophisticated challenges to
 
-450
+445
 00:18:51,080 --> 00:18:53,220
 get through, and then once you
 get through those, don't
 
-451
+446
 00:18:53,220 --> 00:18:55,880
 forget, you've got that outro
 video, where we'll tell you
 
-452
+447
 00:18:55,880 --> 00:18:58,260
 where to go to learn more about
 each of these topics.
-
-453
-00:18:58,260 --> 00:19:03,343

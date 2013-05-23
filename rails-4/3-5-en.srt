@@ -1,400 +1,384 @@
 ﻿1
-00:00:00,000 --> 00:00:02,480
-
-
-2
 00:00:02,480 --> 00:00:03,250
 I'm Gregg Pollack.
 
-3
+2
 00:00:03,250 --> 00:00:06,310
 And you're watching "Rails 4,
 Zombie Outlaws." In this
 
-4
+3
 00:00:06,310 --> 00:00:09,170
 level, we're going to be talking
 about filters, session
 
-5
+4
 00:00:09,170 --> 00:00:11,500
 and custom flash types.
 
-6
+5
 00:00:11,500 --> 00:00:13,260
 So you're probably
 familiar with
 
-7
+6
 00:00:13,260 --> 00:00:14,960
 action controller filters.
 
-8
+7
 00:00:14,960 --> 00:00:17,710
 Sometimes we use them to
 set instance variables.
 
-9
+8
 00:00:17,710 --> 00:00:20,180
 Sometimes we use them
 for authentication.
 
-10
+9
 00:00:20,180 --> 00:00:23,740
 But the word filter doesn't
 really accurately describe
 
-11
+10
 00:00:23,740 --> 00:00:24,630
 what we're doing.
 
-12
+11
 00:00:24,630 --> 00:00:28,580
 We're not filtering any data
 inside of our filters.
 
-13
+12
 00:00:28,580 --> 00:00:31,740
 That's why in Rails 4, we have
 a new syntax for this, or an
 
-14
+13
 00:00:31,740 --> 00:00:33,130
 alternative syntax.
 
-15
+14
 00:00:33,130 --> 00:00:37,300
 We can say "before_action," like
 you see here, which kind
 
-16
+15
 00:00:37,300 --> 00:00:41,850
 of describes what we're doing
 in a more accurate way.
 
-17
+16
 00:00:41,850 --> 00:00:44,530
 As I mentioned, this is
 an alternative syntax.
 
-18
+17
 00:00:44,530 --> 00:00:47,680
 You can still use all those
 filter methods, but now they
 
-19
+18
 00:00:47,680 --> 00:00:50,900
 have equivalent action methods
 as you see here.
 
-20
-00:00:50,900 --> 00:00:54,740
-
-
-21
+19
 00:00:54,740 --> 00:00:56,660
 Let's take a minute to
 talk about session
 
-22
+20
 00:00:56,660 --> 00:00:58,420
 and how we use it.
 
-23
+21
 00:00:58,420 --> 00:01:01,460
 When we're dealing with login,
 we might have a Sessions
 
-24
+22
 00:01:01,460 --> 00:01:02,490
 Controller.
 
-25
+23
 00:01:02,490 --> 00:01:05,610
 Inside there, when somebody
 logs in, we might set the
 
-26
+24
 00:01:05,610 --> 00:01:10,000
 Session User ID equal to
 that particular user.
 
-27
+25
 00:01:10,000 --> 00:01:14,510
 That way, when that user comes
 back to the website, we can
 
-28
+26
 00:01:14,510 --> 00:01:17,950
 read that user ID back
 out of the session to
 
-29
+27
 00:01:17,950 --> 00:01:19,450
 get the current user.
 
-30
+28
 00:01:19,450 --> 00:01:21,690
 But what is really going on
 under the covers here to
 
-31
+29
 00:01:21,690 --> 00:01:25,630
 persist that session variable?
 
-32
+30
 00:01:25,630 --> 00:01:29,260
 By default, Rails uses a
 Cookie Session store.
 
-33
+31
 00:01:29,260 --> 00:01:33,880
 So on the first request after
 the session gets created, the
 
-34
+32
 00:01:33,880 --> 00:01:36,740
 application will send the
 session data back to the
 
-35
+33
 00:01:36,740 --> 00:01:40,030
 browser in the form of
 a cookie that gets
 
-36
+34
 00:01:40,030 --> 00:01:41,170
 stored in the browser.
 
-37
+35
 00:01:41,170 --> 00:01:43,970
 And then all of the next
 requests that browser does,
 
-38
+36
 00:01:43,970 --> 00:01:47,060
 it's going to send that cookie
 back to the app.
 
-39
+37
 00:01:47,060 --> 00:01:49,410
 The app then reads the
 information out of the cookie
 
-40
+38
 00:01:49,410 --> 00:01:53,520
 back into that session, which
 allows it to read the user ID
 
-41
+39
 00:01:53,520 --> 00:01:54,770
 as you see here.
 
-42
-00:01:54,770 --> 00:01:56,840
-
-
-43
+40
 00:01:56,840 --> 00:01:59,660
 So back in Rails 3, that cookie
 that gets created which
 
-44
+41
 00:01:59,660 --> 00:02:01,370
 contains the session variables,
 
-45
+42
 00:02:01,370 --> 00:02:03,220
 is digitally signed.
 
-46
+43
 00:02:03,220 --> 00:02:07,170
 What this means is that a user
 could not alter this data.
 
-47
+44
 00:02:07,170 --> 00:02:10,039
 However, they can read it.
 
-48
+45
 00:02:10,039 --> 00:02:13,590
 So if we use some Ruby code as
 you see down here, we can read
 
-49
+46
 00:02:13,590 --> 00:02:16,790
 out the user ID of
 one, two, three.
 
-50
+47
 00:02:16,790 --> 00:02:18,420
 So this is mostly secure.
 
-51
+48
 00:02:18,420 --> 00:02:22,030
 But Rails 4 adds another
 layer of security by
 
-52
+49
 00:02:22,030 --> 00:02:24,290
 encrypting the cookie.
 
-53
+50
 00:02:24,290 --> 00:02:27,640
 So here you can see in Rails 4,
 the cookie gets encrypted.
 
-54
+51
 00:02:27,640 --> 00:02:30,420
 And now if we try to read
 content from that encrypted
 
-55
+52
 00:02:30,420 --> 00:02:35,170
 cookie, well, we just can't.
 
-56
+53
 00:02:35,170 --> 00:02:38,220
 Rails uses the secret_key_base
 to encrypt this cookie, which
 
-57
+54
 00:02:38,220 --> 00:02:40,580
 is inside of your
 secret_token.rb.
 
-58
+55
 00:02:40,580 --> 00:02:44,540
 So if your application is stored
 on a public repo, you
 
-59
+56
 00:02:44,540 --> 00:02:47,910
 probably don't want this checked
 into source control.
 
-60
+57
 00:02:47,910 --> 00:02:49,850
 So you might want to do
 something like this in
 
-61
+58
 00:02:49,850 --> 00:02:52,330
 production, where you're storing
 the Secret Key Base
 
-62
+59
 00:02:52,330 --> 00:02:55,420
 inside an environment
 variable.
 
-63
+60
 00:02:55,420 --> 00:02:57,560
 Now let's take a look
 at Flash types.
 
-64
+61
 00:02:57,560 --> 00:03:00,680
 As you may already know, we
 use Flash types to send
 
-65
+62
 00:03:00,680 --> 00:03:02,380
 messages back to our user.
 
-66
+63
 00:03:02,380 --> 00:03:05,000
 In this case, we're saying
 "item created."
 
-67
+64
 00:03:05,000 --> 00:03:08,950
 Then inside of our show.erb,
 we specify where we want to
 
-68
+65
 00:03:08,950 --> 00:03:10,380
 print out our Flash message.
 
-69
+66
 00:03:10,380 --> 00:03:13,080
 And then it prints it in our
 resulting HTML, maybe looking
 
-70
+67
 00:03:13,080 --> 00:03:14,330
 something like this.
 
-71
-00:03:14,330 --> 00:03:16,760
-
-
-72
+68
 00:03:16,760 --> 00:03:20,720
 In more recent versions of Rails
 3 and in Rails 4, we
 
-73
+69
 00:03:20,720 --> 00:03:24,280
 don't even have to use Flash
 Notice and Flash Alert inside
 
-74
+70
 00:03:24,280 --> 00:03:25,750
 of our ERB files.
 
-75
+71
 00:03:25,750 --> 00:03:29,070
 For short, we can do just
 Notice and Alert.
 
-76
+72
 00:03:29,070 --> 00:03:32,400
 However, we can only use these
 helper methods on registered
 
-77
+73
 00:03:32,400 --> 00:03:35,650
 flash types.
 
-78
+74
 00:03:35,650 --> 00:03:38,410
 In Rails 4, we now have the
 ability to specify our own
 
-79
+75
 00:03:38,410 --> 00:03:39,910
 custom flash types.
 
-80
+76
 00:03:39,910 --> 00:03:43,360
 So here, we're specifying
 flash types "grunt" and
 
-81
+77
 00:03:43,360 --> 00:03:45,600
 "snarl" inside of our
 application controller.
 
-82
+78
 00:03:45,600 --> 00:03:48,020
 Then inside of or controllers,
 we can set these Flash types,
 
-83
+79
 00:03:48,020 --> 00:03:50,810
 either by setting them
 explicitly or even using the
 
-84
+80
 00:03:50,810 --> 00:03:52,020
 redirect syntax.
 
-85
+81
 00:03:52,020 --> 00:03:55,150
 Then inside of our ERB files,
 we can print them out using
 
-86
+82
 00:03:55,150 --> 00:03:56,400
 the Helper methods.

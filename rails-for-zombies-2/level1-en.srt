@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:20,530
 [MUSIC PLAYING]
 
@@ -56,1781 +56,1736 @@ run some commands and follow
 along as we teach them.
 
 13
-00:00:46,710 --> 00:00:49,410
-
-14
 00:00:49,410 --> 00:00:51,300
 I'm not going to go into the
 nitty gritty details of
 
-15
+14
 00:00:51,300 --> 00:00:53,540
 installing Rails on
 every platform.
 
-16
+15
 00:00:53,540 --> 00:00:55,810
 I'm just going to mention that
 if you're on Windows and you
 
-17
+16
 00:00:55,810 --> 00:00:57,460
 don't have it installed
 yet, head over to
 
-18
+17
 00:00:57,460 --> 00:00:58,670
 railsinstaller.org.
 
-19
+18
 00:00:58,670 --> 00:01:00,590
 There's instructions there, a
 downloader, you'll be up and
 
-20
+19
 00:01:00,590 --> 00:01:01,960
 running in no time.
 
-21
+20
 00:01:01,960 --> 00:01:05,790
 If, however, you're running OS X
 or Linux, I highly recommend
 
-22
+21
 00:01:05,790 --> 00:01:08,870
 going over to railstutorial.org
 and just
 
-23
+22
 00:01:08,870 --> 00:01:10,670
 going through the
 first chapter.
 
-24
+23
 00:01:10,670 --> 00:01:12,410
 It'll get everything
 installed you.
 
-25
+24
 00:01:12,410 --> 00:01:14,170
 You'll even get an application
 deployed on Heroku.
 
-26
-00:01:14,170 --> 00:01:16,770
-
-27
+25
 00:01:16,770 --> 00:01:19,050
 So once you have Rails
 installed, if you run Rails
 
-28
+26
 00:01:19,050 --> 00:01:22,420
 from any particular directory
 that's not a Rails app, it's
 
-29
+27
 00:01:22,420 --> 00:01:25,140
 going to give you the syntax on
 how to create a Rails app
 
-30
+28
 00:01:25,140 --> 00:01:26,830
 with a bunch of different
 options.
 
-31
+29
 00:01:26,830 --> 00:01:29,790
 You can skip ActiveRecord,
 specify what database you want
 
-32
+30
 00:01:29,790 --> 00:01:32,090
 to use, specify what JavaScript
 framework you want
 
-33
+31
 00:01:32,090 --> 00:01:35,050
 to use, couple runtime options,
 and then finally give
 
-34
+32
 00:01:35,050 --> 00:01:39,030
 you an example of how to
 create the Rails app.
 
-35
+33
 00:01:39,030 --> 00:01:41,150
 Let's go ahead and create our
 first Rails app by running
 
-36
+34
 00:01:41,150 --> 00:01:44,050
 rails new TwitterForZombies.
 
-37
+35
 00:01:44,050 --> 00:01:46,760
 When we run that command it's
 going to create a bunch of
 
-38
+36
 00:01:46,760 --> 00:01:50,040
 files for us in a bunch
 of directories.
 
-39
+37
 00:01:50,040 --> 00:01:51,900
 Some of these directories should
 look familiar from
 
-40
+38
 00:01:51,900 --> 00:01:54,080
 Rails for Zombies 1, like
 your Controllers,
 
-41
+39
 00:01:54,080 --> 00:01:56,090
 Models and Views directory.
 
-42
+40
 00:01:56,090 --> 00:01:59,140
 At the end it's going to
 run bundle install.
 
-43
+41
 00:01:59,140 --> 00:02:00,880
 What bundle install is going
 to do is go out to the
 
-44
+42
 00:02:00,880 --> 00:02:03,600
 internet and download any
 external dependencies that
 
-45
+43
 00:02:03,600 --> 00:02:05,915
 your Rails application
 depends on.
 
-46
+44
 00:02:05,915 --> 00:02:07,630
 You don't need to worry
 about this too much.
 
-47
+45
 00:02:07,630 --> 00:02:09,520
 We'll come back around and
 talk about Bundler later.
 
-48
-00:02:09,520 --> 00:02:12,250
-
-49
+46
 00:02:12,250 --> 00:02:13,440
 So we've create our Rails app.
 
-50
+47
 00:02:13,440 --> 00:02:14,870
 Now let's jump into
 the directory.
 
-51
+48
 00:02:14,870 --> 00:02:17,740
 So we're going to cd into the
 directory, and if we run rails
 
-52
+49
 00:02:17,740 --> 00:02:20,480
 from inside the directory we're
 going to be given a list
 
-53
+50
 00:02:20,480 --> 00:02:23,370
 of commands that we can run on a
 Rails app, starting with the
 
-54
+51
 00:02:23,370 --> 00:02:25,780
 generate command that generates
 a new code, the
 
-55
+52
 00:02:25,780 --> 00:02:28,120
 console command which we will
 use to debug a little bit
 
-56
+53
 00:02:28,120 --> 00:02:30,940
 later, the server command, of
 course, to start our local
 
-57
+54
 00:02:30,940 --> 00:02:34,180
 development server, and the
 dbconsole command to jump into
 
-58
+55
 00:02:34,180 --> 00:02:36,260
 a console for a database.
 
-59
+56
 00:02:36,260 --> 00:02:38,700
 If we want more information
 about any these commands we
 
-60
+57
 00:02:38,700 --> 00:02:41,450
 can run them with the
 -h option.
 
-61
+58
 00:02:41,450 --> 00:02:43,160
 But, first things first,
 let's get our
 
-62
+59
 00:02:43,160 --> 00:02:44,470
 development server running.
 
-63
+60
 00:02:44,470 --> 00:02:47,240
 So we're going to run
 rails server.
 
-64
+61
 00:02:47,240 --> 00:02:48,550
 It's going to give
 us an output.
 
-65
+62
 00:02:48,550 --> 00:02:51,150
 And if we go to localhost:3000
 in a browser we're going
 
-66
+63
 00:02:51,150 --> 00:02:53,560
 to get the Welcome
 to Rails screen.
 
-67
+64
 00:02:53,560 --> 00:02:56,870
-We can also run rails server -h 
+We can also run rails server -h
 for more options, like if we
 
-68
+65
 00:02:56,870 --> 00:02:59,410
 wanted to run this server
 on a different port.
 
-69
+66
 00:02:59,410 --> 00:03:01,260
 The shortcut for this command,
 which you'll probably be
 
-70
+67
 00:03:01,260 --> 00:03:07,030
 running more often,
 is just rails s.
 
-71
+68
 00:03:07,030 --> 00:03:08,520
 Next up let's take a
 closer look at the
 
-72
+69
 00:03:08,520 --> 00:03:09,800
 rails generate command.
 
-73
+70
 00:03:09,800 --> 00:03:12,490
 If we run it without any options
 we're given a list of
 
-74
+71
 00:03:12,490 --> 00:03:15,110
 generators which we can use
 to generate some source
 
-75
+72
 00:03:15,110 --> 00:03:16,710
 for our Rails app.
 
-76
+73
 00:03:16,710 --> 00:03:19,130
 A shortcut for generate is
 rails g, and let's go ahead
 
-77
+74
 00:03:19,130 --> 00:03:21,870
 and use that to generate
 a scaffold.
 
-78
+75
 00:03:21,870 --> 00:03:24,490
 So a scaffold, if you're not
 familiar, is the basic
 
-79
+76
 00:03:24,490 --> 00:03:26,290
 building block for most
 of our Rails apps.
 
-80
+77
 00:03:26,290 --> 00:03:30,310
 We specify a resource and it
 builds us a view to list out
 
-81
+78
 00:03:30,310 --> 00:03:32,760
 the items, edit the items,
 create new items,
 
-82
+79
 00:03:32,760 --> 00:03:34,310
 and delete the items.
 
-83
+80
 00:03:34,310 --> 00:03:38,010
 So here's the syntax.
 
-84
+81
 00:03:38,010 --> 00:03:40,950
 And we're going to go ahead and
 create rails g scaffold
 
-85
+82
 00:03:40,950 --> 00:03:43,140
 zombie, because we want
 to create Zombies.
 
-86
+83
 00:03:43,140 --> 00:03:45,930
 We're going to give it a name,
 which is a string.
 
-87
+84
 00:03:45,930 --> 00:03:48,060
 A bio, which is a text type.
 
-88
+85
 00:03:48,060 --> 00:03:51,250
 And an age, which
 is an integer.
 
-89
+86
 00:03:51,250 --> 00:03:54,240
 When I say types, I'm referring
 to database types.
 
-90
+87
 00:03:54,240 --> 00:03:56,580
 And here's a list of all the
 other database types which we
 
-91
+88
 00:03:56,580 --> 00:03:59,260
 might find useful here.
 
-92
+89
 00:03:59,260 --> 00:04:01,420
 When we generate a scaffold it's
 going to create a bunch
 
-93
+90
 00:04:01,420 --> 00:04:02,610
 of files for us.
 
-94
+91
 00:04:02,610 --> 00:04:04,340
 Let's take a look at a few.
 
-95
+92
 00:04:04,340 --> 00:04:06,770
 You can see here it's generating
 a migration for us,
 
-96
+93
 00:04:06,770 --> 00:04:10,100
 the Zombie model, it's going
 to add resources :zombies to
 
-97
+94
 00:04:10,100 --> 00:04:12,800
 our routes.rb.
 
-98
+95
 00:04:12,800 --> 00:04:15,830
 It's going to create our
 Zombies controller.
 
-99
+96
 00:04:15,830 --> 00:04:17,630
 It's also going to create our
 views, which should look
 
-100
+97
 00:04:17,630 --> 00:04:19,600
 familiar from Rails
 for Zombies 1.
 
-101
+98
 00:04:19,600 --> 00:04:24,360
 You have our index view,
 edit, show and new.
 
-102
+99
 00:04:24,360 --> 00:04:26,130
 There are a couple other files
 it's going to create like
 
-103
+100
 00:04:26,130 --> 00:04:28,140
 helpers, tests, and assets,
 and we'll see
 
-104
+101
 00:04:28,140 --> 00:04:29,140
 some of those later.
 
-105
+102
 00:04:29,140 --> 00:04:31,080
 But first, let's jump
 in and take a closer
 
-106
+103
 00:04:31,080 --> 00:04:34,330
 look at that migration.
 
-107
+104
 00:04:34,330 --> 00:04:36,980
 When we say migration what
 we're talking about are
 
-108
+105
 00:04:36,980 --> 00:04:38,360
 database migrations.
 
-109
+106
 00:04:38,360 --> 00:04:39,790
 This is how we make
 changes to our
 
-110
+107
 00:04:39,790 --> 00:04:42,350
 database from inside Rails.
 
-111
+108
 00:04:42,350 --> 00:04:44,840
 And if you remember from Rails
 for Zombies 1, Rails is going
 
-112
+109
 00:04:44,840 --> 00:04:48,740
 to automatically create for us
 a primary key called ID.
 
-113
+110
 00:04:48,740 --> 00:04:50,540
 It doesn't even show that
 in the migration.
 
-114
+111
 00:04:50,540 --> 00:04:52,810
 It's just sort of assumed that
 every table is going to have a
 
-115
+112
 00:04:52,810 --> 00:04:54,500
 primary key of ID.
 
-116
+113
 00:04:54,500 --> 00:04:57,410
 The last thing you'll see in
-this migration is this 
+this migration is this
 
-117
+114
 00:04:57,410 --> 00:04:58,580
 t.timestamps.
 
-118
+115
 00:04:58,580 --> 00:05:02,250
 This t.timestamps line is
 the same as saying datetime
 
-119
+116
 00:05:02,250 --> 00:05:04,790
 :created_at and datetime
 :updated_at.
 
-120
+117
 00:05:04,790 --> 00:05:06,530
 These are magical
 fields in Rails.
 
-121
+118
 00:05:06,530 --> 00:05:08,880
 They get populated for you
 automatically and you can use
 
-122
+119
 00:05:08,880 --> 00:05:10,040
 them in your views.
 
-123
+120
 00:05:10,040 --> 00:05:12,500
 When a model is created the
 created_at gets set and every
 
-124
+121
 00:05:12,500 --> 00:05:16,590
 time it's updated that updated
 gets set for you.
 
-125
+122
 00:05:16,590 --> 00:05:19,390
 To give you a better idea why
 migrations are so useful
 
-126
+123
 00:05:19,390 --> 00:05:22,175
 here's a commercial I created
 back in my Rails Envy days.
 
-127
+124
 00:05:22,175 --> 00:05:22,620
 [VIDEO PLAYBACK]
 
-128
+125
 00:05:22,620 --> 00:05:23,065
 Hi.
 
-129
+126
 00:05:23,065 --> 00:05:24,185
 I'm Ruby on Rails.
 
-130
+127
 00:05:24,185 --> 00:05:25,250
 And I'm PHP.
 
-131
+128
 00:05:25,250 --> 00:05:26,380
 So whatcha got there?
 
-132
+129
 00:05:26,380 --> 00:05:28,597
 These are a bunch of SQL files
 all the developers on
 
-133
+130
 00:05:28,597 --> 00:05:29,680
 the team sent out.
 
-134
+131
 00:05:29,680 --> 00:05:33,380
 And I'm really frustrated
 because they just overwrote
 
-135
+132
 00:05:33,380 --> 00:05:35,080
 all my database changes.
 
-136
+133
 00:05:35,080 --> 00:05:35,980
 Oh, man.
 
-137
+134
 00:05:35,980 --> 00:05:37,240
 That sucks.
 
-138
+135
 00:05:37,240 --> 00:05:38,810
 You feel my pain, right?
 
-139
+136
 00:05:38,810 --> 00:05:41,090
 Well, actually, Ruby on Rails
 features something called
 
-140
+137
 00:05:41,090 --> 00:05:42,180
 Migrations.
 
-141
+138
 00:05:42,180 --> 00:05:45,500
 This allows developers to make
 database changes independently
 
-142
+139
 00:05:45,500 --> 00:05:47,260
 without stepping on
 anybody's toes.
 
-143
+140
 00:05:47,260 --> 00:05:49,260
 You still have to write tons
 of SQL though, right?
 
-144
+141
 00:05:49,260 --> 00:05:50,720
 Well, no.
 
-145
+142
 00:05:50,720 --> 00:05:54,690
 Migrations actually use Ruby, so
 it's database independent.
 
-146
+143
 00:05:54,690 --> 00:05:55,380
 Wow.
 
-147
+144
 00:05:55,380 --> 00:05:56,110
 That sounds really good.
 
-148
+145
 00:05:56,110 --> 00:05:58,410
 I think I'll give that
 a try, actually.
 
-149
+146
 00:05:58,410 --> 00:06:00,740
 You know what, on my way home
 from work tonight I'll stop by
 
-150
+147
 00:06:00,740 --> 00:06:04,430
 Toys R Us and pick
 one of those up.
 
-151
+148
 00:06:04,430 --> 00:06:06,635
 While I'm there I'll get Barbie
 to give me a ride in
 
-152
+149
 00:06:06,635 --> 00:06:09,800
 her pink Cadillac all the way to
 your offices in the Land of
 
-153
+150
 00:06:09,800 --> 00:06:12,030
 Make Believe where you can
 help us finish up my
 
-154
+151
 00:06:12,030 --> 00:06:14,025
 application, and we'll all
 live happily ever after.
 
-155
+152
 00:06:14,025 --> 00:06:16,190
 [END VIDEO PLAYBACK]
 
-156
+153
 00:06:16,190 --> 00:06:19,990
 So database migrations are how
 we version our database, keep
 
-157
+154
 00:06:19,990 --> 00:06:22,690
 track of changes, so we don't
 have to send around SQL
 
-158
+155
 00:06:22,690 --> 00:06:25,740
 scripts and end up stepping
 on each other's toes.
 
-159
+156
 00:06:25,740 --> 00:06:28,840
 So back in our Rails app
 we have this migration.
 
-160
+157
 00:06:28,840 --> 00:06:31,850
 If we start off server at this
 point, uh oh, we're going to
 
-161
+158
 00:06:31,850 --> 00:06:32,880
 get an error.
 
-162
+159
 00:06:32,880 --> 00:06:34,410
 It's not going to work.
 
-163
+160
 00:06:34,410 --> 00:06:36,380
 It gives us an error, it gives
 us the line of code where
 
-164
+161
 00:06:36,380 --> 00:06:36,910
 there's an error.
 
-165
+162
 00:06:36,910 --> 00:06:40,100
 If we looked at that line of
 code we would see zombies =
 
-166
+163
 00:06:40,100 --> 00:06:41,550
 Zombie.all.
 
-167
+164
 00:06:41,550 --> 00:06:44,220
 Oh, so it's querying for the
 zombies table, but it's not
 
-168
+165
 00:06:44,220 --> 00:06:45,870
 yet in the database.
 
-169
+166
 00:06:45,870 --> 00:06:48,840
 Well we forgot to run
 that migration file.
 
-170
+167
 00:06:48,840 --> 00:06:52,440
 To run migration files, we
 run rake db:migrate.
 
-171
+168
 00:06:52,440 --> 00:06:55,175
 Not only is that going to run
 our current migration, but if
 
-172
+169
 00:06:55,175 --> 00:06:57,240
 there's any other migrations
 that other people on our
 
-173
+170
 00:06:57,240 --> 00:07:00,640
 project committed, it's also
 going to run all of those.
 
-174
+171
 00:07:00,640 --> 00:07:02,880
 Here's the output we would see
 from our migration and if we
 
-175
+172
 00:07:02,880 --> 00:07:06,240
 run our Rails server again, now
 if we go to /zombies
 
-176
+173
 00:07:06,240 --> 00:07:07,720
 we can get a list of
 the zombies and
 
-177
+174
 00:07:07,720 --> 00:07:08,970
 start creating them.
 
-178
-00:07:08,970 --> 00:07:11,780
-
-179
+175
 00:07:11,780 --> 00:07:14,430
 Now that we have a zombie table
 and a zombie model,
 
-180
+176
 00:07:14,430 --> 00:07:16,890
 let's jump into the console
 and play around with it.
 
-181
+177
 00:07:16,890 --> 00:07:19,250
 So we use the console to
 debug our application.
 
-182
+178
 00:07:19,250 --> 00:07:22,100
 So we can go in here and just
 start running Rails commands.
 
-183
+179
 00:07:22,100 --> 00:07:24,590
 So here you can see I'm
 running Zombie.create
 
-184
+180
 00:07:24,590 --> 00:07:28,300
 (name:"Eric Allam", age:27)
 
-185
+181
 00:07:28,300 --> 00:07:30,410
 That's going to actually show us
 the SQL that's going to be
 
-186
+182
 00:07:30,410 --> 00:07:32,440
 running inside of our Rails app,
 and it's going to give us
 
-187
+183
 00:07:32,440 --> 00:07:34,670
 back the zombie object
 it created.
 
-188
+184
 00:07:34,670 --> 00:07:38,340
 Now remember, when you used
 tryruby.org everything in Ruby
 
-189
+185
 00:07:38,340 --> 00:07:40,050
 has a return value.
 
-190
+186
 00:07:40,050 --> 00:07:42,550
 That's that hash rocket symbol
 you see right up there.
 
-191
+187
 00:07:42,550 --> 00:07:44,640
 You can see that this
 command returns an
 
-192
+188
 00:07:44,640 --> 00:07:46,640
 instance of the zombie.
 
-193
+189
 00:07:46,640 --> 00:07:49,040
 We can then run Zombie.first to
 get back the first Zombie
 
-194
+190
 00:07:49,040 --> 00:07:52,350
 which in case is the zombie
 we just created.
 
-195
+191
 00:07:52,350 --> 00:07:54,060
 We can change the name
 of the zombie.
 
-196
+192
 00:07:54,060 --> 00:07:55,790
 And then, finally, we
 can save the zombie.
 
-197
+193
 00:07:55,790 --> 00:07:58,410
 It's going to show us the SQL
 that it uses to do that.
 
-198
+194
 00:07:58,410 --> 00:08:01,045
 And it's going to return true
 because it successfully saved
 
-199
+195
 00:08:01,045 --> 00:08:02,295
 the zombie.
 
-200
-00:08:02,295 --> 00:08:05,830
-
-201
+196
 00:08:05,830 --> 00:08:08,720
 Now you may have noticed, when
 we created this Zombie Eric
 
-202
+197
 00:08:08,720 --> 00:08:12,240
 here, that we used a slightly
 different syntax.
 
-203
+198
 00:08:12,240 --> 00:08:14,560
 We actually used a different
 hash syntax.
 
-204
+199
 00:08:14,560 --> 00:08:18,210
 Remember, a hash is a collection
 of key value pairs,
 
-205
+200
 00:08:18,210 --> 00:08:20,480
 and a key can be almost
 anything.
 
-206
+201
 00:08:20,480 --> 00:08:22,300
 A key can be a string.
 
-207
+202
 00:08:22,300 --> 00:08:24,450
 Here's the old syntax with
 the hash rocket.
 
-208
+203
 00:08:24,450 --> 00:08:27,900
 A key can be a number.
 
-209
+204
 00:08:27,900 --> 00:08:30,080
 A key can more commonly
 be a symbol.
 
-210
+205
 00:08:30,080 --> 00:08:32,179
 You'll notice all of these
 different syntaxes I showed
 
-211
+206
 00:08:32,179 --> 00:08:35,990
 you here are compatible with
 both Ruby 1.8 and 1.9.
 
-212
+207
 00:08:35,990 --> 00:08:39,270
 And if we're using Ruby 1.9,
 this last hash can also be
 
-213
+208
 00:08:39,270 --> 00:08:42,530
 written as name colon.
 
-214
+209
 00:08:42,530 --> 00:08:45,610
 It's a little bit of a shorter
 syntax, two less characters,
 
-215
+210
 00:08:45,610 --> 00:08:47,890
 and throughout this entire
 tutorial we're going to be
 
-216
+211
 00:08:47,890 --> 00:08:50,330
 using this new Ruby
 1.9 syntax.
 
-217
+212
 00:08:50,330 --> 00:08:52,520
 If you're just getting into
 Rails now you should
 
-218
+213
 00:08:52,520 --> 00:08:53,810
 be using Ruby 1.9.
 
-219
+214
 00:08:53,810 --> 00:08:55,580
 Don't even bother
 with Ruby 1.8.
 
-220
+215
 00:08:55,580 --> 00:08:58,870
 Just use Ruby 1.9 and then
 you'll get access to this hash
 
-221
+216
 00:08:58,870 --> 00:09:00,120
 syntax you see here as well.
 
-222
-00:09:00,120 --> 00:09:02,730
-
-223
+217
 00:09:02,730 --> 00:09:05,350
 So here again is the code to
 create Zombie Eric using the
 
-224
+218
 00:09:05,350 --> 00:09:07,890
 Ruby 1.9 hash syntax.
 
-225
+219
 00:09:07,890 --> 00:09:12,380
 And here it is using the Ruby
 1.8 syntax, but really, it's
 
-226
+220
 00:09:12,380 --> 00:09:14,000
 not Ruby 1.8 syntax.
 
-227
+221
 00:09:14,000 --> 00:09:17,560
 You can still use the same
 syntax, this sort of old hash
 
-228
+222
 00:09:17,560 --> 00:09:20,700
 syntax, in either
 Ruby 1.8 or 1.9.
 
-229
+223
 00:09:20,700 --> 00:09:22,580
 It's up to you which one
 you like better.
 
-230
+224
 00:09:22,580 --> 00:09:25,780
 You can use either but in this
 tutorial, like I said, we're
 
-231
+225
 00:09:25,780 --> 00:09:27,820
 going to use the new way.
 
-232
+226
 00:09:27,820 --> 00:09:29,430
 If you take a look inside
 the controller that the
 
-233
+227
 00:09:29,430 --> 00:09:32,780
 scaffolding created for us you
-can see that in the respond_to 
+can see that in the respond_to
 
-234
+228
 00:09:32,780 --> 00:09:37,020
 block over here it says
 render json: @zombies.
 
-235
+229
 00:09:37,020 --> 00:09:40,780
 That's using the Ruby 1.9
 nine hash syntax.
 
-236
+230
 00:09:40,780 --> 00:09:42,980
 And it does the same thing
 as the old syntax.
 
-237
-00:09:42,980 --> 00:09:46,480
-
-238
+231
 00:09:46,480 --> 00:09:48,900
 So we have our zombie table
 but we want to make some
 
-239
+232
 00:09:48,900 --> 00:09:50,440
 changes to the database.
 
-240
+233
 00:09:50,440 --> 00:09:51,220
 How do we do that?
 
-241
+234
 00:09:51,220 --> 00:09:54,500
 Well, we do that by generating
 a migration.
 
-242
+235
 00:09:54,500 --> 00:09:55,890
 We're going to call
 our migration
 
-243
+236
 00:09:55,890 --> 00:09:57,140
 AddEmailAndRottingToZombies.
 
-244
-00:09:57,140 --> 00:09:59,110
-
-245
+237
 00:09:59,110 --> 00:10:00,870
 We're going to specify the
 columns we want to add.
 
-246
+238
 00:10:00,870 --> 00:10:03,900
 In this case, the email column,
 which is a string, and
 
-247
+239
 00:10:03,900 --> 00:10:05,530
 rotting, which is a boolean.
 
-248
+240
 00:10:05,530 --> 00:10:08,190
 When we want to add a migration
 that adds columns we
 
-249
+241
 00:10:08,190 --> 00:10:10,490
 can use this title format
 and it'll write all
 
-250
+242
 00:10:10,490 --> 00:10:11,630
 the code for us.
 
-251
+243
 00:10:11,630 --> 00:10:15,320
 So we say add anything to, and
 then the table name, we have
 
-252
+244
 00:10:15,320 --> 00:10:17,790
 our column names
 and our types.
 
-253
+245
 00:10:17,790 --> 00:10:21,110
 And that's going to generate a
 migration for us which looks a
 
-254
+246
 00:10:21,110 --> 00:10:23,022
 little bit like this.
 
-255
+247
 00:10:23,022 --> 00:10:24,730
 As you can see here it's adding
 two columns to our
 
-256
+248
 00:10:24,730 --> 00:10:25,680
 zombies table.
 
-257
+249
 00:10:25,680 --> 00:10:28,450
 And email column and
 a rotting column.
 
-258
+250
 00:10:28,450 --> 00:10:30,960
 But what happens when we want
 to add some table options,
 
-259
+251
 00:10:30,960 --> 00:10:32,500
 some column options.
 
-260
+252
 00:10:32,500 --> 00:10:35,720
 For a default we can just
 write default false.
 
-261
+253
 00:10:35,720 --> 00:10:38,300
 A couple other migration options
 here besides default,
 
-262
+254
 00:10:38,300 --> 00:10:41,610
 we can also add a limit, specify
 that it can or can't
 
-263
+255
 00:10:41,610 --> 00:10:44,590
 be null, we can specify which
 position of the table to put
 
-264
+256
 00:10:44,590 --> 00:10:47,650
 the column, as well as add a
 unique constraint to ensure
 
-265
+257
 00:10:47,650 --> 00:10:52,430
 that this column is always
 unique at the database level.
 
-266
+258
 00:10:52,430 --> 00:10:55,900
 Now that we have a migration we
 need to run rake db:migrate
 
-267
+259
 00:10:55,900 --> 00:10:58,300
 to add those columns
 to our database.
 
-268
+260
 00:10:58,300 --> 00:10:59,880
 Rake db:migrate is
 not only going
 
-269
+261
 00:10:59,880 --> 00:11:01,850
 to run our new migration.
 
-270
+262
 00:11:01,850 --> 00:11:04,790
 But if I checked out somebody
 else's migrations, it's going
 
-271
+263
 00:11:04,790 --> 00:11:06,620
 to run those too.
 
-272
+264
 00:11:06,620 --> 00:11:09,310
 Some other rake commands you
 need to be familiar with start
 
-273
+265
 00:11:09,310 --> 00:11:11,280
 with rake db:rollback.
 
-274
+266
 00:11:11,280 --> 00:11:14,040
 What rake db:rollback is going
 to do is look at our most
 
-275
+267
 00:11:14,040 --> 00:11:18,130
 recent migration and undo it
 at the database level.
 
-276
+268
 00:11:18,130 --> 00:11:20,170
 It's going to roll it back.
 
-277
+269
 00:11:20,170 --> 00:11:22,930
 This can be really useful if,
 let's say, I haven't committed
 
-278
+270
 00:11:22,930 --> 00:11:26,260
 my migration yet and I want to
 make some changes and then
 
-279
+271
 00:11:26,260 --> 00:11:27,580
 migrate again.
 
-280
+272
 00:11:27,580 --> 00:11:30,220
 It also is really useful when
 you think about deployment.
 
-281
+273
 00:11:30,220 --> 00:11:33,880
 If I deploy my application, I
 run a migration and whoops, I
 
-282
+274
 00:11:33,880 --> 00:11:36,110
 didn't want to run that,
 something went wrong.
 
-283
+275
 00:11:36,110 --> 00:11:39,230
 I can quickly type rake
 db:rollback, it'll rollback
 
-284
+276
 00:11:39,230 --> 00:11:41,580
 the migration, and I can make
 any changes that I need to
 
-285
+277
 00:11:41,580 --> 00:11:42,840
 from there.
 
-286
+278
 00:11:42,840 --> 00:11:46,380
 Another useful rake command
 is rake db:schema:dump.
 
-287
+279
 00:11:46,380 --> 00:11:48,365
 And this gets run automatically
 every time it we
 
-288
+280
 00:11:48,365 --> 00:11:50,270
 run rake db:migrate.
 
-289
+281
 00:11:50,270 --> 00:11:53,590
 See, after you have a Rails app
 that's lived for three or
 
-290
+282
 00:11:53,590 --> 00:11:56,490
 four years, you have a lot--
 end up with a lot of
 
-291
+283
 00:11:56,490 --> 00:11:57,110
 migrations.
 
-292
+284
 00:11:57,110 --> 00:11:59,230
 I mean, over 100 migrations.
 
-293
+285
 00:11:59,230 --> 00:12:02,250
 And it's unrealistic for
 somebody new who checks out
 
-294
+286
 00:12:02,250 --> 00:12:04,840
 your Rails app, a new developer,
 to have to run all
 
-295
+287
 00:12:04,840 --> 00:12:05,880
 those migrations.
 
-296
+288
 00:12:05,880 --> 00:12:07,750
 What you find is that migrations
 start to get
 
-297
+289
 00:12:07,750 --> 00:12:09,480
 brittle after a while.
 
-298
+290
 00:12:09,480 --> 00:12:11,470
 This is why we have a schema.rb
 and it looks
 
-299
+291
 00:12:11,470 --> 00:12:12,720
 something like this.
 
-300
-00:12:12,720 --> 00:12:15,310
-
-301
+292
 00:12:15,310 --> 00:12:18,230
 As you can see here it has our
 entire database structure.
 
-302
+293
 00:12:18,230 --> 00:12:20,540
 So the next time you check out
 somebody's Rails app, and you
 
-303
+294
 00:12:20,540 --> 00:12:23,040
 need to get up and running and
 create the database, what
 
-304
+295
 00:12:23,040 --> 00:12:25,940
 you're going to run
 is rake db:setup.
 
-305
+296
 00:12:25,940 --> 00:12:28,290
 That's going to create the
 database if it doesn't exist
 
-306
+297
 00:12:28,290 --> 00:12:31,930
 yet, it's going to run the
 schema and create the database
 
-307
+298
 00:12:31,930 --> 00:12:35,550
 using that schema file, and then
 it's going to run any seed
 
-308
+299
 00:12:35,550 --> 00:12:36,800
 data which you need in there.
 
-309
-00:12:36,800 --> 00:12:39,350
-
-310
+300
 00:12:39,350 --> 00:12:41,530
 So we know how to add columns
 to our database.
 
-311
+301
 00:12:41,530 --> 00:12:43,280
 But how do we remove them?
 
-312
+302
 00:12:43,280 --> 00:12:44,850
 Well, let's go ahead and
 generate another
 
-313
+303
 00:12:44,850 --> 00:12:46,110
 migration for that.
 
-314
+304
 00:12:46,110 --> 00:12:49,245
 We'll call it
 RemoveAgeFromZombies.
 
-315
+305
 00:12:49,245 --> 00:12:51,390
 The column we want to
 remove is the age
 
-316
+306
 00:12:51,390 --> 00:12:52,960
 column, which is an integer.
 
-317
+307
 00:12:52,960 --> 00:12:55,620
 And we are using another
 pattern here with the
 
-318
+308
 00:12:55,620 --> 00:12:56,940
 migration name.
 
-319
+309
 00:12:56,940 --> 00:13:00,360
 Remove something from
 table name.
 
-320
+310
 00:13:00,360 --> 00:13:02,880
 That's going to generate
 a migration for us.
 
-321
+311
 00:13:02,880 --> 00:13:06,200
 It's going to obviously have the
 remove column command, but
 
-322
+312
 00:13:06,200 --> 00:13:08,480
 if you look at that remove
 column command you'll notice
 
-323
+313
 00:13:08,480 --> 00:13:10,080
 it doesn't have enough
 information in
 
-324
+314
 00:13:10,080 --> 00:13:11,880
 it to roll it back.
 
-325
+315
 00:13:11,880 --> 00:13:14,250
 Sure, we can remove the column,
 but when we want to
 
-326
+316
 00:13:14,250 --> 00:13:16,470
 add it back, what type was it?
 
-327
+317
 00:13:16,470 --> 00:13:19,330
 So in this case we also
 need to have an add
 
-328
+318
 00:13:19,330 --> 00:13:21,970
 column command in here.
 
-329
+319
 00:13:21,970 --> 00:13:23,480
 Now remember in the previous
 migrations we
 
-330
+320
 00:13:23,480 --> 00:13:24,920
 had a change method.
 
-331
+321
 00:13:24,920 --> 00:13:27,575
 Instead of a change method
 we're going to have an up
 
-332
+322
 00:13:27,575 --> 00:13:30,100
 method, to migrate up.
 
-333
+323
 00:13:30,100 --> 00:13:32,940
 And a down method so that our
 application knows what to do
 
-334
+324
 00:13:32,940 --> 00:13:35,760
 if we need to roll this
 migration back.
 
-335
+325
 00:13:35,760 --> 00:13:37,870
 A couple other migration
 commands include
 
-336
+326
 00:13:37,870 --> 00:13:44,140
 rename_column, rename_table,
 drop_table, change_column, and
 
-337
+327
 00:13:44,140 --> 00:13:45,390
 change_column_default.
 
-338
-00:13:45,390 --> 00:13:47,630
-
-339
+328
 00:13:47,630 --> 00:13:50,530
 So we know how to add columns,
 we know how to remove columns.
 
-340
+329
 00:13:50,530 --> 00:13:52,010
 What about everything else?
 
-341
+330
 00:13:52,010 --> 00:13:54,600
 Well for everything else we're
 simply going to create a
 
-342
+331
 00:13:54,600 --> 00:13:56,980
 migration and name it anything
 that we want.
 
-343
+332
 00:13:56,980 --> 00:14:00,720
 So, in this case, let's drop the
 zombies table altogether.
 
-344
+333
 00:14:00,720 --> 00:14:04,010
 That's going to generate a up
 and down method for us.
 
-345
+334
 00:14:04,010 --> 00:14:05,780
 And we're going to
 have to write it.
 
-346
+335
 00:14:05,780 --> 00:14:07,520
 You can see here I've
 written it for us.
 
-347
+336
 00:14:07,520 --> 00:14:09,720
 We have a drop_table in
 the up and we have
 
-348
+337
 00:14:09,720 --> 00:14:12,180
 create_table in the down.
 
-349
+338
 00:14:12,180 --> 00:14:15,000
 For more information on database
 migrations head over
 
-350
+339
 00:14:15,000 --> 00:14:17,890
 to guides.rubyonrails.org.
 
-351
+340
 00:14:17,890 --> 00:14:20,700
 Over there there's a Rails
 database migrations guide
 
-352
+341
 00:14:20,700 --> 00:14:24,020
 which has tons of information
 about migrations.
 
-353
+342
 00:14:24,020 --> 00:14:26,800
 So when we created our Rails app
 it ran bundle install and
 
-354
+343
 00:14:26,800 --> 00:14:29,190
 installed a bunch of external
 dependencies.
 
-355
+344
 00:14:29,190 --> 00:14:31,780
 How did it know which
 dependencies to install?
 
-356
+345
 00:14:31,780 --> 00:14:34,880
 Well that came from the Gemfile
 which is at the root
 
-357
+346
 00:14:34,880 --> 00:14:36,500
 of our directory.
 
-358
+347
 00:14:36,500 --> 00:14:38,480
 So here you can see a listing
 of all of our Rails app's
 
-359
+348
 00:14:38,480 --> 00:14:39,950
 external dependencies.
 
-360
+349
 00:14:39,950 --> 00:14:42,500
 And whenever we want to make
 sure we have these installed,
 
-361
+350
 00:14:42,500 --> 00:14:44,720
 or go out and install
 new ones, we can
 
-362
+351
 00:14:44,720 --> 00:14:46,520
 just run Bundle Install.
 
-363
+352
 00:14:46,520 --> 00:14:48,950
 And, remember, that got called
 by default when we created our
 
-364
+353
 00:14:48,950 --> 00:14:50,200
 first Rails app.
 
-365
-00:14:50,200 --> 00:14:53,150
-
-366
+354
 00:14:53,150 --> 00:14:55,220
 For more information on Bundler,
 obviously I don't
 
-367
+355
 00:14:55,220 --> 00:14:58,460
 have time to go into all the
 nitty gritty, head over to
 
-368
+356
 00:14:58,460 --> 00:14:59,580
 rubyonrails.org.
 
-369
+357
 00:14:59,580 --> 00:15:01,600
 In the screen cast section there
 you'll find a screen
 
-370
+358
 00:15:01,600 --> 00:15:03,350
 cast on Bundler I created.
 
-371
+359
 00:15:03,350 --> 00:15:05,570
 Also you can go straight over
 to the Bundler website at
 
-372
+360
 00:15:05,570 --> 00:15:06,820
 Gembundler.com.
 
-373
-00:15:06,820 --> 00:15:10,090
-
-374
+361
 00:15:10,090 --> 00:15:11,520
 By default our Rails
 application
 
-375
+362
 00:15:11,520 --> 00:15:13,270
 uses a SQLite database.
 
-376
+363
 00:15:13,270 --> 00:15:15,930
 One way we can tell this is on
 the previous slide where we
 
-377
+364
 00:15:15,930 --> 00:15:20,280
 saw our gem dependencies, it had
 listed gem "sqlite3"
 
-378
+365
 00:15:20,280 --> 00:15:22,070
 So it's using a SQLite
 database.
 
-379
+366
 00:15:22,070 --> 00:15:24,460
 But how is our database
 configured?
 
-380
+367
 00:15:24,460 --> 00:15:27,110
 Well that happens in our
 config/database.yml.
 
-381
+368
 00:15:27,110 --> 00:15:29,850
 Let's take a look inside.
 
-382
+369
 00:15:29,850 --> 00:15:31,510
 Here you can see we have
 a configuration for our
 
-383
+370
 00:15:31,510 --> 00:15:34,500
 development, test, and
 production environments.
 
-384
+371
 00:15:34,500 --> 00:15:36,680
 How might we change this
 out for MySQL?
 
-385
+372
 00:15:36,680 --> 00:15:39,950
 Well, we simply would have to
 change this configuration,
 
-386
+373
 00:15:39,950 --> 00:15:42,770
 we'd give it the MySQL adapter,
 the database name,
 
-387
+374
 00:15:42,770 --> 00:15:45,480
 the username and password for
 our database, and we would
 
-388
+375
 00:15:45,480 --> 00:15:48,670
 replace the SQLite driver with
 mysql2 inside of our gem
 
-389
+376
 00:15:48,670 --> 00:15:52,280
 file, run Bundle Install and
 then we'd be using MySQL.
 
-390
-00:15:52,280 --> 00:15:55,500
-
-391
+377
 00:15:55,500 --> 00:15:57,330
 That's all we're covering
 for level one.
 
-392
+378
 00:15:57,330 --> 00:15:59,880
 Now it's your turn to take this
 information and learn by
 
-393
+379
 00:15:59,880 --> 00:16:01,130
 doing in the challenges.
-
-394
-00:16:01,130 --> 00:16:05,265
