@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:00,330
 [MUSIC PLAYING]
 
@@ -37,986 +37,979 @@ They call it CoffeeScript.
 CoffeeScript, yeah.
 
 10
-00:00:19,572 --> 00:00:22,850
-
-
-11
 00:00:22,850 --> 00:00:23,180
 Hi.
 
-12
+11
 00:00:23,180 --> 00:00:25,290
 I'm Greg Pollack, and you're
 watching A Sip of
 
-13
+12
 00:00:25,290 --> 00:00:26,050
 CoffeeScript.
 
-14
+13
 00:00:26,050 --> 00:00:28,000
 And this is the first level
 where we're going to be
 
-15
+14
 00:00:28,000 --> 00:00:30,260
 talking about variables
 and functions.
 
-16
+15
 00:00:30,260 --> 00:00:33,100
 But before we get into that, I
 want to take a moment to think
 
-17
+16
 00:00:33,100 --> 00:00:37,920
 about what makes words
 and text beautiful.
 
-18
+17
 00:00:37,920 --> 00:00:40,350
 There's something artistic about
 text when you put it
 
-19
+18
 00:00:40,350 --> 00:00:43,010
 together in certain forms,
 like you see here.
 
-20
+19
 00:00:43,010 --> 00:00:44,720
 What makes it beautiful,
 though?
 
-21
+20
 00:00:44,720 --> 00:00:47,470
 Is it the font, using
 a specific font?
 
-22
+21
 00:00:47,470 --> 00:00:49,050
 Is that what makes
 it beautiful?
 
-23
+22
 00:00:49,050 --> 00:00:52,550
 Is it that, in combination with
 color and design that
 
-24
+23
 00:00:52,550 --> 00:00:53,590
 makes it beautiful?
 
-25
+24
 00:00:53,590 --> 00:00:57,250
 Or is it the content itself?
 
-26
+25
 00:00:57,250 --> 00:00:58,910
 In math-- here we have
 some science.
 
-27
+26
 00:00:58,910 --> 00:01:00,320
 In science, you have symbols.
 
-28
+27
 00:01:00,320 --> 00:01:02,210
 Would a mathematician
 look at this and
 
-29
+28
 00:01:02,210 --> 00:01:04,040
 think that it was beautiful?
 
-30
+29
 00:01:04,040 --> 00:01:07,250
 And lastly, we want to ask,
 what makes up a beautiful
 
-31
+30
 00:01:07,250 --> 00:01:09,190
 programming language?
 
-32
+31
 00:01:09,190 --> 00:01:12,170
 Well, in my opinion, it has to
 do with three principles.
 
-33
+32
 00:01:12,170 --> 00:01:14,940
 The first is the ability to
 write the least amount of code
 
-34
+33
 00:01:14,940 --> 00:01:17,600
 to get the most accomplished.
 
-35
+34
 00:01:17,600 --> 00:01:20,240
 It also has to do with
 readability and
 
-36
+35
 00:01:20,240 --> 00:01:22,900
 understandability, so that if I
 write a piece of code and I
 
-37
+36
 00:01:22,900 --> 00:01:25,520
 come back to it a month later,
 I can immediately pick up
 
-38
+37
 00:01:25,520 --> 00:01:28,400
 where I left off and I'm going
 to be able to understand it.
 
-39
+38
 00:01:28,400 --> 00:01:30,740
 Also, other people have
 to be able to read it
 
-40
+39
 00:01:30,740 --> 00:01:31,770
 and understand it.
 
-41
+40
 00:01:31,770 --> 00:01:35,510
 And of course, lastly, it
 has to be maintainable.
 
-42
+41
 00:01:35,510 --> 00:01:39,000
 Now these three principles
 aren't always associated with
 
-43
+42
 00:01:39,000 --> 00:01:41,830
 JavaScript, the language.
 
-44
+43
 00:01:41,830 --> 00:01:45,140
 JavaScript obviously has its
 good parts, but it also has
 
-45
+44
 00:01:45,140 --> 00:01:46,580
 its bad parts.
 
-46
+45
 00:01:46,580 --> 00:01:50,160
 Luckily, this is where
 CoffeeScript comes in.
 
-47
+46
 00:01:50,160 --> 00:01:53,680
 When we write CoffeeScript, it
 compiles into JavaScript.
 
-48
+47
 00:01:53,680 --> 00:01:56,710
 And CoffeeScript, the language,
 does follow these
 
-49
+48
 00:01:56,710 --> 00:01:59,120
 three principles pretty closely,
 and I think what
 
-50
+49
 00:01:59,120 --> 00:02:01,350
 you'll find throughout this
 tutorial is that it's a
 
-51
+50
 00:02:01,350 --> 00:02:04,440
 beautiful programming
 language.
 
-52
+51
 00:02:04,440 --> 00:02:06,770
 As we go through this tutorial,
 I highly recommend
 
-53
+52
 00:02:06,770 --> 00:02:09,470
 you check out the official
 CoffeeScript web page.
 
-54
+53
 00:02:09,470 --> 00:02:11,190
 It has some great documentation
 about the
 
-55
+54
 00:02:11,190 --> 00:02:13,170
 language that will help you
 through the challenges.
 
-56
+55
 00:02:13,170 --> 00:02:15,960
 Also on this page, if you click
 try CoffeeScript, you'll
 
-57
+56
 00:02:15,960 --> 00:02:18,570
 get this interactive console
 where you can type in
 
-58
+57
 00:02:18,570 --> 00:02:21,070
 CoffeeScript on one side of the
 page and it will show you
 
-59
+58
 00:02:21,070 --> 00:02:23,640
 the JavaScript that
 it generates.
 
-60
+59
 00:02:23,640 --> 00:02:25,750
 You see those icons there?
 
-61
+60
 00:02:25,750 --> 00:02:27,660
 Throughout this whole tutorial,
 you're going to see
 
-62
+61
 00:02:27,660 --> 00:02:28,540
 lots of code.
 
-63
+62
 00:02:28,540 --> 00:02:31,220
 And next to the code, it's
 either going to have a coffee
 
-64
+63
 00:02:31,220 --> 00:02:34,270
 cup sometimes and a JS
 sometimes, to designate
 
-65
+64
 00:02:34,270 --> 00:02:37,650
 whether what you're looking at
 is CoffeeScript or JavaScript.
 
-66
+65
 00:02:37,650 --> 00:02:40,160
 Later on, you'll see just
 CoffeeScript, and in that
 
-67
+66
 00:02:40,160 --> 00:02:42,730
 case, I'm going to put that
 CoffeeScript icon at the top
 
-68
+67
 00:02:42,730 --> 00:02:43,540
 of the page--
 
-69
+68
 00:02:43,540 --> 00:02:47,090
 also good to know in case you
 look at the slides later.
 
-70
+69
 00:02:47,090 --> 00:02:50,220
 So let's take a look at our
 first CoffeeScript.
 
-71
+70
 00:02:50,220 --> 00:02:51,870
 Here you can see some code.
 
-72
+71
 00:02:51,870 --> 00:02:55,640
 If we ran that code, it would
 make this alert pop up.
 
-73
+72
 00:02:55,640 --> 00:02:56,140
 OK.
 
-74
+73
 00:02:56,140 --> 00:02:58,300
 Well, what's the JavaScript
 that this CoffeeScript is
 
-75
+74
 00:02:58,300 --> 00:02:59,290
 generating?
 
-76
+75
 00:02:59,290 --> 00:03:02,990
 It looks something like this.
 
-77
+76
 00:03:02,990 --> 00:03:04,380
 Two things to notice here.
 
-78
+77
 00:03:04,380 --> 00:03:06,590
 The first is that in
 CoffeeScript, we don't have to
 
-79
+78
 00:03:06,590 --> 00:03:08,230
 do any variable declaration.
 
-80
+79
 00:03:08,230 --> 00:03:10,360
 It all gets handled for us.
 
-81
+80
 00:03:10,360 --> 00:03:12,190
 Second thing to notice,
 that there's no
 
-82
+81
 00:03:12,190 --> 00:03:13,600
 semicolons in this code.
 
-83
+82
 00:03:13,600 --> 00:03:15,920
 We don't have to deal with
 those semicolons anymore.
 
-84
+83
 00:03:15,920 --> 00:03:19,210
 I know, weren't they
 a headache?
 
-85
+84
 00:03:19,210 --> 00:03:21,980
 There are two different ways
 we can declare functions in
 
-86
+85
 00:03:21,980 --> 00:03:22,690
 JavaScript.
 
-87
+86
 00:03:22,690 --> 00:03:24,390
 You've probably done
 it both ways.
 
-88
+87
 00:03:24,390 --> 00:03:26,440
 The first is by using
 named functions.
 
-89
+88
 00:03:26,440 --> 00:03:28,660
 It looks a little
 bit like this.
 
-90
+89
 00:03:28,660 --> 00:03:31,120
 Here, we're declaring
 a coffee function.
 
-91
+90
 00:03:31,120 --> 00:03:33,880
 We can also declare functions
 in JavaScript using function
 
-92
+91
 00:03:33,880 --> 00:03:34,900
 expressions.
 
-93
+92
 00:03:34,900 --> 00:03:37,380
 They look like this.
 
-94
+93
 00:03:37,380 --> 00:03:39,750
 Both of these functions we can
 call in the same way by
 
-95
+94
 00:03:39,750 --> 00:03:43,955
 running just Coffee,
 Parens, Semicolon.
 
-96
+95
 00:03:43,955 --> 00:03:46,640
 In CoffeeScript, it's only
 going to create function
 
-97
+96
 00:03:46,640 --> 00:03:48,240
 expressions for us.
 
-98
+97
 00:03:48,240 --> 00:03:50,550
 So let's take a look at the
 CoffeeScript code that
 
-99
+98
 00:03:50,550 --> 00:03:53,210
 generates this JavaScript
 down below.
 
-100
+99
 00:03:53,210 --> 00:03:55,630
 Couple things to notice
 about this code.
 
-101
+100
 00:03:55,630 --> 00:03:57,870
 First of all, you'll notice
 instead of using curly
 
-102
+101
 00:03:57,870 --> 00:04:00,690
 brackets, we are
 just indenting.
 
-103
+102
 00:04:00,690 --> 00:04:04,150
 We can either use two spaces
 or, if we want, we can just
 
-104
+103
 00:04:04,150 --> 00:04:07,070
 use a tab, but you need
 to be consistent.
 
-105
+104
 00:04:07,070 --> 00:04:09,210
 The next thing you're going to
 want to notice about this code
 
-106
+105
 00:04:09,210 --> 00:04:10,820
 is that little arrow.
 
-107
+106
 00:04:10,820 --> 00:04:15,810
 Well, that converts to the
 function parens curly braces,
 
-108
+107
 00:04:15,810 --> 00:04:17,470
 as you can see here
 in JavaScript.
 
-109
+108
 00:04:17,470 --> 00:04:19,700
 And lastly, all of the functions
 that get generated
 
-110
+109
 00:04:19,700 --> 00:04:23,660
 for us from CoffeeScript are
 going to have a return value,
 
-111
+110
 00:04:23,660 --> 00:04:24,270
 no matter what.
 
-112
+111
 00:04:24,270 --> 00:04:26,330
 Even if you're not using it,
 it's always going to have a
 
-113
+112
 00:04:26,330 --> 00:04:27,360
 return value.
 
-114
+113
 00:04:27,360 --> 00:04:29,810
 What's convenient about that
 is you can assume the last
 
-115
+114
 00:04:29,810 --> 00:04:32,150
 item in your function is what's
 going to get returned.
 
-116
+115
 00:04:32,150 --> 00:04:34,160
 You never have to use
 that return keyword.
 
-117
+116
 00:04:34,160 --> 00:04:36,280
 Let's take a look at that.
 
-118
+117
 00:04:36,280 --> 00:04:38,370
 So here we have a CoffeeScript
 function.
 
-119
+118
 00:04:38,370 --> 00:04:41,510
 It's going to create a confirm
 box and then it's going to
 
-120
+119
 00:04:41,510 --> 00:04:44,690
 return, "Your answer is,"
 whatever the answer is.
 
-121
+120
 00:04:44,690 --> 00:04:46,100
 The JavaScript it would
 generate is going
 
-122
+121
 00:04:46,100 --> 00:04:47,260
 to look like this.
 
-123
+122
 00:04:47,260 --> 00:04:49,940
 Notice the return
 that got added.
 
-124
+123
 00:04:49,940 --> 00:04:51,955
 The return value in
 CoffeeScript, we can write in
 
-125
+124
 00:04:51,955 --> 00:04:54,760
 a better way using an
 interpolated string.
 
-126
+125
 00:04:54,760 --> 00:04:58,100
 So here you can see, we say,
 "Your answer is," answer.
 
-127
+126
 00:04:58,100 --> 00:05:00,810
 It's going to get converted to
 the same code in JavaScript
 
-128
+127
 00:05:00,810 --> 00:05:03,020
 using the Plus.
 
-129
+128
 00:05:03,020 --> 00:05:05,560
 To add function parameters,
 this is how we do it in
 
-130
+129
 00:05:05,560 --> 00:05:08,170
 CoffeeScript and this is
 the JavaScript that
 
-131
+130
 00:05:08,170 --> 00:05:09,700
 it's going to generate.
 
-132
+131
 00:05:09,700 --> 00:05:12,000
 Pretty straightforward.
 
-133
+132
 00:05:12,000 --> 00:05:14,770
 Let's talk a little bit about
 how to call functions in
 
-134
+133
 00:05:14,770 --> 00:05:15,910
 CoffeeScript.
 
-135
+134
 00:05:15,910 --> 00:05:18,240
 So if I have just a single
 function that doesn't have any
 
-136
+135
 00:05:18,240 --> 00:05:22,130
 parameters, I can call Coffee
 just like that.
 
-137
+136
 00:05:22,130 --> 00:05:25,180
 If I have a function with one
 parameter, I can call it with
 
-138
+137
 00:05:25,180 --> 00:05:27,180
 or without the parentheses.
 
-139
+138
 00:05:27,180 --> 00:05:29,110
 The parentheses are optional.
 
-140
+139
 00:05:29,110 --> 00:05:32,540
 If I had two parameters, I could
 also call it with or
 
-141
+140
 00:05:32,540 --> 00:05:35,030
 without the parentheses.
 
-142
+141
 00:05:35,030 --> 00:05:36,990
 Let's call our coffee function,
 and then whatever
 
-143
+142
 00:05:36,990 --> 00:05:39,720
 returns, let's put that out
 into an alert like this.
 
-144
+143
 00:05:39,720 --> 00:05:42,490
 First, it's going to print
 out this Confirm box.
 
-145
+144
 00:05:42,490 --> 00:05:45,490
 Then it's going to return the
 string and alert's going to be
 
-146
+145
 00:05:45,490 --> 00:05:47,910
 called on that string
 to print this out.
 
-147
+146
 00:05:47,910 --> 00:05:50,040
 If you take another look at
 this alert function call,
 
-148
+147
 00:05:50,040 --> 00:05:53,060
 you'll notice that there are
 still some parentheses here
 
-149
+148
 00:05:53,060 --> 00:05:55,070
 even though parentheses
 are optional.
 
-150
+149
 00:05:55,070 --> 00:05:57,990
 This would still work without
 any parentheses, but it's sort
 
-151
+150
 00:05:57,990 --> 00:06:02,480
 of a best practice to use
 parentheses on everything but
 
-152
+151
 00:06:02,480 --> 00:06:04,580
 the outermost function call.
 
-153
+152
 00:06:04,580 --> 00:06:07,840
 So in this case, the outermost
 function call is alert.
 
-154
+153
 00:06:07,840 --> 00:06:09,830
 One nice feature about
 CoffeeScript is that it gives
 
-155
+154
 00:06:09,830 --> 00:06:12,220
 you the ability to do
 optional parameters.
 
-156
+155
 00:06:12,220 --> 00:06:15,500
 So what if I wanted to have an
 optional parameter of, "Ready
 
-157
+156
 00:06:15,500 --> 00:06:17,480
 for some coffee?"
 as the message?
 
-158
+157
 00:06:17,480 --> 00:06:19,300
 I'd write code that
 looks like this.
 
-159
+158
 00:06:19,300 --> 00:06:22,070
 Then if I call a function
 without any parameters, it'll
 
-160
+159
 00:06:22,070 --> 00:06:24,540
 ask, "Ready for some coffee?"
 
-161
+160
 00:06:24,540 --> 00:06:27,830
 And if I send in a parameter,
 it'll override the default and
 
-162
+161
 00:06:27,830 --> 00:06:33,050
 ask, "Want some decaf?" In case
 you're wondering, here's
 
-163
+162
 00:06:33,050 --> 00:06:37,840
 the JavaScript that this
 CoffeeScript compiles into.
 
-164
+163
 00:06:37,840 --> 00:06:39,960
 Lastly, I want to talk briefly
 about how to install
 
-165
+164
 00:06:39,960 --> 00:06:42,190
 CoffeeScript, which is
 completely optional for this
 
-166
+165
 00:06:42,190 --> 00:06:45,360
 tutorial, and give you some
 command line tools and talk
 
-167
+166
 00:06:45,360 --> 00:06:46,750
 about the TextMate bundle.
 
-168
+167
 00:06:46,750 --> 00:06:48,950
 So to install CoffeeScript,
 first you're going to want to
 
-169
+168
 00:06:48,950 --> 00:06:52,330
 install Node.js, so follow
 the instructions there.
 
-170
+169
 00:06:52,330 --> 00:06:55,180
 You'll then need to install
 npm, which stands for node
 
-171
+170
 00:06:55,180 --> 00:06:56,680
 package manager.
 
-172
+171
 00:06:56,680 --> 00:07:00,470
 Then you'll use npm to
 install CoffeeScript.
 
-173
+172
 00:07:00,470 --> 00:07:02,360
 You're going to know you did it
 right if you can go to the
 
-174
+173
 00:07:02,360 --> 00:07:05,770
 command line and type coffee -h,
 which will give you all of
 
-175
+174
 00:07:05,770 --> 00:07:10,550
 the commands that you can
 use to run CoffeeScript.
 
-176
+175
 00:07:10,550 --> 00:07:12,590
 If we ran this command from
 the command line, it would
 
-177
+176
 00:07:12,590 --> 00:07:16,140
 take that test.coffee file and
 it would convert it into
 
-178
+177
 00:07:16,140 --> 00:07:19,490
 JavaScript into a
 test.js file.
 
-179
+178
 00:07:19,490 --> 00:07:21,760
 If we were going to make a lot
 of changes to that file, if we
 
-180
+179
 00:07:21,760 --> 00:07:25,620
 were developing with it, we
 could add the W command here.
 
-181
+180
 00:07:25,620 --> 00:07:27,670
 What that would do is it
 would watch that file.
 
-182
+181
 00:07:27,670 --> 00:07:30,710
 And every time it got saved,
 it would then recompile the
 
-183
+182
 00:07:30,710 --> 00:07:34,010
 CoffeeScript into the
 JavaScript file.
 
-184
+183
 00:07:34,010 --> 00:07:36,630
 If we had a bunch of files
-in, let's say, the src 
+in, let's say, the src
 
-185
+184
 00:07:36,630 --> 00:07:38,570
 directory, we could
 run this command.
 
-186
+185
 00:07:38,570 --> 00:07:41,990
 It would look for .coffee files
 inside that directory.
 
-187
+186
 00:07:41,990 --> 00:07:44,640
 It would compile each of them
 into JavaScript files and
 
-188
+187
 00:07:44,640 --> 00:07:49,620
 output them, -o, into the
 js directory.
 
-189
+188
 00:07:49,620 --> 00:07:52,000
 Lastly, if we were doing a lot
 of development with this code,
 
-190
+189
 00:07:52,000 --> 00:07:54,940
 we could add that -w command,
 which would keep an eye on
 
-191
+190
 00:07:54,940 --> 00:07:58,320
 that src directory every time
 a single .coffee file was
 
-192
+191
 00:07:58,320 --> 00:08:00,630
 changed, it would compile
 that into a .js
 
-193
+192
 00:08:00,630 --> 00:08:03,920
 file into the js directory.
 
-194
+193
 00:08:03,920 --> 00:08:06,790
 If you think you'll be using
 TextMate or Sublime Text 2 to
 
-195
+194
 00:08:06,790 --> 00:08:09,620
 edit your CoffeeScript, I highly
 recommend you install
 
-196
+195
 00:08:09,620 --> 00:08:10,820
 the plug-in.
 
-197
+196
 00:08:10,820 --> 00:08:11,770
 Here's what the plug-in does.
 
-198
+197
 00:08:11,770 --> 00:08:13,930
 So here, you can see
 my CoffeeScript.
 
-199
+198
 00:08:13,930 --> 00:08:17,240
 I can write CoffeeScript, and
 then if I hit command B, it's
 
-200
+199
 00:08:17,240 --> 00:08:18,950
 going to take that CoffeeScript,
 compile it into
 
-201
+200
 00:08:18,950 --> 00:08:21,410
 JavaScript, and show me the
 output, which is really
 
-202
+201
 00:08:21,410 --> 00:08:24,520
 convenient for debugging.
 
-203
+202
 00:08:24,520 --> 00:08:25,990
 That's all we got
 for level one.
 
-204
+203
 00:08:25,990 --> 00:08:28,170
 At this point, before you jump
 into the challenges, you might
 
-205
+204
 00:08:28,170 --> 00:08:30,550
 want to take a moment to
 download the slides.
 
-206
+205
 00:08:30,550 --> 00:08:31,990
 In the bottom right hand
 side of this page,
 
-207
+206
 00:08:31,990 --> 00:08:33,110
 there should be a link.
 
-208
+207
 00:08:33,110 --> 00:08:35,970
 You can click that, download the
 PDF, because you'll want
 
-209
+208
 00:08:35,970 --> 00:08:38,350
 to use them as reference to
 solve the challenges.
 
-210
+209
 00:08:38,350 --> 00:08:40,659
 Also, please don't be afraid
 to use the hints.
 
-211
+210
 00:08:40,659 --> 00:08:43,200
 They're there so that
 you can use them.
 
-212
+211
 00:08:43,200 --> 00:08:46,300
 So if you get stuck, let's
 say, for longer than 10
 
-213
+212
 00:08:46,300 --> 00:08:48,640
 minutes on a challenge and can't
 figure it out, use a
 
-214
+213
 00:08:48,640 --> 00:08:51,910
 hint or two or three so you can
 get to the next challenge
 
-215
+214
 00:08:51,910 --> 00:08:53,860
 and keep on progressing and
 learning CoffeeScript.
-
-216
-00:08:53,860 --> 00:08:56,832

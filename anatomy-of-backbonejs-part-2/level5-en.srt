@@ -1,20 +1,20 @@
-1
+﻿1
 00:00:00,000 --> 00:00:00,290
 [SINGING]
 
 2
 00:00:00,290 --> 00:00:03,100
-Your client side JavaScript
+Your client side JavaScript
 is starting to mold.
 
 3
 00:00:03,100 --> 00:00:06,560
-It's starting to resemble
+It's starting to resemble
 a bad spaghetti code.
 
 4
 00:00:06,560 --> 00:00:08,470
-And it is time to
+And it is time to
 add structure.
 
 5
@@ -23,27 +23,27 @@ But it won't take too long.
 
 6
 00:00:10,170 --> 00:00:14,960
-Gotta get your truth
+Gotta get your truth
 out of the DOM.
 
 7
 00:00:14,960 --> 00:00:17,080
-Take your data into models
+Take your data into models
 and you cannot lose.
 
 8
 00:00:17,080 --> 00:00:20,300
-We'll render out your models
+We'll render out your models
 with help of the views.
 
 9
 00:00:20,300 --> 00:00:23,415
-And if you don't want your
+And if you don't want your
 JavaScript to end up like a
 
 10
 00:00:23,415 --> 00:00:25,170
-mess, it's time for
+mess, it's time for
 the Anatomy of
 
 11
@@ -51,604 +51,559 @@ the Anatomy of
 Backbone.js at Code School.
 
 12
-00:00:28,869 --> 00:00:31,800
-
-
-13
 00:00:31,800 --> 00:00:34,010
-You're watching the anatomy
+You're watching the anatomy
 of Backbone, Part Two.
 
-14
+13
 00:00:34,010 --> 00:00:35,820
-And this is level five where
+And this is level five where
 we're going to be
 
-15
+14
 00:00:35,820 --> 00:00:38,150
 working with forms.
 
-16
+15
 00:00:38,150 --> 00:00:40,750
-Up until now, we haven't talked
+Up until now, we haven't talked
 about forms at all.
 
-17
+16
 00:00:40,750 --> 00:00:43,450
-And obviously we want to
+And obviously we want to
 add new to do items.
 
-18
+17
 00:00:43,450 --> 00:00:47,790
-So one way we might think to do
+So one way we might think to do
 this is to create an HTML
 
-19
+18
 00:00:47,790 --> 00:00:50,200
-form and hook it up
+form and hook it up
 with some Ajax.
 
-20
+19
 00:00:50,200 --> 00:00:52,160
-Let's see what that
+Let's see what that
 would look like.
 
-21
+20
 00:00:52,160 --> 00:00:55,060
-Here we have our HTML with
+Here we have our HTML with
 our default description.
 
-22
+21
 00:00:55,060 --> 00:00:58,290
-And if we were using plain
+And if we were using plain
 jQuery, we could simply hook
 
-23
+22
 00:00:58,290 --> 00:01:01,490
-onto the click event, call
+onto the click event, call
 prevent default so the form
 
-24
+23
 00:01:01,490 --> 00:01:05,770
-doesn't submit, grab the URI
+doesn't submit, grab the URI
 from the form action, get the
 
-25
+24
 00:01:05,770 --> 00:01:08,490
-description out of the input
+description out of the input
 element, and then do an Ajax
 
-26
+25
 00:01:08,490 --> 00:01:09,740
 post with these values.
 
-27
-00:01:09,740 --> 00:01:13,230
-
-
-28
+26
 00:01:13,230 --> 00:01:14,110
 This would work.
 
-29
+27
 00:01:14,110 --> 00:01:17,880
-But doesn't Backbone take
+But doesn't Backbone take
 care of this Ajax
 
-30
+28
 00:01:17,880 --> 00:01:19,370
 data thing for us?
 
-31
+29
 00:01:19,370 --> 00:01:21,600
-Shouldn't there be
+Shouldn't there be
 a way to do this?
 
-32
+30
 00:01:21,600 --> 00:01:22,620
 Well there is.
 
-33
+31
 00:01:22,620 --> 00:01:24,400
 Let's figure it out.
 
-34
+32
 00:01:24,400 --> 00:01:26,770
-Let's start from the bottom
+Let's start from the bottom
 up with the model.
 
-35
+33
 00:01:26,770 --> 00:01:30,950
-So if we have a model with a
+So if we have a model with a
 proper urlRoot, we can then
 
-36
+34
 00:01:30,950 --> 00:01:34,690
-call to do item and send a
+call to do item and send a
 default description in if we
 
-37
+35
 00:01:34,690 --> 00:01:36,950
 want when we instantiate this.
 
-38
+36
 00:01:36,950 --> 00:01:39,610
-Then when we save it, we can
+Then when we save it, we can
 pass in the values we
 
-39
+37
 00:01:39,610 --> 00:01:40,990
 want to set it to.
 
-40
+38
 00:01:40,990 --> 00:01:44,050
-And when we call save, it's
+And when we call save, it's
 automatically going to do that
 
-41
+39
 00:01:44,050 --> 00:01:47,350
-Ajax request to create
+Ajax request to create
 a new todoItem.
 
-42
+40
 00:01:47,350 --> 00:01:48,890
 So there's our Ajax call.
 
-43
+41
 00:01:48,890 --> 00:01:50,510
 But how do we create the form?
 
-44
+42
 00:01:50,510 --> 00:01:53,600
-Well, our form should simply
+Well, our form should simply
 be another view.
 
-45
+43
 00:01:53,600 --> 00:01:55,100
-Here's what its template
+Here's what its template
 might look like.
 
-46
+44
 00:01:55,100 --> 00:01:58,410
 It's simply the form.
 
-47
+45
 00:01:58,410 --> 00:02:00,760
-And here's our normal
+And here's our normal
 render function.
 
-48
+46
 00:02:00,760 --> 00:02:03,630
-To create this form, we first
+To create this form, we first
 need to create a to do item.
 
-49
+47
 00:02:03,630 --> 00:02:06,900
-We'll send that to do
+We'll send that to do
 item into the form.
 
-50
+48
 00:02:06,900 --> 00:02:10,110
-And then we'll simply render
+And then we'll simply render
 it out on our web page.
 
-51
+49
 00:02:10,110 --> 00:02:13,420
-Notice the value has the default
+Notice the value has the default
 description which got
 
-52
+50
 00:02:13,420 --> 00:02:15,135
-printed out using
+printed out using
 our templates.
 
-53
-00:02:15,135 --> 00:02:18,560
-
-
-54
+51
 00:02:18,560 --> 00:02:20,400
-So this prints out the
+So this prints out the
 form to the page.
 
-55
+52
 00:02:20,400 --> 00:02:23,440
-But if we clicked the button,
+But if we clicked the button,
 nothing would happen.
 
-56
+53
 00:02:23,440 --> 00:02:27,150
-Because we're not listening for
+Because we're not listening for
 any events on that button.
 
-57
+54
 00:02:27,150 --> 00:02:31,030
-So inside of our TodoForm
+So inside of our TodoForm
 view, we're going to listen
 
-58
+55
 00:02:31,030 --> 00:02:33,180
 for the click on the button.
 
-59
+56
 00:02:33,180 --> 00:02:36,550
-And we'll call our save
+And we'll call our save
 event function.
 
-60
+57
 00:02:36,550 --> 00:02:39,110
-Inside that function, we want
+Inside that function, we want
 to prevent the default
 
-61
+58
 00:02:39,110 --> 00:02:40,590
 behavior of the form.
 
-62
+59
 00:02:40,590 --> 00:02:43,790
-We'll grab the new description
+We'll grab the new description
 from the input field.
 
-63
+60
 00:02:43,790 --> 00:02:47,050
-And then finally call save on
+And then finally call save on
 the model, which will do the
 
-64
+61
 00:02:47,050 --> 00:02:48,300
 Ajax request.
 
-65
-00:02:48,300 --> 00:02:50,830
-
-
-66
+62
 00:02:50,830 --> 00:02:52,030
 This works fine.
 
-67
+63
 00:02:52,030 --> 00:02:54,840
-But it's only going to work when
+But it's only going to work when
 we hit the Submit button.
 
-68
+64
 00:02:54,840 --> 00:02:57,920
-What if we wanted to be able to
+What if we wanted to be able to
 type out our new to do and
 
-69
+65
 00:02:57,920 --> 00:03:00,320
 simply hit Enter?
 
-70
+66
 00:03:00,320 --> 00:03:03,690
-Backbone comes with a special
+Backbone comes with a special
 event called Submit, we can
 
-71
+67
 00:03:03,690 --> 00:03:07,590
-use here, which will call save
+use here, which will call save
 either when we hit the button
 
-72
+68
 00:03:07,590 --> 00:03:09,180
 or when we press Enter.
 
-73
-00:03:09,180 --> 00:03:11,850
-
-
-74
+69
 00:03:11,850 --> 00:03:13,720
-So now we can create
+So now we can create
 new to do items.
 
-75
+70
 00:03:13,720 --> 00:03:16,380
-But what about editing
+But what about editing
 a specific one?
 
-76
+71
 00:03:16,380 --> 00:03:19,560
-Well, we can actually
+Well, we can actually
 reuse the same view.
 
-77
+72
 00:03:19,560 --> 00:03:23,050
-To do that, we first fetch the
+To do that, we first fetch the
 to do item we want to edit.
 
-78
+73
 00:03:23,050 --> 00:03:25,390
-Then we create a new to
+Then we create a new to
 do form and send in
 
-79
+74
 00:03:25,390 --> 00:03:27,360
 the existing model.
 
-80
+75
 00:03:27,360 --> 00:03:29,580
-And then just render
+And then just render
 it out to the page.
 
-81
+76
 00:03:29,580 --> 00:03:32,950
 That's all there is to it.
 
-82
+77
 00:03:32,950 --> 00:03:35,340
-And it will automatically use
+And it will automatically use
 the description on that
 
-83
+78
 00:03:35,340 --> 00:03:37,180
 existing to do item.
 
-84
+79
 00:03:37,180 --> 00:03:40,210
-But there's one more step before
+But there's one more step before
 this all really works,
 
-85
+80
 00:03:40,210 --> 00:03:43,560
-and that is to update
+and that is to update
 our router.
 
-86
+81
 00:03:43,560 --> 00:03:45,570
-Here's our existing
+Here's our existing
 TodoApp router--
 
-87
+82
 00:03:45,570 --> 00:03:46,780
 nothing new here--
 
-88
+83
 00:03:46,780 --> 00:03:50,250
-where we instantiate our to
+where we instantiate our to
 do items, send them to the
 
-89
+84
 00:03:50,250 --> 00:03:52,070
 collection view.
 
-90
+85
 00:03:52,070 --> 00:03:53,670
-And then insider index
+And then insider index
 function--
 
-91
+86
 00:03:53,670 --> 00:03:56,780
-fetch the to do items and render
+fetch the to do items and render
 it out to the page.
 
-92
+87
 00:03:56,780 --> 00:03:59,520
-Let's add a route to render
+Let's add a route to render
 the to do form with an
 
-93
+88
 00:03:59,520 --> 00:04:01,420
 existing to do item.
 
-94
+89
 00:04:01,420 --> 00:04:05,220
-So in the routes, we'll specify
+So in the routes, we'll specify
 todo, slash, the ID
 
-95
+90
 00:04:05,220 --> 00:04:07,880
-that we want to edit,
+that we want to edit,
 slash, edit.
 
-96
+91
 00:04:07,880 --> 00:04:10,390
-That'll call the Edit
+That'll call the Edit
 Event function.
 
-97
+92
 00:04:10,390 --> 00:04:14,610
-And inside that, we'll simply
+And inside that, we'll simply
 get that todoItem model out
 
-98
+93
 00:04:14,610 --> 00:04:19,250
-of our collection and send
+of our collection and send
 that into the TodoForm.
 
-99
+94
 00:04:19,250 --> 00:04:21,374
-Then we'll simply render out
+Then we'll simply render out
 that form to the page.
 
-100
-00:04:21,374 --> 00:04:24,260
-
-
-101
+95
 00:04:24,260 --> 00:04:25,950
 What about the new form?
 
-102
+96
 00:04:25,950 --> 00:04:27,610
-First we're going to
+First we're going to
 add a new route.
 
-103
+97
 00:04:27,610 --> 00:04:30,600
-So when someone goes to
+So when someone goes to
 todo/new, it's going to render
 
-104
+98
 00:04:30,600 --> 00:04:32,130
 out a newTodo.
 
-105
+99
 00:04:32,130 --> 00:04:35,180
-And that new to do function is
+And that new to do function is
 simply going to create a new
 
-106
+100
 00:04:35,180 --> 00:04:39,490
-todoItem and send that into
+todoItem and send that into
 a new TodoForm view, and
 
-107
+101
 00:04:39,490 --> 00:04:40,870
-then render that out
+then render that out
 to the page.
 
-108
-00:04:40,870 --> 00:04:46,190
-
-
-109
+102
 00:04:46,190 --> 00:04:49,150
-Now back in our TodoForm when
+Now back in our TodoForm when
 we successfully save a to
 
-110
+103
 00:04:49,150 --> 00:04:55,250
-do item, we're going to want to
+do item, we're going to want to
 go back to our index route.
 
-111
+104
 00:04:55,250 --> 00:04:57,720
-But we're only going to want
+But we're only going to want
 to do this when we
 
-112
+105
 00:04:57,720 --> 00:04:59,370
 successfully save.
 
-113
+106
 00:04:59,370 --> 00:05:03,000
-If there's an error, we don't
+If there's an error, we don't
 want to go back to the index.
 
-114
+107
 00:05:03,000 --> 00:05:05,560
-So let's change this up a little
+So let's change this up a little
 bit and add a call
 
-115
+108
 00:05:05,560 --> 00:05:08,557
-back, so when the save is
+back, so when the save is
 successful, then navigate to
 
-116
+109
 00:05:08,557 --> 00:05:09,807
 the index path.
 
-117
-00:05:09,807 --> 00:05:12,120
-
-
-118
+110
 00:05:12,120 --> 00:05:15,070
-But what happens if the to
+But what happens if the to
 do item doesn't save?
 
-119
+111
 00:05:15,070 --> 00:05:18,140
-What if there's maybe some
+What if there's maybe some
 sort of validation error?
 
-120
+112
 00:05:18,140 --> 00:05:20,190
-Well we can add one
+Well we can add one
 more call back.
 
-121
+113
 00:05:20,190 --> 00:05:22,550
-This will be the error
+This will be the error
 call back.
 
-122
+114
 00:05:22,550 --> 00:05:24,450
-And in this case, we're
+And in this case, we're
 going to want to
 
-123
+115
 00:05:24,450 --> 00:05:26,180
 parse out the errors.
 
-124
+116
 00:05:26,180 --> 00:05:28,100
-And we'll just alert
+And we'll just alert
 them onto the page.
 
-125
-00:05:28,100 --> 00:05:31,040
-
-
-126
+117
 00:05:31,040 --> 00:05:34,010
-Let's check out our new
+Let's check out our new
 to do form in action.
 
-127
+118
 00:05:34,010 --> 00:05:37,990
-So here if we click on New
+So here if we click on New
 Todo, here is our form.
 
-128
+119
 00:05:37,990 --> 00:05:41,860
-If we try to submit it without
+If we try to submit it without
 anything, we get a validation
 
-129
+120
 00:05:41,860 --> 00:05:43,560
-error-- description
+error-- description
 can't be blank.
 
-130
-00:05:43,560 --> 00:05:46,250
-
-
-131
+121
 00:05:46,250 --> 00:05:50,590
-Now if we create a proper to
+Now if we create a proper to
 do item and save it, ah, it
 
-132
+122
 00:05:50,590 --> 00:05:52,740
 gets added to our list.
 
-133
+123
 00:05:52,740 --> 00:05:55,050
-If we wanted to edit this form,
+If we wanted to edit this form,
 we can click this edit
 
-134
+124
 00:05:55,050 --> 00:05:59,570
-link which allows us to update
+link which allows us to update
 the specific to do item like
 
-135
+125
 00:05:59,570 --> 00:06:00,820
 you see here.
 
-136
-00:06:00,820 --> 00:06:05,070
-
-
-137
+126
 00:06:05,070 --> 00:06:08,100
-Forms are an important part
+Forms are an important part
 of any web application.
 
-138
+127
 00:06:08,100 --> 00:06:09,950
-So it's time for you to
+So it's time for you to
 do some of them in the
 
-139
+128
 00:06:09,950 --> 00:06:11,200
 challenges.
 
-140
+129
 00:00:00,000 --> 00:00:00,000
 00:06:11,200 --> 00:06:13,698
-

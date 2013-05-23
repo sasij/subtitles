@@ -1,593 +1,584 @@
-1
-00:00:00,000 --> 00:00:01,470
-
-
-2
+﻿1
 00:00:01,470 --> 00:00:01,560
 [SINGING]
 
-3
+2
 00:00:01,560 --> 00:00:04,500
-Your style sheets are bloated
+Your style sheets are bloated
 and making a mess.
 
-4
+3
 00:00:04,500 --> 00:00:08,500
-Your HTML is ashamed
+Your HTML is ashamed
 of your CSS.
 
-5
+4
 00:00:08,500 --> 00:00:10,960
-It's not organized and
+It's not organized and
 it's not classy.
 
-6
+5
 00:00:10,960 --> 00:00:14,620
-It's time to make your
+It's time to make your
 style sheets Sassy.
 
-7
+6
 00:00:14,620 --> 00:00:16,821
-Using CSS extensions
+Using CSS extensions
 are the preference.
 
-8
+7
 00:00:16,821 --> 00:00:17,815
 We'll use mixins
 
-9
+8
 00:00:17,815 --> 00:00:21,190
 nesting and inheritance
 
-10
+9
 00:00:21,190 --> 00:00:24,160
-Functions extend and partials
+Functions extend and partials
 we'll amass,
 
-11
+10
 00:00:24,160 --> 00:00:26,614
-In no time you'll be
+In no time you'll be
 assembling Sass.
 
-12
-00:00:26,614 --> 00:00:32,659
-
-
-13
+11
 00:00:32,659 --> 00:00:34,290
-You're watching Level
+You're watching Level
 Two of Assembling
 
-14
+12
 00:00:34,290 --> 00:00:36,690
 Sass, Part Two, Compass.
 
-15
+13
 00:00:36,690 --> 00:00:39,570
-In this level, we're going to
+In this level, we're going to
 introduce the Sass extension
 
-16
+14
 00:00:39,570 --> 00:00:42,920
-Compass and show a few early
+Compass and show a few early
 ways on how we can go ahead
 
-17
+15
 00:00:42,920 --> 00:00:45,190
 and start using it.
 
-18
+16
 00:00:45,190 --> 00:00:46,890
 So what is Compass?
 
-19
+17
 00:00:46,890 --> 00:00:49,140
-Compass bills itself
+Compass bills itself
 as an open-source
 
-20
+18
 00:00:49,140 --> 00:00:51,190
 CSS authoring framework.
 
-21
+19
 00:00:51,190 --> 00:00:55,310
-So it adds a lot of tools on
+So it adds a lot of tools on
 top of Sass for us like
 
-22
+20
 00:00:55,310 --> 00:00:58,380
-repeated patterns and modules
+repeated patterns and modules
 that we can use in our
 
-23
+21
 00:00:58,380 --> 00:01:00,110
 everyday styles.
 
-24
+22
 00:01:00,110 --> 00:01:02,710
-There are a lot of things in
+There are a lot of things in
 Compass, but we're going to go
 
-25
+23
 00:01:02,710 --> 00:01:07,280
-ahead and focus on the high
+ahead and focus on the high
 points in this course for you.
 
-26
+24
 00:01:07,280 --> 00:01:08,770
-We'll start off with
+We'll start off with
 a bit of history.
 
-27
+25
 00:01:08,770 --> 00:01:11,570
-So Compass was started by Chris
+So Compass was started by Chris
 Eppstein, who's one of
 
-28
+26
 00:01:11,570 --> 00:01:14,670
-the core maintainers on
+the core maintainers on
 Sass as charityware.
 
-29
+27
 00:01:14,670 --> 00:01:17,780
-Other core maintainers on the
+Other core maintainers on the
 Compass project includes Scott
 
-30
+28
 00:01:17,780 --> 00:01:22,160
-Davis, Eric Meyer, Brandon
+Davis, Eric Meyer, Brandon
 Mathis, and Anthony Short, and
 
-31
+29
 00:01:22,160 --> 00:01:26,120
-the source for Compass is
+the source for Compass is
 available here on GitHub.
 
-32
+30
 00:01:26,120 --> 00:01:28,490
-Now that we know what Compass
+Now that we know what Compass
 is, let's talk a bit about how
 
-33
+31
 00:01:28,490 --> 00:01:29,950
 to start using it.
 
-34
+32
 00:01:29,950 --> 00:01:33,040
-So Compass is comprised
+So Compass is comprised
 of five main modules--
 
-35
+33
 00:01:33,040 --> 00:01:35,920
-the utilities module,
+the utilities module,
 typography,
 
-36
+34
 00:01:35,920 --> 00:01:38,460
 CSS3, layout, and reset.
 
-37
+35
 00:01:38,460 --> 00:01:42,110
-The first four don't actually
+The first four don't actually
 include any CSS until we start
 
-38
+36
 00:01:42,110 --> 00:01:43,860
 using things inside of them.
 
-39
+37
 00:01:43,860 --> 00:01:46,945
-Only the fifth, reset, actually
+Only the fifth, reset, actually
 outputs any CSS on
 
-40
+38
 00:01:46,945 --> 00:01:49,510
-its own, and we'll talk
+its own, and we'll talk
 about that again soon.
 
-41
+39
 00:01:49,510 --> 00:01:52,230
-So once Compass is installed,
+So once Compass is installed,
 which we're not going to worry
 
-42
+40
 00:01:52,230 --> 00:01:54,620
-about until the wrap up of the
+about until the wrap up of the
 course, we can go ahead and
 
-43
+41
 00:01:54,620 --> 00:01:58,040
-start using it in our style
+start using it in our style
 sheets by importing it.
 
-44
+42
 00:01:58,040 --> 00:02:00,710
-By importing Compass, it's
+By importing Compass, it's
 going to include the
 
-45
+43
 00:02:00,710 --> 00:02:04,320
-utilities, typography,
+utilities, typography,
 and CSS3 modules.
 
-46
+44
 00:02:04,320 --> 00:02:07,220
-And then if we need to use the
+And then if we need to use the
 layout module, we can do so by
 
-47
+45
 00:02:07,220 --> 00:02:11,070
 saying @ import compass/layout.
 
-48
+46
 00:02:11,070 --> 00:02:14,470
-Since none of these modules
+Since none of these modules
 actually output any CSS until
 
-49
+47
 00:02:14,470 --> 00:02:17,580
-we use the tools within, we
+we use the tools within, we
 definitely recommend just go
 
-50
+48
 00:02:17,580 --> 00:02:20,790
-ahead and importing them at
+ahead and importing them at
 the top of your main Sass
 
-51
+49
 00:02:20,790 --> 00:02:23,950
-style sheet so that the tools
+style sheet so that the tools
 are useful throughout.
 
-52
+50
 00:02:23,950 --> 00:02:27,000
-If you do need to restrict which
+If you do need to restrict which
 modules or submodules
 
-53
+51
 00:02:27,000 --> 00:02:29,650
-are available, you can include
+are available, you can include
 them separately, but normally
 
-54
+52
 00:02:29,650 --> 00:02:31,590
 this won't be the case.
 
-55
+53
 00:02:31,590 --> 00:02:34,130
-Now we did talk about
+Now we did talk about
 that reset module.
 
-56
+54
 00:02:34,130 --> 00:02:37,400
-If you do include the fifth
+If you do include the fifth
 module, reset, you need to do
 
-57
+55
 00:02:37,400 --> 00:02:40,120
-so kind of like we did with
+so kind of like we did with
 the layout module.
 
-58
+56
 00:02:40,120 --> 00:02:43,750
-And what that's going to do is
+And what that's going to do is
 output a bunch of CSS based on
 
-59
+57
 00:02:43,750 --> 00:02:47,180
-Eric Meyer's CSS reset
+Eric Meyer's CSS reset
 style sheet.
 
-60
+58
 00:02:47,180 --> 00:02:50,590
-So this seems very useful, as
+So this seems very useful, as
 we usually reset our CSS in
 
-61
+59
 00:02:50,590 --> 00:02:53,440
-some way, but it's not
+some way, but it's not
 ideal in production.
 
-62
+60
 00:02:53,440 --> 00:02:56,460
-Because it's outputting the CSS
+Because it's outputting the CSS
 automatically for us, we
 
-63
+61
 00:02:56,460 --> 00:02:59,750
-can't modify it to just
+can't modify it to just
 fit our site's needs.
 
-64
+62
 00:02:59,750 --> 00:03:03,130
-And if you're one of the
+And if you're one of the
 Normalize.css folks and prefer
 
-65
+63
 00:03:03,130 --> 00:03:05,930
-that sort of reset, you
+that sort of reset, you
 definitely won't want to use
 
-66
+64
 00:03:05,930 --> 00:03:07,310
 this module.
 
-67
+65
 00:03:07,310 --> 00:03:10,020
-With Compass available now,
+With Compass available now,
 let's talk a bit about how we
 
-68
+66
 00:03:10,020 --> 00:03:11,150
 can use it.
 
-69
+67
 00:03:11,150 --> 00:03:14,590
-Back in Part One, we talked
+Back in Part One, we talked
 about how mixins could be used
 
-70
+68
 00:03:14,590 --> 00:03:18,170
-to remove our need to write a
+to remove our need to write a
 bunch of prefix CSS3 classes,
 
-71
+69
 00:03:18,170 --> 00:03:20,160
 kind of like box-sizing here.
 
-72
+70
 00:03:20,160 --> 00:03:23,380
-So instead of writing the
+So instead of writing the
 Mozilla WebKit prefixes, we
 
-73
+71
 00:03:23,380 --> 00:03:26,260
-have a mixin which handles
+have a mixin which handles
 that for us.
 
-74
+72
 00:03:26,260 --> 00:03:29,020
-But when we look at our output,
+But when we look at our output,
 we have the WebKit and
 
-75
+73
 00:03:29,020 --> 00:03:31,070
 Mozilla prefixes.
 
-76
+74
 00:03:31,070 --> 00:03:33,450
-We're missing Opera
+We're missing Opera
 and Microsoft,
 
-77
+75
 00:03:33,450 --> 00:03:35,160
 or are those needed?
 
-78
+76
 00:03:35,160 --> 00:03:36,360
 I'm not really sure.
 
-79
+77
 00:03:36,360 --> 00:03:37,350
 We're going to need to maintain
 
-80
+78
 00:03:37,350 --> 00:03:39,280
 this box-sizing mixin.
 
-81
+79
 00:03:39,280 --> 00:03:43,320
-It becomes a difficult sort
+It becomes a difficult sort
 of back and forth game.
 
-82
+80
 00:03:43,320 --> 00:03:46,500
-With Compass, once we include
+With Compass, once we include
 it, there's already these
 
-83
+81
 00:03:46,500 --> 00:03:50,220
-mixins for CSS3 prefix
+mixins for CSS3 prefix
 properties, like box-sizing,
 
-84
+82
 00:03:50,220 --> 00:03:52,480
-already handled for
+already handled for
 us in Compass.
 
-85
+83
 00:03:52,480 --> 00:03:56,730
-So once we import Compass, our
+So once we import Compass, our
 box-sizing mixin call still
 
-86
+84
 00:03:56,730 --> 00:04:00,350
-works and outputs the CSS, which
+works and outputs the CSS, which
 ultimately shows us that
 
-87
+85
 00:04:00,350 --> 00:04:05,430
-we didn't need that Opera and
+we didn't need that Opera and
 Microsoft prefix after all.
 
-88
+86
 00:04:05,430 --> 00:04:09,280
-Other useful CSS3 mixins
+Other useful CSS3 mixins
 included in Compass include
 
-89
+87
 00:04:09,280 --> 00:04:12,750
-background for gradients,
+background for gradients,
 border-radius, box-shadow,
 
-90
+88
 00:04:12,750 --> 00:04:15,990
-transitions, columns,
+transitions, columns,
 transforms.
 
-91
+89
 00:04:15,990 --> 00:04:18,529
-Always make sure that you're
+Always make sure that you're
 checking what you need to
 
-92
+90
 00:04:18,529 --> 00:04:21,230
-support in the browsers that
+support in the browsers that
 you intend to support with
 
-93
+91
 00:04:21,230 --> 00:04:23,950
-your project to see whether or
+your project to see whether or
 not you need to use the prefix
 
-94
+92
 00:04:23,950 --> 00:04:24,970
 properties.
 
-95
+93
 00:04:24,970 --> 00:04:26,950
-Things like border-radius and
+Things like border-radius and
 box-shadow are getting to the
 
-96
+94
 00:04:26,950 --> 00:04:28,060
 point now that you don't
 
-97
+95
 00:04:28,060 --> 00:04:29,680
 necessarily need those prefixes.
 
-98
+96
 00:04:29,680 --> 00:04:33,340
-So it might vary from
+So it might vary from
 project to project.
 
-99
+97
 00:04:33,340 --> 00:04:36,710
-In dealing with CSS3 prefix
+In dealing with CSS3 prefix
 properties, though, gradients
 
-100
+98
 00:04:36,710 --> 00:04:37,940
 still take the cake.
 
-101
+99
 00:04:37,940 --> 00:04:40,640
-Just to do a simple one, we
+Just to do a simple one, we
 still have to output code that
 
-102
+100
 00:04:40,640 --> 00:04:43,690
-looks something like this,
+looks something like this,
 especially a mess when it
 
-103
+101
 00:04:43,690 --> 00:04:46,640
-comes to the original WebKit
+comes to the original WebKit
 gradient syntax.
 
-104
+102
 00:04:46,640 --> 00:04:50,370
-But we're mostly going to
+But we're mostly going to
 focus in on the bits of
 
-105
+103
 00:04:50,370 --> 00:04:53,030
-non-prefix code here at the
+non-prefix code here at the
 bottom and see how we can use
 
-106
+104
 00:04:53,030 --> 00:04:55,020
 that using Compass.
 
-107
+105
 00:04:55,020 --> 00:04:57,440
-So this original gradient
+So this original gradient
 outputs something
 
-108
+106
 00:04:57,440 --> 00:04:59,920
 that looks like this.
 
-109
+107
 00:04:59,920 --> 00:05:02,490
-And using the Compass background
+And using the Compass background
 mixin, we can go
 
-110
+108
 00:05:02,490 --> 00:05:06,080
-ahead and remove the need to
+ahead and remove the need to
 write all of that extra syntax
 
-111
+109
 00:05:06,080 --> 00:05:08,170
-and just include
+and just include
 that non-prefix
 
-112
+110
 00:05:08,170 --> 00:05:10,210
 version in the mixin.
 
-113
+111
 00:05:10,210 --> 00:05:14,030
-Once it compiles, all of those
+Once it compiles, all of those
 extra prefix properties will
 
-114
+112
 00:05:14,030 --> 00:05:17,170
-be output by just writing
+be output by just writing
 this line of code.
 
-115
+113
 00:05:17,170 --> 00:05:20,980
-In the same way, we can handle
+In the same way, we can handle
 our radial gradients using the
 
-116
+114
 00:05:20,980 --> 00:05:24,930
-radial gradient syntax in
+radial gradient syntax in
 our background mixin.
 
-117
+115
 00:05:24,930 --> 00:05:27,470
-And that ultimately will
+And that ultimately will
 compile down to look
 
-118
+116
 00:05:27,470 --> 00:05:29,350
 something like this.
 
-119
+117
 00:05:29,350 --> 00:05:32,690
-And we're still able to use the
+And we're still able to use the
 more complicated versions
 
-120
+118
 00:05:32,690 --> 00:05:36,130
-of gradients, like extra color
+of gradients, like extra color
 stops at specified positions
 
-121
+119
 00:05:36,130 --> 00:05:41,380
-like this one, ultimately
+like this one, ultimately
 outputting this gradient.
 
-122
+120
 00:05:41,380 --> 00:05:43,930
-So now you've been introduced
+So now you've been introduced
 to Compass, and it's time to
 
-123
+121
 00:05:43,930 --> 00:05:46,180
-move on to the second
+move on to the second
 set of challenges.
 
-124
+122
 00:05:46,180 --> 00:05:47,800
-We'll see you back here
+We'll see you back here
 for Level Three.
 
-125
+123
 00:00:00,000 --> 00:00:00,000
 00:05:47,800 --> 00:05:49,122
-

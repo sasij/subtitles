@@ -1,397 +1,381 @@
-1
-00:00:00,000 --> 00:00:00,330
-
-
-2
+﻿1
 00:00:00,330 --> 00:00:02,944
 They call it CoffeeScript.
 
-3
+2
 00:00:02,944 --> 00:00:04,408
 Come by and take a sip.
 
-4
+3
 00:00:04,408 --> 00:00:06,360
 I know it's quite a trip.
 
-5
+4
 00:00:06,360 --> 00:00:12,216
 But somehow you can write less
 code to get more done.
 
-6
+5
 00:00:12,216 --> 00:00:12,704
 Yeah.
 
-7
+6
 00:00:12,704 --> 00:00:16,422
 Come on and take a seat,
 don't end up obsolete.
 
-8
+7
 00:00:16,422 --> 00:00:18,777
 They call it CoffeeScript.
 
-9
+8
 00:00:18,777 --> 00:00:20,190
 CoffeeScript, yeah.
 
-10
-00:00:20,190 --> 00:00:23,500
-
-
-11
+9
 00:00:23,500 --> 00:00:26,640
 Welcome to the second level of
 "A Sip of CoffeeScript." In
 
-12
+10
 00:00:26,640 --> 00:00:28,520
 this level, we're not going
 to be learning any new
 
-13
+11
 00:00:28,520 --> 00:00:30,250
 CoffeeScript concepts.
 
-14
+12
 00:00:30,250 --> 00:00:33,220
 We're simply going to be
 applying them and practicing
 
-15
+13
 00:00:33,220 --> 00:00:35,910
 them using some jQuery.
 
-16
+14
 00:00:35,910 --> 00:00:38,270
 If you played through the
 jQuery Air Captain's Log
 
-17
+15
 00:00:38,270 --> 00:00:40,230
 course, some of this should
 look familiar.
 
-18
+16
 00:00:40,230 --> 00:00:43,090
 We're going to take some jQuery
 from there and convert
 
-19
+17
 00:00:43,090 --> 00:00:45,910
 it to CoffeeScript.
 
-20
+18
 00:00:45,910 --> 00:00:48,730
 You'll remember, if you played
 jQuery Air Captain's Log, that
 
-21
+19
 00:00:48,730 --> 00:00:51,520
 we had this flight selector you
 see down here with a bunch
 
-22
+20
 00:00:51,520 --> 00:00:52,330
 of different tabs.
 
-23
+21
 00:00:52,330 --> 00:00:55,960
 And we could select a tab, and
 it would become active.
 
-24
+22
 00:00:55,960 --> 00:00:58,540
 The code that we wrote looked
 something like this.
 
-25
+23
 00:00:58,540 --> 00:01:00,800
 Here, we have the
 jQuery wrapper.
 
-26
+24
 00:01:00,800 --> 00:01:03,260
 On the click event for one of
 these tabs called the Change
 
-27
+25
 00:01:03,260 --> 00:01:06,140
 Tab Function, here is the Change
 Tab Function where we
 
-28
+26
 00:01:06,140 --> 00:01:08,190
 call Prevent Default.
 
-29
+27
 00:01:08,190 --> 00:01:10,550
 Then we remove the active class
 from the one that's
 
-30
+28
 00:01:10,550 --> 00:01:11,720
 currently active.
 
-31
+29
 00:01:11,720 --> 00:01:15,040
 And we add the active class
 to the clicked tab.
 
-32
+30
 00:01:15,040 --> 00:01:18,200
 Let's start converting this line
 by line to CoffeeScript.
 
-33
+31
 00:01:18,200 --> 00:01:21,000
 Often in CoffeeScript code
 you'll see people just use
 
-34
+32
 00:01:21,000 --> 00:01:22,510
 Dollar Sign, Arrow.
 
-35
+33
 00:01:22,510 --> 00:01:27,110
 And that's fine to do as long as
 jQuery is the only library
 
-36
+34
 00:01:27,110 --> 00:01:29,890
 in your application that's
 using that dollar sign.
 
-37
+35
 00:01:29,890 --> 00:01:30,870
 Let's use that in our code.
 
-38
+36
 00:01:30,870 --> 00:01:32,310
 Let's move that up.
 
-39
+37
 00:01:32,310 --> 00:01:34,280
 Next is the function
 definition.
 
-40
+38
 00:01:34,280 --> 00:01:36,620
 We can define Change Tab.
 
-41
+39
 00:01:36,620 --> 00:01:38,450
 For most of the remaining lines,
 all we really have to
 
-42
+40
 00:01:38,450 --> 00:01:41,690
 do is remove the semicolons
 and curly brackets.
 
-43
+41
 00:01:41,690 --> 00:01:43,750
 Let's do that.
 
-44
+42
 00:01:43,750 --> 00:01:44,810
 Our code is looking nicer.
 
-45
+43
 00:01:44,810 --> 00:01:47,760
 We can also optionally remove
 the parentheses from some of
 
-46
+44
 00:01:47,760 --> 00:01:48,920
 those function calls.
 
-47
+45
 00:01:48,920 --> 00:01:51,640
 Let's go ahead and do that.
 
-48
+46
 00:01:51,640 --> 00:01:53,330
 There's one last thing we
 can do this code to
 
-49
+47
 00:01:53,330 --> 00:01:54,460
 make it look nice.
 
-50
+48
 00:01:54,460 --> 00:01:57,030
 You see that "this"
 word in there?
 
-51
+49
 00:01:57,030 --> 00:01:59,580
 Well, in CoffeeScript we have
 a shortcut for this.
 
-52
+50
 00:01:59,580 --> 00:02:01,660
 We can simply use the @ sign.
 
-53
+51
 00:02:01,660 --> 00:02:06,000
 So, I could write this
 line like this.
 
-54
+52
 00:02:06,000 --> 00:02:07,990
 Now, let's take a look at
 the JavaScript and the
 
-55
+53
 00:02:07,990 --> 00:02:10,430
 CoffeeScript we wrote
 side by side.
 
-56
+54
 00:02:10,430 --> 00:02:12,370
 Feel free to pause the video at
 this point if you want to
 
-57
+55
 00:02:12,370 --> 00:02:14,520
 take a closer look and really
 examine the differences.
 
-58
-00:02:14,520 --> 00:02:17,110
-
-
-59
+56
 00:02:17,110 --> 00:02:19,450
 Let's convert a couple more
 snippets of JavaScript to
 
-60
+57
 00:02:19,450 --> 00:02:20,210
 CoffeeScript.
 
-61
+58
 00:02:20,210 --> 00:02:23,390
 Here you can see we have
 a click handler.
 
-62
+59
 00:02:23,390 --> 00:02:25,040
 To convert that to CoffeeScript,
 it would look
 
-63
+60
 00:02:25,040 --> 00:02:27,770
 something like this.
 
-64
+61
 00:02:27,770 --> 00:02:30,570
 Here's some JavaScript
 where we use a queue.
 
-65
+62
 00:02:30,570 --> 00:02:32,770
 Let's convert this
 to CoffeeScript.
 
-66
+63
 00:02:32,770 --> 00:02:37,270
 It would look something
 like this.
 
-67
+64
 00:02:37,270 --> 00:02:39,270
 Before you jump into the
 challenges, let's take a look
 
-68
+65
 00:02:39,270 --> 00:02:40,650
 at one more example.
 
-69
+66
 00:02:40,650 --> 00:02:43,670
 Here's some JavaScript
 from jQuery Air.
 
-70
+67
 00:02:43,670 --> 00:02:45,730
 Let's convert this
 line by line.
 
-71
+68
 00:02:45,730 --> 00:02:46,270
 So
 
-72
+69
 00:02:46,270 --> 00:02:50,080
 First line, here is the
 function definition.
 
-73
+70
 00:02:50,080 --> 00:02:52,850
 Next line, we declare the
 num_flights variable.
 
-74
+71
 00:02:52,850 --> 00:02:56,920
 You notice I'm using the @
 symbol instead of this.
 
-75
+72
 00:02:56,920 --> 00:02:58,800
 Next line, we have
 (this).append.
 
-76
+73
 00:02:58,800 --> 00:03:00,550
 Again, I'm using
 the @ symbol.
 
-77
+74
 00:03:00,550 --> 00:03:03,250
 You'll notice here we're using
 an interpolated string.
 
-78
+75
 00:03:03,250 --> 00:03:04,450
 And the last line is
 pretty obvious.
 
-79
+76
 00:03:04,450 --> 00:03:07,130
 It's basically the same thing
 without the semicolon.
 
-80
+77
 00:03:07,130 --> 00:03:10,810
 And that about wraps up
 the second level.
 
-81
+78
 00:03:10,810 --> 00:03:12,000
 I know it was pretty short.
 
-82
+79
 00:03:12,000 --> 00:03:15,360
 But I want to get you more
 familiar with using this new
 
-83
+80
 00:03:15,360 --> 00:03:17,090
 CoffeeScript syntax.
 
-84
+81
 00:03:17,090 --> 00:03:19,830
 In the challenges, you're going
 to write some jQuery and
 
-85
+82
 00:03:19,830 --> 00:03:22,220
 convert it from JavaScript
 to CoffeeScript.
-
-86
-00:03:22,220 --> 00:03:25,546
-

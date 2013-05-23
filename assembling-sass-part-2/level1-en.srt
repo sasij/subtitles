@@ -1,1099 +1,1066 @@
-1
-00:00:00,000 --> 00:00:00,980
-
-
-2
+﻿1
 00:00:00,980 --> 00:00:01,470
 [SINGING]
 
-3
+2
 00:00:01,470 --> 00:00:04,500
-You're style sheets are bloated
+You're style sheets are bloated
 and making a mess.
 
-4
+3
 00:00:04,500 --> 00:00:07,890
-Your HTML is ashamed
+Your HTML is ashamed
 of your CSS.
 
-5
+4
 00:00:07,890 --> 00:00:10,960
-It's not organized, and
+It's not organized, and
 it's not classy.
 
-6
+5
 00:00:10,960 --> 00:00:14,620
-It's time to make your
+It's time to make your
 style sheets sassy.
 
-7
+6
 00:00:14,620 --> 00:00:17,815
-Using CSS extensions
+Using CSS extensions
 are the preference.
 
-8
+7
 00:00:17,815 --> 00:00:21,190
-We'll use mixins, nesting
+We'll use mixins, nesting
 and inheritance.
 
-9
+8
 00:00:21,190 --> 00:00:24,860
-Functions extend, and partials
+Functions extend, and partials
 we'll amass, in no time,
 
-10
+9
 00:00:24,860 --> 00:00:26,150
 you'll be assembling Sass.
 
-11
-00:00:26,150 --> 00:00:33,180
-
-
-12
+10
 00:00:33,180 --> 00:00:35,430
-You're watching Assembling
+You're watching Assembling
 Sass part two.
 
-13
+11
 00:00:35,430 --> 00:00:36,280
 I'm Nick Walsh.
 
-14
+12
 00:00:36,280 --> 00:00:38,870
-And this is level
+And this is level
 one, More Sass.
 
-15
+13
 00:00:38,870 --> 00:00:40,980
-Our agenda in this course
+Our agenda in this course
 is two-fold.
 
-16
+14
 00:00:40,980 --> 00:00:43,290
-First up, we're going to be
+First up, we're going to be
 talking about a few more
 
-17
+15
 00:00:43,290 --> 00:00:46,360
-useful bits of Sass we didn't
+useful bits of Sass we didn't
 get to in part one.
 
-18
+16
 00:00:46,360 --> 00:00:47,890
-And then we're going
+And then we're going
 to go into this the
 
-19
+17
 00:00:47,890 --> 00:00:49,980
 Sass extension Compass.
 
-20
+18
 00:00:49,980 --> 00:00:53,240
-So one level 1, we're going to
+So one level 1, we're going to
 talk a bit about the indented
 
-21
+19
 00:00:53,240 --> 00:00:57,610
-syntax and then go into some
+syntax and then go into some
 useful bits of lists,
 
-22
+20
 00:00:57,610 --> 00:01:00,110
-utilities, and place
+utilities, and place
 holders that help
 
-23
+21
 00:01:00,110 --> 00:01:03,840
 extend our Sass knowledge.
 
-24
+22
 00:01:03,840 --> 00:01:07,090
-First up, let's talk about
+First up, let's talk about
 the other Sass syntax.
 
-25
+23
 00:01:07,090 --> 00:01:09,980
-In the first part of the course,
+In the first part of the course,
 we talked about Sassy
 
-26
+24
 00:01:09,980 --> 00:01:12,720
 CSS, the defaults Sass syntax.
 
-27
+25
 00:01:12,720 --> 00:01:14,930
-But there's also a second
+But there's also a second
 syntax called
 
-28
+26
 00:01:14,930 --> 00:01:16,810
 the indented syntax.
 
-29
+27
 00:01:16,810 --> 00:01:21,300
-So files using the indented
+So files using the indented
 syntax end in .sass.
 
-30
+28
 00:01:21,300 --> 00:01:24,380
-And the primary difference
+And the primary difference
 between Sassy CSS and the
 
-31
+29
 00:01:24,380 --> 00:01:29,180
-indented syntax is, removing
+indented syntax is, removing
 semicolons and curly braces.
 
-32
+30
 00:01:29,180 --> 00:01:34,000
-So this bit of code, rewritten
+So this bit of code, rewritten
 in the indented syntax, has no
 
-33
+31
 00:01:34,000 --> 00:01:35,960
-curly braces and
+curly braces and
 no semi colons.
 
-34
+32
 00:01:35,960 --> 00:01:38,410
-It's white-space active,
+It's white-space active,
 so it's a bit simpler.
 
-35
-00:01:38,410 --> 00:01:41,890
-
-
-36
+33
 00:01:41,890 --> 00:01:44,600
-The second main difference
+The second main difference
 between using the indented
 
-37
+34
 00:01:44,600 --> 00:01:48,500
-syntax and Sassy CSS is how
+syntax and Sassy CSS is how
 we define and use mixins.
 
-38
+35
 00:01:48,500 --> 00:01:53,000
-So in Sassy CSS we have
+So in Sassy CSS we have
 to go ahead and say @mixin,
 
-39
+36
 00:01:53,000 --> 00:01:54,330
 followed by the mixin name.
 
-40
+37
 00:01:54,330 --> 00:01:57,020
-And then to call it,
+And then to call it,
 we use @include.
 
-41
+38
 00:01:57,020 --> 00:02:00,220
-The rewritten version of this
+The rewritten version of this
 in the indented syntax just
 
-42
+39
 00:02:00,220 --> 00:02:03,390
-uses equals to define our mixin,
+uses equals to define our mixin,
 and then uses plus to
 
-43
+40
 00:02:03,390 --> 00:02:07,870
-go ahead and use that
+go ahead and use that
 mixin in our code.
 
-44
+41
 00:02:07,870 --> 00:02:10,310
-Throughout the course, all of
+Throughout the course, all of
 our examples are going to use
 
-45
+42
 00:02:10,310 --> 00:02:12,580
-the indented syntax to
+the indented syntax to
 keep things simple.
 
-46
+43
 00:02:12,580 --> 00:02:14,930
-And then, in the challenges,
+And then, in the challenges,
 you'll be able to use either
 
-47
+44
 00:02:14,930 --> 00:02:17,160
 syntax as you please.
 
-48
+45
 00:02:17,160 --> 00:02:20,990
-We definitely recommend giving
+We definitely recommend giving
 the indented syntax a shot.
 
-49
+46
 00:02:20,990 --> 00:02:23,270
-It's going to be really
+It's going to be really
 strange at first.
 
-50
+47
 00:02:23,270 --> 00:02:26,150
-You probably have semicolons and
+You probably have semicolons and
 curly braces sort of built
 
-51
+48
 00:02:26,150 --> 00:02:27,570
-into your muscle memory
+into your muscle memory
 now if you've been
 
-52
+49
 00:02:27,570 --> 00:02:29,570
 doing CSS for a while.
 
-53
+50
 00:02:29,570 --> 00:02:34,050
-But it definitely grew on us,
+But it definitely grew on us,
 and it might grow on you, too.
 
-54
+51
 00:02:34,050 --> 00:02:36,270
-Back in part one of the course,
+Back in part one of the course,
 we talked about the
 
-55
+52
 00:02:36,270 --> 00:02:37,640
 list data types.
 
-56
+53
 00:02:37,640 --> 00:02:40,830
-So groups of values, either
+So groups of values, either
 space separated or comma
 
-57
+54
 00:02:40,830 --> 00:02:43,710
-separated, like these
+separated, like these
 two lists.
 
-58
+55
 00:02:43,710 --> 00:02:47,570
-And then we went on to use the
+And then we went on to use the
 lists to loop through and
 
-59
+56
 00:02:47,570 --> 00:02:51,640
-create sets of classes, like
+create sets of classes, like
 setting the authors variable,
 
-60
+57
 00:02:51,640 --> 00:02:55,780
-here looping through each, and
+here looping through each, and
 making sets of classes and
 
-61
+58
 00:02:55,780 --> 00:03:00,320
-background URLs based on the
+background URLs based on the
 names of the authors.
 
-62
+59
 00:03:00,320 --> 00:03:03,530
-In Sass, we also have access
+In Sass, we also have access
 to functions to modify our
 
-63
+60
 00:03:03,530 --> 00:03:06,640
-lists or to pull values
+lists or to pull values
 out of lists.
 
-64
+61
 00:03:06,640 --> 00:03:10,400
-First up is length, which lets
+First up is length, which lets
 us find the number of values
 
-65
+62
 00:03:10,400 --> 00:03:12,140
 in our list.
 
-66
+63
 00:03:12,140 --> 00:03:15,560
-We also have append, which can
+We also have append, which can
 add value to the end of the
 
-67
+64
 00:03:15,560 --> 00:03:18,730
-list, and append doesn't
+list, and append doesn't
 actually alter
 
-68
+65
 00:03:18,730 --> 00:03:19,800
 our original list.
 
-69
+66
 00:03:19,800 --> 00:03:22,510
-If we want to use that value,
+If we want to use that value,
 it returns a value.
 
-70
+67
 00:03:22,510 --> 00:03:25,670
-And we can set it to
+And we can set it to
 a new variable.
 
-71
+68
 00:03:25,670 --> 00:03:29,360
-We also have the ability to
+We also have the ability to
 join two lists together.
 
-72
+69
 00:03:29,360 --> 00:03:33,760
-And we can find the index of a
+And we can find the index of a
 value that we pass in via the
 
-73
+70
 00:03:33,760 --> 00:03:34,720
 index function.
 
-74
+71
 00:03:34,720 --> 00:03:37,620
-So if we pass in dan, we
+So if we pass in dan, we
 can find the index
 
-75
+72
 00:03:37,620 --> 00:03:39,070
 of dan in our list.
 
-76
+73
 00:03:39,070 --> 00:03:42,050
-Or if we pass in a value that
+Or if we pass in a value that
 isn't found in the list, we'll
 
-77
+74
 00:03:42,050 --> 00:03:44,320
 get false as a return value.
 
-78
+75
 00:03:44,320 --> 00:03:47,170
-It's important to note, unlike
+It's important to note, unlike
 arrays, like you might be used
 
-79
+76
 00:03:47,170 --> 00:03:50,810
-to in other languages, our lists
+to in other languages, our lists
 functions in Sass
 
-80
+77
 00:03:50,810 --> 00:03:52,510
 don't start with an of 0.
 
-81
+78
 00:03:52,510 --> 00:03:53,820
 They start with an index of 1.
 
-82
-00:03:53,820 --> 00:03:57,260
-
-
-83
+79
 00:03:57,260 --> 00:03:59,490
-The alternate of
+The alternate of
 indexes is Nth.
 
-84
+80
 00:03:59,490 --> 00:04:01,100
-And so we can pass
+And so we can pass
 in an index, and
 
-85
+81
 00:04:01,100 --> 00:04:02,750
 instead return a value.
 
-86
+82
 00:04:02,750 --> 00:04:08,330
-So passing in an index of 3 here
+So passing in an index of 3 here
 returns the value of dan.
 
-87
+83
 00:04:08,330 --> 00:04:12,070
-And so our final list function
+And so our final list function
 is zip, which is a bit strange
 
-88
+84
 00:04:12,070 --> 00:04:15,430
-at first but is pretty easy once
+at first but is pretty easy once
 you get the hang of it.
 
-89
+85
 00:04:15,430 --> 00:04:19,019
-We'll have two lists here,
+We'll have two lists here,
 authors and co-authors.
 
-90
+86
 00:04:19,019 --> 00:04:22,350
-And then, if we use zip, we're
+And then, if we use zip, we're
 going to create a paired
 
-91
+87
 00:04:22,350 --> 00:04:24,390
 version of these two lists.
 
-92
+88
 00:04:24,390 --> 00:04:28,910
-It'll take the first value of
+It'll take the first value of
 both lists and join them into
 
-93
+89
 00:04:28,910 --> 00:04:32,240
-a list of their own, the second
+a list of their own, the second
 value of both lists and
 
-94
+90
 00:04:32,240 --> 00:04:35,430
-join them into a list of their
+join them into a list of their
 own, and make both of those
 
-95
+91
 00:04:35,430 --> 00:04:36,870
 list one large list.
 
-96
+92
 00:04:36,870 --> 00:04:41,110
-So we end with two lists inside
+So we end with two lists inside
 of one larger list,
 
-97
+93
 00:04:41,110 --> 00:04:43,970
-each paired up indexes from
+each paired up indexes from
 the original list that we
 
-98
+94
 00:04:43,970 --> 00:04:46,600
 started with.
 
-99
+95
 00:04:46,600 --> 00:04:48,310
-So that seems a bit
+So that seems a bit
 strange, right?
 
-100
+96
 00:04:48,310 --> 00:04:51,830
-How could we make use of that
+How could we make use of that
 in our actual style sheets?
 
-101
+97
 00:04:51,830 --> 00:04:54,700
-Here we're going to start with
+Here we're going to start with
 two separate lists, an authors
 
-102
+98
 00:04:54,700 --> 00:04:56,120
 lists and a colors list.
 
-103
+99
 00:04:56,120 --> 00:04:57,990
-And we're using these throughout
+And we're using these throughout
 our style sheets in
 
-104
+100
 00:04:57,990 --> 00:04:59,270
 other places.
 
-105
+101
 00:04:59,270 --> 00:05:02,030
-But also, you find out we want
+But also, you find out we want
 to combine the two of them to
 
-106
+102
 00:05:02,030 --> 00:05:05,700
-use the colors as backgrounds
+use the colors as backgrounds
 for each of our authors.
 
-107
+103
 00:05:05,700 --> 00:05:08,280
-So we're going to use the zip
+So we're going to use the zip
 function, and the zip function
 
-108
+104
 00:05:08,280 --> 00:05:09,860
 returns something like this--
 
-109
+105
 00:05:09,860 --> 00:05:14,410
-one large list that contains
+one large list that contains
 four separate lists of paired
 
-110
+106
 00:05:14,410 --> 00:05:18,000
-index is between our
+index is between our
 two original lists.
 
-111
+107
 00:05:18,000 --> 00:05:21,130
-Now we can do a loop similar to
+Now we can do a loop similar to
 our original authors loop.
 
-112
+108
 00:05:21,130 --> 00:05:25,240
-We do an each loop over our
+We do an each loop over our
 new, combined zip list.
 
-113
+109
 00:05:25,240 --> 00:05:28,980
-And the first iteration of this
+And the first iteration of this
 loop will have the list
 
-114
+110
 00:05:28,980 --> 00:05:32,350
-of Nick and Green as the
+of Nick and Green as the
 instance variable.
 
-115
+111
 00:05:32,350 --> 00:05:37,210
-So in order to pull Nick out to
+So in order to pull Nick out to
 add to our author class, we
 
-116
+112
 00:05:37,210 --> 00:05:41,660
-can use nth and pull the index
+can use nth and pull the index
 one value out for the author.
 
-117
+113
 00:05:41,660 --> 00:05:44,990
-And then, to find the correct
+And then, to find the correct
 background color, we can use
 
-118
+114
 00:05:44,990 --> 00:05:47,940
-nth, the second index,
+nth, the second index,
 to get green out.
 
-119
+115
 00:05:47,940 --> 00:05:51,550
-So when this loops through and
+So when this loops through and
 outputs our CSS for us, we
 
-120
+116
 00:05:51,550 --> 00:05:54,580
-have a bunch of authors based
+have a bunch of authors based
 on the other names, and each
 
-121
+117
 00:05:54,580 --> 00:05:57,170
-background is set to the
+background is set to the
 paired-up color.
 
-122
-00:05:57,170 --> 00:06:00,070
-
-
-123
+118
 00:06:00,070 --> 00:06:03,390
-Another way we can make use of
+Another way we can make use of
 our list functions is in
 
-124
+119
 00:06:03,390 --> 00:06:06,690
-determining widths based
+determining widths based
 on length lists.
 
-125
+120
 00:06:06,690 --> 00:06:09,830
-So here, we have a
+So here, we have a
 list of authors.
 
-126
+121
 00:06:09,830 --> 00:06:12,600
-And if we want to set them side
+And if we want to set them side
 by side, we might create
 
-127
+122
 00:06:12,600 --> 00:06:15,950
-a separate class, like author
+a separate class, like author
 here, have it floating, and
 
-128
+123
 00:06:15,950 --> 00:06:19,540
-have the width be set so that
+have the width be set so that
 they can be set side by side
 
-129
+124
 00:06:19,540 --> 00:06:22,720
-based on their length,
+based on their length,
 25 120720n this case.
 
-130
+125
 00:06:22,720 --> 00:06:26,450
-If we were to add another item
+If we were to add another item
 to our authors list, that
 
-131
+126
 00:06:26,450 --> 00:06:27,830
 width would longer be correct.
 
-132
+127
 00:06:27,830 --> 00:06:31,060
-We'd need to manually
+We'd need to manually
 alter it to be 20
 
-133
+128
 00:06:31,060 --> 00:06:33,160
-So instead, we can use
+So instead, we can use
 Sass to go ahead and
 
-134
+129
 00:06:33,160 --> 00:06:34,360
 handle this for us.
 
-135
+130
 00:06:34,360 --> 00:06:37,530
-We can start with the width of
+We can start with the width of
 100 0x1.b5aa00001d79p-753nd then divide that by
 
-136
+131
 00:06:37,530 --> 00:06:39,480
-the length of our
+the length of our
 authors list.
 
-137
+132
 00:06:39,480 --> 00:06:42,540
-So it'll output the same CSS
+So it'll output the same CSS
 that we originally started
 
-138
+133
 00:06:42,540 --> 00:06:44,870
-with, and if our list changes
+with, and if our list changes
 length, then it'll
 
-139
+134
 00:06:44,870 --> 00:06:46,740
-automatically update
+automatically update
 that for us.
 
-140
-00:06:46,740 --> 00:06:49,780
-
-
-141
+135
 00:06:49,780 --> 00:06:51,490
-Now that we've finished up with
+Now that we've finished up with
 lists, let's go over a
 
-142
+136
 00:06:51,490 --> 00:06:54,490
-few more utilities available
+few more utilities available
 in Sass for us.
 
-143
+137
 00:06:54,490 --> 00:06:56,790
 First up is scale color.
 
-144
+138
 00:06:56,790 --> 00:07:00,120
-So in part one, we talked about
+So in part one, we talked about
 the lighten and darken
 
-145
+139
 00:07:00,120 --> 00:07:02,840
-functions, amongst other
+functions, amongst other
 color-altering functions,
 
-146
+140
 00:07:02,840 --> 00:07:06,280
-which allow us to sort of
+which allow us to sort of
 predictably change colors.
 
-147
+141
 00:07:06,280 --> 00:07:09,350
-And they're extremely useful,
+And they're extremely useful,
 but they have one main flaw,
 
-148
+142
 00:07:09,350 --> 00:07:10,850
 in that they're linear.
 
-149
+143
 00:07:10,850 --> 00:07:13,450
-If we start with a pretty light
+If we start with a pretty light
 color, like our hex
 
-150
+144
 00:07:13,450 --> 00:07:17,310
-value here of all e's, and
+value here of all e's, and
 lighten it by just 7 120720t
 
-151
+145
 00:07:17,310 --> 00:07:19,180
 already outputs white.
 
-152
+146
 00:07:19,180 --> 00:07:22,810
-So anything above 7will be
+So anything above 7will be
 white, and that really reduces
 
-153
+147
 00:07:22,810 --> 00:07:25,370
-the usefulness of our
+the usefulness of our
 lighten function.
 
-154
+148
 00:07:25,370 --> 00:07:27,920
-Instead, we can make
+Instead, we can make
 use of the scale
 
-155
+149
 00:07:27,920 --> 00:07:29,670
 color function in Sass.
 
-156
+150
 00:07:29,670 --> 00:07:33,420
-So scale color allows us to
+So scale color allows us to
 relatively scale colors, and
 
-157
+151
 00:07:33,420 --> 00:07:36,920
-we can do either the red,
+we can do either the red,
 green, blue saturation,
 
-158
+152
 00:07:36,920 --> 00:07:39,540
-lightness, or alpha values
+lightness, or alpha values
 using scale color.
 
-159
+153
 00:07:39,540 --> 00:07:41,290
 It combines all of those.
 
-160
+154
 00:07:41,290 --> 00:07:43,820
-We can do more than
+We can do more than
 one or just one.
 
-161
+155
 00:07:43,820 --> 00:07:46,440
-And since it can take all of
+And since it can take all of
 these arguments, we need to
 
-162
+156
 00:07:46,440 --> 00:07:48,130
 use keyword arguments.
 
-163
+157
 00:07:48,130 --> 00:07:51,400
-So we can go back to our
+So we can go back to our
 original example here, we can
 
-164
+158
 00:07:51,400 --> 00:07:55,140
-change it to scale color, still
+change it to scale color, still
 pass in the same color,
 
-165
+159
 00:07:55,140 --> 00:07:59,350
-and then pass a keyword argument
+and then pass a keyword argument
 of lightness 7
 
-166
+160
 00:07:59,350 --> 00:08:02,690
-So when we look at our output
+So when we look at our output
 now, instead of scaling it
 
-167
+161
 00:08:02,690 --> 00:08:05,940
-directly to white, linearly,
+directly to white, linearly,
 it's going to relatively scale
 
-168
+162
 00:08:05,940 --> 00:08:10,540
-it 7between the original start
+it 7between the original start
 value and white, so we
 
-169
+163
 00:08:10,540 --> 00:08:12,130
 have this as our output value.
 
-170
-00:08:12,130 --> 00:08:14,710
-
-
-171
+164
 00:08:14,710 --> 00:08:17,260
-Also in part 1 of this course,
+Also in part 1 of this course,
 we introduce control
 
-172
+165
 00:08:17,260 --> 00:08:20,130
-directives, like the if
+directives, like the if
 and else conditionals.
 
-173
+166
 00:08:20,130 --> 00:08:22,640
-And we had an example like this,
+And we had an example like this,
 in which we are setting
 
-174
+167
 00:08:22,640 --> 00:08:26,200
-a theme variable, and the
+a theme variable, and the
 dependent on the value of that
 
-175
+168
 00:08:26,200 --> 00:08:29,680
-theme variable, outputting a
+theme variable, outputting a
 certain background color.
 
-176
+169
 00:08:29,680 --> 00:08:32,520
-In Sass, though, we also
+In Sass, though, we also
 have the ability to do
 
-177
+170
 00:08:32,520 --> 00:08:33,710
 a single line if.
 
-178
+171
 00:08:33,710 --> 00:08:36,990
-And if you come from something
+And if you come from something
 like JavaScript or Ruby, you
 
-179
+172
 00:08:36,990 --> 00:08:38,570
-might be familiar with
+might be familiar with
 this as it's sort of
 
-180
+173
 00:08:38,570 --> 00:08:40,409
 like a ternary operator.
 
-181
+174
 00:08:40,409 --> 00:08:43,780
-So with this single line if, we
+So with this single line if, we
 pass in a condition as the
 
-182
+175
 00:08:43,780 --> 00:08:46,440
-first argument, then
+first argument, then
 the true value, and
 
-183
+176
 00:08:46,440 --> 00:08:47,760
 then the false value.
 
-184
+177
 00:08:47,760 --> 00:08:51,280
-So we're able to rewrite our
+So we're able to rewrite our
 example like so, setting the
 
-185
+178
 00:08:51,280 --> 00:08:55,190
-background equal to the return
+background equal to the return
 value of this single line if,
 
-186
+179
 00:08:55,190 --> 00:08:58,850
-passing our same condition,
+passing our same condition,
 passing the true value next,
 
-187
+180
 00:08:58,850 --> 00:09:01,700
-and then passing the false
+and then passing the false
 value, ultimately ending up
 
-188
+181
 00:09:01,700 --> 00:09:04,960
 with the same thing.
 
-189
+182
 00:09:04,960 --> 00:09:07,950
-Finally, let's revisit
+Finally, let's revisit
 placeholder selectors.
 
-190
+183
 00:09:07,950 --> 00:09:11,120
-So in part one, we talked about
+So in part one, we talked about
 placeholder selectors as
 
-191
+184
 00:09:11,120 --> 00:09:15,610
-selectors we can extend but
+selectors we can extend but
 not use in our normal CSS,
 
-192
+185
 00:09:15,610 --> 00:09:17,020
-things that don't
+things that don't
 create their own
 
-193
+186
 00:09:17,020 --> 00:09:18,820
 selectors when they compile.
 
-194
+187
 00:09:18,820 --> 00:09:21,660
-And we use this in the button
+And we use this in the button
 examples to have a bit of
 
-195
+188
 00:09:21,660 --> 00:09:26,350
-shared code between buttons that
+shared code between buttons that
 went ahead and fixed sort
 
-196
+189
 00:09:26,350 --> 00:09:29,390
-of the extend problems if
+of the extend problems if
 we scoped those changes
 
-197
+190
 00:09:29,390 --> 00:09:31,310
 accidentally later.
 
-198
+191
 00:09:31,310 --> 00:09:33,700
-But what if we wanted to use
+But what if we wanted to use
 these shared styles on their
 
-199
+192
 00:09:33,700 --> 00:09:36,310
-own, without affecting our
+own, without affecting our
 extend structure that we've
 
-200
+193
 00:09:36,310 --> 00:09:37,480
 already created.
 
-201
+194
 00:09:37,480 --> 00:09:39,580
-We obviously can't go ahead
+We obviously can't go ahead
 and use this placeholder
 
-202
+195
 00:09:39,580 --> 00:09:42,550
-selector in our HTML, since it
+selector in our HTML, since it
 doesn't really compiled down
 
-203
+196
 00:09:42,550 --> 00:09:43,870
 to anything.
 
-204
+197
 00:09:43,870 --> 00:09:46,260
-So just because we're using a
+So just because we're using a
 placeholder selector doesn't
 
-205
+198
 00:09:46,260 --> 00:09:48,320
-mean we can't create selector
+mean we can't create selector
 chains like
 
-206
+199
 00:09:48,320 --> 00:09:49,510
 normal in our Sass.
 
-207
+200
 00:09:49,510 --> 00:09:52,790
-We can still add a class of
+We can still add a class of
 button with that placeholder
 
-208
+201
 00:09:52,790 --> 00:09:56,930
-selector so that those styles
+selector so that those styles
 compile down, and we can use
 
-209
+202
 00:09:56,930 --> 00:10:00,210
-that button class as normal
+that button class as normal
 without affecting any of our
 
-210
+203
 00:10:00,210 --> 00:10:02,350
-extends that are
+extends that are
 already set up.
 
-211
+204
 00:10:02,350 --> 00:10:05,260
-Similarly, we can still use our
+Similarly, we can still use our
 placeholder selector like
 
-212
+205
 00:10:05,260 --> 00:10:06,510
 normal Sass as well.
 
-213
+206
 00:10:06,510 --> 00:10:09,960
-If we have a bit of HTML that
+If we have a bit of HTML that
 need some nested style, and we
 
-214
+207
 00:10:09,960 --> 00:10:12,120
-want to include that nested
+want to include that nested
 styles in our placeholder
 
-215
+208
 00:10:12,120 --> 00:10:14,180
-selector to be extended
+selector to be extended
 into our other
 
-216
+209
 00:10:14,180 --> 00:10:16,620
 buttons, we can do so.
 
-217
+210
 00:10:16,620 --> 00:10:19,980
-Now it's important to note
+Now it's important to note
 that while this now works
 
-218
+211
 00:10:19,980 --> 00:10:22,680
-based on the number of times
+based on the number of times
 that this placeholder
 
-219
+212
 00:10:22,680 --> 00:10:25,890
-selector's extended is also a
+selector's extended is also a
 number of times that that
 
-220
+213
 00:10:25,890 --> 00:10:27,810
-nested style will
+nested style will
 appear in this
 
-221
+214
 00:10:27,810 --> 00:10:29,150
 selector chain like shown.
 
-222
+215
 00:10:29,150 --> 00:10:31,910
-So for longer extends, you 're
+So for longer extends, you 're
 going to need to watch out how
 
-223
+216
 00:10:31,910 --> 00:10:33,690
-you use this, so you're
+you use this, so you're
 not creating
 
-224
+217
 00:10:33,690 --> 00:10:35,625
 overblown, bloated CSS.
 
-225
-00:10:35,625 --> 00:10:38,150
-
-
-226
+218
 00:10:38,150 --> 00:10:40,980
-You've made it to the end of
+You've made it to the end of
 level 1, so now it's time to
 
-227
+219
 00:10:40,980 --> 00:10:43,430
-go ahead and do some challenges
+go ahead and do some challenges
 on your own.
 
-228
+220
 00:10:43,430 --> 00:10:45,280
-Make sure you use the hints
+Make sure you use the hints
 if you need to.
 
-229
+221
 00:10:45,280 --> 00:10:48,250
-We don't want you to get stuck
+We don't want you to get stuck
 in any one place for too long.
 
-230
+222
 00:10:48,250 --> 00:10:49,950
-And we'll see you back
+And we'll see you back
 here for level 2.
 
-231
+223
 00:00:00,000 --> 00:00:00,000
 00:10:49,950 --> 00:10:52,311
-

@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:00,330
 [MUSIC PLAYING]
 
@@ -34,598 +34,582 @@ They call it CoffeeScript.
 CoffeeScript, yeah.
 
 9
-00:00:19,256 --> 00:00:22,570
-
-
-10
 00:00:22,570 --> 00:00:24,180
 Hey look, you made it all
 the way to level six.
 
-11
+10
 00:00:24,180 --> 00:00:26,520
 In level six, we're going to
 be talking about object
 
-12
+11
 00:00:26,520 --> 00:00:30,970
 orientation, stuff with classes
 and how to apply that
 
-13
+12
 00:00:30,970 --> 00:00:33,290
 and all the cool new mechanisms
 that CoffeeScript
 
-14
+13
 00:00:33,290 --> 00:00:35,660
 gives you to do object
 orientation.
 
-15
+14
 00:00:35,660 --> 00:00:37,090
 So let's dive into it.
 
-16
+15
 00:00:37,090 --> 00:00:39,685
 Remember this object?
 
-17
+16
 00:00:39,685 --> 00:00:41,570
 We played around with
 this a little bit.
 
-18
+17
 00:00:41,570 --> 00:00:43,110
 We have our coffee object.
 
-19
+18
 00:00:43,110 --> 00:00:46,180
 Well, what would happen if we
 wanted to, instead of having
 
-20
+19
 00:00:46,180 --> 00:00:49,340
 it as an object, create
 it as a class?
 
-21
+20
 00:00:49,340 --> 00:00:51,220
 Let's give that a try.
 
-22
+21
 00:00:51,220 --> 00:00:53,520
 So here we have our
 Coffee class.
 
-23
+22
 00:00:53,520 --> 00:00:55,020
 It has a constructor.
 
-24
+23
 00:00:55,020 --> 00:00:57,780
 That constructor is called
 when it's instantiated.
 
-25
+24
 00:00:57,780 --> 00:01:00,010
 We can't call it explicitly.
 
-26
+25
 00:01:00,010 --> 00:01:02,800
 I'll show you how to instantiate
 it in a minute.
 
-27
+26
 00:01:02,800 --> 00:01:05,360
 And then we have these
 parameters we sent in, which
 
-28
+27
 00:01:05,360 --> 00:01:09,260
 we're going to set as properties
 on the class.
 
-29
+28
 00:01:09,260 --> 00:01:12,440
 Some people might think of these
 as instance variables
 
-30
+29
 00:01:12,440 --> 00:01:17,020
 because they're properties of
 the instance of that class.
 
-31
+30
 00:01:17,020 --> 00:01:20,030
 Another way we can write this
 constructor is simply by using
 
-32
+31
 00:01:20,030 --> 00:01:21,310
 this one line you see here.
 
-33
+32
 00:01:21,310 --> 00:01:24,180
 So the parameters with the
 @ symbol basically
 
-34
+33
 00:01:24,180 --> 00:01:25,370
 does the same thing.
 
-35
+34
 00:01:25,370 --> 00:01:27,550
 It's just a shortcut.
 
-36
+35
 00:01:27,550 --> 00:01:30,670
 If we want to have functions
 inside of our class, it looks
 
-37
+36
 00:01:30,670 --> 00:01:33,910
 pretty much the same as they did
 when we had them inside of
 
-38
+37
 00:01:33,910 --> 00:01:35,640
 our object.
 
-39
+38
 00:01:35,640 --> 00:01:37,260
 Pretty much the same thing.
 
-40
+39
 00:01:37,260 --> 00:01:39,400
 Now if we wanted to instantiate
 this coffee
 
-41
+40
 00:01:39,400 --> 00:01:41,730
 object, we're going to just call
 it French coffee with the
 
-42
+41
 00:01:41,730 --> 00:01:44,510
 strength of two, we can do
 something like this.
 
-43
+42
 00:01:44,510 --> 00:01:48,130
 Then if we call french.brew,
 it's gonna pop up an alert
 
-44
+43
 00:01:48,130 --> 00:01:50,680
 that looks like this.
 
-45
+44
 00:01:50,680 --> 00:01:53,000
 But how do we do inheritance
 in CoffeeScript?
 
-46
+45
 00:01:53,000 --> 00:01:57,350
 What if we have a coffee class
 like this and we want to have
 
-47
+46
 00:01:57,350 --> 00:02:00,600
 a category, a type
 of coffee that's
 
-48
+47
 00:02:00,600 --> 00:02:02,510
 under a certain category?
 
-49
+48
 00:02:02,510 --> 00:02:05,600
 We might, for instance,
 have class
 
-50
+49
 00:02:05,600 --> 00:02:09,199
 MaxgoodHouse extends Coffee.
 
-51
+50
 00:02:09,199 --> 00:02:11,930
 And if we just instantiated
 MaxgoodHouse, it would work
 
-52
+51
 00:02:11,930 --> 00:02:14,440
 just like the Coffee class.
 
-53
+52
 00:02:14,440 --> 00:02:16,860
 We can also override the
 constructor if we want to.
 
-54
+53
 00:02:16,860 --> 00:02:21,230
 So in this case, the default
 strength is going to be zero.
 
-55
+54
 00:02:21,230 --> 00:02:23,640
 And we can also add properties
 at this point.
 
-56
+55
 00:02:23,640 --> 00:02:24,890
 So we can have brand =
 "Maxgood House"
 
-57
-00:02:24,890 --> 00:02:27,400
-
-
-58
+56
 00:02:27,400 --> 00:02:29,600
 At this point, we can
 instantiate that class, and if
 
-59
+57
 00:02:29,600 --> 00:02:33,310
 we run boring.brew, we're going
 to get back "Brewing
 
-60
+58
 00:02:33,310 --> 00:02:37,260
 boring." We can also override
 functions in our parent class
 
-61
+59
 00:02:37,260 --> 00:02:39,620
 just by declaring
 them, like so.
 
-62
+60
 00:02:39,620 --> 00:02:42,430
 So in this case, if I
 instantiate this object and
 
-63
+61
 00:02:42,430 --> 00:02:46,430
 call brew, it's going to print
 "Brewing Maxgood House
 
-64
+62
 00:02:46,430 --> 00:02:50,280
 Boring." Another thing that we
 can do when we're overriding
 
-65
+63
 00:02:50,280 --> 00:02:51,190
 functions--
 
-66
+64
 00:02:51,190 --> 00:02:53,050
 if we want to call the function
 from the parent
 
-67
+65
 00:02:53,050 --> 00:02:55,790
 class, we can use the
 keyword super.
 
-68
+66
 00:02:55,790 --> 00:02:59,490
 So in this case, we're calling
 #"{super(amount)}, but it sucks,"
 
-69
+67
 00:02:59,490 --> 00:03:01,700
 and then when we call that pour
 function, it's going to
 
-70
+68
 00:03:01,700 --> 00:03:06,890
 print out, "Pouring a single cup
 but it sucks." We're going
 
-71
+69
 00:03:06,890 --> 00:03:08,560
 to want to use this
 Coffee class from
 
-72
+70
 00:03:08,560 --> 00:03:10,280
 inside of our jQuery.
 
-73
+71
 00:03:10,280 --> 00:03:12,460
 So let's put some jQuery
 in here with
 
-74
+72
 00:03:12,460 --> 00:03:14,200
 the pourClick function.
 
-75
+73
 00:03:14,200 --> 00:03:15,980
 So we're going to watch
 for a click event.
 
-76
+74
 00:03:15,980 --> 00:03:20,710
 If inventory isn't zero, take
 away one, and then alert that
 
-77
+75
 00:03:20,710 --> 00:03:22,290
 we poured a cup of coffee.
 
-78
+76
 00:03:22,290 --> 00:03:24,340
 But this isn't going to work.
 
-79
+77
 00:03:24,340 --> 00:03:24,900
 Why?
 
-80
+78
 00:03:24,900 --> 00:03:27,140
 Well, it's because of this.
 
-81
+79
 00:03:27,140 --> 00:03:29,220
 So we have that @
 symbol in there.
 
-82
+80
 00:03:29,220 --> 00:03:32,470
 So it's going to be calling
 this dot from inside a
 
-83
+81
 00:03:32,470 --> 00:03:34,560
 different context.
 
-84
+82
 00:03:34,560 --> 00:03:36,660
 So basically, it's going to
 error out because it's going
 
-85
+83
 00:03:36,660 --> 00:03:39,040
 to be looking for the property
 of the dom element called
 
-86
+84
 00:03:39,040 --> 00:03:42,320
 @inventory and @name,
 which isn't good.
 
-87
+85
 00:03:42,320 --> 00:03:44,640
 We want this to refer
 to our class.
 
-88
+86
 00:03:44,640 --> 00:03:46,240
 To fix this, we need
 to use something
 
-89
+87
 00:03:46,240 --> 00:03:48,770
 called the fat arrow.
 
-90
+88
 00:03:48,770 --> 00:03:51,560
 What the fat arrow is going to
 do is bind to the current
 
-91
+89
 00:03:51,560 --> 00:03:56,110
 value of "this," so no matter
 what context this code is run,
 
-92
+90
 00:03:56,110 --> 00:04:00,770
 it's always going to be
 referring to the Coffee class.
 
-93
+91
 00:04:00,770 --> 00:04:03,120
 We're going to go through one
 more jQuery Air Captain's Log
 
-94
+92
 00:04:03,120 --> 00:04:04,930
 example before we're all done.
 
-95
+93
 00:04:04,930 --> 00:04:08,030
 In jQuery Air Captain's Log,
 we used an object to
 
-96
+94
 00:04:08,030 --> 00:04:10,470
 encapsulate some code and
 keep it organized.
 
-97
+95
 00:04:10,470 --> 00:04:12,040
 Let's take a look at the code.
 
-98
+96
 00:04:12,040 --> 00:04:15,520
 So here we have selectFlights,
 we have a property inside of
 
-99
+97
 00:04:15,520 --> 00:04:18,180
 there, an init function.
 
-100
+98
 00:04:18,180 --> 00:04:20,540
 We're going to bind
 a click event.
 
-101
+99
 00:04:20,540 --> 00:04:22,930
 We're going to bind another
 click event-- this time
 
-102
+100
 00:04:22,930 --> 00:04:25,010
 calling it a different way.
 
-103
+101
 00:04:25,010 --> 00:04:27,630
 Show the flights.
 
-104
+102
 00:04:27,630 --> 00:04:29,460
 At the bottom, we have
 two extra functions.
 
-105
+103
 00:04:29,460 --> 00:04:31,560
 I'm not going to bother
 showing you what those
 
-106
+104
 00:04:31,560 --> 00:04:32,790
 definitions are.
 
-107
+105
 00:04:32,790 --> 00:04:37,230
 Let's try converting this into
 a CoffeeScript class.
 
-108
+106
 00:04:37,230 --> 00:04:40,130
 So up at the top, we're
 going to have a
 
-109
+107
 00:04:40,130 --> 00:04:43,240
 SelectFlights class.
 
-110
+108
 00:04:43,240 --> 00:04:47,350
 That SelectFlights class is
 going to have a constructor
 
-111
+109
 00:04:47,350 --> 00:04:49,740
 for the fetchingFlights
 property.
 
-112
+110
 00:04:49,740 --> 00:04:51,020
 Next, we have bind function.
 
-113
+111
 00:04:51,020 --> 00:04:51,850
 That's pretty simple.
 
-114
+112
 00:04:51,850 --> 00:04:53,430
 We just need to get rid
 of the parentheses
 
-115
+113
 00:04:53,430 --> 00:04:55,810
 in the curly brackets.
 
-116
+114
 00:04:55,810 --> 00:04:56,940
 Now we have another
 click event.
 
-117
+115
 00:04:56,940 --> 00:04:58,510
 We're just calling
 it differently.
 
-118
+116
 00:04:58,510 --> 00:05:01,140
 And here, we're just pretty much
 going to get rid of the
 
-119
+117
 00:05:01,140 --> 00:05:04,130
 curly braces, the parentheses,
 and use the @
 
-120
+118
 00:05:04,130 --> 00:05:05,140
 instead of the this.
 
-121
+119
 00:05:05,140 --> 00:05:08,950
 Also notice that we're using the
 fat arrow here, instead of
 
-122
+120
 00:05:08,950 --> 00:05:14,095
 the skinny arrow, so we can
 bind that @ symbol or the
 
-123
+121
 00:05:14,095 --> 00:05:17,100
 this to the correct context
 inside of our
 
-124
+122
 00:05:17,100 --> 00:05:19,280
 SelectFlights class.
 
-125
+123
 00:05:19,280 --> 00:05:22,390
 Lastly, we have our two
 functions, showFlights and
 
-126
+124
 00:05:22,390 --> 00:05:23,600
 changeTab.
 
-127
+125
 00:05:23,600 --> 00:05:25,890
 Notice that it's only the second
 one that we have the
 
-128
+126
 00:05:25,890 --> 00:05:27,880
 fat arrow on.
 
-129
+127
 00:05:27,880 --> 00:05:30,800
 Once we've declared the class,
 we need to instantiate it so
 
-130
+128
 00:05:30,800 --> 00:05:32,360
 that it binds to the
 proper events.
 
-131
-00:05:32,360 --> 00:05:36,100
-
-
-132
+129
 00:05:36,100 --> 00:05:39,720
 Well, you made to the end of
 the final video in A Sip of
 
-133
+130
 00:05:39,720 --> 00:05:40,950
 CoffeeScript.
 
-134
+131
 00:05:40,950 --> 00:05:43,680
 From here, just got to do the
 last couple challenges to
 
-135
+132
 00:05:43,680 --> 00:05:47,530
 unlock a badge, some prizes,
 and the final video.
-
-136
-00:05:47,530 --> 00:05:49,418
-

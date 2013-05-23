@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:33,734
 [MUSIC PLAYING]
 
@@ -155,933 +155,905 @@ will be output so the
 browser can read it.
 
 34
-00:01:57,344 --> 00:01:59,744
-
-
-35
 00:01:59,744 --> 00:02:02,114
 So real quick, a bit
 of history on Sass.
 
-36
+35
 00:02:02,114 --> 00:02:04,384
 Sass was created by
 Hampton Catlin.
 
-37
+36
 00:02:04,384 --> 00:02:06,444
 He's also the creator of Haml.
 
-38
+37
 00:02:06,444 --> 00:02:09,114
 And he wanted to bring the terse
 syntax Haml brings to
 
-39
+38
 00:02:09,114 --> 00:02:11,604
 HTML to CSS as well.
 
-40
+39
 00:02:11,604 --> 00:02:14,054
 The primary developers on the
 project have been Nathan
 
-41
+40
 00:02:14,054 --> 00:02:15,984
 Weizenbaum and Chris Epstein.
 
-42
+41
 00:02:15,984 --> 00:02:18,524
 And if you're fortunate enough
 to work in Rails, it's already
 
-43
+42
 00:02:18,524 --> 00:02:21,074
 baked into the asset pipeline.
 
-44
+43
 00:02:21,074 --> 00:02:24,054
 Now a lot of people write
 "SASS" in all caps.
 
-45
+44
 00:02:24,054 --> 00:02:26,614
 So it's important to note, if
 you want to be taken seriously
 
-46
+45
 00:02:26,614 --> 00:02:29,824
 when saying "Sass," only
 capitalize the first letter.
 
-47
+46
 00:02:29,824 --> 00:02:32,374
 Hampton has said before he likes
 to intentionally not
 
-48
+47
 00:02:32,374 --> 00:02:35,724
 have shouty acronyms
 on his projects.
 
-49
+48
 00:02:35,724 --> 00:02:39,114
 Let's start off talking a bit
 about file extensions.
 
-50
+49
 00:02:39,114 --> 00:02:42,243
 .scss or Sassy CSS is
 the default file
 
-51
+50
 00:02:42,243 --> 00:02:43,844
 extension for Sass.
 
-52
+51
 00:02:43,844 --> 00:02:46,584
 CSS doubles as a valid SCSS.
 
-53
+52
 00:02:46,584 --> 00:02:49,364
 So when starting off, you're
 able to take any CSS you would
 
-54
+53
 00:02:49,364 --> 00:02:53,094
 normally write, save it as
 .scss, and it compiles
 
-55
+54
 00:02:53,094 --> 00:02:54,724
 normally into Sass.
 
-56
+55
 00:02:54,724 --> 00:02:57,594
 Also, there's a second syntax
 called the indented into
 
-57
+56
 00:02:57,594 --> 00:02:59,314
 syntax that's available
 with Sass.
 
-58
+57
 00:02:59,314 --> 00:03:00,704
 But in the course, we're
 going to stick to the
 
-59
+58
 00:03:00,704 --> 00:03:03,404
 default of Sassy CSS.
 
-60
+59
 00:03:03,404 --> 00:03:06,964
 So in this course, we're going
 to be discussing a lot of SCSS
 
-61
+60
 00:03:06,964 --> 00:03:10,314
 code and then seeing what it
 compiles down to in CSS.
 
-62
+61
 00:03:10,314 --> 00:03:12,954
 Whenever we have to show
 SCSS code, it will look
 
-63
+62
 00:03:12,954 --> 00:03:15,274
 something like this.
 
-64
+63
 00:03:15,274 --> 00:03:17,624
 And then when we compile it
 down to normal CSS, we'll
 
-65
+64
 00:03:17,624 --> 00:03:19,784
 represent it like this.
 
-66
+65
 00:03:19,784 --> 00:03:21,544
 Don't worry too much about
 the stuff in here
 
-67
+66
 00:03:21,544 --> 00:03:22,434
 you don't know yet.
 
-68
+67
 00:03:22,434 --> 00:03:24,084
 We'll be covering what
 all this means
 
-69
+68
 00:03:24,084 --> 00:03:26,844
 later in the course.
 
-70
+69
 00:03:26,844 --> 00:03:31,124
 So as we said before, since CSS
 doubles as valid SCSS, we
 
-71
+70
 00:03:31,124 --> 00:03:33,694
 definitely recommend that you go
 ahead and write styles like
 
-72
+71
 00:03:33,694 --> 00:03:35,564
 you're used to and slowly
 incorporate new
 
-73
+72
 00:03:35,564 --> 00:03:37,054
 techniques as you go.
 
-74
+73
 00:03:37,054 --> 00:03:39,014
 You might get a little bogged
 down if you try to incorporate
 
-75
+74
 00:03:39,014 --> 00:03:40,264
 everything at once.
 
-76
-00:03:40,264 --> 00:03:42,734
-
-
-77
+75
 00:03:42,734 --> 00:03:45,654
 So our first conversion from
 CSS to Sass is going to be
 
-78
+76
 00:03:45,654 --> 00:03:46,724
 through comments.
 
-79
+77
 00:03:46,724 --> 00:03:50,654
 In Sass, we're afforded a second
 way to denote comments,
 
-80
+78
 00:03:50,654 --> 00:03:53,064
 double slash single
 line comments.
 
-81
+79
 00:03:53,064 --> 00:03:56,004
 These type of comments in
 Sass aren't compiled
 
-82
+80
 00:03:56,004 --> 00:03:57,454
 down to normal CSS.
 
-83
+81
 00:03:57,454 --> 00:04:01,404
 So in this case, we see we
 have normal CSS comments
 
-84
+82
 00:04:01,404 --> 00:04:04,224
 following our single
 line Sass comments.
 
-85
+83
 00:04:04,224 --> 00:04:07,424
 And when it's compiled down to
 normal CSS, the Sass comments
 
-86
+84
 00:04:07,424 --> 00:04:09,244
 no longer appear.
 
-87
+85
 00:04:09,244 --> 00:04:11,224
 These comments come in
 exceptionally handy when
 
-88
+86
 00:04:11,224 --> 00:04:13,974
 you're trying to separate our
 your CSS document, as those
 
-89
+87
 00:04:13,974 --> 00:04:15,914
 cosmetic comments
 aren't necessary
 
-90
+88
 00:04:15,914 --> 00:04:18,934
 for the final product.
 
-91
+89
 00:04:18,934 --> 00:04:21,034
 As we mentioned before, it's a
 bit difficult to deal with
 
-92
+90
 00:04:21,034 --> 00:04:22,984
 multiple files in CSS.
 
-93
+91
 00:04:22,984 --> 00:04:25,764
 We're afforded either using
 multiple link tags or using
 
-94
+92
 00:04:25,764 --> 00:04:27,024
 the @import rule.
 
-95
+93
 00:04:27,024 --> 00:04:29,534
 But historically, we've avoided
 using the @import rule
 
-96
+94
 00:04:29,534 --> 00:04:31,414
 because it's not very
 performant.
 
-97
+95
 00:04:31,414 --> 00:04:34,324
 The stylesheets can't download
 in tandem and we have to wait
 
-98
+96
 00:04:34,324 --> 00:04:36,394
 for everything to load
 before any styles are
 
-99
+97
 00:04:36,394 --> 00:04:37,794
 shown to the browser.
 
-100
+98
 00:04:37,794 --> 00:04:39,524
 When we use Sass though,
 the @import
 
-101
+99
 00:04:39,524 --> 00:04:40,654
 rule is slightly different.
 
-102
+100
 00:04:40,654 --> 00:04:45,294
 We can import files that end in
 .scss or .sass, and that
 
-103
+101
 00:04:45,294 --> 00:04:48,204
 importing happens during compile
 time instead of on the
 
-104
+102
 00:04:48,204 --> 00:04:49,424
 client side.
 
-105
+103
 00:04:49,424 --> 00:04:52,383
 Also, using the @import rule
 with Sass, we don't have to
 
-106
+104
 00:04:52,383 --> 00:04:54,204
 include a file extension.
 
-107
+105
 00:04:54,204 --> 00:04:57,614
 In this case, we have our
 application.scss file and
 
-108
+106
 00:04:57,614 --> 00:05:01,294
 we're importing the
 buttons.scss file.
 
-109
+107
 00:05:01,294 --> 00:05:05,474
 During compile time, the
 application.scss file compiles
 
-110
+108
 00:05:05,474 --> 00:05:08,304
 down to application.css.
 
-111
+109
 00:05:08,304 --> 00:05:12,234
 And during compile, the
 buttons.scss file is imported
 
-112
+110
 00:05:12,234 --> 00:05:16,264
 into application.scss, which
 ultimately becomes part of
 
-113
+111
 00:05:16,264 --> 00:05:17,514
 application.css.
 
-114
-00:05:17,514 --> 00:05:19,194
-
-
-115
+112
 00:05:19,194 --> 00:05:22,694
 However, when we have a separate
 buttons.scss file,
 
-116
+113
 00:05:22,694 --> 00:05:26,504
 the compiler goes ahead and
 makes a separate buttons.css
 
-117
+114
 00:05:26,504 --> 00:05:30,154
 file even though we're already
 importing it into application.
 
-118
+115
 00:05:30,154 --> 00:05:35,044
 Now if we only want to include
 buttons.scss as an import of
 
-119
+116
 00:05:35,044 --> 00:05:37,024
 application, this is
 a bit of a problem.
 
-120
+117
 00:05:37,024 --> 00:05:40,064
 We don't need that
 extra stylesheet.
 
-121
+118
 00:05:40,064 --> 00:05:42,874
 To combat this is Sass, we're
 able to create partials.
 
-122
+119
 00:05:42,874 --> 00:05:46,224
 So we can rewrite our
 buttons.scss file as a partial
 
-123
+120
 00:05:46,224 --> 00:05:48,464
 by starting it with
 an underscore.
 
-124
+121
 00:05:48,464 --> 00:05:51,244
 Once we add the underscore,
 it's still imported into
 
-125
+122
 00:05:51,244 --> 00:05:55,594
 application.scss normally,
 but a button.css file
 
-126
+123
 00:05:55,594 --> 00:05:57,424
 is no longer created.
 
-127
+124
 00:05:57,424 --> 00:06:00,374
 So back in our application.scss
 file, we don't have to change
 
-128
+125
 00:06:00,374 --> 00:06:01,324
 anything with our import.
 
-129
+126
 00:06:01,324 --> 00:06:03,889
 The import looks for the files
 that I've specified here in
 
-130
+127
 00:06:03,889 --> 00:06:05,484
 the comments, so we're
 still good to go
 
-131
+128
 00:06:05,484 --> 00:06:08,364
 with our new partial.
 
-132
+129
 00:06:08,364 --> 00:06:09,884
 Now that we laid the groundwork,
 let's start
 
-133
+130
 00:06:09,884 --> 00:06:12,204
 getting into the really
 useful bits of Sass.
 
-134
+131
 00:06:12,204 --> 00:06:13,634
 First up is nesting.
 
-135
+132
 00:06:13,634 --> 00:06:16,644
 So as you start writing CSS,
 you're going to notice some
 
-136
+133
 00:06:16,644 --> 00:06:18,464
 patterns with your selectors.
 
-137
+134
 00:06:18,464 --> 00:06:20,594
 In this case, we have a
 content declaration.
 
-138
+135
 00:06:20,594 --> 00:06:24,014
 And we also have scoped p
 and h2 declarations to
 
-139
+136
 00:06:24,014 --> 00:06:26,734
 go along with it.
 
-140
+137
 00:06:26,734 --> 00:06:29,214
 So let's go ahead and convert
 this over to a Sass file by
 
-141
+138
 00:06:29,214 --> 00:06:31,304
 copying the same
 contents over.
 
-142
+139
 00:06:31,304 --> 00:06:34,744
 Using Sass, we're able to nest
 these properties instead of
 
-143
+140
 00:06:34,744 --> 00:06:35,954
 defining them separately.
 
-144
+141
 00:06:35,954 --> 00:06:37,734
 So we have our content
 declaration.
 
-145
+142
 00:06:37,734 --> 00:06:39,439
 And then inside of that,
 we're going to nest
 
-146
+143
 00:06:39,439 --> 00:06:41,474
 our h2 and our p.
 
-147
+144
 00:06:41,474 --> 00:06:44,304
 At compile time, it's going to
 go ahead and scope those as we
 
-148
+145
 00:06:44,304 --> 00:06:46,024
 initially had in
 our normal CSS.
 
-149
-00:06:46,024 --> 00:06:50,274
-
-
-150
+146
 00:06:50,274 --> 00:06:53,824
 Less common, but occasionally
 useful, is the ability to nest
 
-151
+147
 00:06:53,824 --> 00:06:57,124
 certain types of properties
 with matching namespaces.
 
-152
+148
 00:06:57,124 --> 00:07:00,404
 In this case, we have our text
 decoration and text underline
 
-153
+149
 00:07:00,404 --> 00:07:02,264
 properties nested together.
 
-154
+150
 00:07:02,264 --> 00:07:05,014
 And when it compiles, it will
 compile down to those specific
 
-155
+151
 00:07:05,014 --> 00:07:05,924
 properties.
 
-156
+152
 00:07:05,924 --> 00:07:08,624
 We can use this for things like
 border and font as well.
 
-157
-00:07:08,624 --> 00:07:12,974
-
-
-158
+153
 00:07:12,974 --> 00:07:16,144
 Another useful feature while
 we're nesting is the ampersand
 
-159
+154
 00:07:16,144 --> 00:07:17,684
 or the parent selector.
 
-160
+155
 00:07:17,684 --> 00:07:21,354
 So normally, if we have our
 callout block scoped inside of
 
-161
+156
 00:07:21,354 --> 00:07:23,654
 our content block, it
 adds a space it
 
-162
+157
 00:07:23,654 --> 00:07:25,354
 creates that selector.
 
-163
+158
 00:07:25,354 --> 00:07:29,224
 If we use the ampersand in front
 of our callout block,
 
-164
+159
 00:07:29,224 --> 00:07:32,364
 when it compiles, it uses that
 reference to our initial
 
-165
+160
 00:07:32,364 --> 00:07:35,784
 parent selector, content, to
 create a compound selector
 
-166
+161
 00:07:35,784 --> 00:07:37,734
 with no space in between.
 
-167
+162
 00:07:37,734 --> 00:07:40,514
 The difference between these two
 declarations, as you may
 
-168
+163
 00:07:40,514 --> 00:07:43,564
 know, is that the first callout
 that's scoped inside
 
-169
+164
 00:07:43,564 --> 00:07:46,404
 of content looks for a container
 that has a class of
 
-170
+165
 00:07:46,404 --> 00:07:50,214
 callout inside of a container
 that has a class of content,
 
-171
+166
 00:07:50,214 --> 00:07:52,604
 whereas the second looks for
 a container that has both
 
-172
+167
 00:07:52,604 --> 00:07:55,814
 classes at the same time.
 
-173
+168
 00:07:55,814 --> 00:07:58,924
 Using the parent selector is
 exceedingly useful in cases
 
-174
+169
 00:07:58,924 --> 00:08:02,014
 where we need to have pseudo
 classes and pseudo elements
 
-175
+170
 00:08:02,014 --> 00:08:03,304
 like anchors.
 
-176
+171
 00:08:03,304 --> 00:08:05,764
 Here, I want to set an active
 state and a hover
 
-177
+172
 00:08:05,764 --> 00:08:06,794
 state for my anchor.
 
-178
+173
 00:08:06,794 --> 00:08:09,764
 So I can use the parent selector
 to go ahead and
 
-179
+174
 00:08:09,764 --> 00:08:13,534
 reference that anchor as we move
 down and set new styles
 
-180
+175
 00:08:13,534 --> 00:08:15,494
 for those states.
 
-181
+176
 00:08:15,494 --> 00:08:18,124
 So with this parent selector
 reference, we're not limited
 
-182
+177
 00:08:18,124 --> 00:08:20,824
 to using it as the first
 part of a selector.
 
-183
+178
 00:08:20,824 --> 00:08:23,794
 With this bit of basic CSS, you
 can see we have a sidebar
 
-184
+179
 00:08:23,794 --> 00:08:24,584
 declaration.
 
-185
+180
 00:08:24,584 --> 00:08:27,014
 And then later, we went
 to scope it to user
 
-186
+181
 00:08:27,014 --> 00:08:28,584
 to change it slightly.
 
-187
+182
 00:08:28,584 --> 00:08:31,364
 However, we're changing sidebar
 in a second scoping,
 
-188
+183
 00:08:31,364 --> 00:08:35,034
 things are disconnected, and
 really it's not quite as
 
-189
+184
 00:08:35,034 --> 00:08:37,734
 coupled as we want it to be.
 
-190
+185
 00:08:37,734 --> 00:08:40,674
 So using our parent selector
 reference, we're able to nest
 
-191
+186
 00:08:40,674 --> 00:08:44,034
 this change into our sidebar
 declaration in Sass.
 
-192
+187
 00:08:44,034 --> 00:08:47,394
 We can go ahead and scope that
 user's change inside.
 
-193
+188
 00:08:47,394 --> 00:08:49,614
 Our ampersand character
 for the parent
 
-194
+189
 00:08:49,614 --> 00:08:51,814
 selector references .sidebar.
 
-195
+190
 00:08:51,814 --> 00:08:54,404
 And we use the user selector
 first, so that when it
 
-196
+191
 00:08:54,404 --> 00:08:56,414
 compiles, it compiles
 that same bit of
 
-197
+192
 00:08:56,414 --> 00:08:59,324
 CSS that we had before.
 
-198
+193
 00:08:59,324 --> 00:09:01,794
 So take note that when you nest
 and combine the parent
 
-199
+194
 00:09:01,794 --> 00:09:05,204
 selector, the parents selector
 reference context carries
 
-200
+195
 00:09:05,204 --> 00:09:06,454
 through depending
 on your nesting.
 
-201
-00:09:06,454 --> 00:09:09,134
-
-
-202
+196
 00:09:09,134 --> 00:09:12,924
 So this ampersand here, since
 it's found inside of a nested
 
-203
+197
 00:09:12,924 --> 00:09:16,554
 h2 and our sidebar declaration,
 has the reference
 
-204
+198
 00:09:16,554 --> 00:09:18,844
 of sidebar h2.
 
-205
+199
 00:09:18,844 --> 00:09:21,674
 So when we compile it, as you
 can see, it compiles down to
 
-206
+200
 00:09:21,674 --> 00:09:26,634
 .users, .sidebar, h2 because
 of that nesting context.
 
-207
+201
 00:09:26,634 --> 00:09:29,894
 So as you can see, nesting is
 very easy and really helps
 
-208
+202
 00:09:29,894 --> 00:09:33,194
 clean up our code, but
 it's dangerous.
 
-209
+203
 00:09:33,194 --> 00:09:35,824
 Sass adds a lot of extra
 functionality and is very
 
-210
+204
 00:09:35,824 --> 00:09:38,874
 useful, but it doesn't help
 us write good CSS.
 
-211
+205
 00:09:38,874 --> 00:09:40,794
 You should always check your
 nesting to make sure you're
 
-212
+206
 00:09:40,794 --> 00:09:43,864
 not adding nesting levels
 unnecessarily, as that will
 
-213
+207
 00:09:43,864 --> 00:09:48,014
 increase the specificity of your
 selectors far too much.
 
-214
+208
 00:09:48,014 --> 00:09:49,834
 And here's what I
 mean by that.
 
-215
+209
 00:09:49,834 --> 00:09:53,424
 In this case, we're nesting
 everything down to the hover
 
-216
+210
 00:09:53,424 --> 00:09:54,844
 state for our anchor.
 
-217
+211
 00:09:54,844 --> 00:09:57,324
 When you see the compiled
 CSS, we have a
 
-218
+212
 00:09:57,324 --> 00:09:59,284
 four level deep selector.
 
-219
+213
 00:09:59,284 --> 00:10:01,124
 And this specificity
 is incredibly
 
-220
+214
 00:10:01,124 --> 00:10:02,734
 hard to override later.
 
-221
-00:10:02,734 --> 00:10:06,204
-
-
-222
+215
 00:10:06,204 --> 00:10:08,754
 So as a tip, try limiting
 your nesting the
 
-223
+216
 00:10:08,754 --> 00:10:09,874
 three or four levels.
 
-224
+217
 00:10:09,874 --> 00:10:13,004
 And if you have to go deeper,
 consider refactoring your code
 
-225
+218
 00:10:13,004 --> 00:10:15,664
 to make use of extra classes.
 
-226
+219
 00:10:15,664 --> 00:10:18,204
 All right, you've made it the
 end of Level One and it's time
 
-227
+220
 00:10:18,204 --> 00:10:19,724
 to get started on
 the challenges.
 
-228
+221
 00:10:19,724 --> 00:10:22,024
 Make sure you reference the
 slides as you move through the
 
-229
+222
 00:10:22,024 --> 00:10:22,724
 challenges.
 
-230
+223
 00:10:22,724 --> 00:10:25,284
 And definitely feel free to use
 the hints if necessary.
 
-231
+224
 00:10:25,284 --> 00:10:27,884
 We don't want you to get stuck
 in any one place for too long.
 
-232
+225
 00:10:27,884 --> 00:10:29,134
 Good luck.

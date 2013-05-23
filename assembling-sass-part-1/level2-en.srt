@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:33,895
 [MUSIC PLAYING]
 
@@ -74,460 +74,436 @@ inserted when we
 compile to our CSS file.
 
 17
-00:01:16,025 --> 00:01:19,745
-
-
-18
 00:01:19,745 --> 00:01:21,695
 Optionally, we can use
 the default flag
 
-19
+18
 00:01:21,695 --> 00:01:23,645
 when we define variables.
 
-20
+19
 00:01:23,645 --> 00:01:26,905
 Normally, if we define a
 variable, then call it again
 
-21
+20
 00:01:26,905 --> 00:01:30,155
 to define a new value, that
 first value is overwritten.
 
-22
+21
 00:01:30,155 --> 00:01:33,475
 In this case, using title and
 then defining title again
 
-23
+22
 00:01:33,475 --> 00:01:35,825
 immediately thereafter
 changes that value
 
-24
+23
 00:01:35,825 --> 00:01:36,815
 to the second value.
 
-25
+24
 00:01:36,815 --> 00:01:40,385
 So when we use it and when it
 compiles, that second value is
 
-26
+25
 00:01:40,385 --> 00:01:42,975
 the value that's used.
 
-27
+26
 00:01:42,975 --> 00:01:45,745
 When we use the default flag,
 however, on that second
 
-28
+27
 00:01:45,745 --> 00:01:49,095
 variable definition, it checks
 to see, first, whether or not
 
-29
+28
 00:01:49,095 --> 00:01:50,705
 a value already exists.
 
-30
+29
 00:01:50,705 --> 00:01:53,905
 So, in this case, since "My
 Blog" is already set to title,
 
-31
+30
 00:01:53,905 --> 00:02:02,285
 the second value of "About Me"
 doesn't override "My Blog."
 
-32
+31
 00:02:02,285 --> 00:02:04,445
 Let's take a look at how
 this might be useful.
 
-33
+32
 00:02:04,445 --> 00:02:07,465
 If we're defining more modular
 Sass, like a buttons partial,
 
-34
+33
 00:02:07,465 --> 00:02:10,745
 here, that we'll be importing
 into application later, if we
 
-35
+34
 00:02:10,745 --> 00:02:14,375
 want this partial to be
 hands-off, to have a bunch of
 
-36
+35
 00:02:14,375 --> 00:02:17,465
 code that we're not going to
 touch later, we might define a
 
-37
+36
 00:02:17,465 --> 00:02:20,445
 rounded variable with a default
 flag, so that we can
 
-38
+37
 00:02:20,445 --> 00:02:22,195
 override it if we want.
 
-39
+38
 00:02:22,195 --> 00:02:25,375
 But, if nothing else is provided
 in the file that it
 
-40
+39
 00:02:25,375 --> 00:02:29,105
 will be imported into, then it
 will go ahead and set itself
 
-41
+40
 00:02:29,105 --> 00:02:31,555
 based on a value
 not being set.
 
-42
+41
 00:02:31,555 --> 00:02:35,015
 So back in our application.scss
 file, we can
 
-43
+42
 00:02:35,015 --> 00:02:38,015
 go ahead and set a rounded
 variable, we can import
 
-44
+43
 00:02:38,015 --> 00:02:41,074
 buttons, and since we're
 overriding that default, it
 
-45
+44
 00:02:41,074 --> 00:02:42,954
 will go ahead and use that
 new value when it
 
-46
+45
 00:02:42,954 --> 00:02:44,430
 compiles down to CSS.
 
-47
-00:02:44,430 --> 00:02:48,395
-
-
-48
+46
 00:02:48,395 --> 00:02:50,505
 There are a number of different
 types of values we
 
-49
+47
 00:02:50,505 --> 00:02:53,175
 can store as variables,
 including booleans, like true
 
-50
+48
 00:02:53,175 --> 00:03:00,315
 and false; numbers, with or
 without units; colors,
 
-51
+49
 00:03:00,315 --> 00:03:03,565
 including just straight name
 colors, like purple, RGBA
 
-52
+50
 00:03:03,565 --> 00:03:07,735
 values, and hex values; strings,
 with or without
 
-53
+51
 00:03:07,735 --> 00:03:14,435
 quotes; lists, which kind of act
 like a raise, either they
 
-54
+52
 00:03:14,435 --> 00:03:18,305
 are comma separated or have
 spaces; and null, which we'll
 
-55
+53
 00:03:18,305 --> 00:03:20,345
 go into later as far
 as conditionals.
 
-56
-00:03:20,345 --> 00:03:23,095
-
-
-57
+54
 00:03:23,095 --> 00:03:25,115
 We are about halfway
 through variables.
 
-58
+55
 00:03:25,115 --> 00:03:28,205
 Let's talk a bit about
 scoping variables.
 
-59
+56
 00:03:28,205 --> 00:03:31,315
 Here, we're able to define
 variables within a CSS
 
-60
+57
 00:03:31,315 --> 00:03:32,555
 declaration.
 
-61
+58
 00:03:32,555 --> 00:03:35,495
 We're defining our border color
 within the paragraph
 
-62
+59
 00:03:35,495 --> 00:03:37,565
 declaration, then using it.
 
-63
+60
 00:03:37,565 --> 00:03:40,845
 However, if we try to use
 that variable in our h1
 
-64
+61
 00:03:40,845 --> 00:03:43,535
 declaration, it doesn't have
 access to that initial border
 
-65
+62
 00:03:43,535 --> 00:03:45,775
 variable, and when we
 compile down, it's
 
-66
+63
 00:03:45,775 --> 00:03:47,025
 going to throw an error.
 
-67
-00:03:47,025 --> 00:03:50,625
-
-
-68
+64
 00:03:50,625 --> 00:03:54,035
 So any variables that we set
 within a declaration aren't
 
-69
+65
 00:03:54,035 --> 00:03:56,105
 available outside
 a declaration.
 
-70
+66
 00:03:56,105 --> 00:03:58,535
 However, if we define a
 variable outside of a
 
-71
+67
 00:03:58,535 --> 00:04:01,795
 declaration and change it
 within a declaration, it
 
-72
+68
 00:04:01,795 --> 00:04:04,455
 changes that variable
 globally.
 
-73
+69
 00:04:04,455 --> 00:04:06,485
 Let's take a look at
 an example of that.
 
-74
+70
 00:04:06,485 --> 00:04:09,915
 First up, we'll define a
 color-base with a color value, and
 
-75
+71
 00:04:09,915 --> 00:04:12,115
 then within our sidebar
 declaration, we're going to
 
-76
+72
 00:04:12,115 --> 00:04:14,405
 change that value and use it.
 
-77
+73
 00:04:14,405 --> 00:04:17,315
 When that compiles, we can see
 that our changed value is
 
-78
+74
 00:04:17,315 --> 00:04:21,045
 what's used for that sidebar
 background color.
 
-79
+75
 00:04:21,045 --> 00:04:23,905
 Later, however, when we try to
 reuse that variable in a
 
-80
+76
 00:04:23,905 --> 00:04:27,485
 different declaration, like
 paragraph, here, that changed
 
-81
+77
 00:04:27,485 --> 00:04:29,395
 value is going to
 be used as well.
 
-82
+78
 00:04:29,395 --> 00:04:30,335
 Changing it within a
 
-83
+79
 00:04:30,335 --> 00:04:31,925
 declaration changed it globally.
 
-84
-00:04:31,925 --> 00:04:35,465
-
-
-85
+80
 00:04:35,465 --> 00:04:37,745
 So last up, as far as
 variables go, is
 
-86
+81
 00:04:37,745 --> 00:04:38,715
 interpolation.
 
-87
+82
 00:04:38,715 --> 00:04:41,805
 Now, we can use the Ruby-esque
 method of using a hash
 
-88
+83
 00:04:41,805 --> 00:04:45,415
 followed by an opening and
 closing curly brace to add our
 
-89
+84
 00:04:45,415 --> 00:04:48,665
 variables to either selector
 names, property names, or
 
-90
+85
 00:04:48,665 --> 00:04:50,415
 within strings.
 
-91
+86
 00:04:50,415 --> 00:04:53,675
 Here, we're setting a variable
 to the string of top.
 
-92
+87
 00:04:53,675 --> 00:04:56,745
 And then if we wanted to use
 that as a property inside of
 
-93
+88
 00:04:56,745 --> 00:04:59,615
 our super declaration, we can
 go ahead and interpolate the
 
-94
+89
 00:04:59,615 --> 00:05:04,375
 value of our side variable as
 the property within there.
 
-95
+90
 00:05:04,375 --> 00:05:07,405
 When this compiles down, since
 side is equal to the string of
 
-96
+91
 00:05:07,405 --> 00:05:10,875
 top, that string is inserted
 into that interpolation, and
 
-97
+92
 00:05:10,875 --> 00:05:13,235
 that's the property that's used
 in that second position
 
-98
+93
 00:05:13,235 --> 00:05:14,905
 within super.
 
-99
+94
 00:05:14,905 --> 00:05:17,965
 Also, we're able to interpolate
 this value of the
 
-100
+95
 00:05:17,965 --> 00:05:20,575
 side variable into a selector.
 
-101
+96
 00:05:20,575 --> 00:05:23,362
 So, second here, we have
 a callout, hyphen, and
 
-102
+97
 00:05:23,362 --> 00:05:25,815
 interpolated value of side.
 
-103
+98
 00:05:25,815 --> 00:05:28,675
 When this compiles down, we
 can see it compiles to
 
-104
+99
 00:05:28,675 --> 00:05:30,915
 callout-top,
 with top being the
 
-105
+100
 00:05:30,915 --> 00:05:32,165
 value of our side variable.
 
-106
-00:05:32,165 --> 00:05:35,165
-
-
-107
+101
 00:05:35,165 --> 00:05:37,175
 We find it useful to
 be very considerate
 
-108
+102
 00:05:37,175 --> 00:05:38,065
 in naming our variables.
 
-109
+103
 00:05:38,065 --> 00:05:41,510
 If we use things that are more
 semantic, like color-base, we
 
-110
+104
 00:05:41,510 --> 00:05:43,795
 get a lot more mileage out of
 it than something like
 
-111
+105
 00:05:43,795 --> 00:05:48,175
 color-blue as we move Sass from
 project to project.
 
-112
+106
 00:05:48,175 --> 00:05:49,545
 That wraps up Level 2.
 
-113
+107
 00:05:49,545 --> 00:05:51,775
 Good luck with the challenges,
 and we'll see you in Level 3.

@@ -1,772 +1,739 @@
-1
-00:00:00,000 --> 00:00:00,980
-
-
-2
+﻿1
 00:00:00,980 --> 00:00:01,470
 [SINGING]
 
-3
+2
 00:00:01,470 --> 00:00:04,500
-Your style sheets are bloated
+Your style sheets are bloated
 and making a mess.
 
-4
+3
 00:00:04,500 --> 00:00:08,500
-Your HTML is ashamed
+Your HTML is ashamed
 of your CSS.
 
-5
+4
 00:00:08,500 --> 00:00:10,960
-It's not organized, and
+It's not organized, and
 it's not classy.
 
-6
+5
 00:00:10,960 --> 00:00:14,620
-It's time to make your
+It's time to make your
 style sheets Sassy.
 
-7
+6
 00:00:14,620 --> 00:00:18,312
-Using CSS extensions are the
+Using CSS extensions are the
 preference, well it makes
 
-8
+7
 00:00:18,312 --> 00:00:21,190
 stems nest in an inheritance.
 
-9
+8
 00:00:21,190 --> 00:00:24,160
-Functions extend and partials
+Functions extend and partials
 we'll amass.
 
-10
+9
 00:00:24,160 --> 00:00:26,150
-In no time you'll be
+In no time you'll be
 assembling Sass.
 
-11
-00:00:26,150 --> 00:00:34,280
-
-
-12
+10
 00:00:34,280 --> 00:00:38,150
-Welcome to the final level,
+Welcome to the final level,
 Level Five, Sprites.
 
-13
+11
 00:00:38,150 --> 00:00:40,580
-In this level, we're going to
+In this level, we're going to
 talk a bit about spriting and
 
-14
+12
 00:00:40,580 --> 00:00:44,750
-how Compass can make it much,
+how Compass can make it much,
 much easier on us.
 
-15
+13
 00:00:44,750 --> 00:00:47,920
-Back in CSS Cross-Country, we
+Back in CSS Cross-Country, we
 talked a bit about how we can
 
-16
+14
 00:00:47,920 --> 00:00:50,740
-set up sprites and why
+set up sprites and why
 they're useful.
 
-17
+15
 00:00:50,740 --> 00:00:53,950
-It combines a lot of images
+It combines a lot of images
 into one, large image.
 
-18
+16
 00:00:53,950 --> 00:00:56,580
-And then we use background
+And then we use background
 position to position that
 
-19
+17
 00:00:56,580 --> 00:00:59,250
-image within an element
+image within an element
 correctly so that we're only
 
-20
+18
 00:00:59,250 --> 00:01:01,400
 seeing the part that we need.
 
-21
+19
 00:01:01,400 --> 00:01:04,510
-This reduces the number
+This reduces the number
 of HTTP requests.
 
-22
+20
 00:01:04,510 --> 00:01:07,220
-And it's a very good
+And it's a very good
 practice, but it's
 
-23
+21
 00:01:07,220 --> 00:01:08,510
 not universally loved.
 
-24
+22
 00:01:08,510 --> 00:01:12,510
-It's usually seen as a really
+It's usually seen as a really
 tedious process, and we
 
-25
+23
 00:01:12,510 --> 00:01:15,580
-usually resort to third-party
+usually resort to third-party
 tools to help us manage our
 
-26
+24
 00:01:15,580 --> 00:01:18,580
 sprites for us.
 
-27
+25
 00:01:18,580 --> 00:01:20,850
-There are a lot of really large
+There are a lot of really large
 sites that make use of
 
-28
+26
 00:01:20,850 --> 00:01:25,000
-sprites, like YouTube's
+sprites, like YouTube's
 sheet right here.
 
-29
+27
 00:01:25,000 --> 00:01:27,620
-In dealing with background
+In dealing with background
 images in your CSS, always
 
-30
+28
 00:01:27,620 --> 00:01:30,180
-make sure you're using
+make sure you're using
 the correct solution.
 
-31
+29
 00:01:30,180 --> 00:01:33,720
-Sprites, icon fonts, embedded
+Sprites, icon fonts, embedded
 images all have their
 
-32
+30
 00:01:33,720 --> 00:01:37,700
-advantages and disadvantages,
+advantages and disadvantages,
 so choose appropriately for
 
-33
+31
 00:01:37,700 --> 00:01:39,470
 your project.
 
-34
+32
 00:01:39,470 --> 00:01:41,080
-Throughout the level,
+Throughout the level,
 we're going to be
 
-35
+33
 00:01:41,080 --> 00:01:43,630
 using these three images.
 
-36
+34
 00:01:43,630 --> 00:01:47,050
-They'll all be inside a
+They'll all be inside a
 subdirectory of our Images
 
-37
+35
 00:01:47,050 --> 00:01:48,770
 folder, Icons.
 
-38
+36
 00:01:48,770 --> 00:01:51,780
-And they're all at different
+And they're all at different
 sizes, making spriting a bit
 
-39
+37
 00:01:51,780 --> 00:01:55,290
-more difficult when
+more difficult when
 done manually.
 
-40
+38
 00:01:55,290 --> 00:01:58,810
-To automatically sprite these
+To automatically sprite these
 using Compass, we're going to
 
-41
+39
 00:01:58,810 --> 00:02:00,940
 use @import in a new way.
 
-42
+40
 00:02:00,940 --> 00:02:05,180
-We can import the items in the
+We can import the items in the
 Icons folder using the
 
-43
+41
 00:02:05,180 --> 00:02:09,259
-asterisk to pull all pngs, and
+asterisk to pull all pngs, and
 this is going to create the
 
-44
+42
 00:02:09,259 --> 00:02:11,850
-sprite for us, which looks
+sprite for us, which looks
 something like this.
 
-45
+43
 00:02:11,850 --> 00:02:15,180
-The file will be added to the
+The file will be added to the
 Images folder, then it's going
 
-46
+44
 00:02:15,180 --> 00:02:18,770
-to include a long string
+to include a long string
 after a hyphen.
 
-47
+45
 00:02:18,770 --> 00:02:20,710
-You won't need to worry about
+You won't need to worry about
 that because we're always
 
-48
+46
 00:02:20,710 --> 00:02:23,820
-going to let Compass figure
+going to let Compass figure
 out what the images and
 
-49
+47
 00:02:23,820 --> 00:02:27,550
-include it into our style
+include it into our style
 sheet for us.
 
-50
+48
 00:02:27,550 --> 00:02:30,820
-Once we've used this @import to
+Once we've used this @import to
 create our sprite, we can
 
-51
+49
 00:02:30,820 --> 00:02:33,460
-automatically set up all
+automatically set up all
 these sprites using the
 
-52
+50
 00:02:33,460 --> 00:02:36,460
 all-icons-sprites mixin.
 
-53
+51
 00:02:36,460 --> 00:02:39,840
-Now icons in this case refers to
+Now icons in this case refers to
 the folder in which all of
 
-54
+52
 00:02:39,840 --> 00:02:41,430
 our icons are found.
 
-55
+53
 00:02:41,430 --> 00:02:44,180
-If all of your icons were in a
+If all of your icons were in a
 separate folder, you'd need to
 
-56
+54
 00:02:44,180 --> 00:02:45,990
 change this name.
 
-57
+55
 00:02:45,990 --> 00:02:50,080
-So when this runs, it outputs
+So when this runs, it outputs
 all of this CSS for us,
 
-58
+56
 00:02:50,080 --> 00:02:52,830
-automatically setting up classes
+automatically setting up classes
 based on the file
 
-59
+57
 00:02:52,830 --> 00:02:56,670
-names of our icons, and creating
+names of our icons, and creating
 separate classes to
 
-60
+58
 00:02:56,670 --> 00:03:00,080
-set the background position
+set the background position
 of each of those icons.
 
-61
+59
 00:03:00,080 --> 00:03:03,150
-So this might be what you need
+So this might be what you need
 for your projects, but there's
 
-62
+60
 00:03:03,150 --> 00:03:04,490
 a few problems.
 
-63
+61
 00:03:04,490 --> 00:03:08,320
-Up first is creating a chain
+Up first is creating a chain
 of classes for all of the
 
-64
+62
 00:03:08,320 --> 00:03:09,660
 icons that we have.
 
-65
+63
 00:03:09,660 --> 00:03:12,640
-So the larger our style sheet
+So the larger our style sheet
 becomes, the larger that chain
 
-66
+64
 00:03:12,640 --> 00:03:14,820
 of selectors becomes.
 
-67
+65
 00:03:14,820 --> 00:03:17,920
-Also, while it outputs the
+Also, while it outputs the
 background position for us, it
 
-68
+66
 00:03:17,920 --> 00:03:21,850
-doesn't set a height and
+doesn't set a height and
 a width for that class.
 
-69
+67
 00:03:21,850 --> 00:03:23,940
-So we have to go ahead and
+So we have to go ahead and
 manually figure that out and
 
-70
+68
 00:03:23,940 --> 00:03:27,890
-set it later if we want to use
+set it later if we want to use
 the sprite correctly and only
 
-71
+69
 00:03:27,890 --> 00:03:30,630
 show that bit of the image.
 
-72
+70
 00:03:30,630 --> 00:03:34,940
-To combat that, we're going to
+To combat that, we're going to
 set up sprites manually.
 
-73
+71
 00:03:34,940 --> 00:03:37,640
-To start a manual set up,
+To start a manual set up,
 we're going to use the
 
-74
+72
 00:03:37,640 --> 00:03:40,760
-sprite-map function and
+sprite-map function and
 set it equal to a
 
-75
+73
 00:03:40,760 --> 00:03:42,580
 variable called icons.
 
-76
+74
 00:03:42,580 --> 00:03:45,840
-We use this same argument in
+We use this same argument in
 sprite-map that we used in
 
-77
+75
 00:03:45,840 --> 00:03:50,080
-import to go ahead and
+import to go ahead and
 set up that sprite.
 
-78
+76
 00:03:50,080 --> 00:03:52,940
-However, unlike import, it's
+However, unlike import, it's
 not going to go ahead and
 
-79
+77
 00:03:52,940 --> 00:03:55,830
 create that image for us yet.
 
-80
+78
 00:03:55,830 --> 00:03:58,380
-With that ready, we're going
+With that ready, we're going
 to do something similar to
 
-81
+79
 00:03:58,380 --> 00:04:02,260
-Twitter Bootstrap, and we're
+Twitter Bootstrap, and we're
 going to use the i element as
 
-82
+80
 00:04:02,260 --> 00:04:05,870
-the main HTML element for
+the main HTML element for
 all of our icons.
 
-83
+81
 00:04:05,870 --> 00:04:09,330
-That allows us to set the
+That allows us to set the
 background of i to be our
 
-84
+82
 00:04:09,330 --> 00:04:12,440
-sprite and not be required
+sprite and not be required
 to create a long chain of
 
-85
+83
 00:04:12,440 --> 00:04:15,910
-selectors, like the automatic
+selectors, like the automatic
 version that might get too large
 
-86
+84
 00:04:15,910 --> 00:04:18,769
-if we have a large amount
+if we have a large amount
 of sprites.
 
-87
+85
 00:04:18,769 --> 00:04:22,730
-Once we set the background of
+Once we set the background of
 our i element to be the icons
 
-88
+86
 00:04:22,730 --> 00:04:25,810
-variable that stores our
+variable that stores our
 sprite-map, then the image is
 
-89
+87
 00:04:25,810 --> 00:04:28,810
-created in the Images directory,
+created in the Images directory,
 just like our old
 
-90
+88
 00:04:28,810 --> 00:04:31,160
-@import in the automatic
+@import in the automatic
 method.
 
-91
+89
 00:04:31,160 --> 00:04:33,550
-And it's automatically
+And it's automatically
 added as the
 
-92
+90
 00:04:33,550 --> 00:04:35,460
 background of the i element.
 
-93
-00:04:35,460 --> 00:04:39,100
-
-
-94
+91
 00:04:39,100 --> 00:04:40,610
 With that set, we need to start
 
-95
+92
 00:04:40,610 --> 00:04:41,930
 building out our sprites.
 
-96
+93
 00:04:41,930 --> 00:04:45,450
-So we're going to manually
+So we're going to manually
 create an icon cancel class,
 
-97
+94
 00:04:45,450 --> 00:04:47,840
-and we need to set the
+and we need to set the
 background position to use the
 
-98
+95
 00:04:47,840 --> 00:04:50,650
-correct positioning
+correct positioning
 from our sprite.
 
-99
+96
 00:04:50,650 --> 00:04:52,150
 Now Compass gives us the
 
-100
+97
 00:04:52,150 --> 00:04:54,440
 sprite-position function helper.
 
-101
+98
 00:04:54,440 --> 00:04:57,810
-We have to pass in the
+We have to pass in the
 sprite-map of the icons
 
-102
+99
 00:04:57,810 --> 00:05:01,180
-variable and the name of our
+variable and the name of our
 icon, which in this case is
 
-103
+100
 00:05:01,180 --> 00:05:04,170
-cancel, then it automatically
+cancel, then it automatically
 outputs that background
 
-104
+101
 00:05:04,170 --> 00:05:05,420
 position for us.
 
-105
-00:05:05,420 --> 00:05:08,180
-
-
-106
+102
 00:05:08,180 --> 00:05:10,520
-Like we talked about in the
+Like we talked about in the
 automatic method, though, this
 
-107
+103
 00:05:10,520 --> 00:05:13,360
-is still missing some sort
+is still missing some sort
 of height and width.
 
-108
+104
 00:05:13,360 --> 00:05:16,650
-We could use the Image Width and
+We could use the Image Width and
 Image Height helpers that
 
-109
+105
 00:05:16,650 --> 00:05:19,350
 we saw back in Level Three.
 
-110
+106
 00:05:19,350 --> 00:05:22,400
-But there's a sprite dimensions
+But there's a sprite dimensions
 mixin that's
 
-111
+107
 00:05:22,400 --> 00:05:25,140
-included in Compass for us that
+included in Compass for us that
 we just need to pass the
 
-112
+108
 00:05:25,140 --> 00:05:28,620
-sprite-map again and the name of
+sprite-map again and the name of
 the sprite, and it outputs
 
-113
+109
 00:05:28,620 --> 00:05:30,315
-the height and the width
+the height and the width
 for us automatically.
 
-114
-00:05:30,315 --> 00:05:32,890
-
-
-115
+110
 00:05:32,890 --> 00:05:35,400
-Now if we want to use the cancel
+Now if we want to use the cancel
 icon in our sprite, we
 
-116
+111
 00:05:35,400 --> 00:05:39,100
-simply need to use the i
+simply need to use the i
 element, give it that class,
 
-117
+112
 00:05:39,100 --> 00:05:41,970
-and it just uses the portion of
+and it just uses the portion of
 the sprite at the correct
 
-118
+113
 00:05:41,970 --> 00:05:46,640
-height and width for
+height and width for
 that icon to show.
 
-119
+114
 00:05:46,640 --> 00:05:49,640
-With that pattern set, now all
+With that pattern set, now all
 we need to do is build out the
 
-120
+115
 00:05:49,640 --> 00:05:51,390
 other two icons.
 
-121
+116
 00:05:51,390 --> 00:05:54,770
-So we create a class of icon
+So we create a class of icon
 next and a class of icon
 
-122
+117
 00:05:54,770 --> 00:05:57,180
-warning and set the appropriate
+warning and set the appropriate
 background
 
-123
+118
 00:05:57,180 --> 00:05:59,270
-positions and sprite
+positions and sprite
 dimensions.
 
-124
+119
 00:05:59,270 --> 00:06:02,780
-So this works and we could
+So this works and we could
 use this, but we
 
-125
+120
 00:06:02,780 --> 00:06:04,700
 see a pattern forming.
 
-126
+121
 00:06:04,700 --> 00:06:08,070
-The same code is used in each
+The same code is used in each
 example, only the name of the
 
-127
+122
 00:06:08,070 --> 00:06:09,410
 file changes.
 
-128
+123
 00:06:09,410 --> 00:06:13,990
-So there's still some ways to
+So there's still some ways to
 optimize this using Sass.
 
-129
+124
 00:06:13,990 --> 00:06:17,430
-First up, we can create a list
+First up, we can create a list
 that just contains the names
 
-130
+125
 00:06:17,430 --> 00:06:19,390
 of our icon files--
 
-131
+126
 00:06:19,390 --> 00:06:20,950
 cancel, next, and warning--
 
-132
+127
 00:06:20,950 --> 00:06:23,660
-store it in the Icon
+store it in the Icon
 Names list.
 
-133
+128
 00:06:23,660 --> 00:06:25,910
-And we can loop through those,
+And we can loop through those,
 kind of like we did with
 
-134
+129
 00:06:25,910 --> 00:06:29,650
-authors earlier in the course,
+authors earlier in the course,
 and output the same bit of
 
-135
+130
 00:06:29,650 --> 00:06:33,500
-code since that name is just
+code since that name is just
 used in three locations.
 
-136
+131
 00:06:33,500 --> 00:06:37,830
-Ultimately, our CSS compiles
+Ultimately, our CSS compiles
 to the exact same thing.
 
-137
+132
 00:06:37,830 --> 00:06:41,670
-This is better, and all we would
+This is better, and all we would
 need to do to update our
 
-138
+133
 00:06:41,670 --> 00:06:45,200
-sprites now is add a new file
+sprites now is add a new file
 to the Icons folder and that
 
-139
+134
 00:06:45,200 --> 00:06:48,220
 name to our Icon Names list.
 
-140
+135
 00:06:48,220 --> 00:06:52,670
-But we're still manually
+But we're still manually
 updating the Icon Names list.
 
-141
+136
 00:06:52,670 --> 00:06:54,630
-We can really optimize
+We can really optimize
 that a bit more.
 
-142
-00:06:54,630 --> 00:06:57,530
-
-
-143
+137
 00:06:57,530 --> 00:07:01,320
-Fortunately, Compass gives us
+Fortunately, Compass gives us
 a sprite names function.
 
-144
+138
 00:07:01,320 --> 00:07:06,070
-So we can pass our sprite-map
+So we can pass our sprite-map
 of icons into sprite names,
 
-145
+139
 00:07:06,070 --> 00:07:10,710
-and it returns the list of the
+and it returns the list of the
 no extension file names for
 
-146
+140
 00:07:10,710 --> 00:07:13,960
-each icon automatically, which
+each icon automatically, which
 is exactly what we need.
 
-147
+141
 00:07:13,960 --> 00:07:17,750
-So any time we add an image
+So any time we add an image
 to our Icons folder, it
 
-148
+142
 00:07:17,750 --> 00:07:21,210
-automatically is part of the
+automatically is part of the
 output of this and creates a
 
-149
+143
 00:07:21,210 --> 00:07:22,940
 new class for us.
 
-150
+144
 00:07:22,940 --> 00:07:26,680
-So the output is ultimately the
+So the output is ultimately the
 same, and we can see our
 
-151
+145
 00:07:26,680 --> 00:07:28,680
 full bit of code here.
 
-152
+146
 00:07:28,680 --> 00:07:31,600
-The only thing we need to do
+The only thing we need to do
 to update our sprites is to
 
-153
+147
 00:07:31,600 --> 00:07:33,530
-add a new icon to our
+add a new icon to our
 Icons folder.
 
-154
-00:07:33,530 --> 00:07:36,210
-
-
-155
+148
 00:07:36,210 --> 00:07:38,540
-There are other configuration
+There are other configuration
 options in dealing with
 
-156
+149
 00:07:38,540 --> 00:07:41,550
-sprites in Compass, like adding
+sprites in Compass, like adding
 white space around
 
-157
+150
 00:07:41,550 --> 00:07:44,860
-every icon on a generated sprite
+every icon on a generated sprite
 or having the generated
 
-158
+151
 00:07:44,860 --> 00:07:47,380
-sprite be a different
+sprite be a different
 orientation than vertical.
 
-159
-00:07:47,380 --> 00:07:51,620
-
-
-160
+152
 00:07:51,620 --> 00:07:54,420
-That's it for the video, so
+That's it for the video, so
 you're on to the last set of
 
-161
+153
 00:07:54,420 --> 00:07:55,200
 challenges.
 
-162
+154
 00:07:55,200 --> 00:07:56,950
-Good luck, and we'll see you
+Good luck, and we'll see you
 again in the wrap-up.
 
-163
+155
 00:00:00,000 --> 00:00:00,000
 00:07:56,950 --> 00:07:59,383
-

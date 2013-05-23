@@ -1,16 +1,16 @@
-1
+﻿1
 00:00:00,000 --> 00:00:03,100
-Your client-side JavaScript
+Your client-side JavaScript
 is to starting to mold.
 
 2
 00:00:03,100 --> 00:00:06,550
-It's starting to resemble
+It's starting to resemble
 a bad spaghetti code.
 
 3
 00:00:06,550 --> 00:00:09,150
-And it is time to add
+And it is time to add
 structure, but it
 
 4
@@ -19,22 +19,22 @@ won't take too long.
 
 5
 00:00:10,170 --> 00:00:13,590
-Gotta get your truth
+Gotta get your truth
 out of the DOM.
 
 6
 00:00:13,590 --> 00:00:16,730
-Take your data into models,
+Take your data into models,
 and you cannot lose.
 
 7
 00:00:16,730 --> 00:00:20,300
-We'll render out your models
+We'll render out your models
 with the help of the views.
 
 8
 00:00:20,300 --> 00:00:22,450
-And if you don't want
+And if you don't want
 your JavaScript to
 
 9
@@ -43,548 +43,527 @@ end up like a mess.
 
 10
 00:00:23,710 --> 00:00:28,412
-It's time for the Anatomy of
+It's time for the Anatomy of
 Backbone.js at Code School.
 
 11
-00:00:28,412 --> 00:00:31,860
-
-
-12
 00:00:31,860 --> 00:00:34,280
-You're watching the Anatomy
+You're watching the Anatomy
 of Backbone, Part Two.
 
-13
+12
 00:00:34,280 --> 00:00:35,490
 And this is Level 4--
 
-14
+13
 00:00:35,490 --> 00:00:38,110
 Varying Views.
 
-15
+14
 00:00:38,110 --> 00:00:40,640
-Typically, when we create views,
+Typically, when we create views,
 we send in the model
 
-16
+15
 00:00:40,640 --> 00:00:42,240
 they're associated with.
 
-17
+16
 00:00:42,240 --> 00:00:45,410
-So here, you can see we
+So here, you can see we
 pass in the todoItem.
 
-18
+17
 00:00:45,410 --> 00:00:48,430
-And then basically, what
+And then basically, what
 we call todoView.model.
 
-19
+18
 00:00:48,430 --> 00:00:51,670
-It's the same thing
+It's the same thing
 as just todoItem.
 
-20
+19
 00:00:51,670 --> 00:00:53,370
-And then, when we set
+And then, when we set
 a collection,
 
-21
+20
 00:00:53,370 --> 00:00:56,290
 we send in the todoItems.
 
-22
+21
 00:00:56,290 --> 00:01:02,180
-Here again todoView.collection
+Here again todoView.collection
 is equal to todoItems.
 
-23
+22
 00:01:02,180 --> 00:01:05,740
-But what other options can we
+But what other options can we
 pass into initialization?
 
-24
+23
 00:01:05,740 --> 00:01:08,640
-Let's look at a few useful
+Let's look at a few useful
 reasons to do this.
 
-25
+24
 00:01:08,640 --> 00:01:10,030
 So here's our todoView.
 
-26
+25
 00:01:10,030 --> 00:01:12,240
-And we have a template,
+And we have a template,
 we have a
 
-27
+26
 00:01:12,240 --> 00:01:14,390
 typical render function.
 
-28
+27
 00:01:14,390 --> 00:01:18,740
-When we instantiate this view,
+When we instantiate this view,
 we send in the proper model.
 
-29
+28
 00:01:18,740 --> 00:01:22,260
-And in our HTML, we already have
+And in our HTML, we already have
 a todo div where we want
 
-30
+29
 00:01:22,260 --> 00:01:24,030
 to put that todo.
 
-31
+30
 00:01:24,030 --> 00:01:28,660
-So we might just grab that out
+So we might just grab that out
 of the DOM, change the HTML to
 
-32
+31
 00:01:28,660 --> 00:01:30,890
 this todoViews element.
 
-33
+32
 00:01:30,890 --> 00:01:33,740
-This is going to print out a div
+This is going to print out a div
 within a div, because the
 
-34
+33
 00:01:33,740 --> 00:01:36,630
-default element for a
+default element for a
 view is a div, which
 
-35
+34
 00:01:36,630 --> 00:01:38,600
 obviously is not good.
 
-36
+35
 00:01:38,600 --> 00:01:42,180
-So how might we use the
+So how might we use the
 existing div here
 
-37
+36
 00:01:42,180 --> 00:01:44,240
 instead, and not to?
 
-38
+37
 00:01:44,240 --> 00:01:46,790
-To fix this, we can instantiate
+To fix this, we can instantiate
 the view with
 
-39
+38
 00:01:46,790 --> 00:01:50,170
-another parameter, here passing
+another parameter, here passing
 in the existing el,
 
-40
+39
 00:01:50,170 --> 00:01:53,030
-which in this case
+which in this case
 is our todo div.
 
-41
+40
 00:01:53,030 --> 00:01:55,460
-Now to render out the view,
+Now to render out the view,
 all we have to call is
 
-42
+41
 00:01:55,460 --> 00:02:00,127
-todoView.render, and it will
+todoView.render, and it will
 properly use the existing div.
 
-43
-00:02:00,127 --> 00:02:02,870
-
-
-44
+42
 00:02:02,870 --> 00:02:06,560
-Another use for passing extra
+Another use for passing extra
 options into your views is if
 
-45
+43
 00:02:06,560 --> 00:02:09,479
-you have additional JavaScript
+you have additional JavaScript
 objects that might be useful
 
-46
+44
 00:02:09,479 --> 00:02:13,300
-inside of those views, such
+inside of those views, such
 as currentUser here.
 
-47
+45
 00:02:13,300 --> 00:02:16,510
-So if we pass in currentUser, we
+So if we pass in currentUser, we
 can access that by calling
 
-48
+46
 00:02:16,510 --> 00:02:19,970
-toDoView.options, which is
+toDoView.options, which is
 going to give us back a
 
-49
+47
 00:02:19,970 --> 00:02:22,290
-JavaScript object with all
+JavaScript object with all
 of the different extra
 
-50
+48
 00:02:22,290 --> 00:02:24,290
 options we passed in.
 
-51
+49
 00:02:24,290 --> 00:02:27,670
-This also can be useful if you
+This also can be useful if you
 want to access extra options
 
-52
+50
 00:02:27,670 --> 00:02:30,100
 in your initialize function.
 
-53
+51
 00:02:30,100 --> 00:02:33,630
-So here you can see we're
+So here you can see we're
 setting the options.user equal
 
-54
+52
 00:02:33,630 --> 00:02:38,840
-to this.user property, which
+to this.user property, which
 will make it easier to access.
 
-55
+53
 00:02:38,840 --> 00:02:41,430
-Sometimes your Backbone views
+Sometimes your Backbone views
 might be in charge of printing
 
-56
+54
 00:02:41,430 --> 00:02:43,810
 out user generated content.
 
-57
+55
 00:02:43,810 --> 00:02:46,700
-But you need to be careful
+But you need to be careful
 because people may try to put
 
-58
+56
 00:02:46,700 --> 00:02:50,400
-malicious JavaScript inside
+malicious JavaScript inside
 of your model values.
 
-59
+57
 00:02:50,400 --> 00:02:51,930
-And you don't want to be
+And you don't want to be
 printing that out to the
 
-60
+58
 00:02:51,930 --> 00:02:54,000
 screen, like so.
 
-61
-00:02:54,000 --> 00:02:57,750
-
-
-62
+59
 00:02:57,750 --> 00:02:59,890
-One way you can fix this
+One way you can fix this
 is by using the
 
-63
+60
 00:02:59,890 --> 00:03:02,430
 model inside your template.
 
-64
+61
 00:03:02,430 --> 00:03:04,530
-So we'll need to send the
+So we'll need to send the
 entire model into the
 
-65
+62
 00:03:04,530 --> 00:03:07,910
-template, and then once inside
+template, and then once inside
 there, we can call escape
 
-66
+63
 00:03:07,910 --> 00:03:11,230
-method, which will properly
+method, which will properly
 escape the value.
 
-67
+64
 00:03:11,230 --> 00:03:13,400
-So in this case, it'll print
+So in this case, it'll print
 out our escape code, which
 
-68
+65
 00:03:13,400 --> 00:03:14,655
 will keep our page safe.
 
-69
-00:03:14,655 --> 00:03:19,680
-
-
-70
+66
 00:03:19,680 --> 00:03:22,870
-Here we have a view that prints
+Here we have a view that prints
 out a description.
 
-71
+67
 00:03:22,870 --> 00:03:25,520
-And we want to make it so that
+And we want to make it so that
 every time the description is
 
-72
+68
 00:03:25,520 --> 00:03:30,490
-changed, it updates the view,
+changed, it updates the view,
 and highlights it.
 
-73
+69
 00:03:30,490 --> 00:03:33,020
-So if we set the description,
+So if we set the description,
 it's going to trigger the
 
-74
+70
 00:03:33,020 --> 00:03:36,670
 change:description event.
 
-75
+71
 00:03:36,670 --> 00:03:39,010
-But what if we wanted to change
+But what if we wanted to change
 the description, but
 
-76
+72
 00:03:39,010 --> 00:03:41,280
 not call that event handler?
 
-77
+73
 00:03:41,280 --> 00:03:43,070
 How might we do that?
 
-78
+74
 00:03:43,070 --> 00:03:45,500
-We can do that by sending
+We can do that by sending
 in an extra parameter--
 
-79
+75
 00:03:45,500 --> 00:03:47,910
 in this case, silent: true.
 
-80
+76
 00:03:47,910 --> 00:03:50,280
-This will update the
+This will update the
 description, but it won't call
 
-81
+77
 00:03:50,280 --> 00:03:51,705
 that change event function.
 
-82
-00:03:51,705 --> 00:03:54,210
-
-
-83
+78
 00:03:54,210 --> 00:03:57,930
-But what if we do want to update
+But what if we do want to update
 the view, but not do
 
-84
+79
 00:03:57,930 --> 00:03:58,750
 the highlight?
 
-85
+80
 00:03:58,750 --> 00:04:02,570
-So we just want to run the first
+So we just want to run the first
 line of that function,
 
-86
+81
 00:04:02,570 --> 00:04:04,810
-and not the second where
+and not the second where
 it gets highlighted.
 
-87
+82
 00:04:04,810 --> 00:04:07,810
-In this case, we can pass an
+In this case, we can pass an
 additional option into that
 
-88
+83
 00:04:07,810 --> 00:04:09,070
 change event function.
 
-89
+84
 00:04:09,070 --> 00:04:11,210
-We're going to call a
+We're going to call a
 highlight: false.
 
-90
+85
 00:04:11,210 --> 00:04:12,470
 We just made that up.
 
-91
+86
 00:04:12,470 --> 00:04:15,950
-That'll get passed inside
+That'll get passed inside
 the options object.
 
-92
+87
 00:04:15,950 --> 00:04:17,649
-And we can simply add
+And we can simply add
 a conditional.
 
-93
+88
 00:04:17,649 --> 00:04:21,019
-So if options highlight is not
+So if options highlight is not
 equal to false, then we do
 
-94
+89
 00:04:21,019 --> 00:04:25,200
-want to highlight
+want to highlight
 the description.
 
-95
+90
 00:04:25,200 --> 00:04:28,030
-This is useful if you want
+This is useful if you want
 finer-grained control over
 
-96
+91
 00:04:28,030 --> 00:04:30,890
 your event handlers.
 
-97
+92
 00:04:30,890 --> 00:04:32,170
 So here's our todoView.
 
-98
+93
 00:04:32,170 --> 00:04:34,930
-And you can see here the model
+And you can see here the model
 is going to notify the view of
 
-99
+94
 00:04:34,930 --> 00:04:37,280
-changes so that it
+changes so that it
 can re-render.
 
-100
+95
 00:04:37,280 --> 00:04:41,020
-But what if we want to
+But what if we want to
 remove the view, but
 
-101
+96
 00:04:41,020 --> 00:04:42,660
 not delete the model?
 
-102
+97
 00:04:42,660 --> 00:04:45,740
-So we just want to hide the view
+So we just want to hide the view
 for some reason, take it
 
-103
+98
 00:04:45,740 --> 00:04:49,070
-off of our page, but we're
+off of our page, but we're
 not deleting the model.
 
-104
+99
 00:04:49,070 --> 00:04:52,030
-Well, if we call just
+Well, if we call just
 todoView.remove, that's not so
 
-105
+100
 00:04:52,030 --> 00:04:55,260
-good, because the model still
+good, because the model still
 holds a reference to it, and
 
-106
+101
 00:04:55,260 --> 00:04:57,910
-it's going to try to update
+it's going to try to update
 it when it changes.
 
-107
+102
 00:04:57,910 --> 00:05:00,090
-So we need to turn off
+So we need to turn off
 that model event.
 
-108
+103
 00:05:00,090 --> 00:05:03,110
-And in older versions of
+And in older versions of
 Backbone, this is how we would
 
-109
+104
 00:05:03,110 --> 00:05:07,300
-do it, which is, well,
+do it, which is, well,
 not that pretty.
 
-110
+105
 00:05:07,300 --> 00:05:10,070
-However, there's a better
+However, there's a better
 way to do this now.
 
-111
+106
 00:05:10,070 --> 00:05:13,940
-Instead of telling the model
+Instead of telling the model
 to notify the view when
 
-112
+107
 00:05:13,940 --> 00:05:16,710
-there's changes, we're going
+there's changes, we're going
 to tell the view to
 
-113
+108
 00:05:16,710 --> 00:05:19,140
 listen to the model.
 
-114
+109
 00:05:19,140 --> 00:05:21,580
-So we do this by calling
+So we do this by calling
 listenTo,
 
-115
+110
 00:05:21,580 --> 00:05:23,170
 sending it the model.
 
-116
+111
 00:05:23,170 --> 00:05:25,780
-Give it the event we want to
+Give it the event we want to
 listen for, and then the
 
-117
+112
 00:05:25,780 --> 00:05:29,400
-function to call when
+function to call when
 the model changes.
 
-118
+113
 00:05:29,400 --> 00:05:31,960
-Then if we want to stop all of
+Then if we want to stop all of
 the listeners, we can simply
 
-119
+114
 00:05:31,960 --> 00:05:34,150
 call todoView.stopListening.
 
-120
+115
 00:05:34,150 --> 00:05:37,110
-And when we call remove,
+And when we call remove,
 it automatically calls
 
-121
+116
 00:05:37,110 --> 00:05:38,660
 stopListening.
 
-122
+117
 00:05:38,660 --> 00:05:40,830
-So it's not going to be
+So it's not going to be
 listening for model events
 
-123
+118
 00:05:40,830 --> 00:05:45,790
-anymore because the view no
+anymore because the view no
 longer is on the page.
 
-124
+119
 00:05:45,790 --> 00:05:48,750
-It's time for you to explore
+It's time for you to explore
 some various views in the
 
-125
+120
 00:05:48,750 --> 00:05:50,000
 challenges.
 
-126
+121
 00:00:00,000 --> 00:00:00,000
 00:05:50,000 --> 00:05:52,322
-

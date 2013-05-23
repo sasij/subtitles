@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,000 --> 00:00:34,403
 [MUSIC PLAYING]
 
@@ -141,510 +141,502 @@ compile out to
 the proper CSS for us.
 
 31
-00:01:52,723 --> 00:01:56,863
-
-
-32
 00:01:56,863 --> 00:01:58,853
 Now though, we'll continue
 to optimize our
 
-33
+32
 00:01:58,853 --> 00:02:01,163
 media queries via @content.
 
-34
+33
 00:02:01,163 --> 00:02:04,773
 So the @content directive allows
 us to pass a block into
 
-35
+34
 00:02:04,773 --> 00:02:07,713
 a mixin, rather than
 just arguments.
 
-36
+35
 00:02:07,713 --> 00:02:11,523
 Here we have our sidebar and
 our nested media query.
 
-37
+36
 00:02:11,523 --> 00:02:13,873
 So in here, we're going to
 create a new mixin called
 
-38
+37
 00:02:13,873 --> 00:02:14,733
 respond-to.
 
-39
+38
 00:02:14,733 --> 00:02:16,793
 And that's just common
 naming practice.
 
-40
+39
 00:02:16,793 --> 00:02:20,083
 And that respond-to will be
 included inside the sidebar
 
-41
+40
 00:02:20,083 --> 00:02:21,263
 declaration.
 
-42
+41
 00:02:21,263 --> 00:02:24,353
 We're not passing an argument
 into respond-to, we're opening
 
-43
+42
 00:02:24,353 --> 00:02:25,833
 and closing a declaration.
 
-44
+43
 00:02:25,833 --> 00:02:27,493
 And those properties
 will be passed to
 
-45
+44
 00:02:27,493 --> 00:02:29,613
 the mixin via @content.
 
-46
+45
 00:02:29,613 --> 00:02:34,043
 So now back in respond-to
 we add our @media query.
 
-47
+46
 00:02:34,043 --> 00:02:37,193
 And inside of there we put
 @content so the properties
 
-48
+47
 00:02:37,193 --> 00:02:40,433
 passed into the respond-to
 block are output where
 
-49
+48
 00:02:40,433 --> 00:02:43,283
 @content is in our mixin.
 
-50
+49
 00:02:43,283 --> 00:02:46,453
 This works in outputting the
 code we already had but again,
 
-51
+50
 00:02:46,453 --> 00:02:48,533
 we're manually setting
 this media query.
 
-52
+51
 00:02:48,533 --> 00:02:51,913
 So we want to make this a bit
 more flexible for later.
 
-53
+52
 00:02:51,913 --> 00:02:54,753
 Before we move on, let's just go
 over this really quick one
 
-54
+53
 00:02:54,753 --> 00:02:57,393
 more time to make sure we're
 all on the same page.
 
-55
+54
 00:02:57,393 --> 00:02:58,333
 Step one.
 
-56
+55
 00:02:58,333 --> 00:03:02,343
 In our sidebar declaration, we
 have our @include respond-to.
 
-57
+56
 00:03:02,343 --> 00:03:05,833
 And we have a block that it's
 passing, similar to the way an
 
-58
+57
 00:03:05,833 --> 00:03:08,153
 argument passes up
 to our mixin.
 
-59
+58
 00:03:08,153 --> 00:03:12,353
 @content makes use of what's
 passed for step two.
 
-60
+59
 00:03:12,353 --> 00:03:16,343
 And ultimately in step three,
 the output of that mixin is
 
-61
+60
 00:03:16,343 --> 00:03:19,753
 put back into our sidebar
 declaration.
 
-62
+61
 00:03:19,753 --> 00:03:22,033
 This code isn't very useful to
 us, though, because we have
 
-63
+62
 00:03:22,033 --> 00:03:24,843
 one hard-coded media query that
 would be used each time
 
-64
+63
 00:03:24,843 --> 00:03:26,783
 we call our respond-to mixin.
 
-65
+64
 00:03:26,783 --> 00:03:29,073
 So let's expand on
 it a bit more.
 
-66
+65
 00:03:29,073 --> 00:03:32,643
 One common practice is to
 create a set of named
 
-67
+66
 00:03:32,643 --> 00:03:33,813
 breakpoints.
 
-68
+67
 00:03:33,813 --> 00:03:37,813
 We can pass a media argument
 to our respond-to, add a
 
-69
+68
 00:03:37,813 --> 00:03:40,493
 condition to check what
 the media value is.
 
-70
+69
 00:03:40,493 --> 00:03:42,193
 In this case, we're
 checking to see if
 
-71
+70
 00:03:42,193 --> 00:03:44,003
 $media is equal to tablet.
 
-72
+71
 00:03:44,003 --> 00:03:47,343
 If $media is equal to tablet,
 then it outputs that media
 
-73
+72
 00:03:47,343 --> 00:03:48,413
 query as normal.
 
-74
+73
 00:03:48,413 --> 00:03:53,583
 And from within our @include
 respond-to, if we pass tablet
 
-75
+74
 00:03:53,583 --> 00:03:57,373
 then the compiled version
 uses the media query.
 
-76
+75
 00:03:57,373 --> 00:04:00,903
 With this method, we could add
 additional else-if checks to
 
-77
+76
 00:04:00,903 --> 00:04:04,773
 see if any other breakpoints are
 true, and set a series of
 
-78
+77
 00:04:04,773 --> 00:04:08,363
 fixed breakpoints to use based
 on the media type we pass in
 
-79
+78
 00:04:08,363 --> 00:04:09,723
 as an argument.
 
-80
+79
 00:04:09,723 --> 00:04:13,003
 However, that's not quite
 flexible enough for us.
 
-81
+80
 00:04:13,003 --> 00:04:15,733
 Usually we want our content to
 dictate where our breakpoints
 
-82
+81
 00:04:15,733 --> 00:04:18,703
 are, and we wouldn't be able to
 pass a specific value into
 
-83
+82
 00:04:18,703 --> 00:04:20,303
 our respond-to mixin.
 
-84
+83
 00:04:20,303 --> 00:04:22,663
 So let's revise this
 a bit more.
 
-85
+84
 00:04:22,663 --> 00:04:25,243
 We're going to pass a
 query argument into
 
-86
+85
 00:04:25,243 --> 00:04:27,043
 our respond-to mixin.
 
-87
+86
 00:04:27,043 --> 00:04:30,213
 And we're going to rewrite our
 media query to continue to be
 
-88
+87
 00:04:30,213 --> 00:04:33,743
 min-width, but take that query
 argument as a value of our
 
-89
+88
 00:04:33,743 --> 00:04:35,373
 min-width query.
 
-90
+89
 00:04:35,373 --> 00:04:38,443
 And then from our @include
 respond-to in the sidebar
 
-91
+90
 00:04:38,443 --> 00:04:42,213
 declaration, we can set that
 query-value argument to
 
-92
+91
 00:04:42,213 --> 00:04:46,193
 whatever we'd like and use it
 anywhere in our style sheet to
 
-93
+92
 00:04:46,193 --> 00:04:48,643
 change that min-width value.
 
-94
+93
 00:04:48,643 --> 00:04:50,503
 Here we're passing 900 pixels.
 
-95
+94
 00:04:50,503 --> 00:04:54,073
 So when it compiles, our media
 query will have a minimum
 
-96
+95
 00:04:54,073 --> 00:04:58,163
 width of 900 pixels.
 
-97
+96
 00:04:58,163 --> 00:05:01,573
 That's better, but we're still
 restricted to using min-width
 
-98
+97
 00:05:01,573 --> 00:05:02,923
 for all of our media queries.
 
-99
+98
 00:05:02,923 --> 00:05:05,543
 Let's expand on this
 a little bit more.
 
-100
+99
 00:05:05,543 --> 00:05:07,903
 We're going to pass two
 arguments now into our
 
-101
+100
 00:05:07,903 --> 00:05:11,903
 respond-to query, including
 a value and that query.
 
-102
+101
 00:05:11,903 --> 00:05:15,403
 So within our media query,
 we'll pass the value, colon,
 
-103
+102
 00:05:15,403 --> 00:05:19,073
 the query value, still using
 our @content block.
 
-104
+103
 00:05:19,073 --> 00:05:22,633
 And then when we define our
 @include for the respond-to,
 
-105
+104
 00:05:22,633 --> 00:05:24,303
 we'll pass two arguments.
 
-106
+105
 00:05:24,303 --> 00:05:26,163
 The first here being
 max-width.
 
-107
+106
 00:05:26,163 --> 00:05:28,903
 And the second being the value
 we'd like that max-width query
 
-108
+107
 00:05:28,903 --> 00:05:30,353
 to be equal to.
 
-109
+108
 00:05:30,353 --> 00:05:31,583
 And it compiles.
 
-110
+109
 00:05:31,583 --> 00:05:34,533
 Now we're using a max-width
 media query and we have a
 
-111
+110
 00:05:34,533 --> 00:05:36,413
 separate 600-pixel value.
 
-112
+111
 00:05:36,413 --> 00:05:38,873
 We can now use this for all
 sorts of media queries,
 
-113
+112
 00:05:38,873 --> 00:05:44,033
 including max-width and minimum
 device pixel ratio.
 
-114
+113
 00:05:44,033 --> 00:05:46,643
 To wrap up, let's talk about a
 few responsive pitfalls when
 
-115
+114
 00:05:46,643 --> 00:05:48,893
 using Sass.
 
-116
+115
 00:05:48,893 --> 00:05:52,223
 First up, any declarations that
 are defined outside of a
 
-117
+116
 00:05:52,223 --> 00:05:55,683
 media query cannot be extended
 into that media query.
 
-118
+117
 00:05:55,683 --> 00:05:58,243
 For now, we get a deprecation
 warning if you try to do this.
 
-119
+118
 00:05:58,243 --> 00:06:00,753
 However, future versions of
 Sass are just going to out
 
-120
+119
 00:06:00,753 --> 00:06:03,013
 right throw a compile error.
 
-121
+120
 00:06:03,013 --> 00:06:05,713
 We are, however, able to extend
 items within the same
 
-122
+121
 00:06:05,713 --> 00:06:08,293
 media query to each other
 without any problems,
 
-123
+122
 00:06:08,293 --> 00:06:09,543
 like you see here.
 
-124
-00:06:09,543 --> 00:06:12,143
-
-
-125
+123
 00:06:12,143 --> 00:06:14,373
 And finally, even though our
 media queries might have the
 
-126
+124
 00:06:14,373 --> 00:06:17,313
 same values, Sass does
 not combine them.
 
-127
+125
 00:06:17,313 --> 00:06:20,313
 In this example, we have a
 nested media query in both
 
-128
+126
 00:06:20,313 --> 00:06:24,293
 sidebar and callout with a
 minimum width of 700 pixels.
 
-129
+127
 00:06:24,293 --> 00:06:26,923
 And even though those media
 queries could be combined in
 
-130
+128
 00:06:26,923 --> 00:06:30,983
 normal CSS, Sass doesn't do
 that combination for us.
 
-131
+129
 00:06:30,983 --> 00:06:34,473
 Sometimes the answer is to go
 ahead and write that in normal
 
-132
+130
 00:06:34,473 --> 00:06:38,573
 CSS as a combined media query
 so we avoid having multiple
 
-133
+131
 00:06:38,573 --> 00:06:43,493
 similar media queries to find
 throughout the style sheet.
 
-134
+132
 00:06:43,493 --> 00:06:44,383
 Congratulations.
 
-135
+133
 00:06:44,383 --> 00:06:46,453
 You've made your way through
 all seven videos
 
-136
+134
 00:06:46,453 --> 00:06:47,543
 in Assembling Sass.
 
-137
+135
 00:06:47,543 --> 00:06:50,193
 It's time to move on to the
 last set of challenges.
 
-138
+136
 00:06:50,193 --> 00:06:51,443
 Good luck.
