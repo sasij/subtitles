@@ -1,0 +1,941 @@
+﻿1
+00:00:03,900 --> 00:00:05,120
+You're watching Get Real 2.
+
+2
+00:00:05,120 --> 00:00:06,840
+And this is level 2, where
+we're going to be talking
+
+3
+00:00:06,840 --> 00:00:08,890
+about stashing.
+
+4
+00:00:08,890 --> 00:00:10,890
+So there you are working on a
+feature branch, and you're
+
+5
+00:00:10,890 --> 00:00:15,100
+about part way through a commit,
+when your boss calls
+
+6
+00:00:15,100 --> 00:00:16,149
+and says, hey, there's
+something
+
+7
+00:00:16,149 --> 00:00:16,860
+wrong with the server.
+
+8
+00:00:16,860 --> 00:00:18,850
+I need you to make a
+commit right now
+
+9
+00:00:18,850 --> 00:00:20,450
+to the master branch.
+
+10
+00:00:20,450 --> 00:00:22,760
+And you go, well, huh.
+
+11
+00:00:22,760 --> 00:00:24,700
+I need to go back over to the
+master branch, but I'm right
+
+12
+00:00:24,700 --> 00:00:27,700
+in the middle of this HTML file,
+about halfway done with
+
+13
+00:00:27,700 --> 00:00:29,360
+this gerbil right here.
+
+14
+00:00:29,360 --> 00:00:32,119
+And you can't go ahead and
+commit it halfway through.
+
+15
+00:00:32,119 --> 00:00:33,330
+That would be kind of bad.
+
+16
+00:00:33,330 --> 00:00:34,360
+So what do you do?
+
+17
+00:00:34,360 --> 00:00:37,960
+Well this is where stashing
+comes in.
+
+18
+00:00:37,960 --> 00:00:41,030
+Stashing allows you to take some
+files that may not make
+
+19
+00:00:41,030 --> 00:00:45,510
+up a full commit and store them
+away in a temporary area.
+
+20
+00:00:45,510 --> 00:00:48,080
+So you can restore them
+at a later time.
+
+21
+00:00:48,080 --> 00:00:52,760
+So in our case, if we run git
+stash save, it's going to take
+
+22
+00:00:52,760 --> 00:00:55,460
+those files haven't been
+completed yet, and it's going
+
+23
+00:00:55,460 --> 00:00:58,770
+to save them away in
+a temporary area.
+
+24
+00:00:58,770 --> 00:01:01,950
+It's also going to restore the
+state from the last commit.
+
+25
+00:01:01,950 --> 00:01:05,340
+So in this case, if I git diff,
+there's no changes.
+
+26
+00:01:05,340 --> 00:01:07,350
+And if I run git status, I can
+see that there's nothing to
+
+27
+00:01:07,350 --> 00:01:09,620
+commit on our gerbil branch.
+
+28
+00:01:09,620 --> 00:01:14,370
+So now we can safely go back
+over to our master branch from
+
+29
+00:01:14,370 --> 00:01:17,490
+here, and make all the
+changes that we need.
+
+30
+00:01:17,490 --> 00:01:18,620
+We can pull down updates.
+
+31
+00:01:18,620 --> 00:01:19,630
+We can make commits.
+
+32
+00:01:19,630 --> 00:01:23,050
+And we can push up
+the changes.
+
+33
+00:01:23,050 --> 00:01:25,990
+Now when we're ready to resume
+working on our feature branch,
+
+34
+00:01:25,990 --> 00:01:29,260
+we can go ahead and check out
+that particular branch, and
+
+35
+00:01:29,260 --> 00:01:33,000
+then run the command
+git stash apply.
+
+36
+00:01:33,000 --> 00:01:37,120
+This will re-run the changes
+that we stashed away before so
+
+37
+00:01:37,120 --> 00:01:39,370
+that we continue working
+on that code, and
+
+38
+00:01:39,370 --> 00:01:40,620
+eventually make a commit.
+
+39
+00:01:43,230 --> 00:01:47,890
+Every time you run git stash
+save, it pushes that stash
+
+40
+00:01:47,890 --> 00:01:51,060
+onto the stash stack.
+
+41
+00:01:51,060 --> 00:01:52,910
+It's a stack of stashes.
+
+42
+00:01:52,910 --> 00:01:58,160
+So if you run git stash list,
+you'll see a list of all of
+
+43
+00:01:58,160 --> 00:02:00,900
+the stashes that you've
+used there.
+
+44
+00:02:00,900 --> 00:02:06,350
+You'll see it says WIP, as in
+work in progress, on master.
+
+45
+00:02:06,350 --> 00:02:08,919
+That's the branch where
+we stashed.
+
+46
+00:02:08,919 --> 00:02:13,780
+And it gives you the last commit
+before we stashed.
+
+47
+00:02:13,780 --> 00:02:15,410
+Because a stash is
+not a commit.
+
+48
+00:02:15,410 --> 00:02:18,560
+It's giving you the commit that
+was right before the time
+
+49
+00:02:18,560 --> 00:02:20,540
+that we stashed.
+
+50
+00:02:20,540 --> 00:02:23,080
+The stashes are each given a
+name that you can reference if
+
+51
+00:02:23,080 --> 00:02:25,460
+you want to apply
+a certain stash.
+
+52
+00:02:25,460 --> 00:02:29,390
+So we wanted to apply just the
+middle stash, stash number 1,
+
+53
+00:02:29,390 --> 00:02:33,300
+we could call git stash apply
+stash 1 like you see here.
+
+54
+00:02:33,300 --> 00:02:36,080
+And it would be applied
+to our code.
+
+55
+00:02:36,080 --> 00:02:37,170
+Stash 0--
+
+56
+00:02:37,170 --> 00:02:40,130
+obviously that's the one at
+the top of the stack--
+
+57
+00:02:40,130 --> 00:02:43,330
+is going to be applied by
+default if we don't specify a
+
+58
+00:02:43,330 --> 00:02:45,130
+stash by name.
+
+59
+00:02:45,130 --> 00:02:47,520
+When we run the stash apply
+command, it's going
+
+60
+00:02:47,520 --> 00:02:49,030
+to apply our stash.
+
+61
+00:02:49,030 --> 00:02:54,350
+But it's not going to pop our
+stash from the stash stack.
+
+62
+00:02:54,350 --> 00:02:58,990
+In order to drop that stash off
+the stack, we can run git
+
+63
+00:02:58,990 --> 00:03:01,250
+stash drop, like so.
+
+64
+00:03:01,250 --> 00:03:03,920
+And that's going to remove
+it from the list.
+
+65
+00:03:03,920 --> 00:03:06,110
+And we can see if we run
+git stash list again.
+
+66
+00:03:06,110 --> 00:03:07,360
+We can see that it's gone.
+
+67
+00:03:11,450 --> 00:03:12,800
+There's some intelligent
+defaults for
+
+68
+00:03:12,800 --> 00:03:13,890
+running stash commands.
+
+69
+00:03:13,890 --> 00:03:17,110
+For example, we can just run git
+stash, and it's the same
+
+70
+00:03:17,110 --> 00:03:19,270
+thing as running
+git stash save.
+
+71
+00:03:19,270 --> 00:03:23,030
+If we run git stash apply, it's
+going to run the stash at
+
+72
+00:03:23,030 --> 00:03:26,070
+the top of the stack, which
+is going to be stash 0.
+
+73
+00:03:26,070 --> 00:03:29,160
+Git stash drop is going to
+automatically drop the stash
+
+74
+00:03:29,160 --> 00:03:31,230
+at the top of the stash stack.
+
+75
+00:03:31,230 --> 00:03:33,780
+And lastly there's the git stash
+pop command, which runs
+
+76
+00:03:33,780 --> 00:03:36,610
+git stash apply and
+git stash drop.
+
+77
+00:03:36,610 --> 00:03:40,370
+So it actually applies a stash,
+and then pops it off of
+
+78
+00:03:40,370 --> 00:03:44,110
+the top of the stack.
+
+79
+00:03:44,110 --> 00:03:46,470
+Just like when you merge
+branches, there is the
+
+80
+00:03:46,470 --> 00:03:49,710
+possibility of running into
+conflicts or other problems
+
+81
+00:03:49,710 --> 00:03:53,070
+when you try to take two files
+and put them together, and
+
+82
+00:03:53,070 --> 00:03:54,790
+merge them together.
+
+83
+00:03:54,790 --> 00:03:57,520
+So when you run git stash apply,
+well sometimes you
+
+84
+00:03:57,520 --> 00:03:59,720
+might get an error message
+that looks like this.
+
+85
+00:03:59,720 --> 00:04:03,850
+In this case, it wasn't able
+to modify the local file.
+
+86
+00:04:03,850 --> 00:04:07,590
+So what it says here is commit
+your changes or stash them
+
+87
+00:04:07,590 --> 00:04:12,010
+before you go ahead and try to
+run your stash apply command.
+
+88
+00:04:12,010 --> 00:04:14,860
+So it actually didn't
+run the stash apply.
+
+89
+00:04:14,860 --> 00:04:19,620
+It's saying, this isn't going to
+work until you either roll
+
+90
+00:04:19,620 --> 00:04:21,700
+back your changes or commit
+your changes.
+
+91
+00:04:21,700 --> 00:04:23,320
+Then do the apply again.
+
+92
+00:04:26,130 --> 00:04:28,620
+Sometimes when you run git
+stash apply, it will just
+
+93
+00:04:28,620 --> 00:04:32,070
+merge and it won't abort, in
+which case you're either going
+
+94
+00:04:32,070 --> 00:04:36,420
+to want to merge the changes and
+make a commit, or maybe
+
+95
+00:04:36,420 --> 00:04:38,830
+even roll back.
+
+96
+00:04:38,830 --> 00:04:41,630
+If you're using the stash pop
+command and you find some
+
+97
+00:04:41,630 --> 00:04:45,230
+merge conflicts, you'll want
+to resolve them as usual.
+
+98
+00:04:45,230 --> 00:04:49,220
+However, you should note that
+it doesn't automatically pop
+
+99
+00:04:49,220 --> 00:04:51,660
+the stash off of the stack.
+
+100
+00:04:51,660 --> 00:04:55,380
+That's because you might want
+to just do a hard reset and
+
+101
+00:04:55,380 --> 00:04:57,470
+then do the pop command again.
+
+102
+00:04:57,470 --> 00:05:00,380
+So it doesn't assume that you
+want to delete that stash.
+
+103
+00:05:00,380 --> 00:05:03,200
+So in this case, if it does run
+into conflicts when you're
+
+104
+00:05:03,200 --> 00:05:05,970
+using pop, you're going to want
+to go back into the stash
+
+105
+00:05:05,970 --> 00:05:09,430
+list and manually
+drop that stash.
+
+106
+00:05:13,200 --> 00:05:15,790
+So Jane is currently working on
+some code, and she has some
+
+107
+00:05:15,790 --> 00:05:19,470
+changes she wants to commit
+and some that she wants to
+
+108
+00:05:19,470 --> 00:05:21,300
+stash for a later commit.
+
+109
+00:05:21,300 --> 00:05:24,060
+Well she might try running
+git stash save
+
+110
+00:05:24,060 --> 00:05:25,670
+on her working directory.
+
+111
+00:05:25,670 --> 00:05:28,690
+But, if she runs git status,
+she'll find that it stashed
+
+112
+00:05:28,690 --> 00:05:30,930
+everything, including
+the staging area.
+
+113
+00:05:30,930 --> 00:05:31,780
+So that wasn't right.
+
+114
+00:05:31,780 --> 00:05:33,710
+Let's get our changes
+back into our
+
+115
+00:05:33,710 --> 00:05:34,930
+current working directory.
+
+116
+00:05:34,930 --> 00:05:38,850
+So if Jane runs git stash
+pop, it's going
+
+117
+00:05:38,850 --> 00:05:40,990
+to restore the state.
+
+118
+00:05:40,990 --> 00:05:45,290
+And you'll notice there that git
+stash will save both the
+
+119
+00:05:45,290 --> 00:05:51,550
+changes in the staging
+and unstaged area.
+
+120
+00:05:51,550 --> 00:05:54,650
+So let's try this again and this
+time we'll use the
+
+121
+00:05:54,650 --> 00:05:57,300
+--keep-index option.
+
+122
+00:05:57,300 --> 00:06:00,570
+What that's going to do is keep
+around the files that we
+
+123
+00:06:00,570 --> 00:06:03,620
+already have staged and
+ready to commit.
+
+124
+00:06:03,620 --> 00:06:06,210
+So now if we run git status,
+we'll see that only our
+
+125
+00:06:06,210 --> 00:06:09,660
+unstaged files have
+been stashed.
+
+126
+00:06:09,660 --> 00:06:13,580
+Now Jane can go ahead and
+make that commit.
+
+127
+00:06:13,580 --> 00:06:17,220
+And then to restore the files,
+she can run git stash pop.
+
+128
+00:06:17,220 --> 00:06:18,470
+And then she can get
+back to work.
+
+129
+00:06:21,450 --> 00:06:24,400
+But what if some of the files
+that Jane needed to stash
+
+130
+00:06:24,400 --> 00:06:26,700
+weren't tracked files?
+
+131
+00:06:26,700 --> 00:06:29,840
+So they were brand new files
+that were just created.
+
+132
+00:06:29,840 --> 00:06:33,970
+Well, when she ran git stash
+save, and then run git status,
+
+133
+00:06:33,970 --> 00:06:36,960
+she would see that those
+untracked files aren't getting
+
+134
+00:06:36,960 --> 00:06:39,270
+saved into the stash.
+
+135
+00:06:39,270 --> 00:06:43,890
+It's only going to stash files
+that git knows about.
+
+136
+00:06:43,890 --> 00:06:47,750
+To fix this, we can run git
+stash save with the
+
+137
+00:06:47,750 --> 00:06:49,820
+--include-untracked option.
+
+138
+00:06:49,820 --> 00:06:52,680
+This is going to include all
+of the untracked files.
+
+139
+00:06:52,680 --> 00:06:56,050
+So after we run that, and we
+run git status, we can see
+
+140
+00:06:56,050 --> 00:06:58,680
+that it has properly
+stashed it.
+
+141
+00:06:58,680 --> 00:07:02,880
+And then to unstash it, we can
+run git stash pop, and it will
+
+142
+00:07:02,880 --> 00:07:05,880
+properly pop, tracked
+and untracked
+
+143
+00:07:05,880 --> 00:07:09,970
+files off of the stack.
+
+144
+00:07:09,970 --> 00:07:12,790
+When you have a bunch of stashes
+is in your stash list,
+
+145
+00:07:12,790 --> 00:07:15,610
+sometimes it may be hard to tell
+them apart and figure out
+
+146
+00:07:15,610 --> 00:07:17,120
+which one you want.
+
+147
+00:07:17,120 --> 00:07:20,950
+Well luckily, we can run this
+with several options.
+
+148
+00:07:20,950 --> 00:07:24,100
+We could run this with the
+--stack command, as
+
+149
+00:07:24,100 --> 00:07:24,780
+you see here.
+
+150
+00:07:24,780 --> 00:07:27,230
+And it would list out all the
+different stats for all the
+
+151
+00:07:27,230 --> 00:07:28,360
+different stashes.
+
+152
+00:07:28,360 --> 00:07:31,270
+But really we can use any option
+that we would typically
+
+153
+00:07:31,270 --> 00:07:33,650
+use with the git log command.
+
+154
+00:07:33,650 --> 00:07:37,370
+We can use the options here to
+get more details about each of
+
+155
+00:07:37,370 --> 00:07:39,250
+the stashes.
+
+156
+00:07:39,250 --> 00:07:42,230
+If we want more information
+about one particular stash, we
+
+157
+00:07:42,230 --> 00:07:45,770
+can run git stash show, and then
+specify the name of that
+
+158
+00:07:45,770 --> 00:07:47,920
+stash, like you see here.
+
+159
+00:07:47,920 --> 00:07:52,160
+If we run git stash show, and
+don't specify any stash, well
+
+160
+00:07:52,160 --> 00:07:57,320
+it's going to show us details
+about the most recent stash.
+
+161
+00:07:57,320 --> 00:08:01,730
+Just like git stash list, git
+stash show can take any option
+
+162
+00:08:01,730 --> 00:08:04,210
+that the git log
+command takes.
+
+163
+00:08:04,210 --> 00:08:06,370
+So in this case, we
+could do git stash
+
+164
+00:08:06,370 --> 00:08:08,120
+show dash dash patch.
+
+165
+00:08:08,120 --> 00:08:10,120
+It shows the file changes
+within the stash.
+
+166
+00:08:15,130 --> 00:08:18,140
+When you run git stash save, you
+can optionally provide a
+
+167
+00:08:18,140 --> 00:08:21,680
+stash message, just like
+a commit message.
+
+168
+00:08:21,680 --> 00:08:24,080
+And then when you run git stash
+list, you're going to
+
+169
+00:08:24,080 --> 00:08:25,845
+see that message on the list.
+
+170
+00:08:29,310 --> 00:08:33,380
+So Gregg is back working on the
+gerbils again, and well he
+
+171
+00:08:33,380 --> 00:08:35,280
+started working on the
+gerbil toy section.
+
+172
+00:08:35,280 --> 00:08:38,120
+But then again management called
+and said, hey, you need
+
+173
+00:08:38,120 --> 00:08:41,260
+to go ahead and deploy those
+gerbil things that you're
+
+174
+00:08:41,260 --> 00:08:42,169
+working on.
+
+175
+00:08:42,169 --> 00:08:45,090
+So let's go ahead and stash
+save the toy section that
+
+176
+00:08:45,090 --> 00:08:46,550
+we've been working on.
+
+177
+00:08:46,550 --> 00:08:50,610
+And then we will maybe merge
+our existing code over into
+
+178
+00:08:50,610 --> 00:08:52,000
+master, to deploy to master.
+
+179
+00:08:52,000 --> 00:08:54,810
+But what if hypothetically,
+Gregg destroyed that gerbil's
+
+180
+00:08:54,810 --> 00:08:57,910
+branch, the one where we stashed
+the current work we
+
+181
+00:08:57,910 --> 00:09:00,270
+did on toys.
+
+182
+00:09:00,270 --> 00:09:03,450
+Well now we need a new branch
+to restore that
+
+183
+00:09:03,450 --> 00:09:05,430
+stashed toys page.
+
+184
+00:09:05,430 --> 00:09:10,280
+Well we can use this command,
+git stash branch gerbil toys
+
+185
+00:09:10,280 --> 00:09:11,430
+stash zero.
+
+186
+00:09:11,430 --> 00:09:14,080
+What this is going to do is
+it's going to create a new
+
+187
+00:09:14,080 --> 00:09:17,520
+branch name, called gerbil toys,
+and it's automatically
+
+188
+00:09:17,520 --> 00:09:22,180
+going to pop off of the stash
+the work that we did on gerbil
+
+189
+00:09:22,180 --> 00:09:24,100
+toys onto that branch.
+
+190
+00:09:24,100 --> 00:09:26,840
+Then, we can go ahead and
+make our first commit
+
+191
+00:09:26,840 --> 00:09:28,090
+onto this new branch.
+
+192
+00:09:31,110 --> 00:09:33,320
+One last thing before you
+get to the challenges.
+
+193
+00:09:33,320 --> 00:09:36,250
+What if you have a bunch of
+stashes in your stash list,
+
+194
+00:09:36,250 --> 00:09:37,930
+and you no longer need them?
+
+195
+00:09:37,930 --> 00:09:41,270
+Well, that's where they git
+stash clear command comes in.
+
+196
+00:09:41,270 --> 00:09:44,390
+If you run that command, that
+blows away all your stashes,
+
+197
+00:09:44,390 --> 00:09:45,640
+as you can see here.
+
+198
+00:09:49,530 --> 00:09:52,110
+Now it's time for you to start
+stashing things away in the
+
+199
+00:09:52,110 --> 00:09:53,200
+challenges.
+
+200
+00:09:53,200 --> 00:09:54,450
+See you in the next level.

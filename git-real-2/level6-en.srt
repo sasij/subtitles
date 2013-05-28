@@ -1,0 +1,487 @@
+﻿1
+00:00:02,220 --> 00:00:03,790
+Git Real.
+
+2
+00:00:03,790 --> 00:00:06,435
+You're watching Git Real 2,
+and this is Level 6, where
+
+3
+00:00:06,435 --> 00:00:09,430
+we're going to be talking
+about reflog.
+
+4
+00:00:09,430 --> 00:00:11,630
+So there Gregg is, going
+through his code.
+
+5
+00:00:11,630 --> 00:00:14,050
+And he's got the third
+section, second
+
+6
+00:00:14,050 --> 00:00:16,379
+section, first section.
+
+7
+00:00:16,379 --> 00:00:17,200
+Hmmm.
+
+8
+00:00:17,200 --> 00:00:20,850
+And he decides to
+drop a commit.
+
+9
+00:00:20,850 --> 00:00:23,730
+Easy way to do that is to do
+the git reset hard and then
+
+10
+00:00:23,730 --> 00:00:27,800
+specify which commit to go back
+to, effectively blowing
+
+11
+00:00:27,800 --> 00:00:29,920
+away the third section.
+
+12
+00:00:29,920 --> 00:00:31,050
+But wait.
+
+13
+00:00:31,050 --> 00:00:32,710
+That was a mistake.
+
+14
+00:00:32,710 --> 00:00:35,370
+Maybe he actually does
+want a third section.
+
+15
+00:00:35,370 --> 00:00:37,610
+But now how do we get back
+that commit that
+
+16
+00:00:37,610 --> 00:00:39,490
+we just blew away?
+
+17
+00:00:39,490 --> 00:00:43,980
+Well, luckily, Git never
+actually deletes a commit,
+
+18
+00:00:43,980 --> 00:00:46,630
+partially because of situations
+like this.
+
+19
+00:00:46,630 --> 00:00:50,510
+So right now, we have our branch
+and our HEAD pointing
+
+20
+00:00:50,510 --> 00:00:51,550
+to the second commit here.
+
+21
+00:00:51,550 --> 00:00:55,340
+But we want to restore
+that last commit.
+
+22
+00:00:55,340 --> 00:00:57,930
+How do we do that?
+
+23
+00:00:57,930 --> 00:01:00,240
+Well, the commit's not
+listed in the log, so
+
+24
+00:01:00,240 --> 00:01:02,060
+that's not any help.
+
+25
+00:01:02,060 --> 00:01:06,240
+But Git keeps a second log,
+which is only in your local
+
+26
+00:01:06,240 --> 00:01:08,860
+repo, called the reflog.
+
+27
+00:01:08,860 --> 00:01:12,570
+So if we do git reflog,
+we'll see something
+
+28
+00:01:12,570 --> 00:01:14,420
+that looks like that.
+
+29
+00:01:14,420 --> 00:01:17,300
+And if we read through the
+reflog, we can see, oh, look.
+
+30
+00:01:17,300 --> 00:01:19,570
+It knows when we called reset.
+
+31
+00:01:19,570 --> 00:01:21,970
+It also knows about the
+last three commits.
+
+32
+00:01:21,970 --> 00:01:24,670
+And we can see the commit
+that we want back.
+
+33
+00:01:24,670 --> 00:01:25,130
+So good.
+
+34
+00:01:25,130 --> 00:01:26,270
+It still exists.
+
+35
+00:01:26,270 --> 00:01:27,310
+That's what we want.
+
+36
+00:01:27,310 --> 00:01:29,440
+And let's keep note of
+that hash there.
+
+37
+00:01:31,990 --> 00:01:35,190
+Every time our HEAD moves,
+either because we have a new
+
+38
+00:01:35,190 --> 00:01:40,260
+commit, or we change branches,
+or we do a reset, another
+
+39
+00:01:40,260 --> 00:01:42,370
+entry gets put in our reflog.
+
+40
+00:01:42,370 --> 00:01:45,240
+So that's why we have an entry
+for when we did reset, as well
+
+41
+00:01:45,240 --> 00:01:47,190
+as an entry for each commits.
+
+42
+00:01:47,190 --> 00:01:51,390
+In the left column, the reflog
+shows us the SHA of the commit
+
+43
+00:01:51,390 --> 00:01:54,370
+that the HEAD was pointing
+at in its current state.
+
+44
+00:01:54,370 --> 00:01:58,430
+It also shows us a shortname
+that we can use to refer to
+
+45
+00:01:58,430 --> 00:02:00,060
+that particular commit.
+
+46
+00:02:00,060 --> 00:02:03,210
+And, lastly, it gives us a
+description of what caused the
+
+47
+00:02:03,210 --> 00:02:04,460
+HEAD to move.
+
+48
+00:02:07,930 --> 00:02:11,120
+So the second entry here, that's
+the commit that we want
+
+49
+00:02:11,120 --> 00:02:15,450
+back that's currently not
+attached to any branch.
+
+50
+00:02:15,450 --> 00:02:20,700
+To get it back, we can use git
+reset hard and then specify
+
+51
+00:02:20,700 --> 00:02:22,190
+that commit.
+
+52
+00:02:22,190 --> 00:02:25,890
+Or, if we want, we can use that
+shortname to check out
+
+53
+00:02:25,890 --> 00:02:27,140
+that commit.
+
+54
+00:02:29,290 --> 00:02:31,940
+And if run a git log at this
+point, we can see that our
+
+55
+00:02:31,940 --> 00:02:36,220
+commit is now back
+at our HEAD.
+
+56
+00:02:36,220 --> 00:02:39,230
+You should note that the reflog
+only keeps track of
+
+57
+00:02:39,230 --> 00:02:42,260
+what your HEAD is doing
+locally, right?
+
+58
+00:02:42,260 --> 00:02:45,770
+So if Jane clones Gregg's repo,
+she's not going to be
+
+59
+00:02:45,770 --> 00:02:47,900
+able to see his reflog.
+
+60
+00:02:47,900 --> 00:02:49,480
+Her reflog is starting
+from scratch.
+
+61
+00:02:52,100 --> 00:02:52,820
+All right.
+
+62
+00:02:52,820 --> 00:02:54,860
+It's time for another story.
+
+63
+00:02:54,860 --> 00:02:57,850
+Jane's working on a
+new aviary branch.
+
+64
+00:02:57,850 --> 00:02:59,980
+But she's decided that
+it's not needed.
+
+65
+00:02:59,980 --> 00:03:02,260
+So she goes to destroy it.
+
+66
+00:03:02,260 --> 00:03:04,035
+And it tells her, uh-oh,
+are you sure you
+
+67
+00:03:04,035 --> 00:03:04,710
+want to delete it?
+
+68
+00:03:04,710 --> 00:03:08,160
+You've got code on that branch
+that hasn't been merged.
+
+69
+00:03:08,160 --> 00:03:10,500
+But she says, yeah, yeah, I
+don't need that branch.
+
+70
+00:03:10,500 --> 00:03:13,260
+And she uses a capital D, which
+of course is going to
+
+71
+00:03:13,260 --> 00:03:15,150
+delete the branch anyways.
+
+72
+00:03:15,150 --> 00:03:18,180
+And then, lo and behold,
+she goes, oh, no.
+
+73
+00:03:18,180 --> 00:03:20,340
+I actually did need
+that branch.
+
+74
+00:03:20,340 --> 00:03:22,220
+I need to get it back.
+
+75
+00:03:22,220 --> 00:03:24,570
+Well, how does she
+get that back?
+
+76
+00:03:24,570 --> 00:03:29,060
+As we saw before, Git never
+really deletes any commits.
+
+77
+00:03:29,060 --> 00:03:31,150
+It just deleted the branch.
+
+78
+00:03:31,150 --> 00:03:35,110
+So if we can find the latest
+commit from that branch, we
+
+79
+00:03:35,110 --> 00:03:38,520
+can create a new branch which
+points back to that commit.
+
+80
+00:03:38,520 --> 00:03:40,750
+That's all we have to do, and
+it'll be like the branch was
+
+81
+00:03:40,750 --> 00:03:42,000
+never deleted at all.
+
+82
+00:03:44,360 --> 00:03:46,390
+So to find the last commit for
+that branch, we need to go
+
+83
+00:03:46,390 --> 00:03:47,940
+back into the reflog.
+
+84
+00:03:47,940 --> 00:03:49,710
+Now, we could use the same
+command as before.
+
+85
+00:03:49,710 --> 00:03:52,340
+But that only gives us
+one line for each
+
+86
+00:03:52,340 --> 00:03:54,450
+time the HEAD changed.
+
+87
+00:03:54,450 --> 00:03:57,680
+If we want more detail,
+we can run git log
+
+88
+00:03:57,680 --> 00:03:59,605
+dash dash walk reflogs.
+
+89
+00:03:59,605 --> 00:04:01,810
+And that will give us more
+information about each of
+
+90
+00:04:01,810 --> 00:04:03,790
+these commits.
+
+91
+00:04:03,790 --> 00:04:06,720
+So here we can take note of
+the shortname of the SHA.
+
+92
+00:04:06,720 --> 00:04:09,610
+Then, instead of doing a reset,
+like we did before, to
+
+93
+00:04:09,610 --> 00:04:13,480
+recover the commit, we're going
+to create a new branch.
+
+94
+00:04:13,480 --> 00:04:16,170
+So we'll do git branch
+aviary--
+
+95
+00:04:16,170 --> 00:04:17,550
+that's the name of
+our new branch--
+
+96
+00:04:17,550 --> 00:04:20,529
+and then reference the hash
+of the last commit.
+
+97
+00:04:20,529 --> 00:04:22,780
+We can, obviously, also
+use the reflog
+
+98
+00:04:22,780 --> 00:04:27,280
+shortname of HEAD 1.
+
+99
+00:04:27,280 --> 00:04:29,070
+Now, we can check out
+that new branch.
+
+100
+00:04:29,070 --> 00:04:32,450
+And if we run a log on that
+branch, it's as if we never
+
+101
+00:04:32,450 --> 00:04:34,160
+deleted it.
+
+102
+00:04:34,160 --> 00:04:35,410
+The birds have been
+resurrected.
+
+103
+00:04:40,310 --> 00:04:41,400
+You've reached the end
+of the videos.
+
+104
+00:04:41,400 --> 00:04:44,050
+It's time to restore some
+deleted commits.
+
+105
+00:04:44,050 --> 00:04:45,300
+And I'll see you in
+the outro video.

@@ -1,0 +1,657 @@
+﻿1
+00:00:00,000 --> 00:00:01,404
+[MUSIC PLAYING]
+
+2
+00:00:01,404 --> 00:00:03,790
+Git Real.
+
+3
+00:00:03,790 --> 00:00:05,030
+You're watching Git Real 2.
+
+4
+00:00:05,030 --> 00:00:07,110
+And this is level three, where
+we're going to be talking
+
+5
+00:00:07,110 --> 00:00:09,332
+about purging history.
+
+6
+00:00:09,332 --> 00:00:12,480
+So our coworker Bob did
+something he shouldn't have.
+
+7
+00:00:12,480 --> 00:00:17,360
+He committed the passwords.txt
+file to his repository.
+
+8
+00:00:17,360 --> 00:00:19,190
+And how should he fix this?
+
+9
+00:00:19,190 --> 00:00:21,750
+Well, he could create another
+commit, which
+
+10
+00:00:21,750 --> 00:00:23,260
+removes that file.
+
+11
+00:00:23,260 --> 00:00:27,350
+But then the next time he pushes
+up his commits, well,
+
+12
+00:00:27,350 --> 00:00:30,210
+it's going to push up that file
+as well because even if
+
+13
+00:00:30,210 --> 00:00:33,220
+it was deleted, well, Git keeps
+a history of everything
+
+14
+00:00:33,220 --> 00:00:35,810
+that was created and deleted.
+
+15
+00:00:35,810 --> 00:00:38,670
+So what do we do in
+this circumstance?
+
+16
+00:00:38,670 --> 00:00:40,970
+There are commands in Git
+to rewrite history.
+
+17
+00:00:40,970 --> 00:00:45,050
+But with great power comes
+great responsibility.
+
+18
+00:00:45,050 --> 00:00:47,510
+So you need to know some
+things about this.
+
+19
+00:00:47,510 --> 00:00:48,920
+First of all, there's
+some reasons
+
+20
+00:00:48,920 --> 00:00:50,470
+not to rewrite history.
+
+21
+00:00:50,470 --> 00:00:52,140
+First of all, why bother?
+
+22
+00:00:52,140 --> 00:00:53,540
+Your data is already
+compromised.
+
+23
+00:00:53,540 --> 00:00:56,790
+Maybe you should just change
+your password in this instance
+
+24
+00:00:56,790 --> 00:01:00,030
+and not worry about messing
+with rewriting history.
+
+25
+00:01:00,030 --> 00:01:04,080
+Also, everyone's got to update
+their work to get
+
+26
+00:01:04,080 --> 00:01:05,310
+your revised commits.
+
+27
+00:01:05,310 --> 00:01:08,240
+And the ones that you deleted
+the file, so maybe they
+
+28
+00:01:08,240 --> 00:01:11,460
+shouldn't even see that
+that commit existed.
+
+29
+00:01:11,460 --> 00:01:13,740
+When should you revise
+history?
+
+30
+00:01:13,740 --> 00:01:17,060
+Well, when, perhaps, what you
+committed violates somebody's
+
+31
+00:01:17,060 --> 00:01:19,760
+copyright, like you're using
+someone's library that
+
+32
+00:01:19,760 --> 00:01:21,190
+shouldn't be in there.
+
+33
+00:01:21,190 --> 00:01:23,870
+Obviously, you might want to
+rewrite history, get rid of
+
+34
+00:01:23,870 --> 00:01:26,810
+that commit so those files
+have no trace in your
+
+35
+00:01:26,810 --> 00:01:27,860
+repository.
+
+36
+00:01:27,860 --> 00:01:30,010
+Also you might have accidentally
+committed large
+
+37
+00:01:30,010 --> 00:01:32,120
+files to your repository,
+for example,
+
+38
+00:01:32,120 --> 00:01:34,530
+maybe large video files.
+
+39
+00:01:34,530 --> 00:01:36,500
+We've done that a
+bit around here.
+
+40
+00:01:36,500 --> 00:01:38,630
+And so we might want to delete
+those commits that have
+
+41
+00:01:38,630 --> 00:01:42,380
+records of those files so that
+our repository stays small.
+
+42
+00:01:42,380 --> 00:01:45,220
+And, lastly, it's OK to rewrite
+commits if you're
+
+43
+00:01:45,220 --> 00:01:47,560
+doing it on your local
+repository.
+
+44
+00:01:47,560 --> 00:01:50,360
+As soon as you push up changes,
+you should probably
+
+45
+00:01:50,360 --> 00:01:54,390
+consider those commits
+set in stone.
+
+46
+00:01:54,390 --> 00:01:56,370
+The first thing that we're going
+to do before we rewrite
+
+47
+00:01:56,370 --> 00:02:00,080
+history is to make a backup,
+pretty straightforward.
+
+48
+00:02:00,080 --> 00:02:03,530
+So we can run git clone petshop
+petshop-filter.
+
+49
+00:02:03,530 --> 00:02:06,310
+And this is going to clone our
+repo, so we have a backup,
+
+50
+00:02:06,310 --> 00:02:09,130
+just in case we accidentally
+delete some commits that we
+
+51
+00:02:09,130 --> 00:02:11,340
+didn't mean to.
+
+52
+00:02:11,340 --> 00:02:13,950
+To rewrite history, we're
+going to use the git
+
+53
+00:02:13,950 --> 00:02:18,290
+filter-branch command with
+the tree-filter option.
+
+54
+00:02:18,290 --> 00:02:21,640
+We can then specify after
+that any shell command
+
+55
+00:02:21,640 --> 00:02:23,190
+that we want to run.
+
+56
+00:02:23,190 --> 00:02:26,730
+What it's then going to do is
+check out each commit into a
+
+57
+00:02:26,730 --> 00:02:30,150
+working directory, run that
+command against it, and then
+
+58
+00:02:30,150 --> 00:02:31,950
+recommit the code.
+
+59
+00:02:31,950 --> 00:02:36,810
+Bob might want to do this and
+run rm -f passwords.txt, which
+
+60
+00:02:36,810 --> 00:02:40,320
+is going to go through each
+commit and remove any file
+
+61
+00:02:40,320 --> 00:02:42,420
+that's called passwords.txt
+on it.
+
+62
+00:02:42,420 --> 00:02:44,720
+If we had some large video files
+we wanted to remove, we
+
+63
+00:02:44,720 --> 00:02:48,330
+could run this shell command,
+which finds any files with the
+
+64
+00:02:48,330 --> 00:02:52,040
+extension mp4 and
+removes them.
+
+65
+00:02:52,040 --> 00:02:53,860
+Let's go ahead and run the
+passwords command.
+
+66
+00:02:53,860 --> 00:02:56,970
+And we're going to need to
+specify at the end --
+
+67
+00:02:56,970 --> 00:02:58,660
+and then --all.
+
+68
+00:02:58,660 --> 00:03:02,560
+What this is going to do is
+run this command on all
+
+69
+00:03:02,560 --> 00:03:05,300
+commits in all of
+our branches.
+
+70
+00:03:05,300 --> 00:03:08,830
+We could also specify head
+instead of all here if we only
+
+71
+00:03:08,830 --> 00:03:11,530
+wanted this filter to run
+in our current branch.
+
+72
+00:03:11,530 --> 00:03:14,620
+Now if we take a look inside
+of our log, we can see that
+
+73
+00:03:14,620 --> 00:03:17,185
+our passwords.txt file
+has been removed.
+
+74
+00:03:24,020 --> 00:03:26,780
+What would happened, though,
+if we ran rm passwords.txt
+
+75
+00:03:26,780 --> 00:03:28,630
+without that -f?
+
+76
+00:03:28,630 --> 00:03:31,110
+Well, not every commit
+is going to have that
+
+77
+00:03:31,110 --> 00:03:33,200
+password.txt file.
+
+78
+00:03:33,200 --> 00:03:36,450
+So the ones that it doesn't
+are going to fail.
+
+79
+00:03:36,450 --> 00:03:39,610
+And then the entire filter
+is going to fail.
+
+80
+00:03:39,610 --> 00:03:43,940
+So that's why we add the -f
+option to our remove command
+
+81
+00:03:43,940 --> 00:03:46,930
+to make sure that, even if the
+file doesn't exist, it doesn't
+
+82
+00:03:46,930 --> 00:03:51,230
+return a failure, and our
+filter doesn't stop.
+
+83
+00:03:51,230 --> 00:03:54,640
+As you might imagine, checking
+out every commit and running a
+
+84
+00:03:54,640 --> 00:03:57,260
+command against and recommitting
+it can take a
+
+85
+00:03:57,260 --> 00:04:00,990
+while, especially if you
+have a large code base.
+
+86
+00:04:00,990 --> 00:04:04,020
+That's why there's a different
+option you can use here called
+
+87
+00:04:04,020 --> 00:04:05,150
+index filter.
+
+88
+00:04:05,150 --> 00:04:08,370
+The commands we specify to set
+an index filter must operate
+
+89
+00:04:08,370 --> 00:04:10,380
+on a staging area.
+
+90
+00:04:10,380 --> 00:04:13,110
+Git's going to run this command
+on every commit, but
+
+91
+00:04:13,110 --> 00:04:15,500
+it's not going to check
+all the files out.
+
+92
+00:04:15,500 --> 00:04:18,000
+So whatever command you specify
+it needs to operate on
+
+93
+00:04:18,000 --> 00:04:18,980
+the staging area.
+
+94
+00:04:18,980 --> 00:04:23,750
+What this means is that our rm
+-f passwords.txt command isn't
+
+95
+00:04:23,750 --> 00:04:24,610
+going to work.
+
+96
+00:04:24,610 --> 00:04:25,820
+What we need to do,
+in this case, is
+
+97
+00:04:25,820 --> 00:04:27,490
+specify a git command.
+
+98
+00:04:27,490 --> 00:04:32,290
+In this case, we might use git
+rm, with the --cached option,
+
+99
+00:04:32,290 --> 00:04:35,030
+which will operate in
+our staging area.
+
+100
+00:04:35,030 --> 00:04:36,480
+Do you see that unmatched
+option?
+
+101
+00:04:36,480 --> 00:04:40,160
+Well, if we didn't have that and
+we just did the command as
+
+102
+00:04:40,160 --> 00:04:43,320
+you see here, it would fail
+the first time that
+
+103
+00:04:43,320 --> 00:04:46,840
+passwords.txt isn't present.
+
+104
+00:04:46,840 --> 00:04:50,460
+Just like with tree-filter, if
+the command we specify fails,
+
+105
+00:04:50,460 --> 00:04:53,090
+it's going to stop
+doing the filter.
+
+106
+00:04:53,090 --> 00:04:55,760
+So we want to make sure that
+when we run this git rm
+
+107
+00:04:55,760 --> 00:05:00,180
+command, we specify
+--ignore-unmatch, which make
+
+108
+00:05:00,180 --> 00:05:03,270
+sure that the command runs
+successfully even if the file
+
+109
+00:05:03,270 --> 00:05:04,520
+doesn't exist.
+
+110
+00:05:07,180 --> 00:05:09,800
+If you try to run filter-branch
+a second time,
+
+111
+00:05:09,800 --> 00:05:12,130
+you might get this error
+message you see here.
+
+112
+00:05:12,130 --> 00:05:15,570
+What happens is the first time
+you run filter-branch, git
+
+113
+00:05:15,570 --> 00:05:18,730
+leaves a backup of your tree
+in the .git directory.
+
+114
+00:05:18,730 --> 00:05:21,020
+So what you'll need to do, when
+you run this a second
+
+115
+00:05:21,020 --> 00:05:24,910
+time, is make sure you specify
+the -f option.
+
+116
+00:05:24,910 --> 00:05:27,480
+-f stands for force,
+which forces it to
+
+117
+00:05:27,480 --> 00:05:29,540
+override the backup.
+
+118
+00:05:29,540 --> 00:05:31,400
+If you're deleting files from
+history, some of your
+
+119
+00:05:31,400 --> 00:05:34,650
+commits might end up empty,
+which isn't good.
+
+120
+00:05:34,650 --> 00:05:37,370
+Why would you want to leave a
+commit around if it doesn't
+
+121
+00:05:37,370 --> 00:05:41,485
+actually do anything
+to your code?
+
+122
+00:05:41,485 --> 00:05:43,050
+Here you can see our
+commit history.
+
+123
+00:05:43,050 --> 00:05:45,040
+And there's one commit in
+there that's empty.
+
+124
+00:05:45,040 --> 00:05:46,520
+How do we get rid of it?
+
+125
+00:05:46,520 --> 00:05:50,210
+Well, we can run the
+filter-branch command with the
+
+126
+00:05:50,210 --> 00:05:53,110
+--prune-empty option.
+
+127
+00:05:53,110 --> 00:05:56,860
+This is going to delete any
+commits which are empty.
+
+128
+00:05:56,860 --> 00:05:59,660
+Now if we run git log again,
+we can see that the empty
+
+129
+00:05:59,660 --> 00:06:00,690
+commit is gone.
+
+130
+00:06:00,690 --> 00:06:04,090
+We could've included this
+prune-empty option when we ran
+
+131
+00:06:04,090 --> 00:06:06,120
+filter-branch initially
+and removed the
+
+132
+00:06:06,120 --> 00:06:07,920
+passwords.txt file.
+
+133
+00:06:07,920 --> 00:06:10,550
+And if it found any empty
+commits, it would simply get
+
+134
+00:06:10,550 --> 00:06:12,390
+rid of them.
+
+135
+00:06:12,390 --> 00:06:13,920
+All right, it's time
+for the challenges.
+
+136
+00:06:13,920 --> 00:06:16,550
+But be careful when you're
+rewriting history.
+
+137
+00:06:16,550 --> 00:06:19,320
+You wouldn't want to erase
+yourself from the time stream
+
+138
+00:06:19,320 --> 00:06:21,530
+or make any breaks in the
+time space continuum.

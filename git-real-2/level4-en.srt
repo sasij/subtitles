@@ -1,0 +1,838 @@
+﻿1
+00:00:01,332 --> 00:00:03,880
+Git Real.
+
+2
+00:00:03,880 --> 00:00:05,080
+You're watching Git Real 2.
+
+3
+00:00:05,080 --> 00:00:06,730
+And this is Level Four where
+we're going to be talking
+
+4
+00:00:06,730 --> 00:00:09,360
+about working together.
+
+5
+00:00:09,360 --> 00:00:12,440
+As you may know, different
+operating systems sometimes
+
+6
+00:00:12,440 --> 00:00:15,290
+use different lines
+separators.
+
+7
+00:00:15,290 --> 00:00:19,970
+So with OSX or Linux,
+we use a Line Feed.
+
+8
+00:00:19,970 --> 00:00:22,280
+And if you're familiar with
+string encoding, this also
+
+9
+00:00:22,280 --> 00:00:27,750
+sometimes is represented as /n.
+And if you're on Windows,
+
+10
+00:00:27,750 --> 00:00:30,630
+the line separator by default
+is going to be a carriage
+
+11
+00:00:30,630 --> 00:00:38,060
+return followed by a Line Feed
+or a /r and then a /n.
+
+12
+00:00:38,060 --> 00:00:40,390
+Problems with this arise when
+you have some team members
+
+13
+00:00:40,390 --> 00:00:43,520
+that are working on OSX or
+Linux, and maybe they have
+
+14
+00:00:43,520 --> 00:00:46,660
+some line separators in their
+file like this, and then
+
+15
+00:00:46,660 --> 00:00:49,710
+another team member on Windows
+opens up that same file and
+
+16
+00:00:49,710 --> 00:00:51,920
+since there's no carriage
+returns, they don't see
+
+17
+00:00:51,920 --> 00:00:53,230
+separate lines at all.
+
+18
+00:00:55,780 --> 00:00:58,000
+Luckily, Git comes with
+some configuration
+
+19
+00:00:58,000 --> 00:00:59,100
+to deal with this.
+
+20
+00:00:59,100 --> 00:01:02,660
+If you want a Unix-like system
+like Linux or OSX, then you
+
+21
+00:01:02,660 --> 00:01:05,319
+run this configuration command,
+as you see here.
+
+22
+00:01:05,319 --> 00:01:07,200
+This is going to make sure
+that any files that you
+
+23
+00:01:07,200 --> 00:01:09,580
+commit, or there's any carriage
+returns followed by
+
+24
+00:01:09,580 --> 00:01:11,720
+Line Feeds, then it's going
+to change them all
+
+25
+00:01:11,720 --> 00:01:13,250
+to just Line Feeds.
+
+26
+00:01:13,250 --> 00:01:15,230
+Then on Windows systems,
+you can run this
+
+27
+00:01:15,230 --> 00:01:17,100
+configuration command.
+
+28
+00:01:17,100 --> 00:01:21,120
+What this is going to do is
+change all line feeds to
+
+29
+00:01:21,120 --> 00:01:24,090
+carriage return line feeds when
+you check out the file.
+
+30
+00:01:24,090 --> 00:01:27,490
+That way somebody on Windows is
+going to properly see all
+
+31
+00:01:27,490 --> 00:01:28,570
+the line endings.
+
+32
+00:01:28,570 --> 00:01:31,010
+And it will convert them
+back to Line Feeds when
+
+33
+00:01:31,010 --> 00:01:32,600
+you commit the files.
+
+34
+00:01:32,600 --> 00:01:35,010
+If you're working in a team
+that only uses Windows and
+
+35
+00:01:35,010 --> 00:01:37,410
+doesn't need to worry about
+getting rid of the carraige
+
+36
+00:01:37,410 --> 00:01:40,270
+returns or adding them, then you
+can use this configuration
+
+37
+00:01:40,270 --> 00:01:44,650
+command, which is just going to
+leave the characters there.
+
+38
+00:01:44,650 --> 00:01:46,330
+You don't have to rely on
+everybody setting that
+
+39
+00:01:46,330 --> 00:01:48,230
+configuration item though.
+
+40
+00:01:48,230 --> 00:01:51,740
+Instead you can create a
+Git attributes file.
+
+41
+00:01:51,740 --> 00:01:53,210
+This sits in your file root.
+
+42
+00:01:53,210 --> 00:01:55,360
+And on the left side,
+it has file types.
+
+43
+00:01:55,360 --> 00:01:57,820
+And on the right side, it
+has conversion settings.
+
+44
+00:01:57,820 --> 00:02:00,260
+And over the next couple slides,
+we'll describe what
+
+45
+00:02:00,260 --> 00:02:03,240
+each of these mean.
+
+46
+00:02:03,240 --> 00:02:05,500
+First, let's talk about file
+type, which is on the left
+
+47
+00:02:05,500 --> 00:02:07,060
+side of the file.
+
+48
+00:02:07,060 --> 00:02:09,190
+If you have a star, it's
+obviously going
+
+49
+00:02:09,190 --> 00:02:11,100
+to match any file.
+
+50
+00:02:11,100 --> 00:02:14,100
+You can do star dot HTML, which
+obviously will only
+
+51
+00:02:14,100 --> 00:02:16,320
+match .HTML files.
+
+52
+00:02:16,320 --> 00:02:20,756
+And of course, .jpeg will
+match any jpeg file.
+
+53
+00:02:20,756 --> 00:02:23,370
+Then on the right side of the
+file, we have conversion
+
+54
+00:02:23,370 --> 00:02:27,000
+settings, which allows you to
+specify how a particular file
+
+55
+00:02:27,000 --> 00:02:28,830
+type should be handled.
+
+56
+00:02:28,830 --> 00:02:31,560
+In this case with text=auto,
+it's going to detect
+
+57
+00:02:31,560 --> 00:02:33,730
+whether a file is a text file.
+
+58
+00:02:33,730 --> 00:02:36,730
+And if it is, it's going
+to convert it properly.
+
+59
+00:02:36,730 --> 00:02:39,760
+Then if it says text, it's going
+to treat the file as a
+
+60
+00:02:39,760 --> 00:02:43,080
+text file, properly converting
+the line endings.
+
+61
+00:02:43,080 --> 00:02:45,500
+If you want to specify exactly
+how our text files are
+
+62
+00:02:45,500 --> 00:02:48,920
+converted, we can use these
+configuration settings here.
+
+63
+00:02:48,920 --> 00:02:52,100
+EOL stands for End Of Line.
+
+64
+00:02:52,100 --> 00:02:53,450
+So if you a top command here--
+
+65
+00:02:53,450 --> 00:02:54,250
+CRLF--
+
+66
+00:02:54,250 --> 00:02:58,150
+when you check out code,
+it's going to add the carriage
+
+67
+00:02:58,150 --> 00:03:00,260
+returns, so you can see
+the line breaks
+
+68
+00:03:00,260 --> 00:03:01,370
+if you're on Windows.
+
+69
+00:03:01,370 --> 00:03:03,690
+And then when you check in the
+code, it's going to remove the
+
+70
+00:03:03,690 --> 00:03:05,630
+carriage returns.
+
+71
+00:03:05,630 --> 00:03:08,200
+Whereas the second command here,
+it's simply going to
+
+72
+00:03:08,200 --> 00:03:10,580
+make sure that there's
+never any carriage
+
+73
+00:03:10,580 --> 00:03:12,520
+returns in your code.
+
+74
+00:03:12,520 --> 00:03:15,310
+Lastly, the binary configuration
+option is going
+
+75
+00:03:15,310 --> 00:03:16,720
+to treat the files as binary.
+
+76
+00:03:16,720 --> 00:03:20,860
+So it's not going to try
+to do any conversion.
+
+77
+00:03:20,860 --> 00:03:23,060
+Here are some typical rules
+that you'll find in a Git
+
+78
+00:03:23,060 --> 00:03:24,580
+Attributes file.
+
+79
+00:03:24,580 --> 00:03:27,270
+First of all, up at the top,
+you have a star text equals
+
+80
+00:03:27,270 --> 00:03:30,990
+auto, so by default convert
+line endings for all text
+
+81
+00:03:30,990 --> 00:03:32,470
+files that you find.
+
+82
+00:03:32,470 --> 00:03:36,500
+Then secondly, let's go through
+and make sure all HTML
+
+83
+00:03:36,500 --> 00:03:39,360
+and CSS files are treated
+as text files.
+
+84
+00:03:39,360 --> 00:03:42,400
+And obviously these aren't
+needed, if you're using the
+
+85
+00:03:42,400 --> 00:03:45,370
+text = auto above, because
+it's going to detect
+
+86
+00:03:45,370 --> 00:03:49,350
+the HTML and CSS files as text
+files and convert them
+
+87
+00:03:49,350 --> 00:03:50,620
+appropriately.
+
+88
+00:03:50,620 --> 00:03:53,440
+If we needed to make sure that
+our images were interpreted as
+
+89
+00:03:53,440 --> 00:03:57,140
+binary files, then we can
+specify *.jpeg binary
+
+90
+00:03:57,140 --> 00:03:58,700
+and PNG binary.
+
+91
+00:03:58,700 --> 00:04:01,600
+And lastly, we want to make sure
+that all shell scripts or
+
+92
+00:04:01,600 --> 00:04:05,720
+or .sh files never have carriage
+returns in them and
+
+93
+00:04:05,720 --> 00:04:07,300
+are treated appropriately.
+
+94
+00:04:07,300 --> 00:04:11,180
+But .bat files, which might
+be batch files in Windows
+
+95
+00:04:11,180 --> 00:04:13,890
+format, do have the
+carriage return.
+
+96
+00:04:13,890 --> 00:04:18,120
+So when we execute them,
+they work properly.
+
+97
+00:04:18,120 --> 00:04:21,300
+Next up, we're going to be
+talking about cherry picking.
+
+98
+00:04:21,300 --> 00:04:22,660
+When do you need
+cherry picking?
+
+99
+00:04:22,660 --> 00:04:24,770
+Well, let's say we're
+working in our
+
+100
+00:04:24,770 --> 00:04:26,830
+current production branch.
+
+101
+00:04:26,830 --> 00:04:30,370
+And we realize that we need a
+piece of functionality that we
+
+102
+00:04:30,370 --> 00:04:32,200
+coded in another branch.
+
+103
+00:04:32,200 --> 00:04:36,430
+However, that piece of code that
+we need is a commit in
+
+104
+00:04:36,430 --> 00:04:38,220
+the middle of a bunch
+of other commits.
+
+105
+00:04:38,220 --> 00:04:43,110
+Well, what we need to do here is
+cherry pick that commit and
+
+106
+00:04:43,110 --> 00:04:45,080
+put it into our production
+branch.
+
+107
+00:04:45,080 --> 00:04:47,190
+Visually, here's what our
+branches look like.
+
+108
+00:04:47,190 --> 00:04:50,160
+And what we want to do is take
+a commit that's currently in
+
+109
+00:04:50,160 --> 00:04:53,220
+our development branch and
+cherry pick it into our
+
+110
+00:04:53,220 --> 00:04:56,280
+production branch.
+
+111
+00:04:56,280 --> 00:04:58,510
+To do this, the first thing
+we're going to do is check out
+
+112
+00:04:58,510 --> 00:05:00,450
+our production branch, make
+sure we're on the right
+
+113
+00:05:00,450 --> 00:05:03,710
+branch, and then we're going to
+write git cherry-pick and
+
+114
+00:05:03,710 --> 00:05:07,990
+specify the hash for that
+particular commit--
+
+115
+00:05:07,990 --> 00:05:12,320
+in this case, the one that
+starts with 53212--
+
+116
+00:05:12,320 --> 00:05:14,130
+and that's all you have to do.
+
+117
+00:05:14,130 --> 00:05:17,730
+Now, if we run git log on our
+production branch, we'll see
+
+118
+00:05:17,730 --> 00:05:21,580
+that particular commit has been
+cherry picked and put
+
+119
+00:05:21,580 --> 00:05:23,460
+onto our branch.
+
+120
+00:05:23,460 --> 00:05:26,860
+Notice here that the SHA on
+our cherry-picked commit
+
+121
+00:05:26,860 --> 00:05:30,570
+changed when we copied it from
+the development branch to the
+
+122
+00:05:30,570 --> 00:05:32,370
+production branch.
+
+123
+00:05:32,370 --> 00:05:36,000
+That's because it has a
+different parent on the
+
+124
+00:05:36,000 --> 00:05:37,250
+production branch.
+
+125
+00:05:39,370 --> 00:05:41,730
+Sometimes we might want to
+have a different commit
+
+126
+00:05:41,730 --> 00:05:44,690
+message when we cherry-pick
+pick a commit, in which
+
+127
+00:05:44,690 --> 00:05:47,010
+case we can use the
+Edit option.
+
+128
+00:05:47,010 --> 00:05:50,400
+When we execute this command,
+it's going to pop up an editor
+
+129
+00:05:50,400 --> 00:05:52,920
+where we can edit the commit
+message and change it to
+
+130
+00:05:52,920 --> 00:05:54,610
+whatever we want to be.
+
+131
+00:05:54,610 --> 00:05:57,830
+Once we save and quit, the
+cherry pick proceeds as usual,
+
+132
+00:05:57,830 --> 00:06:00,520
+but with a different commit
+message, as we can see down
+
+133
+00:06:00,520 --> 00:06:01,770
+here in the log.
+
+134
+00:06:04,140 --> 00:06:07,090
+Sometimes we might want to take
+multiple commits from a
+
+135
+00:06:07,090 --> 00:06:10,560
+branch, cherry pick them, and
+combine them into a single
+
+136
+00:06:10,560 --> 00:06:12,900
+commit in our current branch.
+
+137
+00:06:12,900 --> 00:06:14,820
+How can we do that?
+
+138
+00:06:14,820 --> 00:06:18,880
+To do this, we're going to use
+the no-commit option and then
+
+139
+00:06:18,880 --> 00:06:22,330
+specify the two different
+commits we want to combine.
+
+140
+00:06:22,330 --> 00:06:24,850
+The no-commit option takes the
+changes from these two
+
+141
+00:06:24,850 --> 00:06:29,530
+commits, applies them to our
+current head, but does not
+
+142
+00:06:29,530 --> 00:06:30,990
+make any commits.
+
+143
+00:06:30,990 --> 00:06:33,710
+So while we're going on git
+status, we can see the changes
+
+144
+00:06:33,710 --> 00:06:37,290
+that applying these commits
+made, but they haven't made
+
+145
+00:06:37,290 --> 00:06:39,250
+any commits to the local
+branch, which
+
+146
+00:06:39,250 --> 00:06:40,960
+we need to do now.
+
+147
+00:06:40,960 --> 00:06:43,800
+So now all we need to do is
+commit these changes into our
+
+148
+00:06:43,800 --> 00:06:46,620
+own commit in the production
+branch.
+
+149
+00:06:46,620 --> 00:06:49,350
+This no-commit option is really
+useful when you want to
+
+150
+00:06:49,350 --> 00:06:52,880
+cherry-pick a commit, but make
+small changes before you
+
+151
+00:06:52,880 --> 00:06:54,375
+commit them to your
+local branch.
+
+152
+00:06:56,980 --> 00:07:00,130
+When you cherry-pick, it's
+really useful to keep track of
+
+153
+00:07:00,130 --> 00:07:02,270
+where that commit came from.
+
+154
+00:07:02,270 --> 00:07:05,530
+One way to do this is
+to use -x option.
+
+155
+00:07:05,530 --> 00:07:09,460
+What this is going to do is
+insert into the commit message
+
+156
+00:07:09,460 --> 00:07:10,600
+what you see here.
+
+157
+00:07:10,600 --> 00:07:13,390
+So you can see it was
+cherry-picked from commit, and
+
+158
+00:07:13,390 --> 00:07:14,990
+it shows you the hash
+right there.
+
+159
+00:07:14,990 --> 00:07:17,700
+Now when we run the log command,
+we can see which
+
+160
+00:07:17,700 --> 00:07:19,940
+commit this came from.
+
+161
+00:07:19,940 --> 00:07:22,100
+This is only useful when you're
+cherry-picking from
+
+162
+00:07:22,100 --> 00:07:23,690
+public branches.
+
+163
+00:07:23,690 --> 00:07:26,040
+Because if someone checks
+out your code, and you
+
+164
+00:07:26,040 --> 00:07:28,780
+cherry-picked from a local
+branch, they don't have your
+
+165
+00:07:28,780 --> 00:07:31,100
+local branch, and so that
+hash isn't going
+
+166
+00:07:31,100 --> 00:07:32,350
+to lead them anywhere.
+
+167
+00:07:35,110 --> 00:07:38,600
+When you cherry-pick a commit,
+the author of that commit also
+
+168
+00:07:38,600 --> 00:07:40,920
+gets moved over to
+the new commit.
+
+169
+00:07:40,920 --> 00:07:43,970
+But you might need to keep
+track of who did the
+
+170
+00:07:43,970 --> 00:07:48,360
+cherry-picking, because that's
+where the --signoff up option
+
+171
+00:07:48,360 --> 00:07:49,220
+comes in handy.
+
+172
+00:07:49,220 --> 00:07:52,710
+This is going to add to the
+commit message, showing who
+
+173
+00:07:52,710 --> 00:07:55,330
+cherry-picked this commit,
+or really who
+
+174
+00:07:55,330 --> 00:07:57,200
+signed off on this commit--
+
+175
+00:07:57,200 --> 00:07:58,450
+same thing.
+
+176
+00:08:01,980 --> 00:08:03,160
+We've reached the
+end of Level 4.
+
+177
+00:08:03,160 --> 00:08:05,350
+It's time for you to get into
+the challenges, and maybe do
+
+178
+00:08:05,350 --> 00:08:06,600
+some cherry-picking.

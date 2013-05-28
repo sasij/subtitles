@@ -1,0 +1,953 @@
+﻿1
+00:00:02,330 --> 00:00:03,262
+Git--
+
+2
+00:00:03,262 --> 00:00:07,060
+a distributed source
+control repository.
+
+3
+00:00:07,060 --> 00:00:09,390
+I try to picture clusters of
+information as they move
+
+4
+00:00:09,390 --> 00:00:11,162
+through the file system.
+
+5
+00:00:11,162 --> 00:00:14,432
+Were the commit messages
+like history books?
+
+6
+00:00:14,432 --> 00:00:16,535
+I kept dreaming of
+a repository I
+
+7
+00:00:16,535 --> 00:00:18,200
+thought I'd never see.
+
+8
+00:00:18,200 --> 00:00:21,620
+And then, one day, Git Real.
+
+9
+00:00:37,210 --> 00:00:38,780
+You're watching Git Real 2.
+
+10
+00:00:38,780 --> 00:00:39,750
+I'm Gregg Pollack.
+
+11
+00:00:39,750 --> 00:00:41,170
+And in this level, we're
+going to be taking a
+
+12
+00:00:41,170 --> 00:00:44,660
+closer look at rebase.
+
+13
+00:00:44,660 --> 00:00:46,890
+First of all, before I get
+into it, let's make sure
+
+14
+00:00:46,890 --> 00:00:50,800
+everyone's on the same page with
+what exactly rebase does.
+
+15
+00:00:50,800 --> 00:00:54,490
+So here, you can see we have a
+master branch, and here are
+
+16
+00:00:54,490 --> 00:00:56,880
+the last three commits.
+
+17
+00:00:56,880 --> 00:01:00,040
+And here we have a unicorns
+branch, and here are the last
+
+18
+00:01:00,040 --> 00:01:01,460
+three comments.
+
+19
+00:01:01,460 --> 00:01:03,570
+As you can see, they have
+some common commits.
+
+20
+00:01:03,570 --> 00:01:07,610
+So if we were to illustrate this
+out in a tree, we can see
+
+21
+00:01:07,610 --> 00:01:10,240
+the master branch has two
+unique commits, and the
+
+22
+00:01:10,240 --> 00:01:13,670
+unicorn branch also has
+two unique commits.
+
+23
+00:01:13,670 --> 00:01:15,970
+Our objective here is that we
+want to get our unicorns
+
+24
+00:01:15,970 --> 00:01:17,680
+branch up to date.
+
+25
+00:01:17,680 --> 00:01:21,330
+We basically want to replay
+commits from the master branch
+
+26
+00:01:21,330 --> 00:01:23,160
+onto the unicorn branch.
+
+27
+00:01:23,160 --> 00:01:26,740
+So to do this, we first check
+out the unicorn branch, then
+
+28
+00:01:26,740 --> 00:01:30,270
+we run git rebase master.
+
+29
+00:01:30,270 --> 00:01:33,000
+The first thing this is going
+to do is move the unique
+
+30
+00:01:33,000 --> 00:01:38,740
+commits on the unicorn branch
+into a temporary area.
+
+31
+00:01:38,740 --> 00:01:40,870
+Now the unicorns branch
+is moved to the
+
+32
+00:01:40,870 --> 00:01:42,305
+final commit of master.
+
+33
+00:01:45,420 --> 00:01:48,910
+Then the commits we put in the
+temporary area our replayed on
+
+34
+00:01:48,910 --> 00:01:50,410
+top of the unicorn branch.
+
+35
+00:01:56,350 --> 00:01:57,940
+So here's what our branch
+looked like
+
+36
+00:01:57,940 --> 00:01:59,690
+before we ran rebase.
+
+37
+00:01:59,690 --> 00:02:03,250
+And here's what it looked like
+after we ran rebase.
+
+38
+00:02:03,250 --> 00:02:07,250
+Now it may be tempting to say
+that the commits for master
+
+39
+00:02:07,250 --> 00:02:09,870
+we're moved onto the
+unicorn branch.
+
+40
+00:02:09,870 --> 00:02:12,500
+But that's not really
+what happened here.
+
+41
+00:02:12,500 --> 00:02:15,430
+Basically, once we moved the
+new commits on the unicorn
+
+42
+00:02:15,430 --> 00:02:18,890
+branch to the temporary area,
+the next thing that we did is
+
+43
+00:02:18,890 --> 00:02:22,710
+change the unicorn branch
+to point to the
+
+44
+00:02:22,710 --> 00:02:25,160
+last commit on master--
+
+45
+00:02:25,160 --> 00:02:27,850
+to the final comment on
+the master branch.
+
+46
+00:02:27,850 --> 00:02:30,530
+And then, we re-ran the commits
+from the temporary
+
+47
+00:02:30,530 --> 00:02:32,285
+area on top of that branch.
+
+48
+00:02:34,920 --> 00:02:36,770
+At some point while you're
+working with git, you're going
+
+49
+00:02:36,770 --> 00:02:40,970
+to run into a situation where
+you want to redo the commits
+
+50
+00:02:40,970 --> 00:02:43,200
+on the same branch you're
+working on--
+
+51
+00:02:43,200 --> 00:02:44,900
+change them in some way.
+
+52
+00:02:44,900 --> 00:02:48,190
+This is where git rebase
+-i comes in,
+
+53
+00:02:48,190 --> 00:02:50,090
+or interactive rebase.
+
+54
+00:02:50,090 --> 00:02:53,670
+In our case, we want to redo the
+last three commits, so we
+
+55
+00:02:53,670 --> 00:02:57,360
+do HEAD~3, meaning
+three commits
+
+56
+00:02:57,360 --> 00:02:59,420
+before the current HEAD.
+
+57
+00:02:59,420 --> 00:03:01,600
+When we execute this
+command, it's going
+
+58
+00:03:01,600 --> 00:03:04,270
+to pop up an editor.
+
+59
+00:03:04,270 --> 00:03:07,540
+Inside this editor, we find
+the rebase script.
+
+60
+00:03:07,540 --> 00:03:09,830
+You can think of these as
+commands that are going to get
+
+61
+00:03:09,830 --> 00:03:13,070
+run once we save and
+exit this editor.
+
+62
+00:03:13,070 --> 00:03:15,150
+Here you can see we're using the
+pick command for each of
+
+63
+00:03:15,150 --> 00:03:16,210
+our commits.
+
+64
+00:03:16,210 --> 00:03:19,050
+And in the next couple slides,
+we'll go over what the other
+
+65
+00:03:19,050 --> 00:03:22,640
+commands do, and why
+you might use them.
+
+66
+00:03:22,640 --> 00:03:25,015
+Now if we save and exit
+the editor, what is
+
+67
+00:03:25,015 --> 00:03:26,390
+it going to do exactly?
+
+68
+00:03:26,390 --> 00:03:29,810
+Well, first it's going to move
+those three commits into a
+
+69
+00:03:29,810 --> 00:03:31,470
+temporary area.
+
+70
+00:03:31,470 --> 00:03:34,160
+Then it's going to go through
+and run each of the commands
+
+71
+00:03:34,160 --> 00:03:35,330
+in our script.
+
+72
+00:03:35,330 --> 00:03:37,790
+In this case, since we're using
+the pick keyword, it's
+
+73
+00:03:37,790 --> 00:03:42,440
+going to re-run each commit one
+at a time, just like so.
+
+74
+00:03:42,440 --> 00:03:46,080
+And nothing is going
+to change.
+
+75
+00:03:46,080 --> 00:03:48,910
+Interactive rebase alters
+every commit
+
+76
+00:03:48,910 --> 00:03:51,020
+after the one you specify.
+
+77
+00:03:51,020 --> 00:03:53,860
+So if we specified HEAD here--
+
+78
+00:03:53,860 --> 00:03:57,260
+well, there's no commits
+after HEAD, right?
+
+79
+00:03:57,260 --> 00:04:00,700
+So in this case, it would pop
+an editor with basically
+
+80
+00:04:00,700 --> 00:04:02,250
+nothing to do.
+
+81
+00:04:02,250 --> 00:04:03,560
+No op.
+
+82
+00:04:03,560 --> 00:04:07,430
+If we did git rebase HEAD, with
+a carrot, that means go
+
+83
+00:04:07,430 --> 00:04:08,455
+to the parent of HEAD.
+
+84
+00:04:08,455 --> 00:04:11,380
+So that means go to
+the last commit.
+
+85
+00:04:11,380 --> 00:04:13,390
+Inside the editor, we would
+simply have one
+
+86
+00:04:13,390 --> 00:04:16,700
+commit, as you see here.
+
+87
+00:04:16,700 --> 00:04:18,019
+So now let's use git rebase to
+
+88
+00:04:18,019 --> 00:04:20,150
+manipulate some of our commits.
+
+89
+00:04:20,150 --> 00:04:23,590
+If we run git log, we might
+notice that, well, two of our
+
+90
+00:04:23,590 --> 00:04:24,970
+commits are in the
+wrong order.
+
+91
+00:04:24,970 --> 00:04:26,860
+How might we switch the order?
+
+92
+00:04:26,860 --> 00:04:29,160
+All right, so here's what
+our branches look like.
+
+93
+00:04:29,160 --> 00:04:32,260
+And we just want to switch the
+order of two of our commits.
+
+94
+00:04:32,260 --> 00:04:36,170
+Well, the first thing we might
+do is run git rebase -i--
+
+95
+00:04:36,170 --> 00:04:38,300
+same command we saw in the
+previous slide-- and that's
+
+96
+00:04:38,300 --> 00:04:41,100
+going to pop up this editor.
+
+97
+00:04:41,100 --> 00:04:43,270
+One thing that's interesting to
+notice is when we run git
+
+98
+00:04:43,270 --> 00:04:47,840
+log, it's showing us a list of
+commits from newest to oldest.
+
+99
+00:04:47,840 --> 00:04:51,430
+But when we run the git rebase
+command and we jump into our
+
+100
+00:04:51,430 --> 00:04:53,600
+rebase script, it's showing
+our commits
+
+101
+00:04:53,600 --> 00:04:56,100
+from oldest to newest.
+
+102
+00:04:56,100 --> 00:04:58,360
+Notice how the order's
+slightly different.
+
+103
+00:04:58,360 --> 00:05:01,130
+So in our case, we want
+to change the
+
+104
+00:05:01,130 --> 00:05:02,090
+order of these commits.
+
+105
+00:05:02,090 --> 00:05:05,330
+And all we have to do to make
+that happen is switch the
+
+106
+00:05:05,330 --> 00:05:08,350
+order inside this editor,
+as you see here.
+
+107
+00:05:08,350 --> 00:05:11,560
+Now if we save and exit the
+editor, it's going to rerun
+
+108
+00:05:11,560 --> 00:05:14,980
+the commits in the order we
+specified inside this script.
+
+109
+00:05:14,980 --> 00:05:17,100
+And if we run git log,
+we'll see that it's
+
+110
+00:05:17,100 --> 00:05:19,130
+actually been switched.
+
+111
+00:05:19,130 --> 00:05:22,940
+So what's happening here when we
+exit that rebase script is
+
+112
+00:05:22,940 --> 00:05:28,230
+its rewinding our code, taking
+the commits into a temporary
+
+113
+00:05:28,230 --> 00:05:33,230
+area, and then replaying them in
+the order that we specified
+
+114
+00:05:33,230 --> 00:05:34,480
+inside the script.
+
+115
+00:05:36,750 --> 00:05:38,800
+Now what if we look back at
+our commits, and we notice
+
+116
+00:05:38,800 --> 00:05:41,340
+that we used a bad
+commit message?
+
+117
+00:05:41,340 --> 00:05:45,340
+Well, rebase interactive can
+also help us fix that.
+
+118
+00:05:45,340 --> 00:05:48,270
+To do that, we simply run our
+same rebase command, and
+
+119
+00:05:48,270 --> 00:05:51,560
+inside the editor, we simply
+need to change the pick
+
+120
+00:05:51,560 --> 00:05:54,910
+command to the reword command
+for the commit we want to
+
+121
+00:05:54,910 --> 00:05:56,910
+change the message on.
+
+122
+00:05:56,910 --> 00:06:01,150
+Then, when we save and exit this
+file, another editor is
+
+123
+00:06:01,150 --> 00:06:02,400
+going to pop up.
+
+124
+00:06:02,400 --> 00:06:05,010
+This is where we can edit
+our commit message.
+
+125
+00:06:05,010 --> 00:06:07,010
+So go ahead and edit
+the commit message.
+
+126
+00:06:07,010 --> 00:06:09,320
+And then when we save and exit,
+it's going to rerun
+
+127
+00:06:09,320 --> 00:06:12,390
+those commits, change the
+message so that when we log
+
+128
+00:06:12,390 --> 00:06:14,860
+out the commits again, we can
+see that the message has
+
+129
+00:06:14,860 --> 00:06:16,110
+properly been changed.
+
+130
+00:06:19,910 --> 00:06:22,930
+Another way we can manipulate
+commits inside interactive
+
+131
+00:06:22,930 --> 00:06:24,850
+rebase is when we
+need to split a
+
+132
+00:06:24,850 --> 00:06:26,930
+single commit into two.
+
+133
+00:06:26,930 --> 00:06:30,070
+Maybe there was too much code in
+that single commit, and it
+
+134
+00:06:30,070 --> 00:06:33,490
+really should have been split
+up into two, or even three.
+
+135
+00:06:33,490 --> 00:06:35,440
+So here's what our branch
+current looks like, and we
+
+136
+00:06:35,440 --> 00:06:38,270
+want to split that last
+commit into two.
+
+137
+00:06:38,270 --> 00:06:41,470
+To do this inside of our rebase
+script, for the commit
+
+138
+00:06:41,470 --> 00:06:45,490
+that we want to split, we change
+the keyword pick to
+
+139
+00:06:45,490 --> 00:06:48,590
+edit, because we want
+to edit this commit.
+
+140
+00:06:48,590 --> 00:06:50,590
+When we save and exit this
+file, it's going
+
+141
+00:06:50,590 --> 00:06:52,460
+to re-run the commits.
+
+142
+00:06:52,460 --> 00:06:54,960
+And when it gets to the commit
+that we specified the edit
+
+143
+00:06:54,960 --> 00:06:59,420
+command for, it's going to run
+that commit, and spit us out
+
+144
+00:06:59,420 --> 00:07:03,780
+onto the command line with the
+message that you see here.
+
+145
+00:07:03,780 --> 00:07:07,170
+If we wanted to add things to
+this commit, we could stage
+
+146
+00:07:07,170 --> 00:07:10,700
+some code, and then use commit
+amend to attach it to this
+
+147
+00:07:10,700 --> 00:07:13,820
+commit, and then use git
+rebase continue.
+
+148
+00:07:13,820 --> 00:07:16,680
+But what we want to do
+is split this commit.
+
+149
+00:07:16,680 --> 00:07:19,200
+Well, it's already been
+committed, so the first thing
+
+150
+00:07:19,200 --> 00:07:22,160
+we're going to have to do on
+the command line is to type
+
+151
+00:07:22,160 --> 00:07:25,820
+git reset HEAD, which is going
+to roll back our last commit,
+
+152
+00:07:25,820 --> 00:07:28,690
+leaving the changes in our
+working directory.
+
+153
+00:07:28,690 --> 00:07:31,170
+If we would have done a hard
+reset here with that dash dash
+
+154
+00:07:31,170 --> 00:07:34,500
+hard option, it would have
+actually erased our changes.
+
+155
+00:07:34,500 --> 00:07:36,190
+But we want to split
+our current
+
+156
+00:07:36,190 --> 00:07:38,000
+changes, not erase them.
+
+157
+00:07:38,000 --> 00:07:41,760
+So what we might do now is
+simply stage the files we want
+
+158
+00:07:41,760 --> 00:07:44,080
+in our first commit,
+and commit them.
+
+159
+00:07:44,080 --> 00:07:47,360
+And then stage the files we want
+in our second commit, and
+
+160
+00:07:47,360 --> 00:07:48,620
+commit them.
+
+161
+00:07:48,620 --> 00:07:53,590
+At this point, now we want to
+run rebase --continue.
+
+162
+00:07:53,590 --> 00:07:56,120
+This will continue running
+any other commands
+
+163
+00:07:56,120 --> 00:07:57,510
+in our rebase script.
+
+164
+00:07:57,510 --> 00:08:01,820
+But in our case, this was the
+last one, so now when we do a
+
+165
+00:08:01,820 --> 00:08:05,070
+log command, we can see that
+the commits have been split
+
+166
+00:08:05,070 --> 00:08:06,320
+like we wanted them to.
+
+167
+00:08:09,390 --> 00:08:11,460
+Sometimes we might have
+the opposite problem.
+
+168
+00:08:11,460 --> 00:08:13,170
+We might have two or
+three commits that
+
+169
+00:08:13,170 --> 00:08:15,140
+should've been just one.
+
+170
+00:08:15,140 --> 00:08:17,940
+So we need a way of squashing
+them together.
+
+171
+00:08:17,940 --> 00:08:21,110
+In our case, we have those two
+commits we just split.
+
+172
+00:08:21,110 --> 00:08:23,760
+Well, what if we wanted to
+squash those back into one?
+
+173
+00:08:23,760 --> 00:08:26,070
+So we want to squash
+the commits.
+
+174
+00:08:26,070 --> 00:08:28,930
+Well, in this case, we're going
+to run the git rebase
+
+175
+00:08:28,930 --> 00:08:31,980
+command, this time on the
+last four commits.
+
+176
+00:08:31,980 --> 00:08:33,330
+Here's our editor.
+
+177
+00:08:33,330 --> 00:08:36,870
+Inside our editor, we are simply
+going to specify which
+
+178
+00:08:36,870 --> 00:08:41,304
+commit we want to squash into
+the previous commit.
+
+179
+00:08:46,100 --> 00:08:49,130
+Once we save and edit the rebase
+script, another editor
+
+180
+00:08:49,130 --> 00:08:50,430
+is going to pop up.
+
+181
+00:08:50,430 --> 00:08:53,560
+This is going to show us the
+commit message from the first
+
+182
+00:08:53,560 --> 00:08:57,450
+commit, and the second commit
+that we're going to squash
+
+183
+00:08:57,450 --> 00:08:58,660
+into the first.
+
+184
+00:08:58,660 --> 00:09:01,170
+And as you can see here,
+it says, enter
+
+185
+00:09:01,170 --> 00:09:02,790
+a new commit message.
+
+186
+00:09:02,790 --> 00:09:05,620
+So in this case, we're simply
+going to write a new commit
+
+187
+00:09:05,620 --> 00:09:07,860
+message that combines
+them both.
+
+188
+00:09:07,860 --> 00:09:10,950
+In this case, just change
+plurals to capybara.
+
+189
+00:09:10,950 --> 00:09:14,070
+Now when we save and exit this
+file, well, the two commits
+
+190
+00:09:14,070 --> 00:09:15,950
+are going to be squashed
+into one.
+
+191
+00:09:15,950 --> 00:09:17,370
+And if we take a look
+in our log, we can
+
+192
+00:09:17,370 --> 00:09:18,620
+see that's what happened.
+
+193
+00:09:21,930 --> 00:09:23,740
+Visually, here's what's
+happening.
+
+194
+00:09:23,740 --> 00:09:27,050
+So when we run git rebase,
+it's taking those four
+
+195
+00:09:27,050 --> 00:09:31,010
+commits, moving them to a
+temporary area, and then
+
+196
+00:09:31,010 --> 00:09:32,790
+picking out each commit, and
+
+197
+00:09:32,790 --> 00:09:35,060
+re-running it onto our timeline.
+
+198
+00:09:35,060 --> 00:09:37,560
+Then when it gets to the squash
+command, it's taking
+
+199
+00:09:37,560 --> 00:09:41,250
+that commit, and merging it
+with the previous commit,
+
+200
+00:09:41,250 --> 00:09:45,300
+giving it our updated
+commit message.
+
+201
+00:09:45,300 --> 00:09:46,650
+Well, you've received the
+end of level one.
+
+202
+00:09:46,650 --> 00:09:49,670
+It's time for you to have some
+fun with rebasing on your own.
